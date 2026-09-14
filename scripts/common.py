@@ -77,7 +77,7 @@ WEIGHTS = {
     "novelty": 0.05,
 }
 
-#: 目标类型 → Opportunity 类别（score.py 与 locale.py 共用，避免两套映射）
+#: 目标类型 → Opportunity 类别（score.py 与 locales.py 共用，避免两套映射）
 GOAL_TO_CATEGORY = {
     "internship": ["career"], "fulltime": ["career"], "research": ["research"],
     "competition": ["competition"], "education": ["education"], "language": ["language"],
@@ -129,6 +129,21 @@ INTEREST_ALIASES = {
     "social_impact": ["social impact", "nonprofit", "civic", "community", "volunteer", "公益"],
     "sports": ["sports", "athletics", "fitness", "esports management"],
 }
+
+#: 语言条目里表示"明确不具备"的标记（score.py 资格判定与 locales.py 召回门控共用）。
+#: 注意：必须排除 None —— `str(None).lower()` 恰好等于 "none"，会把"未填写"误判成"明确不会"。
+LANGUAGE_NONE_MARKERS = ("none", "no", "cannot", "not-available", "不会", "无", "未学", "未修", "不懂")
+
+
+def is_explicit_none(value) -> bool:
+    """是否**明确表示不具备**。None/空值一律返回 False（缺失 ≠ 明确不会）。"""
+    if value is None:
+        return False
+    if isinstance(value, bool):
+        return value is False
+    s = str(value).strip().lower()
+    return bool(s) and s in LANGUAGE_NONE_MARKERS
+
 
 #: state.py 变化检测跟踪的字段（见 references/state-and-feedback.md §2）
 TRACKED_FIELDS = (

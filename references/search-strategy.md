@@ -48,19 +48,52 @@ Region / constraint   →  决定语言、地点、remote 与签证条件
 
 ### 1.3 搜索矩阵（矩阵是内部产物，要真的写出来）
 
-对每一类，产出 `层 × 语言` 的矩阵格。示例（Mode A，IoT 大三，Japan/China/Remote）：
+对每一类，产出 `层 × 语言` 的矩阵格。**语言由 locale 计划决定**（`scripts/locales.py`），
+矩阵只写"层"的结构。通用模板（`<field>` 来自用户的 major/兴趣，`<lang>` 来自 locale 计划）：
 
-| 类别 | Exploit（直接） | Adjacent（相邻） | Explore（可迁移/想不到） | 语言 |
-|---|---|---|---|---|
-| career | IoT / embedded / firmware internship | edge AI internship、robotics internship、automotive electronics | solutions engineer intern、developer relations intern、FAE trainee | EN / JA / ZH |
-| research | IoT undergraduate research、embedded systems research internship | sensor networks RA、edge AI research student | 産学連携 lab、visiting student program | EN / JA |
-| competition | IoT competition、embedded design contest | TinyML challenge、robotics competition | アイデアコンテスト、design award | EN / JA / ZH |
-| open_source | ESP32 open source、Zephyr contributor | embedded mentorship、ROS community | good first issue 跨项目、docs/translation 贡献 | EN |
-| skill_development | embedded certification、TinyML course | cloud credits students、开发板计划 | GitHub Student Pack 类学生开发包 | EN / JA |
-| project | hardware build challenge | open innovation 命题 | civic tech / 数据集项目 | EN / JA |
+```
+类别            Exploit（直接）                  Adjacent（相邻）                Explore（可迁移/想不到）
+<primary_cat>   <direct field> <opportunity>    <adjacent field> <opportunity>   <transferable role / community>
+<second_cat>    …                                …                               …
+```
+
+三个不同专业方向的等权示例（没有任何一个是默认用户；IoT 只是其中之一）：
+
+**例 1 —— CS / Security / US（en-US）**
+
+| 类别 | Exploit | Adjacent | Explore |
+|---|---|---|---|
+| open_source | security tooling good first issue | privacy engineering project | docs / translation for security orgs |
+| competition | CTF, security challenge | privacy case competition | security policy hackathon |
+| career | security internship | systems research internship | developer security advocate |
+
+**例 2 —— Biology / Europe（de-DE + nl-NL）**
+
+| 类别 | Exploit | Adjacent | Explore |
+|---|---|---|---|
+| research | summer research biology (lab) | bioinformatics, ecology data | science communication |
+| funding | research/travel grant | conference stipend | citizen science fund |
+| event | life science seminar | biotech career fair | lab open day |
+
+**例 3 —— Design / France / Global（fr-FR）**
+
+| 类别 | Exploit | Adjacent | Explore |
+|---|---|---|---|
+| competition | design competition, poster award | game art contest | museum / exhibition project |
+| project | portfolio project brief | creative coding | design research study |
+| hobby | game jam | animation challenge | design community meetup |
+
+**例 4 —— IoT / Embedded / Japan（ja-JP）**（一个受支持的具体场景，不是默认）
+
+| 类别 | Exploit | Adjacent | Explore |
+|---|---|---|---|
+| career | embedded / firmware internship (インターン) | robotics, automotive electronics internship | field application engineer |
+| competition | embedded design contest | robotics competition | アイデアコンテスト |
+| research | embedded systems research | sensor networks, edge AI | 産学連携 project |
 
 > 矩阵的价值在于**强制覆盖**。如果某类的 Adjacent / Explore 格子是空的，
 > 说明推导还没做完，不是"没有机会"。
+
 
 ---
 
@@ -68,21 +101,24 @@ Region / constraint   →  决定语言、地点、remote 与签证条件
 
 ### 2.1 允许的扩展方式
 
-| 方式 | 例子 | 说明 |
+| 方式 | 例子（跨领域） | 说明 |
 |---|---|---|
-| 同义/近义 | internship → intern, 实习, インターン, placement, co-op | 提高召回 |
-| 技术栈换层 | ESP32 → MCU, 嵌入式, firmware, TinyML | 不偏离用户能力 |
-| 应用域扩展 | ESP32 → smart home, wearable, 农业 IoT | 打开发现场景 |
+| 同义/近义 | internship → intern, 实习, インターン, placement, co-op | 提高召回（用词按 locale 本地化） |
+| 领域换层 | Python + security → network security, security tooling | 不偏离用户能力 |
+| 领域换层 | biology + statistics → bioinformatics, computational biology | 同上 |
+| 领域换层 | Blender + game → 3D art, environment art, game jam | 同上 |
+| 领域换层 | ESP32 → MCU, firmware, TinyML | 同上（IoT 场景保留） |
+| 应用域扩展 | design + education → educational game, learning app | 打开发现场景 |
 | 角色扩展 | intern → RA, contributor, ambassador, volunteer, mentee | 打开机会类型 |
-| 时间线扩展 | intern → 2026 summer, summer 2027, 通年採用 | 保证时效 |
-| 资格语言 | 学生 + 大学生 + 学部生 + student | 匹配官方用词 |
+| 时间线扩展 | intern → 2027 summer, summer 2028, rolling intake | 保证时效（按地区口径） |
+| 资格语言 | 学生 + 在读 + undergraduate + 学部生 | 匹配官方用词（按 locale） |
 
 ### 2.2 防跑偏（硬约束）
 
 1. **可溯源**：每个扩展词必须能追溯到 profile 里的某个信号（技能/兴趣/专业/目标）。
    追不到 → 不搜。
-2. **两跳上限**：从 profile 词出发最多扩展两跳（ESP32 → TinyML → edge AI ✅；
-   ESP32 → edge AI → AI ethics ❌）。
+2. **两跳上限**：从 profile 词出发最多扩展两跳（Python → network security →
+   security tooling ✅；Python → network security → AI ethics ❌）。
 3. **不复读**：语义等价的 query 只发一次。看到"embedded internship"和
    "internship embedded"不要当成两个 query。
 4. **不发明**：不要凭想象编造"某公司应该有的学生计划"。没搜到就是没搜到。

@@ -1,5 +1,5 @@
 {
-  "_note": "FORMAT EXAMPLE — 虚构人物，不是真实用户。用于演示 scripts/score.py / locale.py。真实使用时只写用户明确说过的内容，缺失字段一律 null。",
+  "_note": "FORMAT EXAMPLE — 虚构人物，不是真实用户。用于演示 scripts/score.py / locales.py。真实使用时只写用户明确说过的内容，缺失字段一律 null。",
   "profile_version": 1,
   "updated_at": "2026-09-14",
   "education": {

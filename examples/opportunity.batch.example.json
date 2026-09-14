@@ -1,5 +1,5 @@
 {
-  "_note": "FORMAT / TOOLING EXAMPLE ONLY. All organizations and facts are fictional and must never be reused as verified opportunity data. 覆盖 Global / Remote、US、Europe、China、Japan 以及 7 种机会类型，用于演示 scripts/dedupe.py 与 scripts/score.py（含同一机会的多来源合并）。",
+  "_note": "FORMAT / TOOLING EXAMPLE ONLY. All organizations and facts are fictional and must never be reused as verified opportunity data. 覆盖 Global / Remote、US、Europe、China、Japan 以及多种机会类型，用于演示 scripts/dedupe.py 与 scripts/score.py（含同一机会的多来源合并）。",
   "opportunities": [
     {
       "id": "nagi-robotics-summer-internship-2027",

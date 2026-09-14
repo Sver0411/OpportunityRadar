@@ -47,7 +47,7 @@ class TestUsCsUser(unittest.TestCase):
         self.assertEqual(self.plan["regions"], ["us"])
 
     def test_no_east_asian_locales_or_files(self):
-        for loc in self.plan["primary_locales"] + self.plan["secondary_locales"]:
+        for loc in self.plan["primary_locales"] + self.plan["optional_locales"]:
             self.assertNotIn(loc, EAST_ASIA_MARKERS, f"不该假设东亚语言：{loc}")
         for f in self.plan["load_files"]:
             self.assertNotIn(f, JAPAN_CHINA_FILES)
@@ -73,7 +73,7 @@ class TestFrenchDesignUser(unittest.TestCase):
 
     def test_french_is_primary(self):
         self.assertEqual(self.plan["primary_locales"], ["fr-FR"])
-        self.assertIn("en", self.plan["secondary_locales"], "英文作为国际召回补充")
+        self.assertIn("en", self.plan["optional_locales"], "英文作为国际召回补充")
 
     def test_no_asia_default(self):
         for loc in self.plan["primary_locales"]:
@@ -157,14 +157,76 @@ class TestLocaleLoading(unittest.TestCase):
         self.assertIn("remote", remote["regions"], "remote 是真实的目标信号，应被采纳")
         self.assertEqual(remote["primary_locales"], ["en-US"], "不应因 remote 重复引入裸 en")
 
-    def test_request_region_overrides_profile(self):
+    def test_request_region_additive_keeps_profile(self):
+        """非限定提及：请求地区在前，画像地区保留（可按语义舍弃）。"""
         plan = L.search_plan(CS, request_text="我想找德国的实习，远程也可以")
-        self.assertIn("germany", plan["regions"])
+        self.assertEqual(plan["regions"][:1], ["germany"])
+        self.assertIn("us", plan["regions"])
+        self.assertEqual(plan["region_source"], "explicit_additive")
 
-    def test_user_languages_are_supplementary_only(self):
-        plan = L.search_plan(CS)
+    def test_request_override_drops_profile_regions(self):
+        """"只找德国" → 覆盖画像偏好：不再出现 us，也不加载 us.md。"""
+        plan = L.search_plan(CS, request_text="这次只找德国的机会")
+        self.assertEqual(plan["regions"], ["germany"])
+        self.assertEqual(plan["region_source"], "explicit_override")
+        self.assertIn("references/locales/de.md", plan["load_files"])
+        self.assertNotIn("references/locales/us.md", plan["load_files"])
+        self.assertEqual(plan["primary_locales"], ["de-DE"])
+
+    def test_additive_remote_request(self):
+        plan = L.search_plan(CS, request_text="美国或者远程都可以")
+        self.assertIn("us", plan["regions"])
+        self.assertIn("remote", plan["regions"])
+        self.assertEqual(plan["region_source"], "explicit_additive")
+
+    def test_unknown_structured_geography_is_preserved(self):
+        """未收录地区必须作为 region hint 保留 —— 地区和语言不是一回事。"""
+        plan = L.search_plan({"constraints": {"preferred_country": ["Kenya"]}})
+        self.assertEqual(plan["unknown_regions"], ["Kenya"])
+        self.assertIn("Kenya", plan["region_hints"])
+        self.assertEqual(plan["load_files"], [L.GENERIC_LOCALE_FILE])
+        self.assertEqual(plan["primary_locales"], ["en"])
+
+    def test_region_source_is_reported(self):
+        self.assertEqual(L.search_plan(CS)["region_source"], "profile_fallback")
+        self.assertEqual(L.search_plan({})["region_source"], "default_remote")
+
+    def test_known_language_becomes_optional_locale(self):
+        """明确具备能力（level 有值）→ 进入候选召回语言。"""
+        p = dict(CS, languages=[{"language": "Spanish", "exam": None, "score": None,
+                                 "level": "intermediate"}])
+        plan = L.resolve_locales(p)
         self.assertEqual(plan["primary_locales"], ["en-US"])
-        self.assertIn("es-ES", plan["secondary_locales"], "画像里记录的西班牙语只作补充召回")
+        self.assertIn("es-ES", plan["optional_locales"])
+        self.assertTrue(any("明确具备" in n for n in plan["notes"]))
+
+    def test_unknown_language_ability_is_not_added(self):
+        """只记录名字 ≠ 会用这门语言理解机会 → 不加入召回语言。"""
+        p = dict(CS, languages=[{"language": "Spanish", "exam": None, "score": None,
+                                 "level": None}])
+        plan = L.resolve_locales(p)
+        self.assertNotIn("es-ES", plan["optional_locales"])
+        self.assertTrue(any("无法确认可用于搜索" in n for n in plan["notes"]))
+
+    def test_exam_without_score_is_still_unknown(self):
+        """出现 JLPT 不代表会日语：exam 有值但 score/level 为空 → 不加入。"""
+        p = dict(CS, languages=[{"language": "Japanese", "exam": "JLPT", "score": None,
+                                 "level": None}])
+        plan = L.resolve_locales(p)
+        self.assertNotIn("ja-JP", plan["optional_locales"])
+
+    def test_exam_with_score_counts_as_ability(self):
+        p = dict(CS, languages=[{"language": "Japanese", "exam": "JLPT", "score": "N3",
+                                 "level": None}])
+        plan = L.resolve_locales(p)
+        self.assertIn("ja-JP", plan["optional_locales"])
+
+    def test_explicit_none_is_never_added(self):
+        p = dict(CS, languages=[{"language": "Japanese", "exam": None, "score": None,
+                                 "level": "none"}])
+        plan = L.resolve_locales(p)
+        self.assertNotIn("ja-JP", plan["optional_locales"])
+        self.assertTrue(any("明确标注不具备" in n for n in plan["notes"]))
 
 
 class TestDynamicDetection(unittest.TestCase):

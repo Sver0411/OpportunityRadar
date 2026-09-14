@@ -13,7 +13,7 @@ Profile / 当前请求
       ↓
 目标地区（target regions）
       ↓
-语言计划（primary / secondary locales）
+语言计划（primary / optional locales）
       ↓
 区域知识文件（按需加载，缺失也能工作）
       ↓
@@ -30,14 +30,25 @@ python3 scripts/locales.py --detect "https://example.fr/offres"
 
 ---
 
-## 1. 确定目标地区
+## 1. 确定目标地区（precedence，不是合并）
 
-按优先级取值（`target_regions()` 已实现）：
+`target_regions()` 按下表取值，**高层来源出现时低层来源不再参与**：
 
-1. **当前请求里可识别的地区**（"我想找德国的实习" → `germany`）
-2. `constraints.preferred_country`
-3. `education.school_country`（用户在哪读书，通常也是机会所在地）
-4. 都没有 → **Global / Remote**（不是默认某个国家）
+| source | 触发 | 行为 |
+|---|---|---|
+| `explicit_override` | 请求明确限定地区（"只找德国" / "only Germany"） | 只用请求地区，**忽略**画像里的长期偏好 |
+| `explicit_additive` | 请求提到地区但非限定（"德国和荷兰也可以" / "US or remote"） | 请求地区在前，画像地区保留在后（可按语义舍弃） |
+| `profile_fallback` | 请求没有地区 | `preferred_country` → `school_country` |
+| `default_remote` | 什么都没有 | Global / Remote（不是默认某个国家） |
+
+输出的 `region_source` 字段标明走了哪条路径；`region_hints` 始终保留用户提到的地区 ——
+**地区和语言不是一回事**：未收录的国家（如 Kenya）也要作为 hint 传给搜索，
+不能因为语言未知就把地区丢掉。
+
+**职责边界**：从复杂自然语言里提取地理意图是宿主 Agent 语义层的职责；
+本脚本只做 canonicalization、已知别名解析、locale 规划与兜底。
+Free-text 的地区识别是 **best-effort**（只认 `COUNTRY_ALIASES` 里的写法）——
+解析不了就要求 Agent 结构化传入，不要宣称能自动识别所有国家。
 
 **不要**从"用户说中文"推断用户在中国，也不要从"用户专业是 IoT"推断用户想去日本。
 语言与专业都不是地区证据。
@@ -54,7 +65,7 @@ python3 scripts/locales.py --detect "https://example.fr/offres"
 规则：
 
 - **当地语言负责召回本地机会**（政府/大学/企业官网常只有本地语言版本）。
-- 英文负责跨国公司、国际组织与远程机会；它是补充，不是基线。
+- 英文负责跨国公司、国际组织与远程机会；它是**候选（optional）**而非基线，也不是第二轮必搜清单（输出字段名即 `optional_locales`）。
 - 多语地区按该地区的实际情况处理（如加拿大 = en-CA + fr-CA，瑞士 = de-CH + fr-CH）。
 - 用户画像里记录的语言只作为**补充召回**，不改变目标地区的主语言。
 
@@ -91,14 +102,15 @@ python3 scripts/locales.py --detect "研究室のインターン募集"         
 python3 scripts/locales.py --detect "https://example.com/ja/recruit"    # → ja-JP（路径前缀）
 ```
 
-检测到新的主要语言 → 追加该语言的 query 变体。检测不出（纯拉丁字母且无地区线索）→
-用结果质量判断是否需要补充本地语言，不要凭猜。
+动态检测只使用**强信号**：ccTLD、URL 语言路径前缀、以及独特的文字系统（假名/谚文/汉字等）。
+没有强信号时返回「无法判断」，不会假装识别出了语言。检测到新的主要语言 →
+追加该语言的 query 变体；检测不出 → 用结果质量决定是否补充本地语言。
 
 ## 6. 没有对应区域文件的国家
 
 **功能不受影响**：走本文件 + English + 动态检测。区域文件只是增强层。
 
-例如用户说"想去芬兰"：`fi-FI` 会作为 primary（若 `locale.py` 的表中已收录该地区），
+例如用户说"想去芬兰"：`fi-FI` 会作为 primary（若 `locales.py` 的表中已收录该地区），
 没有 `references/locales/fi.md` 也照常工作 —— 用芬兰语/英语搜索，
 页面上的具体规则（申请周期、资格术语）现场从官方页面读。
 

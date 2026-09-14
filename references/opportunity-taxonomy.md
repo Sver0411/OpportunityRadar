@@ -4,8 +4,9 @@
 `secondary_categories`，以及任意个自由 `tags`。
 
 分类不是标签墙，而是**搜索空间的枚举清单**：Step 2 用它决定"这次要找哪几类"，
-Step 4 用它决定"每类要发哪些 query"。因此本文件同时给出每一类的**典型来源**与
-**query 模式**（英/中/日），直接可复制使用。
+Step 4 决定"每类发哪些 query"。本文件给出每一类的**典型来源**与 **language-neutral
+intent templates**；具体用哪种语言、本地用词怎么写，由 `references/locales/` 在运行时
+按目标地区决定，不写死在本文件里。
 
 > **职责分工**：本文件回答"有哪些类型的机会、典型来源是什么、通用的 search intent 是什么"。
 > **"每个地区具体怎么搜、用哪些词"属于 locale 层**（`references/locales/`），
@@ -36,7 +37,7 @@ Step 4 用它决定"每类要发哪些 query"。因此本文件同时给出每�
 
 ---
 
-## 1. `career` — 职业机会career
+## 1. `career` — 职业机会
 
 **子类：** 暑期实习 / 寒假实习 / 日常实习 / 长期实习 / 远程实习 / 海外实习 /
 研究型实习 / 秋招 / 春招 / 提前批 / 补录 / Graduate Program / 管培生 /
@@ -68,7 +69,7 @@ summer / winter / off-cycle <field> internship
 
 ---
 
-## 2. `research` — 科研机会research
+## 2. `research` — 科研机会
 
 **子类：** Research Assistant / 本科科研 / 科研实习 / Summer Research / 实验室项目 /
 企业研究院 / 教授招募 / 大学生科研计划 / 开放课题 / 研究训练计划 / 论文合作 /
@@ -99,7 +100,7 @@ professor <field> recruiting
 
 ---
 
-## 3. `competition` — 竞赛competition
+## 3. `competition` — 竞赛
 
 **子类：** 编程竞赛 / 算法比赛 / CTF / AI 比赛 / CV / NLP / LLM / Agent /
 数据科学 / IoT / 嵌入式 / 电子设计 / FPGA / 芯片 / 机器人 / 无人机 / 无人车 /
@@ -128,7 +129,7 @@ professor <field> recruiting
 
 ---
 
-## 4. `education` — 升学与教育education
+## 4. `education` — 升学与教育
 
 **子类：** 考研 / 保研 / 夏令营 / 预推免 / 调剂 / 直博 / Master / PhD /
 Research Student / 海外硕士 / 海外博士 / 交换 / 联合培养 / 双学位 /
@@ -156,7 +157,7 @@ Summer School / Winter School / Visiting Student / 短期课程
 
 ---
 
-## 5. `language` — 语言language
+## 5. `language` — 语言
 
 **子类：** JLPT / TOEIC / IELTS / TOEFL / GRE / GMAT / CET / TOPIK / 其他语言考试 /
 考试报名 / 模考 / 语言比赛 / 翻译比赛 / 演讲比赛 / 语言奖学金 / 语言交换 /
@@ -183,7 +184,7 @@ Summer School / Winter School / Visiting Student / 短期课程
 
 ---
 
-## 6. `skill_development` — 技能与资源skill_development
+## 6. `skill_development` — 技能与资源
 
 **子类：** AWS / Azure / GCP / Cisco / Red Hat / 技术认证 / 学生免费认证 /
 Bootcamp / Workshop / Developer Training / 企业培养计划 / GPU Credit /
@@ -212,7 +213,7 @@ education software for students
 
 ---
 
-## 7. `open_source` — 开源open_source
+## 7. `open_source` — 开源
 
 **子类：** GSoC / Mentorship / 开源实习 / Contributor Program / Good First Issue /
 Help Wanted / Bounty / Maintainer 招募 / Developer Community / RFC / Proposal /
@@ -241,7 +242,7 @@ beta / early access program <topic>
 
 ---
 
-## 8. `hobby` — 兴趣hobby
+## 8. `hobby` — 兴趣
 
 **子类：** 摄影 / 无人机 / 汽车 / 航空 / 游戏 / Game Jam / 音乐 / 写作 /
 设计 / 视频 / 动漫 / Maker / 3D 打印 / 户外 / 创客活动
@@ -269,7 +270,7 @@ maker / build challenge <hobby>
 
 ---
 
-## 9. `funding` — 资助funding
+## 9. `funding` — 资助
 
 **子类：** 国家奖学金 / 学校奖学金 / 企业奖学金 / 助学金 / Research Grant /
 Travel Grant / Conference Grant / 创业基金 / 学生基金 / 交流资助 / 比赛资助 /
@@ -297,7 +298,7 @@ equipment / cloud / GPU funding
 
 ---
 
-## 10. `event` — 活动event
+## 10. `event` — 活动
 
 **子类：** 技术大会 / Developer Conference / 学术会议 / Workshop / Seminar /
 Meetup / Webinar / Open Day / Career Fair / 校招宣讲 / 实验室开放日 / 社区活动
@@ -323,7 +324,7 @@ seminar / webinar / workshop <field>
 
 ---
 
-## 11. `project` — 项目project
+## 11. `project` — 项目
 
 **子类：** 企业真实课题 / 企业命题 / Open Innovation / Capstone /
 学生联合项目 / 公益技术项目 / Build Challenge / Hardware Build /
@@ -350,7 +351,7 @@ dataset / open data project
 
 ---
 
-## 12. `entrepreneurship` — 创业entrepreneurship
+## 12. `entrepreneurship` — 创业
 
 **子类：** Startup Competition / Accelerator / Incubator / 校园创业 / 创业基金 /
 创业训练营 / Demo Day / 创业团队招募 / 联合创始人招募 / 企业创新挑战
@@ -376,7 +377,7 @@ demo day <field>
 
 ---
 
-## 13. `networking` — 人脉与社区networking
+## 13. `networking` — 人脉与社区
 
 **子类：** Mentor Program / Alumni Mentorship / Industry Mentor /
 Developer Community / Research Community / Student Chapter / Campus Lead /

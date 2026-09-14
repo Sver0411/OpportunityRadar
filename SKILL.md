@@ -89,7 +89,7 @@ Modes combine (B+C is common). In the answer, express the *behaviour*, not the l
 
 | File | Load when | Contents |
 |---|---|---|
-| `references/opportunity-taxonomy.md` | Step 2 always; step 4 per category | 13 categories, subcategories, sources, multilingual query patterns |
+| `references/opportunity-taxonomy.md` | Step 2 always; step 4 per category | 13 categories, subcategories, sources, language-neutral intent templates |
 | `references/search-strategy.md` | Steps 2–4 | Search matrix, expansion rules, 70/20/10, local language, budgets |
 | `references/profile-building.md` | Step 1 | Minimum viable profile, when to ask, memory reuse |
 | `references/trust-policy.md` | Steps 6–7 | Tier A–D, discovery vs confirmation, conflict handling, freshness |
@@ -126,9 +126,14 @@ Single source of truth: enums, weights, tracked fields and ID/URL rules live in
    ("我是大二物联网专业，最近有什么值得参加的？") is enough to start. Do not interrogate.
 2. **Build search space.** Choose categories from the taxonomy via goals + interests + major
    family — not just the user's literal words. Apply the mode reweighting.
-3. **Resolve locales, then expand queries.** Determine target regions from the profile and the
-   current request (never assume a region from the user's language or field), resolve the search
-   languages (`scripts/locales.py`), then produce a `category × layer × language` matrix.
+3. **Resolve target geographies, then locales, then queries.** Target geographies come from:
+   (1) explicit current-request geography（"只找德国" is an override）, (2) structured profile
+   preferences (`preferred_country`), (3) school-country fallback, (4) Global/Remote fallback —
+   in that order, never merged blindly. When the host agent identifies a location that
+   `scripts/locales.py` does not know, pass it explicitly as a region hint (`--countries`)
+   instead of dropping it. Then resolve the search languages (`scripts/locales.py`) and build the
+   `category × layer × language` matrix. `optional_locales` are candidates, not mandatory search
+   passes.
    Localize the taxonomy's intent templates into the target languages; when a first pass surfaces
    pages in another language, add that language to the next round. Every expansion must trace
    back to a profile signal; max two semantic hops.

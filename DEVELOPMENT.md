@@ -108,6 +108,23 @@ rules plus dynamic language detection — and the examples deliberately cover se
 people (CS/security in the US, biology in Germany, design in France, IoT in Japan) so no single
 route reads as the default.
 
+### Locale precedence and responsibility boundary
+
+`target_regions()` implements **precedence, not merging**: an explicit request override
+（"只找德国"）replaces the profile's long-term preferences; a non-restrictive mention adds the
+request region ahead of the profile's; otherwise the profile falls back through
+`preferred_country` → school country → Global/Remote. The chosen path is reported as
+`region_source`, and `region_hints` keeps whatever the user named even when it is not in the
+locale table — a region and its search language are different things.
+
+Responsibilities are split deliberately: `locales.py` does canonicalization, known-alias
+resolution, locale planning, knowledge-file selection and fallback; the host agent's semantic
+layer extracts target geography from messy natural language and passes it in structured form
+(`--countries` / `preferred_country`). Free-text region detection inside `locales.py` is
+best-effort alias matching only. User-language entries become `optional_locales` only when the
+profile shows explicit ability (`level` / `score` non-empty, not a "none" marker); a bare
+language name with no recorded ability is ignored.
+
 ### Why `external Actions` are out of scope
 
 Discovery and explanation are reversible; submitting a form is not. Application actions stay with

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""locale.py - 运行时决定搜索语言、要加载的区域知识，以及搜索矩阵骨架。
+"""locales.py - 运行时决定搜索语言、要加载的区域知识，以及搜索矩阵骨架。
 
 **Core 不知道用户来自哪里。** 目标地区来自 profile / 当前请求，语言随之推导；
 英文只是"提升国际召回"时的补充，不是无条件默认；没有对应区域文件的国家照样能工作。
@@ -29,6 +29,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from common import (  # noqa: E402
     CATEGORIES, COUNTRY_ALIASES, GOAL_TO_CATEGORY, INTEREST_ALIASES, canonical_country,
+    is_explicit_none,
 )
 
 #: 中日韩文字的国家名（"德国""日本"）：CJK 没有词边界，子串匹配是安全的（国家名足够独特），
@@ -40,30 +41,30 @@ _CJK_COUNTRY_ALIASES = tuple(sorted(
 #: 目标地区 → 搜索语言。primary 为该地区的当地语言，secondary 是"有国际项目价值时"的补充。
 #: 这张表可以按需扩展；**没有列出的国家不受影响**（见 resolve_locales 的 unknown 处理）。
 REGION_LOCALES = {
-    "china": {"primary": "zh-CN", "secondary": ["en"]},
-    "japan": {"primary": "ja-JP", "secondary": ["en"]},
-    "korea": {"primary": "ko-KR", "secondary": ["en"]},
-    "germany": {"primary": "de-DE", "secondary": ["en"]},
-    "austria": {"primary": "de-AT", "secondary": ["en"]},
-    "switzerland": {"primary": "de-CH", "secondary": ["fr-CH", "en"]},
-    "france": {"primary": "fr-FR", "secondary": ["en"]},
-    "netherlands": {"primary": "nl-NL", "secondary": ["en"]},
-    "sweden": {"primary": "sv-SE", "secondary": ["en"]},
-    "denmark": {"primary": "da-DK", "secondary": ["en"]},
-    "finland": {"primary": "fi-FI", "secondary": ["sv-FI", "en"]},
-    "norway": {"primary": "nb-NO", "secondary": ["en"]},
-    "spain": {"primary": "es-ES", "secondary": ["en"]},
-    "italy": {"primary": "it-IT", "secondary": ["en"]},
-    "portugal": {"primary": "pt-PT", "secondary": ["en"]},
-    "brazil": {"primary": "pt-BR", "secondary": ["en"]},
-    "india": {"primary": "en-IN", "secondary": ["hi-IN"]},
-    "singapore": {"primary": "en-SG", "secondary": ["zh-CN", "ms-SG"]},
-    "us": {"primary": "en-US", "secondary": []},
-    "uk": {"primary": "en-GB", "secondary": []},
-    "ireland": {"primary": "en-IE", "secondary": []},
-    "canada": {"primary": "en-CA", "secondary": ["fr-CA"]},
-    "australia": {"primary": "en-AU", "secondary": []},
-    "remote": {"primary": "en", "secondary": []},
+    "china": {"primary": "zh-CN", "optional": ["en"]},
+    "japan": {"primary": "ja-JP", "optional": ["en"]},
+    "korea": {"primary": "ko-KR", "optional": ["en"]},
+    "germany": {"primary": "de-DE", "optional": ["en"]},
+    "austria": {"primary": "de-AT", "optional": ["en"]},
+    "switzerland": {"primary": "de-CH", "optional": ["fr-CH", "en"]},
+    "france": {"primary": "fr-FR", "optional": ["en"]},
+    "netherlands": {"primary": "nl-NL", "optional": ["en"]},
+    "sweden": {"primary": "sv-SE", "optional": ["en"]},
+    "denmark": {"primary": "da-DK", "optional": ["en"]},
+    "finland": {"primary": "fi-FI", "optional": ["sv-FI", "en"]},
+    "norway": {"primary": "nb-NO", "optional": ["en"]},
+    "spain": {"primary": "es-ES", "optional": ["en"]},
+    "italy": {"primary": "it-IT", "optional": ["en"]},
+    "portugal": {"primary": "pt-PT", "optional": ["en"]},
+    "brazil": {"primary": "pt-BR", "optional": ["en"]},
+    "india": {"primary": "en-IN", "optional": ["hi-IN"]},
+    "singapore": {"primary": "en-SG", "optional": ["zh-CN", "ms-SG"]},
+    "us": {"primary": "en-US", "optional": []},
+    "uk": {"primary": "en-GB", "optional": []},
+    "ireland": {"primary": "en-IE", "optional": []},
+    "canada": {"primary": "en-CA", "optional": ["fr-CA"]},
+    "australia": {"primary": "en-AU", "optional": []},
+    "remote": {"primary": "en", "optional": []},
 }
 
 #: 有专门区域知识文件的国家（**增强层**，不是硬依赖）。
@@ -122,16 +123,26 @@ def as_list(v):
     return v if isinstance(v, list) else [v]
 
 
-def target_regions(profile, request_text: str = "") -> tuple:
-    """从 profile / 当前请求解析目标地区（规范化的国家值）。
+#: 请求里的"覆盖"信号：出现时 request 完全取代画像中的地区偏好
+OVERRIDE_MARKERS = ("只找", "仅限", "这次只看", "只看", "只搜", "只考虑",
+                    "only", "only in", "exclusively")
 
-    优先级：当前请求中**可识别**的地区 > constraints.preferred_country >
-    学校所在国 > （都没有）Global/Remote。
-    返回 (regions, unknown_regions, notes)。
 
-    注意：请求文本里只接受**能被 canonical_country 识别**的地区名，不会把普通英文单词
-    误当成"未知地区"（没有地理词库就无法判断 "Finland" 是国家名还是别的词 ——
-    这种情况下走 Global/Remote + 动态语言检测，不猜）。
+def target_regions(profile, request_text: str = "") -> dict:
+    """目标地区解析（**precedence，不是合并**）。
+
+    | 来源级别 | 触发 | 行为 |
+   ---|---|---|
+    | `explicit_override` | 请求明确限定地区（"只找德国"） | 忽略画像里的长期地区偏好 |
+    | `explicit_additive` | 请求提到地区但非限定（"德国和荷兰也可以"） | 请求地区在前，画像地区保留在后 |
+    | `profile_fallback`  | 请求没有地区 | preferred_country → school_country |
+    | `default_remote`    | 什么都没有 | Global/Remote |
+
+    返回 {regions, unknown_regions, hints, source, notes}。
+
+    职责边界：本函数只做 **canonicalization + 已知别名解析**（best-effort）；
+    从复杂自然语言里提取地理意图是宿主 Agent 的语义层职责 —— 请把解析结果通过
+    `--countries` / `preferred_country` 结构化传入，未知国家会被原样保留为 hint。
     """
     notes: list[str] = []
     unknown: list[str] = []
@@ -160,53 +171,82 @@ def target_regions(profile, request_text: str = "") -> tuple:
         c = canonical_country(raw)
         (pref if c else unknown).append(c if c else raw)
     school = canonical_country((profile.get("education") or {}).get("school_country"))
+    profile_regions = list(pref) + ([school] if school and school not in pref else [])
 
-    regions: list[str] = []
-    for group in (known_in(req), pref, [school] if school else []):
-        for c in group:
-            if c and c not in regions:
-                regions.append(c)
+    req_known = known_in(req)
+    is_override = req_known and any(m in req.lower() for m in OVERRIDE_MARKERS)
 
-    if not regions:
-        regions = ["remote"]
+    if is_override:
+        regions, source = req_known, "explicit_override"
+        notes.append("请求明确限定地区（override）→ 画像中的长期地区偏好本轮不参与")
+    elif req_known:
+        regions = req_known + [r for r in profile_regions if r not in req_known]
+        source = "explicit_additive"
+        notes.append("请求提到地区 → 请求地区优先；画像地区保留在其后，可按语义舍弃")
+    elif profile_regions:
+        regions, source = profile_regions, "profile_fallback"
+    elif unknown:
+        regions, source = [], "profile_fallback"
+        notes.append("画像中的目标地区未收录 → 语言按英文起步并动态检测；"
+                     "地区信息保留在 region_hints，搜索时仍以该地区为准")
+    else:
+        regions, source = ["remote"], "default_remote"
         notes.append("Profile/请求未给出可识别的目标地区 → 按 Global/Remote 处理：以英文为主，"
                      "并根据实际搜到的页面语言动态增加本地语言查询")
     if unknown:
-        notes.append("以下偏好地区未收录在 locale 表中，将走通用规则"
+        notes.append("以下地区未收录在 locale 表中，将走通用规则"
                      "（按页面语言动态扩展，功能不受影响）：" + "、".join(unknown))
-    return regions, unknown, notes
+    return {"regions": regions, "unknown_regions": unknown,
+            "hints": unknown or regions, "source": source, "notes": notes}
 
 
 def _locale_for(region: str) -> dict:
-    return REGION_LOCALES.get(region, {"primary": "en", "secondary": []})
+    return REGION_LOCALES.get(region, {"primary": "en", "optional": []})
 
 
 def resolve_locales(profile, request_text: str = "") -> dict:
-    """目标地区 → 语言计划 + 需要加载的区域知识文件。"""
-    regions, unknown, notes = target_regions(profile, request_text)
+    """目标地区 → 语言计划 + 需要加载的区域知识文件。
+
+    `optional_locales` 是**候选**而不是必搜清单：当地语言负责本地召回，
+    英文只在国际召回有增益时使用（见 references/locales/generic.md §4）。
+    画像语言条目只有在**明确具备能力**（level/score 有值且不是 none 标记）时才会
+    成为召回语言；只记录名字 ≠ 会用这门语言理解机会。
+    """
+    tp = target_regions(profile, request_text)
+    regions, unknown, notes = tp["regions"], tp["unknown_regions"], list(tp["notes"])
 
     primary: list[str] = []
-    secondary: list[str] = []
+    optional: list[str] = []
     files = [GENERIC_LOCALE_FILE]
     for r in regions:
         loc = _locale_for(r)
         if loc["primary"] not in primary:
             primary.append(loc["primary"])
-        for s in loc.get("secondary", []):
-            if s not in secondary and s not in primary:
-                secondary.append(s)
+        for s in loc.get("optional", []):
+            if s not in optional and s not in primary:
+                optional.append(s)
         f = locale_file(r)
         if f and f not in files:
             files.append(f)
 
-    # 用户明确具备的语言：作为补充召回（不做默认语言）
+    # 画像语言：只有**明确具备**的才作为候选召回语言
     for entry in as_list(profile.get("languages")):
         if not isinstance(entry, dict):
             continue
-        tag = _language_tag(entry.get("language"))
-        if tag and tag not in primary and tag not in secondary:
-            secondary.append(tag)
-            notes.append(f"画像中记录了 {entry.get('language')} → 作为补充召回语言（非默认）")
+        lang = entry.get("language")
+        if is_explicit_none(entry.get("level")) or is_explicit_none(entry.get("score")):
+            notes.append(f"{lang} 在画像中明确标注不具备 → 不作为召回语言")
+            continue
+        has_ability = any(str(entry.get(k) or "").strip() for k in ("level", "score"))
+        tag = _language_tag(lang)
+        if not has_ability:
+            if tag:
+                notes.append(f"{lang} 只记录了名字、没有等级/分数 → 无法确认可用于搜索，"
+                             "不加入召回语言")
+            continue
+        if tag and tag not in primary and tag not in optional:
+            optional.append(tag)
+            notes.append(f"画像中记录了 {lang}（明确具备）→ 作为候选召回语言（非默认）")
 
     # 同一语言只保留地区变体：同时出现 "en" 与 "en-US" 时丢弃裸 "en"
     def drop_bare(locales, reference):
@@ -214,12 +254,12 @@ def resolve_locales(profile, request_text: str = "") -> dict:
         return [l for l in locales if "-" in l or l not in specific]
 
     primary = drop_bare(primary, primary)
-    secondary = [s for s in drop_bare(secondary, primary + secondary) if s not in primary]
+    optional = [s for s in drop_bare(optional, primary + optional) if s not in primary]
     if not primary:
         primary = ["en"]
     return {"regions": regions, "unknown_regions": unknown,
-            "region_hints": unknown or regions,
-            "primary_locales": primary, "secondary_locales": secondary,
+            "region_hints": tp["hints"], "region_source": tp["source"],
+            "primary_locales": primary, "optional_locales": optional,
             "load_files": files, "notes": notes}
 
 
@@ -357,8 +397,9 @@ def search_plan(profile, mode: str = "A", request_text: str = "") -> dict:
         "regions": loc["regions"],
         "unknown_regions": loc["unknown_regions"],
         "region_hints": loc["region_hints"],
+        "region_source": loc["region_source"],
         "primary_locales": loc["primary_locales"],
-        "secondary_locales": loc["secondary_locales"],
+        "optional_locales": loc["optional_locales"],
         "load_files": loc["load_files"],
         "categories": categories,
         "category_weights": cat_weight,
@@ -376,7 +417,7 @@ def _render_text(plan: dict) -> str:
            + (f"  (未收录地区，按通用规则处理: {', '.join(plan['unknown_regions'])})"
               if plan["unknown_regions"] else ""),
            f"primary locales: {', '.join(plan['primary_locales'])}",
-           f"secondary locales: {', '.join(plan['secondary_locales']) or '（无）'}",
+           f"optional locales: {', '.join(plan['optional_locales']) or '（无）'} （候选，非必搜）",
            "load files:",
            *[f"  - {f}" for f in plan["load_files"]],
            f"categories ({len(plan['categories'])}): " + ", ".join(plan["categories"][:8])

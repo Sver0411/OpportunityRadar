@@ -39,7 +39,8 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from common import (  # noqa: E402
     DEADLINE_TYPES, EVIDENCE_FIELDS, GOAL_TO_CATEGORY, INTEREST_ALIASES, WEIGHTS,
-    canonical_country, load_records as load_records_common, validate_opportunity,
+    canonical_country, is_explicit_none, load_records as load_records_common,
+    validate_opportunity,
 )
 from normalize_date import parse_date  # noqa: E402
 
@@ -77,11 +78,6 @@ GENERIC_SKILL_TOKENS = frozenset({
     "fundamentals", "general", "skill", "skills", "concept", "concepts",
 })
 
-#: 明确表示"用户不具备"的语言水平标记（只有这些才允许判不满足）
-#: 注意：判断时必须排除 None —— `str(None).lower()` 恰好等于 "none"，会造成
-#: "未填写语言成绩"被误判为"明确不会该语言"。
-LANGUAGE_NONE_MARKERS = ("none", "no", "cannot", "not-available", "不会", "无", "未学", "未修", "不懂")
-
 #: 技能同族映射（**保守**：只收高确定性的技术同族）
 #: 刻意不收录 "Docker↔Kubernetes"、"Python↔Machine Learning"、"React↔Frontend"
 #: 这类概念扩张，也不把 C 与 C++ 视为等价（C++ 单列一族）。
@@ -105,14 +101,6 @@ SKILL_ALIAS_FAMILIES = {
 #: 反向索引：任一写法 → 家族名
 SKILL_ALIAS_INDEX = {alias: fam for fam, aliases in SKILL_ALIAS_FAMILIES.items() for alias in aliases}
 
-
-def is_explicit_none(value) -> bool:
-    if value is None:
-        return False
-    if isinstance(value, bool):
-        return value is False
-    s = str(value).strip().lower()
-    return bool(s) and s in LANGUAGE_NONE_MARKERS
 
 #: 页面写明"不限制国籍/向所有人开放"的信号
 NATIONALITY_OPEN_SIGNALS = (

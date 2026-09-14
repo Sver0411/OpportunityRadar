@@ -367,7 +367,7 @@ python3 scripts/locales.py --profile examples/profiles/biology-student.example.j
 ```text
 regions: germany, netherlands
 primary locales: de-DE, nl-NL
-secondary locales: en
+optional locales: en
 load files:
   - references/locales/generic.md
   - references/locales/de.md
