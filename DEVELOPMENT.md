@@ -153,6 +153,24 @@ Plus the manual review questions:
 4. If an enum changed, does `tests/test_consistency.py` tell you every place to update — and does
    it actually pass?
 
+### Bilingual documentation
+
+`README.md` (English) and `README.zh-CN.md` (简体中文) are kept in sync mechanically by
+`tests/test_consistency.py` → `TestBilingualDocs`:
+
+- both must link to each other, and start with a `<div align="center">` block that is closed
+- the first `##` section must be the quick-start section, and every `##` heading must lead with an emoji
+- every internal `](#anchor)` link must resolve against the headings of the same file
+  (GitHub's slug rules: lowercase, punctuation stripped, spaces → hyphens, so `## ✅ Tests`
+  becomes `#-tests`)
+- badges must be https, include shields.io and the CI status badge, and the
+  `unittest-<N>` badge number must equal the real number of collected test cases
+- the two files must have the same number of `##` sections
+
+Practically: when you add a section or a test case, update **both** files — the suite fails
+otherwise. Keep volatile numbers (test counts, resource counts) out of prose; the badge is the
+single place the test count lives.
+
 ---
 
 ## 5. Acceptance scenarios

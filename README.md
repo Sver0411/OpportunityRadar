@@ -1,34 +1,56 @@
-# OpportunityRadar
+<div align="center">
+
+[简体中文](./README.zh-CN.md) | **English**
+
+# 📡 OpportunityRadar
 
 **Find the opportunities you didn't know to search for.**
 
-OpportunityRadar is a reusable Agent Skill for discovering personalized opportunities across
-careers, research, competitions, open source, education, funding, events, projects, and more.
+[![tests](https://github.com/Sver0411/OpportunityRadar/actions/workflows/test.yml/badge.svg)](https://github.com/Sver0411/OpportunityRadar/actions/workflows/test.yml)
+[![unittest](https://img.shields.io/badge/unittest-158-4B9B6F)](#-tests)
+[![license](https://img.shields.io/badge/license-MIT-3DA639)](LICENSE)
+[![Python](https://img.shields.io/badge/Python-3.8%2B-3776AB?logo=python&logoColor=white)](#-helper-scripts)
+[![Agent Skills](https://img.shields.io/badge/Agent%20Skills-compatible-534AB7)](#-installation)
+[![runtime deps](https://img.shields.io/badge/runtime%20deps-0-brightgreen)](#-helper-scripts)
 
-It turns a vague request like:
+Turns “最近有什么适合我的机会？” into a 13-step protocol 🎯
+**Understand → Expand → Discover → Verify → Filter → Rank → Explore**
 
-> “最近有什么适合我的机会？”
+Personalised across 13 categories 🗂️ · Official-source verified 🛡️ · Local-language search 🌏 · Duplicate-aware 🧹 · Explainable verdicts 📝
 
-into a structured workflow:
+*Works with any web-capable host agent · No accounts, no cloud, no telemetry 🏠*
 
-```
-Understand → Expand → Discover → Verify → Filter → Rank → Explore
-```
-
-It reads what it can about the user — school, major, year, skills, interests, goals, region —
-then searches for opportunities the user **would not have known to search for**, verifies them at
-official sources, judges eligibility, deduplicates, ranks, and explains why each one is worth
-looking at.
-
-- **License:** MIT
-- **Runtime dependencies:** none (Python standard library only)
-- **Works with:** any web-capable agent host (web search + page fetch/browser)
-- **Not** a website, a job board, or a standalone agent — it is a protocol that makes an
-  existing agent better at discovery
+</div>
 
 ---
 
-## Why OpportunityRadar
+## 🚀 Quick start
+
+```bash
+# 1) install — the target directory must be named opportunity-radar
+git clone https://github.com/Sver0411/OpportunityRadar.git opportunity-radar
+cp -r opportunity-radar ~/.workbuddy/skills/opportunity-radar   # or your agent's skills directory
+```
+
+Then just ask — no configuration, no API keys:
+
+```text
+我是物联网工程大三学生，会 C、Python 和 ESP32，最近有什么值得参加的？
+```
+
+Want to check the deterministic layer first?
+
+```bash
+python3 -m unittest discover -s tests -t tests        # full test suite, stdlib only (no network)
+python3 scripts/normalize_date.py "9月20日-10月5日" --default-year 2026 --now 2026-09-14
+python3 scripts/dedupe.py --input examples/opportunity.batch.example.json --format text
+```
+
+📖 Chinese documentation: [README.zh-CN.md](./README.zh-CN.md)
+
+---
+
+## 🧭 Why OpportunityRadar
 
 Plain search answers the wrong question. Ask a general agent "帮我找几个实习" and it searches
 `IoT internship`, returns a handful of links, and stops. But the hard part was never the
@@ -51,7 +73,7 @@ OpportunityRadar fills that gap with a protocol rather than a prompt:
 
 ---
 
-## What it can discover
+## 🎁 What it can discover
 
 | Category | Examples |
 |---|---|
@@ -74,7 +96,30 @@ Full subcategory lists, typical sources and multilingual query patterns:
 
 ---
 
-## Installation
+## ⚙️ How it works
+
+Thirteen steps, no shortcuts (a single search followed by a result list is not the protocol):
+
+```
+ understand → build search space → expand queries → search categories → discover
+ → find canonical sources → verify → extract → dedupe → eligibility → rank
+ → explore adjacents → return the best
+```
+
+The full step-by-step protocol lives in [`SKILL.md`](SKILL.md); three rules shape all of it:
+
+- **Hard constraints outrank model judgement.** If a page says "PhD only" and the user is an
+  undergraduate, the verdict stays ineligible even if a model would rather say yes. Semantic
+  judgement handles `related field` and fuzzy "relevant experience" wording only.
+- **Missing profile data ≠ not qualified.** A progressive profile has gaps; a user who never
+  entered a language score is `Unknown`, not ineligible. Only an explicit "I don't have this"
+  produces a negative verdict.
+- **Verified beats complete.** Facts are asserted only from official sources, and anything
+  unconfirmed is labelled as such.
+
+---
+
+## 📦 Installation
 
 Skill packages are just folders. Copy this repository's contents into your agent's skills
 directory **under the name `opportunity-radar`** (the directory name must match the `name` in
@@ -106,7 +151,7 @@ GitHub repository name is `OpportunityRadar`; the installed skill directory must
 
 ---
 
-## Usage examples
+## 💡 Usage examples
 
 ### Example 1 — general discovery (Japanese + Chinese + remote)
 
@@ -153,35 +198,12 @@ An output-format walkthrough (fictional data) is in
 
 ---
 
-## How it works
-
-Thirteen steps, no shortcuts (a single search followed by a result list is not the protocol):
-
-```
- understand → build search space → expand queries → search categories → discover
- → find canonical sources → verify → extract → dedupe → eligibility → rank
- → explore adjacents → return the best
-```
-
-The full step-by-step protocol lives in [`SKILL.md`](SKILL.md); three rules shape all of it:
-
-- **Hard constraints outrank model judgement.** If a page says "PhD only" and the user is an
-  undergraduate, the verdict stays ineligible even if a model would rather say yes. Semantic
-  judgement handles `related field` and fuzzy "relevant experience" wording only.
-- **Missing profile data ≠ not qualified.** A progressive profile has gaps; a user who never
-  entered a language score is `Unknown`, not ineligible. Only an explicit "I don't have this"
-  produces a negative verdict.
-- **Verified beats complete.** Facts are asserted only from official sources, and anything
-  unconfirmed is labelled as such.
-
----
-
-## Project structure
+## 🧱 Project structure
 
 ```
 OpportunityRadar/
 ├── SKILL.md                          # the protocol: triggers, modes, 13 steps, rules, self-check
-├── README.md
+├── README.md  README.zh-CN.md        # English / 简体中文
 ├── DEVELOPMENT.md                    # design decisions, acceptance scenarios, QA checklist
 ├── LICENSE  .gitignore
 ├── references/                       # loaded on demand, one concern per file
@@ -212,7 +234,7 @@ OpportunityRadar/
 
 ---
 
-## Helper scripts
+## 🔧 Helper scripts
 
 Deterministic work is done by code, not by the model: dates, duplicate detection, base scoring,
 state. Each script is standalone and safe to run by hand.
@@ -320,7 +342,7 @@ python3 scripts/common.py --validate examples/opportunity.batch.example.json
 
 ---
 
-## Source verification and trust
+## 🛡️ Source verification and trust
 
 | Tier | Examples | Use |
 |---|---|---|
@@ -336,7 +358,7 @@ says "未找到官方确认来源" — links are never invented. Freshness is tr
 
 ---
 
-## Local state and privacy
+## 🔒 Local state and privacy
 
 ```
 .opportunity-radar/
@@ -356,7 +378,7 @@ data) are outside the discovery workflow and remain the user's own step.
 
 ---
 
-## Limitations
+## ⚠️ Limitations
 
 - **Requires a web-capable host.** Without web access the skill says so and stops rather than
   guessing.
@@ -371,7 +393,7 @@ data) are outside the discovery workflow and remain the user's own step.
 
 ---
 
-## Tests
+## ✅ Tests
 
 ```bash
 python3 -m unittest discover -s tests -t tests
@@ -382,8 +404,11 @@ and run positive/negative cases. The suite covers date semantics, URL/ID contrac
 guards, eligibility authority, missing-data policy, state transitions, schema contracts and
 cross-file consistency (enums and weights must match `scripts/common.py`).
 
+Maintenance notes, design decisions and the live-web acceptance scenarios live in
+[DEVELOPMENT.md](DEVELOPMENT.md).
+
 ---
 
-## License
+## 📄 License
 
 MIT — see [LICENSE](LICENSE).
