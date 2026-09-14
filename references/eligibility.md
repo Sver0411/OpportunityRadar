@@ -15,6 +15,53 @@ Step 10。目标：给用户一个**可行动**的资格判断，而不是一个
 **禁止**：一律输出 Yes/No；把 `Unknown` 说成"应该可以"；
 在用户信息不足时给出 `Eligible`。
 
+## 1.5 两条不可违反的判定原则
+
+### 原则一：硬条件优先于语义判断
+
+页面明确写了、用户也明确表述过的确定项（deadline、学历、年级、毕业年份、
+国籍/工作许可、学校限制、GPA、语言成绩）——**模型判断不能推翻它**。
+
+```
+页面：PhD only         用户：本科（明确）
+模型 verdict：Eligible
+→ 最终必须是 Probably Ineligible / Ineligible，并在理由里写明被硬条件覆盖
+```
+
+合并规则（`scripts/score.py` 的 `merge_verdict()` 已实现）：
+
+| 硬条件结论 | 模型 verdict 的影响 |
+|---|---|
+| 明确冲突（Ineligible / Probably Ineligible） | **不可推翻**，直接采用硬条件结论 |
+| 硬条件全部满足（Eligible） | 只能更保守（可降级），不能更乐观 |
+| 因**画像缺信息**而 Unknown | 模型可判断（它可能在对话里拿到了画像之外的信息） |
+| 因**页面缺信息**或口径不可比而 Unknown | 模型最多给到 Probably Eligible |
+
+模型能做的语义补充：`related field` 类专业判断、经验相关性、"strong background" 这类
+模糊要求——这些只影响 `Eligible` 与 `Probably Eligible` 的区分。
+
+### 原则二：画像缺失 ≠ 不满足
+
+Profile 是渐进式构建的。**用户没填语言成绩，不代表不会这门语言。**
+
+```
+机会：要求 Japanese N2 以上
+画像：有 Japanese 记录，但 exam/score/level 为空
+→ Unknown（信息不足，需向用户确认）
+```
+
+只有用户**明确表示不具备**时才允许向不满足方向判断。约定写法：
+profile 的语言条目里 `level` 或 `score` 填 `none` / `no` / `不会` / `无`。
+
+```
+画像：{"language": "Japanese", "level": "none"}   ← 明确不会
+机会：要求 Japanese N2 以上
+→ Probably Ineligible
+```
+
+同理适用于：GPA 未提供、学校未提供、年级未提供、国籍未提供、毕业时间未提供。
+这些一律 `Unknown` + 说明"补上这项我就能给出确定判断"。
+
 ---
 
 ## 2. 判断顺序（确定性优先）
@@ -37,6 +84,23 @@ Step 10。目标：给用户一个**可行动**的资格判断，而不是一个
 
 语义条件（第 10 步）放在最后：它不该让一条本来该死的硬性条件"复活"，
 只影响 `Eligible` 与 `Probably Eligible` 的区分。
+
+**`scripts/score.py` 已实现的确定性检查**（逐项累积，取最严重的结论；
+不存在"第一个满足就通过"的短路）：
+
+| 条件 | 判定方式 |
+|---|---|
+| 时间窗口 | 截止日已过 → `Ineligible`；`rolling` 不视为过期 |
+| 学历 | 页面列表 vs 画像学历（`any` 表示不限） |
+| 学年 | 页面学年 vs `current_year` |
+| 毕业时间 | **按月比较**区间（见 §4.4） |
+| 国籍 / 工作许可 | 页面限制信号 vs 画像 `nationality` + `constraints.visa` |
+| 学校限制 | 页面学校要求 vs 画像 `school` |
+| GPA | **仅在同评分体系内比较**，不做换算 |
+| 语言 | 见 §1.5 原则二与 §4.3 |
+| 专业 | 语义判断，只标记 `needs_semantic_check`，不产生硬冲突 |
+
+只有全部有数据的硬条件都确认满足时才输出 `Eligible`；任一项信息缺失即 `Unknown`。
 
 ---
 
@@ -84,6 +148,54 @@ Step 10。目标：给用户一个**可行动**的资格判断，而不是一个
 ### 远程 / 全球项目
 - 明确写 "open to students worldwide" → 国籍条件为 Explicit 满足。
 - 未写国家限制但项目明显本地化 → `Unknown`，并在 △ 里提示。
+
+### 4.1 国籍 / 工作许可
+
+页面出现限制性措辞（`citizens only`、`must be a US citizen`、`国内在住`、
+`no sponsorship`、`legally authorized to work`）时：
+
+| 情况 | 判定 |
+|---|---|
+| 页面明确写"国籍不限 / open to all nationalities" | `Eligible`（该条件满足） |
+| 画像提供了国籍或签证状态，且与要求相符 | `Eligible` |
+| 页面不提供签证赞助，画像标注需要赞助 | `Probably Ineligible` |
+| 画像**未提供**国籍与签证 | `Unknown` + 提示补信息（**不是**不满足） |
+| 有国内/地区限制，但页面没写出具体国家 | `Unknown`（信息不足以逐字比对） |
+
+注意区分："页面没写国籍要求" ≠ "无国籍限制"，只是 `nationality_requirement: null`。
+
+### 4.2 学校限制
+
+页面限定学校名单、层次或"仅本校学生"。画像有学校且能对应上 → `Eligible`；
+画像没提供学校 → `Unknown`；有学校但无法确认是否在名单内 → `Unknown`（宁可不确定）。
+
+### 4.3 语言成绩
+
+| 情况 | 判定 |
+|---|---|
+| 页面要求某语言，画像**完全没有该语言的记录** | `Unknown`（缺失不等于不会） |
+| 画像有该语言但没有成绩/等级 | `Unknown` |
+| 画像有成绩且达到要求 | `Eligible` |
+| 画像有成绩但未达要求 | `Probably Ineligible` |
+| 画像明确标注不会该语言（`level: "none"`）而页面有硬性要求 | `Probably Ineligible` |
+| 页面未写明语言要求 | 不参与判断（`language_requirement: null`），并在 △ 提示"语言要求未写明" |
+
+绝不允许："因为是日本企业，所以推断要求 N2"。
+
+### 4.4 毕业时间（按月比较，不看年份就通过）
+
+把页面的毕业时间要求解析成**月份区间**再比较，例如：
+
+| 页面要求 | 用户毕业时间 | 判定 |
+|---|---|---|
+| `2027-09 ~ 2028-06` | `2027-06` | 不在窗口 → `Probably Ineligible` |
+| `2027-09 ~ 2028-06` | `2028-03` | 在窗口内 → `Eligible` |
+| `2028-03`（日本 3 月卒業見込） | `2028-06` | 不在窗口（不同届）→ `Probably Ineligible` |
+| `Graduating between Sep 2027 and Jun 2028` | `2028-03` | 在窗口内 |
+| 只有年份（`2027`） | `2027-06` | 按年份比较并通过，但需注明置信度较低 |
+| 无法解析 | — | `Unknown` |
+
+**仅年份相同不能作为通过依据。**
 
 ---
 

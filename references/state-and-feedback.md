@@ -78,6 +78,17 @@ education_level · student_year · language_requirement · official_url
 
 `tracked_hash` = 这 8 个字段值的规范化 JSON 的 SHA-256 前 16 位。
 
+### 规范化规则（与 dedupe 完全共用，避免"同一个 URL 两套规则"）
+
+- URL 走 `scripts/common.py` 的 `canonical_url()`：host 转小写、**path 保留大小写**、
+  只删除 `utm_*` 与明确点击追踪参数（`gclid`/`fbclid` 等），参数排序、去 fragment。
+- 因此"只是追加了 `utm_source`"**不会**被误报为 `changed`（有测试覆盖）。
+- `ref` / `source` / `from` 这类可能承载路由语义的参数**刻意保留**：
+  它们变化时报 `changed` 是预期行为（宁可多提醒一次，也不要把真实变化漏掉）。
+- Opportunity ID 走 `scripts/common.py` 的 `derive_id()`：
+  **同一机会 + 同一周期 → 同一 ID；同一项目 + 不同年份/周期 → 不同 ID**。
+  ID 规则变更会导致历史 Seen State 失配，所以改动必须同步更新 `seen.json` 或接受一次重扫。
+
 每轮 Discovery 结束（Step 13 之前）对候选执行：
 
 ```bash

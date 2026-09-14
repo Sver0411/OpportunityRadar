@@ -62,6 +62,11 @@
       }
     },
 
+    "nationality": {
+      "type": ["string", "null"],
+      "description": "国籍（用于判断 nationality_requirement）。未提供 → null；不要由学校所在地推断国籍"
+    },
+
     "languages": {
       "type": ["array", "null"],
       "items": {
@@ -71,7 +76,10 @@
           "language": { "type": "string" },
           "exam": { "type": ["string", "null"], "description": "JLPT / TOEIC / IELTS / TOEFL / CET / TOPIK / null" },
           "score": { "type": ["string", "number", "null"] },
-          "level": { "type": ["string", "null"], "description": "如 N2 / B2 / 日常会話" }
+          "level": {
+            "type": ["string", "null"],
+            "description": "如 N2 / B2 / 日常会話。约定：填 none/no/不会/无 表示用户**明确不具备**该语言（只有这种显式标记才允许把资格判为不满足）；留 null 表示未知"
+          }
         },
         "required": ["language"]
       }

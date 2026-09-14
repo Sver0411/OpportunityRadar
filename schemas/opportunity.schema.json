@@ -9,8 +9,8 @@
   "properties": {
     "id": {
       "type": "string",
-      "description": "稳定 ID：<org-slug>-<title-slug>-<year>，全小写连字符。同一条机会必须保持同一 ID，否则 Seen State 失效",
-      "pattern": "^[a-z0-9][a-z0-9._-]*$"
+      "description": "稳定 ID：小写字母/数字/CJK，用连字符连接，建议含周期年份（如 sony-embedded-2027）。同一机会同一周期必须同一 ID，否则 Seen State 失效。生成规则见 scripts/common.py derive_id()",
+      "pattern": "^[0-9a-z\\u3040-\\u30ff\\u3400-\\u4dbf\\u4e00-\\u9fff\\uac00-\\ud7af][0-9a-z\\u3040-\\u30ff\\u3400-\\u4dbf\\u4e00-\\u9fff\\uac00-\\ud7af._-]*$"
     },
     "title": { "type": "string", "description": "官方名称原文，可加短注；不要自创营销化标题" },
     "organization": { "type": "string", "description": "主办/招聘主体" },
@@ -77,7 +77,12 @@
     "GPA_requirement": { "type": ["string", "number", "null"], "description": "保留原表达，不换算" },
 
     "application_open": { "type": ["string", "null"], "description": "报名开放日，YYYY-MM-DD 或 RFC3339；年份不明 → null" },
-    "deadline": { "type": ["string", "null"], "description": "报名截止。滚动招募/常年 → null，并在 notes 说明" },
+    "deadline": { "type": ["string", "null"], "description": "报名截止。滚动招募 → null，并在 notes/deadline_type 说明" },
+    "deadline_type": {
+      "type": ["string", "null"],
+      "enum": ["fixed", "range", "rolling", "asap", "flexible", "tbd", "unknown", null],
+      "description": "截止日语义（由 scripts/normalize_date.py 判定）。rolling=滚动招募、asap=尽快无日期、tbd=未公布，三者不可混为一谈；区间类紧迫度以 end（=deadline）为准"
+    },
     "event_start": { "type": ["string", "null"] },
     "event_end": { "type": ["string", "null"] },
 
@@ -142,6 +147,21 @@
         "interest": { "$ref": "#/$defs/valueLevel" }
       }
     },
+    "evidence": {
+      "type": ["object", "null"],
+      "description": "字段级证据（provenance）。关键字段用结构化证据标注，而不是全部塞进自由文本 notes。只写真正被追踪的字段。",
+      "additionalProperties": { "$ref": "#/$defs/evidenceEntry" },
+      "properties": {
+        "deadline": { "$ref": "#/$defs/evidenceEntry" },
+        "education_level": { "$ref": "#/$defs/evidenceEntry" },
+        "graduation_window": { "$ref": "#/$defs/evidenceEntry" },
+        "major_requirement": { "$ref": "#/$defs/evidenceEntry" },
+        "language_requirement": { "$ref": "#/$defs/evidenceEntry" },
+        "nationality_requirement": { "$ref": "#/$defs/evidenceEntry" },
+        "GPA_requirement": { "$ref": "#/$defs/evidenceEntry" },
+        "compensation": { "$ref": "#/$defs/evidenceEntry" }
+      }
+    },
     "seen_status": {
       "type": ["string", "null"],
       "enum": ["new", "changed", "repeat", null]
@@ -149,6 +169,22 @@
     "notes": { "type": ["array", "null"], "items": { "type": "string" }, "description": "冲突说明、Explicit/Inferred/Unknown 标注、滚动招募等" }
   },
   "$defs": {
+    "evidenceEntry": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "某个字段的证据状态。explicit=页面明写；inferred=合理推断但未明写；unknown=页面没写。硬性资格判断只能使用 explicit。",
+      "properties": {
+        "status": { "$ref": "#/$defs/evidenceStatus" },
+        "source_url": { "type": ["string", "null"], "description": "读到该事实的页面（通常等于 official_url）" },
+        "quote": { "type": ["string", "null"], "description": "页面原句，便于复核" },
+        "verified_at": { "type": ["string", "null"], "description": "YYYY-MM-DD" },
+        "note": { "type": ["string", "null"] }
+      }
+    },
+    "evidenceStatus": {
+      "type": "string",
+      "enum": ["explicit", "inferred", "unknown"]
+    },
     "languageRequirement": {
       "type": "object",
       "additionalProperties": true,

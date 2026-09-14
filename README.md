@@ -1,179 +1,223 @@
 # OpportunityRadar
 
 **Find the opportunities you didn't know to search for.**
-**发现那些你根本不知道该搜什么的机会。**
 
-A reusable **Personal Opportunity Discovery Protocol** for web-capable AI agents.
-它不是一个网站、不是一个招聘平台、不是一个 Agent，也不是一段 Prompt 模板——
-它是一套可安装的协议，让任何支持联网搜索的 Agent 从"随便搜几个结果"升级为：
+OpportunityRadar is a reusable Agent Skill for discovering personalized opportunities across
+careers, research, competitions, open source, education, funding, events, projects, and more.
+
+It turns a vague request like:
+
+> “最近有什么适合我的机会？”
+
+into a structured workflow:
 
 ```
 Understand → Expand → Discover → Verify → Filter → Rank → Explore
 ```
 
-面向大学生、硕博研究生、应届生与职业早期用户。
+It reads what it can about the user — school, major, year, skills, interests, goals, region —
+then searches for opportunities the user **would not have known to search for**, verifies them at
+official sources, judges eligibility, deduplicates, ranks, and explains why each one is worth
+looking at.
+
+- **License:** MIT
+- **Runtime dependencies:** none (Python standard library only)
+- **Works with:** any web-capable agent host (web search + page fetch/browser)
+- **Not** a website, a job board, or a standalone agent — it is a protocol that makes an
+  existing agent better at discovery
 
 ---
 
-## 1. 为什么普通搜索不够
+## Why OpportunityRadar
 
-普通 Agent 会把用户的问题直接变成一次搜索：
+Plain search answers the wrong question. Ask a general agent "帮我找几个实习" and it searches
+`IoT internship`, returns a handful of links, and stops. But the hard part was never the
+search — it is that **the user does not know what to search for**.
 
-```
-用户：帮我找几个实习。
-Agent：搜索 "IoT internship" → 返回几个结果。
-```
+OpportunityRadar fills that gap with a protocol rather than a prompt:
 
-问题不在搜索结果，而在**用户不知道该搜什么**。用户不会想到去搜
-`solutions engineer intern`、`农业 IoT 开放创新命题`、`Maker Faire 学生展位`
-——但这些恰恰可能是最适合他的机会。
-
-OpportunityRadar 强制 Agent 按固定顺序工作：
-
-```
-读取用户情况 → 构建搜索空间 → 展开查询 → 跨类别搜索 → 发现候选
-→ 回官方来源验证 → 结构化 → 去重 → 资格判断 → 排序 → 探索相邻方向 → 解释
-```
-
-差异来自这 13 个环节，而不是某一句话写得好：
-
-| 环节 | 裸 Agent 通常 | OpportunityRadar |
+| Step | A bare agent | OpportunityRadar |
 |---|---|---|
-| 分类 | 只看"实习/工作" | 13 类机会体系（含科研、开源、竞赛、资助、兴趣、社区） |
-| 查询 | 用户的字面词 | 按专业族推导的搜索矩阵（更专/同层/相邻/远邻） |
-| 语言 | 只搜英文 | 当地语言 + 英文双跑（中/日/德/韩/英） |
-| 配比 | 全部 exploit | 70% 直接 / 20% 相邻 / 10% 可迁移探索 |
-| 来源 | 聚合站结果直接用 | Tier A–D 分级，A/B 才能确认事实 |
-| 资格 | 给个 Yes/No | 五级判定 + 依据 + 缺失项 |
-| 去重 | 无 | URL 规范化 + 标题/机构/截止日相似度 + 冲突报告 |
-| 排序 | 搜索引擎顺序 | Match 与 Priority 分离（含 deadline 紧迫度） |
-| 记忆 | 每次重来 | 本地 seen/saved/ignored + 变化检测 |
-| 缺口 | 给学习路线 | 用真实机会反推当前该补什么 |
+| Scope | internships / jobs | 13 opportunity categories including research, open source, funding, hobby, networking |
+| Queries | the user's literal words | a search matrix derived from major family (more specific → peer → adjacent → transferable) |
+| Language | English only | local language + English, so Japanese/Chinese/German pages are not missed |
+| Mix | all directly related | 70% direct / 20% adjacent / 10% transferable-and-unexpected |
+| Sources | whatever ranked first | Tier A–D model; only official sources confirm facts |
+| Eligibility | a yes/no guess | five-level verdict with the deciding evidence |
+| Duplicates | not handled | URL/title/organization/cycle clustering with conflict reporting |
+| Ordering | search-engine order | Match and Priority separated, with deadline urgency |
+| Memory | starts over each time | local seen/saved/ignored state with change detection |
+| Gaps | generic learning advice | requirement frequency derived from real discovered postings |
 
 ---
 
-## 2. 它明确不是什么
+## What it can discover
 
-- ❌ 不是招聘网站、比赛聚合站、SaaS 后端
-- ❌ 不是独立 Agent（不自己实现浏览器、搜索引擎、爬虫、登录系统）
-- ❌ 不是 Web Dashboard / React 应用 / 移动 App
-- ❌ 不做账号系统、云数据库、付费流程
-- ❌ 不代用户投递、报名、发邮件（未经当轮明确授权）
+| Category | Examples |
+|---|---|
+`career` | summer/winter/remote/overseas internships, research internships, campus recruiting, graduate programmes, part-time, campus ambassador
+`research` | research assistant roles, undergraduate research, lab openings, summer research, visiting student,论文合作
+`competition` | programming, algorithm, CTF, AI/CV/NLP/LLM, data science, IoT, embedded, FPGA, robotics, drones, math modelling, hackathons, design, case competitions
+`education` | graduate admission, summer schools, exchange, joint programmes, dual degrees, short courses
+`language` | JLPT / TOEIC / IELTS / TOEFL / GRE / CET / TOPIK, language competitions, scholarships, exchanges
+`skill_development` | certifications, student cloud/GPU/API credits, bootcamps, developer training, dev-board programmes
+`open_source` | GSoC-style programmes, mentorship, contributor programmes, good first issues, bounties, beta programmes
+`hobby` | photography, drones, automotive, aviation, games, game jams, music, writing, design, maker, 3D printing
+`funding` | scholarships, research/travel/conference grants, startup funds, equipment and cloud funding, tuition waivers
+`event` | conferences, developer conferences, academic meetings, workshops, meetups, open days, career fairs
+`project` | company problem statements, open innovation, capstones, civic-tech projects, build challenges, dataset projects
+`entrepreneurship` | startup competitions, accelerators, incubators, campus ventures, demo days, co-founder calls
+`networking` | mentor programmes, alumni mentoring, student chapters, professional societies, community leads
 
-它复用宿主 Agent 已有的 Web Search / Browser / Fetch / Shell / Python / 文件读写 /
-Memory / MCP 能力，只补充协议、分类体系、策略、规则与确定性脚本。
+Full subcategory lists, typical sources and multilingual query patterns:
+[`references/opportunity-taxonomy.md`](references/opportunity-taxonomy.md).
 
 ---
 
-## 3. 安装
+## Installation
 
-Skill 是纯文件包，放进宿主 Agent 的 skills 目录即可：
+Skill packages are just folders. Copy this repository's contents into your agent's skills
+directory **under the name `opportunity-radar`** (the directory name must match the `name` in
+`SKILL.md` frontmatter):
 
 ```bash
-# 通用做法：<你的 Agent 的 skills 目录>/opportunity-radar/
-cp -r OpportunityRadar ~/.workbuddy/skills/opportunity-radar        # WorkBuddy
-cp -r OpportunityRadar ~/.codebuddy/skills/opportunity-radar        # CodeBuddy
-cp -r OpportunityRadar ~/.claude/skills/opportunity-radar           # Claude Code 示例
-cp -r OpportunityRadar <项目>/.<agent>/skills/opportunity-radar      # 项目级安装
+# the target directory must be named opportunity-radar
+git clone https://github.com/Sver0411/OpportunityRadar.git opportunity-radar
+cp -r opportunity-radar ~/.workbuddy/skills/opportunity-radar      # WorkBuddy
+cp -r opportunity-radar ~/.codebuddy/skills/opportunity-radar      # CodeBuddy
+cp -r opportunity-radar ~/.claude/skills/opportunity-radar         # Claude Code
+cp -r opportunity-radar <project>/.<agent>/skills/opportunity-radar # project-scoped
 ```
 
-要点：
+No dependencies to install. The helper scripts run on Python 3.8+ with the standard library only.
 
-- **目录名用 `opportunity-radar`**，与 `SKILL.md` frontmatter 的 `name` 保持一致
-  （GitHub 仓库名可以是 `OpportunityRadar`）。
-- 只需要 Python 3.8+ 标准库，无第三方依赖、无网络请求。
-- 宿主 Agent 必须有联网能力，否则 Skill 会明确回复：
-  `Opportunity discovery requires a web-capable host agent.`
+GitHub repository name is `OpportunityRadar`; the installed skill directory must be
+`opportunity-radar`.
+
+### Environment requirements
+
+| Capability | Needed for | If missing |
+|---|---|---|
+| Web search | discovery, local-language queries | discovery cannot run — the skill will say so and stop |
+| Page fetch / browser | confirming facts at official sources | facts are marked unverified |
+| Python 3.8+ | deterministic helpers (`scripts/*.py`) | Protocol-only Mode: same workflow, manual judgement, no deterministic claims |
+| File write | local state, JSON artifact | state is skipped; everything else works |
+| Host memory | reusing a known profile | the skill asks once, or caches `.opportunity-radar/profile.json` |
 
 ---
 
-## 4. 目录结构
+## Usage examples
 
-```
-OpportunityRadar/
-├── SKILL.md                          # 协议核心：触发规则、13 步工作流、横切规则、自检
-├── README.md
-├── LICENSE                           # MIT
-├── .gitignore
-│
-├── references/                       # 按需加载的领域知识（不进 SKILL.md 主体）
-│   ├── opportunity-taxonomy.md       # 13 类机会 + 子类 + 来源 + 多语言 query 模式 + 重叠消解表
-│   ├── search-strategy.md            # 搜索矩阵、Query 扩展规则、70/20/10、本地语言、预算与停止规则
-│   ├── trust-policy.md               # Tier A–D、发现 vs 确认、冲突处理、新鲜度
-│   ├── extraction-policy.md          # 字段级抽取规则、Explicit/Inferred/Unknown、反幻觉
-│   ├── eligibility.md                # 五级判定、确定性优先顺序、语义条件与地区规则
-│   ├── ranking.md                    # Match vs Priority、组件权重、多样性配额、价值评估
-│   ├── output-format.md              # 输出模板、长度纪律、JSON 产物、缺口快照话术
-│   ├── profile-building.md           # 渐进式画像、何时该问、记忆复用、最小可用画像
-│   └── state-and-feedback.md         # seen/saved/ignored 语义、变化检测、反馈影响边界
-│
-├── schemas/
-│   ├── profile.schema.json           # 用户画像（字段缺失一律 null）
-│   └── opportunity.schema.json       # 机会记录（主/次分类 + 多标签 + 验证状态）
-│
-├── scripts/                          # 纯标准库，确定性任务用代码而不是模型
-│   ├── normalize_date.py             # 多语言日期/区间/滚动招募 → ISO；年份不明不猜
-│   ├── dedupe.py                     # URL 规范化 + 相似度聚类 + canonical 选取 + 冲突报告
-│   ├── score.py                      # Match/Priority 分项打分 + 资格预判 + 多样性自检
-│   └── state.py                      # seen/saved/ignored + 变化检测 + 权重建议
-│
-└── examples/
-    ├── profile.example.json          # 画像格式示例（需求文档验收画像）
-    ├── opportunity.example.json      # 机会记录格式示例
-    ├── opportunity.batch.example.json # 8 条批量输入（含 3 条重复）用于演示 dedupe/score
-    ├── dates.example.txt             # 26 种日期写法的测试/演示输入
-    └── discovery-output.example.md   # 最终输出格式示例（虚构数据）
-```
-
-> ⚠️ `examples/` 里所有机构与事实**均为虚构**，只用于演示格式与脚本，禁止当作已验证的真实机会。
-
----
-
-## 5. 触发示例
-
-**应该触发：**
+### Example 1 — general discovery (Japanese + Chinese + remote)
 
 ```text
 我是物联网工程大三学生，会 C、Python 和 ESP32，最近有什么值得参加的？
-我最近有点闲，有什么值得做的吗？
-有没有适合我的比赛 / 实习 / 科研项目 / 开源项目？
-有什么适合我专业的东西？有没有含金量高的活动？
-有没有什么我可能完全不知道的机会？
-我想提高以后找嵌入式实习的竞争力，现在做什么最好？
+```
+
+Expected behaviour: uses the profile; covers several categories (internships, competitions,
+research, open source, student resources); expands queries beyond the literal words; searches in
+Chinese, English and Japanese; returns a short list with eligibility verdicts, deadlines and
+official sources; includes adjacent and non-obvious directions.
+
+### Example 2 — not job-hunting
+
+```text
+我不想找工作，就是最近有点闲，有什么值得做的吗？
+```
+
+Expected behaviour: lowers the weight of career/education and looks at competitions, open source,
+projects, skill programmes, events and hobbies instead. It will not keep recommending internships.
+
+### Example 3 — capability backfill
+
+```text
+我想以后做 Embedded AI，但是不知道现在应该做什么。
+```
+
+Expected behaviour: searches **real** Embedded AI opportunities, extracts what they actually
+require, then searches competitions/projects/open-source/skill programmes that build exactly those
+requirements — instead of printing a generic "learn C++ / learn RTOS" list.
+
+### Example 4 — gap analysis
+
+```text
 我现在缺什么？为什么很多机会我都申请不了？
 ```
 
-**不应该触发（普通查询）：**
+Expected behaviour: reports requirement frequency across the opportunities actually scanned, e.g.
+"in the 23 postings scanned, RTOS appears in 9", and pairs each gap with opportunities that would
+close it. It always states the sample size and never claims market-wide statistics.
 
-```text
-AWS 是什么？                    → 直接回答
-TOEIC 什么时候考试？             → 直接回答
-帮我改简历 / 翻译这个 JD          → 不属于发现流程
+An output-format walkthrough (fictional data) is in
+[`examples/discovery-output.example.md`](examples/discovery-output.example.md).
+
+---
+
+## How it works
+
+Thirteen steps, no shortcuts (a single search followed by a result list is not the protocol):
+
+```
+ understand → build search space → expand queries → search categories → discover
+ → find canonical sources → verify → extract → dedupe → eligibility → rank
+ → explore adjacents → return the best
 ```
 
-边界规则：同一个话题如果接着问"**适不适合我 / 值不值得参加 / 根据我的情况看看**"，
-就从普通查询转为机会发现，此时触发。
+The full step-by-step protocol lives in [`SKILL.md`](SKILL.md); three rules shape all of it:
+
+- **Hard constraints outrank model judgement.** If a page says "PhD only" and the user is an
+  undergraduate, the verdict stays ineligible even if a model would rather say yes. Semantic
+  judgement handles `related field` and fuzzy "relevant experience" wording only.
+- **Missing profile data ≠ not qualified.** A progressive profile has gaps; a user who never
+  entered a language score is `Unknown`, not ineligible. Only an explicit "I don't have this"
+  produces a negative verdict.
+- **Verified beats complete.** Facts are asserted only from official sources, and anything
+  unconfirmed is labelled as such.
 
 ---
 
-## 6. 工作流的四个模式
+## Project structure
 
-| 模式 | 触发说法 | 权重调整 |
-|---|---|---|
-| **A. 常规发现** | "最近有什么适合我的机会" | 按声明的目标均衡覆盖 |
-| **B. 非求职** | "我不想找工作，就是最近有点闲" | ↓ Career/Education，↑ 竞赛/开源/项目/技能/活动/兴趣 |
-| **C. 未知机会** | "有什么我可能完全不知道的机会" | Adjacent + Explore 提到 ~45% |
-| **D. 能力反推** | "我想以后做 X，现在做什么最好" | 搜真实 X 机会 → 统计真实要求 → 反向搜索能补缺口的机会 |
+```
+OpportunityRadar/
+├── SKILL.md                          # the protocol: triggers, modes, 13 steps, rules, self-check
+├── README.md
+├── DEVELOPMENT.md                    # design decisions, acceptance scenarios, QA checklist
+├── LICENSE  .gitignore
+├── references/                       # loaded on demand, one concern per file
+│   ├── opportunity-taxonomy.md        # 13 categories, sources, multilingual query patterns
+│   ├── search-strategy.md             # search matrix, expansion rules, 70/20/10, budgets
+│   ├── profile-building.md            # progressive profile, when to ask, memory reuse
+│   ├── trust-policy.md                # Tier A–D, discovery vs confirmation, freshness
+│   ├── extraction-policy.md           # field rules, evidence status, anti-hallucination
+│   ├── eligibility.md                 # hard-constraint order, 5 verdicts, missing-data policy
+│   ├── ranking.md                     # Match vs Priority, weights, coverage, value rubric
+│   ├── output-format.md               # answer templates, length budget, JSON artifact
+│   └── state-and-feedback.md          # seen/saved/ignored, change detection, gap wording
+├── schemas/
+│   ├── profile.schema.json            # user profile (JSON Schema draft 2020-12)
+│   └── opportunity.schema.json        # opportunity record incl. evidence/provenance
+├── scripts/                          # deterministic helpers, stdlib only, no network
+│   ├── common.py                      # single source of truth: enums, URL, ID, contract checks
+│   ├── normalize_date.py              # deadlines → ISO + deadline_type + urgency
+│   ├── dedupe.py                      # cycle-aware clustering, conflict report
+│   ├── score.py                       # eligibility pre-check, Match/Priority components
+│   └── state.py                       # seen/saved/ignored, change detection, feedback
+├── examples/                         # fictional data, for format and tooling demos
+└── tests/                            # unittest suite (stdlib; jsonschema optional)
+```
 
-Mode D 是最能体现差异的一条：**不给学习路线，给"用真实机会反推的当下行动"。**
+> All data under `examples/` is **fictional** and marked as such in each file. Never reuse it as
+> verified opportunity data.
 
 ---
 
-## 7. 确定性脚本的实际用法
+## Helper scripts
 
-以下命令与输出均在本机 Python 3.13 下实测通过。
+Deterministic work is done by code, not by the model: dates, duplicate detection, base scoring,
+state. Each script is standalone and safe to run by hand.
 
-### 7.1 日期归一化
+### `normalize_date.py` — deadlines and windows
 
 ```bash
 python3 scripts/normalize_date.py "9月20日-10月5日" --default-year 2026 --now 2026-09-14
@@ -181,47 +225,47 @@ python3 scripts/normalize_date.py "9月20日-10月5日" --default-year 2026 --no
 
 ```json
 {
-  "iso": "2026-09-20", "end": "2026-10-05",
-  "precision": "day", "year_unknown": true,
-  "days_remaining": 6, "expired": false,
-  "notes": ["原文未写年份，按 --default-year 2026 填充（请复核）"]
+  "iso": "2026-09-20",
+  "end": "2026-10-05",
+  "deadline_type": "range",
+  "urgency_days": 21,
+  "days_until_start": 6,
+  "days_until_end": 21,
+  "year_unknown": true,
+  "notes": [
+    "原文未写年份，按 --default-year 2026 填充（请复核）",
+    "紧迫度以区间截止端点为准（urgency_days = days_until_end）"
+  ]
 }
 ```
 
-覆盖 26 种写法（含 `Dec 20 - Jan 5, 2027` 的跨年区间推导、`随時受付` / `常年招募`
-识别为滚动招募、`September 2026` 只到月精度、无法解析时明确"不猜测"）：
+Key behaviours: `rolling` / `asap` / `flexible` / `tbd` are **distinct** states (a rolling intake
+and an unannounced date call for different action); a missing year is reported, never invented;
+times and timezones are preserved without fake UTC conversion. 26 sample inputs:
+[`examples/dates.example.txt`](examples/dates.example.txt).
 
-```bash
-python3 scripts/normalize_date.py --file examples/dates.example.txt --default-year 2026
-```
-
-### 7.2 去重
+### `dedupe.py` — duplicate detection
 
 ```bash
 python3 scripts/dedupe.py --input examples/opportunity.batch.example.json --format text
 ```
 
 ```text
-input=8  clusters=5  removed=3
+input=8  clusters=7  removed=1
 
-[c001] size=3 canonical=nagi-robotics-2027-summer-internship-program
+[c001] size=2 canonical=nagi-robotics-2027-summer-internship-program
   title: 2027 Summer Internship Program
   org  : Nagi Robotics, Inc.
   - merged in: nagi-robotics-summer-internship-2027
-  - merged in: nagi-robotics-2027-internship
-  ! conflict deadline: 2026-10-03(C,A) vs 2026-10-17(C)
-  ! conflict official_url: careers.nagi-robotics.example/students/summer(C,A) vs .../summer-2027(C)
-
-might be duplicates (LLM review):
-  ? nagi-robotics-summer-internship-2027 <-> nagi-robotics-robot-hackathon-2027  score=0.629
 ```
 
-它做了三件确定性的事：**URL 规范化**（剥掉 `utm_*`、`ref`、尾斜杠）、
-**相似度聚类**（标题/机构/截止日/国家/类别加权，机构差异大时禁止自动合并）、
-**冲突报告**（同一机会不同来源的截止日不一致 → 明确指出以官方为准）。
-模糊重复不自动合并，而是标 `maybe` 交给模型判断。
+Three guards keep it from over-merging: a **cycle guard** (the same official URL is often reused
+year after year — 2026 and 2027 stay separate), **conservative URL normalization** (only `utm_*`
+and clear click-tracking parameters are dropped; paths keep their case), and a **coherence check**
+that prevents A~B, B~C chaining from fusing A and C. Conflicts between sources are reported
+rather than silently resolved.
 
-### 7.3 打分（决策辅助）
+### `score.py` — eligibility pre-check and ranking components
 
 ```bash
 python3 scripts/dedupe.py --input examples/opportunity.batch.example.json --output /tmp/clusters.json
@@ -230,138 +274,116 @@ python3 scripts/score.py --profile examples/profile.example.json \
 ```
 
 ```text
-| # | 机会 | 类别 | Match | 紧迫 | Priority | 档 | 资格 | 主要理由 |
+| # | 机会 | 类别 | Match | 紧迫 | Priority | 档 | 资格 | 判定来源 |
 |---|---|---|---|---|---|---|---|---|
-| 1 | 2027 Summer Internship Program | career | 88 | 68 | 85 | High | Probably Eligible | 命中目标 internship（priority=high） |
-| 2 | Nagi Robotics Robot Hackathon | competition | 69 | 35 | 64 | Medium | Unknown | 命中目标 competition |
-| 3 | Tokyo Embedded Challenge 2026 | competition | 63 | 50 | 61 | Medium | Unknown | 命中目标 competition |
-| 4 | Kagura University Undergraduate Research Program | research | 65 | 35 | 60 | Medium | Unknown | 命中目标 research |
+| 1 | Nagi Robotics Robot Hackathon | competition | 81 | 35 | 74 | Medium | Eligible | hard_constraint |
+| 2 | 2027 Summer Internship Program | career | 74 | 68 | 73 | Medium | Probably Ineligible | hard_constraint |
+| 3 | Kagura University Undergraduate Research Program | research | 65 | 35 | 60 | Medium | Unknown | hard_constraint |
 ```
 
-要点：
+(That output is a deliberate demonstration: the fictional Nagi internship targets March 2028
+graduates while the example profile graduates in June 2028 — different cohorts, so it is
+ineligible. The Kagura entry is `Unknown` because the profile has no JLPT score; the skill does
+not assume one.)
 
-- **Match ≠ Priority**：`Priority = 0.85×Match + 0.15×Urgency`，所以"匹配 88 但两天后截止"
-  会排在"匹配 95 但半年后截止"前面。
-- **未知不作 0 分**：页面没写技能要求 → 中性 50，而不是 0，避免错杀信息不全的机会。
-- **资格预判会说不确定**：上例中 Kagura 项目页面写了 JLPT N2，而画像没有成绩 →
-  判定 `Unknown`，理由"画像未提供对应成绩/等级，无法确认达标"，而不是假装达标。
-- 输出还包含 `diversity`（类别数、adjacent/explore 是否有货、单类占比是否超 50%），
-  直接对应 `references/ranking.md` 的多样性配额。
+Behaviours: `Priority = 0.85 × Match + 0.15 × Urgency`; unknown requirements score neutrally
+instead of zero; hard constraints cannot be overturned by a model verdict; a mismatched score
+scale (GPA 3.0/4.0 vs 85/100) yields `Unknown` rather than a fabricated conversion.
 
-> 分数只用于排序辅助。展示给用户时用 `High/Medium/Low` 档次 + 理由，
-> 不要把 87.3 这种"科学精确"假分数当结论。
-
-### 7.4 本地状态
+### `state.py` — local memory
 
 ```bash
 python3 scripts/state.py init
 python3 scripts/state.py mark-seen --input .opportunity-radar/last-run.json
-python3 scripts/state.py feedback saved --id nagi-robotics-robot-hackathon-2027 \
-        --category competition --tags robotics,hackathon
+python3 scripts/state.py feedback saved --id <id> --category competition --tags robotics
 python3 scripts/state.py list --status saved
 python3 scripts/state.py suggest
 ```
 
-变化检测只关注 8 个字段（deadline / application_open / cost / compensation /
-education_level / student_year / language_requirement / official_url）：
+Change detection tracks eight fields (`deadline`, `application_open`, `cost`, `compensation`,
+`education_level`, `student_year`, `language_requirement`, `official_url`). Adding `utm_*`
+parameters does **not** count as a change. `suggest` only prints weighting advice — it never
+rewrites the profile.
 
-```json
-{ "new": [], "changed": ["kagura-university-undergraduate-research-2026"], "repeat": 7,
-  "details": { "kagura-university-undergraduate-research-2026": [
-    { "field": "deadline", "from": "2026-11-30", "to": "2026-12-15" } ] } }
+### `common.py` — shared foundations
+
+Enums, URL canonicalization, ID generation and lightweight contract validation live here so that
+`dedupe.py`, `score.py` and `state.py` cannot drift apart.
+
+```bash
+python3 scripts/common.py --url "https://www.Example.com/Path/To/Page/?b=2&utm_source=x&a=1"
+# example.com/Path/To/Page?a=1&b=2
+
+python3 scripts/common.py --validate examples/opportunity.batch.example.json
+# checked=8 errors=0
 ```
 
-第二次运行同一批输入 → 全部 `repeat`，不再重复推荐。
-`suggest` 只输出权重建议，**不会偷偷改写画像**。
+---
 
-### 7.5 本地状态文件
+## Source verification and trust
+
+| Tier | Examples | Use |
+|---|---|---|
+| **A** | official programme/company/university/government/lab/competition sites | may be cited as fact |
+| **B** | university career centres, academic societies, industry associations, official partners | may confirm; A wins on conflict |
+| **C** | LinkedIn, job boards, competition/event aggregators, technical communities | **discovery only** |
+| **D** | blogs, forums, personal posts, reposts, unofficial articles | discovery and leads only |
+
+Rules: C/D discovers, A/B confirms. When a third party says 9/20 and the official page says 9/25,
+the official date is used and the difference is reported. If no canonical source exists the answer
+says "未找到官方确认来源" — links are never invented. Freshness is tracked per type
+(competitions 14 days, internships 30, scholarships 60, evergreen resources 180).
+
+---
+
+## Local state and privacy
 
 ```
 .opportunity-radar/
-├── profile.json     # 可选画像（宿主没有 Memory 时才需要）
-├── seen.json        # 首次/最近出现时间、被跟踪字段哈希、变更日志
+├── profile.json     # cached profile (only needed when the host has no memory)
+├── seen.json        # first/last seen, tracked-field hash, change log
 ├── saved.json       # interested / saved / applied
 ├── ignored.json     # ignored / not_relevant
-└── last-run.json    # 上一轮结构化产物
+└── last-run.json    # last discovery artifact
 ```
 
-整个目录已在 `.gitignore` 中忽略；状态全程留在本地，不发起任何网络请求。
+Everything stays on the local filesystem; the scripts make no network requests. The directory is
+git-ignored and optional — the skill works without it. No credentials, contact details or
+documents are stored.
+
+Application and contact actions (submitting forms, emailing, registering, uploading personal
+data) are outside the discovery workflow and remain the user's own step.
 
 ---
 
-## 8. Source Trust（来源可信度）
+## Limitations
 
-| 级别 | 例子 | 用途 |
-|---|---|---|
-| **A** | 官方网站、企业官网、大学官网、政府、实验室、赛事官网 | 可作为事实依据 |
-| **B** | 学校就业中心、学术组织、行业协会、官方合作机构 | 可确认，冲突时以 A 为准 |
-| **C** | LinkedIn、招聘平台、比赛/活动聚合站、技术社区 | **只用于发现** |
-| **D** | 博客、论坛、个人帖子、转载、非官方公众号 | 只用于发现 + 线索 |
-
-规则：**C/D 用来发现，A/B 用来确认。** 第三方说截止 9/20、官方说 9/25 →
-采用官方并在输出里写明差异。找不到官方页面就写"未找到官方确认来源"，
-**不允许**凭空给一个"官方链接"。
-
----
-
-## 9. Eligibility（资格判断）
-
-五级判定，禁止一律 Yes/No：
-
-`Eligible` / `Probably Eligible` / `Unknown` / `Probably Ineligible` / `Ineligible`
-
-先过确定性条件（时间窗口 → 学历 → 年级/毕业年份 → 国籍签证 → 学校 → 专业 → GPA →
-语言 → 年龄），再处理语义条件（`or related field` 一类）。语义条件只影响
-`Eligible` 与 `Probably Eligible` 的区分，不能让一条本来不满足的硬性条件"复活"。
-
-跨专业话术（示例）：
-
-> 页面写 `Electrical Engineering or related field`，你的专业是物联网工程
-> → `Probably Eligible`，但需说明"物联网工程通常与 EE/CS 存在较高相关性，
-> 最终以组织方定义为准"。
-
-地区规则已内置：中国"应届生身份"按毕业年份、日本按「卒業年度」而非学年、
-英美需注意 work authorization、欧洲区分 Pflichtpraktikum。
+- **Requires a web-capable host.** Without web access the skill says so and stops rather than
+  guessing.
+- **No market-wide statistics.** Gap analysis describes the sample that was actually scanned, and
+  says so every time.
+- **Judgement is still needed** for `related field` eligibility, fuzzy duplicates and value
+  ratings; the scripts supply deterministic signals, not decisions.
+- **Time-sensitive by nature.** Re-verify `last_verified` before relying on a result.
+- **Language coverage** is strongest for Chinese, English and Japanese; other languages follow the
+  same pattern but are less battle-tested.
+- **No automatic applications.** Discovery, verification, assessment and explanation only.
 
 ---
 
-## 10. 验收测试（需求文档 §52–54）
+## Tests
 
-| # | 输入 | 期望行为 |
-|---|---|---|
-| 1 | 我是物联网工程大三学生，会 C、Python 和 ESP32，最近有什么值得参加的？ | 使用画像；覆盖 ≥5 类；做 Query 扩展；中/英/日三语搜索；真实机会；优先官方来源；给资格判定；去重；给推荐理由；至少含 Adjacent / Explore |
-| 2 | 我不想找实习，最近有什么值得做的？ | **不继续无脑推实习**；转向竞赛/科研/开源/项目/技能/活动/兴趣 |
-| 3 | 我想以后做 Embedded AI，但是不知道现在应该做什么。 | 搜真实 Embedded AI 机会 → 统计常见要求 → 反推可参与的竞赛/开源/项目/科研/技能机会，而**不是**只输出"学 C++ / 学 RTOS / 学 TinyML" |
+```bash
+python3 -m unittest discover -s tests -t tests
+```
 
-各模式对应的输出形态见 `examples/discovery-output.example.md`。
-
----
-
-## 11. 自我审查（需求文档 §55.16）
-
-| 问题 | 结论 |
-|---|---|
-| 是否做成了网站？ | 否。全部是 Markdown / JSON Schema / 标准库 Python，无任何 Web 代码。 |
-| 是否只是 Prompt？ | 不是。除协议外还有 13 类分类体系、可复制执行的多语言 query 模板、4 个实测可跑的确定性脚本、2 个 JSON Schema、seen 状态与变化检测。 |
-| 是否真的比裸 Agent 更系统？ | 是。若删掉本 Skill，裸 Agent 会退化为"一次搜索 → 给几个实习"，缺的正是分类枚举、搜索矩阵、语言覆盖、来源分级、资格分级、去重、Match/Priority 分离、状态与缺口分析。 |
-| 是否存在互相矛盾的规则？ | 已逐条对齐：分类 id、五级判定名、Trust Tier、评分权重、状态字段在 SKILL.md / references / schemas / scripts 中取值一致；`scripts/score.py` 的 WEIGHTS 与 `references/ranking.md` 的权重表逐项相同。 |
-| 是否存在 Agent 无法执行的步骤？ | 无外部依赖：联网步骤用宿主已有的 Web Search / Fetch / Browser；不依赖任何私有 API；无联网能力时按 SKILL.md §0 明确拒绝。 |
+Standard-library `unittest`; `jsonschema` is optional and used only to meta-validate the schemas
+and run positive/negative cases. The suite covers date semantics, URL/ID contracts, duplicate
+guards, eligibility authority, missing-data policy, state transitions, schema contracts and
+cross-file consistency (enums and weights must match `scripts/common.py`).
 
 ---
 
-## 12. 当前限制
+## License
 
-- **依赖宿主联网能力**：没有 Web 能力时不降级到"猜测"，而是明确拒绝执行。
-- **不保证覆盖全市场**：缺口统计只在"本次扫描到的样本"内成立，输出中强制标注样本量。
-- **需要模型判断的部分**：语义资格（`related field`）、模糊重复、价值评估仍需 LLM，
-  脚本只提供确定性信号与分项。
-- **时间敏感**：机会信息过期很快（竞赛 14 天、实习 30 天、奖学金 60 天的复核阈值），
-  长期使用需要定期重跑并注意 `last_verified`。
-- **语言覆盖**：多语言 query 模板以中/英/日为主，德/韩为基础覆盖，其他语种需现场推导。
-- **不做自动投递**：默认只做发现—验证—判断—解释—整理；申请动作始终由用户自己完成。
-
----
-
-## 13. 许可
-
-MIT，见 [LICENSE](LICENSE)。
+MIT — see [LICENSE](LICENSE).

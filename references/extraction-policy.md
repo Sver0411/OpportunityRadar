@@ -21,6 +21,33 @@ Step 8 的执行规范。目标：把网页变成 `opportunity.schema.json` 记�
 - 在输出里，Unknown 要显式写出来（"△ 页面未明确语言要求"），
   因为这本身就是对用户有价值的信息。
 
+### 1.1 用 `evidence` 结构化记录证据，而不是塞进 notes
+
+`notes` 是自由文本，无法被脚本检查。关键字段的证据写到 `evidence`：
+
+```json
+"evidence": {
+  "deadline": {
+    "status": "explicit",
+    "source_url": "https://example.com/program",
+    "quote": "Application closes 2026-10-03 23:59 JST",
+    "verified_at": "2026-09-14"
+  },
+  "language_requirement": {
+    "status": "unknown",
+    "source_url": "https://example.com/program",
+    "note": "页面未写明语言要求；不因公司所在地推断"
+  }
+}
+```
+
+需要追踪证据的字段（`scripts/common.py` 的 `EVIDENCE_FIELDS`，`score.py` 会自动指出缺口）：
+`deadline`、`education_level`、`graduation_window`、`major_requirement`、
+`language_requirement`、`nationality_requirement`、`GPA_requirement`、`compensation`。
+
+`status` 取值只能是 `explicit` / `inferred` / `unknown`；
+`explicit` 建议附 `source_url`，能附 `quote`（页面原句）更好，便于复核。
+
 ### 反幻觉的典型例子（必读）
 
 > 某日本企业页面没有写语言要求。
@@ -127,11 +154,26 @@ Step 8 的执行规范。目标：把网页变成 `opportunity.schema.json` 记�
 python3 scripts/normalize_date.py "9月20日" --default-year 2026 --now 2026-09-14
 ```
 
+输出同时给出 `deadline_type`，**五种状态不能混为一谈**：
+
+| deadline_type | 含义 | 记录方式 |
+|---|---|---|
+| `fixed` | 单一确定日期 | `deadline: "2026-10-03"` |
+| `range` | 报名窗口（如 9/20–10/5） | `deadline` 取**结束日**，`application_open` 取开始日；紧迫度以结束日为准 |
+| `rolling` | 滚动/招满为止/随時受付 | `deadline: null`，输出标注"滚动招募" |
+| `asap` | 尽快、无具体日期 | `deadline: null`，标注"尽快截止" |
+| `flexible` | 可协商/弹性 | `deadline: null`，标注"时间可协商" |
+| `tbd` | 未定/未公布 | `deadline: null`，标注"待公布" |
+| `unknown` | 只有月份/季度精度，或无法解析 | `deadline: null` + 说明精度不足 |
+
+补充规则：
+
 - 年份不明 → 脚本返回 `year_unknown: true`，记录 `deadline: null`，
-  改在 `summary`/输出里写"9月20日（年份未在页面标明）"。
-- 范围（"9月20日–10月5日"）→ `application_open` + `deadline` 分别记录。
-- "Rolling / 常年 / 招满即止 / 随時" → `deadline: null`，在输出标注"滚动招募"。
-- 时区：页面写了时区就保留（`2026-09-25T23:59+09:00`）；没写不要补。
+  改在输出里写"9月20日（年份未在页面标明）"。**不要瞎猜年份。**
+- 含时间与时区（`2026-10-03 23:59 JST`）→ 保留原始值、日期部分正常化，
+  在 `notes` 标注含时间/时区且**未做 UTC 换算**；不要伪造换算结果。
+- 不把 `TBD` / `ASAP` / `Flexible` 当成滚动招募——它们语义不同，混用会误导用户
+  （"待公布"和"随时可报"是完全不同的行动建议）。
 
 ---
 

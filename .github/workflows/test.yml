@@ -1,0 +1,40 @@
+name: tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.9", "3.12"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      # jsonschema is a dev/test-only dependency: the skill itself runs on the
+      # standard library alone. Without it, schema tests skip instead of failing.
+      - name: Install dev/test dependency
+        run: python -m pip install --upgrade pip jsonschema
+
+      - name: Unit tests (dates, dedupe, scoring, state, contracts, consistency)
+        run: python -m unittest discover -s tests -t tests -v
+
+      - name: Heavyweight CLI smoke tests
+        run: |
+          python scripts/normalize_date.py --file examples/dates.example.txt --default-year 2026 --now 2026-09-14 > /dev/null
+          python scripts/dedupe.py --input examples/opportunity.batch.example.json --output /tmp/clusters.json
+          python scripts/score.py --profile examples/profile.example.json --opportunities /tmp/clusters.json --today 2026-09-14 --format table
+          python scripts/common.py --validate examples/opportunity.batch.example.json
+          python scripts/state.py --dir /tmp/or-state init
+          python scripts/state.py --dir /tmp/or-state mark-seen --input examples/opportunity.batch.example.json --quiet
+          python scripts/state.py --dir /tmp/or-state mark-seen --input examples/opportunity.batch.example.json --quiet

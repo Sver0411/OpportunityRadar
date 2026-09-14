@@ -1,0 +1,445 @@
+#!/usr/bin/env python3
+"""common.py - OpportunityRadar 的共享基础模块（单一事实来源）。
+
+这个模块存在的原因：ID 生成、URL 规范化、周期(cycle)提取、各类枚举，如果让
+dedupe.py / state.py / score.py 各写一份略有差异的实现，就会出现
+"官方 URL 只是 utm 变了却被判为变化" 这类跨脚本不一致。因此这些逻辑只在这里实现一次。
+
+零第三方依赖，仅标准库。
+
+用法（作为 CLI 做轻量 contract 校验）：
+  python3 common.py --validate examples/opportunity.example.json
+  python3 common.py --validate examples/opportunity.batch.example.json
+  python3 common.py --id "Sony Summer Internship 2027" --org "Sony"
+"""
+
+from __future__ import annotations
+
+import argparse
+import hashlib
+import json
+import re
+import sys
+import unicodedata
+from urllib.parse import parse_qsl, urlencode, urlsplit
+
+# ---------------------------------------------------------------- 枚举（单一来源）
+# schemas/*.json、references/*.md、tests/ 都以这里的取值为准，并由 tests/test_consistency.py 校验。
+
+CATEGORIES = (
+    "career", "research", "competition", "education", "language",
+    "skill_development", "open_source", "hobby", "funding", "event",
+    "project", "entrepreneurship", "networking",
+)
+
+GOAL_TYPES = (
+    "internship", "fulltime", "research", "competition", "education", "language",
+    "skill", "open_source", "hobby", "funding", "event", "project",
+    "entrepreneurship", "networking",
+)
+
+ELIGIBILITY_VERDICTS = (
+    "Eligible", "Probably Eligible", "Unknown", "Probably Ineligible", "Ineligible",
+)
+
+TRUST_TIERS = ("A", "B", "C", "D")
+
+VERIFICATION_STATUSES = (
+    "verified_official", "partially_verified", "unverified", "conflicting", "expired",
+)
+
+VALUE_LEVELS = ("High", "Medium", "Low", "Unknown")
+
+EVIDENCE_STATUSES = ("explicit", "inferred", "unknown")
+
+#: 需要逐字段追踪证据的关键字段（见 references/extraction-policy.md）
+EVIDENCE_FIELDS = (
+    "deadline", "education_level", "graduation_window", "major_requirement",
+    "language_requirement", "nationality_requirement", "GPA_requirement",
+    "compensation",
+)
+
+DEADLINE_TYPES = ("fixed", "range", "rolling", "asap", "flexible", "tbd", "unknown")
+
+LAYERS = ("exploit", "adjacent", "explore")
+
+VISIBILITY = ("new", "changed", "repeat")
+
+#: score.py 与 references/ranking.md §2 必须逐项一致（由测试校验）
+WEIGHTS = {
+    "eligibility": 0.26,
+    "goal_fit": 0.19,
+    "skill_fit": 0.15,
+    "interest_fit": 0.11,
+    "location_fit": 0.10,
+    "value_fit": 0.08,
+    "trust": 0.06,
+    "novelty": 0.05,
+}
+
+#: state.py 变化检测跟踪的字段（见 references/state-and-feedback.md §2）
+TRACKED_FIELDS = (
+    "deadline", "application_open", "cost", "compensation",
+    "education_level", "student_year", "language_requirement", "official_url",
+)
+
+# ---------------------------------------------------------------- URL 规范化
+
+#: 明确属于投放追踪、删除后不影响站点路由的参数（前缀匹配）
+TRACKING_PREFIXES = ("utm_",)
+
+#: 明确属于点击追踪的精确参数名（保守列表：ref / source / from 等可能承载路由语义，故不删）
+TRACKING_EXACT = frozenset({
+    "gclid", "gbraid", "wbraid", "dclid", "fbclid", "msclkid", "yclid",
+    "mc_cid", "mc_eid", "igshid", "_ga", "_gl", "vero_id", "hsctatracking",
+})
+
+_CJK = r"\u3040-\u30ff\u3400-\u4dbf\u4e00-\u9fff\uac00-\ud7af"
+ID_RE = re.compile(rf"^[0-9a-z{_CJK}][0-9a-z{_CJK}._-]*$")
+SLUG_KEEP = re.compile(rf"[^0-9a-z{_CJK}]+")
+
+#: 合理的主机名：至少两级（或 localhost），只含字母数字、连字符、点
+HOST_RE = re.compile(r"^(?:localhost|[a-z0-9]([a-z0-9-]*[a-z0-9])?"
+                     r"(?:\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)+)$")
+
+
+def canonical_url(url) -> str | None:
+    """把 URL 归一化为比较用的规范形式。
+
+    规则（刻意为保守设计）：
+      * scheme 不参与比较（http/https 视为同一资源）；host 转小写并去掉 www.
+      * **path 大小写保留**——很多服务器路径大小写敏感，统一小写会破坏甚至误合并。
+      * 只删除明确属于投放追踪的参数（utm_* 与少量精确名单）。
+      * 保留其余 query 参数（按名值排序以保证稳定），丢弃 fragment，去尾斜杠。
+
+    返回形如 `example.com/path?a=1` 的字符串；无 host 时返回 None。
+    """
+    if not url or not isinstance(url, str):
+        return None
+    raw = url.strip()
+    if not raw:
+        return None
+    if "://" not in raw:
+        raw = "https://" + raw
+    try:
+        parts = urlsplit(raw)
+    except ValueError:
+        return None
+    host = (parts.hostname or "").lower()
+    if not host or not HOST_RE.match(host):
+        return None                    # 不是可识别的 URL（避免把普通文本当域名）
+    if host.startswith("www."):
+        host = host[4:]
+    port = ""
+    if parts.port and not ((parts.scheme == "http" and parts.port == 80)
+                           or (parts.scheme == "https" and parts.port == 443)):
+        port = f":{parts.port}"
+
+    path = re.sub(r"/{2,}", "/", parts.path or "")
+    path = path.rstrip("/")            # 保留大小写，仅去尾斜杠
+
+    kept = []
+    for k, v in parse_qsl(parts.query, keep_blank_values=True):
+        lk = k.lower()
+        if lk in TRACKING_EXACT or any(lk.startswith(p) for p in TRACKING_PREFIXES):
+            continue
+        kept.append((k, v))
+    query = urlencode(sorted(kept), doseq=True)
+
+    out = f"{host}{port}{path}"
+    return f"{out}?{query}" if query else out
+
+
+def is_same_url(a, b) -> bool:
+    ca, cb = canonical_url(a), canonical_url(b)
+    return bool(ca) and ca == cb
+
+
+# ---------------------------------------------------------------- ID 生成
+
+def slugify(text, max_len: int = 48) -> str:
+    """把任意文本转成稳定、可读、schema 合法的 slug 片段。
+
+    保留 ASCII 字母数字与 CJK（中日韩）字符——这类机会名很常见，直接丢弃会让
+    中文/日文机会的 ID 变成空串。其余字符（空格、标点、emoji）折叠为单个连字符。
+    """
+    if not text:
+        return ""
+    s = unicodedata.normalize("NFKC", str(text)).lower()
+    s = SLUG_KEEP.sub("-", s).strip("-")
+    s = re.sub(r"-{2,}", "-", s)
+    return s[:max_len].strip("-")
+
+
+#: 机构名后缀（比较与 ID 生成前统一剥离，避免 "Sony Inc." ≠ "Sony"）
+ORG_SUFFIXES = (
+    "incorporated", "inc", "limited", "ltd", "llc", "plc", "gmbh", "ag", "bv", "nv",
+    "sa", "srl", "spa", "pty", "co", "corp", "corporation", "company", "holdings",
+    "group", "株式会社", "有限会社", "合同会社", "有限公司", "股份有限公司", "集团",
+)
+
+
+def norm_org(text) -> str:
+    """机构名归一化：转 slug、去后缀。dedupe 与 ID 生成共用同一实现。"""
+    s = slugify(text, 64).replace("-", " ")
+    return " ".join(t for t in s.split() if t not in ORG_SUFFIXES).strip()
+
+
+#: 标题里对"身份"无贡献、只影响阅读的通用词（用于 ID 与去重比较）
+_ID_NOISE = (
+    "internship", "internships", "intern", "program", "programme", "position",
+    "opening", "openings", "recruitment", "the", "and", "for", "of", "a", "an",
+    "招募", "招聘", "计划", "项目", "实习", "選考", "採用", "募集", "インターン",
+)
+
+_YEAR_RE = re.compile(r"\b(19|20)\d{2}\b")
+
+
+def extract_years(text) -> list[str]:
+    if not text:
+        return []
+    return sorted(set(m.group(0) for m in _YEAR_RE.finditer(str(text))))
+
+
+def core_title(text, min_tokens: int = 2) -> str:
+    """标题的"核心词"：去掉年份与通用项目词，用于 ID 与相似度比较。
+
+    过度剥离保护：如果去掉通用词后剩余 token 少于 `min_tokens`（例如
+    "2027 Summer Internship Program" 会只剩 "summer"），说明剥离已经丢掉信息，
+    此时退回"只去年份"的保守版本，避免相似度比较失真。
+    """
+    if not text:
+        return ""
+    s = unicodedata.normalize("NFKC", str(text)).lower()
+    s = re.sub(r"\d{4}\s*年", " ", s)
+    s = _YEAR_RE.sub(" ", s)
+    s = re.sub(r"[（(][^）)]{0,14}[）)]", " ", s)
+    s = SLUG_KEEP.sub(" ", s)
+    tokens = [t for t in s.split() if t]
+    filtered = [t for t in tokens if t not in _ID_NOISE]
+    if len(filtered) < min_tokens and len(tokens) >= min_tokens:
+        filtered = tokens
+    return " ".join(filtered).strip()
+
+
+#: 周期(cycle)标记：季节词
+SEASON_TOKENS = {
+    "spring": "spring", "summer": "summer", "autumn": "autumn", "fall": "autumn",
+    "winter": "winter", "春": "spring", "夏": "summer", "秋": "autumn", "冬": "winter",
+    "暑期": "summer", "寒假": "winter", "サマー": "summer", "ウィンター": "winter",
+    "summerofcode": "summer",
+}
+
+
+def cycle_parts(rec: dict) -> tuple[tuple[str, ...], str | None]:
+    """返回 (年份元组, 季节标识)。只使用**显式**信息，信息不足则返回空。"""
+    if not isinstance(rec, dict):
+        return (), None
+    title = str(rec.get("title") or "")
+    years = tuple(extract_years(title))
+    if not years:
+        for f in ("event_start", "event_end", "application_open", "deadline"):
+            found = extract_years(rec.get(f))
+            if found:
+                years = tuple(found)
+                break
+    if not years:
+        years = tuple(extract_years(rec.get("graduation_window")))
+    norm = title.lower().replace(" ", "")
+    seasons = sorted({v for k, v in SEASON_TOKENS.items() if k in norm})
+    return years, (seasons[0] if seasons else None)
+
+
+def cycles_conflict(a: dict, b: dict) -> tuple[bool, str]:
+    """判断两条记录的申请周期是否**明确**冲突。
+
+    只有证据足够时才判冲突，避免把"Summer 2027"和"2027"这种同一周期误判为冲突：
+      * 主年份不同 → 冲突
+      * 双方都写了季节且季节不同 → 冲突
+    其余情况（任一方缺失年份/季节）一律不判冲突。
+    """
+    ya, sa = cycle_parts(a)
+    yb, sb = cycle_parts(b)
+    if ya and yb and ya[0] != yb[0]:
+        return True, "year_differs"
+    if sa and sb and sa != sb:
+        return True, "season_differs"
+    return False, ""
+
+
+def extract_cycle(rec: dict) -> str | None:
+    """周期标识（用于展示与 ID），形如 `2027`、`2027-summer`、`2026-2028`。"""
+    years, season = cycle_parts(rec)
+    if not years:
+        return None
+    base = years[0] if len(years) == 1 else "-".join([years[0], years[-1]])
+    return f"{base}-{season}" if season else base
+
+
+def derive_id(rec: dict) -> str:
+    """生成稳定的 Opportunity ID。
+
+    契约：
+      * 同一机会 + 同一周期 → 同一 ID
+      * 同一项目 + 不同年份/周期 → 不同 ID（周期信息写进 ID）
+
+    形如 `sony-embedded-systems-2027`；信息不足时退化为 `org-title`，
+    完全无法生成可读片段时使用确定性哈希兜底（不含随机成分）。
+    """
+    if not isinstance(rec, dict):
+        return "unknown-opportunity"
+    org = "-".join(norm_org(rec.get("organization")).split())[:32]
+    core = core_title(rec.get("title")) or slugify(rec.get("title"), 32)
+    core = "-".join(core.split())[:40].strip("-")
+    years = extract_years(rec.get("title")) or extract_years(rec.get("deadline")) or extract_years(rec.get("event_start"))
+    year_part = years[0] if years else ""
+
+    parts = [p for p in (org, core) if p]
+    # 标题里已经含机构名时不要再拼一次（避免 Tsinghua-清华大学-... 这类重复）
+    if org and core and org.replace("-", "") in core.replace("-", ""):
+        parts = [core]
+    if year_part and year_part not in core:
+        parts.append(year_part)
+    oid = "-".join(parts).strip("-")
+    oid = re.sub(r"-{2,}", "-", oid)
+    if not oid:
+        digest = hashlib.sha1(
+            unicodedata.normalize("NFKC", f"{rec.get('organization')}|{rec.get('title')}").encode("utf-8")
+        ).hexdigest()[:8]
+        oid = f"opportunity-{digest}"
+    return oid[:96].strip("-")
+
+
+def ensure_id(rec: dict) -> dict:
+    """若记录缺少 id 或 id 非法，就地补一个合规 ID，返回该记录。"""
+    oid = rec.get("id")
+    if not isinstance(oid, str) or not ID_RE.match(oid or ""):
+        rec["id"] = derive_id(rec)
+    return rec
+
+
+# ---------------------------------------------------------------- 轻量 contract 校验
+
+def _date_like(value) -> bool:
+    if value is None:
+        return True
+    if not isinstance(value, str):
+        return False
+    return bool(re.match(r"^\d{4}-\d{2}(-\d{2})?([T ].*)?$", value.strip()))
+
+
+def validate_opportunity(rec) -> list[str]:
+    """最小必要的 contract 校验（stdlib）。返回错误信息列表，空列表表示通过。
+
+    这不是完整 JSON Schema 校验（完整校验在 dev/test 环境用 jsonschema），
+    而是运行时用来及早发现结构错误、并防止跨脚本字段漂移的轻量契约。
+    """
+    errs: list[str] = []
+    if not isinstance(rec, dict):
+        return ["记录不是 JSON 对象"]
+    for f in ("id", "title", "organization", "primary_category"):
+        if rec.get(f) in (None, ""):
+            errs.append(f"缺少必填字段 {f}")
+    oid = rec.get("id")
+    if isinstance(oid, str) and oid and not ID_RE.match(oid):
+        errs.append(f"id 不符合命名契约（小写字母数字/CJK + . _ -）：{oid!r}")
+    pc = rec.get("primary_category")
+    if pc is not None and pc not in CATEGORIES:
+        errs.append(f"primary_category 非法：{pc!r}")
+    for c in (rec.get("secondary_categories") or []):
+        if c not in CATEGORIES:
+            errs.append(f"secondary_categories 含非法值：{c!r}")
+    if rec.get("trust_tier") not in TRUST_TIERS + (None,):
+        errs.append(f"trust_tier 非法：{rec.get('trust_tier')!r}")
+    if rec.get("verification_status") not in VERIFICATION_STATUSES + (None,):
+        errs.append(f"verification_status 非法：{rec.get('verification_status')!r}")
+    ev = rec.get("eligibility")
+    if isinstance(ev, dict) and ev.get("verdict") not in ELIGIBILITY_VERDICTS + (None,):
+        errs.append(f"eligibility.verdict 非法：{ev.get('verdict')!r}")
+    for f in ("deadline", "application_open", "event_start", "event_end"):
+        if not _date_like(rec.get(f)):
+            errs.append(f"{f} 不是 YYYY-MM 或 YYYY-MM-DD：{rec.get(f)!r}")
+    for f in EVIDENCE_FIELDS:
+        e = (rec.get("evidence") or {}).get(f)
+        if isinstance(e, dict) and e.get("status") not in EVIDENCE_STATUSES:
+            errs.append(f"evidence.{f}.status 非法：{e.get('status')!r}")
+    return errs
+
+
+def validate_profile(prof) -> list[str]:
+    errs: list[str] = []
+    if not isinstance(prof, dict):
+        return ["画像不是 JSON 对象"]
+    ed = prof.get("education")
+    if isinstance(ed, dict):
+        degree = ed.get("degree")
+        if isinstance(degree, list) and len(degree) > 1:
+            errs.append("education.degree 应为单一值或单元素数组")
+    for g in (prof.get("goals") or []):
+        if isinstance(g, dict) and g.get("type") not in GOAL_TYPES:
+            errs.append(f"goals[].type 非法：{g.get('type')!r}")
+    return errs
+
+
+def load_records(path) -> list[dict]:
+    """读取机会记录数组：支持数组 / {opportunities|records|items} / dedupe 的 clusters[].merged。"""
+    with open(path, encoding="utf-8") as fh:
+        data = json.load(fh)
+    if isinstance(data, list):
+        return [r for r in data if isinstance(r, dict)]
+    if isinstance(data, dict):
+        for k in ("opportunities", "records", "items"):
+            if isinstance(data.get(k), list):
+                return [r for r in data[k] if isinstance(r, dict)]
+        if isinstance(data.get("clusters"), list):
+            out = []
+            for c in data["clusters"]:
+                if isinstance(c, dict) and isinstance(c.get("merged"), dict):
+                    out.append(c["merged"])
+            return out
+    raise SystemExit(f"未在 {path} 中找到机会数组（支持 opportunities / clusters[].merged）")
+
+
+def main(argv=None) -> int:
+    ap = argparse.ArgumentParser(description="OpportunityRadar 共享工具与轻量 contract 校验")
+    ap.add_argument("--validate", help="校验一个机会 JSON 文件（数组或单条）")
+    ap.add_argument("--id", help="按标题生成 ID")
+    ap.add_argument("--org", help="配合 --id 使用的机构名")
+    ap.add_argument("--url", help="打印 URL 的规范形式")
+    ap.add_argument("--cycle", help="打印 title 对应的周期标识（需配合 --id）")
+    args = ap.parse_args(argv)
+
+    if args.url:
+        print(canonical_url(args.url) or "")
+        return 0
+    if args.id:
+        rec = {"title": args.id, "organization": args.org}
+        print(derive_id(rec))
+        if args.cycle:
+            print(extract_cycle(rec) or "")
+        return 0
+    if args.validate:
+        with open(args.validate, encoding="utf-8") as fh:
+            data = json.load(fh)
+        if isinstance(data, dict) and isinstance(data.get("opportunities"), list):
+            recs = data["opportunities"]
+        elif isinstance(data, list):
+            recs = data
+        else:
+            recs = [data]
+        total = 0
+        for i, rec in enumerate(recs):
+            errs = validate_opportunity(rec)
+            if errs:
+                total += len(errs)
+                label = rec.get("id") if isinstance(rec, dict) else f"#{i}"
+                for e in errs:
+                    print(f"[{label}] {e}")
+        print(f"checked={len(recs)} errors={total}")
+        return 1 if total else 0
+    ap.print_help()
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

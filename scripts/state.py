@@ -26,18 +26,15 @@ import datetime as dt
 import hashlib
 import json
 import os
-import re
 import shutil
 import sys
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
+from common import TRACKED_FIELDS, canonical_url, derive_id, load_records  # noqa: E402
+
 DEFAULT_DIR = ".opportunity-radar"
 STATE_VERSION = 1
-
-# 只有这些字段变化才值得重新提醒（见 references/state-and-feedback.md §2）
-TRACKED_FIELDS = [
-    "deadline", "application_open", "cost", "compensation",
-    "education_level", "student_year", "language_requirement", "official_url",
-]
 
 SAVED_STATUSES = {"interested", "saved", "applied"}
 IGNORED_STATUSES = {"ignored", "not_relevant"}
@@ -91,11 +88,13 @@ def save(base, kind, data):
 # ------------------------------------------------------------------ 哈希与变化
 
 def canonical_value(field, value):
+    """变化检测用的规范化值。URL 复用 common.canonical_url，
+    保证"只是 utm/参数顺序变化"不会被误报为 changed。
+    """
     if value is None:
         return None
-    if field.endswith("url") and isinstance(value, str):
-        v = re.sub(r"^https?://", "", value.strip().lower()).rstrip("/")
-        return v.split("#")[0]
+    if field.endswith("url"):
+        return canonical_url(value)
     if isinstance(value, (list, tuple)):
         return sorted(str(x) for x in value)
     if isinstance(value, dict):
@@ -112,12 +111,6 @@ def tracked_hash(tracked):
     return hashlib.sha256(blob.encode("utf-8")).hexdigest()[:16]
 
 
-def derive_id(rec):
-    raw = f"{rec.get('organization') or ''}-{rec.get('title') or ''}"
-    slug = re.sub(r"[^a-z0-9\u4e00-\u9fff]+", "-", str(raw).lower()).strip("-")
-    return slug or "unknown-opportunity"
-
-
 def entry_stub(rec, status, prev=None):
     ts = now_iso()
     return {
@@ -132,22 +125,6 @@ def entry_stub(rec, status, prev=None):
         "tracked": tracked_of(rec),
         "change_log": (prev or {}).get("change_log", []),
     }
-
-
-# ------------------------------------------------------------------ 记录加载
-
-def load_records(path):
-    with open(path, encoding="utf-8") as fh:
-        data = json.load(fh)
-    if isinstance(data, list):
-        return data
-    if isinstance(data, dict):
-        for k in ("opportunities", "records", "items", "results"):
-            if isinstance(data.get(k), list):
-                return data[k]
-        if isinstance(data.get("clusters"), list):
-            return [c.get("merged") for c in data["clusters"] if isinstance(c, dict) and c.get("merged")]
-    raise SystemExit(f"未在 {path} 中找到机会数组")
 
 
 # ------------------------------------------------------------------ 命令

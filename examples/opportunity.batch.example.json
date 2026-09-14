@@ -75,6 +75,29 @@
       "required_materials": ["CV", "transcript"],
       "official_url": "https://careers.nagi-robotics.example/students/summer/",
       "discovery_url": "https://careers.nagi-robotics.example/students",
+      "evidence": {
+        "deadline": {
+          "status": "explicit",
+          "source_url": "https://careers.nagi-robotics.example/students/summer/",
+          "quote": "応募締切 2026年10月3日",
+          "verified_at": "2026-09-14"
+        },
+        "education_level": {
+          "status": "explicit",
+          "source_url": "https://careers.nagi-robotics.example/students/summer/",
+          "verified_at": "2026-09-14"
+        },
+        "language_requirement": {
+          "status": "unknown",
+          "source_url": "https://careers.nagi-robotics.example/students/summer/",
+          "note": "官方页面未写明语言要求；不因公司所在地推断"
+        },
+        "compensation": {
+          "status": "explicit",
+          "source_url": "https://careers.nagi-robotics.example/students/summer/",
+          "verified_at": "2026-09-14"
+        }
+      },
       "trust_tier": "A",
       "verification_status": "verified_official",
       "last_verified": "2026-09-14",

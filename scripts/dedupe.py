@@ -1,8 +1,17 @@
 #!/usr/bin/env python3
 """dedupe.py - 对已结构化的 Opportunity 记录做确定性去重。
 
-处理确定性问题（URL / 标题 / 机构 / 截止日），把模糊重复标为 maybe 交给 LLM 判断。
-不调用网络，不调用模型。
+确定性部分（URL / 标题 / 机构 / 周期 / 截止日）由本脚本负责；
+模糊判断留 `maybe_pairs` 交给模型复核，不自动合并。
+
+三个刻意的保守设计（都来自真实误合并风险）：
+  1. **周期守卫**：同一官方 URL 常年复用很常见（Program 2026 / Program 2027）。
+     当两边都能确认周期且周期不同时，**不合并**，只列入 cycle_variants 供人工确认。
+  2. **URL 大小写安全**：只把 host 转小写，path 保留大小写（很多服务器路径大小写敏感）。
+     只删除明确属于投放追踪的参数（utm_* 等），`ref`/`source`/`from` 这类可能承载
+     路由语义的参数一律保留。
+  3. **聚类一致性**：Union-Find 是单链合并，A~B、B~C 会把 A、C 并到一起。
+     因此合并前做一次锚点一致性检查，把与 canonical 不相似的成员剔出。
 
 用法：
   python3 dedupe.py --input opps.json
@@ -14,104 +23,44 @@
 from __future__ import annotations
 
 import argparse
-import difflib
 import json
 import os
-import re
 import sys
 from itertools import combinations
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
+from common import (  # noqa: E402
+    canonical_url, core_title, cycle_parts, cycles_conflict, extract_cycle,
+    load_records, norm_org, slugify,
+)
+
 TRUST_RANK = {"A": 0, "B": 1, "C": 2, "D": 3, None: 4}
 
-TRACKING_PARAMS = {
-    "utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "utm_id",
-    "gclid", "fbclid", "yclid", "msclkid", "ref", "referrer", "source", "spm",
-    "from", "share_source", "share_token", "share_medium", "wxshare", "_ga", "mc_cid",
-    "mc_eid", "igshid", "trk", "trackingid", "custom_source",
-}
-
-ORG_SUFFIXES = [
-    "incorporated", "inc", "limited", "ltd", "llc", "plc", "gmbh", "ag", "bv", "nv",
-    "sa", "srl", "spa", "pty", "co", "corp", "corporation", "company", "holdings",
-    "group", "株式会社", "有限会社", "合同会社", "有限公司", "股份有限公司", "集团",
-]
-
-SEASON_WORDS = [
-    "spring", "summer", "autumn", "fall", "winter", "online", "remote",
-    "春", "夏", "秋", "冬", "暑期", "寒假", "サマー", "ウィンター", "夏季", "冬季",
-]
-
-GENERIC_WORDS = [
-    "program", "programme", "internship", "internships", "intern", "position",
-    "opening", "openings", "recruitment", "campaign", "session", "term",
-    "招募", "招聘", "计划", "项目", "实习", "選考", "採用", "募集", "インターン",
-]
-
-# 冲突检测关注的字段（顺序即报告顺序）
-CONFLICT_FIELDS = [
+#: 冲突检测关注的字段（顺序即报告顺序）
+CONFLICT_FIELDS = (
     "deadline", "application_open", "event_start", "event_end", "cost", "compensation",
     "education_level", "student_year", "graduation_window", "country", "city",
     "language_requirement", "GPA_requirement", "official_url",
-]
+)
 
-# 用于"完整度"计分的字段
-COMPLETENESS_FIELDS = [
+#: 用于"完整度"计分的字段
+COMPLETENESS_FIELDS = (
     "title", "organization", "summary", "country", "remote", "education_level",
     "student_year", "major_requirement", "skills_required", "language_requirement",
     "deadline", "cost", "compensation", "official_url", "time_commitment", "tags",
-]
+)
+
+#: 周期冲突时的分数上限：低于 maybe-threshold，因此不会被当成"疑似重复"，
+#: 而是进入独立的 cycle_variants 通道（默认视为不同机会）
+CYCLE_CONFLICT_SCORE = 0.30
 
 
 # ------------------------------------------------------------------ 归一化
 
-def canonical_url(url):
-    if not url or not isinstance(url, str):
-        return None
-    u = url.strip()
-    if not u:
-        return None
-    u = re.sub(r"^https?://", "", u, flags=re.I)
-    u = u.split("#", 1)[0]
-    q = ""
-    if "?" in u:
-        u, q = u.split("?", 1)
-    u = u.lower().rstrip("/")
-    if u.startswith("www."):
-        u = u[4:]
-    if q:
-        kept = []
-        for pair in q.split("&"):
-            if not pair:
-                continue
-            k = pair.split("=", 1)[0].lower()
-            if k in TRACKING_PARAMS:
-                continue
-            kept.append(pair)
-        if kept:
-            u = u + "?" + "&".join(sorted(kept))
-    return u
-
-
-def norm_org(text):
-    if not text:
-        return ""
-    s = str(text).lower()
-    s = re.sub(r"[^\w\u4e00-\u9fff\u3040-\u30ff\uac00-\ud7af]+", " ", s)
-    tokens = [t for t in s.split() if t not in ORG_SUFFIXES]
-    return " ".join(tokens).strip()
-
-
 def norm_title(text):
-    """去掉年份、季节、通用项目词，得到比较用核心串。"""
-    if not text:
-        return ""
-    s = str(text).lower()
-    s = re.sub(r"\b(19|20)\d{2}\b", " ", s)
-    s = re.sub(r"\d{4}\s*年", " ", s)
-    s = re.sub(r"[（(][^）)]{0,12}[）)]", " ", s)
-    s = re.sub(r"[^\w\u4e00-\u9fff\u3040-\u30ff\uac00-\ud7af]+", " ", s)
-    tokens = [t for t in s.split() if t not in SEASON_WORDS and t not in GENERIC_WORDS]
-    return " ".join(tokens).strip()
+    """标题比较用核心串：去掉年份、季节、通用项目词与括号内容。"""
+    return core_title(text) or slugify(text, 64).replace("-", " ")
 
 
 def tokens(text):
@@ -119,6 +68,7 @@ def tokens(text):
 
 
 def sim(a, b):
+    import difflib
     a, b = a or "", b or ""
     if not a or not b:
         return 0.0
@@ -144,63 +94,88 @@ def norm_compare_value(field, v):
     v = as_text(v)
     if v is None:
         return None
-    v = v.strip().lower()
+    v = v.strip()
     if field.endswith("url"):
         return canonical_url(v)
-    return re.sub(r"\s+", " ", v)
+    return " ".join(v.lower().split())
 
 
 # ------------------------------------------------------------------ 相似度
 
 def pair_score(a, b, score_floor=0.56):
-    """返回 (score, detail) —— score 越高越像同一条机会。
+    """返回 (score, detail)。score 越高越像同一条机会（同一周期内）。
 
-    score_floor: "标题几乎一致但机构署名不同"时的最低分（抬进模糊重复区间，交 LLM 判断）。
+    流程：先算基础相似度；只有在基础相似度已经达到"候选重复"水平时，
+    才用周期守卫去**否决**这次合并。这样既避免了同 URL 跨年误合并，
+    也不会把无关项目两两列成"周期冲突"。
     """
-    ua, ub = canonical_url(a.get("official_url")), canonical_url(b.get("official_url"))
     detail = {}
+    ua, ub = canonical_url(a.get("official_url")), canonical_url(b.get("official_url"))
+    cyc_a, cyc_b = extract_cycle(a), extract_cycle(b)
+    detail["cycles"] = [cyc_a, cyc_b]
+
     if ua and ub and ua == ub:
-        return 1.0, {"reason": "same_canonical_url", "url": ua}
+        base, detail0 = 1.0, {"reason": "same_canonical_url", "url": ua}
+    else:
+        title_a, title_b = norm_title(a.get("title")), norm_title(b.get("title"))
+        org_a, org_b = norm_org(a.get("organization")), norm_org(b.get("organization"))
+        t_sim = sim(title_a, title_b)
+        o_sim = sim(org_a, org_b)
+        base = 0.45 * t_sim + 0.30 * o_sim
+        detail0 = {"title_sim": round(t_sim, 3), "org_sim": round(o_sim, 3)}
 
-    t_sim = sim(norm_title(a.get("title")), norm_title(b.get("title")))
-    o_sim = sim(norm_org(a.get("organization")), norm_org(b.get("organization")))
-    detail.update(title_sim=round(t_sim, 3), org_sim=round(o_sim, 3))
+        # 跨字段信号：一方标题里出现了另一方的机构名，且双方年份一致。
+        # 这是"官方页标题不含公司名、聚合站标题含公司名"的常见情形
+        # （如 "2027 Summer Internship Program" ↔ "Nagi Robotics 2027 Internship"），
+        # 仅比对 title↔title、org↔org 会漏掉它。
+        years_a, _ = cycle_parts(a)
+        years_b, _ = cycle_parts(b)
+        same_year = bool(years_a and years_b and years_a[0] == years_b[0])
+        if same_year and len(org_a) >= 4 and len(org_b) >= 4 and (org_a in title_b or org_b in title_a):
+            base += 0.20
+            detail0["org_in_title"] = True
 
-    score = 0.45 * t_sim + 0.30 * o_sim
+        dl_a = norm_compare_value("deadline", a.get("deadline"))
+        dl_b = norm_compare_value("deadline", b.get("deadline"))
+        if dl_a and dl_a == dl_b:
+            base += 0.12
+            detail0["same_deadline"] = True
+        if a.get("country") and a.get("country") == b.get("country"):
+            base += 0.05
+        if a.get("primary_category") and a.get("primary_category") == b.get("primary_category"):
+            base += 0.04
+        if a.get("event_start") and a.get("event_start") == b.get("event_start"):
+            base += 0.04
 
-    dl_a = norm_compare_value("deadline", a.get("deadline"))
-    dl_b = norm_compare_value("deadline", b.get("deadline"))
-    if dl_a and dl_a == dl_b:
-        score += 0.12
-        detail["same_deadline"] = True
-    if a.get("country") and a.get("country") == b.get("country"):
-        score += 0.05
-    if a.get("primary_category") and a.get("primary_category") == b.get("primary_category"):
-        score += 0.04
-    if a.get("event_start") and a.get("event_start") == b.get("event_start"):
-        score += 0.04
+        # 保护：机构名差异大时不自动合并（业务主体不同 → 不是同一条）
+        if o_sim < 0.55:
+            base = min(base, 0.60)
+            detail0["org_mismatch_cap"] = True
+        if t_sim < 0.35 and o_sim < 0.35:
+            base = min(base, 0.50)
+            detail0["weak_both"] = True
 
-    # 保护：机构名差异大时不允许自动合并（业务主体不同 → 不是同一条）
-    if o_sim < 0.55:
-        score = min(score, 0.60)
-        detail["org_mismatch_cap"] = True
-    # 保护：标题与机构都很不像
-    if t_sim < 0.35 and o_sim < 0.35:
-        score = min(score, 0.50)
-        detail["weak_both"] = True
+        # 标题高度一致 + 同类别 + 同国家，但机构名不同 → 可能是同一活动的不同署名/转载，
+        # 不足以自动合并，但值得交模型判断，因此抬到"疑似重复"区间（仍低于自动合并阈值）。
+        same_cat = bool(a.get("primary_category")) and a.get("primary_category") == b.get("primary_category")
+        same_country = bool(a.get("country")) and a.get("country") == b.get("country")
+        if t_sim >= 0.60 and same_cat and same_country and base < score_floor:
+            base = score_floor
+            detail0["org_variant_review"] = True
 
-    # 标题高度一致（difflib ≥0.60）+ 同类别 + 同国家，但机构名不同
-    # → 可能是同一活动的不同署名 / D 级转载，不足以自动合并，但值得交给 LLM 判断，
-    #   因此抬到"模糊重复"区间（仍低于自动合并阈值）。
-    # 门槛刻意偏松：漏判重复（用户看到同一条两次、或看到 D 级站的过期截止日）代价高，
-    # 误判只是多一条待 LLM 复核项，代价低。
-    same_cat = bool(a.get("primary_category")) and a.get("primary_category") == b.get("primary_category")
-    same_country = bool(a.get("country")) and a.get("country") == b.get("country")
-    if t_sim >= 0.60 and same_cat and same_country and score < score_floor:
-        score = score_floor
-        detail["org_variant_review"] = True
+    base = min(base, 1.0)
+    detail.update(detail0)
 
-    return min(score, 1.0), detail
+    # 周期守卫：只对"本来会被判定为重复候选"的对子生效
+    if base >= min(score_floor, 0.55):
+        conflict, why = cycles_conflict(a, b)
+        if conflict:
+            detail["reason"] = "different_cycle"
+            detail["cycle_conflict"] = why
+            detail["hint"] = "周期不同，默认视为不同机会；仅当确认是同一轮时才合并"
+            return CYCLE_CONFLICT_SCORE, detail
+
+    return base, detail
 
 
 class UnionFind:
@@ -233,13 +208,41 @@ def pick_canonical(members):
     )[0]
 
 
+def enforce_coherence(groups, threshold, score_floor):
+    """消除 Union-Find 的单链误合并：把与 canonical 不相似的成员剔出。
+
+    返回 (coherent_groups, ejected)。ejected 中的记录会各自成为独立簇。
+    """
+    coherent, ejected = [], []
+    for members in groups:
+        if len(members) < 3:
+            coherent.append(members)
+            continue
+        current = list(members)
+        changed = True
+        while changed and len(current) >= 3:
+            changed = False
+            anchor = pick_canonical(current)
+            keep = [anchor]
+            for m in current:
+                if m is anchor:
+                    continue
+                sc, _ = pair_score(anchor, m, score_floor)
+                if sc >= threshold:
+                    keep.append(m)
+                else:
+                    ejected.append(m)
+                    changed = True
+            current = keep
+        coherent.append(current)
+    return coherent, ejected
+
+
 def merge_cluster(members):
     canonical = pick_canonical(members)
     merged = dict(canonical)
-    conflicts = []
-
     for field in COMPLETENESS_FIELDS + CONFLICT_FIELDS:
-        if field in ("official_url",):
+        if field == "official_url":
             continue
         if merged.get(field) in (None, "", [], {}):
             for m in sorted(members, key=lambda r: TRUST_RANK.get(r.get("trust_tier"), 4)):
@@ -250,6 +253,7 @@ def merge_cluster(members):
                     merged.setdefault("_merged_fields", {})[field] = m.get("id")
                     break
 
+    conflicts = []
     for field in CONFLICT_FIELDS:
         values = {}
         for m in members:
@@ -258,60 +262,45 @@ def merge_cluster(members):
                 continue
             values.setdefault(v, []).append(m)
         if len(values) > 1:
-            variants = []
-            for v, ms in values.items():
-                variants.append({
-                    "value": v,
-                    "ids": [m.get("id") for m in ms],
-                    "tiers": [m.get("trust_tier") for m in ms],
-                })
             conflicts.append({
                 "field": field,
-                "variants": variants,
+                "variants": [
+                    {"value": v, "ids": [m.get("id") for m in ms],
+                     "tiers": [m.get("trust_tier") for m in ms]}
+                    for v, ms in values.items()
+                ],
                 "resolved_by": canonical.get("id"),
                 "resolution": "以 trust_tier 最高者的值为准；差异需在输出中说明",
             })
 
-    alt = []
-    for m in members:
-        if m.get("id") == canonical.get("id"):
-            continue
-        alt.append({
-            "id": m.get("id"),
+    alt = [{"id": m.get("id"),
             "url": m.get("official_url") or m.get("discovery_url"),
             "tier": m.get("trust_tier"),
-            "note": "同一机会的其它来源",
-        })
+            "note": "同一机会的其它来源"}
+           for m in members if m.get("id") != canonical.get("id")]
     if alt:
         merged["alternate_sources"] = (merged.get("alternate_sources") or []) + alt
 
     return merged, canonical, conflicts, alt
 
 
-def load_records(path):
-    with open(path, encoding="utf-8") as fh:
-        data = json.load(fh)
-    if isinstance(data, dict):
-        for key in ("opportunities", "records", "items", "results"):
-            if isinstance(data.get(key), list):
-                return data[key]
-        raise SystemExit(f"输入 JSON 对象中未找到机会数组（期望键之一：opportunities/records/items/results）：{path}")
-    if isinstance(data, list):
-        return data
-    raise SystemExit(f"无法识别的输入结构：{path}")
-
-
 def dedupe(records, threshold=0.72, maybe_threshold=0.55):
     records = [r for r in records if isinstance(r, dict)]
     n = len(records)
+    if n > 1000:
+        print(f"[warn] 记录数 {n} 较大，两两比较约 {n * (n - 1) // 2} 次；"
+              "建议先按类别分桶再运行", file=sys.stderr)
     uf = UnionFind(n)
-    maybe = []
-    auto_pairs = []
-    # 抬升下限必须仍低于自动合并阈值，否则会把"待人工判断"误升级为自动合并
+    maybe, auto_pairs, cycle_variants = [], [], []
     score_floor = min(maybe_threshold + 0.01, threshold - 0.01)
 
     for i, j in combinations(range(n), 2):
         score, detail = pair_score(records[i], records[j], score_floor=score_floor)
+        if detail.get("reason") == "different_cycle":
+            cycle_variants.append({"a": records[i].get("id"), "b": records[j].get("id"),
+                                   "cycles": detail.get("cycles"), "score": round(score, 3),
+                                   "hint": detail.get("hint")})
+            continue
         if score >= threshold:
             uf.union(i, j)
             auto_pairs.append({"a": records[i].get("id"), "b": records[j].get("id"),
@@ -320,15 +309,19 @@ def dedupe(records, threshold=0.72, maybe_threshold=0.55):
             maybe.append({
                 "a": records[i].get("id"), "b": records[j].get("id"),
                 "score": round(score, 3), **detail,
-                "hint": "模糊重复，交 LLM 判断：是否为同一机会？",
+                "hint": "模糊重复，交模型判断：是否为同一机会？",
             })
 
     groups = {}
     for i in range(n):
         groups.setdefault(uf.find(i), []).append(records[i])
 
+    coherent, ejected = enforce_coherence(list(groups.values()), threshold, score_floor)
+    for m in ejected:
+        coherent.append([m])
+
     clusters = []
-    for idx, members in enumerate(sorted(groups.values(), key=lambda g: -len(g))):
+    for idx, members in enumerate(sorted(coherent, key=lambda g: -len(g))):
         merged, canonical, conflicts, alt = merge_cluster(members)
         merged = dict(merged)
         merged["id"] = canonical.get("id")
@@ -349,17 +342,17 @@ def dedupe(records, threshold=0.72, maybe_threshold=0.55):
         "clusters": clusters,
         "auto_merged_pairs": auto_pairs,
         "maybe_pairs": maybe,
+        "cycle_variants": cycle_variants,
+        "ejected_by_coherence": [m.get("id") for m in ejected],
         "params": {"threshold": threshold, "maybe_threshold": maybe_threshold},
     }
 
 
 def render_text(res):
-    out = []
-    out.append(f"input={res['input_count']}  clusters={res['cluster_count']}  removed={res['duplicates_removed']}")
+    out = [f"input={res['input_count']}  clusters={res['cluster_count']}  removed={res['duplicates_removed']}"]
     for c in res["clusters"]:
-        title = c["merged"].get("title")
         out.append(f"\n[{c['cluster_id']}] size={c['size']} canonical={c['canonical_id']}")
-        out.append(f"  title: {title}")
+        out.append(f"  title: {c['merged'].get('title')}")
         out.append(f"  org  : {c['merged'].get('organization')}")
         for m in c["member_ids"]:
             if m != c["canonical_id"]:
@@ -367,8 +360,16 @@ def render_text(res):
         for cf in c["conflicts"]:
             vals = " vs ".join(f"{v['value']}({','.join(str(t) for t in v['tiers'])})" for v in cf["variants"])
             out.append(f"  ! conflict {cf['field']}: {vals}")
+    if res.get("ejected_by_coherence"):
+        out.append("\ncoherence 剔出（原被链式误合并，已拆为独立机会）:")
+        for i in res["ejected_by_coherence"]:
+            out.append(f"  ~ {i}")
+    if res.get("cycle_variants"):
+        out.append("\n不同周期（默认视为不同机会，仅在同一轮时才合并）:")
+        for p in res["cycle_variants"]:
+            out.append(f"  * {p['a']} <> {p['b']}  cycles={p['cycles']}")
     if res["maybe_pairs"]:
-        out.append("\nmight be duplicates (LLM review):")
+        out.append("\n疑似重复（交模型复核）:")
         for p in res["maybe_pairs"]:
             out.append(f"  ? {p['a']} <-> {p['b']}  score={p['score']}")
     return "\n".join(out)
@@ -376,10 +377,10 @@ def render_text(res):
 
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description="Opportunity 记录确定性去重")
-    ap.add_argument("--input", required=True, help="机会 JSON（数组 / {opportunities:[...]} / last-run.json）")
+    ap.add_argument("--input", required=True, help="机会 JSON（数组 / {opportunities:[...]} / last-run.json / dedupe 输出）")
     ap.add_argument("--output", help="输出文件；省略则打印到 stdout")
     ap.add_argument("--threshold", type=float, default=0.72, help="自动合并阈值")
-    ap.add_argument("--maybe-threshold", type=float, default=0.55, help="模糊重复（交 LLM 判断）阈值")
+    ap.add_argument("--maybe-threshold", type=float, default=0.55, help="疑似重复（交模型复核）阈值")
     ap.add_argument("--format", choices=["json", "text"], default="json")
     args = ap.parse_args(argv)
 
@@ -389,7 +390,7 @@ def main(argv=None) -> int:
 
     if args.output:
         with open(args.output, "w", encoding="utf-8") as fh:
-            fh.write(payload + ("\n" if not payload.endswith("\n") else ""))
+            fh.write(payload + ("" if payload.endswith("\n") else "\n"))
         print(f"写入 {args.output}（input={res['input_count']} → clusters={res['cluster_count']}）", file=sys.stderr)
     else:
         print(payload)
