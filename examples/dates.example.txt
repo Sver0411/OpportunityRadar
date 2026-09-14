@@ -1,0 +1,28 @@
+# normalize_date.py 的测试/演示输入，每行一条
+# 用法：python3 scripts/normalize_date.py --file examples/dates.example.txt --default-year 2026
+2026-09-20
+2026/9/20
+2026.9.20
+2026年9月20日
+2026年9月20日（月）
+9月20日
+9月20日-10月5日
+2026-09-20 ~ 2026-10-05
+Sep 20
+Sep 20, 2026
+Sept 20, 2026
+20 September 2026
+20-Sep-2026
+September 2026
+2026年9月
+Deadline: 2026-10-03
+报名截止：9月20日
+締切：2026年9月20日
+Dec 20 - Jan 5, 2027
+09/20/2026
+Rolling basis
+随時受付
+常年招募
+招满即止
+Q3 2026
+未公开

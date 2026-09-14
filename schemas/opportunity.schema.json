@@ -1,0 +1,182 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Sver0411/OpportunityRadar/schemas/opportunity.schema.json",
+  "title": "OpportunityRadar Opportunity",
+  "description": "一条机会的结构化记录。任何字段缺失一律写 null，禁止猜测或推断填充。抽取规范见 references/extraction-policy.md。",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["id", "title", "organization", "primary_category"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "稳定 ID：<org-slug>-<title-slug>-<year>，全小写连字符。同一条机会必须保持同一 ID，否则 Seen State 失效",
+      "pattern": "^[a-z0-9][a-z0-9._-]*$"
+    },
+    "title": { "type": "string", "description": "官方名称原文，可加短注；不要自创营销化标题" },
+    "organization": { "type": "string", "description": "主办/招聘主体" },
+
+    "primary_category": { "$ref": "#/$defs/category" },
+    "secondary_categories": {
+      "type": ["array", "null"],
+      "items": { "$ref": "#/$defs/category" },
+      "description": "可多标签。默认主类选择见 references/opportunity-taxonomy.md §14"
+    },
+    "tags": { "type": ["array", "null"], "items": { "type": "string" }, "description": "3–8 个自由短标签，仅使用页面能支撑的标签" },
+    "summary": { "type": ["string", "null"], "description": "≤2 句、纯事实、无营销形容词" },
+
+    "country": { "type": ["string", "null"] },
+    "city": { "type": ["string", "null"] },
+    "remote": { "type": ["boolean", "null"] },
+
+    "education_level": {
+      "anyOf": [
+        { "$ref": "#/$defs/educationLevel" },
+        { "type": "array", "items": { "$ref": "#/$defs/educationLevel" } },
+        { "type": "null" }
+      ],
+      "description": "未写明或仅写 \"students\" 时 → null"
+    },
+    "student_year": {
+      "anyOf": [
+        { "type": "integer" },
+        { "type": "array", "items": { "type": "integer" } },
+        { "type": "null" }
+      ],
+      "description": "在读学年；中国校招/日本インターン通常更依赖 graduation_window"
+    },
+    "graduation_window": { "type": ["string", "null"], "description": "毕业时间窗口，如 \"2027-03\" / \"2028 年 3 月卒業見込\"" },
+    "major_requirement": {
+      "anyOf": [
+        { "type": "string" },
+        { "type": "array", "items": { "type": "string" } },
+        { "type": "null" }
+      ],
+      "description": "保留页面原文（如 \"Electrical Engineering or related field\"），不要改写成概括词"
+    },
+    "skills_required": { "type": ["array", "null"], "items": { "type": "string" } },
+    "skills_preferred": { "type": ["array", "null"], "items": { "type": "string" } },
+    "language_requirement": {
+      "anyOf": [
+        { "type": "string" },
+        { "$ref": "#/$defs/languageRequirement" },
+        {
+          "type": "array",
+          "items": { "$ref": "#/$defs/languageRequirement" }
+        },
+        { "type": "null" }
+      ],
+      "description": "页面未明写时必须是 null —— 不得因国籍/地区推断语言等级要求。单个要求可直接用对象形式。"
+    },
+    "nationality_requirement": {
+      "anyOf": [{ "type": "string" }, { "type": "array", "items": { "type": "string" } }, { "type": "null" }],
+      "description": "国籍/签证/工作许可限制。未写明 → null（≠ 无限制）"
+    },
+    "school_requirement": {
+      "anyOf": [{ "type": "string" }, { "type": "array", "items": { "type": "string" } }, { "type": "null" }]
+    },
+    "GPA_requirement": { "type": ["string", "number", "null"], "description": "保留原表达，不换算" },
+
+    "application_open": { "type": ["string", "null"], "description": "报名开放日，YYYY-MM-DD 或 RFC3339；年份不明 → null" },
+    "deadline": { "type": ["string", "null"], "description": "报名截止。滚动招募/常年 → null，并在 notes 说明" },
+    "event_start": { "type": ["string", "null"] },
+    "event_end": { "type": ["string", "null"] },
+
+    "cost": { "type": ["string", "number", "null"], "description": "参加费/报名费；免费写 \"free\"" },
+    "compensation": { "type": ["string", "null"], "description": "薪资/报酬；明确无薪要显式写 \"unpaid\"/\"無給\"/\"无薪\"" },
+    "prize": { "type": ["string", "null"] },
+    "funding": { "type": ["string", "null"], "description": "资助/奖金池/资源额度" },
+
+    "team_requirement": { "type": ["string", "null"], "description": "组队要求：人数、是否可跨校/跨国" },
+    "time_commitment": { "type": ["string", "null"], "description": "时间投入，如 \"每周 20 小时\" / \"3 个月全职\"" },
+    "required_materials": { "type": ["array", "null"], "items": { "type": "string" } },
+
+    "official_url": {
+      "type": ["string", "null"],
+      "description": "实际打开并在其中读到该事实的官方页面。找不到 → null，并写 \"未找到官方确认来源\"。禁止猜测 URL"
+    },
+    "discovery_url": { "type": ["string", "null"], "description": "最早发现该机会的页面（可为 Tier C/D）" },
+    "alternate_sources": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "url": { "type": "string" },
+          "tier": { "$ref": "#/$defs/trustTier" },
+          "note": { "type": ["string", "null"] }
+        }
+      },
+      "description": "去重后保留的其它来源"
+    },
+
+    "trust_tier": { "$ref": "#/$defs/trustTier" },
+    "verification_status": { "$ref": "#/$defs/verificationStatus" },
+    "last_verified": { "type": ["string", "null"], "description": "YYYY-MM-DD" },
+
+    "layer": {
+      "type": ["string", "null"],
+      "enum": ["exploit", "adjacent", "explore", null],
+      "description": "发现层：直接 / 相邻 / 可迁移探索"
+    },
+    "eligibility": {
+      "type": ["object", "null"],
+      "additionalProperties": true,
+      "description": "资格判定结果（由 references/eligibility.md 得出）",
+      "properties": {
+        "verdict": { "$ref": "#/$defs/eligibilityVerdict" },
+        "reasons": { "type": ["array", "null"], "items": { "type": "string" } },
+        "unknowns": { "type": ["array", "null"], "items": { "type": "string" } }
+      }
+    },
+    "value": {
+      "type": ["object", "null"],
+      "additionalProperties": true,
+      "description": "价值评估。取值 High / Medium / Low / Unknown；不要每项都写 High",
+      "properties": {
+        "career": { "$ref": "#/$defs/valueLevel" },
+        "research": { "$ref": "#/$defs/valueLevel" },
+        "skill": { "$ref": "#/$defs/valueLevel" },
+        "portfolio": { "$ref": "#/$defs/valueLevel" },
+        "networking": { "$ref": "#/$defs/valueLevel" },
+        "financial": { "$ref": "#/$defs/valueLevel" },
+        "interest": { "$ref": "#/$defs/valueLevel" }
+      }
+    },
+    "seen_status": {
+      "type": ["string", "null"],
+      "enum": ["new", "changed", "repeat", null]
+    },
+    "notes": { "type": ["array", "null"], "items": { "type": "string" }, "description": "冲突说明、Explicit/Inferred/Unknown 标注、滚动招募等" }
+  },
+  "$defs": {
+    "languageRequirement": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "语言要求条目。字段未写明就用 null，不要推断。",
+      "properties": {
+        "language": { "type": ["string", "null"] },
+        "exam": { "type": ["string", "null"] },
+        "min_level": { "type": ["string", "null"] },
+        "note": { "type": ["string", "null"] }
+      }
+    },
+    "category": {
+      "type": "string",
+      "enum": ["career", "research", "competition", "education", "language", "skill_development", "open_source", "hobby", "funding", "event", "project", "entrepreneurship", "networking"]
+    },
+    "educationLevel": {
+      "type": "string",
+      "enum": ["high_school", "undergraduate", "master", "phd", "postdoc", "any"]
+    },
+    "trustTier": { "type": ["string", "null"], "enum": ["A", "B", "C", "D", null] },
+    "verificationStatus": {
+      "type": ["string", "null"],
+      "enum": ["verified_official", "partially_verified", "unverified", "conflicting", "expired", null]
+    },
+    "eligibilityVerdict": {
+      "type": ["string", "null"],
+      "enum": ["Eligible", "Probably Eligible", "Unknown", "Probably Ineligible", "Ineligible", null]
+    },
+    "valueLevel": { "type": ["string", "null"], "enum": ["High", "Medium", "Low", "Unknown", null] }
+  }
+}

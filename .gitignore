@@ -1,0 +1,20 @@
+# 本地状态（含个人画像）不进版本库
+.opportunity-radar/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# 编辑器与系统
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# 临时产物
+*.tmp
+*.bak
+dist/
+*.zip

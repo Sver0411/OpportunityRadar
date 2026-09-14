@@ -1,0 +1,79 @@
+{
+  "_note": "FORMAT EXAMPLE ONLY. 机构与事实均为虚构，禁止当作已验证的真实机会使用。它只演示 schemas/opportunity.schema.json 各字段怎么写（尤其是 null 的用法与 Explicit/Inferred/Unknown 标注）。",
+  "id": "kagura-university-undergraduate-research-2026",
+  "title": "Kagura University Undergraduate Research Program",
+  "organization": "Kagura University",
+  "primary_category": "research",
+  "secondary_categories": ["funding", "networking"],
+  "tags": ["research", "undergraduate-ok", "stipend", "on-campus"],
+  "summary": "Undergraduate research placement with a lab, 6 months part-time, with a stipend. Application via the university portal.",
+
+  "country": "Japan",
+  "city": "Sendai",
+  "remote": false,
+
+  "education_level": ["undergraduate"],
+  "student_year": [2, 3],
+  "graduation_window": null,
+  "major_requirement": "Any discipline; laboratory matching required",
+  "skills_required": [],
+  "skills_preferred": ["Python"],
+  "language_requirement": {
+    "language": "Japanese",
+    "exam": "JLPT",
+    "min_level": "N2",
+    "note": "explicit on the official page"
+  },
+  "nationality_requirement": null,
+  "school_requirement": "Enrolled at Kagura University",
+  "GPA_requirement": "2.3/3.0",
+
+  "application_open": null,
+  "deadline": "2026-11-30",
+  "event_start": "2027-04-01",
+  "event_end": "2027-09-30",
+
+  "cost": null,
+  "compensation": "stipend",
+  "prize": null,
+  "funding": null,
+  "team_requirement": null,
+  "time_commitment": "part-time, ~10 h/week",
+  "required_materials": ["application form", "research plan"],
+
+  "official_url": "https://www.kagura-university.example/research/undergrad-program",
+  "discovery_url": "https://aggregator.example/programs/kagura-research",
+  "alternate_sources": [
+    { "url": "https://aggregator.example/programs/kagura-research", "tier": "C", "note": "发现来源" }
+  ],
+
+  "trust_tier": "A",
+  "verification_status": "partially_verified",
+  "last_verified": "2026-09-13",
+
+  "layer": "adjacent",
+  "eligibility": {
+    "verdict": "Probably Eligible",
+    "reasons": [
+      "接受本科生（页面明确写 undergraduate）",
+      "学年要求 2–3 年级，与画像相符",
+      "GPA 要求 2.3/3.0，画像未提供 GPA → 无法确认"
+    ],
+    "unknowns": ["GPA 未提供", "页面未写是否接受国际学生"]
+  },
+  "value": {
+    "career": "Medium",
+    "research": "High",
+    "skill": "Medium",
+    "portfolio": "Medium",
+    "networking": "High",
+    "financial": "Low",
+    "interest": "Medium"
+  },
+  "seen_status": "new",
+  "notes": [
+    "language_requirement 为 Explicit：官方页面写明 JLPT N2 以上",
+    "nationality_requirement 为 Unknown：页面未提及国际学生 → 不推断为『无限制』",
+    "deadline 经 scripts/normalize_date.py 归一化（原文：2026年11月30日）"
+  ]
+}
