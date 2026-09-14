@@ -33,6 +33,28 @@ A/B/C/D 只是内部执行模型，用户不关心协议名称；只有调试输
 
 ---
 
+
+## 1.1 三个输出区（必须分开，不能合成一个列表）
+
+```
+Recommended now     ← 现在值得申请（Freshness Gate + Canonical Gate 都通过）
+Worth verifying     ← 有价值，但状态/来源/资格未确认，需要继续核实
+Closed / Excluded   ← 已过期/已结束，或明确不符合资格（附原因）
+```
+
+进入 **Recommended now** 的最低条件（`scripts/score.py` 的 `recommendation_zone()` 已实现）：
+
+1. `freshness ∈ {open, likely_open}`
+2. 有 canonical source（`official_url` 非空）
+3. `eligibility_verdict != Ineligible`
+4. `match_score >= 55`（最低质量门槛）
+
+其余进入 **Worth verifying**（`freshness = unknown`、无官方来源、match 偏低）。
+`closed` / `expired` / `Ineligible` 进 **Closed / Excluded** 并写明原因。
+
+**Unknown 不是负面**：`Eligibility = Unknown` 只表示信息不足，它可以出现在 Worth verifying，
+并列出"补上什么信息就能确认"。
+
 ## 2. 完整块模板
 
 ```

@@ -406,13 +406,14 @@ class TestDeadlineType(unittest.TestCase):
         self.assertEqual(i["type"], "fixed")
         self.assertEqual(i["days"], 6)
 
-    def test_expired_only_when_evidence_allows(self):
-        gated = opp(id="g", deadline="2026-01-01", **inferred("deadline"))
-        res = S.score_all(profile(), [gated], today=TODAY)
-        self.assertEqual(res["scored"], 1, "证据不足时不应直接排除")
-        self.assertTrue(any("证据等级不足" in w for w in res["results"][0]["warnings"]))
-        hard = opp(id="h", deadline="2026-01-01", **explicit("deadline"))
-        self.assertEqual(S.score_all(profile(), [hard], today=TODAY)["scored"], 0)
+    def test_expired_is_excluded_regardless_of_evidence(self):
+        """Freshness Gate：过期项一律排除；Evidence Gate 只约束资格判定（F01/F02）。"""
+        for opp_kw in (inferred("deadline"), explicit("deadline"), {}):
+            o = opp(id="g", deadline="2026-01-01", **opp_kw)
+            res = S.score_all(profile(), [o], today=TODAY)
+            with self.subTest(evidence=opp_kw.get("evidence")):
+                self.assertEqual(res["scored"], 0)
+                self.assertTrue(res["excluded"])
 
 
 class TestHours(unittest.TestCase):
@@ -562,6 +563,92 @@ class TestEvidenceGaps(unittest.TestCase):
         self.assertTrue(any("deadline" in g for g in gaps))
         self.assertTrue(any("language_requirement" in g for g in gaps))
         self.assertTrue(any("major_requirement" in g for g in gaps), "explicit 但缺 source_url 也应提示")
+
+
+class TestFreshnessGate(unittest.TestCase):
+    """F01/F02：已结束的机会不得因为 deadline=null 或赛季未解析而进入推荐。"""
+
+    def T(self, o, today=dt.date(2026, 9, 14)):
+        return S.score_all(profile(), [o], today=today)
+
+    def test_deadline_in_future_is_open(self):
+        r = self.T(opp(id="a", deadline="2026-10-03", official_url="https://x.example"))
+        self.assertEqual(r["results"][0]["freshness"], "open")
+
+    def test_deadline_past_is_excluded(self):
+        r = self.T(opp(id="b", deadline="2026-04-20", official_url="https://x.example"))
+        self.assertEqual(r["scored"], 0)
+        self.assertIn("expired", r["excluded"][0]["reason"])
+
+    def test_past_season_without_deadline_is_excluded(self):
+        """2026 赛季 + 当前 9 月 + 无 deadline → closed（F01）。"""
+        r = self.T(opp(id="c", title="Summer 2026 Research Program", deadline=None,
+                       official_url="https://x.example"))
+        self.assertEqual(r["scored"], 0)
+        self.assertIn("closed", r["excluded"][0]["reason"])
+
+    def test_event_end_passed_is_excluded(self):
+        r = self.T(opp(id="d", title="Conference", event_end="2026-07-01",
+                       official_url="https://x.example"))
+        self.assertEqual(r["scored"], 0)
+
+    def test_unknown_freshness_is_not_recommended_now(self):
+        r = self.T(opp(id="e", title="Some program", deadline=None,
+                       official_url="https://x.example"))
+        row = r["results"][0]
+        self.assertEqual(row["freshness"], "unknown")
+        self.assertEqual(row["zone"], "worth_verifying")
+
+    def test_future_cycle_is_not_recommended_now(self):
+        r = self.T(opp(id="f", title="Global Game Jam 2027", deadline=None,
+                       official_url="https://x.example"))
+        self.assertEqual(r["results"][0]["zone"], "worth_verifying")
+
+    def test_rolling_is_likely_open(self):
+        r = self.T(opp(id="g", deadline=None, deadline_type="rolling",
+                       official_url="https://x.example"))
+        self.assertEqual(r["results"][0]["freshness"], "likely_open")
+
+
+class TestCanonicalSourceGate(unittest.TestCase):
+    """F03/F04：没有官方来源的结果不得进入 Recommended now。"""
+
+    def T(self, o):
+        return S.score_all(profile(), [o], today=dt.date(2026, 9, 14))
+
+    def test_official_url_present_can_be_recommended(self):
+        r = self.T(opp(id="a", deadline="2026-10-03", official_url="https://official.example/jobs",
+                       education_level=["undergraduate"]))
+        self.assertNotIn("no_canonical_source", r["results"][0]["flags"])
+        self.assertEqual(r["results"][0]["zone"], "recommended_now")
+
+    def test_aggregator_only_goes_to_worth_verifying(self):
+        r = self.T(opp(id="b", deadline="2026-10-03", official_url=None,
+                       discovery_url="https://aggregator.example/p/1",
+                       education_level=["undergraduate"]))
+        row = r["results"][0]
+        self.assertIn("no_canonical_source", row["flags"])
+        self.assertEqual(row["zone"], "worth_verifying")
+        self.assertTrue(any("官方来源" in w for w in row["warnings"]))
+
+    def test_no_expired_and_no_unverified_leakage_into_recommendations(self):
+        """两个 hard quality gate：expired leakage = 0，unverified leakage = 0。"""
+        opps = [opp(id="ok", deadline="2026-10-03", official_url="https://a.example"),
+                opp(id="exp", deadline="2026-04-01", official_url="https://b.example"),
+                opp(id="agg", deadline="2026-10-03", official_url=None)]
+        r = S.score_all(profile(), opps, today=dt.date(2026, 9, 14))
+        recs = [x for x in r["results"] if x["zone"] == "recommended_now"]
+        self.assertTrue(recs)
+        self.assertEqual([x for x in recs if x["freshness"] in ("closed", "expired")], [])
+        self.assertEqual([x for x in recs if "no_canonical_source" in x["flags"]], [])
+
+    def test_zone_filter(self):
+        r = S.score_all(profile(), [opp(id="ok", deadline="2026-10-03",
+                                        official_url="https://a.example"),
+                                    opp(id="agg", deadline="2026-10-03", official_url=None)],
+                        today=dt.date(2026, 9, 14))
+        self.assertEqual(r["zones"]["recommended_now"] >= 1, True)
+        self.assertEqual(r["zones"]["worth_verifying"] >= 1, True)
 
 
 if __name__ == "__main__":

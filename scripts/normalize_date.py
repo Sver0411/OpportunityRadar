@@ -30,8 +30,13 @@ from __future__ import annotations
 import argparse
 import datetime as dt
 import json
+import os
 import re
 import sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
+from common import DEADLINE_TYPES  # noqa: E402
 
 # ---------------------------------------------------------------- 预处理
 
@@ -394,3 +399,102 @@ def main(argv=None) -> int:
 
 if __name__ == "__main__":
     sys.exit(main())
+
+
+# ---------------------------------------------------------------- Freshness
+#
+# Benchmark 失败（F01/F02）暴露的问题：`deadline = null` 曾被当成"现在还能申请"，
+# 以及"2026 赛季"在 2026-09 之后仍被当作当前机会。Freshness Gate 把"这个项目当前处于什么状态"
+# 变成显式的确定性判断，宁可给出 unknown，也不默认成 open。
+
+FRESHNESS_STATUSES = ("open", "likely_open", "unknown", "closed", "expired", "future")
+
+#: 已确认无法再申请的状态（进入 excluded，不进入主推荐）
+CLOSED_STATUSES = ("closed", "expired")
+
+#: 每个季节的**最后一个月**（北半球）：过了它就认为该季节的周期已结束
+SEASON_LAST_MONTH = {"winter": 2, "spring": 5, "summer": 8, "autumn": 11}
+
+
+def _years_in(text) -> list:
+    return [int(y) for y in re.findall(r"(?<!\d)((?:19|20)\d{2})(?!\d)", str(text or ""))]
+
+
+def _season_in(text):
+    low = str(text or "").lower()
+    for s2, _ in SEASON_LAST_MONTH.items():
+        if re.search(r"\b" + s2 + r"\b", low):
+            return s2
+    for zh, s2 in (("春", "spring"), ("夏", "summer"), ("秋", "autumn"), ("冬", "winter")):
+        if zh in low:
+            return s2
+    return None
+
+
+def freshness(opp, today=None) -> dict:
+    """判断一个 Opportunity 当前的申请状态。
+
+    返回 {"status", "reason", "deadline_iso", "deadline_type", "cycle_year"}。
+
+    规则（保守优先，不确定就是 unknown）：
+      1. deadline 可解析且在今天之后            → open
+      2. deadline 可解析但已过（非 rolling）    → expired
+      3. deadline_type = rolling / asap / flexible → likely_open
+      4. deadline_type = tbd                    → unknown
+      5. 无 deadline：按周期判断
+         - 出现的最晚年份 < 今年                → closed
+         - == 今年且该季节已过                  → closed
+         - > 今年                              → future（未来周期，通常还没开放申请）
+         - 找不到年份                          → unknown
+      6. event_end 已过                         → closed
+    """
+    today = today or dt.date.today()
+    raw = opp.get("deadline")
+    declared = opp.get("deadline_type")
+    declared = declared if declared in DEADLINE_TYPES else None
+
+    parsed = parse_date(str(raw), now=today.isoformat()) if raw not in (None, "") else None
+    iso = (parsed or {}).get("iso")
+    dinfo_type = (parsed or {}).get("deadline_type")
+    dtype = declared or dinfo_type
+
+    if declared in ("rolling", "asap", "flexible"):
+        return {"status": "likely_open", "reason": f"deadline_type={declared}（无固定/弹性截止）",
+                "deadline_iso": iso, "deadline_type": dtype, "cycle_year": None}
+
+    if iso:
+        days = (parsed or {}).get("urgency_days")
+        if days is not None and days < 0:
+            return {"status": "expired", "reason": f"截止日 {iso} 已过", "deadline_iso": iso,
+                    "deadline_type": dtype, "cycle_year": None}
+        return {"status": "open", "reason": f"截止日 {iso}（还有 {days} 天）", "deadline_iso": iso,
+                "deadline_type": dtype, "cycle_year": None}
+
+    # 没有明确 deadline：用周期（年份 / 季节 / 活动结束日）判断
+    blob = " ".join(str(opp.get(k) or "") for k in ("title", "cycle", "event_start", "event_end",
+                                                    "summary", "notes"))
+    years = _years_in(blob)
+    cyear = max(years) if years else None
+    season = _season_in(blob)
+
+    end_raw = opp.get("event_end")
+    end_parsed = parse_date(str(end_raw), now=today.isoformat()) if end_raw not in (None, "") else None
+    if end_parsed and end_parsed.get("iso") and (end_parsed.get("urgency_days") or 0) < 0:
+        return {"status": "closed", "reason": f"活动结束日 {end_parsed.get('iso')} 已过",
+                "deadline_iso": None, "deadline_type": dtype, "cycle_year": cyear}
+
+    if cyear is None:
+        return {"status": "unknown", "reason": "没有 deadline，也提取不到周期年份 → 无法确认当前状态",
+                "deadline_iso": None, "deadline_type": dtype, "cycle_year": None}
+    if cyear < today.year:
+        return {"status": "closed", "reason": f"周期年份 {cyear} 早于今年 {today.year}"
+                + (f"（{season}）" if season else ""),
+                "deadline_iso": None, "deadline_type": dtype, "cycle_year": cyear}
+    if cyear > today.year:
+        return {"status": "future", "reason": f"周期在 {cyear} 年（未来周期，申请通常尚未开放）",
+                "deadline_iso": None, "deadline_type": dtype, "cycle_year": cyear}
+    if season and today.month > SEASON_LAST_MONTH[season]:
+        return {"status": "closed", "reason": f"{cyear} 年 {season} 周期已过（当前 {today.month} 月）",
+                "deadline_iso": None, "deadline_type": dtype, "cycle_year": cyear}
+    return {"status": "unknown", "reason": f"周期为 {cyear} 年但截止日未抽取到 → 状态需人工确认",
+            "deadline_iso": None, "deadline_type": dtype, "cycle_year": cyear}

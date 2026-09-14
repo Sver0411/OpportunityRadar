@@ -167,6 +167,32 @@ primary locale（当地语言） + secondary（英文，仅在有国际召回增
 2. **不要用交流语言推断地区。** 用户用中文提问 ≠ 目标地区是中国。
 3. **不要用专业推断地区。** 专业是 IoT ≠ 需要日语。
 
+
+### 4.1 所有层都必须继承 locale（Explore 不能退回英文）
+
+Query 构造只有一条路径：
+
+```
+intent
+  ↓
+locale localization（用 resolve_locales 得到的语言）
+  ↓
+query
+```
+
+`Exploit` / `Adjacent` / `Explore` **三层都要本地化**。Benchmark 中出现过
+"Exploit 当地语言、Explore 全是英文"的断链，导致日语查询跑出肯尼亚/越南的结果（F06）。
+
+日本示例（Explore 也必须是日语）：
+
+```
+学生向け 技術コミュニティ
+メーカー プログラム
+学生 オープンイノベーション
+```
+
+英文可以作为 **optional recall** 追加，但**不能取代当地语言**。
+
 ## 5. 模式权重表（Step 0 选定，Step 2 应用）
 
 **权重的单一来源是 `scripts/locales.py` 的 `MODE_WEIGHTS`**（由 `tests/` 校验其覆盖全部
@@ -206,6 +232,13 @@ primary locale（当地语言） + secondary（英文，仅在有国际召回增
 ---
 
 ## 7. 搜索预算与停止条件
+
+
+### 7.0 预算必须先拆分（见 `references/trust-policy.md` §5.1）
+
+`Discovery Budget` 与 `Verification Budget` 分开记账：先用发现预算拿候选，
+粗筛掉明显过期/不相关/重复的，再用验证预算**只验证 Top 候选**。最终主推荐必须 100% 检查过
+canonical source；预算不够就少推荐几条。
 
 ### 7.1 预算（一次正常 Discovery）
 

@@ -84,7 +84,9 @@
     }
   ],
   "constraints": {
-    "preferred_country": [],
+    "preferred_country": [
+      "France"
+    ],
     "preferred_city": null,
     "remote": true,
     "relocation": false,

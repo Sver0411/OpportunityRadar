@@ -129,6 +129,10 @@ def as_list(v):
     return v if isinstance(v, list) else [v]
 
 
+#: 明确表示"全球/远程"目标的写法（出现时不使用学校所在地做 fallback）
+_GLOBAL_MARKERS = ("global", "worldwide", "any country", "international", "remote",
+                   "全球", "远程", "不限地区", "world wide")
+
 #: 请求里的"覆盖"信号：出现时 request 完全取代画像中的地区偏好
 OVERRIDE_MARKERS = ("只找", "仅限", "这次只看", "只看", "只搜", "只考虑",
                     "only", "only in", "exclusively")
@@ -185,6 +189,8 @@ def target_regions(profile, request_text: str = "") -> dict:
     # preferred_country 一旦声明（哪怕全部未收录）就独占；school_country 只是 fallback，
     # 不会被追加成第二个搜索目标。
     declared = bool(pref_raw)
+    remote_ok = bool((profile.get("constraints") or {}).get("remote"))
+    global_pref = any(str(x).strip().lower() in _GLOBAL_MARKERS for x in pref_raw)
 
     req_known = known_in(req)
     is_override = req_known and any(m in req.lower() for m in OVERRIDE_MARKERS)
@@ -196,11 +202,23 @@ def target_regions(profile, request_text: str = "") -> dict:
         regions = req_known + [r for r in pref if r not in req_known]
         source = "explicit_additive"
         notes.append("请求提到地区 → 请求地区优先；画像地区保留在其后，可按语义舍弃")
+    elif global_pref:
+        # 明确声明了 Global / Worldwide / Remote only → 不使用学校所在地
+        regions, source = ["remote"], "global_intent"
+        notes.append("画像明确声明全球/远程目标 → 不使用学校所在国作为搜索地区")
     elif declared:
         regions, source = pref, "profile_fallback"
+        if remote_ok and "remote" not in regions:
+            # 「国家 + 也可以远程」：国家为主，remote 作为附加目标
+            regions = regions + ["remote"]
+            notes.append("画像允许远程 → 国家地区为主，remote 作为附加目标")
         if unknown:
             notes.append("preferred_country 中的部分地区未收录在 locale 表中 → "
                          "语言按英文起步并动态检测；地区仍保留在 region_hints")
+    elif remote_ok:
+        # 没有声明国家，但明确接受远程/全球 → 全球优先，不退回学校所在国
+        regions, source = ["remote"], "global_intent"
+        notes.append("未声明目标国家但接受远程/全球 → 按 Global/Remote 处理（不退回学校所在国）")
     elif school:
         regions, source = [school], "profile_fallback"
         notes.append("未声明 preferred_country → 用学校所在国作为 fallback")
@@ -241,8 +259,12 @@ def resolve_locales(profile, request_text: str = "") -> dict:
     files = [GENERIC_LOCALE_FILE]
     for r in regions:
         loc = _locale_for(r)
-        if loc["primary"] not in primary:
-            primary.append(loc["primary"])
+        # remote 作为**附加**目标时，它的语言（英文）只是候选召回，不提升为主语言
+        # （"国家 + 也可以远程" = 国家为主，remote 次之）
+        additive_remote = (r == "remote" and len(regions) > 1)
+        target = optional if additive_remote else primary
+        if loc["primary"] not in target:
+            target.append(loc["primary"])
         for s in loc.get("optional", []):
             if s not in optional and s not in primary:
                 optional.append(s)

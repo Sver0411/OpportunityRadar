@@ -44,7 +44,9 @@ class TestUsCsUser(unittest.TestCase):
 
     def test_locales_are_american_english(self):
         self.assertEqual(self.plan["primary_locales"], ["en-US"])
-        self.assertEqual(self.plan["regions"], ["us"])
+        # 「国家 + 也可以远程」：国家为主，remote 作为附加目标
+        self.assertEqual(self.plan["regions"][0], "us")
+        self.assertIn("remote", self.plan["regions"])
 
     def test_no_east_asian_locales_or_files(self):
         for loc in self.plan["primary_locales"] + self.plan["optional_locales"]:
@@ -73,7 +75,8 @@ class TestFrenchDesignUser(unittest.TestCase):
 
     def test_french_is_primary(self):
         self.assertEqual(self.plan["primary_locales"], ["fr-FR"])
-        self.assertIn("en", self.plan["optional_locales"], "英文作为国际召回补充")
+        self.assertEqual(self.plan["regions"][0], "france")
+        self.assertIn("en", self.plan["optional_locales"], "英文是候选召回，不是必搜")
 
     def test_no_asia_default(self):
         for loc in self.plan["primary_locales"]:
@@ -150,8 +153,9 @@ class TestLocaleLoading(unittest.TestCase):
     def test_free_text_request_cannot_inject_regions(self):
         """请求文本里的普通英文单词不能被当成地区；真实的地区/远程信号才应被采纳。"""
         noise = L.search_plan(CS, request_text="I want a good mentor and a nice team")
-        self.assertEqual(noise["regions"], ["us"], "噪声词不该产生地区")
+        self.assertEqual(noise["regions"][0], "us", "噪声词不该改变地区（只用画像）")
         self.assertEqual(noise["unknown_regions"], [])
+        self.assertEqual(noise["region_source"], "profile_fallback")
 
         remote = L.search_plan(CS, request_text="I want a remote internship")
         self.assertIn("remote", remote["regions"], "remote 是真实的目标信号，应被采纳")
@@ -390,6 +394,39 @@ class TestRegionPrecedencePatch(unittest.TestCase):
         self.assertEqual(L.search_plan({"education": {"school_country": "Germany"}})["regions"],
                          ["germany"])
 
+
+
+class TestGlobalRemoteIntentPatch(unittest.TestCase):
+    """F05：Global / Remote 意图不能被 school_country 覆盖。"""
+
+    def test_remote_without_country_is_global(self):
+        p = {"education": {"school_country": "Brazil"}, "constraints": {"remote": True}}
+        plan = L.search_plan(p)
+        self.assertEqual(plan["regions"], ["remote"])
+        self.assertEqual(plan["region_source"], "global_intent")
+        self.assertEqual(plan["primary_locales"], ["en"])
+
+    def test_explicit_global_preferred_country(self):
+        p = {"education": {"school_country": "Brazil"},
+             "constraints": {"preferred_country": ["Global"]}}
+        self.assertEqual(L.search_plan(p)["regions"], ["remote"])
+
+    def test_country_plus_remote_is_country_primary(self):
+        p = {"constraints": {"preferred_country": ["Germany"], "remote": True}}
+        plan = L.search_plan(p)
+        self.assertEqual(plan["regions"][0], "germany")
+        self.assertIn("remote", plan["regions"])
+        self.assertEqual(plan["primary_locales"][0], "de-DE")
+
+    def test_no_remote_still_uses_school_country(self):
+        p = {"education": {"school_country": "Germany"}}
+        self.assertEqual(L.search_plan(p)["regions"], ["germany"])
+
+    def test_preferred_beats_school_and_unknown_preferred_beats_school(self):
+        self.assertEqual(L.search_plan({"education": {"school_country": "China"},
+            "constraints": {"preferred_country": ["Japan"]}})["regions"], ["japan"])
+        self.assertEqual(L.search_plan({"education": {"school_country": "US"},
+            "constraints": {"preferred_country": ["Kenya"]}})["unknown_regions"], ["Kenya"])
 
 
 if __name__ == "__main__":

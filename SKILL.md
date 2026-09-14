@@ -160,9 +160,29 @@ Single source of truth: enums, weights, tracked fields and ID/URL rules live in
 12. **Explore adjacents.** Actively search adjacent and non-obvious directions — this is why
     the skill exists. Include them when they meet the quality and verification bar; never pad
     with weak items to satisfy a quota. If nothing qualifies, say so in one line.
-13. **Return the best opportunities.** 5–15 items worth looking at, concise format, each with
-    what it is, why it fits, eligibility verdict, deadline, cautions, official source, value.
+13. **FINAL_RECOMMENDATION_CHECK, then return.** Before writing the answer, run the gate on
+    every candidate: `freshness` → `canonical source` → `eligibility` → `duplicate` →
+    `verification` → `relevance`. Split the output into three zones and never merge them:
+
+    | Zone | Gate | Size |
+    |---|---|---|
+    | **Recommended now** | freshness ∈ {open, likely_open} **AND** canonical source exists **AND** not Ineligible **AND** match ≥ 55 | 3–6 (fewer is fine) |
+    | **Worth verifying** | freshness unknown / no canonical source / eligibility unknown | 3–8, labelled "需确认" |
+    | **Closed / Excluded** | closed / expired / Ineligible | with reason |
+
+    `scripts/score.py` computes this (`--zone recommended_now` filters it). Quality gates:
+    **expired leakage = 0**, **unverified actionable leakage = 0**,
+    final-recommendation verification **≥ 80% (ideal 100%)**.
+    If the budget only allows 4 verified items, return 4. Each item still carries what it is,
+    why it fits, eligibility verdict, deadline, cautions, official source, value.
     Optionally write the JSON artifact to `.opportunity-radar/last-run.json`.
+
+**Budget split.** At the start of a run, split the budget explicitly: **Discovery Budget**
+(expand queries, collect candidates) and **Verification Budget** (return to official pages).
+Discovery must not consume verification. Pre-screen candidates (obviously expired, irrelevant,
+duplicate, terrible source) *without* spending fetches, then verify only the Top candidates by
+Match → Priority → Novelty. Budget for fewer, fully verified recommendations — never more,
+half-verified ones.
 
 **Pacing.** Prefer quality over completeness. Stop a category when two consecutive query
 variants only return already-seen or irrelevant results.
@@ -173,6 +193,13 @@ variants only return already-seen or irrelevant results.
    and state the difference when they conflict.
 2. **No fabrication.** No invented URLs, deadlines, requirements or "official" pages.
    Missing → `null` + "未找到官方确认来源".
+2b. **`deadline: null` is not "still open".** Every opportunity gets a `freshness`
+   (`open` / `likely_open` / `unknown` / `closed` / `expired` / `future`) from
+   `scripts/normalize_date.py --freshness`. Past cycle (last year, season over, event ended)
+   ⇒ `closed` ⇒ excluded. When in doubt, answer "current status unconfirmed" — never "apply now".
+2c. **No canonical source ⇒ no "apply now".** Third-party-only findings are discovery leads:
+   put them under "值得继续核实 / Unverified leads" with "未找到官方确认来源"; they must not appear
+   in Recommended now.
 3. **Hard constraints outrank judgement.** Explicit page requirements versus explicit profile
    facts decide deadline, education level, student year, graduation window, nationality/work
    authorization, school restrictions, GPA and language scores. Semantic judgement may add

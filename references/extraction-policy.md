@@ -195,6 +195,30 @@ python3 scripts/normalize_date.py "9月20日" --default-year 2026 --now 2026-09-
 
 ---
 
+
+## 6.1 Freshness：这个项目当前还能申请吗（必填判断）
+
+**`deadline = null` 不等于"现在还能申请"** —— 这是真实 Benchmark 暴露的最严重问题（F01/F02）：
+已经结束的 2026 赛季，因为截止日没抽出来，被当成当前机会推荐给用户。
+
+抽取时必须给出 `freshness`（`scripts/normalize_date.py` 的 `freshness()` 已实现，可直接调用）：
+
+| 状态 | 含义 | 能否进入 Recommended now |
+|---|---|---|
+| `open` | 截止日在今天之后 | ✅ |
+| `likely_open` | rolling / asap / flexible（无固定截止） | ✅ |
+| `unknown` | 判断不了（tbd、无 deadline 且周期不明） | ❌ → Worth verifying |
+| `closed` | 周期已结束（去年、季节已过、活动已结束） | ❌ → excluded |
+| `expired` | 截止日已过 | ❌ → excluded |
+| `future` | 未来周期（如 2027 赛季），申请通常尚未开放 | ❌ → Worth verifying |
+
+判断依据优先级：`deadline` → `deadline_type` → `event_end` → 周期年份/季节（title、cycle、event 日期）。
+
+保守原则（产品可信度核心）：
+
+> 宁可说"我找到了这个项目，但当前申请状态无法确认"，
+> 也不要说"现在可以申请"。
+
 ## 7. `tags` 生成
 
 3–8 个短标签，用于后续检索与兴趣匹配：

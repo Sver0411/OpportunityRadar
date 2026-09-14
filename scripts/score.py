@@ -42,7 +42,7 @@ from common import (  # noqa: E402
     canonical_country, is_explicit_none, load_records as load_records_common,
     validate_opportunity,
 )
-from normalize_date import parse_date  # noqa: E402
+from normalize_date import freshness, parse_date  # noqa: E402
 
 VERDICT_ORDER = {
     "Eligible": 0, "Probably Eligible": 1, "Unknown": 2,
@@ -52,6 +52,13 @@ VERDICT_SCORE = {"Eligible": 100, "Probably Eligible": 82, "Unknown": 55,
                  "Probably Ineligible": 25, "Ineligible": 0}
 
 TRUST_SCORE = {"A": 100, "B": 85, "C": 60, "D": 35, None: 50}
+
+#: 进入 Recommended now 的门槛（benchmark 驱动：宁可少推荐，不要推过期/无来源的）
+MIN_RECOMMEND_MATCH = 55
+#: 已确认不可申请的状态 → 直接 excluded（Freshness Gate）
+CLOSED_FRESHNESS = ("closed", "expired")
+#: 可以做主推荐的 freshness 状态
+OPEN_FRESHNESS = ("open", "likely_open")
 
 PRIORITY_WEIGHT = {"high": 1.0, "medium": 0.6, "low": 0.35, None: 0.5}
 
@@ -1116,6 +1123,26 @@ def band(score):
     return "High" if score >= 80 else ("Medium" if score >= 60 else "Low")
 
 
+def recommendation_zone(row: dict) -> str:
+    """Final Recommendation Gate（benchmark 失败驱动）。
+
+    返回三个输出区之一：
+      * ``recommended_now``  —— 现在值得申请：freshness 为 open/likely_open、
+        有 canonical source、不是 Ineligible、match 达到最低门槛。
+      * ``worth_verifying``  —— 有价值但状态/来源/资格未确认，单独区域展示。
+      * ``excluded``         —— 已过期/已结束，或明确不符合资格。
+    """
+    if row.get("freshness") and row["freshness"].get("status") in CLOSED_FRESHNESS:
+        return "excluded"
+    if row.get("verdict") == "Ineligible":
+        return "excluded"
+    if row["freshness"]["status"] in OPEN_FRESHNESS \
+            and str(row.get("official_url") or "").strip() \
+            and row.get("match", 0) >= MIN_RECOMMEND_MATCH:
+        return "recommended_now"
+    return "worth_verifying"
+
+
 # ------------------------------------------------------------------ 主流程
 
 #: 明确的小时表述（周为默认周期）
@@ -1202,6 +1229,12 @@ def score_all(profile, opps, seen_index=None, today=None, strict=False):
         }
         match = round(sum(WEIGHTS[k] * v for k, v in comp.items()))
 
+        fr = freshness(opp, today)
+        if fr["status"] in CLOSED_FRESHNESS:
+            excluded.append({"id": opp.get("id"), "title": opp.get("title"),
+                             "reason": f"{fr['status']}: {fr['reason']}"})
+            continue
+
         dinfo = deadline_info(opp, today)
         ug, dtype = dinfo["days"], dinfo["type"]
         us = urgency_score(ug)
@@ -1228,6 +1261,9 @@ def score_all(profile, opps, seen_index=None, today=None, strict=False):
         if opp.get("verification_status") == "unverified":
             flags.append("unverified")
             warnings.append("未找到官方确认来源")
+        if not str(opp.get("official_url") or "").strip():
+            flags.append("no_canonical_source")
+            warnings.append("未找到官方来源（canonical source），不得进入 Recommended now")
         if needs_llm:
             flags.append("needs_semantic_check")
         if not opp.get("language_requirement"):
@@ -1261,6 +1297,10 @@ def score_all(profile, opps, seen_index=None, today=None, strict=False):
             "days_remaining": ug,
             "deadline_type": dtype,
             "deadline_source": dinfo["source"],
+            "freshness": fr["status"],
+            "freshness_reason": fr["reason"],
+            "zone": recommendation_zone({"freshness": fr, "official_url": opp.get("official_url"),
+                                          "verdict": verdict, "match": match}),
             "priority_score": priority,
             "priority_band": band(priority),
             "flags": flags,
@@ -1306,6 +1346,11 @@ def score_all(profile, opps, seen_index=None, today=None, strict=False):
         "excluded": excluded,
         "contract_issues": contract_issues,
         "diversity": diversity,
+        "zones": {
+            "recommended_now": sum(1 for r in results if r.get("zone") == "recommended_now"),
+            "worth_verifying": sum(1 for r in results if r.get("zone") == "worth_verifying"),
+            "excluded": len(excluded),
+        },
     }
 
 
@@ -1332,6 +1377,8 @@ def main(argv=None) -> int:
     ap.add_argument("--output")
     ap.add_argument("--format", choices=["json", "table"], default="json")
     ap.add_argument("--strict", action="store_true", help="出现 contract 问题时跳过该记录")
+    ap.add_argument("--zone", choices=["recommended_now", "worth_verifying"], default=None,
+                    help="只输出 Final Recommendation Gate 之后某个区的结果")
     args = ap.parse_args(argv)
 
     profile = load_json(args.profile)
@@ -1342,6 +1389,10 @@ def main(argv=None) -> int:
 
     today = dt.date.fromisoformat(args.today) if args.today else None
     res = score_all(profile, opps, seen_index, today, strict=args.strict)
+    if args.zone:
+        keep = [r for r in res["results"] if r.get("zone") == args.zone]
+        res["results"] = keep
+        res["scored"] = len(keep)
     if res["contract_issues"]:
         print(f"[warn] {len(res['contract_issues'])} 条记录存在 contract 问题"
               "（见输出 contract_issues 字段）", file=sys.stderr)

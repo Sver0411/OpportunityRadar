@@ -62,6 +62,18 @@
 
 ---
 
+
+## 2.1 Canonical Source Gate（Benchmark 驱动）
+
+无官方来源的第三方结果（LinkedIn 转载、聚合站、招聘板、博客）**只能用于 discovery**：
+
+- 有 `official_url`（或确认可作为 canonical 的官方机构/大学/实验室/赛事页面）→ 可进入 Recommended now
+- 只有第三方来源且找不到 canonical → 进入 **Unverified leads / 值得继续核实**，并写明"未找到官方确认来源"
+- 不要直接丢弃：第三方仍有发现价值
+
+`scripts/score.py` 会对没有 `official_url` 的记录打 `no_canonical_source` 标记，
+并把它分到 `worth_verifying` 区（见 `references/output-format.md`）。
+
 ## 3. Why 验证：必须确认的 3 件事（Step 7）
 
 对每条准备推荐的机会，在官方页面确认这 3 项：
@@ -118,6 +130,38 @@
 要么在输出里标注"信息可能已过期，建议以官网为准"。
 
 ---
+
+
+## 5.1 验证预算必须与发现预算分离（Benchmark 驱动）
+
+第一次真实 Benchmark 的最大警报：官方验证率 Bare 40% / Radar 43% —— 验证协议在固定预算下
+没有稳定执行。根因不是"搜得不够多"，而是**发现候选吃掉了本该用于验证的 fetch 预算**。
+
+一次运行的预算必须显式拆成两块（总量不变，例如 6 search + 6 fetch）：
+
+| 预算 | 用途 | 纪律 |
+|---|---|---|
+| **Discovery Budget** | 扩展 query、拿候选列表 | 用满即停，不侵占验证预算 |
+| **Verification Budget** | 回官方页面确认 deadline / 资格 | 至少保留总 fetch 的一半给 Top 候选 |
+
+执行顺序：
+
+1. **发现**：用 Discovery Budget 拿候选。
+2. **粗筛**（不花 fetch）：明显过期 / 明显不符合 / 重复 / 标题完全无关 / 来源极差 → 直接丢弃或降级，
+   不要浪费验证预算。
+3. **验证队列**：只验证"可能进入最终 Top 结果"的候选，优先级 = Match 高 → Priority 高 → Novelty 高。
+   不要平均验证所有候选。
+4. **产出**：最终主推荐必须 100% 做过 canonical-source 检查；预算不够就**少给几条**，
+   4 条高质量验证结果 > 10 条半验证结果。
+
+### 两个指标必须分开记录
+
+| 指标 | 含义 | 目标 |
+|---|---|---|
+| `verification_candidate_pool` | 整个候选池里被官方验证的比例 | 不设硬目标（候选池允许含大量未验证发现） |
+| `verification_final` | **最终推荐区**的官方验证比例 | **≥ 80%，理想 100%** |
+
+真正重要的是后者。把 discovery 候选也算进验证率会掩盖真实表现。
 
 ## 6. 特殊场景
 
