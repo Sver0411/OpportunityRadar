@@ -38,6 +38,12 @@ _CJK_COUNTRY_ALIASES = tuple(sorted(
     (a for a in COUNTRY_ALIASES if re.search(r"[\u3040-\u30ff\u4e00-\u9fff]", a)),
     key=len, reverse=True))
 
+#: 多词拉丁文别名（"United States" / "South Korea" / "Great Britain"）：
+#: 只按**多词**匹配，单词仍然整词匹配 —— 否则 "in"、"us"、"no" 这类短词会造成大量误识别。
+_ASCII_MULTIWORD_ALIASES = tuple(sorted(
+    (a for a in COUNTRY_ALIASES if " " in a and re.fullmatch(r"[A-Za-z ]+", a)),
+    key=len, reverse=True))
+
 #: 目标地区 → 搜索语言。primary 为该地区的当地语言，secondary 是"有国际项目价值时"的补充。
 #: 这张表可以按需扩展；**没有列出的国家不受影响**（见 resolve_locales 的 unknown 处理）。
 REGION_LOCALES = {
@@ -155,9 +161,14 @@ def target_regions(profile, request_text: str = "") -> dict:
             if c and c not in out:
                 out.append(c)
 
-        # 拉丁文：整词匹配（避免把普通单词当国家）
+        # 拉丁文单词：整词匹配（避免把普通单词当国家）
         for token in re.findall(r"[A-Za-z]{2,}", text):
             add(canonical_country(token))
+        # 拉丁文多词别名：子串匹配（"United States" / "South Korea" / "Great Britain"）
+        low = text.lower()
+        for alias in _ASCII_MULTIWORD_ALIASES:
+            if alias in low:
+                add(COUNTRY_ALIASES[alias])
         # CJK：子串匹配（"我想找德国的实习" 里没有空格可分）
         for alias in _CJK_COUNTRY_ALIASES:
             if alias in text:
@@ -171,7 +182,9 @@ def target_regions(profile, request_text: str = "") -> dict:
         c = canonical_country(raw)
         (pref if c else unknown).append(c if c else raw)
     school = canonical_country((profile.get("education") or {}).get("school_country"))
-    profile_regions = list(pref) + ([school] if school and school not in pref else [])
+    # preferred_country 一旦声明（哪怕全部未收录）就独占；school_country 只是 fallback，
+    # 不会被追加成第二个搜索目标。
+    declared = bool(pref_raw)
 
     req_known = known_in(req)
     is_override = req_known and any(m in req.lower() for m in OVERRIDE_MARKERS)
@@ -180,11 +193,17 @@ def target_regions(profile, request_text: str = "") -> dict:
         regions, source = req_known, "explicit_override"
         notes.append("请求明确限定地区（override）→ 画像中的长期地区偏好本轮不参与")
     elif req_known:
-        regions = req_known + [r for r in profile_regions if r not in req_known]
+        regions = req_known + [r for r in pref if r not in req_known]
         source = "explicit_additive"
         notes.append("请求提到地区 → 请求地区优先；画像地区保留在其后，可按语义舍弃")
-    elif profile_regions:
-        regions, source = profile_regions, "profile_fallback"
+    elif declared:
+        regions, source = pref, "profile_fallback"
+        if unknown:
+            notes.append("preferred_country 中的部分地区未收录在 locale 表中 → "
+                         "语言按英文起步并动态检测；地区仍保留在 region_hints")
+    elif school:
+        regions, source = [school], "profile_fallback"
+        notes.append("未声明 preferred_country → 用学校所在国作为 fallback")
     elif unknown:
         regions, source = [], "profile_fallback"
         notes.append("画像中的目标地区未收录 → 语言按英文起步并动态检测；"
@@ -196,8 +215,10 @@ def target_regions(profile, request_text: str = "") -> dict:
     if unknown:
         notes.append("以下地区未收录在 locale 表中，将走通用规则"
                      "（按页面语言动态扩展，功能不受影响）：" + "、".join(unknown))
+    # region_hints = 已知地区 + 未收录地区（两者都保留，不能二选一）
     return {"regions": regions, "unknown_regions": unknown,
-            "hints": unknown or regions, "source": source, "notes": notes}
+            "hints": list(regions) + [u for u in unknown if u not in regions],
+            "source": source, "notes": notes}
 
 
 def _locale_for(region: str) -> dict:

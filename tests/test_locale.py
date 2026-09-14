@@ -339,5 +339,58 @@ class TestNoHardcodedLocaleDefaults(unittest.TestCase):
                 self.assertIsNone(L.locale_file(r))
 
 
+class TestRegionPrecedencePatch(unittest.TestCase):
+    """v0.1.1：preferred_country 与 school_country 的优先级、hints 合并、多词别名。"""
+
+    def test_preferred_country_beats_school_country(self):
+        """学校所在地只是 fallback，不会被追加成第二个搜索目标。"""
+        p = {"education": {"school_country": "China"},
+             "constraints": {"preferred_country": ["Japan"]}}
+        plan = L.search_plan(p)
+        self.assertEqual(plan["regions"], ["japan"])
+        self.assertEqual(plan["primary_locales"], ["ja-JP"])
+        self.assertIn("references/locales/jp.md", plan["load_files"])
+
+    def test_unknown_preferred_country_beats_school_country(self):
+        """即使 preferred 未收录，也不能退回学校所在地。"""
+        p = {"education": {"school_country": "US"},
+             "constraints": {"preferred_country": ["Kenya"]}}
+        plan = L.search_plan(p)
+        self.assertEqual(plan["regions"], [])
+        self.assertEqual(plan["unknown_regions"], ["Kenya"])
+        self.assertNotIn("us", plan["region_hints"])
+
+    def test_mixed_known_and_unknown_hints(self):
+        p = {"constraints": {"preferred_country": ["Germany", "Kenya"]}}
+        plan = L.search_plan(p)
+        self.assertEqual(plan["regions"], ["germany"])
+        self.assertEqual(plan["unknown_regions"], ["Kenya"])
+        self.assertEqual(plan["region_hints"], ["germany", "Kenya"])
+        self.assertEqual(plan["primary_locales"], ["de-DE"])
+
+    def test_multiword_latin_aliases(self):
+        cases = {"Find internships in the United States": "us",
+                 "opportunities in the United Kingdom": "uk",
+                 "research in South Korea": "korea",
+                 "programs in Great Britain": "uk"}
+        for text, expect in cases.items():
+            with self.subTest(text=text):
+                self.assertIn(expect, L.target_regions({}, text)["regions"])
+
+    def test_no_false_positive_from_ordinary_words(self):
+        """普通英文单词不能被当成国家：没有地区信号时只能落到 Global/Remote。"""
+        for text in ("an ordinary sentence about mentoring", "I want a good team and nice coffee"):
+            with self.subTest(text=text):
+                tr = L.target_regions({}, text)
+                self.assertEqual(tr["regions"], ["remote"])
+                self.assertEqual(tr["unknown_regions"], [])
+                self.assertEqual(tr["source"], "default_remote")
+
+    def test_no_school_country_when_nothing_declared(self):
+        self.assertEqual(L.search_plan({"education": {"school_country": "Germany"}})["regions"],
+                         ["germany"])
+
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -99,7 +99,7 @@ OpportunityRadar fills that gap with a protocol rather than a prompt:
 `entrepreneurship` | startup competitions, accelerators, incubators, campus ventures, demo days, co-founder calls
 `networking` | mentor programmes, alumni mentoring, student chapters, professional societies, community leads
 
-Full subcategory lists, typical sources and multilingual query patterns:
+Full subcategory lists, typical sources and language-neutral intent templates:
 [`references/opportunity-taxonomy.md`](references/opportunity-taxonomy.md).
 
 ---
@@ -239,7 +239,7 @@ OpportunityRadar/
 ├── DEVELOPMENT.md                    # design decisions, acceptance scenarios, QA checklist
 ├── LICENSE  .gitignore
 ├── references/                       # loaded on demand, one concern per file
-│   ├── opportunity-taxonomy.md        # 13 categories, sources, multilingual query patterns
+│   ├── opportunity-taxonomy.md        # 13 categories, sources, language-neutral intent templates
 │   ├── search-strategy.md             # search matrix, expansion rules, 70/20/10, budgets
 │   ├── profile-building.md            # progressive profile, when to ask, memory reuse
 │   ├── trust-policy.md                # Tier A–D, discovery vs confirmation, freshness

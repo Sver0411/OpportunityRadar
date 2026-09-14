@@ -98,7 +98,7 @@ Modes combine (B+C is common). In the answer, express the *behaviour*, not the l
 | `references/ranking.md` | Steps 11–12 | Match vs Priority, weights, coverage guidance, value rubric |
 | `references/output-format.md` | Step 13 | Answer templates, length budget, JSON artifact |
 | `references/state-and-feedback.md` | When `.opportunity-radar/` exists or the user reacts | seen/saved/ignored, change detection, gap analysis wording |
-| `references/locales/generic.md` | **Always** (step 2/3) | Region → locale resolution: target regions, primary/secondary languages, unknown regions, dynamic language detection |
+| `references/locales/generic.md` | **Always** (step 2/3) | Region → locale resolution: target regions, primary/optional locales, unknown regions, dynamic language detection |
 | `references/locales/<cc>.md` | Only when the target geography needs it | Region-specific vocabulary, timelines and eligibility terms (`cn` / `jp` / `us` / `uk` / `de`) |
 
 **Locale loading discipline:** load `generic.md` always; load country files **only** for the
