@@ -10,21 +10,11 @@ import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SCRIPTS = os.path.join(ROOT, "scripts")
-EXAMPLES = os.path.join(ROOT, "examples")
-SCHEMAS = os.path.join(ROOT, "schemas")
-REFERENCES = os.path.join(ROOT, "references")
 
 if SCRIPTS not in sys.path:
     sys.path.insert(0, SCRIPTS)
 
 
 def path(*parts) -> str:
+    """仓库内的绝对路径。"""
     return os.path.join(ROOT, *parts)
-
-
-def has_jsonschema() -> bool:
-    try:
-        import jsonschema  # noqa: F401
-        return True
-    except Exception:                                    # noqa: BLE001
-        return False
