@@ -46,7 +46,6 @@ python3 scripts/normalize_date.py "9月20日-10月5日" --default-year 2026 --no
 python3 scripts/dedupe.py --input examples/opportunity.batch.example.json --format text
 ```
 
-📖 English documentation: [README.md](./README.md)
 
 ---
 
