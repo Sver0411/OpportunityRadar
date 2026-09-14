@@ -1,0 +1,122 @@
+[
+  {
+    "id": "F01",
+    "type": "expired_opportunity",
+    "persona": "environment",
+    "query": "sustainability challenge 2026 remote",
+    "expected": "closed calls excluded or marked expired",
+    "actual": "'VeneTo Stars Challenge' listed with deadline=null; judge found real deadline 2026-04-03 (past)",
+    "source": "https://venetostars.com",
+    "severity": "high",
+    "cause": "verification step did not run (all 6 fetches failed that run); a null deadline was recorded as unknown instead of being checked",
+    "fix_candidate": "when a fetch fails, do not emit the item as current — mark verification_status=unverified and either drop it or show it with an explicit 'unconfirmed deadline' warning"
+  },
+  {
+    "id": "F02",
+    "type": "expired_opportunity",
+    "persona": "iot-embedded",
+    "query": "全国大学生嵌入式芯片与系统设计竞赛",
+    "expected": "2026 season (closed 2026-04-20) excluded, 2027 cycle awaited",
+    "actual": "closed 2026 competition returned as a result (trust=3, eligibility=0)",
+    "source": "socchina.net",
+    "severity": "high",
+    "cause": "official page found but season/edition semantics not resolved; deadline parsed but not compared to today",
+    "fix_candidate": "after parsing a deadline, always compare to today and move past ones to excluded"
+  },
+  {
+    "id": "F03",
+    "type": "bad_canonical_source",
+    "persona": "business",
+    "query": "Singapore summer internship finance 2027",
+    "expected": "official careers page or drop",
+    "actual": "bp / Citi internships recorded with official_url=null, only aggregator sources (trust=1)",
+    "source": "getclera.com, iAgora",
+    "severity": "medium",
+    "cause": "canonical-source search not completed within the 6-query budget; item still emitted",
+    "fix_candidate": "rule: no official URL ⇒ source_tier C/D and verification_status=unverified, and it must not be presented in the main 'worth applying' block"
+  },
+  {
+    "id": "F04",
+    "type": "bad_canonical_source",
+    "persona": "iot-embedded",
+    "query": "嵌入式 实习 2026 远程",
+    "expected": "company official posting",
+    "actual": "three postings only on Chinese aggregators (shixiseng / liepin), official_url null",
+    "source": "shixiseng.com, liepin.com",
+    "severity": "medium",
+    "cause": "aggregator-first retrieval; canonical follow-up skipped under budget pressure",
+    "fix_candidate": "same as F03, plus a dedicated 'follow the official link' step for aggregator hits"
+  },
+  {
+    "id": "F05",
+    "type": "profile_misread",
+    "persona": "environment",
+    "query": "(persona declares no preferred_country, intent = Global/Remote)",
+    "expected": "Global / Remote, English-first",
+    "actual": "planner fell back to school_country → regions=[brazil], primary=pt-BR",
+    "source": "scripts/locales.py output",
+    "severity": "high",
+    "cause": "documented fallback (preferred → school → remote) misreads an intentionally global persona; 'no preferred country' ≠ 'the school country'",
+    "fix_candidate": "only use school_country when the persona implies a local search (no remote/global flag); if remote=true or goals are global, default to Global/Remote"
+  },
+  {
+    "id": "F06",
+    "type": "bad_explore",
+    "persona": "iot-embedded",
+    "query": "ロボコン / robotics contest Japan",
+    "expected": "Japanese robotics contests",
+    "actual": "false-matched Kenya / Vietnam robotics results (locale mismatch)",
+    "source": "search results",
+    "severity": "medium",
+    "cause": "explore-layer query did not carry the resolved locale into the query string",
+    "fix_candidate": "explore queries must keep the locale term or an explicit country token"
+  },
+  {
+    "id": "F07",
+    "type": "missed_opportunity",
+    "persona": "iot-embedded",
+    "query": "全国大学生物联网设计竞赛",
+    "expected": "still-live competition surfaced",
+    "actual": "bare found it, radar did not (radar spent budget on a Japanese query that false-matched)",
+    "source": "both run logs",
+    "severity": "medium",
+    "cause": "fixed 6-query budget: breadth traded against locale coverage",
+    "fix_candidate": "reserve at least one query for the user's own language/region before explore"
+  },
+  {
+    "id": "F08",
+    "type": "ranking_failure",
+    "persona": "iot-embedded",
+    "query": "(whole run)",
+    "expected": "radar >= bare on useful count",
+    "actual": "radar 3/8 useful vs bare 4/10 — radar worse on its 'home' persona",
+    "source": "_metrics.json",
+    "severity": "high",
+    "cause": "radar emitted more unverifiable aggregator items and two expired competitions, diluting precision",
+    "fix_candidate": "precision gate: drop/flag items failing F02/F03 rules before ranking"
+  },
+  {
+    "id": "F09",
+    "type": "unverified_result",
+    "persona": "design",
+    "query": "bourse / design award France 2027",
+    "expected": "official page verified",
+    "actual": "Lagardère bourse, Créart'UP, UNDP items left unverified (verified% 29 vs bare 83 on this persona)",
+    "source": "judge scores",
+    "severity": "medium",
+    "cause": "French-language official pages hard to fetch/parse within budget",
+    "fix_candidate": "accept lower verification but label it; never show unverified items in the top block"
+  },
+  {
+    "id": "F10",
+    "type": "duplicate_leak",
+    "persona": "environment",
+    "query": "scholarship sustainability",
+    "expected": "one canonical entry",
+    "actual": "'Global Sustainability Leaders Scholarship' appeared in both lists (judge flagged duplicate of A-4)",
+    "source": "judge comment",
+    "severity": "low",
+    "cause": "cross-run dedupe is out of scope for dedupe.py (it dedupes within a run); benchmark artifact only",
+    "fix_candidate": "none — document that dedupe is per-run; cross-session dedupe belongs to state layer (already exists via seen.json)"
+  }
+]

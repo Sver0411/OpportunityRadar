@@ -1,0 +1,12 @@
+{
+  "id": "F03",
+  "type": "bad_canonical_source",
+  "persona": "business",
+  "query": "Singapore summer internship finance 2027",
+  "expected": "official careers page or drop",
+  "actual": "bp / Citi internships recorded with official_url=null, only aggregator sources (trust=1)",
+  "source": "getclera.com, iAgora",
+  "severity": "medium",
+  "cause": "canonical-source search not completed within the 6-query budget; item still emitted",
+  "fix_candidate": "rule: no official URL ⇒ source_tier C/D and verification_status=unverified, and it must not be presented in the main 'worth applying' block"
+}

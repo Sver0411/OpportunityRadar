@@ -1,0 +1,34 @@
+{
+  "biology": {
+    "A": "bare",
+    "B": "opportunity-radar"
+  },
+  "business": {
+    "A": "bare",
+    "B": "opportunity-radar"
+  },
+  "cs-security": {
+    "A": "bare",
+    "B": "opportunity-radar"
+  },
+  "design": {
+    "A": "opportunity-radar",
+    "B": "bare"
+  },
+  "environment": {
+    "A": "bare",
+    "B": "opportunity-radar"
+  },
+  "humanities": {
+    "A": "bare",
+    "B": "opportunity-radar"
+  },
+  "iot-embedded": {
+    "A": "opportunity-radar",
+    "B": "bare"
+  },
+  "mech-eng": {
+    "A": "bare",
+    "B": "opportunity-radar"
+  }
+}

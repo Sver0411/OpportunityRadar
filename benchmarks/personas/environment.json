@@ -1,0 +1,64 @@
+{
+  "_note": "FICTIONAL TEST PERSONA — 仅用于 OpportunityRadar benchmark。不是真实用户，不代表任何真实个人；兴趣/签证/成绩均为编造。禁止当作产品示例数据使用。",
+  "persona_id": "environment",
+  "display": "Environment & Agriculture / Global",
+  "question": "最近有什么真正值得我关注的机会？",
+  "id": "environment",
+  "education": {
+    "degree": "undergraduate",
+    "major": "Environmental Science",
+    "major_family": "environment_agri",
+    "current_year": 3,
+    "expected_graduation": "2028-06",
+    "school_country": "Brazil"
+  },
+  "skills": [
+    {
+      "name": "GIS"
+    },
+    {
+      "name": "data analysis"
+    },
+    {
+      "name": "field work"
+    }
+  ],
+  "languages": [
+    {
+      "language": "Portuguese",
+      "level": "native"
+    },
+    {
+      "language": "English",
+      "level": "C1"
+    }
+  ],
+  "interests": [
+    "environment",
+    "biology",
+    "data"
+  ],
+  "goals": [
+    {
+      "type": "research",
+      "priority": "high"
+    },
+    {
+      "type": "competition",
+      "priority": "medium"
+    },
+    {
+      "type": "project",
+      "priority": "medium"
+    },
+    {
+      "type": "funding",
+      "priority": "medium"
+    }
+  ],
+  "constraints": {
+    "preferred_country": [],
+    "remote": true,
+    "weekly_time": "12"
+  }
+}

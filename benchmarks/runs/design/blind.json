@@ -1,0 +1,308 @@
+{
+  "persona": "design",
+  "lists": {
+    "A": [
+      {
+        "item_id": "design-A-1",
+        "title": "iF DESIGN STUDENT AWARD 2027",
+        "organization": "iF International Forum Design",
+        "category": "competition",
+        "official_url": "https://ifdesign.com/en/if-design-student-award",
+        "discovery_url": "https://ifdesign.com/en/if-design-student-award",
+        "deadline": "2027-02-03",
+        "region": "Global",
+        "eligibility_notes": "Official page: open to student design concepts worldwide, free entry; an undergraduate Visual/Interaction Design major qualifies. Concept must map to one UN SDG (1-15). No nationality/visa bar — EU citizen, France-based is fine.",
+        "eligibility_verdict": "Eligible",
+        "source_tier": "A",
+        "verification_status": "verified_official",
+        "notes": "Exploit layer (direct design-award match). EUR 50,000 prize fund; ceremony NYC June 2027.",
+        "persona_profile": {
+          "major": null,
+          "year": null,
+          "interests": null,
+          "goals": null,
+          "preferred_country": null,
+          "remote": null
+        }
+      },
+      {
+        "item_id": "design-A-2",
+        "title": "Global Game Jam 2027",
+        "organization": "Global Game Jam",
+        "category": "hobby",
+        "official_url": "https://globalgamejam.org/",
+        "discovery_url": "https://globalgamejam.org/",
+        "deadline": "2027-01-25",
+        "region": "Global (online)",
+        "eligibility_notes": "Official page: free, worldwide, all ages and skill levels; students join online or at a local site. No nationality/visa bar. A design student with a game interest qualifies; jammer registration opens 1 Dec 2026.",
+        "eligibility_verdict": "Eligible",
+        "source_tier": "A",
+        "verification_status": "verified_official",
+        "notes": "Hobby/explore layer (low-bar game jam; strong Blender/Figma portfolio exercise). Jam runs 25-31 Jan 2027.",
+        "persona_profile": {
+          "major": null,
+          "year": null,
+          "interests": null,
+          "goals": null,
+          "preferred_country": null,
+          "remote": null
+        }
+      },
+      {
+        "item_id": "design-A-3",
+        "title": "Annecy Festival 2027 - Graduation / Short Film competition",
+        "organization": "CITIA - Annecy International Animation Film Festival",
+        "category": "competition",
+        "official_url": "https://www.annecyfestival.com/",
+        "discovery_url": "https://www.annecyfestival.com/",
+        "deadline": null,
+        "region": "France (Annecy)",
+        "eligibility_notes": "Official site confirms the 2027 festival (13-19 June 2027) and a graduation/short-film competitive section, but the 2027 submission call status was not confirmed on the fetched page (secondary sources say it opens ~fall 2026, deadline ~Feb 2027). A 3rd-year design student with an animation film could enter the student/graduation category. Entry fee ~EUR 30 (shorts/graduation). Student-status rule not re-read this run.",
+        "eligibility_verdict": "Probably Eligible",
+        "source_tier": "A",
+        "verification_status": "partially_verified",
+        "notes": "Exploit layer (animation/film interest). Verify call opening and exact student-category rules on the Annecy Network portal before submitting.",
+        "persona_profile": {
+          "major": null,
+          "year": null,
+          "interests": null,
+          "goals": null,
+          "preferred_country": null,
+          "remote": null
+        }
+      },
+      {
+        "item_id": "design-A-4",
+        "title": "PRIMA - concours étudiant en Design & Architecture",
+        "organization": "PRIMA (Centre d'art, Opal coast)",
+        "category": "competition",
+        "official_url": "https://www.prima-cb.com/concours",
+        "discovery_url": "https://www.prima-cb.com/contact",
+        "deadline": null,
+        "region": "France (Hauts-de-France)",
+        "eligibility_notes": "Official organizer site runs a student Design & Architecture competition; the 2026 edition was open (info session Feb 2026). Exact 2026/2027 deadline and eligibility (student year, possible Hauts-de-France regional scope) were not re-read this run — verify on prima-cb.com. A France-based design student likely qualifies.",
+        "eligibility_verdict": "Probably Eligible",
+        "source_tier": "A",
+        "verification_status": "partially_verified",
+        "notes": "Exploit layer (France + design). Verify edition and deadline on the official site.",
+        "persona_profile": {
+          "major": null,
+          "year": null,
+          "interests": null,
+          "goals": null,
+          "preferred_country": null,
+          "remote": null
+        }
+      },
+      {
+        "item_id": "design-A-5",
+        "title": "Bourse Créateur numérique - Fondation Jean-Luc Lagardère",
+        "organization": "Fondation Jean-Luc Lagardère",
+        "category": "funding",
+        "official_url": "https://fondation-jeanluclagardere.com/",
+        "discovery_url": "https://www.european-funding-guide.eu/node/57948",
+        "deadline": null,
+        "region": "France",
+        "eligibility_notes": "Secondary source: EUR 15,000 Digital Creation grant, under 30, any nationality, French-language project required, individual or team up to 3; a design student with a digital/animation project qualifies. EU citizen, France-based - no nationality bar. The 2026 deadline (21 June) passed; 2027 dates not yet confirmed on the official site.",
+        "eligibility_verdict": "Probably Eligible",
+        "source_tier": "C",
+        "verification_status": "unverified",
+        "notes": "Funding/adjacent layer (digital creation, animation). Official foundation homepage confirms the digital-creation bourse programme; amounts and 2027 dates from a secondary aggregator, unconfirmed.",
+        "persona_profile": {
+          "major": null,
+          "year": null,
+          "interests": null,
+          "goals": null,
+          "preferred_country": null,
+          "remote": null
+        }
+      },
+      {
+        "item_id": "design-A-6",
+        "title": "Créart'UP - dispositif projets étudiants (Ville de Paris)",
+        "organization": "Maison étudiante de la Ville de Paris",
+        "category": "project",
+        "official_url": "https://maison-etudiante.paris/zh/vos-projets/creartup/",
+        "discovery_url": "https://maison-etudiante.paris/zh/vos-projets/creartup/",
+        "deadline": null,
+        "region": "France (Paris / Île-de-France)",
+        "eligibility_notes": "Official Paris city page: Créart'UP funds bold student artistic/cultural projects (incl. design, visual/audiovisual arts, cultural apps/tools) for students in Paris/Île-de-France or graduates within 2 years. A France-based design student with a project likely qualifies; the 2026-2027 deadline and full rules were not deep-read this run - verify on maison-etudiante.paris.",
+        "eligibility_verdict": "Probably Eligible",
+        "source_tier": "A",
+        "verification_status": "unverified",
+        "notes": "Project layer (France, design project funding/incubation). Confirm the Île-de-France residency rule.",
+        "persona_profile": {
+          "major": null,
+          "year": null,
+          "interests": null,
+          "goals": null,
+          "preferred_country": null,
+          "remote": null
+        }
+      },
+      {
+        "item_id": "design-A-7",
+        "title": "UNDP Remote Graphic & Web Design Internship",
+        "organization": "United Nations Development Programme (UNDP)",
+        "category": "career",
+        "official_url": null,
+        "discovery_url": "https://www.abroaducate.com/scholarships/8036c52c-643b-4361-95ad-ad02e5b329fa",
+        "deadline": "2027-06-06",
+        "region": "Remote / Global",
+        "eligibility_notes": "Aggregator: remote graphic/web design internship, open to all nationalities currently enrolled in a bachelor's or higher; bachelor students must be in their final year. Persona is L3 (final year of a 3-yr licence, graduating 2028-06) and an EU citizen - likely meets the final-year and nationality conditions. Requires full-time availability; the official UNDP portal was not verified this run.",
+        "eligibility_verdict": "Probably Eligible",
+        "source_tier": "C",
+        "verification_status": "unverified",
+        "notes": "Career/remote layer (adjacent). Verify on the official UNDP careers portal; aggregator deadline 6 June 2027 is unconfirmed.",
+        "persona_profile": {
+          "major": null,
+          "year": null,
+          "interests": null,
+          "goals": null,
+          "preferred_country": null,
+          "remote": null
+        }
+      }
+    ],
+    "B": [
+      {
+        "item_id": "design-B-1",
+        "title": "UX Design Awards (Spring 2027)",
+        "organization": "International Design Zentrum Berlin (IDZ)",
+        "category": "competition",
+        "official_url": "https://www.ux-design-award.com/en/enter",
+        "discovery_url": "https://www.ux-design-award.com/en/enter",
+        "deadline": "2026-11-15",
+        "region": "Global",
+        "eligibility_notes": "New Talent category is explicitly for Bachelor's and Master's projects from all over the world, so an undergraduate Visual/Interaction Design major qualifies. No nationality bar. Fee EUR 70 per New Talent submission.",
+        "eligibility_verdict": "Eligible",
+        "source_tier": "A",
+        "verification_status": "verified_official",
+        "notes": "Call for Entries 1 Sep-15 Nov 2026 for the Spring 2027 award; winners announced 3 Mar 2027. Product/Concept tracks cost EUR 320; New Talent is the student track.",
+        "persona_profile": {
+          "major": null,
+          "year": null,
+          "interests": null,
+          "goals": null,
+          "preferred_country": null,
+          "remote": null
+        }
+      },
+      {
+        "item_id": "design-B-2",
+        "title": "iF DESIGN STUDENT AWARD 2027",
+        "organization": "iF International Forum Design",
+        "category": "competition",
+        "official_url": "https://ifdesign.com/en/if-design-student-award",
+        "discovery_url": "https://ifdesign.com/en/if-design-student-award",
+        "deadline": "2027-02-03",
+        "region": "Global",
+        "eligibility_notes": "Open to student design concepts worldwide; undergraduate Visual/Interaction Design major qualifies. Free to enter. Concept must align with one UN SDG (1-15). No nationality/visa bar stated.",
+        "eligibility_verdict": "Eligible",
+        "source_tier": "A",
+        "verification_status": "verified_official",
+        "notes": "25th edition; EUR 50,000 prize fund; awards ceremony June 2027 in New York. 7,000+ entries per year.",
+        "persona_profile": {
+          "major": null,
+          "year": null,
+          "interests": null,
+          "goals": null,
+          "preferred_country": null,
+          "remote": null
+        }
+      },
+      {
+        "item_id": "design-B-3",
+        "title": "Games for Change Student Challenge 2026-2027",
+        "organization": "Games for Change",
+        "category": "competition",
+        "official_url": "https://learn.gamesforchange.org/student-challenge",
+        "discovery_url": "https://www.gamesforchange.org/studentchallenge/",
+        "deadline": null,
+        "region": "Global",
+        "eligibility_notes": "Open to young creators ages 8-25 internationally; an undergraduate qualifies. Free. Game-design competition on UN SDG themes.",
+        "eligibility_verdict": "Eligible",
+        "source_tier": "A",
+        "verification_status": "verified_official",
+        "notes": "2026-2027 edition sign-ups open; builds coding/design skills; aligns with the persona's game interest.",
+        "persona_profile": {
+          "major": null,
+          "year": null,
+          "interests": null,
+          "goals": null,
+          "preferred_country": null,
+          "remote": null
+        }
+      },
+      {
+        "item_id": "design-B-4",
+        "title": "CHI PLAY 2026 Student Game Design Competition",
+        "organization": "ACM SIGCHI / CHI PLAY",
+        "category": "competition",
+        "official_url": "https://chiplay.acm.org/2026/student-game-design-competition/",
+        "discovery_url": "https://chiplay.acm.org/2026/student-game-design-competition/",
+        "deadline": "2026-06-03",
+        "region": "Global",
+        "eligibility_notes": "Open to undergraduate through postgraduate students; a digital game is required plus proof of student status. The 2026 deadline (3 Jun 2026) has already passed; the 2027 cycle is expected to open in spring 2027, so this was listed as a recurring opportunity.",
+        "eligibility_verdict": "Probably Eligible",
+        "source_tier": "A",
+        "verification_status": "verified_official",
+        "notes": "Hybrid conference; at least one student presenter must attend if nominated. Strong fit for game-design interest but currently closed.",
+        "persona_profile": {
+          "major": null,
+          "year": null,
+          "interests": null,
+          "goals": null,
+          "preferred_country": null,
+          "remote": null
+        }
+      },
+      {
+        "item_id": "design-B-5",
+        "title": "GGAC x Valorant \"Huaxia Power\" Art Contest",
+        "organization": "GGAC / Riot Games (Valorant: Source Action)",
+        "category": "competition",
+        "official_url": "https://www.ggac.com/contest/valm/challenge",
+        "discovery_url": "https://www.ggac.com/contest/valm/challenge",
+        "deadline": "2026-09-30",
+        "region": "Global / China-focused",
+        "eligibility_notes": "Open art/skin contest; no explicit student or nationality bar (theme is Chinese-cultural 'Huaxia power' but submission is open). An undergraduate with Blender/Adobe skills qualifies. Prizes in RMB.",
+        "eligibility_verdict": "Eligible",
+        "source_tier": "A",
+        "verification_status": "verified_official",
+        "notes": "Weapon-skin and card-visual tracks; upload deadline 30 Sep 2026; gold prize RMB 38,888. Strong fit for Blender/Adobe + game interest.",
+        "persona_profile": {
+          "major": null,
+          "year": null,
+          "interests": null,
+          "goals": null,
+          "preferred_country": null,
+          "remote": null
+        }
+      },
+      {
+        "item_id": "design-B-6",
+        "title": "SILMO Optic Design Contest",
+        "organization": "SILMO (optical trade show)",
+        "category": "competition",
+        "official_url": null,
+        "discovery_url": "https://www.silmoparis.com/optic-design-contest",
+        "deadline": null,
+        "region": "France",
+        "eligibility_notes": "French optical-design student contest; a France-based persona likely qualifies, but the official contest page could not be confirmed (the deep link returned HTTP 404 on fetch). Eligibility scope is unverified.",
+        "eligibility_verdict": "Probably Eligible",
+        "source_tier": "C",
+        "verification_status": "unverified",
+        "notes": "Discovery only; official page not reachable. The France angle is appealing but must be re-verified via the SILMO site before relying on it.",
+        "persona_profile": {
+          "major": null,
+          "year": null,
+          "interests": null,
+          "goals": null,
+          "preferred_country": null,
+          "remote": null
+        }
+      }
+    ]
+  }
+}

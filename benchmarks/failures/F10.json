@@ -1,0 +1,12 @@
+{
+  "id": "F10",
+  "type": "duplicate_leak",
+  "persona": "environment",
+  "query": "scholarship sustainability",
+  "expected": "one canonical entry",
+  "actual": "'Global Sustainability Leaders Scholarship' appeared in both lists (judge flagged duplicate of A-4)",
+  "source": "judge comment",
+  "severity": "low",
+  "cause": "cross-run dedupe is out of scope for dedupe.py (it dedupes within a run); benchmark artifact only",
+  "fix_candidate": "none — document that dedupe is per-run; cross-session dedupe belongs to state layer (already exists via seen.json)"
+}

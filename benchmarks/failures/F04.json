@@ -1,0 +1,12 @@
+{
+  "id": "F04",
+  "type": "bad_canonical_source",
+  "persona": "iot-embedded",
+  "query": "嵌入式 实习 2026 远程",
+  "expected": "company official posting",
+  "actual": "three postings only on Chinese aggregators (shixiseng / liepin), official_url null",
+  "source": "shixiseng.com, liepin.com",
+  "severity": "medium",
+  "cause": "aggregator-first retrieval; canonical follow-up skipped under budget pressure",
+  "fix_candidate": "same as F03, plus a dedicated 'follow the official link' step for aggregator hits"
+}

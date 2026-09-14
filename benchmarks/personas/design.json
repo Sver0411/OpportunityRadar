@@ -1,0 +1,64 @@
+{
+  "_note": "FICTIONAL TEST PERSONA — 仅用于 OpportunityRadar benchmark。不是真实用户，不代表任何真实个人；兴趣/签证/成绩均为编造。禁止当作产品示例数据使用。",
+  "persona_id": "design",
+  "display": "Design / France + Global",
+  "question": "最近有什么真正值得我关注的机会？",
+  "id": "design",
+  "education": {
+    "degree": "undergraduate",
+    "major": "Visual / Interaction Design",
+    "major_family": "design_media",
+    "current_year": 3,
+    "expected_graduation": "2028-06",
+    "school_country": "France"
+  },
+  "skills": [
+    {
+      "name": "Figma"
+    },
+    {
+      "name": "Blender"
+    },
+    {
+      "name": "Adobe"
+    }
+  ],
+  "languages": [
+    {
+      "language": "French",
+      "level": "native"
+    },
+    {
+      "language": "English",
+      "level": "B2"
+    }
+  ],
+  "interests": [
+    "design",
+    "game",
+    "art",
+    "film"
+  ],
+  "goals": [
+    {
+      "type": "competition",
+      "priority": "high"
+    },
+    {
+      "type": "project",
+      "priority": "medium"
+    },
+    {
+      "type": "hobby",
+      "priority": "medium"
+    }
+  ],
+  "constraints": {
+    "preferred_country": [
+      "France"
+    ],
+    "remote": true,
+    "weekly_time": "10",
+    "visa": "eu_citizen"
+  }
+}

@@ -1,0 +1,192 @@
+{
+  "persona": "business",
+  "mode": "opportunity-radar",
+  "timestamp": "2026-09-14T12:00:00+08:00",
+  "budget": {
+    "web_searches_used": 6,
+    "fetches_used": 4
+  },
+  "queries": [
+    "Singapore business finance internship 2027 applications open undergraduate",
+    "global business case competition 2026 2027 undergraduate registration open",
+    "Singapore fintech startup challenge 2026 students applications open",
+    "ASEAN youth entrepreneurship programme 2026 2027 applications students",
+    "Singapore business student mentorship networking programme undergraduates 2026",
+    "新加坡 大学生 商业 比赛 2026 报名 截止"
+  ],
+  "locales": {
+    "primary": [
+      "en-SG"
+    ],
+    "optional": [
+      "zh-CN",
+      "ms-SG"
+    ]
+  },
+  "categories_searched": [
+    "competition",
+    "career",
+    "entrepreneurship",
+    "networking",
+    "project"
+  ],
+  "results": [
+    {
+      "title": "IE Business Case Competition 2027 (6th Edition)",
+      "organization": "IE University",
+      "category": "competition",
+      "official_url": "https://www.ie.edu/iebusinesscasecompetition/",
+      "discovery_url": "https://www.ie.edu/iebusinesscasecompetition/",
+      "deadline": "2026-09-15",
+      "deadline_type": "fixed",
+      "eligibility_verdict": "Eligible",
+      "eligibility_notes": "Undergraduate teams of 4 from same university + faculty advisor. Registration open until 15 Sep 2026 (closes tomorrow). Persona is Y2 business undergrad — meets criteria.",
+      "source_tier": "A",
+      "verification_status": "verified_official",
+      "region": "Spain / Global",
+      "notes": "Fetched official page. Event 22–26 Feb 2027, Madrid. High-fit: business case + global networking. Apply ASAP."
+    },
+    {
+      "title": "MERMC 2026 Singapore Final: Agentic AI Edition",
+      "organization": "SUSS (host) & MonsoonSIM",
+      "category": "competition",
+      "official_url": "https://1.monsoonsim.com/news/1284116/mermc2026.html",
+      "discovery_url": "https://1.monsoonsim.com/news/1284116/mermc2026.html",
+      "deadline": "2026-10-15",
+      "deadline_type": "fixed",
+      "eligibility_verdict": "Eligible",
+      "eligibility_notes": "Open to all higher-learning institutions in Singapore (colleges & universities). Free registration, online via Zoom. Event 31 Oct 2026.",
+      "source_tier": "B",
+      "verification_status": "verified_official",
+      "region": "Singapore",
+      "notes": "Fetched organizer page. Business simulation + AI-agent decision-making; top teams advance to MERMC International. Strong local, free, currently open."
+    },
+    {
+      "title": "MAS Internship Programme (2027 University Periods)",
+      "organization": "Monetary Authority of Singapore",
+      "category": "career",
+      "official_url": "https://www.mas.gov.sg/careers/internship",
+      "discovery_url": "https://www.mas.gov.sg/careers/internship",
+      "deadline": null,
+      "deadline_type": "rolling",
+      "eligibility_verdict": "Probably Eligible",
+      "eligibility_notes": "Open to undergrads & postgrads. 2027 periods listed (Jan–Jun, May–Jul, Jul–Dec). Citizenship/right-to-work not in profile → confirm eligibility before applying.",
+      "source_tier": "A",
+      "verification_status": "verified_official",
+      "region": "Singapore",
+      "notes": "Fetched official page. Only career item currently open for the persona's stage."
+    },
+    {
+      "title": "BNP Paribas APAC Long Internship 2027 – Global Markets (Singapore)",
+      "organization": "BNP Paribas",
+      "category": "career",
+      "official_url": "https://apac.bnpparibas/en/jobs/2027-apac-long-internship-programme-jan-jun-global-markets-singapore/",
+      "discovery_url": "https://apac.bnpparibas/en/jobs/2027-apac-long-internship-programme-jan-jun-global-markets-singapore/",
+      "deadline": null,
+      "deadline_type": "rolling",
+      "eligibility_verdict": "Probably Ineligible",
+      "eligibility_notes": "Requires penultimate or final-year undergrad. Persona is Y2 (grad 2029) → not yet penultimate. Target the 2028 intake instead.",
+      "source_tier": "A",
+      "verification_status": "verified_official",
+      "region": "Singapore",
+      "notes": "Fetched official page. Listed to show timing mismatch; save for next year."
+    },
+    {
+      "title": "bp Summer Internship – Finance & Risk, Singapore 2027",
+      "organization": "bp",
+      "category": "career",
+      "official_url": null,
+      "discovery_url": "https://www.getclera.com/jobs/bp/summer-internship-finance-and-risk-singapore-2027-42rp7rece21q",
+      "deadline": "2026-09-25",
+      "deadline_type": "fixed",
+      "eligibility_verdict": "Probably Ineligible",
+      "eligibility_notes": "Requires penultimate year (grad Dec 2027–Jul 2028). Persona grad 2029 → not eligible this cycle. Only aggregator seen; official bp page not fetched.",
+      "source_tier": "C",
+      "verification_status": "unverified",
+      "region": "Singapore",
+      "notes": "Aggregator (Clera). Deadline 25 Sep 2026 but persona year mismatch."
+    },
+    {
+      "title": "Citi Commercial Banking Summer Analyst 2027 (Singapore)",
+      "organization": "Citi",
+      "category": "career",
+      "official_url": null,
+      "discovery_url": "https://www.iagora.com/work/en/internships/finance/singapore/singapore?offset=2",
+      "deadline": null,
+      "deadline_type": null,
+      "eligibility_verdict": "Probably Ineligible",
+      "eligibility_notes": "Penultimate-year students graduating Dec 2027–Jun 2028. Persona grad 2029 → not eligible now. Aggregator only.",
+      "source_tier": "C",
+      "verification_status": "unverified",
+      "region": "Singapore",
+      "notes": "Discovered via iAgora aggregator. Forward-looking; verify on Citi careers later."
+    },
+    {
+      "title": "Olin Global Case Competition (OGCC) 2026",
+      "organization": "WashU Olin Business School (Arch Consulting)",
+      "category": "competition",
+      "official_url": null,
+      "discovery_url": "https://cdo.business.rice.edu/jobs/washington-university-in-saint-louis-olin-global-case-competition",
+      "deadline": null,
+      "deadline_type": null,
+      "eligibility_verdict": "Unknown",
+      "eligibility_notes": "Teams of 3–5 undergrads; registration opened Aug 2026, event Oct 21–24 2026. International/remote eligibility unconfirmed. Official page returned 404 on fetch.",
+      "source_tier": "B",
+      "verification_status": "unverified",
+      "region": "USA / Global",
+      "notes": "Explore-tier global case competition. Verify via Olin/Arch Consulting before relying; status uncertain."
+    }
+  ],
+  "excluded": [
+    {
+      "title": "Singapore-India Hackathon (SIH) 2026",
+      "reason": "Apply by 15 Aug 2026 (past). Student innovators SG/India; fintech/sustainability tracks."
+    },
+    {
+      "title": "Global FinTech Hackcelerator 2026 (MAS/GFTN)",
+      "reason": "Application closed 21 Aug 2026 (extended). For early-stage fintech startups, not students."
+    },
+    {
+      "title": "ASEAN 1967 Fellowship (SEA Bridge)",
+      "reason": "Applications closed mid-May 2026. Remote fellowship; undergrad/recent grad."
+    },
+    {
+      "title": "My First $1000 (East Ventures / Startup SG)",
+      "reason": "2026 cohort showcase 30 May 2026; past. Watch 2027 intake."
+    },
+    {
+      "title": "ASEAN Investment Challenge 2026 (Singapore)",
+      "reason": "Registration closed 31 Aug 2026 (verified official)."
+    },
+    {
+      "title": "Fullerton/SGX Value-Up Singapore Equities Challenge",
+      "reason": "Registration closed 23 Jan 2026."
+    },
+    {
+      "title": "Brand Challenge 2026 (SUSS)",
+      "reason": "Proposal submission 2 Aug 2026 (past)."
+    },
+    {
+      "title": "EHL Sustainability Business Case Competition Singapore 2026",
+      "reason": "First-round submission closed 31 Aug 2026."
+    },
+    {
+      "title": "Ho Bee Land – SMU Sustainability Case Challenge 2026",
+      "reason": "Registration closed 18 Aug 2026 (verified)."
+    },
+    {
+      "title": "Singapore Life Science Case Competition 2026",
+      "reason": "Registration closed 15 Aug 2026 (past)."
+    },
+    {
+      "title": "ASEAN Summer @NTU Track 1 (Entrepreneurship) 2026",
+      "reason": "Application closed 8–15 Apr 2026."
+    },
+    {
+      "title": "ASEAN Future Catalyst Fellowship 2026",
+      "reason": "Registration closed 5 Jan 2026."
+    }
+  ],
+  "dedupe_clusters": 0,
+  "run_notes": "Followed locale plan (en-SG primary; optional zh-CN/ms-SG) and taxonomy weighting (competition/career/entrepreneurship/networking/project). Covered exploit/adjacent/explore layers. Verified deadlines/eligibility at official sources; flagged trust tiers. Two currently-open, eligible items surfaced (IE BCC 2027 closes 15 Sep; MERMC 2026 SG Final closes 15 Oct). Career 2027 internships verified but year-mismatched for a Y2 student. Entrepreneurship/networking/explore searches returned only expired 2026 programmes — honestly reported, not padded."
+}

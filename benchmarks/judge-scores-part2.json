@@ -1,0 +1,99 @@
+{
+  "judge": "part2",
+  "timestamp": "2026-09-14T23:59:00Z",
+  "personas": {
+    "environment": {
+      "A": [
+        {"item_id": "environment-A-1", "relevance": 3, "eligibility": 3, "trust": 3, "novelty": 2, "actionability": 3, "comment": "Real EGU-NUS remote research internship (egu.eu/jobs/8147). Listed URL is generic homepage but opportunity is genuine official; rolling, yr3+ fits."},
+        {"item_id": "environment-A-2", "relevance": 3, "eligibility": 0, "trust": 3, "novelty": 1, "actionability": 2, "comment": "Deadline 14 Aug 2026 passed; IEEE GRSS AP official, expired."},
+        {"item_id": "environment-A-3", "relevance": 3, "eligibility": 3, "trust": 2, "novelty": 2, "actionability": 2, "comment": "Official jobs.undp.org but only search snippet; postings vary, not individually fetched."},
+        {"item_id": "environment-A-4", "relevance": 2, "eligibility": 0, "trust": 2, "novelty": 1, "actionability": 1, "comment": "Deadline 3 Sep 2026 passed; in-person UK, not remote."},
+        {"item_id": "environment-A-5", "relevance": 3, "eligibility": 3, "trust": 2, "novelty": 2, "actionability": 3, "comment": "Ongoing NASA citizen science; verified via snippet only."},
+        {"item_id": "environment-A-6", "relevance": 2, "eligibility": 0, "trust": 2, "novelty": 1, "actionability": 1, "comment": "Deadline 31 Aug 2026 likely passed; official zindi.africa, unverified."},
+        {"item_id": "environment-A-7", "relevance": 3, "eligibility": 1, "trust": 2, "novelty": 2, "actionability": 2, "comment": "In-person USA conflicts remote intent; note Probably Ineligible."}
+      ],
+      "B": [
+        {"item_id": "environment-B-1", "relevance": 3, "eligibility": 2, "trust": 2, "novelty": 2, "actionability": 2, "comment": "Official code-for-earth.ecmwf.int; fetch failed, 2026/27 deadline unconfirmed."},
+        {"item_id": "environment-B-2", "relevance": 3, "eligibility": 3, "trust": 2, "novelty": 2, "actionability": 3, "comment": "Remote free AI+climate course; WebFetch failed, details from snippet."},
+        {"item_id": "environment-B-3", "relevance": 3, "eligibility": 2, "trust": 2, "novelty": 2, "actionability": 2, "comment": "NASA hackathon; dates unconfirmed, not individually fetched."},
+        {"item_id": "environment-B-4", "relevance": 3, "eligibility": 2, "trust": 2, "novelty": 3, "actionability": 2, "comment": "Org real (verified) but specific 'Data Fellowship' not a distinctly confirmed standalone program; dates TBD."},
+        {"item_id": "environment-B-5", "relevance": 2, "eligibility": 0, "trust": 2, "novelty": 1, "actionability": 1, "comment": "Duplicate of A-4; deadline 3 Sep 2026 passed, not remote."},
+        {"item_id": "environment-B-6", "relevance": 2, "eligibility": 0, "trust": 2, "novelty": 2, "actionability": 1, "comment": "Real challenge (venetostars.com) but 2026 apps closed 3 Apr 2026 — list omitted deadline (null). Verification error."},
+        {"item_id": "environment-B-7", "relevance": 3, "eligibility": 3, "trust": 2, "novelty": 2, "actionability": 3, "comment": "Official nurdlepatrol.org works (item's 404 was wrong); ongoing citizen science, open to all."},
+        {"item_id": "environment-B-8", "relevance": 2, "eligibility": 2, "trust": 2, "novelty": 2, "actionability": 2, "comment": "Regional Austria award; scope limits fit for Brazil remote applicant."},
+        {"item_id": "environment-B-9", "relevance": 3, "eligibility": 1, "trust": 2, "novelty": 2, "actionability": 2, "comment": "In-person Manaus conflicts remote intent; note Probably Ineligible."},
+        {"item_id": "environment-B-10", "relevance": 3, "eligibility": 0, "trust": 2, "novelty": 2, "actionability": 1, "comment": "Deadline 31 Aug 2026 passed; hybrid not remote."}
+      ]
+    },
+    "humanities": {
+      "A": [
+        {"item_id": "humanities-A-1", "relevance": 3, "eligibility": 0, "trust": 3, "novelty": 1, "actionability": 2, "comment": "Deadline 31 May 2026 passed; official page fetched."},
+        {"item_id": "humanities-A-2", "relevance": 3, "eligibility": 0, "trust": 3, "novelty": 1, "actionability": 2, "comment": "2026 apps closed; graduate-only scheme, yr2 undergrad not yet eligible."},
+        {"item_id": "humanities-A-3", "relevance": 3, "eligibility": 1, "trust": 1, "novelty": 1, "actionability": 1, "comment": "Official_url null; ArtsJobs aggregator only. Deadline 6 Sep passed; grad traineeship."},
+        {"item_id": "humanities-A-4", "relevance": 3, "eligibility": 0, "trust": 3, "novelty": 1, "actionability": 2, "comment": "Deadline 11 Sep 2026 passed; official oumnh page."},
+        {"item_id": "humanities-A-5", "relevance": 3, "eligibility": 0, "trust": 3, "novelty": 1, "actionability": 1, "comment": "Lancaster-only restriction; deadline 17 May 2026 passed."},
+        {"item_id": "humanities-A-6", "relevance": 2, "eligibility": 3, "trust": 2, "novelty": 2, "actionability": 3, "comment": "Upcoming deadline 15 Oct 2026; relevant only if medieval archaeology interest."},
+        {"item_id": "humanities-A-7", "relevance": 2, "eligibility": 0, "trust": 2, "novelty": 1, "actionability": 1, "comment": "Deadline 31 Jul 2026 passed; official royalhistsoc, unverified."},
+        {"item_id": "humanities-A-8", "relevance": 2, "eligibility": 1, "trust": 2, "novelty": 1, "actionability": 1, "comment": "Deadline 25 Jul 2026 passed; BAME finalist restriction unconfirmed for persona."}
+      ],
+      "B": [
+        {"item_id": "humanities-B-1", "relevance": 3, "eligibility": 2, "trust": 2, "novelty": 3, "actionability": 2, "comment": "2026 call ended; 2027 opens March — dates TBD."},
+        {"item_id": "humanities-B-2", "relevance": 3, "eligibility": 3, "trust": 3, "novelty": 2, "actionability": 3, "comment": "Verified official; deadline 1 Feb 2027."},
+        {"item_id": "humanities-B-3", "relevance": 2, "eligibility": 2, "trust": 3, "novelty": 2, "actionability": 3, "comment": "Verified; not explicitly undergrad-restricted; deadline 24 Jan 2027; prize unstated."},
+        {"item_id": "humanities-B-4", "relevance": 3, "eligibility": 3, "trust": 3, "novelty": 2, "actionability": 3, "comment": "Verified; undergrads may present; deadline 15 Jan 2027."},
+        {"item_id": "humanities-B-5", "relevance": 3, "eligibility": 3, "trust": 2, "novelty": 2, "actionability": 3, "comment": "One strand due 30 Sep 2026; official calendar, partially verified."},
+        {"item_id": "humanities-B-6", "relevance": 2, "eligibility": 3, "trust": 2, "novelty": 2, "actionability": 3, "comment": "Deadline 30 Sep 2026; official medieval.ox.ac.uk, partially verified."},
+        {"item_id": "humanities-B-7", "relevance": 2, "eligibility": 3, "trust": 2, "novelty": 2, "actionability": 3, "comment": "Deadline 25 Sep 2026; Classics-adjacent; official, partially verified."},
+        {"item_id": "humanities-B-8", "relevance": 3, "eligibility": 3, "trust": 3, "novelty": 1, "actionability": 3, "comment": "Verified; join anytime; low-risk membership."}
+      ]
+    },
+    "iot-embedded": {
+      "A": [
+        {"item_id": "iot-embedded-A-1", "relevance": 3, "eligibility": 2, "trust": 3, "novelty": 2, "actionability": 3, "comment": "Official lever.co ATS verified; C++ 2yr hard req not confirmed met for persona (has C)."},
+        {"item_id": "iot-embedded-A-2", "relevance": 3, "eligibility": 3, "trust": 3, "novelty": 2, "actionability": 3, "comment": "Official lab page verified; explicitly welcomes undergrads worldwide; rolling."},
+        {"item_id": "iot-embedded-A-3", "relevance": 3, "eligibility": 3, "trust": 1, "novelty": 1, "actionability": 2, "comment": "Shixiseng aggregator only; deadline 1 Oct 2026."},
+        {"item_id": "iot-embedded-A-4", "relevance": 3, "eligibility": 3, "trust": 1, "novelty": 1, "actionability": 2, "comment": "Deizao aggregator; deadline 6 Oct 2026."},
+        {"item_id": "iot-embedded-A-5", "relevance": 3, "eligibility": 3, "trust": 1, "novelty": 1, "actionability": 2, "comment": "Liepin aggregator; rolling."},
+        {"item_id": "iot-embedded-A-6", "relevance": 3, "eligibility": 3, "trust": 2, "novelty": 3, "actionability": 2, "comment": "Official zephyrproject.org real; discovery via blog, contribution guide not fetched."},
+        {"item_id": "iot-embedded-A-7", "relevance": 3, "eligibility": 0, "trust": 3, "novelty": 1, "actionability": 1, "comment": "Deadline 20 Apr 2026 passed; 2026 season ended; official socchina.net."},
+        {"item_id": "iot-embedded-A-8", "relevance": 3, "eligibility": 0, "trust": 3, "novelty": 2, "actionability": 1, "comment": "Deadline 15 Jul 2026 passed; official workable ATS."}
+      ],
+      "B": [
+        {"item_id": "iot-embedded-B-1", "relevance": 3, "eligibility": 3, "trust": 3, "novelty": 2, "actionability": 3, "comment": "Official Sharp recruit page verified; bachelor accepted, yr3 fits."},
+        {"item_id": "iot-embedded-B-2", "relevance": 3, "eligibility": 0, "trust": 2, "novelty": 2, "actionability": 1, "comment": "Grad-by-March-2028 rule likely fails persona (2028-06); both 2026 batches passed."},
+        {"item_id": "iot-embedded-B-3", "relevance": 3, "eligibility": 0, "trust": 1, "novelty": 1, "actionability": 1, "comment": "Deadline 27 Feb 2026 passed; shixiseng aggregator."},
+        {"item_id": "iot-embedded-B-4", "relevance": 3, "eligibility": 3, "trust": 1, "novelty": 1, "actionability": 2, "comment": "Deizao aggregator; deadline 2 Oct 2026."},
+        {"item_id": "iot-embedded-B-5", "relevance": 3, "eligibility": 2, "trust": 1, "novelty": 1, "actionability": 2, "comment": "Jiuyejie aggregator (posting verified real) but third-party; '2026届' ambiguous vs 2028 grad."},
+        {"item_id": "iot-embedded-B-6", "relevance": 3, "eligibility": 3, "trust": 2, "novelty": 2, "actionability": 2, "comment": "Official Espressif; captcha-blocked, details from snippet."},
+        {"item_id": "iot-embedded-B-7", "relevance": 3, "eligibility": 0, "trust": 3, "novelty": 2, "actionability": 1, "comment": "Publication gate + deadline 27 Mar 2026 passed; official RIKEN."},
+        {"item_id": "iot-embedded-B-8", "relevance": 3, "eligibility": 3, "trust": 3, "novelty": 2, "actionability": 3, "comment": "Verified official; 2026 season ongoing, free dev kits."},
+        {"item_id": "iot-embedded-B-9", "relevance": 3, "eligibility": 2, "trust": 2, "novelty": 2, "actionability": 2, "comment": "Full-time students fit; some provincial timelines may have passed; official raicom.com.cn."},
+        {"item_id": "iot-embedded-B-10", "relevance": 3, "eligibility": 0, "trust": 1, "novelty": 2, "actionability": 1, "comment": "Requires US enrollment + academic credit; persona China-based fails. Embedded.jobs aggregator."}
+      ]
+    },
+    "mech-eng": {
+      "A": [
+        {"item_id": "mech-eng-A-1", "relevance": 3, "eligibility": 0, "trust": 3, "novelty": 1, "actionability": 1, "comment": "Event 11-16 Aug 2026 passed; official formulastudent.de."},
+        {"item_id": "mech-eng-A-2", "relevance": 3, "eligibility": 0, "trust": 3, "novelty": 1, "actionability": 1, "comment": "Event 2-7 Aug 2026 passed; official JSAE."},
+        {"item_id": "mech-eng-A-3", "relevance": 3, "eligibility": 0, "trust": 3, "novelty": 1, "actionability": 1, "comment": "Event Apr 2026 passed; official robocup.or.jp."},
+        {"item_id": "mech-eng-A-4", "relevance": 3, "eligibility": 2, "trust": 3, "novelty": 2, "actionability": 3, "comment": "Open to student teams (needs team); deadline 2027-06-21; verified."},
+        {"item_id": "mech-eng-A-5", "relevance": 3, "eligibility": 2, "trust": 1, "novelty": 1, "actionability": 2, "comment": "Brunel aggregator (official_url null); deadline 22 Dec 2026."},
+        {"item_id": "mech-eng-A-6", "relevance": 3, "eligibility": 2, "trust": 2, "novelty": 2, "actionability": 2, "comment": "Official BMW site exists; discovered via aggregator, not re-verified; start Nov 2026."},
+        {"item_id": "mech-eng-A-7", "relevance": 3, "eligibility": 0, "trust": 1, "novelty": 1, "actionability": 1, "comment": "Deadline 21 Aug 2026 passed; bebee aggregator."},
+        {"item_id": "mech-eng-A-8", "relevance": 3, "eligibility": 2, "trust": 2, "novelty": 1, "actionability": 2, "comment": "Start May 2026 may be filled; verdict Unknown; official Mercedes."},
+        {"item_id": "mech-eng-A-9", "relevance": 3, "eligibility": 0, "trust": 3, "novelty": 1, "actionability": 1, "comment": "Event 14 Jun 2026 passed; official robocon."},
+        {"item_id": "mech-eng-A-10", "relevance": 2, "eligibility": 0, "trust": 3, "novelty": 1, "actionability": 1, "comment": "Vocational Ausbildung, misfit for uni ME student; start 1 Aug 2026 passed."}
+      ],
+      "B": [
+        {"item_id": "mech-eng-B-1", "relevance": 3, "eligibility": 2, "trust": 3, "novelty": 1, "actionability": 2, "comment": "2027 event Aug 10-15; reg expected Jan 2027; verified."},
+        {"item_id": "mech-eng-B-2", "relevance": 3, "eligibility": 2, "trust": 3, "novelty": 2, "actionability": 3, "comment": "Student teams (needs team); deadline 2027-06-21; verified."},
+        {"item_id": "mech-eng-B-3", "relevance": 3, "eligibility": 2, "trust": 3, "novelty": 1, "actionability": 2, "comment": "University teams; 2027 rules ~Oct 2026; verified."},
+        {"item_id": "mech-eng-B-4", "relevance": 3, "eligibility": 2, "trust": 3, "novelty": 3, "actionability": 2, "comment": "University teams; 2027 cycle ~mid-2027; 2026 entry closed; verified official JSAE."},
+        {"item_id": "mech-eng-B-5", "relevance": 2, "eligibility": 2, "trust": 1, "novelty": 2, "actionability": 2, "comment": "Getclera aggregator (official_url null); dual-study track; deadline 30 Apr 2027."},
+        {"item_id": "mech-eng-B-6", "relevance": 2, "eligibility": 2, "trust": 2, "novelty": 2, "actionability": 2, "comment": "Official Magna site; discovered via builtin, not re-fetched; dual-study."},
+        {"item_id": "mech-eng-B-7", "relevance": 3, "eligibility": 2, "trust": 2, "novelty": 2, "actionability": 2, "comment": "Live page 'preparing'; details TBD; verdict Unknown; official Suzumo."},
+        {"item_id": "mech-eng-B-8", "relevance": 3, "eligibility": 2, "trust": 1, "novelty": 3, "actionability": 2, "comment": "Litalico aggregator (official_url null); canonical source unverified; niche embedded/robotics contest."}
+      ]
+    }
+  }
+}

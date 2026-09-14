@@ -1,0 +1,182 @@
+{
+  "persona": "mech-eng",
+  "mode": "bare",
+  "timestamp": "2026-09-14T00:00:00+02:00",
+  "budget": {
+    "web_searches_used": 6,
+    "fetches_used": 2
+  },
+  "queries": [
+    "Formula Student Germany 2026 registration deadline teams",
+    "Werkstudent Maschinenbau robotics automotive 2026 Deutschland Stellenangebote",
+    "Formula SAE Japan 2026 registration deadline student automotive competition",
+    "Japan robotics competition 2026 university students mechanical engineering",
+    "RoboCup 2027 Germany Japan student team registration robotics",
+    "automotive Werkstudent Praktikum 2026 BMW Mercedes Bosch Deutschland Bewerbung"
+  ],
+  "locales": null,
+  "categories_searched": [
+    "competition",
+    "career"
+  ],
+  "results": [
+    {
+      "title": "Formula Student Germany 2026",
+      "organization": "VDI / Formula Student Germany",
+      "category": "competition",
+      "official_url": "https://www.formulastudent.de",
+      "discovery_url": "https://www.formulastudent.de/",
+      "deadline": "2026-08-16",
+      "deadline_type": "fixed",
+      "eligibility_verdict": "Ineligible",
+      "eligibility_notes": "Event was 11-16 Aug 2026; already past as of 2026-09-14. Bare search returned 2026 edition only.",
+      "source_tier": "A",
+      "verification_status": "expired",
+      "region": "Germany",
+      "notes": "Bare mode surfaced the 2026 event, not the 2027 edition; recommended as if current."
+    },
+    {
+      "title": "Formula SAE Japan 2026",
+      "organization": "Society of Automotive Engineers of Japan (JSAE)",
+      "category": "competition",
+      "official_url": "https://en.jsae.or.jp/formula/",
+      "discovery_url": "https://en.jsae.or.jp/formula/fsaej/",
+      "deadline": "2026-08-07",
+      "deadline_type": "fixed",
+      "eligibility_verdict": "Ineligible",
+      "eligibility_notes": "Event 2-7 Aug 2026; past. Registration fee deadline was 2026-06-15.",
+      "source_tier": "A",
+      "verification_status": "expired",
+      "region": "Japan",
+      "notes": "Bare mode returned 2026 edition."
+    },
+    {
+      "title": "RoboCup Japan Open 2026",
+      "organization": "RoboCup Japan Regional Committee",
+      "category": "competition",
+      "official_url": "https://www.robocup.or.jp/JapanOpen2026/english.html",
+      "discovery_url": "https://lists.robocup.org/archives/list/robocup-worldwide@lists.robocup.org/thread/5ZVTSNDJX4UFKX7ERSATZO5KLC46DLNI",
+      "deadline": "2026-04-27",
+      "deadline_type": "fixed",
+      "eligibility_verdict": "Ineligible",
+      "eligibility_notes": "Held 24-27 Apr 2026; past. Team registration closed 27 Mar 2026.",
+      "source_tier": "B",
+      "verification_status": "expired",
+      "region": "Japan",
+      "notes": "Bare mode surfaced only the 2026 edition."
+    },
+    {
+      "title": "RoboCup 2027 World Championship (Nuremberg) + German Junior Finale",
+      "organization": "RoboCup Germany / German RoboCup Committee",
+      "category": "competition",
+      "official_url": "https://robocup.de/en/",
+      "discovery_url": "https://robocup.de/en/",
+      "deadline": "2027-06-21",
+      "deadline_type": "fixed",
+      "eligibility_verdict": "Probably Eligible",
+      "eligibility_notes": "Open to university/student teams (Major leagues) and school/university Junior teams. Persona is a university ME student; would need to join or form a team.",
+      "source_tier": "A",
+      "verification_status": "verified_official",
+      "region": "Germany",
+      "notes": "World Championship 15-21 Jun 2027, Messe Nürnberg; German Junior Finale 09-12 Mar 2027. Verified via fetch."
+    },
+    {
+      "title": "Werkstudent Maschinenbau (Brunel)",
+      "organization": "Brunel",
+      "category": "career",
+      "official_url": null,
+      "discovery_url": "https://sg.brunel.net/en-us/jobs/werkstudent-maschinenbau-wmd-tr-221440",
+      "deadline": "2026-12-22",
+      "deadline_type": "fixed",
+      "eligibility_verdict": "Probably Eligible",
+      "eligibility_notes": "Enrolled ME student with CAD (CATIA/SolidWorks) knowledge, good German. Persona matches.",
+      "source_tier": "C",
+      "verification_status": "partially_verified",
+      "region": "Germany",
+      "notes": "Closing 22 Dec 2026 per posting; aggregator discovery, official application path not fetched."
+    },
+    {
+      "title": "BMW Praktikant KI und Automatisierung in der Fahrwerkentwicklung",
+      "organization": "BMW Group",
+      "category": "career",
+      "official_url": "https://jobs.bmwgroup.com/",
+      "discovery_url": "https://www.jobmonkeyjobs.com/career/27962646/Praktikant-Ki-Und-Automatisierung-In-Der-Fahrwerkentwicklung-W-M-X-Any-Munich-7452",
+      "deadline": null,
+      "deadline_type": "rolling",
+      "eligibility_verdict": "Probably Eligible",
+      "eligibility_notes": "ME / vehicle-tech student, CAD (CATIA V5) and programming interest; start earliest 01.11.2026, 6 months. Persona matches.",
+      "source_tier": "C",
+      "verification_status": "partially_verified",
+      "region": "Germany",
+      "notes": "Starts Nov 2026; aggregator discovery, not re-verified on BMW official site."
+    },
+    {
+      "title": "Werkstudent Praktikant Mechatronik & Robotik (TruPhysics)",
+      "organization": "TruPhysics",
+      "category": "career",
+      "official_url": null,
+      "discovery_url": "https://app.bebee.com/de/jobs/werkstudent-praktikant-fur-mechatronik-robotik-truphysics-stuttgart-baden-wurttemberg--theirstack-736288085",
+      "deadline": "2026-08-21",
+      "deadline_type": "fixed",
+      "eligibility_verdict": "Ineligible",
+      "eligibility_notes": "Posting 'Bis 21.8.2026'; past as of 2026-09-14.",
+      "source_tier": "C",
+      "verification_status": "expired",
+      "region": "Germany",
+      "notes": "Strong fit (robotics/automation, Stuttgart) but deadline already passed."
+    },
+    {
+      "title": "Mercedes-Benz Praktikant Montage Roadstern (Pflichtpraktikum)",
+      "organization": "Mercedes-Benz AG",
+      "category": "career",
+      "official_url": "https://jobs.mercedes-benz.com/",
+      "discovery_url": "https://jobs.mercedes-benz.com/enUS/praktikantin-im-bereich-montage-roadstern-pflicht-praktikum-211523-mer00040xi",
+      "deadline": null,
+      "deadline_type": "rolling",
+      "eligibility_verdict": "Unknown",
+      "eligibility_notes": "Technical degree student, German+English; start 01.05.2026 — likely filled. Pflichtpraktikum requires compulsory-internship proof.",
+      "source_tier": "A",
+      "verification_status": "partially_verified",
+      "region": "Germany",
+      "notes": "Start date May 2026 suggests it may be closed; not re-checked."
+    },
+    {
+      "title": "NHK Student Robocon 2026",
+      "organization": "NHK / NHK Enterprise",
+      "category": "competition",
+      "official_url": "https://official-robocon.com/gakusei/",
+      "discovery_url": "https://www.kyusan-u.ac.jp/J/kougaku/tb/ushimi/robot_studio/nhk_robocon.html",
+      "deadline": "2026-06-14",
+      "deadline_type": "fixed",
+      "eligibility_verdict": "Ineligible",
+      "eligibility_notes": "2026 event held 14 Jun 2026; past. Open to university/kosen students via document + 2 video screenings.",
+      "source_tier": "A",
+      "verification_status": "expired",
+      "region": "Japan",
+      "notes": "Bare mode surfaced 2026 edition; 2027 edition not discovered."
+    },
+    {
+      "title": "Ausbildung zum Mechatroniker (match / Leibniz Univ. Hannover)",
+      "organization": "Institut für Montagetechnik und Industrierobotik (match)",
+      "category": "career",
+      "official_url": "https://www.match.uni-hannover.de/",
+      "discovery_url": "https://www.match.uni-hannover.de/en/institute/news-and-events/news/news-details/news/ausbildung-am-match-2026",
+      "deadline": "2026-08-01",
+      "deadline_type": "fixed",
+      "eligibility_verdict": "Ineligible",
+      "eligibility_notes": "Apprenticeship start 01 Aug 2026; past. Also an Ausbildung (vocational), not a Werkstudent/internship for a degree student.",
+      "source_tier": "A",
+      "verification_status": "expired",
+      "region": "Germany",
+      "notes": "Misfit for a university ME student; included as found."
+    }
+  ],
+  "excluded": [
+    {
+      "title": "RoboCup German Open 2026",
+      "reason": "Held Mar 2026 (Köln); past. 2027 is the World Championship in Nuremberg, captured separately."
+    }
+  ],
+  "dedupe_clusters": 0,
+  "run_notes": "Bare assistant used English/German ad-hoc queries without locale discipline, category coverage limited to competition+career, and no date filtering: 5 of 10 recommended items are already-expired 2026 events. Only RoboCup 2027 (Nuremberg) is a genuinely current opportunity. No dedup, no trust-tier separation, eligibility left as vague 'matches'."
+}

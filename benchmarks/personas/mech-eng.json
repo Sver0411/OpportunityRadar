@@ -1,0 +1,65 @@
+{
+  "_note": "FICTIONAL TEST PERSONA — 仅用于 OpportunityRadar benchmark。不是真实用户，不代表任何真实个人；兴趣/签证/成绩均为编造。禁止当作产品示例数据使用。",
+  "persona_id": "mech-eng",
+  "display": "Mechanical Engineering / DE + JP",
+  "question": "最近有什么真正值得我关注的机会？",
+  "id": "mech-eng",
+  "education": {
+    "degree": "undergraduate",
+    "major": "Mechanical Engineering",
+    "major_family": "me_aero",
+    "current_year": 3,
+    "expected_graduation": "2028-09",
+    "school_country": "Germany"
+  },
+  "skills": [
+    {
+      "name": "CAD"
+    },
+    {
+      "name": "SolidWorks"
+    },
+    {
+      "name": "C++"
+    }
+  ],
+  "languages": [
+    {
+      "language": "German",
+      "level": "native"
+    },
+    {
+      "language": "English",
+      "level": "C1"
+    }
+  ],
+  "interests": [
+    "me_aero",
+    "robotics",
+    "automotive"
+  ],
+  "goals": [
+    {
+      "type": "competition",
+      "priority": "high"
+    },
+    {
+      "type": "project",
+      "priority": "medium"
+    },
+    {
+      "type": "internship",
+      "priority": "medium"
+    }
+  ],
+  "constraints": {
+    "preferred_country": [
+      "Germany",
+      "Japan"
+    ],
+    "remote": false,
+    "relocation": true,
+    "weekly_time": "15",
+    "visa": "eu_citizen"
+  }
+}

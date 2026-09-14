@@ -1,0 +1,186 @@
+{
+  "persona": "environment",
+  "mode": "opportunity-radar",
+  "timestamp": "2026-09-14T11:30:00Z",
+  "budget": {
+    "web_searches_used": 6,
+    "fetches_used": 6
+  },
+  "queries": [
+    "bolsa pesquisa remota meio ambiente graduando 2026 (pt-BR, research)",
+    "GIS remote sensing climate competition 2026 student challenge (en, competition)",
+    "environment sustainability student grant funding 2026 (en, funding)",
+    "climate open data fellowship remote 2026 (en, project/open-data)",
+    "open source environmental hackathon 2026 NASA (en, open_source)",
+    "estagio meio ambiente remoto graduando 2026 Brasil (pt-BR, career)"
+  ],
+  "locales": {
+    "primary": ["pt-BR"],
+    "optional": ["en", "pt-PT"]
+  },
+  "categories_searched": ["research", "competition", "funding", "project", "open_source", "career"],
+  "results": [
+    {
+      "title": "ECMWF Code for Earth",
+      "organization": "European Centre for Medium-Range Weather Forecasts (ECMWF)",
+      "category": "open_source",
+      "official_url": "https://code-for-earth.ecmwf.int/",
+      "discovery_url": "websearch:open source environmental hackathon 2026 NASA",
+      "deadline": null,
+      "deadline_type": "unknown",
+      "eligibility_verdict": "Probably Eligible",
+      "eligibility_notes": "Open environmental/earth-code challenge; remote-friendly. Undergrad with data/GIS skills plausible. Exact 2026/2027 deadline not confirmed (fetch failed).",
+      "source_tier": "A",
+      "verification_status": "unverified",
+      "region": "Global/Remote",
+      "notes": "Tier A official source; WebFetch attempt failed (network) — deadline unconfirmed."
+    },
+    {
+      "title": "Climatematch Academy",
+      "organization": "Climatematch Academy",
+      "category": "skill_development",
+      "official_url": "https://climatematch.io/",
+      "discovery_url": "websearch:climate open data fellowship remote 2026",
+      "deadline": null,
+      "deadline_type": "cohort",
+      "eligibility_verdict": "Eligible",
+      "eligibility_notes": "Remote, free AI+climate course open to undergrads; ongoing cohort model. Strong fit for data + environment interests.",
+      "source_tier": "B",
+      "verification_status": "unverified",
+      "region": "Global/Remote",
+      "notes": "WebFetch attempt failed (network); details from search snippet."
+    },
+    {
+      "title": "EMERGE NASA Hackathon",
+      "organization": "NASA (EMERGE / Hahn EV program)",
+      "category": "competition",
+      "official_url": "https://www.nasa.gov/",
+      "discovery_url": "websearch:open source environmental hackathon 2026 NASA",
+      "deadline": null,
+      "deadline_type": "unknown",
+      "eligibility_verdict": "Probably Eligible",
+      "eligibility_notes": "NASA-hosted environmental/hackathon challenge; remote participation likely. Undergrad eligibility plausible; exact 2026 dates unconfirmed.",
+      "source_tier": "A",
+      "verification_status": "unverified",
+      "region": "Global/Remote",
+      "notes": "Tier A; not individually fetched."
+    },
+    {
+      "title": "Nepal Climate Hub Data Fellowship",
+      "organization": "Nepal Climate Hub",
+      "category": "project",
+      "official_url": "https://nepalclimatehub.org/",
+      "discovery_url": "websearch:climate open data fellowship remote 2026",
+      "deadline": null,
+      "deadline_type": "unknown",
+      "eligibility_verdict": "Probably Eligible",
+      "eligibility_notes": "Remote data fellowship in climate/open-data; undergrad with data skills plausible. Dates unconfirmed.",
+      "source_tier": "B",
+      "verification_status": "unverified",
+      "region": "Global/Remote",
+      "notes": "Not individually fetched."
+    },
+    {
+      "title": "Global Sustainability Leaders Scholarship",
+      "organization": "University of Reading",
+      "category": "funding",
+      "official_url": "https://www.reading.ac.uk/",
+      "discovery_url": "websearch:environment sustainability student grant funding 2026",
+      "deadline": "2026-09-03",
+      "deadline_type": "fixed",
+      "eligibility_verdict": "Probably Eligible",
+      "eligibility_notes": "Environmental undergrad fits; Tranche 3 deadline 3 Sep 2026 already passed. In-person UK study, not remote — conflicts remote=true intent.",
+      "source_tier": "A",
+      "verification_status": "unverified",
+      "region": "UK",
+      "notes": "Same item as bare mode; here found via funding-category query. Deadline passed; not remote."
+    },
+    {
+      "title": "VeneTo Stars Challenge",
+      "organization": "Veneto Region / local organisers",
+      "category": "competition",
+      "official_url": "https://www.regione.veneto.it/",
+      "discovery_url": "websearch:GIS remote sensing climate competition 2026 student challenge",
+      "deadline": null,
+      "deadline_type": "unknown",
+      "eligibility_verdict": "Probably Eligible",
+      "eligibility_notes": "Regional (Italy/Veneto) sustainability/challenge; student participation plausible. Remote format unconfirmed; regional scope may limit fit.",
+      "source_tier": "C",
+      "verification_status": "unverified",
+      "region": "Italy (Veneto)",
+      "notes": "Aggregator/regional source; not individually fetched."
+    },
+    {
+      "title": "Nurdle Patrol",
+      "organization": "Nurdle Patrol (marine conservation NGO)",
+      "category": "project",
+      "official_url": "https://www.nurdlepatrol.org/",
+      "discovery_url": "websearch:NASA ESA citizen science open data environmental remote volunteer 2026",
+      "deadline": null,
+      "deadline_type": "ongoing",
+      "eligibility_verdict": "Eligible",
+      "eligibility_notes": "Ongoing citizen-science data collection; remote logging possible; open to all. Good environmental/data fit.",
+      "source_tier": "B",
+      "verification_status": "unverified",
+      "region": "Global/Remote",
+      "notes": "WebFetch attempt returned 404 (domain moved); details from search snippet."
+    },
+    {
+      "title": "Citizen Science Award Austria",
+      "organization": "Austrian Citizen Science Network",
+      "category": "competition",
+      "official_url": "https://citizenscience.at/",
+      "discovery_url": "websearch:NASA ESA citizen science open data environmental remote volunteer 2026",
+      "deadline": null,
+      "deadline_type": "unknown",
+      "eligibility_verdict": "Probably Eligible",
+      "eligibility_notes": "Austria-based citizen-science award; student projects plausible but regional scope may limit fit for a Brazil-based remote applicant.",
+      "source_tier": "B",
+      "verification_status": "unverified",
+      "region": "Austria",
+      "notes": "Regional scope; not individually fetched."
+    },
+    {
+      "title": "Ibama Internship (Manaus)",
+      "organization": "IBAMA (Brazilian Institute of Environment)",
+      "category": "career",
+      "official_url": "https://www.ibama.gov.br/",
+      "discovery_url": "websearch:estagio meio ambiente remoto graduando 2026 Brasil",
+      "deadline": null,
+      "deadline_type": "unknown",
+      "eligibility_verdict": "Probably Ineligible",
+      "eligibility_notes": "In-person internship in Manaus, Brazil — conflicts with remote=true constraint. Tier A official (gov.br).",
+      "source_tier": "A",
+      "verification_status": "unverified",
+      "region": "Brazil (in-person)",
+      "notes": "Found via pt-BR career query; in-person, not remote."
+    },
+    {
+      "title": "IDEALIST / Idec Sustainability Internship (São Paulo)",
+      "organization": "IDEC (Instituto Brasileiro de Defesa do Consumidor) via IDEALIST",
+      "category": "career",
+      "official_url": "https://idec.org.br/",
+      "discovery_url": "websearch:estagio meio ambiente remoto graduando 2026 Brasil",
+      "deadline": "2026-08-31",
+      "deadline_type": "fixed",
+      "eligibility_verdict": "Probably Ineligible",
+      "eligibility_notes": "Hybrid internship in São Paulo; deadline 31/08/2026 already passed as of 2026-09-14. Conflicts remote-only intent.",
+      "source_tier": "B",
+      "verification_status": "expired",
+      "region": "Brazil (hybrid)",
+      "notes": "Found via pt-BR career query; expired + not remote."
+    }
+  ],
+  "excluded": [
+    {
+      "title": "NSF REU at UMBC",
+      "reason": "US citizens/permanent residents only — persona is Brazil-based non-US citizen (hard citizenship constraint). Excluded via skill's hard-constraint ordering."
+    },
+    {
+      "title": "Cetesb Internships (São Paulo)",
+      "reason": "Deadline 18/05/2026 already expired as of 2026-09-14; 200+ in-person SP internships, conflicts remote=true. Excluded as expired."
+    }
+  ],
+  "dedupe_clusters": 0,
+  "run_notes": "Skill used. Ran scripts/locales.py: mode A, regions=brazil, primary locales=pt-BR, optional locales=en/pt-PT. MISMATCH NOTED: planner fell back to school_country (Brazil) because preferred_country is empty, but persona intent is Global/Remote — so primary locale pt-BR is too narrow; discovery relied on the optional 'en' locale for global/remote items. 6 searches using 70/20/10 exploit/adjacent/explore layering across 6 categories (research, competition, funding, project, open_source, career). 6 WebFetch attempts ALL FAILED (network/404: ecmwf, climatematch, umbc, nurdlepatrol, plus retries), so verification discipline could NOT be exercised — all deadlines/eligibility are unverified/partially_verified from search snippets only. Hard-constraint ordering applied: NSF REU UMBC excluded (US citizenship), Cetesb excluded (expired). Ibama/Idec flagged in-person/hybrid + expired, conflicting with remote=true. Reading scholarship repeated across both modes (deadline passed, not remote)."
+}

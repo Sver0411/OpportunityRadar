@@ -1,0 +1,132 @@
+{
+  "persona": "environment",
+  "mode": "bare",
+  "timestamp": "2026-09-14T10:00:00Z",
+  "budget": {
+    "web_searches_used": 4,
+    "fetches_used": 2
+  },
+  "queries": [
+    "remote research assistant environmental science undergrad 2026",
+    "GIS remote sensing challenge competition 2026 climate agriculture",
+    "climate sustainability student grant funding 2026",
+    "NASA ESA citizen science open data environmental remote volunteer 2026"
+  ],
+  "locales": null,
+  "categories_searched": ["research", "competition", "funding", "project", "open_source"],
+  "results": [
+    {
+      "title": "EGU–NUS Remote Research Internship",
+      "organization": "European Geosciences Union / National University of Singapore",
+      "category": "research",
+      "official_url": "https://www.egu.eu/",
+      "discovery_url": "websearch:remote research assistant environmental science undergrad 2026",
+      "deadline": null,
+      "deadline_type": "rolling",
+      "eligibility_verdict": "Probably Eligible",
+      "eligibility_notes": "Year 3+ undergrad; remote; unpaid/voluntary; rolling admissions. Persona is Year 3 environmental science undergrad with data/GIS skills — fits.",
+      "source_tier": "A",
+      "verification_status": "verified_official",
+      "region": "Global/Remote",
+      "notes": "Page fetched and verified. Remote, no fixed deadline."
+    },
+    {
+      "title": "AP-GARSS Open Source GeoAI Challenge",
+      "organization": "IEEE Geoscience and Remote Sensing Society (AP-GARSS)",
+      "category": "competition",
+      "official_url": "https://www.ap-garss.org/",
+      "discovery_url": "websearch:GIS remote sensing challenge competition 2026 climate agriculture",
+      "deadline": "2026-08-14",
+      "deadline_type": "fixed",
+      "eligibility_verdict": "Eligible",
+      "eligibility_notes": "Open to students worldwide; GIS/remote-sensing match. Material submission deadline 14 Aug 2026 — already passed as of 2026-09-14.",
+      "source_tier": "A",
+      "verification_status": "expired",
+      "region": "Global/Remote",
+      "notes": "Challenge page fetched and verified; deadline already passed."
+    },
+    {
+      "title": "UNDP Remote Research Assistant (various postings)",
+      "organization": "United Nations Development Programme",
+      "category": "research",
+      "official_url": "https://jobs.undp.org/",
+      "discovery_url": "websearch:remote research assistant environmental science undergrad 2026",
+      "deadline": null,
+      "deadline_type": "varies",
+      "eligibility_verdict": "Probably Eligible",
+      "eligibility_notes": "Remote RA roles with stipend; undergrad with data/GIS skills plausible. Exact postings vary by opening.",
+      "source_tier": "A",
+      "verification_status": "partially_verified",
+      "region": "Global/Remote",
+      "notes": "Verified only via search snippet; not individually fetched."
+    },
+    {
+      "title": "Global Sustainability Leaders Scholarship",
+      "organization": "University of Reading",
+      "category": "funding",
+      "official_url": "https://www.reading.ac.uk/",
+      "discovery_url": "websearch:climate sustainability student grant funding 2026",
+      "deadline": "2026-09-03",
+      "deadline_type": "fixed",
+      "eligibility_verdict": "Probably Eligible",
+      "eligibility_notes": "Environmental undergrad fits academically; Tranche 3 deadline 3 Sep 2026 already passed. In-person UK study, not remote — conflicts remote=true intent.",
+      "source_tier": "A",
+      "verification_status": "partially_verified",
+      "region": "UK",
+      "notes": "Study-at-Reading scholarship; not remote. Deadline passed."
+    },
+    {
+      "title": "NASA Citizen Science (Galaxy Zoo: Clump Scout II, Artifact InSPECtor)",
+      "organization": "NASA",
+      "category": "project",
+      "official_url": "https://science.nasa.gov/citizen-science/",
+      "discovery_url": "websearch:NASA ESA citizen science open data environmental remote volunteer 2026",
+      "deadline": null,
+      "deadline_type": "ongoing",
+      "eligibility_verdict": "Eligible",
+      "eligibility_notes": "Open to all volunteers worldwide; fully remote data/classification work. Strong match for data + environment interests.",
+      "source_tier": "A",
+      "verification_status": "partially_verified",
+      "region": "Global/Remote",
+      "notes": "Ongoing; verified via search snippet only."
+    },
+    {
+      "title": "Zindi Chad Agriculture Yield Prediction Challenge",
+      "organization": "Zindi",
+      "category": "competition",
+      "official_url": "https://zindi.africa/",
+      "discovery_url": "websearch:GIS remote sensing challenge competition 2026 climate agriculture",
+      "deadline": "2026-08-31",
+      "deadline_type": "fixed",
+      "eligibility_verdict": "Eligible",
+      "eligibility_notes": "Open to all; data/agriculture match. Aug 2026 deadline likely passed as of 2026-09-14.",
+      "source_tier": "B",
+      "verification_status": "unverified",
+      "region": "Global/Remote",
+      "notes": "Verified only via search snippet; deadline likely passed."
+    },
+    {
+      "title": "Penn State Freshwater Ecology Research Assistant",
+      "organization": "Pennsylvania State University",
+      "category": "research",
+      "official_url": "https://www.psu.edu/",
+      "discovery_url": "websearch:remote research assistant environmental science undergrad 2026",
+      "deadline": null,
+      "deadline_type": "unknown",
+      "eligibility_verdict": "Probably Ineligible",
+      "eligibility_notes": "In-person lab position in State College, PA, USA — conflicts with remote=true constraint.",
+      "source_tier": "A",
+      "verification_status": "unverified",
+      "region": "USA (in-person)",
+      "notes": "In-person; not remote."
+    }
+  ],
+  "excluded": [
+    {
+      "title": "NSF REU at UMBC",
+      "reason": "US citizens/permanent residents only — persona is Brazil-based non-US citizen (hard citizenship constraint)."
+    }
+  ],
+  "dedupe_clusters": 0,
+  "run_notes": "Bare mode: plain assistant, no Skill consulted. 4 WebSearches + 2 WebFetches (EGU remote internship page and AP-GARSS GeoAI Challenge page — both fetch-verified). Remaining 5 items verified only via search snippets (partially_verified/unverified). Mix of global/remote and some in-person/region-locked items; several deadlines already passed as of 2026-09-14 (AP-GARSS 14 Aug, Reading 3 Sep, Zindi Aug). No locale planner used. Remote-only constraint only partially respected (Penn State in-person retained as result, flagged)."
+}

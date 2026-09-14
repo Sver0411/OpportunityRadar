@@ -1,0 +1,173 @@
+{
+  "persona": "humanities",
+  "mode": "opportunity-radar",
+  "timestamp": "2026-09-14T12:30:00Z",
+  "budget": {
+    "web_searches_used": 6,
+    "fetches_used": 6
+  },
+  "queries": [
+    "history heritage internship placement UK undergraduate 2027 applications open",
+    "history undergraduate essay prize 2027 deadline UK competition",
+    "digital humanities volunteer project student remote 2026 2027",
+    "history student conference call for papers 2027 UK undergraduate",
+    "archive traineeship graduate 2027 UK applications open history",
+    "historical association student membership undergraduate UK history society"
+  ],
+  "locales": {
+    "primary": [
+      "en-GB"
+    ],
+    "optional": []
+  },
+  "categories_searched": [
+    "career",
+    "research",
+    "project",
+    "event",
+    "competition",
+    "networking"
+  ],
+  "results": [
+    {
+      "title": "EHRI-UK Regional Placements",
+      "organization": "EHRI-UK",
+      "category": "project",
+      "official_url": "https://www.ehri-uk.org/ehri-uk-placements",
+      "discovery_url": "https://www.ehri-uk.org/ehri-uk-placements",
+      "deadline": null,
+      "deadline_type": "tbd",
+      "eligibility_verdict": "Eligible",
+      "eligibility_notes": "Open to UK-based undergraduate and postgraduate students across the humanities; 150 hours of project work at museums/archives/charities on the history of Nazi oppression / the Holocaust and refugees; honorarium on completion. 2026 call ended; 2027 call opens next March.",
+      "source_tier": "A",
+      "verification_status": "partially_verified",
+      "region": "United Kingdom",
+      "notes": "Adjacent/explore fit: archive + heritage + social impact. Watch for the March 2027 opening. 2027 dates TBD."
+    },
+    {
+      "title": "Roy Porter Prize 2026/2027 (Student Essay Prize)",
+      "organization": "Society for the Social History of Medicine (SSHM)",
+      "category": "competition",
+      "official_url": "https://sshm.org/roy-porter-prize-2025-2026/",
+      "discovery_url": "https://sshm.org/roy-porter-prize-2025-2026/",
+      "deadline": "2027-02-01",
+      "deadline_type": "fixed",
+      "eligibility_verdict": "Eligible",
+      "eligibility_notes": "Undergraduate or postgraduate students; £500 + plenary at biennial conference + publishing mentoring. Requires SSHM membership (cheap, join via OUP). 5000-9000 words, social history of medicine.",
+      "source_tier": "A",
+      "verification_status": "verified_official",
+      "region": "United Kingdom",
+      "notes": "Entry form available from autumn 2026. Strong current-opportunity fit for a history undergrad."
+    },
+    {
+      "title": "History Essay Prize 2026-27",
+      "organization": "Foundation for the History of Totalitarianism",
+      "category": "competition",
+      "official_url": "https://historyoftotalitarianism.com/essay-prize-2026-27-terms-and-conditions/",
+      "discovery_url": "https://historyoftotalitarianism.com/essay-prize-2026-27-terms-and-conditions/",
+      "deadline": "2027-01-24",
+      "deadline_type": "fixed",
+      "eligibility_verdict": "Probably Eligible",
+      "eligibility_notes": "Terms reference 'students' but do not explicitly restrict to undergraduates; open to student entrants. 1800-2000 words. Prize amount not stated on the page.",
+      "source_tier": "A",
+      "verification_status": "verified_official",
+      "region": "United Kingdom",
+      "notes": "AI-detection screening; entries by 12:00 noon UK time, 24 Jan 2027."
+    },
+    {
+      "title": "Britain and the World 2027 (#BATW2027)",
+      "organization": "Britain and the World Conference / Society",
+      "category": "event",
+      "official_url": "https://britainandtheworld.org/2027",
+      "discovery_url": "https://britainandtheworld.org/2027",
+      "deadline": "2027-01-15",
+      "deadline_type": "fixed",
+      "eligibility_verdict": "Eligible",
+      "eligibility_notes": "CfP open to all career stages; conference explicitly does not discriminate between graduate students, independent scholars and established academics — undergrads may present 20-min papers. 250-300 word abstract. Newcastle, 30 Jun-2 Jul 2027.",
+      "source_tier": "A",
+      "verification_status": "verified_official",
+      "region": "United Kingdom",
+      "notes": "Best-paper prize with conditional journal publication in Britain and World (Edinburgh UP)."
+    },
+    {
+      "title": "Leeds International Medieval Congress 2027",
+      "organization": "International Medieval Congress, University of Leeds",
+      "category": "event",
+      "official_url": "https://royalhistsoc.org/calendar/leeds-international-medieval-congress-2027-dynastic-communities-call-for-papers",
+      "discovery_url": "https://royalhistsoc.org/calendar/leeds-international-medieval-congress-2027-dynastic-communities-call-for-papers",
+      "deadline": "2026-09-30",
+      "deadline_type": "fixed",
+      "eligibility_verdict": "Eligible",
+      "eligibility_notes": "Papers welcomed from any discipline; students may present 15-20 min papers (in-person or hybrid). Multiple strands with varying CfP deadlines.",
+      "source_tier": "A",
+      "verification_status": "partially_verified",
+      "region": "United Kingdom",
+      "notes": "One strand ('England and Scotland') due 30 Sep 2026; another ('Dynastic Communities') CfP closed 21 Aug 2026. Conference 5-8 Jul 2027."
+    },
+    {
+      "title": "MAMO 2027 (Middle Ages in the Modern World)",
+      "organization": "Oxford Medieval Studies",
+      "category": "event",
+      "official_url": "https://medieval.ox.ac.uk/mamo-2027/",
+      "discovery_url": "https://medieval.ox.ac.uk/mamo-2027/",
+      "deadline": "2026-09-30",
+      "deadline_type": "fixed",
+      "eligibility_verdict": "Eligible",
+      "eligibility_notes": "Open call for papers/panels/workshops on medievalism; undergraduates may propose. Lincoln College Oxford, 22-24 June 2027.",
+      "source_tier": "A",
+      "verification_status": "partially_verified",
+      "region": "United Kingdom",
+      "notes": "Abstracts c.250 words by 30 Sep 2026; relevant if interested in medieval history / reception."
+    },
+    {
+      "title": "Classical Association Conference 2027",
+      "organization": "Classical Association",
+      "category": "event",
+      "official_url": "https://classicalassociation.org/events/ca-conference-2027",
+      "discovery_url": "https://classicalassociation.org/events/ca-conference-2027",
+      "deadline": "2026-09-25",
+      "deadline_type": "fixed",
+      "eligibility_verdict": "Eligible",
+      "eligibility_notes": "Open to academics, students, teachers, ECRs and enthusiasts; papers / lightning talks / workshops. Notre Dame London, 9-11 Apr 2027. Themes include Roman Britain and classical reception.",
+      "source_tier": "A",
+      "verification_status": "partially_verified",
+      "region": "United Kingdom",
+      "notes": "Submission deadline 25 Sep 2026; relevant for a classics-adjacent history student."
+    },
+    {
+      "title": "Historical Association Student Membership",
+      "organization": "Historical Association",
+      "category": "networking",
+      "official_url": "https://history.org.uk/membership/info/student",
+      "discovery_url": "https://history.org.uk/membership/info/student",
+      "deadline": null,
+      "deadline_type": "rolling",
+      "eligibility_verdict": "Eligible",
+      "eligibility_notes": "Undergraduate history students; from £32/year; podcasts, articles, 'How To' guides, careers resources, free/discounted events and member webinars. Join any time.",
+      "source_tier": "A",
+      "verification_status": "verified_official",
+      "region": "United Kingdom",
+      "notes": "Explore/networking entry; low-risk, always open; demonstrates subject commitment on a CV."
+    }
+  ],
+  "excluded": [
+    {
+      "title": "Digital Archivist Graduate Training Scheme (Bodleian)",
+      "reason": "2026 applications closed (expired). Recurring scheme reopens ~July 2027; year-2 undergrad not yet a graduate but eligible to apply in 2027 before 2029 graduation — watch then, do not recommend now."
+    },
+    {
+      "title": "Library of Congress Junior Fellows Program",
+      "reason": "US federal program based in Washington; likely requires US work authorization. Outside UK/Europe scope for this UK-citizen persona — Probably Ineligible / out of region."
+    },
+    {
+      "title": "National Archives (UK) remote volunteering",
+      "reason": "Canonical remote-opportunities URL returned HTTP 404 at fetch time; could not confirm a current official page, so not recommended without re-verification."
+    },
+    {
+      "title": "Digital Heritage Mapping Undergraduate Summer Fellowship",
+      "reason": "Deadline 10 May 2026 passed (expired); remote paid but US-based non-profit — out of UK/Europe scope."
+    }
+  ],
+  "dedupe_clusters": 0,
+  "run_notes": "Locale resolved to en-GB (uk) via scripts/locales.py. Covered 6 categories (career/project, competition, event, networking) using exploit/adjacent/explore layers. Explicitly excluded expired 2026 items and US-only programs. As of 2026-09-14 the run surfaces currently-open 2027 cycles (essay prizes, conference CfPs) plus a rolling membership. Explore layer represented by EHRI-UK placements (Holocaust/refugee archive project) and the HA student membership."
+}

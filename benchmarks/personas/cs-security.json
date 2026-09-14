@@ -1,0 +1,59 @@
+{
+  "_note": "FICTIONAL TEST PERSONA — 仅用于 OpportunityRadar benchmark。不是真实用户，不代表任何真实个人；兴趣/签证/成绩均为编造。禁止当作产品示例数据使用。",
+  "persona_id": "cs-security",
+  "display": "CS / Security",
+  "question": "最近有什么真正值得我关注的机会？",
+  "id": "cs-security",
+  "education": {
+    "degree": "undergraduate",
+    "major": "Computer Science",
+    "major_family": "cs_software",
+    "current_year": 3,
+    "expected_graduation": "2028-05",
+    "school_country": "United States"
+  },
+  "skills": [
+    {
+      "name": "Python"
+    },
+    {
+      "name": "Linux"
+    },
+    {
+      "name": "Git"
+    }
+  ],
+  "languages": [
+    {
+      "language": "English",
+      "level": "native"
+    }
+  ],
+  "interests": [
+    "security",
+    "open_source"
+  ],
+  "goals": [
+    {
+      "type": "competition",
+      "priority": "high"
+    },
+    {
+      "type": "open_source",
+      "priority": "high"
+    },
+    {
+      "type": "internship",
+      "priority": "medium"
+    }
+  ],
+  "constraints": {
+    "preferred_country": [
+      "United States"
+    ],
+    "remote": true,
+    "weekly_time": "15",
+    "available_period": "2027-06 ~ 2027-08",
+    "visa": "us_citizen"
+  }
+}

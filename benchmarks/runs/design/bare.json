@@ -1,0 +1,119 @@
+{
+  "persona": "design",
+  "mode": "bare",
+  "timestamp": "2026-09-14",
+  "budget": {
+    "web_searches_used": 6,
+    "fetches_used": 6
+  },
+  "queries": [
+    "design competition 2026 France student visual interaction",
+    "game design competition 2026 international students",
+    "art film festival open call submission 2026 Europe",
+    "UX UI design award 2026 students international",
+    "remote design internship 2026 undergraduate Europe",
+    "creative challenge contest 2026 design art game"
+  ],
+  "locales": null,
+  "categories_searched": [
+    "competition",
+    "event",
+    "career",
+    "hobby"
+  ],
+  "results": [
+    {
+      "title": "UX Design Awards (Spring 2027)",
+      "organization": "International Design Zentrum Berlin (IDZ)",
+      "category": "competition",
+      "official_url": "https://www.ux-design-award.com/en/enter",
+      "discovery_url": "https://www.ux-design-award.com/en/enter",
+      "deadline": "2026-11-15",
+      "deadline_type": "fixed",
+      "eligibility_verdict": "Eligible",
+      "eligibility_notes": "New Talent category is explicitly for Bachelor's and Master's projects from all over the world, so an undergraduate Visual/Interaction Design major qualifies. No nationality bar. Fee EUR 70 per New Talent submission.",
+      "source_tier": "A",
+      "verification_status": "verified_official",
+      "region": "Global",
+      "notes": "Call for Entries 1 Sep-15 Nov 2026 for the Spring 2027 award; winners announced 3 Mar 2027. Product/Concept tracks cost EUR 320; New Talent is the student track."
+    },
+    {
+      "title": "iF DESIGN STUDENT AWARD 2027",
+      "organization": "iF International Forum Design",
+      "category": "competition",
+      "official_url": "https://ifdesign.com/en/if-design-student-award",
+      "discovery_url": "https://ifdesign.com/en/if-design-student-award",
+      "deadline": "2027-02-03",
+      "deadline_type": "fixed",
+      "eligibility_verdict": "Eligible",
+      "eligibility_notes": "Open to student design concepts worldwide; undergraduate Visual/Interaction Design major qualifies. Free to enter. Concept must align with one UN SDG (1-15). No nationality/visa bar stated.",
+      "source_tier": "A",
+      "verification_status": "verified_official",
+      "region": "Global",
+      "notes": "25th edition; EUR 50,000 prize fund; awards ceremony June 2027 in New York. 7,000+ entries per year."
+    },
+    {
+      "title": "Games for Change Student Challenge 2026-2027",
+      "organization": "Games for Change",
+      "category": "competition",
+      "official_url": "https://learn.gamesforchange.org/student-challenge",
+      "discovery_url": "https://www.gamesforchange.org/studentchallenge/",
+      "deadline": null,
+      "deadline_type": "flexible",
+      "eligibility_verdict": "Eligible",
+      "eligibility_notes": "Open to young creators ages 8-25 internationally; an undergraduate qualifies. Free. Game-design competition on UN SDG themes.",
+      "source_tier": "A",
+      "verification_status": "verified_official",
+      "region": "Global",
+      "notes": "2026-2027 edition sign-ups open; builds coding/design skills; aligns with the persona's game interest."
+    },
+    {
+      "title": "CHI PLAY 2026 Student Game Design Competition",
+      "organization": "ACM SIGCHI / CHI PLAY",
+      "category": "competition",
+      "official_url": "https://chiplay.acm.org/2026/student-game-design-competition/",
+      "discovery_url": "https://chiplay.acm.org/2026/student-game-design-competition/",
+      "deadline": "2026-06-03",
+      "deadline_type": "fixed",
+      "eligibility_verdict": "Probably Eligible",
+      "eligibility_notes": "Open to undergraduate through postgraduate students; a digital game is required plus proof of student status. The 2026 deadline (3 Jun 2026) has already passed; the 2027 cycle is expected to open in spring 2027, so this was listed as a recurring opportunity.",
+      "source_tier": "A",
+      "verification_status": "verified_official",
+      "region": "Global",
+      "notes": "Hybrid conference; at least one student presenter must attend if nominated. Strong fit for game-design interest but currently closed."
+    },
+    {
+      "title": "GGAC x Valorant \"Huaxia Power\" Art Contest",
+      "organization": "GGAC / Riot Games (Valorant: Source Action)",
+      "category": "competition",
+      "official_url": "https://www.ggac.com/contest/valm/challenge",
+      "discovery_url": "https://www.ggac.com/contest/valm/challenge",
+      "deadline": "2026-09-30",
+      "deadline_type": "fixed",
+      "eligibility_verdict": "Eligible",
+      "eligibility_notes": "Open art/skin contest; no explicit student or nationality bar (theme is Chinese-cultural 'Huaxia power' but submission is open). An undergraduate with Blender/Adobe skills qualifies. Prizes in RMB.",
+      "source_tier": "A",
+      "verification_status": "verified_official",
+      "region": "Global / China-focused",
+      "notes": "Weapon-skin and card-visual tracks; upload deadline 30 Sep 2026; gold prize RMB 38,888. Strong fit for Blender/Adobe + game interest."
+    },
+    {
+      "title": "SILMO Optic Design Contest",
+      "organization": "SILMO (optical trade show)",
+      "category": "competition",
+      "official_url": null,
+      "discovery_url": "https://www.silmoparis.com/optic-design-contest",
+      "deadline": null,
+      "deadline_type": "unknown",
+      "eligibility_verdict": "Probably Eligible",
+      "eligibility_notes": "French optical-design student contest; a France-based persona likely qualifies, but the official contest page could not be confirmed (the deep link returned HTTP 404 on fetch). Eligibility scope is unverified.",
+      "source_tier": "C",
+      "verification_status": "unverified",
+      "region": "France",
+      "notes": "Discovery only; official page not reachable. The France angle is appealing but must be re-verified via the SILMO site before relying on it."
+    }
+  ],
+  "excluded": [],
+  "dedupe_clusters": 0,
+  "run_notes": "Plain-assistant run reconstructed from the 6 WebSearches + 6 WebFetches actually performed in the prior session (re-grounded this session: SILMO deep link 404'd, the other 5 official pages confirmed). Results skewed to competitions (6/6); no open-source, career, or hobby coverage despite the persona's medium project/hobby goals. No locale strategy and no French-language query even though the persona is France-based. Eligibility was given loosely (Eligible/Probably Eligible) without the 5-level reasons discipline. CHI PLAY 2026 was listed though its June deadline already passed (treated as recurring). Trust tiers recorded but not used to gate facts."
+}

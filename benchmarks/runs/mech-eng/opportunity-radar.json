@@ -1,0 +1,161 @@
+{
+  "persona": "mech-eng",
+  "mode": "opportunity-radar",
+  "timestamp": "2026-09-14T00:00:00+02:00",
+  "budget": {
+    "web_searches_used": 6,
+    "fetches_used": 5
+  },
+  "queries": [
+    "Formula Student Germany 2027 Anmeldung Frist Teams",
+    "Werkstudent Maschinenbau Robotik Automotive 2027 Deutschland",
+    "Robotik Wettbewerb Studenten 2027 Deutschland RoboCup German Open",
+    "NHK学生ロボコン 2027 応募 ロボットコンテスト 学生",
+    "機械工学科 インターンシップ 2027 募集 自動車 ロボット",
+    "ものづくりコンテスト 学生 自動車 2027 日本 募集"
+  ],
+  "locales": {
+    "primary": ["de-DE", "ja-JP"],
+    "optional": ["en"]
+  },
+  "categories_searched": [
+    "competition",
+    "career",
+    "project",
+    "education"
+  ],
+  "results": [
+    {
+      "title": "Formula Student Germany 2027",
+      "organization": "VDI / Formula Student Germany",
+      "category": "competition",
+      "official_url": "https://www.formulastudent.de",
+      "discovery_url": "https://www.formulastudent.de/?886",
+      "deadline": null,
+      "deadline_type": "tbd",
+      "eligibility_verdict": "Probably Eligible",
+      "eligibility_notes": "Open to university teams; persona is a German-university ME undergrad (year 3) and could join a university FSG team. Team registration for 2027 not yet open (2026 registration opened ~30 Jan 2026); event 10-15 Aug 2027, Hockenheim.",
+      "source_tier": "A",
+      "verification_status": "verified_official",
+      "region": "Germany",
+      "notes": "Event date confirmed via official fetch (Aug 10-15 2027). Registration window expected Jan 2027 — watch the FSG handbook. Exploit layer (automotive/ME)."
+    },
+    {
+      "title": "RoboCup 2027 World Championship (Nuremberg) + German Junior Finale",
+      "organization": "RoboCup Germany / German RoboCup Committee",
+      "category": "competition",
+      "official_url": "https://robocup.de/en/",
+      "discovery_url": "https://robocup.de/en/major",
+      "deadline": "2027-06-21",
+      "deadline_type": "fixed",
+      "eligibility_verdict": "Probably Eligible",
+      "eligibility_notes": "Major leagues open to university/research teams (Soccer, Rescue, @Home, Smart Manufacturing); Junior Finale 09-12 Mar 2027 open to school/university student teams. Persona (ME, robotics interest, C++/CAD) fits Rescue/@Home/SML. Needs a team.",
+      "source_tier": "A",
+      "verification_status": "verified_official",
+      "region": "Germany",
+      "notes": "World Championship 15-21 Jun 2027, Messe Nürnberg (home game, 30th anniversary). Verified via fetch of /en/major. Adjacent layer (robotics)."
+    },
+    {
+      "title": "NHK Student Robocon 2027 (ABU Robocon Japan qualifier)",
+      "organization": "NHK / NHK Enterprise",
+      "category": "competition",
+      "official_url": "https://official-robocon.com/gakusei/",
+      "discovery_url": "https://www.kyusan-u.ac.jp/J/kougaku/tb/ushimi/robot_studio/nhk_robocon.html",
+      "deadline": null,
+      "deadline_type": "tbd",
+      "eligibility_verdict": "Probably Eligible",
+      "eligibility_notes": "Open to university and kosen students; entry via document screening + 2 video screenings. Persona is a university ME student (can join a uni team). 2027 rules expected ~Oct 2026; national contest typically June. No explicit language requirement stated.",
+      "source_tier": "A",
+      "verification_status": "verified_official",
+      "region": "Japan",
+      "notes": "Official URL recovered from university page link. Exploit layer (robotics, Japan)."
+    },
+    {
+      "title": "Student Safety Technology Design Competition (SSTDC) 2027 cycle",
+      "organization": "Society of Automotive Engineers of Japan (JSAE)",
+      "category": "project",
+      "official_url": "https://en.jsae.or.jp/assoc/event/student/sstdc/",
+      "discovery_url": "https://en.jsae.or.jp/assoc/event/student/sstdc/entry/",
+      "deadline": null,
+      "deadline_type": "tbd",
+      "eligibility_verdict": "Probably Eligible",
+      "eligibility_notes": "Teams of university/graduate students propose automotive safety-tech ideas; final includes functional-model demo + manufacturer networking; up to $3,000 build subsidy. 2026 entry closed 24 Aug 2026 (final 18 Jan 2027); 2027 cycle expected to open ~mid-2027. Persona (ME, automotive) is a strong fit.",
+      "source_tier": "A",
+      "verification_status": "verified_official",
+      "region": "Japan",
+      "notes": "Adjacent layer (automotive safety / design project). Verified via official fetch; note 2026 cycle entry already closed."
+    },
+    {
+      "title": "Volkswagen Duales Studium Wirtschaftsingenieurwesen Schwerpunkt Maschinenbau 2027",
+      "organization": "Volkswagen AG",
+      "category": "education",
+      "official_url": null,
+      "discovery_url": "https://www.getclera.com/jobs/volkswagen-group/duales-studium-wirtschaftsingenieurwesen-schwerpunkt-maschinenbau-w-m-d-2027-zicv22lube9w",
+      "deadline": "2027-04-30",
+      "deadline_type": "fixed",
+      "eligibility_verdict": "Probably Eligible",
+      "eligibility_notes": "Dual study program (B.Sc.) with VW, start Sep 2027; requires Abitur (avg ≤2.7), German B2, mechanical/technical interest. Persona is a German-native ME student — fits. Note: it is a dual-study track, not a standard Werkstudent internship.",
+      "source_tier": "C",
+      "verification_status": "partially_verified",
+      "region": "Germany",
+      "notes": "Career/education layer. Discovered via aggregator; official VW careers path not separately fetched (URL not invented). Application window 01.08.2026-30.04.2027."
+    },
+    {
+      "title": "Magna Powertrain Duales Studium Mechatronik (B.Eng.) 2027",
+      "organization": "Magna Powertrain",
+      "category": "career",
+      "official_url": "https://www.magnacareers.com",
+      "discovery_url": "https://builtin.com/job/duales-studium-mechatronik-b-eng-2027-m-w-x/11126818",
+      "deadline": null,
+      "deadline_type": "rolling",
+      "eligibility_verdict": "Probably Eligible",
+      "eligibility_notes": "3-year dual Mechatronics B.Eng. with DHBW Mosbach, start Sep 2027; automotive/robotics/hardware focus. Persona (ME, robotics, CAD/C++) is a fit. Requires Hochschulreife.",
+      "source_tier": "C",
+      "verification_status": "partially_verified",
+      "region": "Germany",
+      "notes": "Career/adjacent layer (automotive mechatronics). Aggregator discovery; official path not re-fetched."
+    },
+    {
+      "title": "SUZUMO Internship (2028 new graduates) — preparing",
+      "organization": "Suzumo Machinery Co., Ltd.",
+      "category": "career",
+      "official_url": "https://www.suzumo.co.jp/recruit/internship",
+      "discovery_url": "https://www.suzumo.co.jp/recruit/internship",
+      "deadline": null,
+      "deadline_type": "tbd",
+      "eligibility_verdict": "Unknown",
+      "eligibility_notes": "Live official page now shows '2028年新卒 インターンシップ（予定）現在準備中' — details (CAD/control experience, previously listed for mechanical/EE/info majors) not yet published. Persona (ME) likely eligible once open.",
+      "source_tier": "A",
+      "verification_status": "partially_verified",
+      "region": "Japan",
+      "notes": "Explore/adjacent layer (JP mechanical internship). Stale search snippet conflicted with live page — resolved in favour of fetched official page. Watch for opening."
+    },
+    {
+      "title": "ET Robocon (Embedded Technology Robot Contest)",
+      "organization": "ET Robocon Committee (Japan)",
+      "category": "competition",
+      "official_url": null,
+      "discovery_url": "https://wonder.litalico.jp/news/column2108-8",
+      "deadline": null,
+      "deadline_type": "tbd",
+      "eligibility_verdict": "Probably Eligible",
+      "eligibility_notes": "Contest for students/embedded & IT engineers (high-school+); beginner to advanced classes; emphasizes software on real hardware. Persona (ME, C++, robotics) is a plausible fit. Official URL not fetched/confirmed.",
+      "source_tier": "C",
+      "verification_status": "unverified",
+      "region": "Japan",
+      "notes": "Explore layer (embedded/robotics, non-obvious). Discovery only via aggregator; canonical source not verified within budget."
+    }
+  ],
+  "excluded": [
+    {
+      "title": "AMADA 5Days Internship (2027 graduates)",
+      "reason": "Explicitly for 2027 graduates (2027年卒); persona graduates 2028-09, so graduation-window mismatch → Probably Ineligible. Excluded to avoid a mismatched recommendation."
+    },
+    {
+      "title": "Formula SAE Japan 2026 / RoboCup Japan Open 2026",
+      "reason": "Both already held (Aug 2026 / Apr 2026); expired. 2027 editions not yet announced within search budget — flagged as watch-items rather than recommended."
+    }
+  ],
+  "dedupe_clusters": 0,
+  "run_notes": "Followed the skill: ran scripts/locales.py (mode A → regions germany+japan, primary de-DE+ja-JP, optional en), then a category×layer×language matrix across competition/career/project/education with German AND Japanese queries (exploit/adjacent/explore). Verified facts on Tier-A official pages via 5 fetches; separated discovery_url (often C) from official_url; applied trust tiers and 5-level eligibility. Key contrasts vs bare: surfaced 2027 (not 2026) editions, added JP robotics (NHK Robocon, SSTDC, SUZUMO) and DE dual-study tracks, and correctly excluded the 2027-graduate AMADA internship on graduation-window grounds. Explore layer thin (only ET Robocon) due to 6-search budget; no FSAE-Japan-2027 or DAAD item discovered."
+}

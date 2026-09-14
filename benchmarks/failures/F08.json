@@ -1,0 +1,12 @@
+{
+  "id": "F08",
+  "type": "ranking_failure",
+  "persona": "iot-embedded",
+  "query": "(whole run)",
+  "expected": "radar >= bare on useful count",
+  "actual": "radar 3/8 useful vs bare 4/10 — radar worse on its 'home' persona",
+  "source": "_metrics.json",
+  "severity": "high",
+  "cause": "radar emitted more unverifiable aggregator items and two expired competitions, diluting precision",
+  "fix_candidate": "precision gate: drop/flag items failing F02/F03 rules before ranking"
+}

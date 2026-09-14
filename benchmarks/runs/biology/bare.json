@@ -1,0 +1,143 @@
+{
+  "persona": "biology",
+  "mode": "bare",
+  "timestamp": "2026-09-14",
+  "budget": {
+    "web_searches_used": 6,
+    "fetches_used": 0
+  },
+  "queries": [
+    "undergraduate biology research opportunity Germany 2026 2027 summer",
+    "DAAD undergraduate research scholarship biology 2026",
+    "biology summer research internship Europe 2026 undergraduate student",
+    "biology undergraduate conference Europe 2026 student genomics ecology",
+    "undergraduate research scholarship Netherlands biology 2026 funding EU student",
+    "Erasmus traineeship biology undergraduate Europe 2026"
+  ],
+  "locales": null,
+  "categories_searched": [
+    "research",
+    "funding",
+    "event",
+    "career"
+  ],
+  "results": [
+    {
+      "title": "DAAD RISE Germany",
+      "organization": "DAAD (German Academic Exchange Service)",
+      "category": "research",
+      "official_url": "https://www.daad.de/rise/en/rise-germany/",
+      "discovery_url": "https://www.daad.de/rise/en/rise-germany/",
+      "deadline": "2026-11-30",
+      "deadline_type": "fixed",
+      "eligibility_verdict": "Probably Ineligible",
+      "eligibility_notes": "Program targets undergraduates enrolled at universities in North America, the UK and Ireland. Persona is enrolled at a German (EU) university, so likely does not qualify. Bare search surfaced it but the country-of-enrollment restriction was not confirmed by a page fetch.",
+      "source_tier": "A",
+      "verification_status": "partially_verified",
+      "region": "Germany",
+      "notes": "Monthly stipend ~€934-992; 3-month summer placement; applications 15 Oct-30 Nov 2026."
+    },
+    {
+      "title": "Biozentrum Research Summer (University of Basel)",
+      "organization": "University of Basel, Biozentrum",
+      "category": "research",
+      "official_url": "https://biozentrum.unibas.ch/researchsummer",
+      "discovery_url": "https://biozentrum.unibas.ch/researchsummer",
+      "deadline": "2026-02-25",
+      "deadline_type": "fixed",
+      "eligibility_verdict": "Eligible",
+      "eligibility_notes": "Open to Bachelor students in Biology and related fields; explicitly requires Swiss or EU citizenship (persona is EU citizen). Ideal for students at end of 2nd year.",
+      "source_tier": "A",
+      "verification_status": "partially_verified",
+      "region": "Switzerland",
+      "notes": "7-9 weeks, stipend CHF 1,736/month. 2026 deadline passed; 2027 window expected similar (Jan-Feb)."
+    },
+    {
+      "title": "EPFL School of Life Sciences International Summer Research Program",
+      "organization": "EPFL (École Polytechnique Fédérale de Lausanne)",
+      "category": "research",
+      "official_url": "https://www.epfl.ch/schools/sv/education/summer-research-program/",
+      "discovery_url": "https://eduqette.com/directory/epfl-summer-research-program-school-of-life-sciences/",
+      "deadline": "2026-11-15",
+      "deadline_type": "fixed",
+      "eligibility_verdict": "Probably Eligible",
+      "eligibility_notes": "Bachelor students who have completed at least 2 years; biology among eligible fields. Persona is year 2 (completing 2nd year by summer) - likely meets. High GPA expected.",
+      "source_tier": "A",
+      "verification_status": "partially_verified",
+      "region": "Switzerland",
+      "notes": "8 weeks, stipend ~CHF 3,600. 2027 deadline expected Nov 2026."
+    },
+    {
+      "title": "Max Planck School Matter to Life - Undergraduate Research Opportunity (URO)",
+      "organization": "Max Planck School Matter to Life",
+      "category": "research",
+      "official_url": "https://mattertolife.maxplanckschools.org/uro-research-internship",
+      "discovery_url": "https://www.opportunitynest.org/opportunity/max-planck-school-matter-to-life-uro-germany",
+      "deadline": "2026-10-01",
+      "deadline_type": "fixed",
+      "eligibility_verdict": "Probably Eligible",
+      "eligibility_notes": "Bachelor students in biology/related fields; requires GPA >=1.7 (German scale) and enrollment before & during placement. Persona GPA not provided -> cannot confirm GPA bar.",
+      "source_tier": "A",
+      "verification_status": "partially_verified",
+      "region": "Germany",
+      "notes": "10-week fully funded internship; application window 1 Aug-1 Oct each year."
+    },
+    {
+      "title": "Amgen Scholars Programme - LMU Munich",
+      "organization": "LMU Munich / Amgen Foundation",
+      "category": "research",
+      "official_url": "https://amgenscholars.com/university/ludwig-maximilians-universitaet-muenchen-germany/",
+      "discovery_url": "https://amgenscholars.com/university/ludwig-maximilians-universitaet-muenchen-germany/",
+      "deadline": "2026-02-01",
+      "deadline_type": "fixed",
+      "eligibility_verdict": "Probably Eligible",
+      "eligibility_notes": "Open to undergraduates; 9-week lab research. 2026 deadline passed; 2027 cycle expected to open late 2026. Persona year 2 likely meets year requirement.",
+      "source_tier": "B",
+      "verification_status": "partially_verified",
+      "region": "Germany",
+      "notes": "Program dates 26 Jun-5 Sep 2026; next cycle ~2027."
+    },
+    {
+      "title": "Erasmus+ Traineeship (Slovenian Forestry Institute host offer)",
+      "organization": "Erasmus+ / Slovenian Forestry Institute",
+      "category": "research",
+      "official_url": "https://erasmus-plus.ec.europa.eu/opportunities/opportunities-for-individuals/students/traineeships-abroad",
+      "discovery_url": "https://euraxess.ec.europa.eu/jobs/hosting/research-internship-wood-anatomy-erasmus-traineeship-laboratory-wood-anatomy-slovenian",
+      "deadline": "2026-09-15",
+      "deadline_type": "fixed",
+      "eligibility_verdict": "Eligible",
+      "eligibility_notes": "Open to students at institutions holding an Erasmus Charter; EU citizen enrolled in a German university qualifies. Specific host offer deadline 15 Sep 2026; general traineeships are rolling via home university.",
+      "source_tier": "A",
+      "verification_status": "partially_verified",
+      "region": "Slovenia / Europe",
+      "notes": "2-12 months; funding via home university Erasmus office. Host offer is a hosting placement (no salary); Erasmus grant covers living costs."
+    },
+    {
+      "title": "UMC Utrecht Student Awards & Scholarships",
+      "organization": "UMC Utrecht",
+      "category": "funding",
+      "official_url": "https://www.umcutrecht.nl/en/prijzen-en-beurzen",
+      "discovery_url": "https://www.umcutrecht.nl/en/prijzen-en-beurzen",
+      "deadline": "2026-05-01",
+      "deadline_type": "fixed",
+      "eligibility_verdict": "Probably Ineligible",
+      "eligibility_notes": "Most awards target Master's students or Bachelor honours-program students (e.g., Talma Eykman, Suzanne Hovinga require honours/high marks). Persona is a plain 2nd-year Bachelor (honours not confirmed) -> likely does not meet. Some require enrollment at Utrecht.",
+      "source_tier": "A",
+      "verification_status": "partially_verified",
+      "region": "Netherlands",
+      "notes": "Cash prizes EUR 500-2,500; 2026 deadlines passed."
+    }
+  ],
+  "excluded": [
+    {
+      "title": "Genomica Student Biotechnology & Genetics Conference (Krakow)",
+      "reason": "Event already occurred 15-17 May 2026; not current as of Sep 2026."
+    },
+    {
+      "title": "NL Scholarship (Netherlands)",
+      "reason": "Open only to non-EEA international students; persona is an EU citizen -> ineligible."
+    }
+  ],
+  "dedupe_clusters": 0,
+  "run_notes": "Plain-assistant run using 6 WebSearches, 0 fetches. Relied on search snippets. Surfaced RISE Germany but did not verify the North-America/UK/Ireland enrollment restriction (marked Probably Ineligible with uncertainty). No locale strategy, no category-coverage plan, no trust-tier discipline. No German-language queries used despite German target."
+}

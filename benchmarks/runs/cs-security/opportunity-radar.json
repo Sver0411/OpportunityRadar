@@ -1,0 +1,141 @@
+{
+  "persona": "cs-security",
+  "mode": "opportunity-radar",
+  "timestamp": "2026-09-14",
+  "budget": {
+    "web_searches_used": 6,
+    "fetches_used": 6
+  },
+  "queries": [
+    "National Cyber League fall 2026 registration CTF students cybersecurity",
+    "MLH Fellowship open source 2027 application cohorts students remote",
+    "LFX Mentorship Linux Foundation 2027 security application students",
+    "CyberCorps Scholarship for Service 2027 application deadline undergraduate US citizen",
+    "NSF REU cybersecurity summer 2027 undergraduate research application",
+    "open source security mentorship program students remote 2026 2027"
+  ],
+  "locales": {
+    "primary": ["en-US"],
+    "optional": []
+  },
+  "categories_searched": ["competition", "open_source", "research", "funding", "career"],
+  "results": [
+    {
+      "title": "National Cyber League (NCL) Fall 2026 Season",
+      "organization": "National Cyber League (Cyber Skyline)",
+      "category": "competition",
+      "official_url": "https://nationalcyberleague.org/competition",
+      "discovery_url": "https://nationalcyberleague.org/competition",
+      "deadline": "2026-10-09",
+      "deadline_type": "fixed",
+      "eligibility_verdict": "Eligible",
+      "eligibility_notes": "Open to enrolled US/Canadian postsecondary students (college included). Persona is a US-citizen junior CS undergrad -> explicitly qualifies as a Student Player. $45 regular / $55 late registration.",
+      "source_tier": "A",
+      "verification_status": "verified_official",
+      "region": "us",
+      "notes": "CTF-style cyber competition; Individual Game Oct 23-25, Team Game Nov 6-8 2026. Categories (OSINT, crypto, forensics, web app sec, exploitation) match security interest. Earns employer-recognized Scouting Report."
+    },
+    {
+      "title": "MLH Fellowship - Open Source Track",
+      "organization": "Major League Hacking (MLH)",
+      "category": "open_source",
+      "official_url": "https://fellowship.mlh.com/programs/open-source",
+      "discovery_url": "https://fellowship.mlh.com/programs/open-source",
+      "deadline": null,
+      "deadline_type": "rolling",
+      "eligibility_verdict": "Eligible",
+      "eligibility_notes": "18+, proficient English, can code in >=1 language, reside in a non-embargoed country, commit 20 hrs/wk for 12 weeks. Persona: US citizen (non-embargoed), native English, Python+Git, junior -> Eligible. Open to students and non-students.",
+      "source_tier": "A",
+      "verification_status": "verified_official",
+      "region": "remote",
+      "notes": "Remote, year-round rolling cohorts (Spring/Summer/Fall). Need-based educational stipend. Contributes to real OSS projects with mentorship. CAUTION: requires 20 hrs/wk; persona listed 15 hrs/wk available - verify capacity before applying."
+    },
+    {
+      "title": "LFX Mentorship Program (Linux Foundation) - Security track",
+      "organization": "The Linux Foundation",
+      "category": "open_source",
+      "official_url": "https://mentorship.lfx.linuxfoundation.org/",
+      "discovery_url": "https://www.linuxfoundation.org/blog/from-campus-to-community-part-4-how-academia-plugs-in",
+      "deadline": null,
+      "deadline_type": "rolling",
+      "eligibility_verdict": "Probably Eligible",
+      "eligibility_notes": "No age limit; open to students and non-students; project catalog includes Security (~10% of categories per LF docs). Persona (US citizen, CS junior, Python/Linux/Git) fits. Specific security-project slot availability and next application window not confirmed on the JS-rendered page.",
+      "source_tier": "A",
+      "verification_status": "partially_verified",
+      "region": "remote",
+      "notes": "Three terms/year; stipend varies by project. Security-relevant projects (OpenSSF, Sigstore, etc.) align with interests. Live open projects listed on the mentorship platform - check there for current Security openings."
+    },
+    {
+      "title": "CyberCorps: Scholarship for Service (SFS)",
+      "organization": "NSF / U.S. Office of Personnel Management (OPM)",
+      "category": "funding",
+      "official_url": "https://www.sfs.opm.gov/",
+      "discovery_url": "https://www.sfs.opm.gov/",
+      "deadline": null,
+      "deadline_type": "tbd",
+      "eligibility_verdict": "Probably Eligible",
+      "eligibility_notes": "Must be US citizen/PR, full-time student at a PARTICIPATING school, junior/senior with >=2 years remaining, GPA 3.0+, and agree to post-grad federal cybersecurity service. Persona: US citizen, junior, grad 2028-05 (>=2 yrs), CS -> likely qualifies EXCEPT school participation is unknown (no school in profile).",
+      "source_tier": "A",
+      "verification_status": "verified_official",
+      "region": "us",
+      "notes": "Full tuition + $27k/yr undergrad stipend + $6k pro dev. Deadlines are school-specific (e.g. WSU Nov 1 2026 for Spring 2027; many schools Feb-Apr 2027). Confirm your school runs an SFS program, then apply there."
+    },
+    {
+      "title": "NSF REU Site: Frontier Technologies in Biometrics and Authentication (2027 Cohort)",
+      "organization": "University at Buffalo (NSF-funded)",
+      "category": "research",
+      "official_url": "https://cse.buffalo.edu/~wenyaoxu/project/reubiometrics.html",
+      "discovery_url": "https://cse.buffalo.edu/~wenyaoxu/project/reubiometrics.html",
+      "deadline": "2027-03-15",
+      "deadline_type": "fixed",
+      "eligibility_verdict": "Eligible",
+      "eligibility_notes": "US Citizen/PR, basic programming (Python/Java/C/C++ etc), preferred GPA 3.0+, engineering/science major. Persona: US citizen, CS junior, Python -> Eligible. On-site Buffalo, 10 weeks.",
+      "source_tier": "A",
+      "verification_status": "verified_official",
+      "region": "us",
+      "notes": "Summer 2027 (May 29-Aug 6); >=$5k stipend + housing. Cybersecurity-adjacent (authentication/biometrics). Fits the 2027-06~08 summer availability window. On-site, not remote."
+    },
+    {
+      "title": "REU Site: Multi-disciplinary Research with the FABRIC Network (Summer 2027)",
+      "organization": "RENCI / UNC Chapel Hill (NSF)",
+      "category": "research",
+      "official_url": "https://reusite.renci.org/home",
+      "discovery_url": "https://reusite.renci.org/home",
+      "deadline": null,
+      "deadline_type": "tbd",
+      "eligibility_verdict": "Probably Eligible",
+      "eligibility_notes": "Targeted at undergraduate students; NSF REU generally requires US citizen/PR. Persona (US citizen, junior CS) likely qualifies. Exact 2027 dates not yet posted - page says 'visit our site in January' (2026 cycle closed Apr 10).",
+      "source_tier": "A",
+      "verification_status": "partially_verified",
+      "region": "us",
+      "notes": "Research at the intersection of networking, distributed systems, ML and cybersecurity (ML-driven security, P4/FPGA). 9 weeks. Applications expected to open ~Jan 2027; check back then."
+    },
+    {
+      "title": "OpenSSF Mentorship Program (security-focused open source)",
+      "organization": "OpenSSF (Linux Foundation)",
+      "category": "open_source",
+      "official_url": "https://mentorship.lfx.linuxfoundation.org/",
+      "discovery_url": "https://www.castbox.fm/episode/Empowering-New-Maintainers%3A-Inside-the-OpenSSF-Mentorship-Program-id6119147-id920953995",
+      "deadline": null,
+      "deadline_type": "tbd",
+      "eligibility_verdict": "Probably Eligible",
+      "eligibility_notes": "Open to students; security-focused OSS mentorship (projects gittuf, rstuf, SBOMit, Minder). Persona fits. 2027 cycle dates not yet posted on any official page - discovery came from a podcast recap of the 2026 cycle.",
+      "source_tier": "D",
+      "verification_status": "unverified",
+      "region": "remote",
+      "notes": "2026 cycle closed (apps Apr 12 2026); next paid cycle dates TBD. Strong security+open_source fit - monitor the LFX mentorship platform in early 2027. Listed as explore given unconfirmed 2027 window."
+    }
+  ],
+  "excluded": [
+    {
+      "title": "NYU Software Supply Chain Security Operations Center (NSOC)",
+      "reason": "Restricted to NYU Tandon master's students; persona is a US undergrad (junior). Ineligible by education level (explicit hard constraint)."
+    },
+    {
+      "title": "CodeMore Cybersecurity Internship 2026",
+      "reason": "India-focused free-certificate internship; deadline 2026-04-30 already passed (expired) and not aligned with US/remote security goals. Excluded as expired + off-target geography."
+    }
+  ],
+  "dedupe_clusters": 0,
+  "run_notes": "Locale plan from locales.py: regions=us, primary=en-US, load generic.md + us.md (Mode B reweighting applied: competition/open_source/research/funding emphasized over career). Persona = US citizen, junior CS, security+open_source, summer-2027 availability. 6 WebSearches + 6 WebFetches used; 1 fetch (MLH) hit a host redirect (.io->.com) and was re-fetched in place. Eligibility note: US-citizen status removes work-authorization/sponsorship risk across all items. Not searched due to budget: Google Summer of Code 2027 (typically opens ~Feb-Mar 2027) - recommend a follow-up search. bare.json left untouched."
+}

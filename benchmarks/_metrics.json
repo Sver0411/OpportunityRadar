@@ -1,0 +1,277 @@
+{
+  "overall": {
+    "bare": {
+      "n": 65,
+      "useful": 30,
+      "verified_pct": 40,
+      "elig_pct": 32,
+      "avg_relevance": 2.83,
+      "avg_eligibility": 1.37,
+      "avg_trust": 2.16,
+      "avg_novelty": 1.54,
+      "avg_actionability": 1.65
+    },
+    "opportunity-radar": {
+      "n": 63,
+      "useful": 48,
+      "verified_pct": 43,
+      "elig_pct": 54,
+      "avg_relevance": 2.82,
+      "avg_eligibility": 2.32,
+      "avg_trust": 2.27,
+      "avg_novelty": 1.87,
+      "avg_actionability": 2.25
+    }
+  },
+  "personas": {
+    "biology": {
+      "bare": {
+        "n": 7,
+        "useful": 4,
+        "verified_pct": 0,
+        "elig_pct": 29,
+        "avg_relevance": 2.71,
+        "avg_eligibility": 1.43,
+        "avg_trust": 2,
+        "avg_novelty": 1.71,
+        "avg_actionability": 2
+      },
+      "opportunity-radar": {
+        "n": 8,
+        "useful": 7,
+        "verified_pct": 62,
+        "elig_pct": 75,
+        "avg_relevance": 2.62,
+        "avg_eligibility": 2.75,
+        "avg_trust": 2.5,
+        "avg_novelty": 1.88,
+        "avg_actionability": 2.62
+      },
+      "radar_only_useful": 3,
+      "radar_only_titles": [
+        "HU Berlin Humboldt Internship Program - CropScience Research",
+        "Deutschlandstipendium (Germany Scholarship)",
+        "EASL Congress 2027 (abstract submission / student attendance)"
+      ]
+    },
+    "business": {
+      "bare": {
+        "n": 8,
+        "useful": 1,
+        "verified_pct": 38,
+        "elig_pct": 0,
+        "avg_relevance": 2.88,
+        "avg_eligibility": 0.38,
+        "avg_trust": 1.88,
+        "avg_novelty": 1.12,
+        "avg_actionability": 0.38
+      },
+      "opportunity-radar": {
+        "n": 7,
+        "useful": 4,
+        "verified_pct": 57,
+        "elig_pct": 29,
+        "avg_relevance": 3,
+        "avg_eligibility": 1.86,
+        "avg_trust": 2.14,
+        "avg_novelty": 1.57,
+        "avg_actionability": 1.86
+      },
+      "radar_only_useful": 3,
+      "radar_only_titles": [
+        "IE Business Case Competition 2027 (6th Edition)",
+        "MERMC 2026 Singapore Final: Agentic AI Edition",
+        "BNP Paribas APAC Long Internship 2027 – Global Markets (Singapore)"
+      ]
+    },
+    "cs-security": {
+      "bare": {
+        "n": 9,
+        "useful": 5,
+        "verified_pct": 33,
+        "elig_pct": 78,
+        "avg_relevance": 2.89,
+        "avg_eligibility": 2.56,
+        "avg_trust": 2,
+        "avg_novelty": 2,
+        "avg_actionability": 1.89
+      },
+      "opportunity-radar": {
+        "n": 7,
+        "useful": 7,
+        "verified_pct": 57,
+        "elig_pct": 86,
+        "avg_relevance": 3,
+        "avg_eligibility": 2.86,
+        "avg_trust": 2.57,
+        "avg_novelty": 2,
+        "avg_actionability": 2.43
+      },
+      "radar_only_useful": 6,
+      "radar_only_titles": [
+        "National Cyber League (NCL) Fall 2026 Season",
+        "MLH Fellowship - Open Source Track",
+        "LFX Mentorship Program (Linux Foundation) - Security track",
+        "NSF REU Site: Frontier Technologies in Biometrics and Authentication (2027 Cohort)",
+        "REU Site: Multi-disciplinary Research with the FABRIC Network (Summer 2027)"
+      ]
+    },
+    "design": {
+      "bare": {
+        "n": 6,
+        "useful": 4,
+        "verified_pct": 83,
+        "elig_pct": 67,
+        "avg_relevance": 2.83,
+        "avg_eligibility": 2.33,
+        "avg_trust": 2.5,
+        "avg_novelty": 2,
+        "avg_actionability": 2.17
+      },
+      "opportunity-radar": {
+        "n": 7,
+        "useful": 6,
+        "verified_pct": 29,
+        "elig_pct": 100,
+        "avg_relevance": 3,
+        "avg_eligibility": 3,
+        "avg_trust": 2.14,
+        "avg_novelty": 1.86,
+        "avg_actionability": 2.29
+      },
+      "radar_only_useful": 5,
+      "radar_only_titles": [
+        "Global Game Jam 2027",
+        "Annecy Festival 2027 - Graduation / Short Film competition",
+        "PRIMA - concours étudiant en Design & Architecture",
+        "Bourse Créateur numérique - Fondation Jean-Luc Lagardère",
+        "Créart'UP - dispositif projets étudiants (Ville de Paris)"
+      ]
+    },
+    "environment": {
+      "bare": {
+        "n": 7,
+        "useful": 5,
+        "verified_pct": 29,
+        "elig_pct": 43,
+        "avg_relevance": 2.71,
+        "avg_eligibility": 1.43,
+        "avg_trust": 2.29,
+        "avg_novelty": 1.57,
+        "avg_actionability": 2
+      },
+      "opportunity-radar": {
+        "n": 10,
+        "useful": 7,
+        "verified_pct": 0,
+        "elig_pct": 20,
+        "avg_relevance": 2.7,
+        "avg_eligibility": 1.5,
+        "avg_trust": 2,
+        "avg_novelty": 2,
+        "avg_actionability": 1.9
+      },
+      "radar_only_useful": 7,
+      "radar_only_titles": [
+        "ECMWF Code for Earth",
+        "Climatematch Academy",
+        "EMERGE NASA Hackathon",
+        "Nepal Climate Hub Data Fellowship",
+        "Nurdle Patrol"
+      ]
+    },
+    "humanities": {
+      "bare": {
+        "n": 8,
+        "useful": 4,
+        "verified_pct": 50,
+        "elig_pct": 12,
+        "avg_relevance": 2.62,
+        "avg_eligibility": 0.62,
+        "avg_trust": 2.38,
+        "avg_novelty": 1.12,
+        "avg_actionability": 1.62
+      },
+      "opportunity-radar": {
+        "n": 8,
+        "useful": 8,
+        "verified_pct": 50,
+        "elig_pct": 75,
+        "avg_relevance": 2.62,
+        "avg_eligibility": 2.75,
+        "avg_trust": 2.5,
+        "avg_novelty": 2,
+        "avg_actionability": 2.88
+      },
+      "radar_only_useful": 8,
+      "radar_only_titles": [
+        "EHRI-UK Regional Placements",
+        "Roy Porter Prize 2026/2027 (Student Essay Prize)",
+        "History Essay Prize 2026-27",
+        "Britain and the World 2027 (#BATW2027)",
+        "Leeds International Medieval Congress 2027"
+      ]
+    },
+    "iot-embedded": {
+      "bare": {
+        "n": 10,
+        "useful": 4,
+        "verified_pct": 30,
+        "elig_pct": 40,
+        "avg_relevance": 3,
+        "avg_eligibility": 1.6,
+        "avg_trust": 1.9,
+        "avg_novelty": 1.7,
+        "avg_actionability": 1.8
+      },
+      "opportunity-radar": {
+        "n": 8,
+        "useful": 3,
+        "verified_pct": 50,
+        "elig_pct": 62,
+        "avg_relevance": 3,
+        "avg_eligibility": 2.12,
+        "avg_trust": 2.12,
+        "avg_novelty": 1.62,
+        "avg_actionability": 2
+      },
+      "radar_only_useful": 3,
+      "radar_only_titles": [
+        "Robotics System Engineering Internship (Mujin)",
+        "Nagai Laboratory (UTokyo) Undergraduate Research Internship",
+        "Zephyr RTOS 开源贡献 (good first issue)"
+      ]
+    },
+    "mech-eng": {
+      "bare": {
+        "n": 10,
+        "useful": 3,
+        "verified_pct": 60,
+        "elig_pct": 0,
+        "avg_relevance": 2.9,
+        "avg_eligibility": 0.8,
+        "avg_trust": 2.4,
+        "avg_novelty": 1.2,
+        "avg_actionability": 1.5
+      },
+      "opportunity-radar": {
+        "n": 8,
+        "useful": 6,
+        "verified_pct": 50,
+        "elig_pct": 0,
+        "avg_relevance": 2.75,
+        "avg_eligibility": 2,
+        "avg_trust": 2.25,
+        "avg_novelty": 2,
+        "avg_actionability": 2.12
+      },
+      "radar_only_useful": 3,
+      "radar_only_titles": [
+        "Student Safety Technology Design Competition (SSTDC) 2027 cycle",
+        "Magna Powertrain Duales Studium Mechatronik (B.Eng.) 2027",
+        "SUZUMO Internship (2028 new graduates) — preparing"
+      ]
+    }
+  },
+  "radar_only_total": 38
+}

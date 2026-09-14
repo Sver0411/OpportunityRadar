@@ -1,0 +1,62 @@
+{
+  "_note": "FICTIONAL TEST PERSONA — 仅用于 OpportunityRadar benchmark。不是真实用户，不代表任何真实个人；兴趣/签证/成绩均为编造。禁止当作产品示例数据使用。",
+  "persona_id": "business",
+  "display": "Business / Singapore + Global",
+  "question": "最近有什么真正值得我关注的机会？",
+  "id": "business",
+  "education": {
+    "degree": "undergraduate",
+    "major": "Business / Economics",
+    "major_family": "business_econ",
+    "current_year": 2,
+    "expected_graduation": "2029-05",
+    "school_country": "Singapore"
+  },
+  "skills": [
+    {
+      "name": "Excel"
+    },
+    {
+      "name": "presentation"
+    },
+    {
+      "name": "data analysis"
+    }
+  ],
+  "languages": [
+    {
+      "language": "English",
+      "level": "native"
+    }
+  ],
+  "interests": [
+    "business",
+    "finance",
+    "entrepreneurship"
+  ],
+  "goals": [
+    {
+      "type": "competition",
+      "priority": "high"
+    },
+    {
+      "type": "networking",
+      "priority": "medium"
+    },
+    {
+      "type": "project",
+      "priority": "medium"
+    },
+    {
+      "type": "internship",
+      "priority": "medium"
+    }
+  ],
+  "constraints": {
+    "preferred_country": [
+      "Singapore"
+    ],
+    "remote": true,
+    "weekly_time": "12"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "id": "F01",
+  "type": "expired_opportunity",
+  "persona": "environment",
+  "query": "sustainability challenge 2026 remote",
+  "expected": "closed calls excluded or marked expired",
+  "actual": "'VeneTo Stars Challenge' listed with deadline=null; judge found real deadline 2026-04-03 (past)",
+  "source": "https://venetostars.com",
+  "severity": "high",
+  "cause": "verification step did not run (all 6 fetches failed that run); a null deadline was recorded as unknown instead of being checked",
+  "fix_candidate": "when a fetch fails, do not emit the item as current — mark verification_status=unverified and either drop it or show it with an explicit 'unconfirmed deadline' warning"
+}

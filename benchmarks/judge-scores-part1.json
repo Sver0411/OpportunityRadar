@@ -1,0 +1,89 @@
+{
+  "judge": "part1",
+  "timestamp": "2026-09-14T00:00:00Z",
+  "personas": {
+    "biology": {
+      "A": [
+        {"item_id": "biology-A-1", "relevance": 3, "eligibility": 1, "trust": 2, "novelty": 1, "actionability": 2, "comment": "DAAD RISE targets N.America/UK/Ireland students; persona at German(EU) uni likely ineligible. Official daad.de url but country rule not page-confirmed (partial). Deadline 2026-11-30 future."},
+        {"item_id": "biology-A-2", "relevance": 3, "eligibility": 0, "trust": 2, "novelty": 2, "actionability": 1, "comment": "Deadline 2026-02-25 already past -> 0 eligibility. Official unibas.ch but only partially verified."},
+        {"item_id": "biology-A-3", "relevance": 3, "eligibility": 3, "trust": 2, "novelty": 2, "actionability": 3, "comment": "EPFL SV summer research; Bachelor 2yrs fits persona. Official epfl.ch url but discovery via 3rd-party eduqette; partially verified. Deadline 2026-11-15."},
+        {"item_id": "biology-A-4", "relevance": 3, "eligibility": 2, "trust": 2, "novelty": 2, "actionability": 3, "comment": "Max Planck URO; GPA>=1.7 German scale unknown for persona -> partly. Official url but via opportunitynest 3rd-party; partial. Deadline 2026-10-01."},
+        {"item_id": "biology-A-5", "relevance": 3, "eligibility": 0, "trust": 2, "novelty": 2, "actionability": 1, "comment": "Amgen LMU deadline 2026-02-01 past -> 0. Official amgenscholars.com, partial only."},
+        {"item_id": "biology-A-6", "relevance": 2, "eligibility": 3, "trust": 2, "novelty": 2, "actionability": 3, "comment": "Erasmus+ host offer (wood anatomy) tangential to biology but eligible EU student. Official ec.europa.eu; partial. Deadline 2026-09-15 (tomorrow)."},
+        {"item_id": "biology-A-7", "relevance": 2, "eligibility": 1, "trust": 2, "novelty": 1, "actionability": 1, "comment": "UMC Utrecht awards target Masters/honours; plain Y2 Bachelor probably not. Deadline 2026-05-01 past. Official url partial."}
+      ],
+      "B": [
+        {"item_id": "biology-B-1", "relevance": 3, "eligibility": 3, "trust": 3, "novelty": 2, "actionability": 3, "comment": "Biozentrum Research Summer; verified official unibas.ch, eligible EU student. Deadline 2027-02-25 future."},
+        {"item_id": "biology-B-2", "relevance": 3, "eligibility": 2, "trust": 3, "novelty": 2, "actionability": 3, "comment": "Max Planck URO; verified official, GPA bar unconfirmed for persona -> partly. Deadline 2026-10-01."},
+        {"item_id": "biology-B-3", "relevance": 3, "eligibility": 3, "trust": 3, "novelty": 2, "actionability": 2, "comment": "HU Berlin HIC CropScience; verified official hu-berlin.de, eligible Y2. No fixed deadline (opens Nov 2026)."},
+        {"item_id": "biology-B-4", "relevance": 2, "eligibility": 3, "trust": 3, "novelty": 1, "actionability": 2, "comment": "Erasmus+ Traineeship general vehicle; verified official. Well-known, rolling via home univ, no fixed date."},
+        {"item_id": "biology-B-5", "relevance": 2, "eligibility": 2, "trust": 3, "novelty": 2, "actionability": 3, "comment": "Deutschlandstipendium; verified official, above-average+extra criterion unknown -> partly. Deadline 2026-12-01."},
+        {"item_id": "biology-B-6", "relevance": 3, "eligibility": 3, "trust": 2, "novelty": 2, "actionability": 3, "comment": "EPFL SV summer; official url but page not fetched this run -> partial. Deadline 2026-11-15."},
+        {"item_id": "biology-B-7", "relevance": 2, "eligibility": 3, "trust": 2, "novelty": 2, "actionability": 3, "comment": "EASL Congress 2027; conference attendance/abstract, eligible. Official easlcongress.eu partial. Deadline 2027-01-19."},
+        {"item_id": "biology-B-8", "relevance": 3, "eligibility": 3, "trust": 1, "novelty": 2, "actionability": 2, "comment": "HiWi/Werkstudent; official_url null, only 3rd-party reknownedu.com (Cloudflare-walled, unverifiable). Trust 1."}
+      ]
+    },
+    "business": {
+      "A": [
+        {"item_id": "business-A-1", "relevance": 3, "eligibility": 0, "trust": 3, "novelty": 1, "actionability": 0, "comment": "Ho Bee Land SMU challenge; deadline 2026-08-18 past -> 0. Verified official."},
+        {"item_id": "business-A-2", "relevance": 3, "eligibility": 0, "trust": 3, "novelty": 1, "actionability": 0, "comment": "ASEAN Investment Challenge; deadline 2026-08-31 past -> 0. Verified official."},
+        {"item_id": "business-A-3", "relevance": 2, "eligibility": 0, "trust": 2, "novelty": 1, "actionability": 0, "comment": "Singapore Life Science Case; deadline 2026-08-15 past -> 0. Life-science focus tangential. Snippet-only (partial)."},
+        {"item_id": "business-A-4", "relevance": 3, "eligibility": 0, "trust": 1, "novelty": 1, "actionability": 0, "comment": "SGFIN-Singlife; deadline 2026-04-22 past -> 0. Snippet only, 3rd-party -> trust 1."},
+        {"item_id": "business-A-5", "relevance": 3, "eligibility": 2, "trust": 3, "novelty": 2, "actionability": 2, "comment": "MAS Internship 2027; verified official, open undergrads but citizenship/right-to-work unknown -> partly. No fixed deadline."},
+        {"item_id": "business-A-6", "relevance": 3, "eligibility": 1, "trust": 1, "novelty": 1, "actionability": 1, "comment": "Fullerton FSGV; requires grad 2027, persona grad 2029 -> probably not. Snippet only -> trust 1."},
+        {"item_id": "business-A-7", "relevance": 3, "eligibility": 0, "trust": 1, "novelty": 1, "actionability": 0, "comment": "HSBC placement; deadline 2026-03-27 past -> 0. Aggregator (GradConnection), no official url -> trust 1."},
+        {"item_id": "business-A-8", "relevance": 3, "eligibility": 0, "trust": 1, "novelty": 1, "actionability": 0, "comment": "ASBN competition; deadline 2026-08-18 past -> 0. Snippet only -> trust 1."}
+      ],
+      "B": [
+        {"item_id": "business-B-1", "relevance": 3, "eligibility": 3, "trust": 3, "novelty": 2, "actionability": 3, "comment": "IE Business Case Comp 2027; verified official, eligible Y2. Deadline 2026-09-15 (tomorrow)."},
+        {"item_id": "business-B-2", "relevance": 3, "eligibility": 3, "trust": 3, "novelty": 2, "actionability": 3, "comment": "MERMC 2026 Singapore; verified official organizer page, free + open. Deadline 2026-10-15."},
+        {"item_id": "business-B-3", "relevance": 3, "eligibility": 2, "trust": 3, "novelty": 2, "actionability": 2, "comment": "MAS Internship 2027; verified official, citizenship unknown -> partly. No fixed deadline."},
+        {"item_id": "business-B-4", "relevance": 3, "eligibility": 1, "trust": 3, "novelty": 1, "actionability": 2, "comment": "BNP Paribas APAC; penultimate/final year required, persona Y2 grad 2029 -> probably not. Verified official."},
+        {"item_id": "business-B-5", "relevance": 3, "eligibility": 1, "trust": 1, "novelty": 1, "actionability": 1, "comment": "bp internship; penultimate-year mismatch -> probably not. official_url null, only getclera.com 3rd-party aggregator -> trust 1."},
+        {"item_id": "business-B-6", "relevance": 3, "eligibility": 1, "trust": 1, "novelty": 1, "actionability": 1, "comment": "Citi analyst; penultimate-year mismatch -> probably not. Aggregator iAgora, no official url -> trust 1."},
+        {"item_id": "business-B-7", "relevance": 3, "eligibility": 2, "trust": 1, "novelty": 2, "actionability": 1, "comment": "Olin Global Case Comp; eligibility Unknown. Official page 404; only Rice CDO aggregator -> trust 1, uncertain."}
+      ]
+    },
+    "cs-security": {
+      "A": [
+        {"item_id": "cs-security-A-1", "relevance": 3, "eligibility": 3, "trust": 2, "novelty": 2, "actionability": 2, "comment": "picoCTF/CyLab; eligible global undergrad. Official picoctf.org but 2027 deadline from 3rd-party doq.world -> partial. Deadline 2027-03-12."},
+        {"item_id": "cs-security-A-2", "relevance": 3, "eligibility": 3, "trust": 1, "novelty": 2, "actionability": 2, "comment": "GSoC 2027; eligible. Official page fetch failed; info from snippet/secondary -> trust 1."},
+        {"item_id": "cs-security-A-3", "relevance": 3, "eligibility": 3, "trust": 2, "novelty": 2, "actionability": 2, "comment": "MITRE eCTF; eligible student teams. Official ectf.mitre.org WAF-blocked; dates from snippet -> partial. Deadline 2027-01-31."},
+        {"item_id": "cs-security-A-4", "relevance": 3, "eligibility": 0, "trust": 3, "novelty": 2, "actionability": 0, "comment": "NSA Summer 2027 internship; deadline 2026-09-06 past -> 0. Verified official."},
+        {"item_id": "cs-security-A-5", "relevance": 3, "eligibility": 3, "trust": 3, "novelty": 2, "actionability": 3, "comment": "Social Engineering Competition 2027; verified official, eligible undergrad teams. Deadline 2026-12-02."},
+        {"item_id": "cs-security-A-6", "relevance": 2, "eligibility": 3, "trust": 1, "novelty": 2, "actionability": 2, "comment": "Spokane CTF; regional WA, less relevant for non-WA. Official github.io but fetch failed, date from snippet -> trust 1. Deadline 2027-02-06."},
+        {"item_id": "cs-security-A-7", "relevance": 3, "eligibility": 2, "trust": 3, "novelty": 2, "actionability": 2, "comment": "CyberCorps SFS; US citizen + participating-school unknown -> partly. Spot-checked cyser.wsu.edu/?p=2303/ — loads as valid official WSU SFS page -> trust 3."},
+        {"item_id": "cs-security-A-8", "relevance": 3, "eligibility": 3, "trust": 1, "novelty": 2, "actionability": 2, "comment": "Workiva Security/GRC intern; eligible. official_url null, only wfadigital.com 3rd-party aggregator (job now 'closed') -> trust 1. Deadline 2026-10-02."},
+        {"item_id": "cs-security-A-9", "relevance": 3, "eligibility": 3, "trust": 2, "novelty": 2, "actionability": 2, "comment": "CCDC 2027; eligible via school team. Official a-bits.org but snippet-only -> partial."}
+      ],
+      "B": [
+        {"item_id": "cs-security-B-1", "relevance": 3, "eligibility": 3, "trust": 3, "novelty": 2, "actionability": 3, "comment": "National Cyber League Fall 2026; verified official, eligible US/CA student. Deadline 2026-10-09."},
+        {"item_id": "cs-security-B-2", "relevance": 3, "eligibility": 3, "trust": 3, "novelty": 2, "actionability": 3, "comment": "MLH Fellowship Open Source; verified official, eligible. Rolling cohorts."},
+        {"item_id": "cs-security-B-3", "relevance": 3, "eligibility": 3, "trust": 2, "novelty": 2, "actionability": 2, "comment": "LFX Mentorship Security; verified official platform but JS-rendered, 2027 window unconfirmed -> partial."},
+        {"item_id": "cs-security-B-4", "relevance": 3, "eligibility": 2, "trust": 3, "novelty": 2, "actionability": 2, "comment": "CyberCorps SFS (OPM); verified official, school participation unknown -> partly."},
+        {"item_id": "cs-security-B-5", "relevance": 3, "eligibility": 3, "trust": 3, "novelty": 2, "actionability": 3, "comment": "NSF REU Biometrics Buffalo; verified official, eligible US citizen CS. Deadline 2027-03-15."},
+        {"item_id": "cs-security-B-6", "relevance": 3, "eligibility": 3, "trust": 2, "novelty": 2, "actionability": 2, "comment": "REU FABRIC Network; verified official rensci, 2027 dates TBD -> partial."},
+        {"item_id": "cs-security-B-7", "relevance": 3, "eligibility": 3, "trust": 2, "novelty": 2, "actionability": 2, "comment": "OpenSSF Mentorship; real LFX platform but 2027 cycle from podcast recap, unconfirmed -> partial."}
+      ]
+    },
+    "design": {
+      "A": [
+        {"item_id": "design-A-1", "relevance": 3, "eligibility": 3, "trust": 3, "novelty": 2, "actionability": 3, "comment": "iF DESIGN STUDENT AWARD 2027; verified official, eligible design major. Deadline 2027-02-03."},
+        {"item_id": "design-A-2", "relevance": 3, "eligibility": 3, "trust": 3, "novelty": 1, "actionability": 3, "comment": "Global Game Jam 2027; verified official, eligible. Well-known -> novelty 1. Deadline 2027-01-25."},
+        {"item_id": "design-A-3", "relevance": 3, "eligibility": 3, "trust": 2, "novelty": 2, "actionability": 2, "comment": "Annecy 2027; verified official site, 2027 submission call not confirmed -> partial."},
+        {"item_id": "design-A-4", "relevance": 3, "eligibility": 3, "trust": 2, "novelty": 2, "actionability": 2, "comment": "PRIMA concours; verified official prima-cb.com, deadline not re-read -> partial."},
+        {"item_id": "design-A-5", "relevance": 3, "eligibility": 3, "trust": 2, "novelty": 2, "actionability": 2, "comment": "Lagardere Bourse; official foundation confirms programme, amounts/dates from secondary -> partial. Deadline null."},
+        {"item_id": "design-A-6", "relevance": 3, "eligibility": 3, "trust": 2, "novelty": 2, "actionability": 2, "comment": "Créart'UP Paris; official maison-etudiante.paris but status unverified -> partial."},
+        {"item_id": "design-A-7", "relevance": 3, "eligibility": 3, "trust": 1, "novelty": 2, "actionability": 2, "comment": "UNDP Remote Graphic/Web Design internship; official_url null, only abroaducate.com 3rd-party aggregator (dubious 'Fully Funded' claim) -> trust 1. Deadline 2027-06-06."}
+      ],
+      "B": [
+        {"item_id": "design-B-1", "relevance": 3, "eligibility": 3, "trust": 3, "novelty": 2, "actionability": 3, "comment": "UX Design Awards Spring 2027; verified official, New Talent student track. Deadline 2026-11-15."},
+        {"item_id": "design-B-2", "relevance": 3, "eligibility": 3, "trust": 3, "novelty": 2, "actionability": 3, "comment": "iF DESIGN STUDENT AWARD 2027; verified official, eligible. Deadline 2027-02-03."},
+        {"item_id": "design-B-3", "relevance": 3, "eligibility": 3, "trust": 3, "novelty": 2, "actionability": 3, "comment": "Games for Change Student Challenge; verified official, ages 8-25. Sign-ups open."},
+        {"item_id": "design-B-4", "relevance": 3, "eligibility": 0, "trust": 3, "novelty": 2, "actionability": 0, "comment": "CHI PLAY 2026; deadline 2026-06-03 past -> 0. Verified official."},
+        {"item_id": "design-B-5", "relevance": 3, "eligibility": 3, "trust": 3, "novelty": 2, "actionability": 3, "comment": "GGAC x Valorant art contest; verified official ggac.com, eligible. Deadline 2026-09-30."},
+        {"item_id": "design-B-6", "relevance": 2, "eligibility": 2, "trust": 0, "novelty": 2, "actionability": 1, "comment": "SILMO Optic Design Contest; spot-checked silmoparis.com/optic-design-contest -> hard 404, official_url null -> no reliable source, trust 0."}
+      ]
+    }
+  }
+}

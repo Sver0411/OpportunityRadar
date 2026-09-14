@@ -1,0 +1,12 @@
+{
+  "id": "F07",
+  "type": "missed_opportunity",
+  "persona": "iot-embedded",
+  "query": "全国大学生物联网设计竞赛",
+  "expected": "still-live competition surfaced",
+  "actual": "bare found it, radar did not (radar spent budget on a Japanese query that false-matched)",
+  "source": "both run logs",
+  "severity": "medium",
+  "cause": "fixed 6-query budget: breadth traded against locale coverage",
+  "fix_candidate": "reserve at least one query for the user's own language/region before explore"
+}

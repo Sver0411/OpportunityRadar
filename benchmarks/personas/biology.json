@@ -1,0 +1,66 @@
+{
+  "_note": "FICTIONAL TEST PERSONA — 仅用于 OpportunityRadar benchmark。不是真实用户，不代表任何真实个人；兴趣/签证/成绩均为编造。禁止当作产品示例数据使用。",
+  "persona_id": "biology",
+  "display": "Biology / Europe",
+  "question": "最近有什么真正值得我关注的机会？",
+  "id": "biology",
+  "education": {
+    "degree": "undergraduate",
+    "major": "Biology",
+    "major_family": "lifesci_chem",
+    "current_year": 2,
+    "expected_graduation": "2029-07",
+    "school_country": "Germany"
+  },
+  "skills": [
+    {
+      "name": "R"
+    },
+    {
+      "name": "data analysis"
+    },
+    {
+      "name": "lab basics"
+    }
+  ],
+  "languages": [
+    {
+      "language": "German",
+      "level": "native"
+    },
+    {
+      "language": "English",
+      "exam": "IELTS",
+      "score": "7.0"
+    }
+  ],
+  "interests": [
+    "genomics",
+    "ecology",
+    "data"
+  ],
+  "goals": [
+    {
+      "type": "research",
+      "priority": "high"
+    },
+    {
+      "type": "funding",
+      "priority": "medium"
+    },
+    {
+      "type": "event",
+      "priority": "medium"
+    }
+  ],
+  "constraints": {
+    "preferred_country": [
+      "Germany",
+      "Netherlands"
+    ],
+    "remote": false,
+    "relocation": true,
+    "weekly_time": "20",
+    "visa": "eu_citizen"
+  }
+}

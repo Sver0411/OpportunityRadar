@@ -1,0 +1,12 @@
+{
+  "id": "F09",
+  "type": "unverified_result",
+  "persona": "design",
+  "query": "bourse / design award France 2027",
+  "expected": "official page verified",
+  "actual": "Lagardère bourse, Créart'UP, UNDP items left unverified (verified% 29 vs bare 83 on this persona)",
+  "source": "judge scores",
+  "severity": "medium",
+  "cause": "French-language official pages hard to fetch/parse within budget",
+  "fix_candidate": "accept lower verification but label it; never show unverified items in the top block"
+}

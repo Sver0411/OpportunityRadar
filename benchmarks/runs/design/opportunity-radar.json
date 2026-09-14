@@ -1,0 +1,156 @@
+{
+  "persona": "design",
+  "mode": "opportunity-radar",
+  "timestamp": "2026-09-14",
+  "budget": {
+    "web_searches_used": 6,
+    "fetches_used": 6
+  },
+  "queries": [
+    "concours design étudiant France 2026 2027 ouvert inscription",
+    "prix création numérique animation 3D France étudiant 2026 2027",
+    "festival Annecy animation appel films étudiants 2027 concours",
+    "remote design internship 2027 undergraduate open worldwide students",
+    "Global Game Jam 2027 online registration students game design",
+    "bourse aide financement projet design étudiant France 2026 2027"
+  ],
+  "locales": {
+    "primary": [
+      "fr-FR"
+    ],
+    "optional": [
+      "en"
+    ]
+  },
+  "categories_searched": [
+    "competition",
+    "funding",
+    "project",
+    "career",
+    "hobby",
+    "event"
+  ],
+  "results": [
+    {
+      "title": "iF DESIGN STUDENT AWARD 2027",
+      "organization": "iF International Forum Design",
+      "category": "competition",
+      "official_url": "https://ifdesign.com/en/if-design-student-award",
+      "discovery_url": "https://ifdesign.com/en/if-design-student-award",
+      "deadline": "2027-02-03",
+      "deadline_type": "fixed",
+      "eligibility_verdict": "Eligible",
+      "eligibility_notes": "Official page: open to student design concepts worldwide, free entry; an undergraduate Visual/Interaction Design major qualifies. Concept must map to one UN SDG (1-15). No nationality/visa bar — EU citizen, France-based is fine.",
+      "source_tier": "A",
+      "verification_status": "verified_official",
+      "region": "Global",
+      "notes": "Exploit layer (direct design-award match). EUR 50,000 prize fund; ceremony NYC June 2027."
+    },
+    {
+      "title": "Global Game Jam 2027",
+      "organization": "Global Game Jam",
+      "category": "hobby",
+      "official_url": "https://globalgamejam.org/",
+      "discovery_url": "https://globalgamejam.org/",
+      "deadline": "2027-01-25",
+      "deadline_type": "fixed",
+      "eligibility_verdict": "Eligible",
+      "eligibility_notes": "Official page: free, worldwide, all ages and skill levels; students join online or at a local site. No nationality/visa bar. A design student with a game interest qualifies; jammer registration opens 1 Dec 2026.",
+      "source_tier": "A",
+      "verification_status": "verified_official",
+      "region": "Global (online)",
+      "notes": "Hobby/explore layer (low-bar game jam; strong Blender/Figma portfolio exercise). Jam runs 25-31 Jan 2027."
+    },
+    {
+      "title": "Annecy Festival 2027 - Graduation / Short Film competition",
+      "organization": "CITIA - Annecy International Animation Film Festival",
+      "category": "competition",
+      "official_url": "https://www.annecyfestival.com/",
+      "discovery_url": "https://www.annecyfestival.com/",
+      "deadline": null,
+      "deadline_type": "tbd",
+      "eligibility_verdict": "Probably Eligible",
+      "eligibility_notes": "Official site confirms the 2027 festival (13-19 June 2027) and a graduation/short-film competitive section, but the 2027 submission call status was not confirmed on the fetched page (secondary sources say it opens ~fall 2026, deadline ~Feb 2027). A 3rd-year design student with an animation film could enter the student/graduation category. Entry fee ~EUR 30 (shorts/graduation). Student-status rule not re-read this run.",
+      "source_tier": "A",
+      "verification_status": "partially_verified",
+      "region": "France (Annecy)",
+      "notes": "Exploit layer (animation/film interest). Verify call opening and exact student-category rules on the Annecy Network portal before submitting."
+    },
+    {
+      "title": "PRIMA - concours étudiant en Design & Architecture",
+      "organization": "PRIMA (Centre d'art, Opal coast)",
+      "category": "competition",
+      "official_url": "https://www.prima-cb.com/concours",
+      "discovery_url": "https://www.prima-cb.com/contact",
+      "deadline": null,
+      "deadline_type": "unknown",
+      "eligibility_verdict": "Probably Eligible",
+      "eligibility_notes": "Official organizer site runs a student Design & Architecture competition; the 2026 edition was open (info session Feb 2026). Exact 2026/2027 deadline and eligibility (student year, possible Hauts-de-France regional scope) were not re-read this run — verify on prima-cb.com. A France-based design student likely qualifies.",
+      "source_tier": "A",
+      "verification_status": "partially_verified",
+      "region": "France (Hauts-de-France)",
+      "notes": "Exploit layer (France + design). Verify edition and deadline on the official site."
+    },
+    {
+      "title": "Bourse Créateur numérique - Fondation Jean-Luc Lagardère",
+      "organization": "Fondation Jean-Luc Lagardère",
+      "category": "funding",
+      "official_url": "https://fondation-jeanluclagardere.com/",
+      "discovery_url": "https://www.european-funding-guide.eu/node/57948",
+      "deadline": null,
+      "deadline_type": "unknown",
+      "eligibility_verdict": "Probably Eligible",
+      "eligibility_notes": "Secondary source: EUR 15,000 Digital Creation grant, under 30, any nationality, French-language project required, individual or team up to 3; a design student with a digital/animation project qualifies. EU citizen, France-based - no nationality bar. The 2026 deadline (21 June) passed; 2027 dates not yet confirmed on the official site.",
+      "source_tier": "C",
+      "verification_status": "unverified",
+      "region": "France",
+      "notes": "Funding/adjacent layer (digital creation, animation). Official foundation homepage confirms the digital-creation bourse programme; amounts and 2027 dates from a secondary aggregator, unconfirmed."
+    },
+    {
+      "title": "Créart'UP - dispositif projets étudiants (Ville de Paris)",
+      "organization": "Maison étudiante de la Ville de Paris",
+      "category": "project",
+      "official_url": "https://maison-etudiante.paris/zh/vos-projets/creartup/",
+      "discovery_url": "https://maison-etudiante.paris/zh/vos-projets/creartup/",
+      "deadline": null,
+      "deadline_type": "unknown",
+      "eligibility_verdict": "Probably Eligible",
+      "eligibility_notes": "Official Paris city page: Créart'UP funds bold student artistic/cultural projects (incl. design, visual/audiovisual arts, cultural apps/tools) for students in Paris/Île-de-France or graduates within 2 years. A France-based design student with a project likely qualifies; the 2026-2027 deadline and full rules were not deep-read this run - verify on maison-etudiante.paris.",
+      "source_tier": "A",
+      "verification_status": "unverified",
+      "region": "France (Paris / Île-de-France)",
+      "notes": "Project layer (France, design project funding/incubation). Confirm the Île-de-France residency rule."
+    },
+    {
+      "title": "UNDP Remote Graphic & Web Design Internship",
+      "organization": "United Nations Development Programme (UNDP)",
+      "category": "career",
+      "official_url": null,
+      "discovery_url": "https://www.abroaducate.com/scholarships/8036c52c-643b-4361-95ad-ad02e5b329fa",
+      "deadline": "2027-06-06",
+      "deadline_type": "fixed",
+      "eligibility_verdict": "Probably Eligible",
+      "eligibility_notes": "Aggregator: remote graphic/web design internship, open to all nationalities currently enrolled in a bachelor's or higher; bachelor students must be in their final year. Persona is L3 (final year of a 3-yr licence, graduating 2028-06) and an EU citizen - likely meets the final-year and nationality conditions. Requires full-time availability; the official UNDP portal was not verified this run.",
+      "source_tier": "C",
+      "verification_status": "unverified",
+      "region": "Remote / Global",
+      "notes": "Career/remote layer (adjacent). Verify on the official UNDP careers portal; aggregator deadline 6 June 2027 is unconfirmed."
+    }
+  ],
+  "excluded": [
+    {
+      "title": "Verallia Design Awards 2026",
+      "reason": "Registration closed 15 March 2026 and the prize ceremony (25 June 2026) has passed; the 2027 edition was not announced on the official site during this run. Expired."
+    },
+    {
+      "title": "French Design Award - Student Edition 2026",
+      "reason": "Submission deadline 31 March 2026 passed; 2027 dates not confirmed on the official page. Expired."
+    },
+    {
+      "title": "Prix Arts numériques - Fondation Etrillard / Académie des beaux-arts 2026",
+      "reason": "Call closed 30 April 2026; 2027 edition not open, and it targets Europe-resident digital artists rather than being student-specific. Expired / not a clear student fit."
+    }
+  ],
+  "dedupe_clusters": 0,
+  "run_notes": "Corrected Mode-B OpportunityRadar run after the persona data-shape bug was fixed. locales.py now resolves regions=france, primary=fr-FR, optional=en, so France-based items were searched in French and remote/global items in English only. Covered 6 categories (competition, funding, project, career, hobby, event) with exploit/adjacent/explore layering. Two items verified at Tier-A official pages (iF Design Student Award 2027, Global Game Jam 2027); Annecy and PRIMA partially verified on official organizer sites; Lagardere, Creart'UP and UNDP remain unverified (secondary/snippet only, flagged). Three expired 2026 items excluded with reasons. No URLs invented; expired/uncertain items not recommended as open."
+}

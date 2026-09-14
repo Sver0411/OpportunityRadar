@@ -1,0 +1,12 @@
+{
+  "id": "F06",
+  "type": "bad_explore",
+  "persona": "iot-embedded",
+  "query": "ロボコン / robotics contest Japan",
+  "expected": "Japanese robotics contests",
+  "actual": "false-matched Kenya / Vietnam robotics results (locale mismatch)",
+  "source": "search results",
+  "severity": "medium",
+  "cause": "explore-layer query did not carry the resolved locale into the query string",
+  "fix_candidate": "explore queries must keep the locale term or an explicit country token"
+}

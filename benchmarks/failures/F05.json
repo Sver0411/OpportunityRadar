@@ -1,0 +1,12 @@
+{
+  "id": "F05",
+  "type": "profile_misread",
+  "persona": "environment",
+  "query": "(persona declares no preferred_country, intent = Global/Remote)",
+  "expected": "Global / Remote, English-first",
+  "actual": "planner fell back to school_country → regions=[brazil], primary=pt-BR",
+  "source": "scripts/locales.py output",
+  "severity": "high",
+  "cause": "documented fallback (preferred → school → remote) misreads an intentionally global persona; 'no preferred country' ≠ 'the school country'",
+  "fix_candidate": "only use school_country when the persona implies a local search (no remote/global flag); if remote=true or goals are global, default to Global/Remote"
+}

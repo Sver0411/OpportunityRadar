@@ -1,0 +1,164 @@
+{
+  "persona": "biology",
+  "mode": "opportunity-radar",
+  "timestamp": "2026-09-14",
+  "budget": {
+    "web_searches_used": 6,
+    "fetches_used": 6
+  },
+  "queries": [
+    "Biologie Bachelor Praktikum Forschung 2027 Deutschland Universitaet",
+    "bioinformatics undergraduate summer research program Europe 2027 students",
+    "Stipendium Biologie Bachelor Student Deutschland 2027 Bewerbung",
+    "life science student conference 2027 Europe biology undergraduate",
+    "open source biology bioinformatics mentorship program students 2026 2027",
+    "Biologie Studierende Vereinigung Netzwerk Praktikum Deutschland HiWi"
+  ],
+  "locales": {
+    "primary": [
+      "en",
+      "de"
+    ],
+    "optional": [
+      "nl"
+    ]
+  },
+  "categories_searched": [
+    "research",
+    "funding",
+    "event",
+    "open_source",
+    "networking",
+    "career"
+  ],
+  "results": [
+    {
+      "title": "Biozentrum Research Summer (University of Basel)",
+      "organization": "University of Basel, Biozentrum",
+      "category": "research",
+      "official_url": "https://biozentrum.unibas.ch/researchsummer",
+      "discovery_url": "https://biozentrum.unibas.ch/researchsummer",
+      "deadline": "2027-02-25",
+      "deadline_type": "fixed",
+      "eligibility_verdict": "Eligible",
+      "eligibility_notes": "Verified: open to Bachelor students in Biology/related sciences; requires Swiss or EU citizenship (persona is EU citizen). Suited to students at end of 2nd year. No prior research experience required.",
+      "source_tier": "A",
+      "verification_status": "verified_official",
+      "region": "Switzerland",
+      "notes": "7-9 weeks (mid-Jul-mid-Sep); stipend CHF 1,736/month gross; 2026 window was Jan 2-Feb 25; 2027 dates not yet posted (expected similar). Working language English."
+    },
+    {
+      "title": "Max Planck School Matter to Life - Undergraduate Research Opportunity (URO)",
+      "organization": "Max Planck School Matter to Life",
+      "category": "research",
+      "official_url": "https://mattertolife.maxplanckschools.org/uro-research-internship",
+      "discovery_url": "https://mattertolife.maxplanckschools.org/uro-research-internship",
+      "deadline": "2026-10-01",
+      "deadline_type": "fixed",
+      "eligibility_verdict": "Probably Eligible",
+      "eligibility_notes": "Verified: Bachelor students in MtL-related fields, must stay enrolled before & during placement, GPA >=1.7 (German scale). Persona is biology Bachelor but GPA not in profile -> cannot confirm GPA bar. Apply 1 Aug-1 Oct 2026 for a 2027 internship (Jun-Nov).",
+      "source_tier": "A",
+      "verification_status": "verified_official",
+      "region": "Germany",
+      "notes": "10-week fully funded (travel, accommodation, living); choose host lab."
+    },
+    {
+      "title": "HU Berlin Humboldt Internship Program - CropScience Research",
+      "organization": "Humboldt-Universitaet zu Berlin, Faculty of Life Science",
+      "category": "research",
+      "official_url": "https://hic.hu-berlin.de/en/internship-program/projects/331",
+      "discovery_url": "https://hic.hu-berlin.de/en/internship-program/projects/331",
+      "deadline": null,
+      "deadline_type": null,
+      "eligibility_verdict": "Eligible",
+      "eligibility_notes": "Verified: 'Advanced undergraduate students (from second year)' and Master's students; English working language (German a plus). Persona is year 2 -> meets. 2027 application period opens November 2026 (2026 closed).",
+      "source_tier": "A",
+      "verification_status": "verified_official",
+      "region": "Germany (Berlin)",
+      "notes": "On-site; lab + field/greenhouse work; ecology/climate-change angle fits interests."
+    },
+    {
+      "title": "Erasmus+ Traineeship Abroad",
+      "organization": "European Commission (Erasmus+)",
+      "category": "research",
+      "official_url": "https://erasmus-plus.ec.europa.eu/opportunities/opportunities-for-individuals/students/traineeships-abroad",
+      "discovery_url": "https://erasmus-plus.ec.europa.eu/opportunities/opportunities-for-individuals/students/traineeships-abroad",
+      "deadline": null,
+      "deadline_type": "rolling",
+      "eligibility_verdict": "Eligible",
+      "eligibility_notes": "Verified: open to any student at an institution holding the Erasmus Charter; traineeship 2-12 months; EU citizen enrolled in a German university qualifies. Funding arranged via home university's international office.",
+      "source_tier": "A",
+      "verification_status": "verified_official",
+      "region": "Europe (worldwide host allowed)",
+      "notes": "Good vehicle for a biology lab placement abroad; combine with specific host offers (e.g., Slovenian Forestry Institute wood-anatomy)."
+    },
+    {
+      "title": "Deutschlandstipendium (Germany Scholarship)",
+      "organization": "German Federal Ministry of Education & Research / participating universities",
+      "category": "funding",
+      "official_url": "https://www.student.uni-stuttgart.de/en/financing/deutschlandstipendium/application/",
+      "discovery_url": "https://www.student.uni-stuttgart.de/en/financing/deutschlandstipendium/application/",
+      "deadline": "2026-12-01",
+      "deadline_type": "fixed",
+      "eligibility_verdict": "Probably Eligible",
+      "eligibility_notes": "Verified: open to all nationalities enrolled in a degree program at a participating German university (EU citizens eligible); Bachelor & Master students; needs above-average grades + at least one extra criterion (social/ecological engagement, etc.). Persona must apply at their own university; exact deadline varies by institution (~Dec 2026 for 2027/28).",
+      "source_tier": "A",
+      "verification_status": "verified_official",
+      "region": "Germany",
+      "notes": "EUR 300/month; no nationality bar; found via German-language funding query."
+    },
+    {
+      "title": "EPFL School of Life Sciences International Summer Research Program",
+      "organization": "EPFL",
+      "category": "research",
+      "official_url": "https://www.epfl.ch/schools/sv/education/summer-research-program/",
+      "discovery_url": "https://eduqette.com/directory/epfl-summer-research-program-school-of-life-sciences/",
+      "deadline": "2026-11-15",
+      "deadline_type": "fixed",
+      "eligibility_verdict": "Probably Eligible",
+      "eligibility_notes": "Bachelor students after >=2 years; biology/bioinformatics among fields. Persona year 2 (completing 2nd year by summer) likely meets. High GPA expected. 2027 deadline expected ~Nov 2026 (2026 was Nov 15).",
+      "source_tier": "A",
+      "verification_status": "partially_verified",
+      "region": "Switzerland",
+      "notes": "8 weeks, stipend ~CHF 3,600; official page not fetched this run."
+    },
+    {
+      "title": "EASL Congress 2027 (abstract submission / student attendance)",
+      "organization": "European Association for the Study of the Liver",
+      "category": "event",
+      "official_url": "https://www.easlcongress.eu/",
+      "discovery_url": "https://www.easlcongress.eu/",
+      "deadline": "2027-01-19",
+      "deadline_type": "fixed",
+      "eligibility_verdict": "Probably Eligible",
+      "eligibility_notes": "Open abstract submission & registration; undergraduates with a research project could present a poster, but the congress is primarily for professionals/scientists. Attendance as a student is possible.",
+      "source_tier": "A",
+      "verification_status": "partially_verified",
+      "region": "United Kingdom (London) / Europe",
+      "notes": "16-19 Jun 2027; abstract deadline 19 Jan 2027, early fee 25 Jan 2027. Life-science event in Europe."
+    },
+    {
+      "title": "HiWi / Werkstudent - Student Research Assistant positions (Germany)",
+      "organization": "German universities / research institutes",
+      "category": "research",
+      "official_url": null,
+      "discovery_url": "https://reknownedu.com/resources/part-time-jobs-germany-2026/",
+      "deadline": null,
+      "deadline_type": "rolling",
+      "eligibility_verdict": "Eligible",
+      "eligibility_notes": "EU/EEA students face no weekly work limit in Germany; biology undergraduates can assist in labs (sample prep, data analysis, field work). No single official page - found via guide; apply through department job boards / direct professor contact.",
+      "source_tier": "C",
+      "verification_status": "partially_verified",
+      "region": "Germany",
+      "notes": "Explore-layer: ongoing, local, builds lab experience & LORs; complements summer internships."
+    }
+  ],
+  "excluded": [
+    {
+      "title": "DAAD RISE Germany",
+      "reason": "Hard-constraint conflict: program is for undergraduates enrolled at universities in North America, the UK and Ireland. Persona is enrolled at a German (EU) university -> Ineligible (verified on daad.de)."
+    }
+  ],
+  "dedupe_clusters": 0,
+  "run_notes": "Locale script resolved mode A / regions=remote / primary=en, but profile preferred_country=[Germany,Netherlands] and school_country=Germany were applied per SKILL Step 3, so de locale was loaded and DE/NL/EU searched in en+de. Covered 6 categories incl. funding (Deutschlandstipendium via de query) and an explore item (HiWi). RISE Germany was explicitly excluded after verifying the enrollment-country restriction - a trap a bare search tends to miss. NL merit scholarships are largely non-EEA-restricted, so skipped for this EU-citizen persona. In MODE B, RISE was verified on the official DAAD page and moved to excluded with a hard-constraint reason; in bare it was kept as Probably Ineligible with uncertainty."
+}

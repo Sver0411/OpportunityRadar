@@ -1,0 +1,76 @@
+{
+  "_note": "FICTIONAL TEST PERSONA — 仅用于 OpportunityRadar benchmark。不是真实用户，不代表任何真实个人；兴趣/签证/成绩均为编造。禁止当作产品示例数据使用。",
+  "persona_id": "iot-embedded",
+  "display": "IoT / Embedded / JP + CN + Remote",
+  "question": "最近有什么真正值得我关注的机会？",
+  "id": "iot-embedded",
+  "education": {
+    "degree": "undergraduate",
+    "major": "IoT Engineering",
+    "major_family": "iot_embedded",
+    "current_year": 3,
+    "expected_graduation": "2028-06",
+    "school_country": "China"
+  },
+  "skills": [
+    {
+      "name": "C"
+    },
+    {
+      "name": "Python"
+    },
+    {
+      "name": "ESP32"
+    },
+    {
+      "name": "Git"
+    }
+  ],
+  "languages": [
+    {
+      "language": "Chinese",
+      "level": "native"
+    },
+    {
+      "language": "Japanese",
+      "exam": "JLPT",
+      "score": "N3"
+    },
+    {
+      "language": "English",
+      "exam": "IELTS",
+      "score": "6.0"
+    }
+  ],
+  "interests": [
+    "embedded",
+    "robotics",
+    "ai"
+  ],
+  "goals": [
+    {
+      "type": "internship",
+      "priority": "high"
+    },
+    {
+      "type": "research",
+      "priority": "medium"
+    },
+    {
+      "type": "competition",
+      "priority": "medium"
+    },
+    {
+      "type": "open_source",
+      "priority": "low"
+    }
+  ],
+  "constraints": {
+    "preferred_country": [
+      "Japan",
+      "China"
+    ],
+    "remote": true,
+    "weekly_time": "15"
+  }
+}

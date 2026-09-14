@@ -1,0 +1,186 @@
+{
+  "persona": "iot-embedded",
+  "mode": "bare",
+  "timestamp": "2026-09-14T10:00:00Z",
+  "budget": {
+    "web_searches_used": 6,
+    "fetches_used": 2
+  },
+  "queries": [
+    "Japan IoT embedded internship undergraduate student 2026",
+    "China IoT embedded systems internship 2026 undergraduate",
+    "remote embedded software internship 2026 undergraduate students",
+    "IoT embedded robotics competition 2026 students China Japan",
+    "Japan AI robotics research internship undergraduate international student 2026",
+    "China embedded IoT hackathon competition 2026 undergraduate"
+  ],
+  "locales": {
+    "primary": ["ja-JP", "zh-CN"],
+    "optional": ["en-US (remote)"]
+  },
+  "categories_searched": ["internship", "competition", "research", "remote"],
+  "results": [
+    {
+      "title": "Sharp 2026 Internship Program (AIoT/embedded themes: active noise control C, AIoT software Python/C, projector firmware C)",
+      "organization": "Sharp Corporation",
+      "category": "internship",
+      "official_url": "https://corporate.jp.sharp/recruit/newgraduate/internship/theme.html",
+      "discovery_url": "https://corporate.jp.sharp/recruit/newgraduate/internship/theme.html",
+      "deadline": null,
+      "deadline_type": null,
+      "eligibility_verdict": "Eligible",
+      "eligibility_notes": "学士(bachelor) accepted; majors 電気・電子/情報・通信・ソフト; theme 9 wants C basics, theme 12 wants Python(+C preferred), theme 30 projector embedded firmware needs C. No explicit Japanese-language requirement on technical themes. Persona (yr3 ug, C/Python/ESP32) fits.",
+      "source_tier": "A",
+      "verification_status": "verified_official",
+      "region": "Japan",
+      "notes": "Multiple relevant themes collapsed into one opportunity. Internships Aug-Sep 2026 in Osaka/Kanagawa; some online/hybrid (theme 12). Apply via entry sheet."
+    },
+    {
+      "title": "Embedded Software Engineer (Internship) – Woven by Toyota (Arene platform)",
+      "organization": "Woven by Toyota",
+      "category": "internship",
+      "official_url": "http://hiring.fm/job/embedded-software-engineer-internship-woven-by-toyota-tokyo-1767431183123-1571-2314",
+      "discovery_url": "https://japaninternships.com/?p=1044",
+      "deadline": "2026-04-06",
+      "deadline_type": "fixed",
+      "eligibility_verdict": "Probably Ineligible",
+      "eligibility_notes": "Requires expected graduation by end of March 2028. Persona graduates 2028-06, so likely fails the graduation-by-March-2028 rule. Also both 2026 batches' deadlines already passed (today 2026-09-14).",
+      "source_tier": "B",
+      "verification_status": "expired",
+      "region": "Japan",
+      "notes": "3-month on-site Tokyo; visa/housing support. Strong fit on skills (C/embedded) but cohort rule blocks."
+    },
+    {
+      "title": "嵌入式 / IoT 应用层开发实习生 (Shanghai)",
+      "organization": "追势科技 (ZhuiShi Tech)",
+      "category": "internship",
+      "official_url": "https://www.shixiseng.com/intern/inn_nzb9fbojgu1e",
+      "discovery_url": "https://www.shixiseng.com/intern/inn_nzb9fbojgu1e",
+      "deadline": "2026-02-27",
+      "deadline_type": "fixed",
+      "eligibility_verdict": "Eligible",
+      "eligibility_notes": "本科在读, ESP32/STM32/RTOS, C/C++ or Python — persona matches. But posting deadline 2026-02-27 already passed.",
+      "source_tier": "B",
+      "verification_status": "expired",
+      "region": "China",
+      "notes": "Strong skill match (ESP32, C/Python) but expired before today."
+    },
+    {
+      "title": "智能硬件开发实习生 (Beijing)",
+      "organization": "锣辑科技 (Luoji Tech)",
+      "category": "internship",
+      "official_url": "https://www.deizao.net/index/index/shixixq/jobid/246853",
+      "discovery_url": "https://www.deizao.net/index/index/shixixq/jobid/246853",
+      "deadline": "2026-10-02",
+      "deadline_type": "fixed",
+      "eligibility_verdict": "Eligible",
+      "eligibility_notes": "本科在读, C基础 + Python脚本 + 嵌入式架构认知; persona matches. Open until 2026-10-02 (still live).",
+      "source_tier": "C",
+      "verification_status": "unverified",
+      "region": "China",
+      "notes": "2-5 days/week, 6 months preferred. Aggregator post; not verified against employer site."
+    },
+    {
+      "title": "智能硬件 & 嵌入式实习生 (Qingdao)",
+      "organization": "青岛不愁网信息科技有限公司",
+      "category": "internship",
+      "official_url": "https://jiuyejie.cn/zhaopinhui_qiye_zhiwei_info.php?jobID=7432467292551647232&meetingID=7427321446944215040",
+      "discovery_url": "https://jiuyejie.cn/zhaopinhui_qiye_zhiwei_info.php?jobID=7432467292551647232&meetingID=7427321446944215040",
+      "deadline": null,
+      "deadline_type": null,
+      "eligibility_verdict": "Probably Eligible",
+      "eligibility_notes": "2026届本科/研究生, C + STM32/ESP32, 串口/I2C/SPI — persona matches. 2026届 ( graduating 2026) while persona is 2028; '2026届' may mean this cycle's recruits, ambiguous.",
+      "source_tier": "C",
+      "verification_status": "unverified",
+      "region": "China",
+      "notes": "Through a campus recruitment fair listing; deadline not stated."
+    },
+    {
+      "title": "嵌入式软件开发实习生 (Matter/Zigbee/Thread, ESP-IDF) – Espressif LEADER Program",
+      "organization": "Espressif Systems (乐鑫)",
+      "category": "internship",
+      "official_url": "https://www.espressif.com.cn/zh-hans/join-us/job-search",
+      "discovery_url": "https://www.espressif.com.cn/zh-hans/join-us/job-search?field_job_function_select_tid%5B0%5D=108&field_job_classification_tid%5B2%5D=2573&field_job_classification_tid%5B4%5D=2571",
+      "deadline": null,
+      "deadline_type": null,
+      "eligibility_verdict": "Eligible",
+      "eligibility_notes": "本科+, C/C++精通, ESP-IDF/FreeRTOS优先, Python; persona (ESP32, C/Python) strong match. Posted 2026-01-28; no explicit close date.",
+      "source_tier": "A",
+      "verification_status": "partially_verified",
+      "region": "China",
+      "notes": "Captcha blocked full page fetch; details from search snippet + official URL. Multiple ESP32-centric intern roles (Matter/Zigbee/Thread, driver, ESP-IDF SDK)."
+    },
+    {
+      "title": "RIKEN R-IH Summer Internship 2026 (Guardian Robot Project)",
+      "organization": "RIKEN",
+      "category": "research",
+      "official_url": "https://grp.riken.jp/en/news/20260227/",
+      "discovery_url": "https://grp.riken.jp/en/news/20260227/",
+      "deadline": "2026-03-27",
+      "deadline_type": "fixed",
+      "eligibility_verdict": "Probably Ineligible",
+      "eligibility_notes": "Requires a full paper at a selective peer-reviewed international conference or first-author journal article — unlikely for a yr3 undergrad with no publications. Deadline 2026-03-27 already passed.",
+      "source_tier": "A",
+      "verification_status": "expired",
+      "region": "Japan",
+      "notes": "Kyoto, robotics/AI, fully funded, no IELTS. Strong interest fit (robotics/AI) but publication gate + expired."
+    },
+    {
+      "title": "全国大学生物联网设计竞赛 2026 (Espressif AIoT / ESP32 track)",
+      "organization": "全国高等学校计算机教育研究会 + Espressif",
+      "category": "competition",
+      "official_url": "https://www.espressif.com/en/node/10297",
+      "discovery_url": "https://seie.hit.edu.cn/2026/0511/c9232a391624/page.htm",
+      "deadline": null,
+      "deadline_type": null,
+      "eligibility_verdict": "Eligible",
+      "eligibility_notes": "全日制在校学生; ESP32-S3/C5/P4 + 传感器融合 + 云端大模型. Persona's ESP32 + Python + AI interest is a direct fit.",
+      "source_tier": "A",
+      "verification_status": "verified_official",
+      "region": "China",
+      "notes": "Free dev kits (ESP32-C5/P4/S3); 2026 season ongoing. High-value, skill-aligned competition."
+    },
+    {
+      "title": "2026 睿抗机器人开发者大赛 (RAICOM)",
+      "organization": "工业和信息化部人才交流中心",
+      "category": "competition",
+      "official_url": "https://www.raicom.com.cn/",
+      "discovery_url": "https://m.saikr.com/vse/58020",
+      "deadline": "2026-07-31",
+      "deadline_type": "fixed",
+      "eligibility_verdict": "Eligible",
+      "eligibility_notes": "全日制在籍学生 (本科/研究生)均可. Robotics/embedded tracks (CAIR, CAIM). Persona fits.",
+      "source_tier": "A",
+      "verification_status": "partially_verified",
+      "region": "China",
+      "notes": "Registration 2026.04-07.31; finals 2026.07-10. ¥600/team fee. Some provincial timelines may have passed but national reg open per snippet."
+    },
+    {
+      "title": "Embedded Systems Intern – GoMyRobot (RTEMS / Space Compute, remote)",
+      "organization": "GoMyRobot",
+      "category": "internship",
+      "official_url": "https://embedded.jobs/job/Embedded-Systems-Intern-with-GoMyRobot-02a487",
+      "discovery_url": "https://embedded.jobs/job/Embedded-Systems-Intern-with-GoMyRobot-02a487",
+      "deadline": null,
+      "deadline_type": null,
+      "eligibility_verdict": "Probably Ineligible",
+      "eligibility_notes": "Requires enrollment at a US institution and confirmed academic credit; persona is a China-based student unlikely to satisfy US enrollment/credit rule. C/C++, Git, RTOS fit skills.",
+      "source_tier": "B",
+      "verification_status": "unverified",
+      "region": "Remote (US)",
+      "notes": "6-week remote Fall 2026; robotics/aerospace, ROS 2 on RISC-V. Remote option but geo-restricted."
+    }
+  ],
+  "excluded": [
+    {
+      "title": "第九届中国高校智能机器人创意大赛",
+      "reason": "Regional/site selection deadlines (e.g. 2026-03-15 school reg, 2026-05-08 national reg, 2026-06-10 regional) largely passed before 2026-09-14; included RAICOM/物联网设计竞赛 as the live competition picks instead."
+    },
+    {
+      "title": "Unifern Embedded & IoT Virtual Internship (remote, India)",
+      "reason": "Unpaid and charges a training fee; low-tier aggregator. Noted as weak remote fallback, excluded from top recommendations."
+    }
+  ],
+  "dedupe_clusters": 1,
+  "run_notes": "Bare assistant: 6 searches covering JP/CN/remote + internship/competition/research. Sharp themes 9/12/30 collapsed into 1 opportunity (1 dedupe cluster). JP/CN locale handling worked implicitly via targeted queries, but no explicit locale plan, no JLPT/卒業年度 cohort checks beyond what snippets showed, and Espressif official page captcha-blocked (1 fetch failed). Two strong JP internships (Woven, RIKEN) were found but both expired/ineligible on cohort rules not caught early."
+}

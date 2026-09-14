@@ -1,0 +1,175 @@
+{
+  "persona": "business",
+  "mode": "bare",
+  "timestamp": "2026-09-14T12:00:00+08:00",
+  "budget": {
+    "web_searches_used": 6,
+    "fetches_used": 3
+  },
+  "queries": [
+    "Singapore business case competition 2026 undergraduate students",
+    "Singapore finance internship 2026 undergraduate applications",
+    "global entrepreneurship competition 2026 students startup",
+    "Singapore startup challenge 2026 young entrepreneurs",
+    "remote business internship 2026 undergraduate students",
+    "ASEAN business competition 2026 university students"
+  ],
+  "locales": null,
+  "categories_searched": [
+    "competition",
+    "career",
+    "entrepreneurship",
+    "internship",
+    "project"
+  ],
+  "results": [
+    {
+      "title": "Ho Bee Land – SMU Sustainability Case Challenge 2026",
+      "organization": "Ho Bee Land & SMU Sustainable Investment Club",
+      "category": "competition",
+      "official_url": "https://hobeesmuchallenge.com/",
+      "discovery_url": "https://hobeesmuchallenge.com/",
+      "deadline": "2026-08-18",
+      "deadline_type": "fixed",
+      "eligibility_verdict": "Ineligible",
+      "eligibility_notes": "Registration closed 18 Aug 2026 (today 14 Sep). Open to all SG/intl undergrads in theory, but window passed.",
+      "source_tier": "A",
+      "verification_status": "verified_official",
+      "region": "Singapore",
+      "notes": "Fetched official page; S$10k prize pool. Bare mode listed it as a live opportunity despite closed registration."
+    },
+    {
+      "title": "ASEAN Investment Challenge 2026 (Singapore)",
+      "organization": "CGS International / SGX / UP",
+      "category": "competition",
+      "official_url": "https://aseaninvestmentchallenge.com/country/singapore.html",
+      "discovery_url": "https://aseaninvestmentchallenge.com/country/singapore.html",
+      "deadline": "2026-08-31",
+      "deadline_type": "fixed",
+      "eligibility_verdict": "Ineligible",
+      "eligibility_notes": "Registration closed 31 Aug 2026. Open to 18+ with UP account; live challenge 16 Sep–11 Nov but no longer joinable.",
+      "source_tier": "A",
+      "verification_status": "verified_official",
+      "region": "Singapore",
+      "notes": "Fetched official page. Prize S$3,000 country winner."
+    },
+    {
+      "title": "Singapore Life Science Case Competition 2026",
+      "organization": "Biotech Connection Singapore (with L.E.K. Consulting)",
+      "category": "competition",
+      "official_url": "https://www.biotechconnection-sg.org/singapore-life-science-case-competition-2026/",
+      "discovery_url": "https://www.biotechconnection-sg.org/singapore-life-science-case-competition-2026/",
+      "deadline": "2026-08-15",
+      "deadline_type": "fixed",
+      "eligibility_verdict": "Ineligible",
+      "eligibility_notes": "Registration closed 15 Aug; finals 11 Sep 2026 (past). Life-sciences focus — tangential to business major but open to any Singapore-based student.",
+      "source_tier": "B",
+      "verification_status": "partially_verified",
+      "region": "Singapore",
+      "notes": "Only search snippet read; not fetched. Life-sciences oriented."
+    },
+    {
+      "title": "SGFIN–Singlife Sustainable Finance Case Competition",
+      "organization": "Singapore Green Finance Institute (SGFIN) & Singlife",
+      "category": "competition",
+      "official_url": "https://sgfin.nus.edu.sg/industry-engagement/sgfin-singlife-sustainable-finance-case-competition",
+      "discovery_url": "https://sgfin.nus.edu.sg/industry-engagement/sgfin-singlife-sustainable-finance-case-competition",
+      "deadline": "2026-04-22",
+      "deadline_type": "fixed",
+      "eligibility_verdict": "Ineligible",
+      "eligibility_notes": "Event concluded Apr 2026 (final 22 Apr). Past cycle.",
+      "source_tier": "B",
+      "verification_status": "unverified",
+      "region": "Singapore",
+      "notes": "Search snippet only. Highly relevant (finance/case) but expired."
+    },
+    {
+      "title": "MAS Internship Programme (2027 University Periods)",
+      "organization": "Monetary Authority of Singapore",
+      "category": "career",
+      "official_url": "https://www.mas.gov.sg/careers/internship",
+      "discovery_url": "https://www.mas.gov.sg/careers/internship",
+      "deadline": null,
+      "deadline_type": "rolling",
+      "eligibility_verdict": "Probably Eligible",
+      "eligibility_notes": "Undergraduates & postgraduates welcome. 2026 periods closed; 2027 periods (Jan–Jun, May–Jul, Jul–Dec 2027) now listed. Citizenship/right-to-work not stated in profile → confirm.",
+      "source_tier": "A",
+      "verification_status": "verified_official",
+      "region": "Singapore",
+      "notes": "Fetched official page; only currently-open opportunity among bare finds."
+    },
+    {
+      "title": "Fullerton Singapore Value-Up (FSGV) Internship Programme",
+      "organization": "Fullerton Fund Management",
+      "category": "career",
+      "official_url": "https://www.fullertonfund.com/fsgvinternship",
+      "discovery_url": "https://www.fullertonfund.com/fsgvinternship",
+      "deadline": null,
+      "deadline_type": null,
+      "eligibility_verdict": "Probably Ineligible",
+      "eligibility_notes": "Explicitly requires expected graduation year 2027 (via SG Value-Up Challenge). Persona graduates 2029 → likely not eligible.",
+      "source_tier": "A",
+      "verification_status": "unverified",
+      "region": "Singapore",
+      "notes": "Search snippet only. 35-week research-analyst track."
+    },
+    {
+      "title": "2026 HSBC Singapore Student Work Placement",
+      "organization": "HSBC",
+      "category": "career",
+      "official_url": null,
+      "discovery_url": "https://my.gradconnection.com/employers/hsbc-malaysia/jobs/hsbc-hong-kong-singapore-2026-hsbc-singapore-student-work-placement",
+      "deadline": "2026-03-27",
+      "deadline_type": "fixed",
+      "eligibility_verdict": "Ineligible",
+      "eligibility_notes": "Application closed 27 Mar 2026. Open to undergrads graduating 2026–2029.",
+      "source_tier": "C",
+      "verification_status": "unverified",
+      "region": "Singapore",
+      "notes": "Aggregator (GradConnection). Expired."
+    },
+    {
+      "title": "3rd ASBN International Competitions 2026 (Business Case / Essay)",
+      "organization": "ASEAN School of Business Network",
+      "category": "competition",
+      "official_url": "https://aseansbn.org/competition-asbn3/",
+      "discovery_url": "https://aseansbn.org/competition-asbn3/",
+      "deadline": "2026-08-18",
+      "deadline_type": "fixed",
+      "eligibility_verdict": "Ineligible",
+      "eligibility_notes": "Submission deadline 18 Aug 2026 (past). Free registration, open to intl undergrads.",
+      "source_tier": "B",
+      "verification_status": "unverified",
+      "region": "ASEAN/Global",
+      "notes": "Search snippet only. Relevant but expired."
+    }
+  ],
+  "excluded": [
+    {
+      "title": "HICOOL 2026 Global Entrepreneurship Competition",
+      "reason": "China-based; registration closed 15 Apr 2026; seed group requires full-time college students but Singapore-location mismatch and expired."
+    },
+    {
+      "title": "Win in Suzhou 2026 Global Entrepreneurship Competition",
+      "reason": "China-based; registration closed 22 Mar 2026; not Singapore/global-remote relevant."
+    },
+    {
+      "title": "UDC Capital Cup Entrepreneurship Competition 2026",
+      "reason": "High-school students only; persona is undergraduate."
+    },
+    {
+      "title": "Office of Philip Loh 8-Week Undergraduate Finance Internship",
+      "reason": "Requires age 21+ and local Singapore university; also listed for 2026 start, likely past."
+    },
+    {
+      "title": "SupplyHouse.com Remote Training & Process Improvement Internship",
+      "reason": "Requires US work authorization; persona Singapore-based, no US rights stated."
+    },
+    {
+      "title": "College Logistics Inc Business Development Intern (remote)",
+      "reason": "US-based unpaid remote; location/work-right uncertainty; lower value."
+    }
+  ],
+  "dedupe_clusters": 0,
+  "run_notes": "Bare assistant surfaced mostly 2026-cycle Singapore opportunities, many already past their deadlines by 2026-09-14 (no freshness filter). Only MAS 2027 internships are currently open. Several items were presented without flagging closed status."
+}

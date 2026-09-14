@@ -1,0 +1,12 @@
+{
+  "id": "F02",
+  "type": "expired_opportunity",
+  "persona": "iot-embedded",
+  "query": "全国大学生嵌入式芯片与系统设计竞赛",
+  "expected": "2026 season (closed 2026-04-20) excluded, 2027 cycle awaited",
+  "actual": "closed 2026 competition returned as a result (trust=3, eligibility=0)",
+  "source": "socchina.net",
+  "severity": "high",
+  "cause": "official page found but season/edition semantics not resolved; deadline parsed but not compared to today",
+  "fix_candidate": "after parsing a deadline, always compare to today and move past ones to excluded"
+}
