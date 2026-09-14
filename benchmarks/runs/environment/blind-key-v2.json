@@ -1,0 +1,7 @@
+{
+  "persona": "environment",
+  "mapping": {
+    "A": "opportunity-radar",
+    "B": "bare"
+  }
+}

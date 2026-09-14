@@ -1,0 +1,18 @@
+{
+  "iot-embedded": {
+    "A": "opportunity-radar",
+    "B": "bare"
+  },
+  "design": {
+    "A": "opportunity-radar",
+    "B": "bare"
+  },
+  "environment": {
+    "A": "opportunity-radar",
+    "B": "bare"
+  },
+  "biology": {
+    "A": "bare",
+    "B": "opportunity-radar"
+  }
+}

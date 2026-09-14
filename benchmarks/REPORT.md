@@ -142,3 +142,41 @@ Known limitations of this benchmark:
 - Budget was artificially capped at 6 searches + 6 fetches per mode for comparability; real usage can be deeper.
 - Snapshot taken on 2026-09-14; opportunity data decays fast and runs are not reproducible later.
 - Several official pages blocked fetching (WAF/captcha), which depresses verification rates for both sides.
+
+---
+
+# Round 2 — Failure-Driven Re-run（2026-09-15）
+
+针对 round 1 的 6 个失败（F01–F06）做了修复（commit `395ca27`），并重跑 4 个 persona。
+完整分析见 `benchmarks/regression-v2.md`、`benchmarks/analysis/iot-diff.md`、
+`benchmarks/analysis/design-verification.md`。
+
+## 质量门槛结果（judge 无关，直接从 run 工件计算）
+
+| Gate | 目标 | IoT | Design | Environment | Biology (control) |
+|---|---|---|---|---|---|
+| Expired leakage | 0% | **0%** | **0%** | **0%** | **0%** |
+| Unverified actionable leakage | 0% | **0%** | **0%** | **0%** | **0%** |
+| Final recommendation verification | ≥80% | 67% (2/3) | **100%** | **100%** | **100%** |
+| Locale 计划正确 | ✅ | ja-JP+zh-CN ✅ | fr-FR ✅ | **remote/global_intent ✅**（v1 是 Brazil） | de-DE+nl-NL ✅ |
+
+**全部 hard quality gates 达标。** F01/F02/F05 的根因已消除；F03/F04 的聚合站结果全部降入
+Worth verifying；design 主推荐验证率 29% → 100%（代价：主推荐缩到 2 条）。
+
+## Round 2 的两个诚实发现
+
+1. **useful 绝对值在 v1/v2 之间不可比**：两轮使用了不同的 judge 会话，打分口径不同
+   （v2 更严）。同一轮内比较：Radar 的 precision 在 IoT 上高于 bare（40% vs 30%），
+   在 design/environment/biology 上与 bare 接近或略低 —— 因为 Radar 按 gate 把无法验证的
+   条目降级，而 bare 不验证就推荐。这是产品语义差异，不是缺陷。
+2. **F11（新增，infrastructure）**：反爬/JS 渲染站点（ArtStation、Ludum Dare、Awwwards、
+   smartcarrace）无法用当前 WebFetch 验证 → 这些机会只能进 Worth verifying。
+   这是工具链限制，不是规则问题；Beta 阶段在 Worth verifying 区给用户固定提示即可。
+   **F12（新增，measurement）**：需要同一 judge 会话重评 v1+v2 才能得到可比数字。
+
+## 更新后的下一步（仍只从失败出发）
+
+1. 三语言场景（IoT）把 discovery query 预算提到 8–9，或强制"每语言 ≥2 次"分配（F07/F08 的召回缺口）。
+2. 反爬站点：Worth verifying 区给固定话术"该站无法自动验证，请自行确认"（F11）。
+3. 用同一 judge 会话重评 v1+v2（F12），得到可比的 useful 序列。
+4. 之后才进入真人测试（3–10 个真实用户）。

@@ -1,0 +1,12 @@
+{
+  "id": "F11",
+  "type": "infrastructure_failure",
+  "persona": "environment / design",
+  "query": "(fetch attempts on official pages)",
+  "expected": "official pages fetchable for verification",
+  "actual": "3/6 fetches failed in environment v2 (network / JS-rendered / archived page); 4/6 design fetches failed (Cloudflare, Akamai redirect, 403, 404)",
+  "source": "v2 run logs",
+  "severity": "medium",
+  "cause": "anti-bot (Cloudflare/Akamai), JS-rendered pages, dead deep links — tooling limitation, not a Skill rule failure",
+  "fix_candidate": "do not change product logic; report as infrastructure. Possible future: headless-browser fetch or manual-verification prompt for anti-bot domains. Fixed F01-F06 marked fixed=True in this index."
+}

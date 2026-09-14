@@ -1,0 +1,7 @@
+{
+  "persona": "iot-embedded",
+  "mapping": {
+    "A": "opportunity-radar",
+    "B": "bare"
+  }
+}

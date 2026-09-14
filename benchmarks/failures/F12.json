@@ -1,0 +1,12 @@
+{
+  "id": "F12",
+  "type": "measurement_limitation",
+  "persona": "(benchmark methodology)",
+  "query": "(round 1 vs round 2 useful counts)",
+  "expected": "v1 and v2 useful numbers comparable",
+  "actual": "different judge sessions applied different strictness (v2 judge: past deadlines -> elig=0, aggregator-only -> trust<=1), so v1<->v2 useful counts are NOT directly comparable",
+  "source": "benchmarks/judge-scores-*.json",
+  "severity": "medium",
+  "cause": "blind judging used separate sessions; no shared calibration set",
+  "fix_candidate": "re-score all lists (v1+v2) in ONE judge session, or build a small calibration set of pre-scored items that every judge session must reproduce"
+}

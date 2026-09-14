@@ -1,0 +1,137 @@
+{
+  "iot-embedded": {
+    "bare": {
+      "n": 10,
+      "useful": 3,
+      "avg_rel": 3,
+      "avg_nov": 2,
+      "avg_act": 1.3
+    },
+    "opportunity-radar": {
+      "n": 5,
+      "useful": 2,
+      "avg_rel": 2.8,
+      "avg_nov": 2,
+      "avg_act": 2
+    },
+    "radar_only_useful": 2,
+    "radar_only_titles": [
+      "Okinawa Innovation Contest 2026",
+      "openUBMC 开源实习"
+    ],
+    "gates": {
+      "rec_n": 3,
+      "rec_expired": 0,
+      "rec_unverified": 0,
+      "rec_verified": 2,
+      "zones": {
+        "recommended_now": 3,
+        "worth_verifying": 2,
+        "excluded": 0
+      },
+      "excluded_total": 15
+    }
+  },
+  "design": {
+    "bare": {
+      "n": 6,
+      "useful": 4,
+      "avg_rel": 2.83,
+      "avg_nov": 2,
+      "avg_act": 2
+    },
+    "opportunity-radar": {
+      "n": 7,
+      "useful": 3,
+      "avg_rel": 3,
+      "avg_nov": 1.29,
+      "avg_act": 1.57
+    },
+    "radar_only_useful": 3,
+    "radar_only_titles": [
+      "Origin CG International Creativity Competition 2026",
+      "DNA Paris Design Awards 2027",
+      "Global Game Jam 2027"
+    ],
+    "gates": {
+      "rec_n": 2,
+      "rec_expired": 0,
+      "rec_unverified": 0,
+      "rec_verified": 2,
+      "zones": {
+        "recommended_now": 2,
+        "worth_verifying": 5,
+        "excluded": 0
+      },
+      "excluded_total": 15
+    }
+  },
+  "environment": {
+    "bare": {
+      "n": 7,
+      "useful": 3,
+      "avg_rel": 3,
+      "avg_nov": 2,
+      "avg_act": 1.14
+    },
+    "opportunity-radar": {
+      "n": 7,
+      "useful": 3,
+      "avg_rel": 3,
+      "avg_nov": 2,
+      "avg_act": 2
+    },
+    "radar_only_useful": 3,
+    "radar_only_titles": [
+      "EGU Remote Research Internship in Atmospheric, Climate, Biospheric Science",
+      "2026 GeoAI Arctic Challenge (Cyber2A)",
+      "NASA ARSET Applied Remote Sensing Training Program"
+    ],
+    "gates": {
+      "rec_n": 3,
+      "rec_expired": 0,
+      "rec_unverified": 0,
+      "rec_verified": 3,
+      "zones": {
+        "recommended_now": 3,
+        "worth_verifying": 4,
+        "excluded": 0
+      },
+      "excluded_total": 6
+    }
+  },
+  "biology": {
+    "bare": {
+      "n": 7,
+      "useful": 3,
+      "avg_rel": 2.71,
+      "avg_nov": 2,
+      "avg_act": 1.14
+    },
+    "opportunity-radar": {
+      "n": 9,
+      "useful": 3,
+      "avg_rel": 2.22,
+      "avg_nov": 1.89,
+      "avg_act": 1.22
+    },
+    "radar_only_useful": 3,
+    "radar_only_titles": [
+      "Max Planck Institute student internship & HiWi (MPI-MP, Golm)",
+      "iGEM Competition (form a team at your own university)",
+      "LMU Biology Faculty HiWi / research assistant posts"
+    ],
+    "gates": {
+      "rec_n": 2,
+      "rec_expired": 0,
+      "rec_unverified": 0,
+      "rec_verified": 2,
+      "zones": {
+        "recommended_now": 2,
+        "worth_verifying": 4,
+        "excluded": 3
+      },
+      "excluded_total": 3
+    }
+  }
+}

@@ -9,7 +9,8 @@
     "source": "https://venetostars.com",
     "severity": "high",
     "cause": "verification step did not run (all 6 fetches failed that run); a null deadline was recorded as unknown instead of being checked",
-    "fix_candidate": "when a fetch fails, do not emit the item as current — mark verification_status=unverified and either drop it or show it with an explicit 'unconfirmed deadline' warning"
+    "fix_candidate": "when a fetch fails, do not emit the item as current — mark verification_status=unverified and either drop it or show it with an explicit 'unconfirmed deadline' warning",
+    "fixed": true
   },
   {
     "id": "F02",
@@ -21,7 +22,8 @@
     "source": "socchina.net",
     "severity": "high",
     "cause": "official page found but season/edition semantics not resolved; deadline parsed but not compared to today",
-    "fix_candidate": "after parsing a deadline, always compare to today and move past ones to excluded"
+    "fix_candidate": "after parsing a deadline, always compare to today and move past ones to excluded",
+    "fixed": true
   },
   {
     "id": "F03",
@@ -33,7 +35,8 @@
     "source": "getclera.com, iAgora",
     "severity": "medium",
     "cause": "canonical-source search not completed within the 6-query budget; item still emitted",
-    "fix_candidate": "rule: no official URL ⇒ source_tier C/D and verification_status=unverified, and it must not be presented in the main 'worth applying' block"
+    "fix_candidate": "rule: no official URL ⇒ source_tier C/D and verification_status=unverified, and it must not be presented in the main 'worth applying' block",
+    "fixed": true
   },
   {
     "id": "F04",
@@ -45,7 +48,8 @@
     "source": "shixiseng.com, liepin.com",
     "severity": "medium",
     "cause": "aggregator-first retrieval; canonical follow-up skipped under budget pressure",
-    "fix_candidate": "same as F03, plus a dedicated 'follow the official link' step for aggregator hits"
+    "fix_candidate": "same as F03, plus a dedicated 'follow the official link' step for aggregator hits",
+    "fixed": true
   },
   {
     "id": "F05",
@@ -57,7 +61,8 @@
     "source": "scripts/locales.py output",
     "severity": "high",
     "cause": "documented fallback (preferred → school → remote) misreads an intentionally global persona; 'no preferred country' ≠ 'the school country'",
-    "fix_candidate": "only use school_country when the persona implies a local search (no remote/global flag); if remote=true or goals are global, default to Global/Remote"
+    "fix_candidate": "only use school_country when the persona implies a local search (no remote/global flag); if remote=true or goals are global, default to Global/Remote",
+    "fixed": true
   },
   {
     "id": "F06",
@@ -69,7 +74,8 @@
     "source": "search results",
     "severity": "medium",
     "cause": "explore-layer query did not carry the resolved locale into the query string",
-    "fix_candidate": "explore queries must keep the locale term or an explicit country token"
+    "fix_candidate": "explore queries must keep the locale term or an explicit country token",
+    "fixed": true
   },
   {
     "id": "F07",
@@ -81,7 +87,8 @@
     "source": "both run logs",
     "severity": "medium",
     "cause": "fixed 6-query budget: breadth traded against locale coverage",
-    "fix_candidate": "reserve at least one query for the user's own language/region before explore"
+    "fix_candidate": "reserve at least one query for the user's own language/region before explore",
+    "fixed": false
   },
   {
     "id": "F08",
@@ -93,7 +100,8 @@
     "source": "_metrics.json",
     "severity": "high",
     "cause": "radar emitted more unverifiable aggregator items and two expired competitions, diluting precision",
-    "fix_candidate": "precision gate: drop/flag items failing F02/F03 rules before ranking"
+    "fix_candidate": "precision gate: drop/flag items failing F02/F03 rules before ranking",
+    "fixed": false
   },
   {
     "id": "F09",
@@ -105,7 +113,8 @@
     "source": "judge scores",
     "severity": "medium",
     "cause": "French-language official pages hard to fetch/parse within budget",
-    "fix_candidate": "accept lower verification but label it; never show unverified items in the top block"
+    "fix_candidate": "accept lower verification but label it; never show unverified items in the top block",
+    "fixed": false
   },
   {
     "id": "F10",
@@ -117,6 +126,31 @@
     "source": "judge comment",
     "severity": "low",
     "cause": "cross-run dedupe is out of scope for dedupe.py (it dedupes within a run); benchmark artifact only",
-    "fix_candidate": "none — document that dedupe is per-run; cross-session dedupe belongs to state layer (already exists via seen.json)"
+    "fix_candidate": "none — document that dedupe is per-run; cross-session dedupe belongs to state layer (already exists via seen.json)",
+    "fixed": false
+  },
+  {
+    "id": "F11",
+    "type": "infrastructure_failure",
+    "persona": "environment / design",
+    "query": "(fetch attempts on official pages)",
+    "expected": "official pages fetchable for verification",
+    "actual": "3/6 fetches failed in environment v2 (network / JS-rendered / archived page); 4/6 design fetches failed (Cloudflare, Akamai redirect, 403, 404)",
+    "source": "v2 run logs",
+    "severity": "medium",
+    "cause": "anti-bot (Cloudflare/Akamai), JS-rendered pages, dead deep links — tooling limitation, not a Skill rule failure",
+    "fix_candidate": "do not change product logic; report as infrastructure. Possible future: headless-browser fetch or manual-verification prompt for anti-bot domains. Fixed F01-F06 marked fixed=True in this index."
+  },
+  {
+    "id": "F12",
+    "type": "measurement_limitation",
+    "persona": "(benchmark methodology)",
+    "query": "(round 1 vs round 2 useful counts)",
+    "expected": "v1 and v2 useful numbers comparable",
+    "actual": "different judge sessions applied different strictness (v2 judge: past deadlines -> elig=0, aggregator-only -> trust<=1), so v1<->v2 useful counts are NOT directly comparable",
+    "source": "benchmarks/judge-scores-*.json",
+    "severity": "medium",
+    "cause": "blind judging used separate sessions; no shared calibration set",
+    "fix_candidate": "re-score all lists (v1+v2) in ONE judge session, or build a small calibration set of pre-scored items that every judge session must reproduce"
   }
 ]

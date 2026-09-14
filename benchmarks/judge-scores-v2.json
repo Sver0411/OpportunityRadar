@@ -1,0 +1,88 @@
+{
+  "judge": "v2",
+  "timestamp": "2026-09-15T00:00:00+09:00",
+  "personas": {
+    "iot-embedded": {
+      "A": [
+        {"item_id": "iot-embedded-A-1", "relevance": 3, "eligibility": 3, "trust": 3, "novelty": 2, "actionability": 3, "comment": "Official Okinawa contest, IoT/hardware category, deadline 2026-09-30. Strong fit."},
+        {"item_id": "iot-embedded-A-2", "relevance": 3, "eligibility": 3, "trust": 1, "novelty": 2, "actionability": 2, "comment": "smartcarrace.com returns unrelated content; 2026-11-01 deadline only from third-party notices. Official unconfirmed."},
+        {"item_id": "iot-embedded-A-3", "relevance": 3, "eligibility": 3, "trust": 3, "novelty": 2, "actionability": 3, "comment": "openUBMC official internship, remote, open. Clear entry."},
+        {"item_id": "iot-embedded-A-4", "relevance": 3, "eligibility": 2, "trust": 1, "novelty": 2, "actionability": 1, "comment": "ET Robocon, official page not fetched; deadline/eligibility unconfirmed."},
+        {"item_id": "iot-embedded-A-5", "relevance": 2, "eligibility": 2, "trust": 1, "novelty": 2, "actionability": 1, "comment": "Third-party blog list of Tokyo communities; no official/uniform entry."}
+      ],
+      "B": [
+        {"item_id": "iot-embedded-B-1", "relevance": 3, "eligibility": 3, "trust": 3, "novelty": 2, "actionability": 3, "comment": "Sharp official AIoT/embedded themes, bachelor accepted, clear entry."},
+        {"item_id": "iot-embedded-B-2", "relevance": 3, "eligibility": 0, "trust": 1, "novelty": 2, "actionability": 0, "comment": "Deadline 2026-04-06 passed; grad-by-March-2028 rule unmet."},
+        {"item_id": "iot-embedded-B-3", "relevance": 3, "eligibility": 0, "trust": 1, "novelty": 2, "actionability": 0, "comment": "Deadline 2026-02-27 passed; aggregator only."},
+        {"item_id": "iot-embedded-B-4", "relevance": 3, "eligibility": 3, "trust": 1, "novelty": 2, "actionability": 2, "comment": "Aggregator post (deizao.net), open until 2026-10-02, not verified vs employer."},
+        {"item_id": "iot-embedded-B-5", "relevance": 3, "eligibility": 2, "trust": 1, "novelty": 2, "actionability": 2, "comment": "Aggregator; '2026届' ambiguous vs 2028 grad; no deadline."},
+        {"item_id": "iot-embedded-B-6", "relevance": 3, "eligibility": 3, "trust": 2, "novelty": 2, "actionability": 2, "comment": "Espressif official but captcha-blocked; ESP-IDF/Matter fit, details partial."},
+        {"item_id": "iot-embedded-B-7", "relevance": 3, "eligibility": 0, "trust": 2, "novelty": 2, "actionability": 0, "comment": "Deadline 2026-03-27 passed; publication gate unmet."},
+        {"item_id": "iot-embedded-B-8", "relevance": 3, "eligibility": 3, "trust": 3, "novelty": 2, "actionability": 3, "comment": "Espressif AIoT track official, ongoing, free kits. Strong fit."},
+        {"item_id": "iot-embedded-B-9", "relevance": 3, "eligibility": 0, "trust": 2, "novelty": 2, "actionability": 0, "comment": "Deadline 2026-07-31 passed."},
+        {"item_id": "iot-embedded-B-10", "relevance": 3, "eligibility": 0, "trust": 1, "novelty": 2, "actionability": 1, "comment": "Requires US enrollment/academic credit; geo-bar unmet."}
+      ]
+    },
+    "design": {
+      "A": [
+        {"item_id": "design-A-1", "relevance": 3, "eligibility": 3, "trust": 3, "novelty": 2, "actionability": 3, "comment": "Origin CG official, Blender/AI video, deadline 2026-10-31."},
+        {"item_id": "design-A-2", "relevance": 3, "eligibility": 3, "trust": 3, "novelty": 1, "actionability": 3, "comment": "DNA Paris official; well-known design award (low novelty)."},
+        {"item_id": "design-A-3", "relevance": 3, "eligibility": 2, "trust": 1, "novelty": 2, "actionability": 1, "comment": "ArtStation challenges, fetch failed, unverified."},
+        {"item_id": "design-A-4", "relevance": 3, "eligibility": 2, "trust": 1, "novelty": 1, "actionability": 1, "comment": "Ludum Dare, invalid URL redirect, unverified; very well-known."},
+        {"item_id": "design-A-5", "relevance": 3, "eligibility": 2, "trust": 1, "novelty": 1, "actionability": 0, "comment": "kenney.nl/jam confirmed 404 (dead). No working source."},
+        {"item_id": "design-A-6", "relevance": 3, "eligibility": 2, "trust": 1, "novelty": 1, "actionability": 1, "comment": "Awwwards, fetch forbidden, unverified; well-known."},
+        {"item_id": "design-A-7", "relevance": 3, "eligibility": 3, "trust": 2, "novelty": 1, "actionability": 2, "comment": "Global Game Jam official but future cycle unverified; well-known."}
+      ],
+      "B": [
+        {"item_id": "design-B-1", "relevance": 3, "eligibility": 3, "trust": 3, "novelty": 2, "actionability": 3, "comment": "UX Design Awards official, New Talent student track, deadline 2026-11-15."},
+        {"item_id": "design-B-2", "relevance": 3, "eligibility": 3, "trust": 3, "novelty": 2, "actionability": 3, "comment": "iF Student Award official, free, deadline 2027-02-03."},
+        {"item_id": "design-B-3", "relevance": 3, "eligibility": 3, "trust": 3, "novelty": 2, "actionability": 3, "comment": "Games for Change student challenge official, ages 8-25, open."},
+        {"item_id": "design-B-4", "relevance": 3, "eligibility": 0, "trust": 3, "novelty": 2, "actionability": 0, "comment": "Deadline 2026-06-03 passed (recurring, but current closed)."},
+        {"item_id": "design-B-5", "relevance": 3, "eligibility": 3, "trust": 3, "novelty": 2, "actionability": 3, "comment": "GGAC x Valorant official, deadline 2026-09-30, Blender/Adobe fit."},
+        {"item_id": "design-B-6", "relevance": 2, "eligibility": 2, "trust": 1, "novelty": 2, "actionability": 0, "comment": "SILMO optic-design deep link confirmed 404; no official source verified."}
+      ]
+    },
+    "environment": {
+      "A": [
+        {"item_id": "environment-A-1", "relevance": 3, "eligibility": 3, "trust": 3, "novelty": 2, "actionability": 3, "comment": "EGU/NUS remote internship official, rolling, strong fit."},
+        {"item_id": "environment-A-2", "relevance": 3, "eligibility": 3, "trust": 3, "novelty": 2, "actionability": 3, "comment": "GeoAI Arctic Challenge official, deadline 2027-01-31, GIS/ML fit."},
+        {"item_id": "environment-A-3", "relevance": 3, "eligibility": 3, "trust": 3, "novelty": 2, "actionability": 3, "comment": "NASA ARSET official training, free, open."},
+        {"item_id": "environment-A-4", "relevance": 3, "eligibility": 2, "trust": 1, "novelty": 2, "actionability": 1, "comment": "Code for Earth ECMWF, fetch failed, unverified."},
+        {"item_id": "environment-A-5", "relevance": 3, "eligibility": 2, "trust": 1, "novelty": 2, "actionability": 1, "comment": "OSGeo GSoC, fetched 2020 archive, unverified."},
+        {"item_id": "environment-A-6", "relevance": 3, "eligibility": 2, "trust": 1, "novelty": 2, "actionability": 2, "comment": "SciStarter/Zooniverse tier-B, JS-render unretrievable, open volunteer."},
+        {"item_id": "environment-A-7", "relevance": 3, "eligibility": 2, "trust": 1, "novelty": 2, "actionability": 1, "comment": "Thurston CD intern via snippet only; likely US in-person (remote conflict)."}
+      ],
+      "B": [
+        {"item_id": "environment-B-1", "relevance": 3, "eligibility": 3, "trust": 3, "novelty": 2, "actionability": 3, "comment": "EGU-NUS remote internship official, rolling, strong fit."},
+        {"item_id": "environment-B-2", "relevance": 3, "eligibility": 0, "trust": 3, "novelty": 2, "actionability": 0, "comment": "Deadline 2026-08-14 passed."},
+        {"item_id": "environment-B-3", "relevance": 3, "eligibility": 3, "trust": 2, "novelty": 2, "actionability": 2, "comment": "UNDP RA partially verified via snippet; portal entry clear."},
+        {"item_id": "environment-B-4", "relevance": 3, "eligibility": 0, "trust": 2, "novelty": 2, "actionability": 0, "comment": "Deadline 2026-09-03 passed; in-person UK (remote conflict)."},
+        {"item_id": "environment-B-5", "relevance": 3, "eligibility": 3, "trust": 2, "novelty": 2, "actionability": 3, "comment": "NASA Citizen Science partially verified; ongoing, clear entry."},
+        {"item_id": "environment-B-6", "relevance": 3, "eligibility": 0, "trust": 1, "novelty": 2, "actionability": 0, "comment": "Deadline 2026-08-31 passed; aggregator only."},
+        {"item_id": "environment-B-7", "relevance": 3, "eligibility": 0, "trust": 1, "novelty": 2, "actionability": 0, "comment": "In-person Penn State lab; remote constraint unmet."}
+      ]
+    },
+    "biology": {
+      "A": [
+        {"item_id": "biology-A-1", "relevance": 3, "eligibility": 0, "trust": 2, "novelty": 2, "actionability": 0, "comment": "DAAD RISE restricts to NA/UK/Ireland enrollment; EU persona ineligible."},
+        {"item_id": "biology-A-2", "relevance": 3, "eligibility": 0, "trust": 2, "novelty": 2, "actionability": 0, "comment": "Deadline 2026-02-25 passed (recurring)."},
+        {"item_id": "biology-A-3", "relevance": 3, "eligibility": 3, "trust": 2, "novelty": 2, "actionability": 3, "comment": "EPFL LIFE summer, deadline 2026-11-15, year-2 OK."},
+        {"item_id": "biology-A-4", "relevance": 3, "eligibility": 3, "trust": 2, "novelty": 2, "actionability": 3, "comment": "Max Planck M2L URO, deadline 2026-10-01, GPA unknown."},
+        {"item_id": "biology-A-5", "relevance": 3, "eligibility": 0, "trust": 2, "novelty": 2, "actionability": 0, "comment": "Deadline 2026-02-01 passed."},
+        {"item_id": "biology-A-6", "relevance": 2, "eligibility": 3, "trust": 2, "novelty": 2, "actionability": 2, "comment": "Erasmus+ host offer deadline 2026-09-15 (today); EU student eligible."},
+        {"item_id": "biology-A-7", "relevance": 2, "eligibility": 0, "trust": 2, "novelty": 2, "actionability": 0, "comment": "Deadline 2026-05-01 passed; honours requirement likely unmet."}
+      ],
+      "B": [
+        {"item_id": "biology-B-1", "relevance": 3, "eligibility": 3, "trust": 3, "novelty": 2, "actionability": 3, "comment": "MPI-MP HiWi/internship official, open, German-enrolled fits."},
+        {"item_id": "biology-B-2", "relevance": 3, "eligibility": 3, "trust": 3, "novelty": 2, "actionability": 3, "comment": "iGEM official, open to undergrad teams, strong fit."},
+        {"item_id": "biology-B-3", "relevance": 3, "eligibility": 3, "trust": 1, "novelty": 2, "actionability": 1, "comment": "Only aggregator draft page (educatly); no official_url. Verify Basel site."},
+        {"item_id": "biology-B-4", "relevance": 3, "eligibility": 3, "trust": 1, "novelty": 2, "actionability": 1, "comment": "Only scholarshipng aggregator; no official_url. Track VBC page."},
+        {"item_id": "biology-B-5", "relevance": 3, "eligibility": 2, "trust": 2, "novelty": 2, "actionability": 2, "comment": "LMU HiWi; enrollment requirement unconfirmed for persona."},
+        {"item_id": "biology-B-6", "relevance": 2, "eligibility": 2, "trust": 2, "novelty": 1, "actionability": 1, "comment": "Degree component, requires RUG enrollment; not standalone."},
+        {"item_id": "biology-B-7", "relevance": 1, "eligibility": 0, "trust": 3, "novelty": 2, "actionability": 0, "comment": "School pupils only (finished 10th grade), not undergrad."},
+        {"item_id": "biology-B-8", "relevance": 1, "eligibility": 0, "trust": 3, "novelty": 2, "actionability": 0, "comment": "Deadline 2026-07-24 passed; targets non-bio backgrounds."},
+        {"item_id": "biology-B-9", "relevance": 1, "eligibility": 0, "trust": 3, "novelty": 2, "actionability": 0, "comment": "Requires Stockholm enrollment; persona Germany/Netherlands."}
+      ]
+    }
+  }
+}
