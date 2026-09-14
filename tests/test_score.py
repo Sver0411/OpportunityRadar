@@ -19,14 +19,18 @@ TODAY = dt.date(2026, 9, 14)
 
 
 def profile(**kw):
+    """中性基础画像：地区与专业不预设。
+
+    刻意不用任何特定国家/专业当默认 —— 泛化回归测试会盯着这一点（见 test_locale.py）。
+    """
     p = {
-        "education": {"degree": "undergraduate", "major": "IoT Engineering",
+        "education": {"degree": "undergraduate", "major": "Computer Science",
                       "current_year": 3, "expected_graduation": "2028-06", "GPA": None},
-        "skills": [{"name": "C"}, {"name": "Python"}, {"name": "ESP32"}, {"name": "FreeRTOS"}],
-        "languages": [{"language": "English", "exam": "CET", "score": None, "level": None}],
-        "interests": ["Embedded"],
+        "skills": [{"name": "Python"}, {"name": "Linux"}, {"name": "Git"}],
+        "languages": [{"language": "English", "exam": None, "score": None, "level": "native"}],
+        "interests": ["security", "open_source"],
         "goals": [{"type": "internship", "priority": "high"}],
-        "constraints": {"preferred_country": ["Japan"], "remote": True},
+        "constraints": {"preferred_country": ["United States"], "remote": True},
     }
     p.update(kw)
     return p
@@ -311,7 +315,7 @@ class TestSkillMatching(unittest.TestCase):
         self.assertTrue(S.skill_hit("python", ["Python3"]))
 
     def test_component_rewards_real_overlap(self):
-        strong, _ = S.skill_component(opp(skills_required=["C", "Python", "Git"]), profile())
+        strong, _ = S.skill_component(opp(skills_required=["Python", "Git", "Linux"]), profile())
         weak, _ = S.skill_component(opp(skills_required=["Kubernetes", "Terraform"]), profile())
         self.assertGreater(strong, weak)
 
@@ -507,8 +511,8 @@ class TestProvenanceIsolation(unittest.TestCase):
 
     def test_scoring_components_still_use_full_profile(self):
         """排序/兴趣类分项可以继续使用推断信息。"""
-        p = profile(interests=["Embedded"], **{"_source": "inferred_pending"})
-        res = S.score_all(p, [opp(id="s", tags=["embedded"])], today=TODAY)
+        p = profile(interests=["security"], **{"_source": "inferred_pending"})
+        res = S.score_all(p, [opp(id="s", tags=["security", "open_source"])], today=TODAY)
         self.assertGreater(res["scored"], 0)
         self.assertGreater(res["results"][0]["components"]["interest_fit"], 55)
 
@@ -538,7 +542,8 @@ class TestScoringPipeline(unittest.TestCase):
 
     def test_example_files_run(self):
         import json
-        prof = json.load(open(_helpers.path("examples", "profile.example.json"), encoding="utf-8"))
+        prof = json.load(open(_helpers.path("examples", "profiles", "cs-student.example.json"),
+                              encoding="utf-8"))
         opps = json.load(open(_helpers.path("examples", "opportunity.batch.example.json"),
                               encoding="utf-8"))["opportunities"]
         res = S.score_all(prof, opps, today=TODAY)

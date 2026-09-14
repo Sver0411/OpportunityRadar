@@ -7,6 +7,10 @@
 Step 4 用它决定"每类要发哪些 query"。因此本文件同时给出每一类的**典型来源**与
 **query 模式**（英/中/日），直接可复制使用。
 
+> **职责分工**：本文件回答"有哪些类型的机会、典型来源是什么、通用的 search intent 是什么"。
+> **"每个地区具体怎么搜、用哪些词"属于 locale 层**（`references/locales/`），
+> 由目标地区在运行时决定，不在本文件里写死语言。
+>
 > 使用规则：不要只读某一类。开放性问题（"最近有什么适合我的"）至少覆盖 5 类。
 > 类别是"发现入口"，不是"最终推荐"。同一件事可以从多个类进入，去重后自然收敛。
 
@@ -32,7 +36,7 @@ Step 4 用它决定"每类要发哪些 query"。因此本文件同时给出每�
 
 ---
 
-## 1. `career` — 职业机会
+## 1. `career` — 职业机会career
 
 **子类：** 暑期实习 / 寒假实习 / 日常实习 / 长期实习 / 远程实习 / 海外实习 /
 研究型实习 / 秋招 / 春招 / 提前批 / 补录 / Graduate Program / 管培生 /
@@ -40,45 +44,52 @@ Step 4 用它决定"每类要发哪些 query"。因此本文件同时给出每�
 企业学生计划 / 企业人才培养计划
 
 **典型 Tier A 来源：** 企业校招官网（`careers.*`、`*.com/campus`、`*.com/newgrad`）、
-企业学生计划专页、大学就业中心官网、企业日本採用ページ。
+企业学生计划专页、大学就业中心官网、企业官方招聘页（多为当地语言版本）。
 
-**Query 模式：**
+**Intent templates**（语言中立）：
 
 ```
-EN: <field> internship 2026 · <field> intern summer 2027 · new grad <field> program
-    student program <company> · <field> placement year
-CN: <方向> 实习 招聘 · <企业> 校园招聘 · <方向> 暑期实习 · 应届生 <方向> 提前批
-JA: <分野> インターン 大学生 · <分野> 長期インターン · 新卒 <分野> 採用 ·
-    学生向け プログラム · サマーインターン 選考
+<field> internship / intern
+summer / winter / off-cycle <field> internship
+<field> placement / co-op (UK-style year-long placement)
+<field> graduate program / new grad / entry level
+<organization> student program / campus recruiting
+<field> research internship
+<field> remote / part-time / freelance
 ```
+
+> 用 `references/locales/generic.md` 的规则把这些 intent 本地化到目标地区语言；具体的当地用词见对应的 locale 文件（如 `jp.md` / `cn.md` / `de.md`）。
 
 **注意：**
 - 聚合站（招聘平台、LinkedIn）只用于**发现**；投递入口与截止日必须回官网确认。
 - "研究型实习"同时属于 `research`，默认 primary 取 `career`、`research` 进 secondary。
-- 校招时间线强绑定毕业年份（日本按「卒業年度」、中国按「应届生」），
-  没有毕业年份时不要把往届信息当成有效机会。
+- 校招时间线强绑定毕业年份：不同地区按不同口径筛选（有的看毕业年度、有的看"应届"身份），
+  具体判定规则见对应 locale 文件；没有毕业年份时不要把往届信息当成有效机会。
 
 ---
 
-## 2. `research` — 科研机会
+## 2. `research` — 科研机会research
 
 **子类：** Research Assistant / 本科科研 / 科研实习 / Summer Research / 实验室项目 /
 企业研究院 / 教授招募 / 大学生科研计划 / 开放课题 / 研究训练计划 / 论文合作 /
 Poster / Workshop / 学术项目 / Visiting Student / Research Internship
 
-**典型 Tier A 来源：** 大学实验室官网、教授个人主页（`*.edu`、`*.ac.jp`、
-`*.ac.uk` 教員紹介）、院系"研究プロジェクト/招募"页面、企业研究院（R&D）页面、
-学术组织官方公告（ACM/IEEE/SIG 等）。
+**典型 Tier A 来源：** 大学实验室官网、教授个人主页、院系研究项目/招募页面、
+企业研究院（R&D）页面、学术组织官方公告（ACM/IEEE/SIG 等）。
+学术域名可用于快速判断来源层级：`*.edu` / `*.ac.jp` / `*.ac.uk` / `*.edu.cn` / `*.uni-*.de` 等。
 
-**Query 模式：**
+**Intent templates**（语言中立）：
 
 ```
-EN: undergraduate research program <field> · research assistant professor <field>
-    summer research internship <field> · visiting student <field> · funded RA position
-CN: <方向> 本科生科研 · 实验室 招募 本科生 · 科研助理 招聘 导师 · 大学生科研训练计划
-JA: 学部生 研究 募集 <分野> · 研究室 配属 募集 · 研究インターン 学生 ·
-    サマースクール 研究 <分野>
+<field> undergraduate research
+<field> research assistant / RA position
+summer research program <field>
+<field> lab opening / lab recruiting students
+professor <field> recruiting
+<field> visiting student / research internship
 ```
+
+> 用 `references/locales/generic.md` 的规则把这些 intent 本地化到目标地区语言；具体的当地用词见对应的 locale 文件（如 `jp.md` / `cn.md` / `de.md`）。
 
 **注意：**
 - 教授直接招募通常没有正式招聘页，`official_url` 可以是实验室/教授页面，
@@ -88,7 +99,7 @@ JA: 学部生 研究 募集 <分野> · 研究室 配属 募集 · 研究イン�
 
 ---
 
-## 3. `competition` — 竞赛
+## 3. `competition` — 竞赛competition
 
 **子类：** 编程竞赛 / 算法比赛 / CTF / AI 比赛 / CV / NLP / LLM / Agent /
 数据科学 / IoT / 嵌入式 / 电子设计 / FPGA / 芯片 / 机器人 / 无人机 / 无人车 /
@@ -98,15 +109,17 @@ JA: 学部生 研究 募集 <分野> · 研究室 配属 募集 · 研究イン�
 **典型 Tier A 来源：** 赛事官网、主办方官网（企业/Kaggle/学术会议）、
 行业协会赛事页、大学赛队或教务公告。
 
-**Query 模式：**
+**Intent templates**（语言中立）：
 
 ```
-EN: <topic> competition students 2026 · <topic> challenge open call ·
-    <topic> hackathon worldwide · embedded design contest
-CN: <方向> 大赛 报名 · 大学生 <方向> 竞赛 · <方向> 挑战赛 2026 · 创客大赛
-JA: <分野> コンテスト 学生 · 学生 ハッカソン 2026 · アイデアコンテスト 学生 ·
-    ロボコン 大会 募集
+<topic> competition for students
+<topic> challenge (open call)
+<topic> hackathon / game jam
+<topic> contest / award (design, hardware, case)
+<topic> student prize
 ```
+
+> 用 `references/locales/generic.md` 的规则把这些 intent 本地化到目标地区语言；具体的当地用词见对应的 locale 文件（如 `jp.md` / `cn.md` / `de.md`）。
 
 **注意：**
 - 竞赛的价值差异极大：区分"有奖金/有评审/有公开作品集产出"与"纯报名制水赛"。
@@ -115,7 +128,7 @@ JA: <分野> コンテスト 学生 · 学生 ハッカソン 2026 · アイデ�
 
 ---
 
-## 4. `education` — 升学与教育
+## 4. `education` — 升学与教育education
 
 **子类：** 考研 / 保研 / 夏令营 / 预推免 / 调剂 / 直博 / Master / PhD /
 Research Student / 海外硕士 / 海外博士 / 交换 / 联合培养 / 双学位 /
@@ -124,24 +137,26 @@ Summer School / Winter School / Visiting Student / 短期课程
 **典型 Tier A 来源：** 大学院系官网（招生页、summer program 页）、
 研究生院官网、国际处/交流办公室、官方夏校页。
 
-**Query 模式：**
+**Intent templates**（语言中立）：
 
 ```
-EN: summer school <field> 2026 · master program <field> application ·
-    exchange program university <field> · visiting student program
-CN: <方向> 暑期学校 报名 · 夏令营 招生 简章 · 保研 夏令营 2026 ·
-    联合培养 项目 申请
-JA: サマースクール 募集 <分野> · 大学院 入試 募集要項 · 交換留学 募集 ·
-    研究生 募集 大学
+<field> summer school / winter school
+<field> master / PhD program application
+<field> exchange program / joint degree
+<field> visiting student / research student
+<field> short course
 ```
+
+> 用 `references/locales/generic.md` 的规则把这些 intent 本地化到目标地区语言；具体的当地用词见对应的 locale 文件（如 `jp.md` / `cn.md` / `de.md`）。
 
 **注意：**
-- 中国升学类信息受年份与政策影响大，把"哪一届"写清楚，避免把去年简章当本年机会。
+- 升学类信息年份耦合极强（招生年度 / 政策年度），务必写清"哪一届"；
+  不要把往年的简章当成本年机会（各地区具体口径见 locale 文件）。
 - 海外项目必须单独核对语言成绩与财政证明要求，二者常是硬性条件。
 
 ---
 
-## 5. `language` — 语言
+## 5. `language` — 语言language
 
 **子类：** JLPT / TOEIC / IELTS / TOEFL / GRE / GMAT / CET / TOPIK / 其他语言考试 /
 考试报名 / 模考 / 语言比赛 / 翻译比赛 / 演讲比赛 / 语言奖学金 / 语言交换 /
@@ -150,13 +165,16 @@ JA: サマースクール 募集 <分野> · 大学院 入試 募集要項 · �
 **典型 Tier A 来源：** 考试主办方官网（JLPT 官方、ETS、IELTS 官方、CET 教务）、
 使馆/文化机构（JASSO、Goethe、Alliance Française）、语言学校官方页。
 
-**Query 模式：**
+**Intent templates**（语言中立）：
 
 ```
-EN: <exam> test dates 2026 <country> · <exam> registration deadline
-CN: <考试> 报名时间 2026 · <考试> 考点 报名 · 语言 比赛 报名 · 翻译大赛 报名
-JA: <試験> 申込期間 · <試験> 日程 2026 · 語学 スピーチコンテスト 募集
+<exam> test dates / registration
+<language> competition / speech contest
+<language> scholarship / exchange
+<language> intensive course
 ```
+
+> 用 `references/locales/generic.md` 的规则把这些 intent 本地化到目标地区语言；具体的当地用词见对应的 locale 文件（如 `jp.md` / `cn.md` / `de.md`）。
 
 **注意：**
 - **纯查询不触发本 skill**（"TOEIC 什么时候考试" → 直接答）。
@@ -165,7 +183,7 @@ JA: <試験> 申込期間 · <試験> 日程 2026 · 語学 スピーチコン�
 
 ---
 
-## 6. `skill_development` — 技能与资源
+## 6. `skill_development` — 技能与资源skill_development
 
 **子类：** AWS / Azure / GCP / Cisco / Red Hat / 技术认证 / 学生免费认证 /
 Bootcamp / Workshop / Developer Training / 企业培养计划 / GPU Credit /
@@ -174,14 +192,18 @@ Cloud Credit / API Credit / 教育软件 / 学生开发包 / 开发板计划
 **典型 Tier A 来源：** 云厂商学生计划页（GitHub Student Pack、AWS Educate 类页面）、
 认证官方页、厂商开发者计划页。
 
-**Query 模式：**
+**Intent templates**（语言中立）：
 
 ```
-EN: student developer pack · free certification students <vendor> ·
-    cloud credits students · startup credits program · university program <vendor>
-CN: 学生 免费 认证 · 学生 云资源 申请 · 开发者计划 学生 · 教育优惠 开发板
-JA: 学生 無料 資格 · 学生 開発者 プログラム · クラウド クーポン 学生
+<vendor> student program / student pack
+free certification for students <vendor>
+cloud / GPU / API credits for students
+developer training / bootcamp
+dev board / hardware program
+education software for students
 ```
+
+> 用 `references/locales/generic.md` 的规则把这些 intent 本地化到目标地区语言；具体的当地用词见对应的 locale 文件（如 `jp.md` / `cn.md` / `de.md`）。
 
 **注意：**
 - "资源型机会"（credit、开发板、教育 license）常被忽略但即时可用，
@@ -190,7 +212,7 @@ JA: 学生 無料 資格 · 学生 開発者 プログラム · クラウド ク
 
 ---
 
-## 7. `open_source` — 开源
+## 7. `open_source` — 开源open_source
 
 **子类：** GSoC / Mentorship / 开源实习 / Contributor Program / Good First Issue /
 Help Wanted / Bounty / Maintainer 招募 / Developer Community / RFC / Proposal /
@@ -199,15 +221,18 @@ Beta Program
 **典型 Tier A 来源：** 项目官网 / GitHub 仓库文档（CONTRIBUTING、`good first issue` 标签）、
 基金会官方页（如 GSoC 官方站）、项目 blog 的招募公告。
 
-**Query 模式：**
+**Intent templates**（语言中立）：
 
 ```
-EN: GSoC <topic> · open source mentorship program · good first issue <topic> ·
-    <project> contributors wanted · paid open source internship
-CN: 开源 之夏 项目 · 开源 实习 招募 · 开源社区 贡献 新人 · 悬赏 任务 开源
-JA: OSS コントリビュート 初心者 募集 · オープンソース インターン ·
-    メンタリング プログラム 募集
+open source mentorship program
+good first issue <topic>
+<project> contributors wanted
+paid open source internship
+bounty <topic>
+beta / early access program <topic>
 ```
+
+> 用 `references/locales/generic.md` 的规则把这些 intent 本地化到目标地区语言；具体的当地用词见对应的 locale 文件（如 `jp.md` / `cn.md` / `de.md`）。
 
 **注意：**
 - 开源机会的**时间线极强**（GSoC 类项目一年一轮，提案期短），
@@ -216,7 +241,7 @@ JA: OSS コントリビュート 初心者 募集 · オープンソース イ�
 
 ---
 
-## 8. `hobby` — 兴趣
+## 8. `hobby` — 兴趣hobby
 
 **子类：** 摄影 / 无人机 / 汽车 / 航空 / 游戏 / Game Jam / 音乐 / 写作 /
 设计 / 视频 / 动漫 / Maker / 3D 打印 / 户外 / 创客活动
@@ -224,16 +249,17 @@ JA: OSS コントリビュート 初心者 募集 · オープンソース イ�
 **典型 Tier A 来源：** 厂商社区官方活动页（相机/无人机/汽车品牌）、
 展会官网、兴趣协会、Maker Faire 类活动官网、赛事官网。
 
-**Query 模式：**
+**Intent templates**（语言中立）：
 
 ```
-EN: <brand> student program · <hobby> competition students ·
-    <hobby> community event 2026 · <hobby> ambassador program
-CN: <兴趣> 大赛 报名 · <兴趣> 校园 活动 · <品牌> 用户 计划 招募 ·
-    创客 活动 报名
-JA: <趣味> コンテスト 募集 · <趣味> 学生 プログラム ·
-    <趣味> イベント 2026 参加者募集
+<hobby> competition / contest
+<hobby> community event / meetup
+<brand> student program
+<hobby> ambassador / creator program
+maker / build challenge <hobby>
 ```
+
+> 用 `references/locales/generic.md` 的规则把这些 intent 本地化到目标地区语言；具体的当地用词见对应的 locale 文件（如 `jp.md` / `cn.md` / `de.md`）。
 
 **注意：**
 - 兴趣类必须**真正参与搜索**，不是 profile 的装饰字段。
@@ -243,7 +269,7 @@ JA: <趣味> コンテスト 募集 · <趣味> 学生 プログラム ·
 
 ---
 
-## 9. `funding` — 资助
+## 9. `funding` — 资助funding
 
 **子类：** 国家奖学金 / 学校奖学金 / 企业奖学金 / 助学金 / Research Grant /
 Travel Grant / Conference Grant / 创业基金 / 学生基金 / 交流资助 / 比赛资助 /
@@ -252,15 +278,17 @@ Travel Grant / Conference Grant / 创业基金 / 学生基金 / 交流资助 / �
 **典型 Tier A 来源：** 学校奖学金管理页、基金会官网、会议官网的 travel grant 页、
 企业 CSR/奖学金页、政府/机构资助页。
 
-**Query 模式：**
+**Intent templates**（语言中立）：
 
 ```
-EN: <field> travel grant conference · student research grant <field> ·
-    scholarship <field> international students · conference grant application
-CN: 奖学金 申请 <方向> · 学生 科研基金 申请 · 会议 差旅 资助 ·
-    交流 资助 项目 申请
-JA: 奨学金 応募 <分野> · 学会 参加 助成 学生 · 研究 助成 申請 学生
+<field> scholarship / fellowship
+<field> research grant
+<field> travel grant / conference grant
+student fund / project funding
+equipment / cloud / GPU funding
 ```
+
+> 用 `references/locales/generic.md` 的规则把这些 intent 本地化到目标地区语言；具体的当地用词见对应的 locale 文件（如 `jp.md` / `cn.md` / `de.md`）。
 
 **注意：**
 - 资助类常与其它类重叠：会议 travel grant 会随 `event`、`research` 一起出现，
@@ -269,7 +297,7 @@ JA: 奨学金 応募 <分野> · 学会 参加 助成 学生 · 研究 助成 �
 
 ---
 
-## 10. `event` — 活动
+## 10. `event` — 活动event
 
 **子类：** 技术大会 / Developer Conference / 学术会议 / Workshop / Seminar /
 Meetup / Webinar / Open Day / Career Fair / 校招宣讲 / 实验室开放日 / 社区活动
@@ -277,16 +305,17 @@ Meetup / Webinar / Open Day / Career Fair / 校招宣讲 / 实验室开放日 / 
 **典型 Tier A 来源：** 大会官网、大学官网公告、企业开发者大会页、
 学会会议页、实验室 open day 公告。
 
-**Query 模式：**
+**Intent templates**（语言中立）：
 
 ```
-EN: <topic> conference students registration · developer conference 2026 free ·
-    university open day <field> · career fair <field>
-CN: <方向> 大会 学生 报名 · 技术大会 2026 · 校园宣讲会 <企业> ·
-    开放日 实验室 报名
-JA: <分野> カンファレンス 学生 参加 · 説明会 学生 予約 ·
-    オープンキャンパス 研究室 公開
+<topic> conference (student tickets)
+developer conference registration
+<field> open day / lab open day
+career fair / job fair <field>
+seminar / webinar / workshop <field>
 ```
+
+> 用 `references/locales/generic.md` 的规则把这些 intent 本地化到目标地区语言；具体的当地用词见对应的 locale 文件（如 `jp.md` / `cn.md` / `de.md`）。
 
 **注意：**
 - 活动类门槛低、时效强：把"报名截止 / 举办日期 / 是否免费 / 是否线上"写清楚。
@@ -294,7 +323,7 @@ JA: <分野> カンファレンス 学生 参加 · 説明会 学生 予約 ·
 
 ---
 
-## 11. `project` — 项目
+## 11. `project` — 项目project
 
 **子类：** 企业真实课题 / 企业命题 / Open Innovation / Capstone /
 学生联合项目 / 公益技术项目 / Build Challenge / Hardware Build /
@@ -303,16 +332,17 @@ Research Prototype / 产品共创 / 数据集项目
 **典型 Tier A 来源：** 企业开放创新页、比赛命题页、学校 capstone 合作公告、
 NGO/公益组织技术项目页、数据集官方项目页。
 
-**Query 模式：**
+**Intent templates**（语言中立）：
 
 ```
-EN: open innovation challenge students · company capstone project <field> ·
-    build challenge hardware · civic tech project volunteers
-CN: 命题 挑战 学生 · 企业 课题 招募 学生 · 开源 数据集 项目 参与 ·
-    公益 技术 项目 招募
-JA: 企業 課題 学生 募集 · オープンイノベーション 公募 ·
-    プロジェクト メンバー 募集 学生
+open innovation challenge <topic>
+company capstone project <field>
+build challenge / hardware build
+civic tech / non-profit project
+dataset / open data project
 ```
+
+> 用 `references/locales/generic.md` 的规则把这些 intent 本地化到目标地区语言；具体的当地用词见对应的 locale 文件（如 `jp.md` / `cn.md` / `de.md`）。
 
 **注意：**
 - 项目类最适合"想积累作品但不想被长期绑定"的用户（Mode B）。
@@ -320,7 +350,7 @@ JA: 企業 課題 学生 募集 · オープンイノベーション 公募 ·
 
 ---
 
-## 12. `entrepreneurship` — 创业
+## 12. `entrepreneurship` — 创业entrepreneurship
 
 **子类：** Startup Competition / Accelerator / Incubator / 校园创业 / 创业基金 /
 创业训练营 / Demo Day / 创业团队招募 / 联合创始人招募 / 企业创新挑战
@@ -328,16 +358,17 @@ JA: 企業 課題 学生 募集 · オープンイノベーション 公募 ·
 **典型 Tier A 来源：** 孵化器/加速器官网、创业赛官网、大学创业中心、
 政府/园区创业扶持页。
 
-**Query 模式：**
+**Intent templates**（语言中立）：
 
 ```
-EN: student startup competition 2026 · university accelerator application ·
-    incubator student founders · co-founder wanted student
-CN: 大学生 创业 大赛 报名 · 校园 孵化器 申请 · 创业 训练营 招募 ·
-    创业 基金 学生 申请
-JA: 学生 起業 コンテスト 募集 · インキュベーション 学生 ·
-    アクセラレータ 応募 学生
+student startup competition
+university accelerator / incubator application
+startup founders program students
+co-founder wanted (student)
+demo day <field>
 ```
+
+> 用 `references/locales/generic.md` 的规则把这些 intent 本地化到目标地区语言；具体的当地用词见对应的 locale 文件（如 `jp.md` / `cn.md` / `de.md`）。
 
 **注意：**
 - 与 `funding` / `competition` 高度重叠；区别在于"是否以组建/经营团队为核心"。
@@ -345,7 +376,7 @@ JA: 学生 起業 コンテスト 募集 · インキュベーション 学生 �
 
 ---
 
-## 13. `networking` — 人脉与社区
+## 13. `networking` — 人脉与社区networking
 
 **子类：** Mentor Program / Alumni Mentorship / Industry Mentor /
 Developer Community / Research Community / Student Chapter / Campus Lead /
@@ -354,15 +385,17 @@ Developer Community / Research Community / Student Chapter / Campus Lead /
 **典型 Tier A 来源：** 企业 mentor 计划页、校友会/学校官方页、学生分会官方页、
 专业协会（ACM/IEEE/学会）学生会员页、社区官方 program 页。
 
-**Query 模式：**
+**Intent templates**（语言中立）：
 
 ```
-EN: <company> mentorship program students · student chapter <society> ·
-    campus ambassador program · alumni mentoring program
-CN: 导师 计划 学生 申请 · 学生 分会 招募 · 校园 大使 招募 ·
-    技术 社区 志愿者 招募
-JA: メンター プログラム 学生 · 学生 支部 募集 · キャンパス アンバサダー 募集
+<organization> mentorship program
+student chapter <society>
+campus ambassador / campus lead program
+alumni mentoring program
+<field> community / professional association
 ```
+
+> 用 `references/locales/generic.md` 的规则把这些 intent 本地化到目标地区语言；具体的当地用词见对应的 locale 文件（如 `jp.md` / `cn.md` / `de.md`）。
 
 **注意：**
 - 这类机会门槛最低、发现难度最高，是 Mode C（未知机会）的主力。

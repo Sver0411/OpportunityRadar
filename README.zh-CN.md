@@ -15,7 +15,7 @@
 把一句“最近有什么适合我的机会？”变成 13 步协议 🎯
 **理解你 → 展开搜索空间 → 发现 → 验证 → 筛选 → 排序 → 探索相邻方向**
 
-覆盖 13 类机会 🗂️ · 回官方来源验证 🛡️ · 当地语言搜索 🌏 · 自动去重 🧹 · 判定可解释 📝
+覆盖 13 类机会 🗂️ · 回官方来源验证 🛡️ · 按目标地区选语言 🌏 · 自动去重 🧹 · 判定可解释 📝
 
 *面向支持 Agent Skills 且具备联网能力的宿主 · 不注册、不上云、无遥测 🏠*
 
@@ -35,6 +35,15 @@ cp -r opportunity-radar ~/.workbuddy/skills/opportunity-radar   # 或换成你�
 （宿主的联网搜索能力可能有它自己的配置）：
 
 ```text
+我是大三 CS 学生，关注安全和开源，这学期有什么值得做的？
+```
+
+任何专业、任何地区都适用 —— 用哪些语言搜、适用哪些规则，都来自**你的画像**，
+而不是 Skill 里的示例：
+
+```text
+生物学本科生，想找暑研和资助，欧洲优先。
+设计专业，喜欢游戏和 3D，想找比赛和作品集项目，远程/全球都行。
 我是物联网工程大三学生，会 C、Python 和 ESP32，最近有什么值得参加的？
 ```
 
@@ -60,7 +69,7 @@ OpportunityRadar 用一套协议（而不是一段 Prompt）补上这个缺口�
 |---|---|---|
 | 范围 | 实习 / 工作 | 13 类机会，含科研、开源、资助、兴趣、社区 |
 | 查询 | 用户的字面词 | 按专业族推导的搜索矩阵（更专 → 同层 → 相邻 → 可迁移） |
-| 语言 | 只搜英文 | 当地语言 + 英文，不漏日本/中国/德国的官方页面 |
+| 语言 | 只搜英文 | 按目标地区决定语言：优先当地语言，英文只在国际召回有增益时补充 |
 | 配比 | 全是直接相关 | 70% 直接 / 20% 相邻 / 10% 可迁移且意想不到 |
 | 来源 | 排名靠前的就用 | Tier A–D 分级，只有官方来源才能确认事实 |
 | 资格 | 猜一个 Yes/No | 五级判定 + 决定性依据 |
@@ -99,7 +108,7 @@ OpportunityRadar 用一套协议（而不是一段 Prompt）补上这个缺口�
 13 个步骤，没有捷径（“搜一次然后给结果”不算这套协议）：
 
 ```
-理解用户 → 构建搜索空间 → 展开查询 → 跨类别搜索 → 发现候选
+画像 → 目标地区 → 语言计划（locale）→ 搜索空间 → query 矩阵 → 发现候选
 → 找到官方来源 → 验证 → 结构化 → 去重 → 资格判断 → 排序
 → 探索相邻方向 → 返回最值得看的
 ```
@@ -150,15 +159,32 @@ GitHub 仓库名是 `OpportunityRadar`，但安装后的 skill 目录名必须�
 
 ## 💡 使用示例
 
-### 示例 1 —— 常规发现（日本 + 中国 + 远程）
+### 示例 1 —— 常规发现（美国 CS 学生，安全 + 开源）
 
 ```text
-我是物联网工程大三学生，会 C、Python 和 ESP32，最近有什么值得参加的？
+我是大三 CS 学生，关注安全和开源，这学期有什么值得做的？
 ```
 
-预期行为：使用画像；覆盖多个类别（实习、竞赛、科研、开源、学生资源）；做 Query 扩展而不只搜字面词；
-中/英/日三语搜索；返回一个短清单，每条带资格判定、截止日与官方来源；包含相邻方向与
-用户不会主动搜的方向。
+预期行为：从画像解析目标地区（`us` → `en-US`，加载 `us.md`）；用画像里的兴趣扩词
+（security / open source，而不是固定的专业词表）；覆盖多个类别（竞赛、开源、实习、资助、项目）；
+返回一个带资格判定、截止日与官方来源的短清单。
+
+### 不同的人，得到完全不同的计划
+
+同一套协议，因为语言、类别与判据都来自运行时画像，不同的人会得到不同的搜索计划：
+
+| 画像（见 `examples/profiles/`） | 解析出的语言 | 加载的区域知识 | 主力类别 |
+|---|---|---|---|
+| **CS** —— 安全、开源 · 美国 / 远程 | `en-US` | `generic.md`、`us.md` | 开源、竞赛、实习 |
+| **生物** —— 实验 + 数据分析 · 德国 / 荷兰 | `de-DE`、`nl-NL`（+ `en`） | `generic.md`、`de.md` | 科研、资助、活动 |
+| **设计** —— Figma / Blender、游戏 · 法国 / 全球 | `fr-FR`（+ `en`） | 仅 `generic.md`（还没有 `fr.md`，照常工作） | 竞赛、项目、兴趣 |
+| **IoT** —— C / ESP32 · 日本 / 中国 / 远程 | `ja-JP`、`zh-CN`（+ `en`） | `generic.md`、`jp.md`、`cn.md` | 实习、竞赛、科研 |
+
+最后一行是**受支持的场景之一，不是默认用户**。可以自己跑一下：
+
+```bash
+python3 scripts/locales.py --profile examples/profiles/design-student.example.json
+```
 
 ### 示例 2 —— 不找工作
 
@@ -209,17 +235,23 @@ OpportunityRadar/
 │   ├── eligibility.md                 # 硬条件顺序、五级判定、缺失数据处理
 │   ├── ranking.md                     # Match vs Priority、权重、覆盖度、价值评估
 │   ├── output-format.md               # 输出模板、长度纪律、JSON 产物
-│   └── state-and-feedback.md          # seen/saved/ignored、变化检测、缺口话术
+│   ├── state-and-feedback.md          # seen/saved/ignored、变化检测、缺口话术
+│   └── locales/                       # 区域知识，只在目标地区需要时加载
+│       ├── README.md                  # 加载模型：generic 常加载，国家文件按需
+│       ├── generic.md                 # 地区 → 语言解析、未收录地区、动态检测
+│       ├── cn.md  jp.md  us.md  uk.md de.md
 ├── schemas/
 │   ├── profile.schema.json            # 用户画像（JSON Schema draft 2020-12）
 │   └── opportunity.schema.json        # 机会记录（含 evidence 证据结构）
 ├── scripts/                          # 确定性辅助脚本，纯标准库、不联网
 │   ├── common.py                      # 单一事实来源：枚举、URL、ID、contract 校验
+│   ├── locales.py                     # 目标地区 → 搜索语言 + 需要加载哪些区域文件
 │   ├── normalize_date.py              # 截止日 → ISO + deadline_type + 紧迫度
 │   ├── dedupe.py                      # 周期感知聚类、冲突报告
 │   ├── score.py                       # 资格预判、Match/Priority 分项
 │   └── state.py                       # seen/saved/ignored、变化检测、反馈
 ├── examples/                         # 虚构数据，用于演示格式与脚本
+│   ├── profiles/                      # 四个不同画像（CS / 生物 / 设计 / IoT-日本）
 └── tests/                            # unittest 测试（标准库；jsonschema 可选）
 ```
 
@@ -234,7 +266,7 @@ OpportunityRadar/
 ### `normalize_date.py` —— 截止日与时间窗口
 
 ```bash
-python3 scripts/normalize_date.py "9月20日-10月5日" --default-year 2026 --now 2026-09-14
+python3 scripts/normalize_date.py "Sep 20 - Oct 5, 2026" --now 2026-09-14
 ```
 
 ```json
@@ -264,12 +296,14 @@ python3 scripts/dedupe.py --input examples/opportunity.batch.example.json --form
 ```
 
 ```text
-input=8  clusters=7  removed=1
+input=15  clusters=13  removed=2
 
-[c001] size=2 canonical=nagi-robotics-2027-summer-internship-program
+[c001] size=3 canonical=nagi-robotics-2027-summer-internship-program
   title: 2027 Summer Internship Program
   org  : Nagi Robotics, Inc.
   - merged in: nagi-robotics-summer-internship-2027
+  - merged in: nagi-robotics-2027-internship
+  ! conflict deadline: 2026-10-03(A,C) vs 2026-10-17(C)
 ```
 
 三重防护避免过度合并：**周期守卫**（同一官方 URL 常被多年复用，2026 与 2027 保持独立）、
@@ -281,33 +315,32 @@ input=8  clusters=7  removed=1
 
 ```bash
 python3 scripts/dedupe.py --input examples/opportunity.batch.example.json --output /tmp/clusters.json
-python3 scripts/score.py --profile examples/profile.example.json \
+python3 scripts/score.py --profile examples/profiles/cs-student.example.json \
                          --opportunities /tmp/clusters.json --today 2026-09-14 --format table
 ```
 
 ```text
 | # | 机会 | 类别 | Match | 紧迫 | Priority | 档 | 资格 | 判定来源 |
 |---|---|---|---|---|---|---|---|---|
-| 1 | Nagi Robotics Robot Hackathon | competition | 81 | 35 | 74 | Medium | Eligible | hard_constraint |
-| 2 | Tokyo Embedded Challenge 2026 | competition | 70 | 50 | 67 | Medium | Probably Eligible | hard_constraint |
-| 3 | Nagi Robotics 2027 Internship | career | 73 | 50 | 62 | Medium | Unknown | hard_constraint |
-| 4 | Kagura University Undergraduate Research Program | research | 65 | 35 | 60 | Medium | Unknown | hard_constraint |
-
+| 1 | Atlas Open Source Mentorship Program | open_source | 78 |  | 78 | Medium | Unknown | hard_constraint |
+| 2 | Mira Design Foundation Student Award | competition | 79 | 35 | 72 | Medium | Eligible | hard_constraint |
+| 3 | Northstar Labs Security Research Internship | career | 72 | 50 | 69 | Medium | Unknown | hard_constraint |
+| 4 | Lumen Global Business Case Challenge | competition | 74 | 35 | 68 | Medium | Probably Eligible | hard_constraint |
+| 5 | Nagi Robotics Robot Hackathon | competition | 73 | 35 | 67 | Medium | Eligible | hard_constraint |
+… 共 12 条入选、1 条被排除
 ```
 
-这段输出刻意展示了四种情形（数据为虚构）：
+示例批量刻意横跨 5 个地区与 6 种机会类型（全球/远程、美国、欧洲、中国、日本），
+这样确定性逻辑是在一个混合世界上面被检验的，而不是只跑某个国家的实习。
 
-- **`Eligible`** —— 页面每一项硬条件都带 `evidence.status: explicit`，且全部满足。
-- **`Probably Eligible`** —— 该记录完全没有 `evidence` 结构（旧格式）：硬条件能判断，
-  但由于来源未标注，结论封顶在 Probably Eligible。
-- **`Unknown`** —— 页面没写任何资格条件，或画像缺少判断所需的事实
-  （Kagura 那条要求 JLPT N2，而画像没有日语成绩；Skill 不会替你假设一个）。
-- 虚构的 Nagi 实习被判 **`Ineligible` 并排除**：它要求 2028 年 3 月毕业，而示例画像预计
-  2028 年 6 月毕业 —— 不同届。
+其中几点：
 
-行为要点：`Priority = 0.85 × Match + 0.15 × Urgency`；未知要求按中性分处理而不是 0 分；
-硬条件不会被模型 verdict 推翻；评分体系不一致时（GPA 3.0/4.0 与 85/100）返回 `Unknown`，
-而不是伪造一个换算结果。
+- **`Eligible` 与 `Probably Eligible` 的区别**：前者的每项硬条件都带 `evidence.status: explicit`；
+  后者完全没有 `evidence` 结构（旧格式），因此结论封顶。
+- **`Unknown`**：Northstar 那条需要画像里一个以另一种形式存在的字段（毕业窗口），
+  OSS mentorship 那条则根本没写资格条件 —— 两者都不会被当成"大概率符合"。
+- 被排除的那条是届别冲突（要求 `2028-03` 毕业、画像为 `2028-05`）：代码、references 与 README
+  对"无歧义的枚举/日期冲突 = `Ineligible`"是一致的。
 
 ### `state.py` —— 本地记忆
 
@@ -322,6 +355,33 @@ python3 scripts/state.py suggest
 变化检测跟踪 8 个字段（`deadline`、`application_open`、`cost`、`compensation`、
 `education_level`、`student_year`、`language_requirement`、`official_url`）。
 只追加 `utm_*` 参数**不算**变化。`suggest` 只输出权重建议，永远不会改写画像。
+
+### `locales.py` —— 运行时决定搜索语言
+
+**用哪些语言搜、要加载哪些区域知识**，都从画像推导，不来自固定清单：
+
+```bash
+python3 scripts/locales.py --profile examples/profiles/biology-student.example.json
+```
+
+```text
+regions: germany, netherlands
+primary locales: de-DE, nl-NL
+secondary locales: en
+load files:
+  - references/locales/generic.md
+  - references/locales/de.md
+```
+
+英文只在国际召回有增益时才加。没有区域文件的地区走通用规则，未收录的地区回落到
+通用规则 + 英文：
+
+```bash
+python3 scripts/locales.py --countries Kenya      # regions: remote（未收录: Kenya）→ en，仅 generic
+python3 scripts/locales.py --detect "https://www.univ-xyz.fr/offres"   # fr-FR ← 域名后缀
+python3 scripts/locales.py --detect "研究室のインターン募集"              # ja-JP ← 含假名
+python3 scripts/locales.py --list-locales         # 收录 24 个地区，其中 5 个有专门文件
+```
 
 ### `common.py` —— 共享基础
 
@@ -378,7 +438,8 @@ python3 scripts/common.py --validate examples/opportunity.batch.example.json
 - **仍需要判断力**：`related field` 类专业资格、模糊重复、价值评估仍需模型参与；
   脚本提供的是确定性信号，不是结论。
 - **天然时效性。** 依赖某条结果前，请先复核 `last_verified`。
-- **语言覆盖**以中/英/日最强，其他语言遵循同一套模式但验证较少。
+- **区域知识深度不均**：有专门文件的是 `cn` / `jp` / `us` / `uk` / `de`；其他地区走通用规则 +
+  页面语言动态检测，能用，但更依赖直接读官方页面。
 - **不做自动投递。** 只负责发现、验证、判断与解释。
 
 ---

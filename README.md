@@ -15,7 +15,7 @@
 Turns “最近有什么适合我的机会？” into a 13-step protocol 🎯
 **Understand → Expand → Discover → Verify → Filter → Rank → Explore**
 
-Personalised across 13 categories 🗂️ · Official-source verified 🛡️ · Local-language search 🌏 · Duplicate-aware 🧹 · Explainable verdicts 📝
+Personalised across 13 categories 🗂️ · Official-source verified 🛡️ · Region-aware search 🌏 · Duplicate-aware 🧹 · Explainable verdicts 📝
 
 *Designed for Agent Skills-compatible hosts with web access · No accounts, no cloud, no telemetry 🏠*
 
@@ -35,6 +35,15 @@ Then just ask. OpportunityRadar itself requires no additional API keys (your hos
 web search may have its own configuration):
 
 ```text
+I'm a third-year CS student into security and open source. What's worth doing this semester?
+```
+
+Any field, any region — the search language and the rules that apply come from *your* profile,
+not from the skill's examples:
+
+```text
+生物学本科生，想找暑研和资助，欧洲优先。
+设计专业，喜欢游戏和 3D，想找比赛和作品集项目，远程/全球都行。
 我是物联网工程大三学生，会 C、Python 和 ESP32，最近有什么值得参加的？
 ```
 
@@ -61,7 +70,7 @@ OpportunityRadar fills that gap with a protocol rather than a prompt:
 |---|---|---|
 | Scope | internships / jobs | 13 opportunity categories including research, open source, funding, hobby, networking |
 | Queries | the user's literal words | a search matrix derived from major family (more specific → peer → adjacent → transferable) |
-| Language | English only | local language + English, so Japanese/Chinese/German pages are not missed |
+| Language | English only | region-aware multilingual search: the target region's language first, English only when it adds international recall |
 | Mix | all directly related | 70% direct / 20% adjacent / 10% transferable-and-unexpected |
 | Sources | whatever ranked first | Tier A–D model; only official sources confirm facts |
 | Eligibility | a yes/no guess | five-level verdict with the deciding evidence |
@@ -100,7 +109,7 @@ Full subcategory lists, typical sources and multilingual query patterns:
 Thirteen steps, no shortcuts (a single search followed by a result list is not the protocol):
 
 ```
- understand → build search space → expand queries → search categories → discover
+ profile → target regions → locale(s) → search space → query matrix → discover
  → find canonical sources → verify → extract → dedupe → eligibility → rank
  → explore adjacents → return the best
 ```
@@ -158,16 +167,34 @@ GitHub repository name is `OpportunityRadar`; the installed skill directory must
 
 ## 💡 Usage examples
 
-### Example 1 — general discovery (Japanese + Chinese + remote)
+### Example 1 — general discovery (US CS student, security + open source)
 
 ```text
-我是物联网工程大三学生，会 C、Python 和 ESP32，最近有什么值得参加的？
+I'm a third-year CS student into security and open source. What's worth doing this semester?
 ```
 
-Expected behaviour: uses the profile; covers several categories (internships, competitions,
-research, open source, student resources); expands queries beyond the literal words; searches in
-Chinese, English and Japanese; returns a short list with eligibility verdicts, deadlines and
-official sources; includes adjacent and non-obvious directions.
+Expected behaviour: resolves the target region from the profile (`us` → `en-US`, loads
+`us.md`), uses the profile's interests to expand queries (security / open source — not a fixed
+field list), covers several categories (competitions, open source, internships, funding,
+projects), and returns a short list with eligibility verdicts, deadlines and official sources.
+
+### Different people, different plans
+
+The same protocol produces completely different search plans depending on who is asking —
+because the language, the categories and the rules all come from the profile at runtime:
+
+| Profile (see `examples/profiles/`) | Resolved locales | Locale knowledge loaded | Categories that lead |
+|---|---|---|---|
+| **CS** — security, open source · US / remote | `en-US` | `generic.md`, `us.md` | open source, competitions, internships |
+| **Biology** — lab + data analysis · Germany / Netherlands | `de-DE`, `nl-NL` (+ `en`) | `generic.md`, `de.md` | research, funding, events |
+| **Design** — Figma / Blender, games · France / global | `fr-FR` (+ `en`) | `generic.md` only (no `fr.md` yet — still works) | competitions, projects, hobbies |
+| **IoT** — C / ESP32 · Japan / China / remote | `ja-JP`, `zh-CN` (+ `en`) | `generic.md`, `jp.md`, `cn.md` | internships, competitions, research |
+
+The last row is a supported case, not the default user. Run it yourself:
+
+```bash
+python3 scripts/locales.py --profile examples/profiles/design-student.example.json
+```
 
 ### Example 2 — not job-hunting
 
@@ -220,17 +247,23 @@ OpportunityRadar/
 │   ├── eligibility.md                 # hard-constraint order, 5 verdicts, missing-data policy
 │   ├── ranking.md                     # Match vs Priority, weights, coverage, value rubric
 │   ├── output-format.md               # answer templates, length budget, JSON artifact
-│   └── state-and-feedback.md          # seen/saved/ignored, change detection, gap wording
+│   ├── state-and-feedback.md          # seen/saved/ignored, change detection, gap wording
+│   └── locales/                       # region knowledge, loaded only when the target needs it
+│       ├── README.md                  # loading model: generic always, country files on demand
+│       ├── generic.md                 # region → locale resolution, unknown regions, detection
+│       ├── cn.md  jp.md  us.md  uk.md de.md
 ├── schemas/
 │   ├── profile.schema.json            # user profile (JSON Schema draft 2020-12)
 │   └── opportunity.schema.json        # opportunity record incl. evidence/provenance
 ├── scripts/                          # deterministic helpers, stdlib only, no network
 │   ├── common.py                      # single source of truth: enums, URL, ID, contract checks
+│   ├── locales.py                     # target regions → search languages + which locale files to load
 │   ├── normalize_date.py              # deadlines → ISO + deadline_type + urgency
 │   ├── dedupe.py                      # cycle-aware clustering, conflict report
 │   ├── score.py                       # eligibility pre-check, Match/Priority components
 │   └── state.py                       # seen/saved/ignored, change detection, feedback
 ├── examples/                         # fictional data, for format and tooling demos
+│   ├── profiles/                      # four different students (CS / biology / design / IoT-JP)
 └── tests/                            # unittest suite (stdlib; jsonschema optional)
 ```
 
@@ -247,7 +280,7 @@ state. Each script is standalone and safe to run by hand.
 ### `normalize_date.py` — deadlines and windows
 
 ```bash
-python3 scripts/normalize_date.py "9月20日-10月5日" --default-year 2026 --now 2026-09-14
+python3 scripts/normalize_date.py "Sep 20 - Oct 5, 2026" --now 2026-09-14
 ```
 
 ```json
@@ -257,14 +290,13 @@ python3 scripts/normalize_date.py "9月20日-10月5日" --default-year 2026 --no
   "deadline_type": "range",
   "urgency_days": 21,
   "days_until_start": 6,
-  "days_until_end": 21,
-  "year_unknown": true,
-  "notes": [
-    "原文未写年份，按 --default-year 2026 填充（请复核）",
-    "紧迫度以区间截止端点为准（urgency_days = days_until_end）"
-  ]
+  "days_until_end": 21
 }
 ```
+
+It parses ISO, English, Chinese and Japanese forms alike (`2026-10-03`, `Oct 3, 2026`,
+`2026年10月3日`, `2026年10月3日`, `9月20日-10月5日`, `締切：2026年9月20日`) — multilingual parsing is a
+capability, not a regional assumption.
 
 Key behaviours: `rolling` / `asap` / `flexible` / `tbd` are **distinct** states (a rolling intake
 and an unannounced date call for different action); a missing year is reported, never invented;
@@ -278,12 +310,14 @@ python3 scripts/dedupe.py --input examples/opportunity.batch.example.json --form
 ```
 
 ```text
-input=8  clusters=7  removed=1
+input=15  clusters=13  removed=2
 
-[c001] size=2 canonical=nagi-robotics-2027-summer-internship-program
+[c001] size=3 canonical=nagi-robotics-2027-summer-internship-program
   title: 2027 Summer Internship Program
   org  : Nagi Robotics, Inc.
   - merged in: nagi-robotics-summer-internship-2027
+  - merged in: nagi-robotics-2027-internship
+  ! conflict deadline: 2026-10-03(A,C) vs 2026-10-17(C)
 ```
 
 Three guards keep it from over-merging: a **cycle guard** (the same official URL is often reused
@@ -296,35 +330,36 @@ rather than silently resolved.
 
 ```bash
 python3 scripts/dedupe.py --input examples/opportunity.batch.example.json --output /tmp/clusters.json
-python3 scripts/score.py --profile examples/profile.example.json \
+python3 scripts/score.py --profile examples/profiles/cs-student.example.json \
                          --opportunities /tmp/clusters.json --today 2026-09-14 --format table
 ```
 
 ```text
 | # | 机会 | 类别 | Match | 紧迫 | Priority | 档 | 资格 | 判定来源 |
 |---|---|---|---|---|---|---|---|---|
-| 1 | Nagi Robotics Robot Hackathon | competition | 81 | 35 | 74 | Medium | Eligible | hard_constraint |
-| 2 | Tokyo Embedded Challenge 2026 | competition | 70 | 50 | 67 | Medium | Probably Eligible | hard_constraint |
-| 3 | Nagi Robotics 2027 Internship | career | 73 | 50 | 62 | Medium | Unknown | hard_constraint |
-| 4 | Kagura University Undergraduate Research Program | research | 65 | 35 | 60 | Medium | Unknown | hard_constraint |
-
+| 1 | Atlas Open Source Mentorship Program | open_source | 78 |  | 78 | Medium | Unknown | hard_constraint |
+| 2 | Mira Design Foundation Student Award | competition | 79 | 35 | 72 | Medium | Eligible | hard_constraint |
+| 3 | Northstar Labs Security Research Internship | career | 72 | 50 | 69 | Medium | Unknown | hard_constraint |
+| 4 | Lumen Global Business Case Challenge | competition | 74 | 35 | 68 | Medium | Probably Eligible | hard_constraint |
+| 5 | Nagi Robotics Robot Hackathon | competition | 73 | 35 | 67 | Medium | Eligible | hard_constraint |
+… 12 scored, 1 excluded
 ```
 
-A deliberate four-way demonstration on fictional data:
+The example batch deliberately spans five geographies and six opportunity types (Global/Remote,
+US, Europe, China, Japan), so the deterministic layer is exercised on a mixed universe rather
+than on one country's internships.
 
-- **`Eligible`** — every hard condition is stated on the page with `evidence.status: explicit`
-  and all of them match.
-- **`Probably Eligible`** — the record has no `evidence` block at all (legacy format): the hard
-  conditions check out, but the conclusion is capped because provenance is unknown.
-- **`Unknown`** — either the page states nothing about eligibility, or the profile lacks the
-  fact needed (the Kagura entry requires JLPT N2 and the profile has no Japanese score; the skill
-  does not assume one).
-- The fictional Nagi internship is **excluded** as `Ineligible`: it targets March 2028 graduates
-  while the example profile graduates in June 2028 — a different cohort.
+Notes on that output:
 
-Behaviours: `Priority = 0.85 × Match + 0.15 × Urgency`; unknown requirements score neutrally
-instead of zero; hard constraints cannot be overturned by a model verdict; a mismatched score
-scale (GPA 3.0/4.0 vs 85/100) yields `Unknown` rather than a fabricated conversion.
+- **`Eligible` vs `Probably Eligible`** — the first has `evidence.status: explicit` on every hard
+  condition; the second has no `evidence` block at all (legacy format), so the conclusion is
+  capped.
+- **`Unknown`** — the Northstar internship needs a profile fact the fixture profile happens to
+  have in a different form (graduation window), and the OSS mentorship states no eligibility
+  criteria at all. Neither is treated as "probably fine".
+- The excluded row is a cohort mismatch (`2028-03` graduates vs a `2028-05` graduation): the
+  code, the references and the README all agree that unambiguous enumerated/date conflicts are
+  `Ineligible`.
 
 ### `state.py` — local memory
 
@@ -340,6 +375,34 @@ Change detection tracks eight fields (`deadline`, `application_open`, `cost`, `c
 `education_level`, `student_year`, `language_requirement`, `official_url`). Adding `utm_*`
 parameters does **not** count as a change. `suggest` only prints weighting advice — it never
 rewrites the profile.
+
+### `locales.py` — runtime locale resolution
+
+Decides **which languages to search and which region knowledge to load** — from the profile, not
+from a fixed list:
+
+```bash
+python3 scripts/locales.py --profile examples/profiles/biology-student.example.json
+```
+
+```text
+regions: germany, netherlands
+primary locales: de-DE, nl-NL
+secondary locales: en
+load files:
+  - references/locales/generic.md
+  - references/locales/de.md
+```
+
+English is added only when it improves international recall. A region with no locale file simply
+uses the generic rules, and anything unrecognised falls back to generic + English:
+
+```bash
+python3 scripts/locales.py --countries Kenya      # regions: remote (unlisted: Kenya) → en, generic only
+python3 scripts/locales.py --detect "https://www.univ-xyz.fr/offres"   # fr-FR ← TLD
+python3 scripts/locales.py --detect "研究室のインターン募集"              # ja-JP ← kana
+python3 scripts/locales.py --list-locales         # 24 regions mapped, 5 with dedicated files
+```
 
 ### `common.py` — shared foundations
 
@@ -401,8 +464,9 @@ data) are outside the discovery workflow and remain the user's own step.
 - **Judgement is still needed** for `related field` eligibility, fuzzy duplicates and value
   ratings; the scripts supply deterministic signals, not decisions.
 - **Time-sensitive by nature.** Re-verify `last_verified` before relying on a result.
-- **Language coverage** is strongest for Chinese, English and Japanese; other languages follow the
-  same pattern but are less battle-tested.
+- **Locale knowledge depth is uneven.** Dedicated files exist for `cn` / `jp` / `us` / `uk` / `de`;
+  other regions run on the generic rules plus dynamic language detection, which works but relies on
+  reading the official pages directly.
 - **No automatic applications.** Discovery, verification, assessment and explanation only.
 
 ---

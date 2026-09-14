@@ -34,8 +34,14 @@ jobs:
         run: |
           python scripts/normalize_date.py --file examples/dates.example.txt --default-year 2026 --now 2026-09-14 > /dev/null
           python scripts/dedupe.py --input examples/opportunity.batch.example.json --output /tmp/clusters.json
-          python scripts/score.py --profile examples/profile.example.json --opportunities /tmp/clusters.json --today 2026-09-14 --format table
+          python scripts/score.py --profile examples/profiles/cs-student.example.json --opportunities /tmp/clusters.json --today 2026-09-14 --format table
           python scripts/common.py --validate examples/opportunity.batch.example.json
+          python scripts/locales.py --profile examples/profiles/biology-student.example.json
+          python scripts/locales.py --detect "https://www.univ-xyz.fr/offres"
           python scripts/state.py --dir /tmp/or-state init
           python scripts/state.py --dir /tmp/or-state mark-seen --input examples/opportunity.batch.example.json --quiet
           python scripts/state.py --dir /tmp/or-state mark-seen --input examples/opportunity.batch.example.json --quiet
+
+      - name: Every example profile must resolve without error
+        run: |
+          for f in examples/profiles/*.json; do python scripts/locales.py --profile "$f" > /dev/null; done

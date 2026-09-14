@@ -26,6 +26,10 @@ def load(rel):
         return json.load(fh)
 
 
+PROFILE_EXAMPLES = [f"examples/profiles/{n}" for n in (
+    "cs-student.example.json", "biology-student.example.json",
+    "design-student.example.json", "iot-student-jp.example.json")]
+
 OPP = load("schemas/opportunity.schema.json")
 PROF = load("schemas/profile.schema.json")
 BATCH = load("examples/opportunity.batch.example.json")["opportunities"]
@@ -34,15 +38,15 @@ BATCH = load("examples/opportunity.batch.example.json")["opportunities"]
 class TestJsonParseable(unittest.TestCase):
     def test_all_json_files_parse(self):
         for rel in ["schemas/opportunity.schema.json", "schemas/profile.schema.json",
-                    "examples/opportunity.example.json", "examples/profile.example.json",
+                    "examples/opportunity.example.json", "examples/profiles/cs-student.example.json",
                     "examples/opportunity.batch.example.json"]:
             with self.subTest(file=rel):
                 load(rel)
 
     def test_examples_declare_themselves_as_fictional(self):
         """示例数据是虚构的，必须在文件内显式声明，避免被当成真实机会复用。"""
-        for rel in ["examples/opportunity.example.json", "examples/opportunity.batch.example.json",
-                    "examples/profile.example.json"]:
+        for rel in (["examples/opportunity.example.json",
+                     "examples/opportunity.batch.example.json"] + PROFILE_EXAMPLES):
             with self.subTest(file=rel):
                 note = load(rel).get("_note", "")
                 self.assertTrue(note, f"{rel} 缺少 _note 声明")
@@ -59,7 +63,9 @@ class TestStdlibContract(unittest.TestCase):
         for o in BATCH:
             with self.subTest(rec=o.get("id")):
                 self.assertEqual(validate_opportunity(o), [])
-        self.assertEqual(validate_profile(load("examples/profile.example.json")), [])
+        for rel in PROFILE_EXAMPLES:
+            with self.subTest(file=rel):
+                self.assertEqual(validate_profile(load(rel)), [])
 
     def test_contract_catches_breakage(self):
         bad = {"id": "ok-2026", "title": "t", "organization": "o",
@@ -78,7 +84,9 @@ class TestAgainstJsonschema(unittest.TestCase):
         Draft202012Validator.check_schema(PROF)
 
     def test_examples_valid(self):
-        self.assertEqual(list(self.vp.iter_errors(load("examples/profile.example.json"))), [])
+        for rel in PROFILE_EXAMPLES:
+            with self.subTest(file=rel):
+                self.assertEqual(list(self.vp.iter_errors(load(rel))), [])
         self.assertEqual(list(self.vo.iter_errors(load("examples/opportunity.example.json"))), [])
 
     def test_batch_valid(self):

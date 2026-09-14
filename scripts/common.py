@@ -77,6 +77,59 @@ WEIGHTS = {
     "novelty": 0.05,
 }
 
+#: 目标类型 → Opportunity 类别（score.py 与 locale.py 共用，避免两套映射）
+GOAL_TO_CATEGORY = {
+    "internship": ["career"], "fulltime": ["career"], "research": ["research"],
+    "competition": ["competition"], "education": ["education"], "language": ["language"],
+    "skill": ["skill_development"], "open_source": ["open_source"], "hobby": ["hobby"],
+    "funding": ["funding"], "event": ["event"], "project": ["project"],
+    "entrepreneurship": ["entrepreneurship"], "networking": ["networking"],
+}
+
+#: 兴趣别名（**保守**）：只收语义上确实同指的写法。
+#: 覆盖技术与非技术两个方向 —— 兴趣不该只认工程领域。
+INTEREST_ALIASES = {
+    # 技术
+    "ai": ["ai", "artificial intelligence", "machine learning", "ml", "deep learning", "llm", "生成"],
+    "agent": ["agent", "agents", "multi-agent", "llm agent", "autonomous"],
+    "iot": ["iot", "internet of things", "sensor network", "smart device", "スマート"],
+    "embedded": ["embedded", "firmware", "mcu", "microcontroller", "rtos", "esp32", "stm32", "組み込み"],
+    "robotics": ["robotics", "robot", "ros", "mechatronics", "ロボット"],
+    "drone": ["drone", "uav", "quadcopter", "无人机", "ドローン"],
+    "automotive": ["automotive", "vehicle", "adas", "automobile", "モビリティ"],
+    "aviation": ["aviation", "aerospace", "space", "航空", "宇宙"],
+    "maker": ["maker", "3d printing", "diy", "fabrication", "ものづくり"],
+    "data": ["data", "analytics", "statistics", "visualization"],
+    "security": ["security", "ctf", "cybersecurity", "penetration"],
+    "energy": ["energy", "renewable", "power systems", "grid"],
+    # 创意与人文
+    "design": ["design", "ui", "ux", "graphic", "industrial design", "デザイン"],
+    "game": ["game", "gamedev", "unity", "unreal", "esports", "ゲーム"],
+    "film": ["film", "cinema", "video", "documentary", "映像"],
+    "music": ["music", "audio", "sound design", "音楽"],
+    "writing": ["writing", "editorial", "journalism", "copywriting", "写作"],
+    "art": ["art", "illustration", "drawing", "animation", "美术"],
+    "photography": ["photography", "camera", "photo", "写真", "摄影"],
+    "fashion": ["fashion", "textile", "costume", "apparel"],
+    # 生命科学 / 环境
+    "biology": ["biology", "molecular", "genomics", "microbiology", "cell", "ecology",
+                "生物", "バイオ", "life science"],
+    "health": ["health", "medical", "clinical", "public health", "nursing", "医疗", "医療"],
+    "environment": ["environment", "climate", "sustainability", "conservation", "agriculture",
+                    "环境", "気候", "agri"],
+    "science_communication": ["science communication", "outreach", "science writing", "科学传播"],
+    # 社会科学 / 商业 / 公共
+    "business": ["business", "management", "strategy", "consulting", "case competition",
+                 "経営", "商業"],
+    "finance": ["finance", "investment", "fintech", "accounting", "economics", "金融"],
+    "entrepreneurship": ["entrepreneurship", "startup", "venture", "founder", "创业"],
+    "law_policy": ["law", "policy", "regulation", "governance", "public administration",
+                   "法律", "政策"],
+    "education": ["education", "teaching", "pedagogy", "curriculum", "教育"],
+    "social_impact": ["social impact", "nonprofit", "civic", "community", "volunteer", "公益"],
+    "sports": ["sports", "athletics", "fitness", "esports management"],
+}
+
 #: state.py 变化检测跟踪的字段（见 references/state-and-feedback.md §2）
 TRACKED_FIELDS = (
     "deadline", "application_open", "cost", "compensation",

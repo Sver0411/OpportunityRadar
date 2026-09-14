@@ -1,0 +1,102 @@
+{
+  "_note": "FORMAT EXAMPLE — 虚构人物，不是真实用户。用于演示 scripts/score.py / locale.py。真实使用时只写用户明确说过的内容，缺失字段一律 null。",
+  "profile_version": 1,
+  "updated_at": "2026-09-14",
+  "education": {
+    "school": null,
+    "school_country": "United States",
+    "school_city": null,
+    "school_level": null,
+    "degree": "undergraduate",
+    "major": "Computer Science",
+    "major_family": "cs_software",
+    "enrollment_year": 2024,
+    "current_year": 3,
+    "expected_graduation": "2028-05",
+    "GPA": "3.7/4.0",
+    "ranking": null
+  },
+  "skills": [
+    {
+      "name": "Python",
+      "level": "intermediate",
+      "evidence": null
+    },
+    {
+      "name": "Linux",
+      "level": "intermediate",
+      "evidence": null
+    },
+    {
+      "name": "Git",
+      "level": "intermediate",
+      "evidence": null
+    }
+  ],
+  "languages": [
+    {
+      "language": "English",
+      "exam": null,
+      "score": null,
+      "level": "native"
+    },
+    {
+      "language": "Spanish",
+      "exam": null,
+      "score": null,
+      "level": null
+    }
+  ],
+  "experience": {
+    "projects": [
+      "course project: network traffic analysis"
+    ],
+    "github": null,
+    "research": null,
+    "internships": null,
+    "competitions": null,
+    "open_source": [
+      "1 merged PR in an OSS project"
+    ],
+    "certificates": null,
+    "portfolio": null
+  },
+  "interests": [
+    "security",
+    "open_source",
+    "linux"
+  ],
+  "goals": [
+    {
+      "type": "competition",
+      "priority": "high"
+    },
+    {
+      "type": "open_source",
+      "priority": "high"
+    },
+    {
+      "type": "internship",
+      "priority": "medium"
+    }
+  ],
+  "constraints": {
+    "preferred_country": [
+      "United States"
+    ],
+    "preferred_city": null,
+    "remote": true,
+    "relocation": false,
+    "unpaid": false,
+    "budget": null,
+    "weekly_time": "15",
+    "available_period": "2027-06 ~ 2027-08",
+    "visa": "us_citizen",
+    "language_constraint": null
+  },
+  "nationality": "American",
+  "_source": "user_stated",
+  "_notes": [
+    "用户原话：I'm a third-year CS student into security and open source. What's worth doing this semester?"
+  ]
+}

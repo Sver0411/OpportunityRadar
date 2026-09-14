@@ -21,7 +21,7 @@ Match 与 Priority 分离：`Priority = 0.85*Match + 0.15*Urgency`；
 
 用法：
   python3 score.py --profile profile.json --opportunities opps.json
-  python3 score.py --profile examples/profile.example.json \
+  python3 score.py --profile examples/profiles/cs-student.example.json \
                   --opportunities examples/opportunity.batch.example.json --format table
 """
 
@@ -38,8 +38,8 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from common import (  # noqa: E402
-    DEADLINE_TYPES, EVIDENCE_FIELDS, WEIGHTS, canonical_country,
-    load_records as load_records_common, validate_opportunity,
+    DEADLINE_TYPES, EVIDENCE_FIELDS, GOAL_TO_CATEGORY, INTEREST_ALIASES, WEIGHTS,
+    canonical_country, load_records as load_records_common, validate_opportunity,
 )
 from normalize_date import parse_date  # noqa: E402
 
@@ -51,14 +51,6 @@ VERDICT_SCORE = {"Eligible": 100, "Probably Eligible": 82, "Unknown": 55,
                  "Probably Ineligible": 25, "Ineligible": 0}
 
 TRUST_SCORE = {"A": 100, "B": 85, "C": 60, "D": 35, None: 50}
-
-GOAL_TO_CATEGORY = {
-    "internship": ["career"], "fulltime": ["career"], "research": ["research"],
-    "competition": ["competition"], "education": ["education"], "language": ["language"],
-    "skill": ["skill_development"], "open_source": ["open_source"], "hobby": ["hobby"],
-    "funding": ["funding"], "event": ["event"], "project": ["project"],
-    "entrepreneurship": ["entrepreneurship"], "networking": ["networking"],
-}
 
 PRIORITY_WEIGHT = {"high": 1.0, "medium": 0.6, "low": 0.35, None: 0.5}
 
@@ -73,24 +65,6 @@ GOAL_TO_VALUE_DIM = {
 }
 
 VALUE_LEVEL = {"high": 1.0, "medium": 0.6, "low": 0.3, "unknown": 0.5, None: 0.5}
-
-INTEREST_ALIASES = {
-    "ai": ["ai", "artificial intelligence", "machine learning", "ml", "deep learning", "llm", "生成"],
-    "agent": ["agent", "agents", "multi-agent", "llm agent", "autonomous"],
-    "iot": ["iot", "internet of things", "sensor network", "smart device", "スマート"],
-    "embedded": ["embedded", "firmware", "mcu", "microcontroller", "rtos", "esp32", "stm32", "組み込み"],
-    "robotics": ["robotics", "robot", "ros", "mechatronics", "ロボット"],
-    "drone": ["drone", "uav", "quadcopter", "无人机", "ドローン"],
-    "photography": ["photography", "camera", "photo", "写真", "摄影"],
-    "game": ["game", "gamedev", "unity", "unreal", "esports", "ゲーム"],
-    "design": ["design", "ui", "ux", "graphic", "industrial design", "デザイン"],
-    "automotive": ["automotive", "vehicle", "adas", "automobile", "モビリティ"],
-    "aviation": ["aviation", "aerospace", "space", "航空", "宇宙"],
-    "maker": ["maker", "3d printing", "diy", "fabrication", "ものづくり"],
-    "energy": ["energy", "climate", "sustainability", "renewable"],
-    "data": ["data", "analytics", "statistics", "visualization"],
-    "security": ["security", "ctf", "cybersecurity", "penetration"],
-}
 
 #: 出现频率过高、单独命中不能说明技能满足的通用 token
 GENERIC_SKILL_TOKENS = frozenset({

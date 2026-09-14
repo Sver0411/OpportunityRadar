@@ -126,6 +126,15 @@ class TestSingleSourceOfTruth(unittest.TestCase):
         self.assertTrue(gated <= set(C.EVIDENCE_FIELDS),
                         f"Evidence Gate 字段未纳入 schema 证据字段：{gated - set(C.EVIDENCE_FIELDS)}")
 
+    def test_mode_weights_cover_all_categories(self):
+        import locales as L
+        for mode, w in L.MODE_WEIGHTS.items():
+            with self.subTest(mode=mode):
+                self.assertEqual(set(w), set(C.CATEGORIES))
+        for mode in ("A", "B", "C", "D"):
+            self.assertIn(f"**{mode}", read("references/search-strategy.md"),
+                          f"search-strategy.md 未说明模式 {mode}")
+
     def test_profile_provenance_documented(self):
         self.assertIn("_provenance", PROF_SCHEMA["properties"])
         src = read("scripts/score.py")
@@ -137,7 +146,8 @@ class TestNoDuplicatedLogic(unittest.TestCase):
     """canonical_url / derive_id / norm_org / 国家规范化只能有一份实现（common.py）。"""
 
     SHARED = ("def canonical_url", "def derive_id", "def norm_org", "def slugify",
-              "def canonical_country", "TRACKED_FIELDS =", "def core_title")
+              "def canonical_country", "TRACKED_FIELDS =", "def core_title",
+              "GOAL_TO_CATEGORY = {", "INTEREST_ALIASES = {")
 
     def test_modules_do_not_redefine_shared_helpers(self):
         for rel in ["scripts/dedupe.py", "scripts/state.py", "scripts/score.py"]:
@@ -160,9 +170,27 @@ class TestResourceReferences(unittest.TestCase):
 
     def test_every_reference_is_indexed(self):
         indexed = set(re.findall(r"`(references/[\w.-]+)`", SKILL))
-        on_disk = {f"references/{f}" for f in os.listdir(os.path.join(ROOT, "references"))}
-        self.assertEqual(on_disk - indexed, set(),
-                         "存在未被 SKILL.md 索引的 reference（模型不会去读它）")
+        on_disk = {f"references/{f}" for f in os.listdir(os.path.join(ROOT, "references"))
+                   if os.path.isfile(os.path.join(ROOT, "references", f))}
+        # locales/ 是一个目录：SKILL.md 说明"generic 常加载 + 按地区加载 <cc>.md"即可
+        locales_indexed = "references/locales" in SKILL
+        for f in sorted(on_disk - indexed):
+            with self.subTest(file=f):
+                self.assertTrue(locales_indexed and f.startswith("references/locales"),
+                                f"未被索引：{f}")
+
+    def test_locale_files_all_documented(self):
+        import locales as L
+        for region, cc in L.LOCALE_FILES.items():
+            with self.subTest(region=region):
+                path = os.path.join(ROOT, "references", "locales", f"{cc}.md")
+                self.assertTrue(os.path.exists(path), f"{path} 不存在")
+                self.assertIn(f"{cc}.md", read("references/locales/README.md"),
+                              f"locales/README.md 未列出 {cc}.md")
+        self.assertTrue(os.path.exists(os.path.join(ROOT, L.GENERIC_LOCALE_FILE)))
+
+    def test_locale_module_is_indexed(self):
+        self.assertIn("scripts/locales.py", SKILL)
 
     def test_every_script_is_indexed(self):
         indexed = set(re.findall(r"`(scripts/[\w.-]+\.py)`", SKILL))
@@ -172,8 +200,10 @@ class TestResourceReferences(unittest.TestCase):
 
     def test_uploaded_examples_are_marked_fictional(self):
         """示例文件必须显式声明数据为虚构（真实断言，不是恒真）。"""
-        for rel in ("examples/opportunity.example.json", "examples/opportunity.batch.example.json",
-                    "examples/profile.example.json"):
+        profiles = [f"examples/profiles/{n}" for n in sorted(
+            os.listdir(os.path.join(ROOT, "examples", "profiles")))]
+        for rel in (["examples/opportunity.example.json",
+                     "examples/opportunity.batch.example.json"] + profiles):
             with self.subTest(file=rel):
                 note = json.loads(read(rel)).get("_note", "")
                 self.assertTrue(note, f"{rel} 缺少 _note")

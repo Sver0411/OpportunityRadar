@@ -26,14 +26,22 @@ Region / constraint   →  决定语言、地点、remote 与签证条件
 
 | major_family | 更专 | 同层可替换 | 相邻（Adjacent） | 远邻（Explore） |
 |---|---|---|---|---|
-| IoT / Embedded | firmware, RTOS, sensor network, edge computing | electronics, EE, mechatronics, instrumentation | robotics, automotive electronics, smart agriculture, digital twin, UAV | solutions engineer, DevRel, technical product, maker program, field application engineer |
-| CS / Software | backend, distributed systems, compiler | data engineering, mobile, security | HCI, computational biology, fintech, GIS | developer advocate, technical writer, solutions architect, product manager |
-| AI / Data | CV, NLP, LLM, RL, TinyML | data science, statistics, optimization | bioinformatics, robotics, autonomous driving, climate/energy modeling | AI product, AI policy/ethics, dataset curation, evaluation engineering |
-| EE / Electronics | power electronics, RF, ASIC/FPGA | control, communications, MEMS | automotive, aerospace, energy grid, medical devices | test engineering, technical sales, hardware sourcing |
-| ME / Aero | CAD/CAE, thermal, structures | robotics, manufacturing, materials | automotive, UAV, space systems, agri-machinery | industrial design, technical consulting |
-| Design / Media | UI/UX, motion, 3D | game art, industrial design | XR, data visualization, creative coding | design system, brand, product research |
-| Business / Econ | finance, marketing, ops | accounting, supply chain | tech product, venture, policy | developer ecosystem, community ops |
-| LifeSci / Chem | molecular bio, analytical chem | pharma, food science, environment | bioinformatics, medtech, agritech | regulatory affairs, sci-comm, lab automation |
+| iot_embedded | firmware, RTOS, sensor network, edge computing | electronics, EE, mechatronics, instrumentation | robotics, automotive electronics, smart agriculture, digital twin, UAV | solutions engineer, DevRel, technical product, maker program, field application engineer |
+| cs_software | backend, distributed systems, compiler, security | data engineering, mobile, HCI, DevOps | fintech, health informatics, GIS, computational biology | developer advocate, technical writer, solutions architect, product manager |
+| ai_data | CV, NLP, LLM, RL, TinyML, MLOps | data science, statistics, optimization, analytics | bioinformatics, robotics, autonomous driving, climate modeling | AI product, AI policy/ethics, dataset curation, evaluation engineering |
+| ee_electronics | power electronics, RF, ASIC/FPGA, control | communications, MEMS, instrumentation | automotive, aerospace, energy grid, medical devices | test engineering, technical sales, hardware sourcing |
+| me_aero | CAD/CAE, thermal, structures, manufacturing | robotics, materials, mechatronics | automotive, UAV, space systems, agri-machinery | industrial design, technical consulting |
+| design_media | UI/UX, motion, 3D, illustration | game art, industrial design, film/video, brand | XR, data visualization, creative coding, animation | design system, design ops, product research, exhibition/museum work |
+| business_econ | finance, marketing, operations, strategy | accounting, supply chain, HR, entrepreneurship | tech product, venture capital, public policy, consulting | developer ecosystem, community ops, business development |
+| lifesci_chem | molecular bio, genomics, analytical chem, ecology | pharma, food science, biotech, neuroscience | bioinformatics, medtech, agritech, environmental science | regulatory affairs, sci-comm, lab automation, clinical coordination |
+| health_medical | public health, clinical research, nursing, epidemiology | biomedical engineering, pharmacy, nutrition | health informatics, global health, medical devices | health policy, patient advocacy, health communication |
+| environment_agri | climate science, conservation, soil/water, renewable energy | agriculture, forestry, sustainability, energy systems | food systems, urban planning, environmental engineering | ESG analysis, climate communication, field data collection |
+| humanities_social_science | history, philosophy, linguistics, anthropology | sociology, political science, psychology, area studies | cultural heritage, cognitive science, migration studies, digital humanities | archives/museums, publishing, user research, cultural program management |
+| law_policy | constitutional/contract law, regulation, governance | international relations, public administration, compliance | tech policy, IP, human rights, environmental law | policy analysis, regulatory affairs, civic tech, standards bodies |
+| education | pedagogy, curriculum, assessment, teacher training | educational technology, linguistics, psychology | learning analytics, inclusive education, STEM outreach | instructional design, science communication, community education |
+
+每个 major_family 都按同一条原则展开（**更专 → 同层 → 相邻 → 可迁移**），不要只把工程类专业写满、
+把其他专业留两三行 —— 那会让搜索结果系统性偏向技术方向。
 
 找不到对应行时，用同一条原则现场推导：**更专 → 同层 → 相邻 → 可迁移能力**。
 每一层至少写出 3 个词，再进入下一层。
@@ -99,49 +107,43 @@ Region / constraint   →  决定语言、地点、remote 与签证条件
 
 ---
 
-## 4. 本地语言（Step 4 必做）
+## 4. 语言由目标地区决定（Step 4 必做）
 
-**规则：机会在哪，就用那里的语言搜一次。** 只搜英文会系统性漏掉：
-日本企业的日文招募页、中国高校与政府项目页、德国企业的 Praktikum 页。
+**规则：机会在哪，就用那里的语言搜一次。** 但"哪里"来自运行时，不是固定的语言清单。
 
-| 地区 | 语言 | 关键本地词 | 注意事项 |
-|---|---|---|---|
-| 中国 | 中文 | 实习、校招、暑期实习、日常实习、提前批、补录、夏令营、预推免、奖学金、招募、报名、大赛 | 年份要写清；区分"应届生/在校生" |
-| 日本 | 日语 | インターン、採用、募集、選考、サマー/ウィンター/長期、インターンシップ、奨学金、コンテスト、研究室、学部生、修士、研究生 | 按「卒業年度」而非学年判断资格；区分有給/無給 |
-| 德国/德语区 | 德语 | Praktikum、Werkstudent、HiWi、Abschlussarbeit、Stipendium | 区分 Pflichtpraktikum（必修实习）与 freiwillig |
-| 韩国 | 韩语 | 인턴、채용、장학금、공모전 | — |
-| 英美新澳 | 英语 | internship、placement year、graduate scheme、summer analyst、scholarship、grant | 注意 visa / work authorization |
+```
+目标地区（来自 Profile / 当前请求）
+      ↓
+primary locale（当地语言） + secondary（英文，仅在有国际召回增益时）
+      ↓
+把本文件的 query intent 本地化成当地用词
+```
 
-**双语并用**：本地语言负责召回当地机会，英文负责跨国公司、国际项目与远程机会。
-两者都要做，不要二选一。
+- 完整规则见 **`references/locales/generic.md`**（永远加载）。
+- 具体地区的用词与资格术语见对应 locale 文件（`jp.md` / `cn.md` / `us.md` / `uk.md` / `de.md`），
+  **只在目标地区需要时加载**。
+- 地区不在 locale 表中 → 照样工作：通用规则 + 英文 + **页面语言动态检测**（`scripts/locales.py --detect`）。
 
----
+三条容易搞错的地方：
+
+1. **英文不是绝对默认。** 用户明确只看本国机会时（"我要找国内大三暑期实习"），
+   不要为了流程完整硬塞一批英文结果；英文只在跨国企业、国际项目、远程机会等处补一轮。
+2. **不要用交流语言推断地区。** 用户用中文提问 ≠ 目标地区是中国。
+3. **不要用专业推断地区。** 专业是 IoT ≠ 需要日语。
 
 ## 5. 模式权重表（Step 0 选定，Step 2 应用）
 
-| 类别 | A 常规 | B 非求职 | C 未知机会 | D 能力反推 |
-|---|---|---|---|---|
-| career | ●●● | ● | ●● | ●●●（作为"目标"参照） |
-| research | ●● | ●● | ●● | ●● |
-| competition | ●● | ●●● | ●● | ●●● |
-| education | ● | — | ● | ● |
-| language | ● | ● | ● | ●● |
-| skill_development | ●● | ●●● | ●● | ●●● |
-| open_source | ●● | ●●● | ●●● | ●●● |
-| hobby | ● | ●●● | ●● | ● |
-| funding | ●● | ●● | ●● | ●● |
-| event | ● | ●●● | ●● | ●● |
-| project | ●● | ●●● | ●●● | ●●● |
-| entrepreneurship | ● | ●● | ●● | ● |
-| networking | ● | ●● | ●●● | ●● |
+**权重的单一来源是 `scripts/locales.py` 的 `MODE_WEIGHTS`**（由 `tests/` 校验其覆盖全部
+13 个类别与 4 个模式）。这里只说明各模式的**取向**，不重复数字：
 
-`●●●` 主力搜索 · `●●` 常规覆盖 · `●` 轻量 · `—` 跳过。
+| 模式 | 触发说法 | 取向 |
+|---|---|---|
+| **A 常规发现** | "最近有什么适合我的机会" | 按用户声明的 goals 均衡覆盖 |
+| **B 非求职** | "我不想找工作 / 最近有点闲" | 压低 career 与 education，抬高竞赛 / 开源 / 项目 / 技能 / 活动 / 兴趣 |
+| **C 未知机会** | "有什么我可能完全不知道的机会" | 抬高 open_source / project / networking，并把 adjacent + explore 提到 ~45% |
+| **D 能力反推** | "我想以后做 X，现在做什么最好" | career 只作为"目标参照"，主力是 competition / project / open_source / skill |
 
-**Mode B 的关键动作**：不是在 A 的基础上"删掉实习"，而是把
-`competition / open_source / project / skill / event / hobby` 提升为主力，
-并用"最近几个月内能开始、门槛低、有产出"作为排序偏好。
-
----
+用代码决定权重、用文字解释取向，可以避免"文档写一套、脚本跑另一套"。
 
 ## 6. Mode D：用真实机会反推当下行动
 

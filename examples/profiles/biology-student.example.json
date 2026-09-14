@@ -1,0 +1,103 @@
+{
+  "_note": "FORMAT EXAMPLE — 虚构人物，不是真实用户。用于演示 scripts/score.py / locale.py。真实使用时只写用户明确说过的内容，缺失字段一律 null。",
+  "profile_version": 1,
+  "updated_at": "2026-09-14",
+  "education": {
+    "school": null,
+    "school_country": "Germany",
+    "school_city": null,
+    "school_level": null,
+    "degree": "undergraduate",
+    "major": "Biology",
+    "major_family": "lifesci_chem",
+    "enrollment_year": 2024,
+    "current_year": 3,
+    "expected_graduation": "2028-07",
+    "GPA": null,
+    "ranking": null
+  },
+  "skills": [
+    {
+      "name": "R",
+      "level": "intermediate",
+      "evidence": null
+    },
+    {
+      "name": "data analysis",
+      "level": "intermediate",
+      "evidence": null
+    },
+    {
+      "name": "lab work",
+      "level": "beginner",
+      "evidence": null
+    }
+  ],
+  "languages": [
+    {
+      "language": "German",
+      "exam": null,
+      "score": null,
+      "level": "native"
+    },
+    {
+      "language": "English",
+      "exam": "IELTS",
+      "score": "7.0",
+      "level": null
+    }
+  ],
+  "experience": {
+    "projects": [
+      "course project: microbial growth data analysis"
+    ],
+    "github": null,
+    "research": [
+      "one semester lab rotation"
+    ],
+    "internships": null,
+    "competitions": null,
+    "open_source": null,
+    "certificates": null,
+    "portfolio": null
+  },
+  "interests": [
+    "biology",
+    "environment",
+    "data"
+  ],
+  "goals": [
+    {
+      "type": "research",
+      "priority": "high"
+    },
+    {
+      "type": "funding",
+      "priority": "medium"
+    },
+    {
+      "type": "event",
+      "priority": "medium"
+    }
+  ],
+  "constraints": {
+    "preferred_country": [
+      "Germany",
+      "Netherlands"
+    ],
+    "preferred_city": null,
+    "remote": false,
+    "relocation": true,
+    "unpaid": null,
+    "budget": null,
+    "weekly_time": "20",
+    "available_period": "2027-07 ~ 2027-09",
+    "visa": "eu_citizen",
+    "language_constraint": null
+  },
+  "nationality": "German",
+  "_source": "user_stated",
+  "_notes": [
+    "用户原话：生物学本科生，想找暑研和资助，欧洲优先。"
+  ]
+}

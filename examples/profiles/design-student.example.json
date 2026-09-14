@@ -1,0 +1,103 @@
+{
+  "_note": "FORMAT EXAMPLE — 虚构人物，不是真实用户。用于演示 scripts/score.py / locale.py。真实使用时只写用户明确说过的内容，缺失字段一律 null。",
+  "profile_version": 1,
+  "updated_at": "2026-09-14",
+  "education": {
+    "school": null,
+    "school_country": "France",
+    "school_city": null,
+    "school_level": null,
+    "degree": "undergraduate",
+    "major": "Graphic Design",
+    "major_family": "design_media",
+    "enrollment_year": 2024,
+    "current_year": 2,
+    "expected_graduation": "2029-06",
+    "GPA": null,
+    "ranking": null
+  },
+  "skills": [
+    {
+      "name": "Figma",
+      "level": "advanced",
+      "evidence": null
+    },
+    {
+      "name": "Blender",
+      "level": "intermediate",
+      "evidence": null
+    },
+    {
+      "name": "illustration",
+      "level": "intermediate",
+      "evidence": null
+    }
+  ],
+  "languages": [
+    {
+      "language": "French",
+      "exam": null,
+      "score": null,
+      "level": "native"
+    },
+    {
+      "language": "English",
+      "exam": null,
+      "score": null,
+      "level": "B2"
+    }
+  ],
+  "experience": {
+    "projects": [
+      "student poster series"
+    ],
+    "github": null,
+    "research": null,
+    "internships": null,
+    "competitions": [
+      "1 campus poster contest"
+    ],
+    "open_source": null,
+    "certificates": null,
+    "portfolio": [
+      "behance-style portfolio, 6 pieces"
+    ]
+  },
+  "interests": [
+    "design",
+    "game",
+    "art",
+    "film"
+  ],
+  "goals": [
+    {
+      "type": "competition",
+      "priority": "high"
+    },
+    {
+      "type": "project",
+      "priority": "medium"
+    },
+    {
+      "type": "hobby",
+      "priority": "medium"
+    }
+  ],
+  "constraints": {
+    "preferred_country": [],
+    "preferred_city": null,
+    "remote": true,
+    "relocation": false,
+    "unpaid": null,
+    "budget": null,
+    "weekly_time": "10",
+    "available_period": null,
+    "visa": "eu_citizen",
+    "language_constraint": null
+  },
+  "nationality": "French",
+  "_source": "user_stated",
+  "_notes": [
+    "用户原话：设计专业，喜欢游戏和 3D，想找比赛和作品集项目，远程/全球都行。"
+  ]
+}

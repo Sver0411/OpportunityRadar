@@ -1,6 +1,6 @@
 ---
 name: opportunity-radar
-description: Personal opportunity discovery protocol for students, graduate students, and early-career users. Activates when the user asks what opportunities fit them, what they should do next, or whether there are competitions / internships / research programs / open-source programs / scholarships / student programs / events worth joining — including opportunities they would not have known to search for. Triggers include "最近有什么适合我的机会", "我最近可以做点什么", "有没有适合我的比赛/实习/科研/开源项目", "有没有我可能不知道的机会", "我想提高以后找嵌入式实习的竞争力现在做什么最好". Do NOT activate for plain factual lookups (e.g. "AWS 是什么", "TOEIC 什么时候考试") unless the user asks to evaluate it against their own situation.
+description: Personal opportunity discovery protocol for students, graduate students, and early-career users. Activates when the user asks what opportunities fit them, what they should do next, or whether there are competitions / internships / research programs / open-source programs / scholarships / student programs / events worth joining — including opportunities they would not have known to search for. Triggers include "最近有什么适合我的机会", "我最近可以做点什么", "有没有适合我的比赛/实习/科研/开源项目", "有没有我可能不知道的机会", "我想以后做 X，现在做什么最好". Do NOT activate for plain factual lookups (definitions, test dates, prices) unless the user asks to evaluate the thing against their own situation.
 license: MIT
 compatibility: Requires a web-capable host agent (web search plus page fetch or browser) for discovery and verification. Python 3.8+ is needed for the deterministic helpers in scripts/ (standard library only, no network); without it, run Protocol-only Mode and apply the reference rules by hand. No external services, credentials, or paid APIs.
 metadata:
@@ -53,9 +53,9 @@ Activate when the request asks *"what should **I** do / join / apply to?"* or
 - 最近有什么适合我的机会？ / 有没有我可能不知道的机会？
 - 我最近可以做点什么？ / 最近有点闲，有什么值得做的吗？
 - 有没有适合我的比赛 / 实习 / 科研 / 开源项目 / 奖学金 / 学生计划？
-- 有什么适合我专业的东西？ / 有没有含金量高的活动？
+- 有什么适合我专业的东西？（文理工商医艺术都适用）/ 有没有含金量高的活动？
 - 我想找点科研做。 / 有没有学生能申请的项目？
-- 我想提高以后找嵌入式实习的竞争力，现在做什么最好？（能力反推）
+- 我想以后做 X，现在做什么最好？（能力反推；X 可为任意领域）
 - 我现在缺什么？ / 为什么很多机会我都申请不了？（缺口分析）
 
 ### Do not activate (plain lookup)
@@ -63,7 +63,7 @@ Activate when the request asks *"what should **I** do / join / apply to?"* or
 | User says | What to do |
 |---|---|
 | "AWS 是什么？" | Answer directly |
-| "TOEIC 什么时候考试？" | Answer directly |
+| "这个比赛什么时候截止？" | Answer directly |
 | "帮我改简历" / "翻译一下这个 JD" | Out of scope |
 
 **Boundary rule:** if a plain lookup is followed by *"根据我的情况看看要不要考"* /
@@ -98,6 +98,11 @@ Modes combine (B+C is common). In the answer, express the *behaviour*, not the l
 | `references/ranking.md` | Steps 11–12 | Match vs Priority, weights, coverage guidance, value rubric |
 | `references/output-format.md` | Step 13 | Answer templates, length budget, JSON artifact |
 | `references/state-and-feedback.md` | When `.opportunity-radar/` exists or the user reacts | seen/saved/ignored, change detection, gap analysis wording |
+| `references/locales/generic.md` | **Always** (step 2/3) | Region → locale resolution: target regions, primary/secondary languages, unknown regions, dynamic language detection |
+| `references/locales/<cc>.md` | Only when the target geography needs it | Region-specific vocabulary, timelines and eligibility terms (`cn` / `jp` / `us` / `uk` / `de`) |
+
+**Locale loading discipline:** load `generic.md` always; load country files **only** for the
+resolved target regions. A normal discovery run must not read all of them at once.
 
 Deterministic helpers (Full Mode; never re-implement inline):
 
@@ -107,6 +112,7 @@ Deterministic helpers (Full Mode; never re-implement inline):
 | `scripts/dedupe.py` | Cluster duplicates; cycle guard; candidate anchor coherence; conflict report |
 | `scripts/score.py` | Eligibility pre-check (hard constraints first), Match/Priority components, coverage self-check |
 | `scripts/state.py` | seen/saved/ignored CRUD, change detection, feedback weighting suggestion |
+| `scripts/locales.py` | Resolve target regions → search languages + which locale files to load; search-plan skeleton; dynamic language detection (`--detect`) |
 | `scripts/common.py` | Shared enums, URL canonicalization, ID generation, lightweight contract validation |
 
 Single source of truth: enums, weights, tracked fields and ID/URL rules live in
@@ -120,8 +126,12 @@ Single source of truth: enums, weights, tracked fields and ID/URL rules live in
    ("我是大二物联网专业，最近有什么值得参加的？") is enough to start. Do not interrogate.
 2. **Build search space.** Choose categories from the taxonomy via goals + interests + major
    family — not just the user's literal words. Apply the mode reweighting.
-3. **Expand queries.** Produce a matrix of `category × layer(exploit/adjacent/explore) × language`.
-   Every expansion must trace back to a profile signal; max two semantic hops.
+3. **Resolve locales, then expand queries.** Determine target regions from the profile and the
+   current request (never assume a region from the user's language or field), resolve the search
+   languages (`scripts/locales.py`), then produce a `category × layer × language` matrix.
+   Localize the taxonomy's intent templates into the target languages; when a first pass surfaces
+   pages in another language, add that language to the next round. Every expansion must trace
+   back to a profile signal; max two semantic hops.
 4. **Search multiple categories.** Open-ended asks: aim for **≥5 categories**; goal-specific
    asks: ≥3. This is a coverage guideline to avoid the "everything becomes internships" failure
    mode — never search irrelevant categories just to hit a number.
@@ -218,7 +228,9 @@ Details: `references/state-and-feedback.md`.
 
 - [ ] Did I use the profile, or only the literal words in the request?
 - [ ] Did I search multiple categories rather than collapsing everything into internships?
-- [ ] Did I expand queries, and use the local language for local opportunities?
+- [ ] Did I resolve the target region from the profile/request (rather than assuming one), and
+      search in that region's language(s) instead of a fixed language list?
+- [ ] Did I avoid assuming a field or region that the user never stated?
 - [ ] Does every factual claim trace to a Tier A/B source, or is it marked unverified?
 - [ ] Did I dedupe, and are cycles kept distinct?
 - [ ] Does every recommended item carry an eligibility verdict **and** its deciding evidence?

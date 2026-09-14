@@ -189,27 +189,26 @@ profile 的语言条目里 `level` 或 `score` 填 `none` / `no` / `不会` / `�
 
 ---
 
-## 4. 地区特定规则
+## 4. 地区特定规则放在 locale 层
 
-### 中国
-- **应届生身份**由毕业年份决定。校招/提前批/补录几乎都限定毕业年份 →
-  `graduation_window` 缺失时只能是 `Unknown`。
-- 保研/夏令营/预推免绑定"推免资格"（学校层次 + 排名），无排名信息 → `Unknown`。
-- "在校生/应届生"用词差异要保留原句。
+资格判定的**机制**（下面 4.1–4.4）在 Core 里；**地区特有的口径**属于 locale 知识：
 
-### 日本
-- 企业筛选按**「卒業年度」（毕业年度）**，不是当前学年。
-  页面写「2028年3月卒業見込」→ `graduation_window` 填该值。
-- 「インターンシップ」分 有給 / 無給、短期 / 長期、選考直結型（表现好可直通内定）
-  —— 这些影响价值判断，写进 `notes` 与 `value`。
-- 「外国籍可」「日本語能力 N 以上」若不写明，**不要推断**（见 anti-hallucination 规则）。
+| 地区 | 特有概念 | 位置 |
+|---|---|---|
+| 日本 | 卒業年度、インターン 形态、在留資格、有給/無給 | `references/locales/jp.md` |
+| 中国 | 应届生身份、保研/推免资格、夏令营、CET | `references/locales/cn.md` |
+| 美国 | work authorization、CPT/OPT、sponsorship、REU | `references/locales/us.md` |
+| 英国 / 爱尔兰 | placement year、graduate scheme、right to work | `references/locales/uk.md` |
+| 德国 | Pflichtpraktikum、Werkstudent、HiWi、CEFR | `references/locales/de.md` |
+| 其他地区 | —— | `references/locales/generic.md`（运行时按需处理） |
 
-### 英美 / 欧洲
-- Internship 常伴随 work authorization 要求（是否需要 sponsorship）。
-  页面写 "must be legally authorized to work" → 归入 `nationality_requirement`。
-- Placement year / Pflichtpraktikum 对在读年级有强绑定。
-- 学生签证工作时长限制（如英国 term-time 20 小时）可能让"长期实习"不可行 →
-  在 output 的 △ 里提示，不要自作主张判定 `Ineligible`。
+**只在目标地区需要时加载对应文件。** 没有对应文件的国家按通用规则处理，功能不受影响。
+
+通用原则（不分地区）：
+
+- 资格线按当地口径读（毕业年份 / 应届身份 / 学年），不要把一个地区的口径套到另一个地区。
+- 只有当页面**明确写出**限制时（国籍、签证、学校、语言等级），才可能产生否定结论；
+  没写就是 `Unknown`，不是"默认满足"也不是"默认不满足"。
 
 ### 远程 / 全球项目
 - 明确写 "open to students worldwide" → 国籍条件为 Explicit 满足。

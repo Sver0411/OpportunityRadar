@@ -1,14 +1,12 @@
 {
-  "_note": "FORMAT / TOOLING EXAMPLE ONLY. All organizations and facts in this file are fictional and must never be reused as verified opportunity data. Purpose: demonstrate scripts/dedupe.py and scripts/score.py. For real runs, always re-verify facts at the official source.",
+  "_note": "FORMAT / TOOLING EXAMPLE ONLY. All organizations and facts are fictional and must never be reused as verified opportunity data. 覆盖 Global / Remote、US、Europe、China、Japan 以及 7 种机会类型，用于演示 scripts/dedupe.py 与 scripts/score.py（含同一机会的多来源合并）。",
   "opportunities": [
     {
       "id": "nagi-robotics-summer-internship-2027",
       "title": "Nagi Robotics Summer Internship 2027",
       "organization": "Nagi Robotics",
       "primary_category": "career",
-      "secondary_categories": [
-        "research"
-      ],
+      "secondary_categories": [],
       "tags": [
         "embedded",
         "robotics",
@@ -30,17 +28,17 @@
         "Git"
       ],
       "skills_preferred": [
-        "RTOS",
-        "ESP32"
+        "RTOS"
       ],
       "language_requirement": null,
       "nationality_requirement": null,
       "school_requirement": null,
       "GPA_requirement": null,
       "application_open": "2026-09-01",
-      "deadline": "2026-10-03",
-      "event_start": "2027-02-01",
-      "event_end": "2027-03-26",
+      "deadline": "2026-10-17",
+      "deadline_type": null,
+      "event_start": null,
+      "event_end": null,
       "cost": "free",
       "compensation": "paid",
       "prize": null,
@@ -51,8 +49,9 @@
         "CV",
         "transcript"
       ],
-      "official_url": "https://careers.nagi-robotics.example/students/summer?utm_source=linkedin&utm_campaign=2027",
-      "discovery_url": "https://aggregator.example/jobs/nagi-robotics-internship",
+      "official_url": "https://careers.nagi-robotics.example/students/summer?utm_source=linkedin",
+      "discovery_url": "https://aggregator.example/jobs/nagi-internship",
+      "evidence": null,
       "trust_tier": "C",
       "verification_status": "partially_verified",
       "last_verified": "2026-09-12",
@@ -67,8 +66,7 @@
       "organization": "Nagi Robotics, Inc.",
       "primary_category": "career",
       "secondary_categories": [
-        "research",
-        "skill_development"
+        "research"
       ],
       "tags": [
         "embedded",
@@ -92,8 +90,7 @@
         "Git"
       ],
       "skills_preferred": [
-        "RTOS",
-        "ESP32"
+        "RTOS"
       ],
       "language_requirement": null,
       "nationality_requirement": null,
@@ -101,8 +98,9 @@
       "GPA_requirement": null,
       "application_open": "2026-09-01",
       "deadline": "2026-10-03",
-      "event_start": "2027-02-01",
-      "event_end": "2027-03-26",
+      "deadline_type": null,
+      "event_start": null,
+      "event_end": null,
       "cost": "free",
       "compensation": "paid",
       "prize": null,
@@ -125,23 +123,24 @@
         "education_level": {
           "status": "explicit",
           "source_url": "https://careers.nagi-robotics.example/students/summer/",
-          "verified_at": "2026-09-14"
-        },
-        "language_requirement": {
-          "status": "unknown",
-          "source_url": "https://careers.nagi-robotics.example/students/summer/",
-          "note": "官方页面未写明语言要求；不因公司所在地推断"
-        },
-        "compensation": {
-          "status": "explicit",
-          "source_url": "https://careers.nagi-robotics.example/students/summer/",
+          "quote": "学部生・修士課程",
           "verified_at": "2026-09-14"
         },
         "graduation_window": {
           "status": "explicit",
           "source_url": "https://careers.nagi-robotics.example/students/summer/",
           "quote": "2028年3月卒業見込の方",
-          "verified_at": "2026-09-13"
+          "verified_at": "2026-09-14"
+        },
+        "language_requirement": {
+          "status": "unknown",
+          "source_url": "https://careers.nagi-robotics.example/students/summer/",
+          "note": "公式ページに言語要件の記載なし。所在地からは推断しない"
+        },
+        "compensation": {
+          "status": "explicit",
+          "source_url": "https://careers.nagi-robotics.example/students/summer/",
+          "verified_at": "2026-09-14"
         }
       },
       "trust_tier": "A",
@@ -155,11 +154,12 @@
       "title": "Nagi Robotics 2027 Internship",
       "organization": "Nagi Robotics",
       "primary_category": "career",
+      "secondary_categories": [],
       "tags": [
         "embedded",
         "robotics"
       ],
-      "summary": "Third-party repost of the Nagi Robotics internship with a different deadline.",
+      "summary": "Third-party repost with a different deadline.",
       "country": "Japan",
       "city": null,
       "remote": false,
@@ -174,11 +174,20 @@
       "school_requirement": null,
       "GPA_requirement": null,
       "application_open": null,
-      "deadline": "2026-10-17",
+      "deadline": "2026-10-03",
+      "deadline_type": null,
+      "event_start": null,
+      "event_end": null,
       "cost": null,
       "compensation": null,
+      "prize": null,
+      "funding": null,
+      "team_requirement": null,
+      "time_commitment": null,
+      "required_materials": [],
       "official_url": "https://careers.nagi-robotics.example/students/summer-2027?ref=wechat",
       "discovery_url": "https://aggregator.example/feed/nagi-2027",
+      "evidence": null,
       "trust_tier": "C",
       "verification_status": "unverified",
       "last_verified": "2026-09-10",
@@ -188,19 +197,21 @@
       ]
     },
     {
-      "id": "kagura-university-undergraduate-research-2026",
+      "id": "kagura-university-undergraduate-research-program",
       "title": "Kagura University Undergraduate Research Program",
       "organization": "Kagura University",
       "primary_category": "research",
       "secondary_categories": [
-        "funding"
+        "funding",
+        "networking"
       ],
       "tags": [
         "research",
         "undergraduate-ok",
-        "stipend"
+        "stipend",
+        "on-campus"
       ],
-      "summary": "Fictional undergraduate research placement with a laboratory, 6 months part-time.",
+      "summary": "Fictional undergraduate research placement with a laboratory, 6 months part-time, with a stipend.",
       "country": "Japan",
       "city": "Sendai",
       "remote": false,
@@ -215,23 +226,26 @@
       "major_requirement": "Any discipline; laboratory matching required",
       "skills_required": null,
       "skills_preferred": [
-        "Python"
+        "data analysis"
       ],
       "language_requirement": {
         "language": "Japanese",
         "exam": "JLPT",
         "min_level": "N2",
-        "note": "explicit on official page"
+        "note": "explicit on the official page"
       },
       "nationality_requirement": null,
       "school_requirement": "Enrolled at Kagura University",
       "GPA_requirement": "2.3/3.0",
       "application_open": null,
       "deadline": "2026-11-30",
+      "deadline_type": null,
       "event_start": "2027-04-01",
       "event_end": "2027-09-30",
       "cost": null,
       "compensation": "stipend",
+      "prize": null,
+      "funding": null,
       "team_requirement": null,
       "time_commitment": "part-time, ~10 h/week",
       "required_materials": [
@@ -240,11 +254,6 @@
       ],
       "official_url": "https://www.kagura-university.example/research/undergrad-program",
       "discovery_url": "https://www.kagura-university.example/research",
-      "trust_tier": "A",
-      "verification_status": "verified_official",
-      "last_verified": "2026-09-13",
-      "layer": "adjacent",
-      "notes": [],
       "evidence": {
         "deadline": {
           "status": "explicit",
@@ -273,53 +282,26 @@
         "GPA_requirement": {
           "status": "explicit",
           "source_url": "https://www.kagura-university.example/research/undergrad-program",
-          "quote": "GPA 2.3/3.0 以上",
           "verified_at": "2026-09-13"
+        },
+        "nationality_requirement": {
+          "status": "unknown",
+          "source_url": "https://www.kagura-university.example/research/undergrad-program",
+          "note": "页面未提及国际学生 → 不推断为『无限制』"
         }
-      }
-    },
-    {
-      "id": "kagura-university-summer-research-program-undergraduate",
-      "title": "Kagura University Summer Research Program (Undergraduate)",
-      "organization": "Kagura University",
-      "primary_category": "research",
-      "tags": [
-        "research",
-        "undergraduate-ok"
-      ],
-      "summary": "Aggregator listing for the same Kagura University program.",
-      "country": "Japan",
-      "city": "Sendai",
-      "remote": false,
-      "education_level": null,
-      "student_year": null,
-      "graduation_window": null,
-      "major_requirement": null,
-      "skills_required": null,
-      "skills_preferred": null,
-      "language_requirement": null,
-      "nationality_requirement": null,
-      "school_requirement": null,
-      "GPA_requirement": null,
-      "application_open": null,
-      "deadline": "2026-11-30",
-      "cost": null,
-      "compensation": null,
-      "official_url": null,
-      "discovery_url": "https://aggregator.example/programs/kagura-research",
-      "trust_tier": "C",
-      "verification_status": "unverified",
-      "last_verified": "2026-09-11",
+      },
+      "trust_tier": "A",
+      "verification_status": "verified_official",
+      "last_verified": "2026-09-13",
       "layer": "adjacent",
-      "notes": [
-        "未找到官方确认来源"
-      ]
+      "notes": []
     },
     {
       "id": "nagi-robotics-robot-hackathon-2027",
       "title": "Nagi Robotics Robot Hackathon",
       "organization": "Nagi Robotics",
       "primary_category": "competition",
+      "secondary_categories": [],
       "tags": [
         "robotics",
         "hackathon",
@@ -335,6 +317,7 @@
         "phd"
       ],
       "student_year": null,
+      "graduation_window": null,
       "major_requirement": null,
       "skills_required": null,
       "skills_preferred": [
@@ -342,18 +325,23 @@
         "Python"
       ],
       "language_requirement": null,
+      "nationality_requirement": null,
+      "school_requirement": null,
+      "GPA_requirement": null,
+      "application_open": null,
       "deadline": "2026-12-15",
+      "deadline_type": null,
+      "event_start": null,
+      "event_end": null,
       "cost": "free",
       "compensation": null,
       "prize": "100,000 JPY",
+      "funding": null,
       "team_requirement": "2-4 people",
+      "time_commitment": null,
+      "required_materials": [],
       "official_url": "https://nagi-robotics.example/events/hackathon-2027",
       "discovery_url": "https://nagi-robotics.example/events",
-      "trust_tier": "A",
-      "verification_status": "verified_official",
-      "last_verified": "2026-09-14",
-      "layer": "adjacent",
-      "notes": [],
       "evidence": {
         "deadline": {
           "status": "explicit",
@@ -366,72 +354,687 @@
           "source_url": "https://nagi-robotics.example/events/hackathon-2027",
           "quote": "学生（学部・修士・博士）",
           "verified_at": "2026-09-13"
-        },
-        "language_requirement": {
-          "status": "unknown",
-          "source_url": "https://nagi-robotics.example/events/hackathon-2027",
-          "note": "公式ページに言語要件の記載なし；所在地からは推断しない",
-          "verified_at": "2026-09-13"
         }
-      }
+      },
+      "trust_tier": "A",
+      "verification_status": "verified_official",
+      "last_verified": "2026-09-13",
+      "layer": "exploit",
+      "notes": []
     },
     {
-      "id": "tokyo-embedded-challenge-2026",
-      "title": "Tokyo Embedded Challenge 2026",
-      "organization": "Tokyo Embedded Association",
-      "primary_category": "competition",
-      "tags": [
-        "embedded",
-        "iot",
-        "team-required"
+      "id": "atlas-open-source-mentorship-2026",
+      "title": "Atlas Open Source Mentorship Program",
+      "organization": "Atlas Open Source Initiative",
+      "primary_category": "open_source",
+      "secondary_categories": [
+        "skill_development",
+        "networking"
       ],
-      "summary": "Fictional embedded design competition for students in Japan.",
-      "country": "Japan",
-      "city": "Tokyo",
-      "remote": false,
-      "deadline": "2026-10-20",
-      "official_url": "https://tokyo-embedded.example/challenge-2026",
+      "tags": [
+        "remote",
+        "mentorship",
+        "beginner-friendly",
+        "portfolio-output"
+      ],
+      "summary": "Fictional 3-month remote mentorship pairing new contributors with maintainers.",
+      "country": null,
+      "city": null,
+      "remote": true,
+      "education_level": [
+        "any"
+      ],
+      "student_year": null,
+      "graduation_window": null,
+      "major_requirement": null,
+      "skills_required": null,
+      "skills_preferred": [
+        "Git"
+      ],
+      "language_requirement": "English (working proficiency)",
+      "nationality_requirement": null,
+      "school_requirement": null,
+      "GPA_requirement": null,
+      "application_open": null,
+      "deadline": null,
+      "deadline_type": "rolling",
+      "event_start": null,
+      "event_end": null,
+      "cost": "free",
+      "compensation": "stipend",
+      "prize": null,
+      "funding": null,
+      "team_requirement": null,
+      "time_commitment": "~5 h/week",
+      "required_materials": [
+        "short motivation note"
+      ],
+      "official_url": "https://atlas-oss.example/mentorship",
+      "discovery_url": "https://atlas-oss.example/programs",
+      "evidence": null,
+      "trust_tier": "A",
+      "verification_status": "partially_verified",
+      "last_verified": "2026-09-13",
+      "layer": "adjacent",
+      "notes": [
+        "滚动招募（rolling）"
+      ]
+    },
+    {
+      "id": "auroral-society-conference-travel-grant-2026",
+      "title": "Auroral Society Conference Travel Grant",
+      "organization": "Auroral Society",
+      "primary_category": "funding",
+      "secondary_categories": [
+        "event",
+        "research"
+      ],
+      "tags": [
+        "travel-grant",
+        "conference",
+        "student"
+      ],
+      "summary": "Fictional travel grant covering conference attendance for student presenters.",
+      "country": null,
+      "city": null,
+      "remote": true,
+      "education_level": [
+        "undergraduate",
+        "master",
+        "phd"
+      ],
+      "student_year": null,
+      "graduation_window": null,
+      "major_requirement": null,
+      "skills_required": null,
+      "skills_preferred": null,
+      "language_requirement": null,
+      "nationality_requirement": null,
+      "school_requirement": null,
+      "GPA_requirement": null,
+      "application_open": null,
+      "deadline": "2026-11-15",
+      "deadline_type": null,
+      "event_start": null,
+      "event_end": null,
+      "cost": "free",
+      "compensation": null,
+      "prize": null,
+      "funding": "up to 800 EUR",
+      "team_requirement": null,
+      "time_commitment": null,
+      "required_materials": [
+        "acceptance letter",
+        "budget"
+      ],
+      "official_url": "https://auroral-society.example/grants/travel",
+      "discovery_url": "https://auroral-society.example/grants",
+      "evidence": {
+        "deadline": {
+          "status": "explicit",
+          "source_url": "https://auroral-society.example/grants/travel",
+          "quote": "Applications close 15 November 2026",
+          "verified_at": "2026-09-13"
+        },
+        "funding": {
+          "status": "explicit",
+          "source_url": "https://auroral-society.example/grants/travel",
+          "verified_at": "2026-09-13"
+        }
+      },
+      "trust_tier": "A",
+      "verification_status": "verified_official",
+      "last_verified": "2026-09-13",
+      "layer": "adjacent",
+      "notes": []
+    },
+    {
+      "id": "studio-vela-global-game-jam-2027",
+      "title": "Studio Vela Global Game Jam",
+      "organization": "Studio Vela",
+      "primary_category": "hobby",
+      "secondary_categories": [
+        "competition",
+        "project"
+      ],
+      "tags": [
+        "game-jam",
+        "team-required",
+        "portfolio-output",
+        "remote"
+      ],
+      "summary": "Fictional 48-hour online game jam open worldwide, theme announced at kickoff.",
+      "country": null,
+      "city": null,
+      "remote": true,
+      "education_level": [
+        "any"
+      ],
+      "student_year": null,
+      "graduation_window": null,
+      "major_requirement": null,
+      "skills_required": null,
+      "skills_preferred": null,
+      "language_requirement": null,
+      "nationality_requirement": null,
+      "school_requirement": null,
+      "GPA_requirement": null,
+      "application_open": null,
+      "deadline": "2027-01-10",
+      "deadline_type": null,
+      "event_start": "2027-01-22",
+      "event_end": "2027-01-24",
+      "cost": "free",
+      "compensation": null,
+      "prize": "portfolio showcase",
+      "funding": null,
+      "team_requirement": "1-5 people, cross-school allowed",
+      "time_commitment": null,
+      "required_materials": [],
+      "official_url": "https://studio-vela.example/gamejam",
+      "discovery_url": "https://studio-vela.example/events",
+      "evidence": null,
       "trust_tier": "B",
       "verification_status": "verified_official",
-      "last_verified": "2026-09-14",
-      "layer": "exploit",
-      "notes": [],
+      "last_verified": "2026-09-13",
+      "layer": "explore",
+      "notes": []
+    },
+    {
+      "id": "northstar-labs-security-research-internship-2027",
+      "title": "Northstar Labs Security Research Internship",
+      "organization": "Northstar Labs",
+      "primary_category": "career",
+      "secondary_categories": [
+        "research"
+      ],
+      "tags": [
+        "security",
+        "linux",
+        "paid",
+        "us"
+      ],
+      "summary": "Fictional summer security research internship; applicants must be authorized to work in the US.",
+      "country": "United States",
+      "city": "Austin",
+      "remote": false,
       "education_level": [
         "undergraduate",
         "master"
       ],
-      "student_year": [
-        2,
-        3,
-        4
+      "student_year": null,
+      "graduation_window": "2027-12 ~ 2028-08",
+      "major_requirement": "Computer Science, Cybersecurity or related field",
+      "skills_required": [
+        "Python",
+        "Linux"
       ],
-      "team_requirement": "2-4 people",
-      "compensation": null
+      "skills_preferred": [
+        "CTF experience"
+      ],
+      "language_requirement": null,
+      "nationality_requirement": "must be legally authorized to work in the US",
+      "school_requirement": null,
+      "GPA_requirement": "3.0/4.0",
+      "application_open": null,
+      "deadline": "2026-11-01",
+      "deadline_type": null,
+      "event_start": null,
+      "event_end": null,
+      "cost": "free",
+      "compensation": "paid",
+      "prize": null,
+      "funding": null,
+      "team_requirement": null,
+      "time_commitment": "full-time, 12 weeks",
+      "required_materials": [
+        "CV",
+        "transcript"
+      ],
+      "official_url": "https://northstar-labs.example/careers/security-intern-2027",
+      "discovery_url": "https://northstar-labs.example/careers",
+      "evidence": {
+        "deadline": {
+          "status": "explicit",
+          "source_url": "https://northstar-labs.example/careers/security-intern-2027",
+          "quote": "Apply by 1 November 2026",
+          "verified_at": "2026-09-14"
+        },
+        "education_level": {
+          "status": "explicit",
+          "source_url": "https://northstar-labs.example/careers/security-intern-2027",
+          "verified_at": "2026-09-14"
+        },
+        "graduation_window": {
+          "status": "explicit",
+          "source_url": "https://northstar-labs.example/careers/security-intern-2027",
+          "quote": "graduating between Dec 2027 and Aug 2028",
+          "verified_at": "2026-09-14"
+        },
+        "nationality_requirement": {
+          "status": "explicit",
+          "source_url": "https://northstar-labs.example/careers/security-intern-2027",
+          "quote": "must be legally authorized to work in the US",
+          "verified_at": "2026-09-14"
+        },
+        "GPA_requirement": {
+          "status": "explicit",
+          "source_url": "https://northstar-labs.example/careers/security-intern-2027",
+          "quote": "minimum GPA 3.0/4.0",
+          "verified_at": "2026-09-14"
+        }
+      },
+      "trust_tier": "A",
+      "verification_status": "verified_official",
+      "last_verified": "2026-09-14",
+      "layer": "exploit",
+      "notes": []
     },
     {
-      "id": "tokyo-embedded-design-contest-2026",
-      "title": "Tokyo Embedded Design Contest 2026",
-      "organization": "Tokyo Metropolitan Student Foundation",
-      "primary_category": "competition",
-      "tags": [
-        "embedded",
-        "design"
+      "id": "meridian-university-reu-summer-research-2026",
+      "title": "Meridian University REU Summer Research",
+      "organization": "Meridian University",
+      "primary_category": "research",
+      "secondary_categories": [
+        "funding"
       ],
-      "summary": "Fictional contest listing found on an aggregator; possibly the same event as Tokyo Embedded Challenge.",
-      "country": "Japan",
-      "city": "Tokyo",
+      "tags": [
+        "reu",
+        "research",
+        "stipend",
+        "us",
+        "undergraduate-ok"
+      ],
+      "summary": "Fictional 10-week undergraduate research experience with a stipend and housing support.",
+      "country": "United States",
+      "city": "Ann Arbor",
       "remote": false,
-      "deadline": "2026-10-25",
+      "education_level": [
+        "undergraduate"
+      ],
+      "student_year": [
+        2,
+        3
+      ],
+      "graduation_window": null,
+      "major_requirement": "Any STEM discipline",
+      "skills_required": null,
+      "skills_preferred": null,
+      "language_requirement": null,
+      "nationality_requirement": null,
+      "school_requirement": null,
+      "GPA_requirement": null,
+      "application_open": null,
+      "deadline": "2027-02-15",
+      "deadline_type": null,
+      "event_start": null,
+      "event_end": null,
+      "cost": "free",
+      "compensation": "stipend + housing",
+      "prize": null,
+      "funding": null,
+      "team_requirement": null,
+      "time_commitment": "full-time, 10 weeks",
+      "required_materials": [
+        "statement",
+        "transcript",
+        "1 reference"
+      ],
+      "official_url": "https://meridian-u.example/reu-2027",
+      "discovery_url": "https://meridian-u.example/research",
+      "evidence": {
+        "deadline": {
+          "status": "explicit",
+          "source_url": "https://meridian-u.example/reu-2027",
+          "quote": "Deadline: February 15, 2027",
+          "verified_at": "2026-09-13"
+        }
+      },
+      "trust_tier": "A",
+      "verification_status": "verified_official",
+      "last_verified": "2026-09-13",
+      "layer": "exploit",
+      "notes": []
+    },
+    {
+      "id": "helix-bio-research-summer-program-2027",
+      "title": "Helix Bio Research Summer Program",
+      "organization": "Helix Bio Research",
+      "primary_category": "research",
+      "secondary_categories": [
+        "skill_development"
+      ],
+      "tags": [
+        "biology",
+        "lab",
+        "germany",
+        "stipend"
+      ],
+      "summary": "Fictional 8-week lab research programme in Germany.",
+      "country": "Germany",
+      "city": "Heidelberg",
+      "remote": false,
+      "education_level": [
+        "undergraduate",
+        "master"
+      ],
+      "student_year": null,
+      "graduation_window": null,
+      "major_requirement": "Life sciences, biology or related field",
+      "skills_required": null,
+      "skills_preferred": [
+        "data analysis",
+        "lab work"
+      ],
+      "language_requirement": [
+        {
+          "language": "English",
+          "exam": null,
+          "min_level": "B2"
+        },
+        {
+          "language": "German",
+          "exam": null,
+          "min_level": "A2"
+        }
+      ],
+      "nationality_requirement": null,
+      "school_requirement": null,
+      "GPA_requirement": null,
+      "application_open": null,
+      "deadline": "2027-01-31",
+      "deadline_type": null,
+      "event_start": null,
+      "event_end": null,
+      "cost": "free",
+      "compensation": "stipend",
+      "prize": null,
+      "funding": null,
+      "team_requirement": null,
+      "time_commitment": "full-time, 8 weeks",
+      "required_materials": [
+        "CV",
+        "motivation letter"
+      ],
+      "official_url": "https://helix-bio.example/summer-program-2027",
+      "discovery_url": "https://helix-bio.example/careers",
+      "evidence": {
+        "deadline": {
+          "status": "explicit",
+          "source_url": "https://helix-bio.example/summer-program-2027",
+          "quote": "Bewerbungsschluss: 31.01.2027",
+          "verified_at": "2026-09-13"
+        },
+        "language_requirement": {
+          "status": "explicit",
+          "source_url": "https://helix-bio.example/summer-program-2027",
+          "quote": "Englisch B2, Deutsch A2",
+          "verified_at": "2026-09-13"
+        }
+      },
+      "trust_tier": "A",
+      "verification_status": "verified_official",
+      "last_verified": "2026-09-13",
+      "layer": "adjacent",
+      "notes": []
+    },
+    {
+      "id": "mira-design-foundation-student-award-2026",
+      "title": "Mira Design Foundation Student Award",
+      "organization": "Mira Design Foundation",
+      "primary_category": "competition",
+      "secondary_categories": [
+        "hobby",
+        "project"
+      ],
+      "tags": [
+        "design",
+        "portfolio-output",
+        "france"
+      ],
+      "summary": "Fictional design award for students; entries judged on a submitted portfolio piece.",
+      "country": "France",
+      "city": "Lyon",
+      "remote": true,
+      "education_level": [
+        "undergraduate",
+        "master"
+      ],
+      "student_year": null,
+      "graduation_window": null,
+      "major_requirement": null,
+      "skills_required": null,
+      "skills_preferred": null,
+      "language_requirement": null,
+      "nationality_requirement": null,
+      "school_requirement": null,
+      "GPA_requirement": null,
+      "application_open": null,
+      "deadline": "2026-12-05",
+      "deadline_type": null,
+      "event_start": null,
+      "event_end": null,
+      "cost": "free",
+      "compensation": null,
+      "prize": "3,000 EUR + exhibition",
+      "funding": null,
+      "team_requirement": null,
+      "time_commitment": null,
+      "required_materials": [
+        "portfolio",
+        "project statement"
+      ],
+      "official_url": "https://mira-design.example/student-award-2026",
+      "discovery_url": "https://mira-design.example/awards",
+      "evidence": {
+        "deadline": {
+          "status": "explicit",
+          "source_url": "https://mira-design.example/student-award-2026",
+          "quote": "Date limite : 5 décembre 2026",
+          "verified_at": "2026-09-13"
+        },
+        "education_level": {
+          "status": "explicit",
+          "source_url": "https://mira-design.example/student-award-2026",
+          "verified_at": "2026-09-13"
+        }
+      },
+      "trust_tier": "A",
+      "verification_status": "verified_official",
+      "last_verified": "2026-09-13",
+      "layer": "exploit",
+      "notes": []
+    },
+    {
+      "id": "mira-design-award-aggregator-post",
+      "title": "Mira Design Award 2026",
+      "organization": "European Design Listings",
+      "primary_category": "competition",
+      "secondary_categories": [],
+      "tags": [
+        "design",
+        "aggregator"
+      ],
+      "summary": "Aggregator repost of the Mira Design award with a different organizer name.",
+      "country": "France",
+      "city": null,
+      "remote": true,
+      "education_level": null,
+      "student_year": null,
+      "graduation_window": null,
+      "major_requirement": null,
+      "skills_required": null,
+      "skills_preferred": null,
+      "language_requirement": null,
+      "nationality_requirement": null,
+      "school_requirement": null,
+      "GPA_requirement": null,
+      "application_open": null,
+      "deadline": "2026-12-05",
+      "deadline_type": null,
+      "event_start": null,
+      "event_end": null,
+      "cost": null,
+      "compensation": null,
+      "prize": null,
+      "funding": null,
+      "team_requirement": null,
+      "time_commitment": null,
+      "required_materials": [],
       "official_url": null,
-      "discovery_url": "https://aggregator.example/contests/tokyo-embedded",
+      "discovery_url": "https://listings.example/mira-design-award",
+      "evidence": null,
       "trust_tier": "D",
       "verification_status": "unverified",
       "last_verified": "2026-09-09",
       "layer": "exploit",
       "notes": [
         "未找到官方确认来源",
-        "可能是同一赛事的转载"
+        "可能是同一奖项的转载"
       ]
+    },
+    {
+      "id": "yunhe-university-summer-research-camp-2027",
+      "title": "云河大学 优秀大学生暑期科研夏令营",
+      "organization": "云河大学",
+      "primary_category": "research",
+      "secondary_categories": [
+        "education",
+        "networking"
+      ],
+      "tags": [
+        "research",
+        "保研",
+        "夏令营",
+        "undergraduate-ok"
+      ],
+      "summary": "虚构的暑期科研夏令营，面向大三本科生，与推免相关的学术体验活动。",
+      "country": "China",
+      "city": "杭州",
+      "remote": false,
+      "education_level": [
+        "undergraduate"
+      ],
+      "student_year": [
+        3
+      ],
+      "graduation_window": null,
+      "major_requirement": "理工科相关专业",
+      "skills_required": null,
+      "skills_preferred": null,
+      "language_requirement": null,
+      "nationality_requirement": null,
+      "school_requirement": "仅限合作院校在读学生（名单见官网）",
+      "GPA_requirement": null,
+      "application_open": "2027-04-20",
+      "deadline": "2027-05-20",
+      "deadline_type": "range",
+      "event_start": "2027-07-10",
+      "event_end": "2027-07-20",
+      "cost": "free",
+      "compensation": null,
+      "prize": null,
+      "funding": "交通补贴（按学校所在地）",
+      "team_requirement": null,
+      "time_commitment": null,
+      "required_materials": [
+        "成绩单",
+        "排名证明",
+        "个人陈述"
+      ],
+      "official_url": "https://www.yunhe-university.example/summer-camp-2027",
+      "discovery_url": "https://www.yunhe-university.example/graduate",
+      "evidence": {
+        "deadline": {
+          "status": "explicit",
+          "source_url": "https://www.yunhe-university.example/summer-camp-2027",
+          "quote": "报名截止：2027年5月20日",
+          "verified_at": "2026-09-13"
+        },
+        "education_level": {
+          "status": "explicit",
+          "source_url": "https://www.yunhe-university.example/summer-camp-2027",
+          "quote": "面向大三本科生",
+          "verified_at": "2026-09-13"
+        },
+        "school_requirement": {
+          "status": "explicit",
+          "source_url": "https://www.yunhe-university.example/summer-camp-2027",
+          "quote": "仅限合作院校在读学生",
+          "verified_at": "2026-09-13"
+        }
+      },
+      "trust_tier": "A",
+      "verification_status": "partially_verified",
+      "last_verified": "2026-09-13",
+      "layer": "adjacent",
+      "notes": [
+        "页面要求『专业排名前 20%』，画像未提供排名 → 应为 Unknown"
+      ]
+    },
+    {
+      "id": "lumen-business-case-challenge-2026",
+      "title": "Lumen Global Business Case Challenge",
+      "organization": "Lumen Business Network",
+      "primary_category": "competition",
+      "secondary_categories": [
+        "project",
+        "networking",
+        "entrepreneurship"
+      ],
+      "tags": [
+        "case-competition",
+        "team-required",
+        "remote",
+        "business"
+      ],
+      "summary": "Fictional team-based case challenge open to university students worldwide.",
+      "country": null,
+      "city": null,
+      "remote": true,
+      "education_level": [
+        "undergraduate",
+        "master"
+      ],
+      "student_year": null,
+      "graduation_window": null,
+      "major_requirement": null,
+      "skills_required": null,
+      "skills_preferred": null,
+      "language_requirement": null,
+      "nationality_requirement": null,
+      "school_requirement": null,
+      "GPA_requirement": null,
+      "application_open": null,
+      "deadline": "2026-11-28",
+      "deadline_type": null,
+      "event_start": null,
+      "event_end": null,
+      "cost": "free",
+      "compensation": null,
+      "prize": "5,000 USD + interview fast-track",
+      "funding": null,
+      "team_requirement": "3-4 people",
+      "time_commitment": "~10 h/week over 3 weeks",
+      "required_materials": [
+        "CV",
+        "team roster"
+      ],
+      "official_url": "https://lumen-network.example/case-challenge",
+      "discovery_url": "https://lumen-network.example/students",
+      "evidence": {
+        "deadline": {
+          "status": "explicit",
+          "source_url": "https://lumen-network.example/case-challenge",
+          "quote": "Registration closes 28 November 2026",
+          "verified_at": "2026-09-14"
+        }
+      },
+      "trust_tier": "A",
+      "verification_status": "verified_official",
+      "last_verified": "2026-09-14",
+      "layer": "explore",
+      "notes": []
     }
   ]
 }

@@ -89,6 +89,25 @@ based conflicts that cannot be interpreted differently: expired deadline, `educa
 phrasing, school rosters, language proficiency descriptions, GPA scales — yields
 `Probably Ineligible` or `Unknown` instead.
 
+### Why the core must not know the user
+
+A discovery skill accumulates defaults fast: the author's own region, field and language exams
+creep into examples, query templates and fixtures until the skill serves one kind of user while
+claiming to serve everyone. The three concepts have to be kept apart:
+
+| Concept | Example | Treatment |
+|---|---|---|
+| **Capability** | parsing `JLPT N2`, `Praktikum`, `应届生`, `CPT` | keep — it is just text handling |
+| **Locale knowledge** | "日本按卒業年度筛选", "德国区分 Pflichtpraktikum" | keep, but load only when the target region needs it |
+| **Default assumption** | "the user probably wants Japan/embedded" | remove |
+
+So target regions come from the profile and the current request, languages follow from the
+regions (`scripts/locales.py`), and region knowledge lives in `references/locales/` as an
+*optional* layer. A user in a country with no locale file still gets a working pipeline — generic
+rules plus dynamic language detection — and the examples deliberately cover several unrelated
+people (CS/security in the US, biology in Germany, design in France, IoT in Japan) so no single
+route reads as the default.
+
 ### Why `external Actions` are out of scope
 
 Discovery and explanation are reversible; submitting a form is not. Application actions stay with
@@ -103,7 +122,12 @@ verification statuses, value levels, evidence statuses, deadline types, layer na
 tracked fields, evidence fields — plus `canonical_url()`, `derive_id()`, `norm_org()`,
 `canonical_country()` and the contract validators. `score.py` owns the eligibility semantics:
 `evidence_status()` / `is_hard_evidence()`, `deadline_info()`, `normalize_language_requirement()`,
-`skill_hit()` and `filter_profile_for_eligibility()`. `schemas/*.json` and `references/*.md` must agree with it.
+`skill_hit()` and `filter_profile_for_eligibility()`.
+
+`locales.py` owns region → locale resolution: `REGION_LOCALES`, `LOCALE_FILES`, `MODE_WEIGHTS`,
+`MODE_LAYERS`, `target_regions()`, `resolve_locales()`, `detect_locale()` and `search_plan()`.
+`GOAL_TO_CATEGORY` and `INTEREST_ALIASES` moved into `common.py` so that scoring and planning
+cannot drift apart. `schemas/*.json` and `references/*.md` must agree with it.
 
 `tests/test_consistency.py` enforces this mechanically:
 
@@ -171,9 +195,13 @@ python3 -m unittest discover -s tests -t tests
 # 2. CLI smoke tests — every documented command must still run
 python3 scripts/normalize_date.py --file examples/dates.example.txt --default-year 2026 --now 2026-09-14 > /dev/null
 python3 scripts/dedupe.py --input examples/opportunity.batch.example.json --output /tmp/clusters.json
-python3 scripts/score.py --profile examples/profile.example.json \
+python3 scripts/score.py --profile examples/profiles/cs-student.example.json \
                          --opportunities /tmp/clusters.json --today 2026-09-14 --format table
 python3 scripts/common.py --validate examples/opportunity.batch.example.json
+
+# locales: every example profile must resolve, and unknown regions must not break anything
+for f in examples/profiles/*.json; do python3 scripts/locales.py --profile "$f" > /dev/null; done
+python3 scripts/locales.py --countries Kenya        # falls back to generic + English
 
 # 3. skill validation against the local spec tooling, if available
 python3 <skill-creator>/scripts/quick_validate.py .
@@ -189,6 +217,8 @@ Plus the manual review questions:
 3. Are new example files still clearly marked as fictional?
 4. If an enum changed, does `tests/test_consistency.py` tell you every place to update — and does
    it actually pass?
+5. Did any example/test/fixture quietly re-introduce a region or field default? `tests/test_locale.py`
+   is the guard for that.
 
 ### Bilingual documentation
 
@@ -216,8 +246,7 @@ format. They require live web access, so they are not part of the unit suite.
 | 2 | 我不想找实习，最近有什么值得做的？ | does **not** keep recommending internships; shifts to competitions / research / open source / projects / skills / events / hobbies |
 | 3 | 我想以后做 Embedded AI，但是不知道现在应该做什么。 | searches real Embedded AI postings, counts their requirements, backfills with competitions / open source / projects / research / skill programmes — not a generic study roadmap |
 
-Profile for scenario 1: [`examples/profile.example.json`](examples/profile.example.json)
-(fictional). Format reference:
+Example profiles (all fictional): [`examples/profiles/`](examples/profiles/). Format reference:
 [`examples/discovery-output.example.md`](examples/discovery-output.example.md).
 
 ---
@@ -231,8 +260,10 @@ Profile for scenario 1: [`examples/profile.example.json`](examples/profile.examp
   conflict machinery surfaces it, but a human or model must decide.
 - **Major-relevance matching is lexical for the literal case only.** `related field` judgement is
   deliberately left to the model, per the eligibility policy.
-- **Language coverage.** Query templates are strongest for Chinese, English and Japanese; German
-  and Korean are basic.
+- **Locale knowledge depth is uneven.** `cn` / `jp` / `us` / `uk` / `de` have dedicated files; every
+  other region runs on generic rules plus dynamic detection. That is deliberate (files are added when
+  a region has a real misjudgement risk), but it does mean European and North American specifics are
+  thinner than the five covered files.
 - **`ref` / `source` parameters cost precision.** They are preserved deliberately, which means a
   campaign tag change is reported as a change. If that proves noisy in practice, the fix is to
   add a user-configurable ignore list rather than to broaden the defaults.
