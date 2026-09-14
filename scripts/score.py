@@ -562,7 +562,11 @@ def language_check(opp, profile) -> tuple[str, str]:
     for item in as_list(opp.get("language_requirement")):
         req = normalize_language_requirement(item)
         lang = req["language"]
-        label = " ".join(x for x in (lang or "语言", req["exam"], req["level_text"]) if x)
+        # string 形态直接用原文做标签，避免拼出 "japanese JLPT Japanese JLPT N2" 这类重复
+        if isinstance(item, dict):
+            label = " ".join(x for x in (lang or "语言", req["exam"], req["level_text"]) if x)
+        else:
+            label = req["raw"].strip() or "语言能力"
 
         cands = []
         for e in entries:
