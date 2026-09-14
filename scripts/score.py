@@ -28,6 +28,7 @@ Match 与 Priority 分离：`Priority = 0.85*Match + 0.15*Urgency`；
 from __future__ import annotations
 
 import argparse
+import copy
 import datetime as dt
 import json
 import os
@@ -37,7 +38,8 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from common import (  # noqa: E402
-    EVIDENCE_FIELDS, WEIGHTS, load_records as load_records_common, validate_opportunity,
+    DEADLINE_TYPES, EVIDENCE_FIELDS, WEIGHTS, canonical_country,
+    load_records as load_records_common, validate_opportunity,
 )
 from normalize_date import parse_date  # noqa: E402
 
@@ -106,6 +108,29 @@ GENERIC_SKILL_TOKENS = frozenset({
 #: "未填写语言成绩"被误判为"明确不会该语言"。
 LANGUAGE_NONE_MARKERS = ("none", "no", "cannot", "not-available", "不会", "无", "未学", "未修", "不懂")
 
+#: 技能同族映射（**保守**：只收高确定性的技术同族）
+#: 刻意不收录 "Docker↔Kubernetes"、"Python↔Machine Learning"、"React↔Frontend"
+#: 这类概念扩张，也不把 C 与 C++ 视为等价（C++ 单列一族）。
+SKILL_ALIAS_FAMILIES = {
+    "rtos": ("freertos", "zephyr", "threadx", "rt-thread", "rtthread", "nuttx",
+             "micrium", "vxworks", "rtos", "real-time operating system"),
+    "esp32": ("esp32", "esp32-s3", "esp32-c3", "esp32-c6", "esp32-s2", "esp-idf"),
+    "ros": ("ros", "ros2", "ros 2"),
+    "javascript": ("javascript", "js", "ecmascript", "node", "nodejs", "node.js"),
+    "typescript": ("typescript", "ts"),
+    "c++": ("c++", "cpp", "cplusplus"),
+    "linux": ("linux", "ubuntu", "debian", "raspbian", "embedded linux", "yocto"),
+    "tinyml": ("tinyml", "tflite", "tensorflow lite", "tensorflow lite micro", "edge impulse"),
+    "arduino": ("arduino", "avr", "atmega"),
+    "sql": ("sql", "mysql", "postgresql", "postgres", "sqlite", "mariadb"),
+    "pytorch": ("pytorch", "torch"),
+    "tensorflow": ("tensorflow", "keras"),
+    "hdl": ("fpga", "verilog", "vhdl", "systemverilog"),
+}
+
+#: 反向索引：任一写法 → 家族名
+SKILL_ALIAS_INDEX = {alias: fam for fam, aliases in SKILL_ALIAS_FAMILIES.items() for alias in aliases}
+
 
 def is_explicit_none(value) -> bool:
     if value is None:
@@ -123,12 +148,15 @@ NATIONALITY_OPEN_SIGNALS = (
     "不限国籍", "面向全球学生",
 )
 
-#: 页面写明"仅限某国国籍/居民"的信号
+#: 页面写明"仅限某国国籍/居民/工作许可"的信号（用于识别"这里存在限制"）
 NATIONALITY_RESTRICT_SIGNALS = (
     "citizens only", "nationals only", "must be a citizen", "citizenship required",
-    "permanent resident", "must reside in", "work authorization", "sponsorship not provided",
+    "permanent resident", "must reside in", "resident of", "domestic applicants",
+    "work authorization", "work permit", "right to work", "authorized to work",
+    "visa holder", "passport", "sponsorship not provided",
     "no sponsorship", "legally authorized to work", "国内在住", "日本国籍", "国籍要件",
-    "仅限中国籍", "限本校学生", "本国籍",
+    "仅限中国籍", "限本校学生", "本国籍", "eea", "swiss national", "eu citizen",
+    "gcc", "公民", "在住", "国籍限制",
 )
 
 #: 国籍/地区 -> 可识别的措辞（用于把"仅限 X 国籍"与画像国籍做显式比对）
@@ -207,23 +235,33 @@ def tok_matches(need: str, have: str) -> bool:
     return False
 
 
+def skill_families(text) -> set:
+    """技能名 → 命中的同族集合（按 token 识别，因此 "RTOS experience" 也能命中 rtos 家族）。"""
+    return {SKILL_ALIAS_INDEX[t] for t in skill_tokens(text) if t in SKILL_ALIAS_INDEX}
+
+
 def skill_hit(required, profile_skills) -> bool:
     """判断某个要求技能是否被画像中的技能覆盖。
 
     刻意避免"任意 token 交集"式误判：`data engineering` 不应被 `data analysis` 命中
-    （仅有通用词 data 重合）。只在以下情况算命中：
+    （仅有通用词 data 重合）。算命中的情况：
       1. 归一化后完全相等
-      2. required 的**全部非通用 token** 都能在某个画像技能里找到对应 token
-      3. 全是通用词时（如 "data engineering"），要求完整 token 集合都被包含
+      2. 属于同一**高确定性同族**（RTOS ↔ FreeRTOS、ESP32 ↔ ESP32-S3、c++ ↔ cpp）；
+         C 与 C++ **不**属同族
+      3. required 的**全部非通用 token** 都能在某个画像技能里找到对应 token
+      4. 全是通用词时（如 "data engineering"），要求完整 token 集合都被包含
     """
     req_tokens = skill_tokens(required)
     if not req_tokens:
         return False
+    req_families = skill_families(required)
     for ps in profile_skills:
         p_tokens = skill_tokens(ps)
         if not p_tokens:
             continue
         if req_tokens == p_tokens:
+            return True
+        if req_families and (req_families & skill_families(ps)):
             return True
         sig = [t for t in req_tokens if t not in GENERIC_SKILL_TOKENS and len(t) >= 2]
         if sig and all(any(tok_matches(t, h) for h in p_tokens) for t in sig):
@@ -233,14 +271,70 @@ def skill_hit(required, profile_skills) -> bool:
     return False
 
 
+# ------------------------------------------------------------------ Evidence Gate
+
+#: 需要证据才能作为硬性判断依据的字段（与 common.EVIDENCE_FIELDS 对齐）
+HARD_GATED_FIELDS = (
+    "deadline", "education_level", "student_year", "graduation_window",
+    "language_requirement", "nationality_requirement", "school_requirement", "GPA_requirement",
+)
+
+
+def evidence_status(opp, field) -> str:
+    """返回字段的证据等级：explicit | inferred | unknown | missing | legacy。
+
+    * explicit / inferred / unknown —— evidence 结构里明确写了
+    * missing  —— 有 evidence 结构，但没有追踪这个字段
+    * legacy   —— 完全没有 evidence 结构（旧数据）→ 兼容模式
+    """
+    ev = opp.get("evidence")
+    if not isinstance(ev, dict) or not ev:
+        return "legacy"
+    entry = ev.get(field)
+    if not isinstance(entry, dict):
+        return "missing"
+    st = str(entry.get("status") or "").strip().lower()
+    return st if st in ("explicit", "inferred", "unknown") else "missing"
+
+
+def is_hard_evidence(opp, field) -> bool:
+    """只有 explicit（或旧数据兼容模式）才能参与硬性淘汰。
+
+    `inferred` / `unknown` / `missing` 一律不得用于硬性淘汰 ——
+    页面没有明确要求，就不能因为用户"看起来不符合"而淘汰。
+    """
+    return evidence_status(opp, field) in ("explicit", "legacy")
+
+
 # ------------------------------------------------------------------ 硬条件：日期 / 学历 / 年级 / 毕业
 
-def deadline_days(date_str, today: dt.date):
-    """返回 (urgency_days, deadline_type, expired)。区间以截止端点为准。"""
-    if date_str in (None, ""):
-        return None, "unknown", None
-    res = parse_date(str(date_str), now=today.isoformat())
-    return res.get("urgency_days"), res.get("deadline_type"), res.get("expired")
+def deadline_info(opp, today: dt.date) -> dict:
+    """截止日信息。**结构化字段优先，原始字符串解析兜底。**
+
+    返回 {days, type, expired, source}：
+      * type 优先取 `opp.deadline_type`（由 normalize_date 生成），
+        不会因为 `deadline` 为空就被重新推断成 unknown；
+      * rolling / asap / flexible / tbd 一律不计算天数，也不判过期；
+      * 只有 fixed / range 才用 `deadline` 计算剩余天数（区间取截止端点）。
+    """
+    raw = opp.get("deadline")
+    declared = opp.get("deadline_type")
+    declared = declared if declared in DEADLINE_TYPES else None
+
+    if declared in ("rolling", "asap", "flexible", "tbd"):
+        return {"days": None, "type": declared, "expired": False if declared == "rolling" else None,
+                "source": "field"}
+
+    if raw in (None, ""):
+        return {"days": None, "type": declared or "unknown", "expired": None,
+                "source": "field" if declared else "none"}
+
+    res = parse_date(str(raw), now=today.isoformat())
+    parsed_type = res.get("deadline_type")
+    return {"days": res.get("urgency_days"),
+            "type": declared or parsed_type or "unknown",
+            "expired": res.get("expired"),
+            "source": "field+parse" if declared else "parse"}
 
 
 def parse_ym_pairs(text) -> list[tuple[int, int | None]]:
@@ -345,77 +439,182 @@ def gpa_check(required, user_value) -> tuple[str, str]:
     return "fail", f"GPA {uv}/{us} 低于要求 {rv}/{rs}"
 
 
-def level_value(tokens) -> float | None:
-    """把语言等级转成可比较数值：JLPT N1..N5 → 5..1；数字分数原样。"""
-    for t in tokens:
-        m = re.fullmatch(r"n([1-5])", t)
-        if m:
-            return 6 - int(m.group(1))
-    for t in tokens:
-        m = re.fullmatch(r"\d+(?:\.\d+)?", t)
-        if m:
-            return float(t)
-    return None
+#: 语言考试识别
+LANGUAGE_EXAMS = {
+    "japanese language proficiency test": "JLPT", "jlpt": "JLPT",
+    "toeic": "TOEIC", "toefl": "TOEFL", "ielts": "IELTS", "gre": "GRE", "gmat": "GMAT",
+    "cet-6": "CET6", "cet-4": "CET4", "cet6": "CET6", "cet4": "CET4", "cet": "CET",
+    "topik": "TOPIK", "hsk": "HSK", "jtest": "JTEST", "teps": "TEPS",
+}
+
+#: 语言名 → 规范值
+LANGUAGE_NAMES = {
+    "japanese": "japanese", "日本語": "japanese", "日语": "japanese", "日文": "japanese",
+    "english": "english", "英語": "english", "英语": "english", "英文": "english",
+    "chinese": "chinese", "中文": "chinese", "汉语": "chinese", "中国語": "chinese",
+    "korean": "korean", "한국어": "korean", "韓国語": "korean", "韩语": "korean", "韓語": "korean",
+    "german": "german", "deutsch": "german", "德语": "german", "ドイツ語": "german",
+    "french": "french", "français": "french", "法语": "french", "フランス語": "french",
+    "spanish": "spanish", "español": "spanish", "スペイン語": "spanish",
+    "russian": "russian", "俄语": "russian", "ロシア語": "russian",
+    "italian": "italian", "italiano": "italian", "意大利语": "italian",
+    "portuguese": "portuguese", "português": "portuguese", "葡萄牙语": "portuguese",
+}
+
+#: 只有自然语言描述、**不可量化**的能力表述：不得映射成 JLPT / CEFR 分数
+QUALITATIVE_LEVEL_PHRASES = (
+    "business level", "business-level", "native level", "native-level", "native speaker",
+    "professional working proficiency", "professional proficiency", "working proficiency",
+    "full professional proficiency", "fluent", "conversational", "daily conversation",
+    "beginner level", "intermediate level", "advanced level",
+    "ビジネスレベル", "ネイティブ", "日常会話", "業務レベル", "商务水平", "母语水平",
+)
+
+CEFR_ORDER = ("a1", "a2", "b1", "b2", "c1", "c2")
+
+
+def parse_levels(text, default_unit: str = "") -> dict:
+    """从文本中提取 {单位: 数值}。单位 ∈ jlpt / cefr / cet_level / 考试名。
+
+    **不同单位之间不比较、不换算**（JLPT N2 ≠ IELTS 6.5 ≠ TOEIC 800）——
+    单位不一致时由调用方返回 Unknown，而不是伪造一个换算结果。
+    方向统一为"数值越大越好"：JLPT N1=5 … N5=1；CEFR a1=0 … c2=5；
+    CET-4=2、CET-6=3（与 CET 的分数 425–710 分属不同单位，避免把等级当分数比较）。
+    """
+    s = " ".join(skill_tokens(text))
+    out: dict = {}
+    m = re.search(r"\bn\s?([1-5])\b", s)
+    if m:
+        out["jlpt"] = float(6 - int(m.group(1)))
+    m = re.search(r"\b([abc][12])\b", s)
+    if m and m.group(1) in CEFR_ORDER:
+        out["cefr"] = float(CEFR_ORDER.index(m.group(1)))
+    m = re.search(r"\bcet\s?[-\s]?\s?([46])\b", s)
+    if m:
+        out["cet_level"] = 2.0 if m.group(1) == "4" else 3.0
+        s = re.sub(r"\bcet\s?[-\s]?\s?[46]\b", " ", s)
+    m = re.search(r"(?<![a-z0-9])(\d{1,3}(?:\.\d)?)\s*\+?", s)
+    if m:
+        out[default_unit or "numeric"] = float(m.group(1))
+    return out
+
+
+def qualitatives_in(text) -> list[str]:
+    low = f" {str(text or '').lower()} "
+    return [q for q in QUALITATIVE_LEVEL_PHRASES if q in low]
+
+
+def normalize_language_requirement(item) -> dict:
+    """把 string / object 两种形态统一成一个结构。
+
+    返回 {language, exam, level_text, raw, levels, qualitative, quantifiable}
+      * quantifiable=True  → 提取到可比较的单位化等级，可参与硬性判断
+      * quantifiable=False 且 qualitative 非空 → 只有自然语言描述（business-level 等），
+        交给语义判断，**绝不**映射成具体等级
+    """
+    if isinstance(item, dict):
+        language_raw = str(item.get("language") or "")
+        exam_raw = str(item.get("exam") or "")
+        level_text = str(item.get("min_level") or "")
+        raw = " ".join(x for x in (language_raw, exam_raw, level_text) if x)
+    else:
+        language_raw = exam_raw = ""
+        level_text = str(item or "")
+        raw = str(item or "")
+
+    blob = " ".join(skill_tokens(f"{language_raw} {exam_raw} {level_text}"))
+    language = next((v for k, v in LANGUAGE_NAMES.items() if k in blob), "")
+    exam = next((v for k, v in sorted(LANGUAGE_EXAMS.items(), key=lambda kv: -len(kv[0]))
+                 if k in blob), "")
+    if not language and exam == "JLPT":
+        language = "japanese"
+    levels = parse_levels(blob, default_unit=exam)
+    if not exam:
+        levels.pop("numeric", None)      # 没有考试上下文时，裸数字不构成可比较等级
+        if language == "japanese" and "jlpt" in levels:
+            exam = "JLPT"                # "Japanese N2" 即 JLPT N2（N 级为 JLPT 专用）
+    qualitative = qualitatives_in(raw)
+    return {"language": language, "exam": exam, "level_text": level_text, "raw": raw,
+            "levels": levels, "qualitative": qualitative, "quantifiable": bool(levels)}
+
+
+def entry_language_units(entry) -> tuple[set, dict]:
+    """画像语言条目 → (语言规范值集合, {单位: 数值})。
+
+    注意必须走 skill_tokens()（会小写化）——否则 "TOEIC" 这类大写考试名匹配不到，
+    成绩会被当成无单位的裸数字（曾因此把 TOEIC 900 判为无法比对）。
+    """
+    blob = " ".join(skill_tokens(f"{entry.get('language','')} {entry.get('exam','')} "
+                                 f"{entry.get('score','')} {entry.get('level','')}"))
+    toks = blob.split()
+    langs = {LANGUAGE_NAMES[t] for t in toks if t in LANGUAGE_NAMES}
+    exam = next((v for k, v in sorted(LANGUAGE_EXAMS.items(), key=lambda kv: -len(kv[0]))
+                 if k in blob), "")
+    if not langs and exam == "JLPT":
+        langs = {"japanese"}
+    return langs, parse_levels(blob, default_unit=exam)
 
 
 def language_check(opp, profile) -> tuple[str, str]:
     """返回 (结果, 说明)。结果 ∈ ok / unknown_missing / unknown_low_info / fail。"""
     entries = [e for e in as_list(profile.get("languages")) if isinstance(e, dict)]
-    prof_tokens = {id(e): skill_tokens(f"{e.get('language','')} {e.get('exam','')} "
-                                       f"{e.get('score','')} {e.get('level','')}") for e in entries}
     results = []
     for item in as_list(opp.get("language_requirement")):
-        if isinstance(item, dict):
-            lang = norm(item.get("language"))
-            exam = norm(item.get("exam"))
-            need = skill_tokens(f"{exam} {item.get('min_level','')}")
-            raw_level = str(item.get("min_level") or "")
-        else:
-            lang, exam, need, raw_level = norm(item), "", skill_tokens(item), ""
+        req = normalize_language_requirement(item)
+        lang = req["language"]
+        label = " ".join(x for x in (lang or "语言", req["exam"], req["level_text"]) if x)
 
-        cands = [e for e in entries
-                 if lang and any(lang in t for t in prof_tokens[id(e)])]
+        cands = []
+        for e in entries:
+            langs, units = entry_language_units(e)
+            if (lang and lang in langs) or (not lang and req["exam"]
+                                            and any(u == req["exam"] for u in units)):
+                cands.append((e, units))
         if not cands:
             results.append(("unknown_missing",
-                            f"页面要求{f' {lang}' if lang else '语言能力'}，"
-                            "画像中未记录该语言 → 无法判断（缺失不等于不会）"))
+                            f"页面要求 {label}，画像中未记录该语言 → 无法判断（缺失不等于不会）"))
             continue
 
-        none_marked = [e for e in cands
-                       if is_explicit_none(e.get("level")) or is_explicit_none(e.get("score"))]
-        if none_marked:
-            results.append(("fail", f"画像明确标注不具备该语言（{lang}），而页面有硬性语言要求"))
+        if any(is_explicit_none(e.get("level")) or is_explicit_none(e.get("score")) for e, _ in cands):
+            results.append(("fail", f"画像明确标注不具备该语言（{lang or label}），而页面有硬性语言要求"))
             continue
 
-        if not (exam or need):
-            results.append(("ok", f"页面只要求 {lang}，画像已有该语言记录"))
+        if not req["quantifiable"]:
+            hint = f"（页面措辞：{req['qualitative'][0]}）" if req["qualitative"] else ""
+            results.append(("unknown_low_info",
+                            f"页面语言要求 {label}{hint} 无法量化为可比较的等级 → 交语义判断，"
+                            "不做硬性判定"))
             continue
 
-        hit = False
-        for e in cands:
-            toks = prof_tokens[id(e)]
-            if exam and exam not in toks and not any(tok_matches(exam, t) for t in toks):
-                continue
-            req_v = level_value(need) if need else None
-            have_v = level_value(toks)
-            if req_v is None:
-                hit = True
+        req_units = req["levels"]
+        satisfied = False
+        below = None
+        incomparable = False
+        for _e, units in cands:
+            comparable = False
+            for unit, need in req_units.items():
+                have = units.get(unit)
+                if have is None:
+                    continue
+                comparable = True
+                if have + 1e-6 >= need:
+                    satisfied = True
+                else:
+                    below = f"页面要求 {label}，画像中的成绩未达该等级"
                 break
-            if have_v is None:
-                continue
-            if have_v + 1e-6 >= req_v:
-                hit = True
-                break
-        if hit:
-            results.append(("ok", f"语言要求（{exam or ''} {raw_level}）与画像记录相符"))
+            if not comparable and units:
+                incomparable = True
+
+        if satisfied:
+            results.append(("ok", f"语言要求（{label}）与画像记录相符"))
+        elif below:
+            results.append(("fail", below))
+        elif incomparable:
+            results.append(("unknown_low_info",
+                            f"页面要求 {label}，画像记录的是另一套评分体系 → 不做换算，需人工确认"))
         else:
-            has_score = any(level_value(prof_tokens[id(e)]) is not None for e in cands)
-            if has_score:
-                results.append(("fail", f"页面要求 {exam or ''} {raw_level}，画像中的成绩未达该等级"))
-            else:
-                results.append(("unknown_low_info",
-                                f"页面要求 {exam or ''} {raw_level}，画像有该语言但未记录成绩/等级 → "
-                                "信息不足（不是不满足）"))
+            results.append(("unknown_low_info",
+                            f"页面要求 {label}，画像有该语言但未记录对应成绩/等级 → 信息不足（不是不满足）"))
     if not results:
         return "ok", ""
     for kind, msg in results:
@@ -454,10 +653,42 @@ def nationality_check(opp, profile) -> tuple[str, str]:
         return "unknown_low_info", "页面写有国籍限制，但画像国籍表述无法与之比对"
     restricted = match_any(req_text, NATIONALITY_RESTRICT_SIGNALS)
     if restricted:
-        return "unknown_low_info", "页面含限制性措辞，但未写明具体国籍，信息不足以确认是否影响你"
-    if user_nat or visa:
-        return "ok", "页面未写明国籍限制"
-    return "none", ""
+        return "unknown_low_info", (
+            f"页面含限制性措辞（{restricted}）但未写明可逐字比对的具体国籍/地区 → 需人工确认是否影响你")
+    # requirement 非空但解析器读不懂 —— **绝不**默认"没有限制"
+    return "unknown_low_info", (
+        f"页面 nationality_requirement 非空但无法解析（{req_text[:40]}）→ "
+        "未知不等于没有限制，需人工确认")
+
+
+#: 学校名里过于通用、不能单独支撑命中的词
+GENERIC_SCHOOL_TOKENS = frozenset({
+    "university", "college", "institute", "institutes", "school", "academy", "national",
+    "federal", "state", "大学", "学院", "大学院", "国立", "公立", "the", "of",
+})
+
+
+def school_tokens(text) -> list[str]:
+    return [t for t in re.split(r"[^0-9a-z\u3040-\u30ff\u3400-\u4dbf\u4e00-\u9fff\uac00-\ud7af]+",
+                                str(text or "").lower()) if t]
+
+
+def school_match(school, req) -> bool:
+    """学校名匹配：整词/整串匹配，或**全部有效 token**命中。
+
+    刻意不用裸 `in` 子串判断：`MIT` 会命中 `adMITted`、`adMIT` 这类词内部片段。
+    """
+    sc = str(school or "").strip().lower()
+    rq = str(req or "").strip().lower()
+    if not sc or not rq:
+        return False
+    # 英文/数字：要求作为独立词出现（CJK 无词边界，整串出现即可）
+    if re.search(rf"(?<![0-9a-z]){re.escape(sc)}(?![0-9a-z])", rq):
+        return True
+    rq_tokens = set(school_tokens(rq))
+    sig = [t for t in school_tokens(sc)
+           if len(t) >= 3 and t not in GENERIC_SCHOOL_TOKENS]
+    return bool(sig) and all(t in rq_tokens for t in sig)
 
 
 def school_check(opp, profile) -> tuple[str, str]:
@@ -467,9 +698,9 @@ def school_check(opp, profile) -> tuple[str, str]:
     school = (profile.get("education") or {}).get("school")
     if not school:
         return "unknown_missing", f"页面有学校限制（{req[:40]}），画像未提供学校信息"
-    if norm(school) and norm(school) in norm(req):
+    if school_match(school, req):
         return "ok", f"画像学校与页面要求相符（{school}）"
-    return "unknown_low_info", "页面写有学校限制，但无法确认你的学校是否在其范围内"
+    return "unknown_low_info", "页面写有学校限制，但无法确认你的学校是否在其范围内（不推断为不符合）"
 
 
 # ------------------------------------------------------------------ 资格判定
@@ -495,8 +726,8 @@ def merge_verdict(hard: str | None, hard_kind: str, agent: str | None) -> tuple[
         return hard, "hard_constraint"
     if hard_kind == "missing_profile":
         return (agent or hard), ("agent" if agent else "hard_constraint")
-    if hard_kind in ("missing_source", "incomparable"):
-        # 页面信息不足或口径不可比：模型可以补上它读到的额外信息，
+    if hard_kind in ("missing_source", "incomparable", "evidence_gate"):
+        # 页面信息不足、口径不可比、或证据等级不足：模型可以补上它读到的额外信息，
         # 但不得给出比"Probably Eligible"更确定的结论。
         if agent and _sev(agent) < _sev("Probably Eligible"):
             return "Probably Eligible", "agent_clamped"
@@ -507,15 +738,68 @@ def merge_verdict(hard: str | None, hard_kind: str, agent: str | None) -> tuple[
     return hard, "hard_constraint"
 
 
-def eligibility_component(opp, profile, today):
+# ---------------------------------------------------------------- 画像 provenance
+
+#: profile 中会进入硬性资格判断的字段路径
+ELIGIBILITY_PROFILE_PATHS = (
+    "education.degree", "education.current_year", "education.expected_graduation",
+    "education.GPA", "education.school", "education.major", "education.major_family",
+    "nationality", "languages", "constraints.visa",
+)
+
+INFERRED_PENDING = "inferred_pending"
+
+
+def profile_provenance(profile, path) -> str:
+    """字段级 provenance：_provenance[path] → 顶层 _source → 缺省 user_stated。"""
+    prov = profile.get("_provenance")
+    if isinstance(prov, dict) and path in prov:
+        return str(prov[path]).strip().lower()
+    src = profile.get("_source")
+    if isinstance(src, str) and src.strip():
+        return src.strip().lower()
+    return "user_stated"
+
+
+def filter_profile_for_eligibility(profile) -> tuple[dict, list[str]]:
+    """摘掉标记为 `inferred_pending` 的画像字段，只用于**资格判断**。
+
+    推断出来的信息可以参与搜索扩词与排序（那两处仍用完整画像），
+    但不能当成"用户明确说过"去做硬性淘汰 —— 否则一个猜错的年级会让用户被误判为不符合资格。
+    返回 (可用于资格的画像副本, 被摘掉的字段路径列表)。
+    """
+    safe = copy.deepcopy(profile)
+    stripped: list[str] = []
+    for path in ELIGIBILITY_PROFILE_PATHS:
+        if profile_provenance(profile, path) != INFERRED_PENDING:
+            continue
+        parts = path.split(".")
+        node = safe
+        for p in parts[:-1]:
+            node = node.get(p) if isinstance(node, dict) else None
+            if node is None:
+                break
+        if isinstance(node, dict) and parts[-1] in node:
+            node[parts[-1]] = None
+            stripped.append(path)
+    return safe, stripped
+
+
+def eligibility_component(opp, profile, today, stripped_fields=None):
     """对**所有**有数据的硬条件逐项检查，取最严重的结论作为最终硬判定。
 
-    刻意不做"第一个满足就返回"的短路：学历满足但语言成绩信息缺失时，
-    结论应当是 Unknown 而不是 Eligible——只有全部硬条件都确认满足才算 Eligible。
+    四条规则：
+      1. 不做"第一个满足就返回"的短路：学历满足但语言信息缺失 → Unknown，不是 Eligible。
+      2. **没有任何硬性信息 → Unknown**（页面没写要求 ≠ 用户大概率符合）。
+      3. **Evidence Gate**：只有 evidence=explicit（或旧数据无 evidence 的 legacy 模式）
+         才能用于硬性淘汰；inferred / unknown / missing 一律不得淘汰，改判 Unknown。
+      4. `Ineligible` 只用于**无歧义**的冲突（枚举值/日期：学历、学年、毕业窗口、已过期）；
+         文本类冲突（国籍措辞、学校名单、语言表述、GPA 口径）用 `Probably Ineligible`。
 
-    返回 (score, verdict, reasons[], needs_llm, verdict_source, kind)。
+    返回 (score, verdict, reasons[], needs_llm, verdict_source, kind, warnings[])。
     """
     reasons: list[str] = []
+    warnings: list[str] = []
     today = today or dt.date.today()
     ed = profile.get("education") or {}
     degree = ed.get("degree")
@@ -523,40 +807,61 @@ def eligibility_component(opp, profile, today):
         degree = degree[0] if degree else None
     agent_verdict = (opp.get("eligibility") or {}).get("verdict")
     needs_llm = False
+    capped = False          # 存在非 explicit 证据 → 不给最乐观结论
+    gated = False           # 曾因证据不足把淘汰改判为 Unknown
 
     found: list[tuple[str, str, str]] = []      # (verdict, kind, reason)
 
-    def add(verdict, kind, reason):
+    def add(verdict, kind, reason, field, unambiguous=False):
+        nonlocal capped, gated
+        st = evidence_status(opp, field)
+        if verdict in ("Ineligible", "Probably Ineligible"):
+            if not is_hard_evidence(opp, field):
+                found.append(("Unknown", "evidence_gate", reason))
+                reasons.append(reason + "（证据不足，未作为淘汰依据）")
+                warnings.append(
+                    f"{field} 的证据等级为 {st or 'unknown'}，不能作为硬性淘汰依据 → 改判 Unknown")
+                gated = True
+                return
+            if verdict == "Ineligible" and not unambiguous:
+                verdict = "Probably Ineligible"
+        if verdict in ("Eligible", "Probably Eligible") and st != "explicit":
+            capped = True
         found.append((verdict, kind, reason))
         reasons.append(reason)
 
-    # 1. 时间窗口（最硬的确定性条件）
-    ug, dtype, expired = deadline_days(opp.get("deadline"), today)
-    if expired:
-        add("Ineligible", "hard_conflict", f"报名截止日已过（{opp.get('deadline')}）")
-    elif dtype == "rolling":
+    # 1. 时间窗口
+    dinfo = deadline_info(opp, today)
+    if dinfo["expired"]:
+        add("Ineligible", "hard_conflict", f"报名截止日已过（{opp.get('deadline')}）",
+            field="deadline", unambiguous=True)
+    elif dinfo["type"] == "rolling":
         reasons.append("滚动招募，无固定截止日")
 
-    # 2. 学历
+    # 2. 学历（枚举值 → 无歧义）
     levels = [str(x) for x in as_list(opp.get("education_level"))]
     if levels and "any" not in levels:
         if not degree:
-            add("Unknown", "missing_profile", f"页面限定学历 {levels}，画像未提供学历 → 无法判断")
+            add("Unknown", "missing_profile", f"页面限定学历 {levels}，画像未提供学历 → 无法判断",
+                field="education_level")
         elif degree not in levels:
-            add("Probably Ineligible", "hard_conflict", f"页面限定学历 {levels}，画像学历为 {degree}")
+            add("Ineligible", "hard_conflict", f"页面限定学历 {levels}，画像学历为 {degree}",
+                field="education_level", unambiguous=True)
         else:
-            add("Eligible", "hard_ok", f"学历相符（{degree} 在 {levels} 内）")
+            add("Eligible", "hard_ok", f"学历相符（{degree} 在 {levels} 内）", field="education_level")
 
     # 3. 学年
     years = [y for y in as_list(opp.get("student_year")) if str(y).isdigit()]
     cy = ed.get("current_year")
     if years:
         if not cy:
-            add("Unknown", "missing_profile", f"页面限定学年 {years}，画像未提供年级 → 无法判断")
+            add("Unknown", "missing_profile", f"页面限定学年 {years}，画像未提供年级 → 无法判断",
+                field="student_year")
         elif int(cy) not in [int(y) for y in years]:
-            add("Probably Ineligible", "hard_conflict", f"页面限定学年 {years}，画像为 {cy} 年级")
+            add("Ineligible", "hard_conflict", f"页面限定学年 {years}，画像为 {cy} 年级",
+                field="student_year", unambiguous=True)
         else:
-            add("Eligible", "hard_ok", f"学年相符（{cy} 在 {years} 内）")
+            add("Eligible", "hard_ok", f"学年相符（{cy} 在 {years} 内）", field="student_year")
 
     # 4. 毕业时间窗口（按月比较）
     if opp.get("graduation_window"):
@@ -564,84 +869,109 @@ def eligibility_component(opp, profile, today):
         user_ym = ym_of_graduation(ed.get("expected_graduation"))
         if window and not user_ym:
             add("Unknown", "missing_profile",
-                f"页面要求毕业时间 {opp['graduation_window']}，画像未提供毕业时间 → 无法判断")
+                f"页面要求毕业时间 {opp['graduation_window']}，画像未提供毕业时间 → 无法判断",
+                field="graduation_window")
         elif window and user_ym:
             ok, how = in_grad_window(user_ym, window)
             if ok is True:
-                add("Eligible", "hard_ok", f"毕业时间落在要求窗口内（{how}）")
+                add("Eligible", "hard_ok", f"毕业时间落在要求窗口内（{how}）",
+                    field="graduation_window")
             elif ok is False:
-                add("Probably Ineligible", "hard_conflict", f"毕业时间不在要求窗口内（{how}）")
+                add("Ineligible", "hard_conflict", f"毕业时间不在要求窗口内（{how}）",
+                    field="graduation_window", unambiguous=True)
             else:
-                add("Unknown", "incomparable", "毕业时间无法比较（解析失败）")
+                add("Unknown", "incomparable", "毕业时间无法比较（解析失败）", field="graduation_window")
         else:
-            add("Unknown", "incomparable", f"页面毕业时间要求无法解析：{opp['graduation_window']!r}")
+            add("Unknown", "incomparable", f"页面毕业时间要求无法解析：{opp['graduation_window']!r}",
+                field="graduation_window")
 
-    # 5. 国籍 / 工作许可
+    # 5. 国籍 / 工作许可（文本措辞 → 只用 Probably Ineligible）
     nat_state, nat_msg = nationality_check(opp, profile)
     if nat_msg:
         if nat_state == "fail":
-            add("Probably Ineligible", "hard_conflict", nat_msg)
+            add("Probably Ineligible", "hard_conflict", nat_msg, field="nationality_requirement")
         elif nat_state == "unknown_missing":
-            add("Unknown", "missing_profile", nat_msg)
+            add("Unknown", "missing_profile", nat_msg, field="nationality_requirement")
         elif nat_state == "unknown_low_info":
-            add("Unknown", "incomparable", nat_msg)
+            add("Unknown", "incomparable", nat_msg, field="nationality_requirement")
         elif nat_state == "ok":
-            add("Eligible", "hard_ok", nat_msg)
+            add("Eligible", "hard_ok", nat_msg, field="nationality_requirement")
 
-    # 6. 学校限制
+    # 6. 学校限制（名单/措辞无法完整解析 → 只用 Unknown / Probably Ineligible）
     sch_state, sch_msg = school_check(opp, profile)
     if sch_msg:
         if sch_state == "unknown_missing":
-            add("Unknown", "missing_profile", sch_msg)
+            add("Unknown", "missing_profile", sch_msg, field="school_requirement")
         elif sch_state == "unknown_low_info":
-            add("Unknown", "incomparable", sch_msg)
+            add("Unknown", "incomparable", sch_msg, field="school_requirement")
         elif sch_state == "ok":
-            add("Eligible", "hard_ok", sch_msg)
+            add("Eligible", "hard_ok", sch_msg, field="school_requirement")
 
     # 7. GPA（同体系才比较）
     if opp.get("GPA_requirement"):
         state, msg = gpa_check(opp["GPA_requirement"], ed.get("GPA"))
         if state == "fail":
-            add("Probably Ineligible", "hard_conflict", msg)
+            add("Probably Ineligible", "hard_conflict", msg, field="GPA_requirement")
         elif state.startswith("unknown"):
-            add("Unknown", "missing_profile" if state == "unknown_missing" else "incomparable", msg)
+            add("Unknown", "missing_profile" if state == "unknown_missing" else "incomparable",
+                msg, field="GPA_requirement")
         else:
-            add("Eligible", "hard_ok", msg)
+            add("Eligible", "hard_ok", msg, field="GPA_requirement")
 
     # 8. 语言
     if opp.get("language_requirement"):
         state, msg = language_check(opp, profile)
         if state == "fail":
-            add("Probably Ineligible", "hard_conflict", msg)
+            add("Probably Ineligible", "hard_conflict", msg, field="language_requirement")
         elif state.startswith("unknown"):
-            add("Unknown", "missing_profile" if state == "unknown_missing" else "incomparable", msg)
+            add("Unknown", "missing_profile" if state == "unknown_missing" else "incomparable",
+                msg, field="language_requirement")
         else:
-            add("Eligible", "hard_ok", msg)
+            add("Eligible", "hard_ok", msg, field="language_requirement")
 
-    # 9. 专业（语义条件：不作为硬冲突，只标记需要人工判断）
+    # 9. 专业（语义条件：只区分 Eligible / Probably Eligible，不作为硬冲突）
     if opp.get("major_requirement"):
         mr = text_of(opp.get("major_requirement"))
         major = norm(ed.get("major"))
         if not major:
-            add("Unknown", "missing_profile", "页面有专业要求，但画像未提供专业 → 无法判断")
+            add("Unknown", "missing_profile", "页面有专业要求，但画像未提供专业 → 无法判断",
+                field="major_requirement")
         else:
             tokens = [t for t in major.split() if len(t) > 2]
             if tokens and any(t in norm(mr) for t in tokens):
-                reasons.append("专业要求与画像专业字面相关（最终以组织方定义为准）")
+                add("Probably Eligible", "semantic_ok",
+                    "专业要求与画像专业字面相关（最终以组织方定义为准）", field="major_requirement")
             else:
                 needs_llm = True
-                reasons.append("专业要求需语义判断（related field 类表述），硬条件不冲突")
+                add("Probably Eligible", "semantic_review",
+                    "专业要求需语义判断（related field 类表述）：不构成硬冲突，但要按组织方定义确认",
+                    field="major_requirement")
 
     if not found:
-        hard, kind = "Probably Eligible", "none"
-        reasons.append("页面未写明硬性资格范围，也没有可判定的冲突项")
+        # 页面对资格条件什么都没写 —— 没写要求 ≠ 大概率符合
+        hard, kind = "Unknown", "missing_source"
+        reasons.append("页面未写明任何硬性资格条件，也没有可判定的冲突项 → 无法判断"
+                       "（没写要求不等于大概率符合）")
     else:
         hard, kind, _ = max(found, key=lambda x: _sev(x[0]))
+        if gated and _sev(hard) <= 2:
+            kind = "evidence_gate"
+    if hard == "Eligible" and capped:
+        hard = "Probably Eligible"
+    if capped:
+        legacy = any(evidence_status(opp, f) == "legacy" for f in HARD_GATED_FIELDS)
+        warnings.append(
+            "该记录没有 evidence 结构（旧格式）：硬性判断未标注来源，结论封顶在 Probably Eligible"
+            if legacy else
+            "存在 inferred/unknown 证据：乐观结论封顶在 Probably Eligible，不能给出 Eligible")
+
+    for path in (stripped_fields or []):
+        warnings.append(f"画像字段 {path} 标记为 inferred_pending，未用于资格判断")
 
     final, source = merge_verdict(hard, kind, agent_verdict)
     if agent_verdict and _sev(agent_verdict) < _sev(hard) and kind == "hard_conflict":
-        reasons.append(f"注意：模型判定为 {agent_verdict}，但被硬性条件覆盖为 {hard}")
-    return VERDICT_SCORE.get(final, 55), final, reasons, needs_llm, source, kind
+        reasons.append(f"注意：模型判定为 {agent_verdict}，但被硬性条件覆盖为 {final}")
+    return VERDICT_SCORE.get(final, 55), final, reasons, needs_llm, source, kind, warnings
 
 
 # ------------------------------------------------------------------ 其余分项
@@ -706,26 +1036,41 @@ def interest_component(opp, profile):
     return 100 * (0.25 + 0.75 * min(1.0, ratio * 2)), f"兴趣命中：{', '.join(matched)}"
 
 
+def city_match(a, b) -> bool:
+    """城市匹配：token 集合相等或一方包含另一方（"Nagoya" ↔ "Nagoya City"）。不用子串。"""
+    ta, tb = set(school_tokens(a)), set(school_tokens(b))
+    if not ta or not tb:
+        return False
+    return ta == tb or ta <= tb or tb <= ta
+
+
 def location_component(opp, profile):
     c = profile.get("constraints") or {}
-    countries = [norm(x) for x in as_list(c.get("preferred_country"))]
-    cities = [norm(x) for x in as_list(c.get("preferred_city"))]
+    pref_countries = [v for v in (canonical_country(x) for x in as_list(c.get("preferred_country"))) if v]
+    pref_cities = as_list(c.get("preferred_city"))
     remote_pref = c.get("remote")
     relocation = c.get("relocation")
-    if not countries and not cities and remote_pref is None:
+    if not pref_countries and not pref_cities and remote_pref is None:
         return 60.0, "画像未提供地区约束"
-    oc, oci = norm(opp.get("country")), norm(opp.get("city"))
-    if cities and oci and any(x and (x in oci or oci in x) for x in cities):
-        return 100.0, f"城市匹配：{opp.get('city')}"
-    if countries and oc and any(x and (x in oc or oc in x) for x in countries):
-        return 95.0, f"国家/地区匹配：{opp.get('country')}"
+
+    raw_country = opp.get("country")
+    opp_country = canonical_country(raw_country)
+    opp_city = opp.get("city")
+
+    if pref_cities and opp_city and any(city_match(x, opp_city) for x in pref_cities):
+        return 100.0, f"城市匹配：{opp_city}"
+    if pref_countries and opp_country and opp_country in pref_countries:
+        return 95.0, f"国家/地区匹配：{raw_country}"
     if opp.get("remote") and remote_pref:
         return 95.0, "远程，符合你的 remote 偏好"
     if opp.get("remote") and remote_pref is None:
         return 85.0, "远程机会（画像未表态，按可接受处理）"
-    if oc and countries:
-        return (60.0 if relocation else 25.0), f"地区为 {opp.get('country')}，不在偏好列表中"
-    if not oc and not opp.get("remote"):
+    if opp_country and pref_countries and opp_country not in pref_countries:
+        return (60.0 if relocation else 25.0), f"地区为 {raw_country}，不在偏好列表中"
+    if raw_country and pref_countries and opp_country is None:
+        # 页面写法无法规范化 → 不做子串猜测（"US" 会命中 "Belarus"）
+        return 55.0, f"页面地区写法（{raw_country}）无法与偏好列表比对 → 地区信息不足"
+    if not raw_country and not opp.get("remote"):
         return 45.0, "页面未写明地点，无法确认地区匹配"
     return 55.0, "地区信息不足"
 
@@ -807,16 +1152,36 @@ def band(score):
 
 # ------------------------------------------------------------------ 主流程
 
+#: 明确的小时表述（周为默认周期）
+HOUR_PATTERNS = (
+    r"(\d{1,3})\s*(?:h|hr|hrs|hour|hours)\b",
+    r"(\d{1,3})\s*(?:時間|小时)",
+    r"(?:每周|每週|週|周)\s*(\d{1,3})\s*(?:時間|小时)",
+)
+
+#: 非"周"周期（月/年/日）——与"每周可投入小时数"不是同一量纲，不做换算
+NON_WEEKLY_PERIOD = ("month", "monthly", "year", "annual", "day", "daily",
+                     "ヶ月", "か月", "个月", "每月")
+
+
 def parse_hours(text):
+    """只有当文本**明确表达小时语义**时才返回数字（默认按周理解）。
+
+    "3 months full-time"、"part-time"、"2 days/week" 无法可靠换算成每周小时数，
+    一律返回 `None`，交给模型做语义提醒 —— 绝不能把 "3 months" 当成 3 小时/周。
+    """
     if text in (None, ""):
         return None
     if isinstance(text, (int, float)):
         return float(text)
-    m = re.search(r"(\d{1,3})\s*(?:h\b|hr|hrs|hours?|時間|小时|時間/週|h/週)", str(text), re.I)
-    if m:
-        return float(m.group(1))
-    m = re.search(r"(\d{1,3})", str(text))
-    return float(m.group(1)) if m else None
+    s = str(text).lower()
+    if any(p in s for p in NON_WEEKLY_PERIOD):
+        return None
+    for pat in HOUR_PATTERNS:
+        m = re.search(pat, s, re.I)
+        if m:
+            return float(m.group(1))
+    return None
 
 
 def load_json(path):
@@ -843,6 +1208,8 @@ def evidence_gaps(opp) -> list[str]:
 def score_all(profile, opps, seen_index=None, today=None, strict=False):
     today = today or dt.date.today()
     results, excluded, contract_issues = [], [], []
+    # 只用于资格判断：把 inferred_pending 的画像字段摘掉；其余分项仍用完整画像
+    safe_profile, stripped = filter_profile_for_eligibility(profile)
 
     for opp in opps:
         if not isinstance(opp, dict):
@@ -853,8 +1220,8 @@ def score_all(profile, opps, seen_index=None, today=None, strict=False):
             if strict:
                 continue
 
-        el_score, verdict, el_reasons, needs_llm, v_source, v_kind = eligibility_component(
-            opp, profile, today)
+        (el_score, verdict, el_reasons, needs_llm, v_source, v_kind,
+         el_warnings) = eligibility_component(opp, safe_profile, today, stripped)
         goal_fit, goal_note = goal_component(opp, profile)
         skill_fit, skill_note = skill_component(opp, profile)
         interest_fit, interest_note = interest_component(opp, profile)
@@ -869,24 +1236,23 @@ def score_all(profile, opps, seen_index=None, today=None, strict=False):
         }
         match = round(sum(WEIGHTS[k] * v for k, v in comp.items()))
 
-        ug, dtype, expired = deadline_days(opp.get("deadline"), today)
+        dinfo = deadline_info(opp, today)
+        ug, dtype = dinfo["days"], dinfo["type"]
         us = urgency_score(ug)
-        flags, warnings = [], []
+        flags, warnings = [], list(el_warnings)
 
         if verdict == "Ineligible":
             excluded.append({"id": opp.get("id"), "title": opp.get("title"),
                              "reason": "Ineligible: " + "；".join(el_reasons)})
             continue
-        if expired:
-            excluded.append({"id": opp.get("id"), "title": opp.get("title"),
-                             "reason": f"deadline 已过（{opp.get('deadline')}）"})
-            continue
+        if dinfo["expired"] and not is_hard_evidence(opp, "deadline"):
+            warnings.append(f"截止日已过（{opp.get('deadline')}）但证据等级不足，未直接排除，请人工确认")
 
         if ug is not None and ug <= 14:
             flags.append("urgent")
-        if dtype == "rolling":
-            flags.append("rolling")
-        if dtype in ("tbd", "unknown") and opp.get("deadline") in (None, ""):
+        if dtype in ("rolling", "asap", "flexible", "tbd"):
+            flags.append(dtype)
+        if dtype == "unknown" and opp.get("deadline") in (None, ""):
             flags.append("no_deadline")
         hours = parse_hours(opp.get("time_commitment"))
         limit = parse_hours((profile.get("constraints") or {}).get("weekly_time"))
@@ -901,6 +1267,8 @@ def score_all(profile, opps, seen_index=None, today=None, strict=False):
         if not opp.get("language_requirement"):
             flags.append("language_unspecified")
             warnings.append("页面未写明语言要求")
+        if evidence_status(opp, "deadline") == "legacy":
+            flags.append("provenance_unavailable")
         for g in evidence_gaps(opp):
             warnings.append(f"证据缺口 {g}")
 
@@ -926,6 +1294,7 @@ def score_all(profile, opps, seen_index=None, today=None, strict=False):
             "urgency": us,
             "days_remaining": ug,
             "deadline_type": dtype,
+            "deadline_source": dinfo["source"],
             "priority_score": priority,
             "priority_band": band(priority),
             "flags": flags,

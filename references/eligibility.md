@@ -15,7 +15,73 @@ Step 10。目标：给用户一个**可行动**的资格判断，而不是一个
 **禁止**：一律输出 Yes/No；把 `Unknown` 说成"应该可以"；
 在用户信息不足时给出 `Eligible`。
 
-## 1.5 两条不可违反的判定原则
+## 1.1 页面对资格什么都没写 → `Unknown`
+
+如果页面没有给出任何可确认的资格条件（`education_level`、`student_year`、
+`graduation_window`、`nationality_requirement`、`school_requirement`、
+`GPA_requirement`、`language_requirement` 全为空）：
+
+```
+Eligibility = Unknown
+```
+
+**不是** `Probably Eligible`。理由：**"没写要求"不等于"用户大概率符合要求"**。
+`scripts/score.py` 按此实现（`missing_source` 分支）。
+
+三种情形的区别：
+
+| 情形 | 结论 |
+|---|---|
+| A. 完全没有资格信息 | `Unknown` |
+| B. 若干明确条件都满足，但还有语义条件（如 `related field`） | `Probably Eligible` |
+| C. 所有明确硬条件都确认满足，且不存在影响资格的未知项 | `Eligible` |
+
+不要因为"页面没写更多内容"就自动给 `Eligible`。
+
+## 1.2 Evidence Gate：只有 explicit 证据才能硬性淘汰
+
+`opportunity.evidence.<field>.status` 决定该字段是否够格做硬性判断：
+
+| status | 能否用于**硬性淘汰**（判为不符合） | 能否支撑乐观结论 |
+|---|---|---|
+| `explicit` | ✅ 可以 | ✅ 可以给 `Eligible` |
+| `inferred` | ❌ **不可以** | ❌ 最多 `Probably Eligible` |
+| `unknown` | ❌ 不可以 | ❌ 最多 `Probably Eligible` |
+| 无该字段条目（`missing`） | ❌ 不可以 | ❌ 最多 `Probably Eligible` |
+| 整条记录没有 `evidence` 结构（`legacy` 旧格式） | ✅ 可以（向后兼容） | ❌ 最多 `Probably Eligible`，并提示 `provenance_unavailable` |
+
+例子：
+
+```json
+{
+  "language_requirement": { "language": "Japanese", "exam": "JLPT", "min_level": "N2" },
+  "evidence": { "language_requirement": { "status": "inferred" } }
+}
+```
+
+即使用户没有 N2，也**不能**判 `Probably Ineligible` —— 页面并没有明确写这条要求。
+正确输出：`Unknown` + 提示"language_requirement 为 inferred，不能作为硬性门槛"。
+
+实现见 `scripts/score.py` 的 `evidence_status()` / `is_hard_evidence()` / `add()`。
+
+## 1.3 `Ineligible` 与 `Probably Ineligible` 的边界
+
+`Ineligible` 只用于**无歧义的确定性冲突**；涉及措辞解释的一律用 `Probably Ineligible`。
+
+| 条件 | 冲突时的判定 |
+|---|---|
+| 报名已截止 | `Ineligible` |
+| `education_level` 不符（枚举值） | `Ineligible` |
+| `student_year` 不符 | `Ineligible` |
+| `graduation_window` 不在窗口内（按月比较） | `Ineligible` |
+| 国籍/工作许可措辞冲突 | `Probably Ineligible` |
+| 学校名单/层次无法完整解析 | `Probably Ineligible` 或 `Unknown` |
+| GPA 同体系且低于要求 | `Probably Ineligible` |
+| 语言成绩明确未达等级 | `Probably Ineligible` |
+
+`Ineligible` 的记录会从结果列表中移出，并进入 excluded 清单（附原因）。
+
+## 1.4 两条不可违反的判定原则
 
 ### 原则一：硬条件优先于语义判断
 

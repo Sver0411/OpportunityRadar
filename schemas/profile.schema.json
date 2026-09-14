@@ -147,7 +147,26 @@
 
     "_source": {
       "type": ["string", "null"],
-      "description": "user_stated | user_confirmed | inferred_pending。inferred_pending 仅可用于搜索扩词，不得用于资格判断"
+      "description": "整份画像的来源标记：user_stated | user_confirmed | inferred_pending。缺省视为 user_stated（向后兼容）。inferred_pending 表示内容由推断得到"
+    },
+    "_provenance": {
+      "type": ["object", "null"],
+      "description": "字段级来源标记（可选，比 _source 更细）。只有被标为 inferred_pending 的**硬性资格字段**会被排除在资格判断之外，仍可用于搜索扩词与排序。",
+      "additionalProperties": {
+        "type": "string",
+        "enum": ["user_stated", "user_confirmed", "inferred_pending"]
+      },
+      "properties": {
+        "education.degree": { "type": "string" },
+        "education.current_year": { "type": "string" },
+        "education.expected_graduation": { "type": "string" },
+        "education.GPA": { "type": "string" },
+        "education.school": { "type": "string" },
+        "education.major": { "type": "string" },
+        "nationality": { "type": "string" },
+        "languages": { "type": "string" },
+        "constraints.visa": { "type": "string" }
+      }
     },
     "_notes": { "type": ["array", "null"], "items": { "type": "string" } }
   },

@@ -164,9 +164,16 @@ variants only return already-seen or irrelevant results.
    (related field, relevant experience) but may not overturn those.
 4. **Missing profile data ≠ not qualified.** A progressive profile has gaps. Only judge against
    the user when they **explicitly** stated the missing capability (e.g. `level: "none"` for a
-   language). Otherwise the verdict is `Unknown`.
+   language). Otherwise the verdict is `Unknown`. Profile fields marked `inferred_pending`
+   (via `_provenance` / `_source`) are excluded from eligibility checks — they may still drive
+   search expansion and ranking, but never a hard verdict.
 5. **Explicit / inferred / unknown.** Never upgrade an inference to a fact: a Japanese company
-   page without a language requirement does not mean "requires N2".
+   page without a language requirement does not mean "requires N2". Key fields carry an
+   `evidence.status`; only `explicit` (or a record with no `evidence` block at all — legacy mode,
+   which caps the conclusion at `Probably Eligible`) may reject an opportunity. `inferred` and
+   `unknown` values cannot exclude anyone; they downgrade the verdict to `Unknown` for semantic
+   judgement. If a page states nothing about eligibility, the verdict is `Unknown` — "no stated
+   requirement" is not "probably qualifies".
 6. **Eligibility is a verdict with reasons**, not a boolean.
 7. **Dedupe before ranking** — otherwise one program eats three slots.
 8. **Match ≠ Priority.** A 95-match item closing in six months may rank below an 88-match item

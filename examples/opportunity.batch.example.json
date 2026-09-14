@@ -6,18 +6,33 @@
       "title": "Nagi Robotics Summer Internship 2027",
       "organization": "Nagi Robotics",
       "primary_category": "career",
-      "secondary_categories": ["research"],
-      "tags": ["embedded", "robotics", "paid"],
+      "secondary_categories": [
+        "research"
+      ],
+      "tags": [
+        "embedded",
+        "robotics",
+        "paid"
+      ],
       "summary": "Fictional 8-week embedded/robotics internship for undergraduate and master students.",
       "country": "Japan",
       "city": "Nagoya",
       "remote": false,
-      "education_level": ["undergraduate", "master"],
+      "education_level": [
+        "undergraduate",
+        "master"
+      ],
       "student_year": null,
       "graduation_window": "2028-03",
       "major_requirement": "Electrical Engineering, Computer Science or related field",
-      "skills_required": ["C", "Git"],
-      "skills_preferred": ["RTOS", "ESP32"],
+      "skills_required": [
+        "C",
+        "Git"
+      ],
+      "skills_preferred": [
+        "RTOS",
+        "ESP32"
+      ],
       "language_requirement": null,
       "nationality_requirement": null,
       "school_requirement": null,
@@ -32,32 +47,54 @@
       "funding": null,
       "team_requirement": null,
       "time_commitment": "full-time, 8 weeks",
-      "required_materials": ["CV", "transcript"],
+      "required_materials": [
+        "CV",
+        "transcript"
+      ],
       "official_url": "https://careers.nagi-robotics.example/students/summer?utm_source=linkedin&utm_campaign=2027",
       "discovery_url": "https://aggregator.example/jobs/nagi-robotics-internship",
       "trust_tier": "C",
       "verification_status": "partially_verified",
       "last_verified": "2026-09-12",
       "layer": "exploit",
-      "notes": ["第三方列表页发现；语言要求未见于官方页面"]
+      "notes": [
+        "第三方列表页发现；语言要求未见于官方页面"
+      ]
     },
     {
       "id": "nagi-robotics-2027-summer-internship-program",
       "title": "2027 Summer Internship Program",
       "organization": "Nagi Robotics, Inc.",
       "primary_category": "career",
-      "secondary_categories": ["research", "skill_development"],
-      "tags": ["embedded", "robotics", "paid", "undergraduate-ok"],
+      "secondary_categories": [
+        "research",
+        "skill_development"
+      ],
+      "tags": [
+        "embedded",
+        "robotics",
+        "paid",
+        "undergraduate-ok"
+      ],
       "summary": "Official page for the 2027 summer internship. 8 weeks, Nagoya, paid.",
       "country": "Japan",
       "city": "Nagoya",
       "remote": false,
-      "education_level": ["undergraduate", "master"],
+      "education_level": [
+        "undergraduate",
+        "master"
+      ],
       "student_year": null,
       "graduation_window": "2028-03",
       "major_requirement": "Electrical Engineering, Computer Science or related field",
-      "skills_required": ["C", "Git"],
-      "skills_preferred": ["RTOS", "ESP32"],
+      "skills_required": [
+        "C",
+        "Git"
+      ],
+      "skills_preferred": [
+        "RTOS",
+        "ESP32"
+      ],
       "language_requirement": null,
       "nationality_requirement": null,
       "school_requirement": null,
@@ -72,7 +109,10 @@
       "funding": null,
       "team_requirement": null,
       "time_commitment": "full-time, 8 weeks",
-      "required_materials": ["CV", "transcript"],
+      "required_materials": [
+        "CV",
+        "transcript"
+      ],
       "official_url": "https://careers.nagi-robotics.example/students/summer/",
       "discovery_url": "https://careers.nagi-robotics.example/students",
       "evidence": {
@@ -96,6 +136,12 @@
           "status": "explicit",
           "source_url": "https://careers.nagi-robotics.example/students/summer/",
           "verified_at": "2026-09-14"
+        },
+        "graduation_window": {
+          "status": "explicit",
+          "source_url": "https://careers.nagi-robotics.example/students/summer/",
+          "quote": "2028年3月卒業見込の方",
+          "verified_at": "2026-09-13"
         }
       },
       "trust_tier": "A",
@@ -109,7 +155,10 @@
       "title": "Nagi Robotics 2027 Internship",
       "organization": "Nagi Robotics",
       "primary_category": "career",
-      "tags": ["embedded", "robotics"],
+      "tags": [
+        "embedded",
+        "robotics"
+      ],
       "summary": "Third-party repost of the Nagi Robotics internship with a different deadline.",
       "country": "Japan",
       "city": null,
@@ -134,26 +183,46 @@
       "verification_status": "unverified",
       "last_verified": "2026-09-10",
       "layer": "exploit",
-      "notes": ["与官方页面的截止日期不一致"]
+      "notes": [
+        "与官方页面的截止日期不一致"
+      ]
     },
     {
       "id": "kagura-university-undergraduate-research-2026",
       "title": "Kagura University Undergraduate Research Program",
       "organization": "Kagura University",
       "primary_category": "research",
-      "secondary_categories": ["funding"],
-      "tags": ["research", "undergraduate-ok", "stipend"],
+      "secondary_categories": [
+        "funding"
+      ],
+      "tags": [
+        "research",
+        "undergraduate-ok",
+        "stipend"
+      ],
       "summary": "Fictional undergraduate research placement with a laboratory, 6 months part-time.",
       "country": "Japan",
       "city": "Sendai",
       "remote": false,
-      "education_level": ["undergraduate"],
-      "student_year": [2, 3],
+      "education_level": [
+        "undergraduate"
+      ],
+      "student_year": [
+        2,
+        3
+      ],
       "graduation_window": null,
       "major_requirement": "Any discipline; laboratory matching required",
       "skills_required": null,
-      "skills_preferred": ["Python"],
-      "language_requirement": { "language": "Japanese", "exam": "JLPT", "min_level": "N2", "note": "explicit on official page" },
+      "skills_preferred": [
+        "Python"
+      ],
+      "language_requirement": {
+        "language": "Japanese",
+        "exam": "JLPT",
+        "min_level": "N2",
+        "note": "explicit on official page"
+      },
       "nationality_requirement": null,
       "school_requirement": "Enrolled at Kagura University",
       "GPA_requirement": "2.3/3.0",
@@ -165,21 +234,59 @@
       "compensation": "stipend",
       "team_requirement": null,
       "time_commitment": "part-time, ~10 h/week",
-      "required_materials": ["application form", "research plan"],
+      "required_materials": [
+        "application form",
+        "research plan"
+      ],
       "official_url": "https://www.kagura-university.example/research/undergrad-program",
       "discovery_url": "https://www.kagura-university.example/research",
       "trust_tier": "A",
       "verification_status": "verified_official",
       "last_verified": "2026-09-13",
       "layer": "adjacent",
-      "notes": []
+      "notes": [],
+      "evidence": {
+        "deadline": {
+          "status": "explicit",
+          "source_url": "https://www.kagura-university.example/research/undergrad-program",
+          "quote": "応募締切：2026年11月30日",
+          "verified_at": "2026-09-13"
+        },
+        "education_level": {
+          "status": "explicit",
+          "source_url": "https://www.kagura-university.example/research/undergrad-program",
+          "quote": "学部生対象",
+          "verified_at": "2026-09-13"
+        },
+        "student_year": {
+          "status": "explicit",
+          "source_url": "https://www.kagura-university.example/research/undergrad-program",
+          "quote": "2年次・3年次",
+          "verified_at": "2026-09-13"
+        },
+        "language_requirement": {
+          "status": "explicit",
+          "source_url": "https://www.kagura-university.example/research/undergrad-program",
+          "quote": "日本語能力試験N2以上",
+          "verified_at": "2026-09-13"
+        },
+        "GPA_requirement": {
+          "status": "explicit",
+          "source_url": "https://www.kagura-university.example/research/undergrad-program",
+          "quote": "GPA 2.3/3.0 以上",
+          "verified_at": "2026-09-13"
+        }
+      }
     },
     {
       "id": "kagura-university-summer-research-program-undergraduate",
       "title": "Kagura University Summer Research Program (Undergraduate)",
       "organization": "Kagura University",
       "primary_category": "research",
-      "tags": ["research", "undergraduate-ok"],
+      "tags": [
+        "research",
+        "undergraduate-ok"
+      ],
       "summary": "Aggregator listing for the same Kagura University program.",
       "country": "Japan",
       "city": "Sendai",
@@ -204,23 +311,36 @@
       "verification_status": "unverified",
       "last_verified": "2026-09-11",
       "layer": "adjacent",
-      "notes": ["未找到官方确认来源"]
+      "notes": [
+        "未找到官方确认来源"
+      ]
     },
     {
       "id": "nagi-robotics-robot-hackathon-2027",
       "title": "Nagi Robotics Robot Hackathon",
       "organization": "Nagi Robotics",
       "primary_category": "competition",
-      "tags": ["robotics", "hackathon", "team-required"],
+      "tags": [
+        "robotics",
+        "hackathon",
+        "team-required"
+      ],
       "summary": "Fictional 48-hour robotics hackathon hosted by the same company.",
       "country": "Japan",
       "city": "Nagoya",
       "remote": false,
-      "education_level": ["undergraduate", "master", "phd"],
+      "education_level": [
+        "undergraduate",
+        "master",
+        "phd"
+      ],
       "student_year": null,
       "major_requirement": null,
       "skills_required": null,
-      "skills_preferred": ["C", "Python"],
+      "skills_preferred": [
+        "C",
+        "Python"
+      ],
       "language_requirement": null,
       "deadline": "2026-12-15",
       "cost": "free",
@@ -233,14 +353,38 @@
       "verification_status": "verified_official",
       "last_verified": "2026-09-14",
       "layer": "adjacent",
-      "notes": []
+      "notes": [],
+      "evidence": {
+        "deadline": {
+          "status": "explicit",
+          "source_url": "https://nagi-robotics.example/events/hackathon-2027",
+          "quote": "応募締切 2026年12月15日",
+          "verified_at": "2026-09-13"
+        },
+        "education_level": {
+          "status": "explicit",
+          "source_url": "https://nagi-robotics.example/events/hackathon-2027",
+          "quote": "学生（学部・修士・博士）",
+          "verified_at": "2026-09-13"
+        },
+        "language_requirement": {
+          "status": "unknown",
+          "source_url": "https://nagi-robotics.example/events/hackathon-2027",
+          "note": "公式ページに言語要件の記載なし；所在地からは推断しない",
+          "verified_at": "2026-09-13"
+        }
+      }
     },
     {
       "id": "tokyo-embedded-challenge-2026",
       "title": "Tokyo Embedded Challenge 2026",
       "organization": "Tokyo Embedded Association",
       "primary_category": "competition",
-      "tags": ["embedded", "iot", "team-required"],
+      "tags": [
+        "embedded",
+        "iot",
+        "team-required"
+      ],
       "summary": "Fictional embedded design competition for students in Japan.",
       "country": "Japan",
       "city": "Tokyo",
@@ -251,14 +395,28 @@
       "verification_status": "verified_official",
       "last_verified": "2026-09-14",
       "layer": "exploit",
-      "notes": []
+      "notes": [],
+      "education_level": [
+        "undergraduate",
+        "master"
+      ],
+      "student_year": [
+        2,
+        3,
+        4
+      ],
+      "team_requirement": "2-4 people",
+      "compensation": null
     },
     {
       "id": "tokyo-embedded-design-contest-2026",
       "title": "Tokyo Embedded Design Contest 2026",
       "organization": "Tokyo Metropolitan Student Foundation",
       "primary_category": "competition",
-      "tags": ["embedded", "design"],
+      "tags": [
+        "embedded",
+        "design"
+      ],
       "summary": "Fictional contest listing found on an aggregator; possibly the same event as Tokyo Embedded Challenge.",
       "country": "Japan",
       "city": "Tokyo",
@@ -270,7 +428,10 @@
       "verification_status": "unverified",
       "last_verified": "2026-09-09",
       "layer": "exploit",
-      "notes": ["未找到官方确认来源", "可能是同一赛事的转载"]
+      "notes": [
+        "未找到官方确认来源",
+        "可能是同一赛事的转载"
+      ]
     }
   ]
 }

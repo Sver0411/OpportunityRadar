@@ -1,6 +1,8 @@
 """跨文件一致性测试：同一个概念在 SKILL.md / references / schemas / scripts 里只能有一套定义。
 
 这是"单一事实来源"的机器化保证：任何一处枚举或权重被改动而另一处没跟上，测试会失败。
+文档测试只检查**功能性**问题（文件存在、相对链接与锚点有效、无开发残留），
+不检查视觉风格（徽章数量、emoji、中英章节数是否 1:1）。
 """
 
 from __future__ import annotations
@@ -15,6 +17,7 @@ import _helpers
 import common as C
 
 ROOT = _helpers.ROOT
+READMES = ("README.md", "README.zh-CN.md")
 
 
 def read(rel):
@@ -80,6 +83,16 @@ class TestSingleSourceOfTruth(unittest.TestCase):
         schema_l = tuple(l for l in OPP_SCHEMA["$defs"]["valueLevel"]["enum"] if l)
         self.assertEqual(schema_l, C.VALUE_LEVELS)
 
+    def test_layers_agree(self):
+        schema_l = tuple(x for x in OPP_SCHEMA["properties"]["layer"]["enum"] if x)
+        self.assertEqual(schema_l, C.LAYERS)
+
+    def test_visibility_agree(self):
+        schema_v = tuple(x for x in OPP_SCHEMA["properties"]["seen_status"]["enum"] if x)
+        self.assertEqual(schema_v, C.VISIBILITY)
+        for v in C.VISIBILITY:
+            self.assertIn(v, STATE_DOC, f"state-and-feedback.md 未说明状态 {v}")
+
     def test_evidence_statuses_agree(self):
         schema_e = tuple(OPP_SCHEMA["$defs"]["evidenceStatus"]["enum"])
         self.assertEqual(schema_e, C.EVIDENCE_STATUSES)
@@ -105,12 +118,26 @@ class TestSingleSourceOfTruth(unittest.TestCase):
         for f in C.TRACKED_FIELDS:
             self.assertIn(f, STATE_DOC, f"state-and-feedback.md 未说明 tracked 字段 {f}")
 
+    def test_hard_gated_fields_covered_by_evidence_fields(self):
+        """score.py 的 Evidence Gate 字段必须都在 schema 的证据字段清单内，否则无法标注。"""
+        src = read("scripts/score.py")
+        m = re.search(r"HARD_GATED_FIELDS = \((.*?)\)", src, re.S)
+        gated = set(re.findall(r'"(\w+)"', m.group(1)))
+        self.assertTrue(gated <= set(C.EVIDENCE_FIELDS),
+                        f"Evidence Gate 字段未纳入 schema 证据字段：{gated - set(C.EVIDENCE_FIELDS)}")
+
+    def test_profile_provenance_documented(self):
+        self.assertIn("_provenance", PROF_SCHEMA["properties"])
+        src = read("scripts/score.py")
+        self.assertIn("filter_profile_for_eligibility", src)
+        self.assertIn("inferred_pending", src)
+
 
 class TestNoDuplicatedLogic(unittest.TestCase):
-    """canonical_url / derive_id / norm_org 只能有一份实现（common.py）。"""
+    """canonical_url / derive_id / norm_org / 国家规范化只能有一份实现（common.py）。"""
 
     SHARED = ("def canonical_url", "def derive_id", "def norm_org", "def slugify",
-              "TRACKED_FIELDS =", "def core_title")
+              "def canonical_country", "TRACKED_FIELDS =", "def core_title")
 
     def test_modules_do_not_redefine_shared_helpers(self):
         for rel in ["scripts/dedupe.py", "scripts/state.py", "scripts/score.py"]:
@@ -144,13 +171,18 @@ class TestResourceReferences(unittest.TestCase):
         self.assertEqual(on_disk - indexed, set(), "存在未被 SKILL.md 索引的脚本")
 
     def test_uploaded_examples_are_marked_fictional(self):
-        batch = json.loads(read("examples/opportunity.batch.example.json"))
-        self.assertIn("虚构", batch["_note"] + "虚构")
+        """示例文件必须显式声明数据为虚构（真实断言，不是恒真）。"""
+        for rel in ("examples/opportunity.example.json", "examples/opportunity.batch.example.json",
+                    "examples/profile.example.json"):
+            with self.subTest(file=rel):
+                note = json.loads(read(rel)).get("_note", "")
+                self.assertTrue(note, f"{rel} 缺少 _note")
+                self.assertTrue("fictional" in note.lower() or "虚构" in note,
+                                f"{rel} 未声明数据为虚构")
 
 
 class TestRepoHygiene(unittest.TestCase):
     BANNED = ("TODO", "FIXME", "XXX", "待补充", "占位符")
-    READMES = ("README.md", "README.zh-CN.md")
     #: 本文件自身定义了上面的关键词，扫描时跳过以免自匹配
     SKIP_FILES = {"test_consistency.py"}
 
@@ -172,24 +204,32 @@ class TestRepoHygiene(unittest.TestCase):
     def test_readmes_have_no_dev_process_residue(self):
         banned = ["需求文档", "自我审查", "它不是招聘网站", "是否只是 Prompt",
                   "开发提示词", "非目标清单"]
-        for rel in self.READMES:
+        for rel in READMES:
             with self.subTest(file=rel):
-                text = read(rel)
-                hits = [b for b in banned if b in text]
+                hits = [b for b in banned if b in read(rel)]
                 self.assertEqual(hits, [], f"{rel} 残留开发过程内容：{hits}")
 
     def test_readme_claims_backed_by_tests(self):
-        for rel in self.READMES:
+        for rel in READMES:
             with self.subTest(file=rel):
                 text = read(rel)
                 if "tests" in text or "unittest" in text:
                     self.assertTrue(os.path.isdir(os.path.join(ROOT, "tests")))
 
+    def test_readme_does_not_reference_missing_paths(self):
+        """README 里提到的仓库内路径必须真实存在（脚本/目录/文件）。"""
+        for rel in READMES:
+            text = read(rel)
+            refs = set(re.findall(r"\]\(\.?/?((?:references|schemas|scripts|examples|tests|"
+                                  r"README[\w.-]*\.md|DEVELOPMENT\.md|SKILL\.md|LICENSE)[\w./-]*)\)",
+                                  text))
+            missing = [r for r in refs if not os.path.exists(os.path.join(ROOT, r))]
+            with self.subTest(file=rel):
+                self.assertEqual(missing, [], f"{rel} 指向不存在的路径：{missing}")
+
 
 def heading_anchors(markdown: str) -> set[str]:
-    """按 GitHub 的规则把标题转成锚点：小写、去掉非单词字符（emoji 会被去掉，
-    留下前导空格 → 前导连字符）、空格转连字符。
-    """
+    """按 GitHub 规则把标题转成锚点：小写、去标点（含 emoji）、空格转连字符。"""
     out = set()
     for line in markdown.splitlines():
         m = re.match(r"^#{1,6}\s+(.*)$", line)
@@ -201,77 +241,31 @@ def heading_anchors(markdown: str) -> set[str]:
     return out
 
 
-class TestBilingualDocs(unittest.TestCase):
-    """README.md 与 README.zh-CN.md 必须互相可达、结构对齐、锚点有效。"""
+class TestDocsFunctional(unittest.TestCase):
+    """只检查功能性：文件存在、相对链接与锚点有效。不检查视觉风格。"""
 
-    EN = read("README.md")
-    ZH = read("README.zh-CN.md")
-
-    def test_language_switcher_both_ways(self):
-        self.assertIn("./README.zh-CN.md", self.EN, "英文 README 缺少中文版跳转")
-        self.assertIn("./README.md", self.ZH, "中文 README 缺少英文版跳转")
-
-    def test_centered_header_block(self):
-        for name, text in (("README.md", self.EN), ("README.zh-CN.md", self.ZH)):
-            with self.subTest(file=name):
-                self.assertTrue(text.startswith("<div align=\"center\">"),
-                                f"{name} 应以居中容器开头")
-                self.assertIn("</div>", text.split("---", 1)[0],
-                              f"{name} 的居中区块未闭合")
-
-    def test_badges_present_and_https(self):
-        for name, text in (("README.md", self.EN), ("README.zh-CN.md", self.ZH)):
-            with self.subTest(file=name):
-                badges = re.findall(r"!\[[^\]]*\]\((https://[^)]+)\)", text)
-                self.assertGreaterEqual(len(badges), 4, f"{name} 的技术徽章过少")
-                self.assertTrue(all(b.startswith("https://") for b in badges),
-                                "徽章必须使用 https")
-                self.assertTrue(any("shields.io" in b for b in badges), "缺少 shields.io 徽章")
-                self.assertIn("actions/workflows/test.yml/badge.svg", text, "缺少 CI 状态徽章")
-
-    def test_ci_badge_points_at_real_workflow(self):
-        self.assertTrue(os.path.exists(os.path.join(ROOT, ".github", "workflows", "test.yml")))
-        self.assertIn("Sver0411/OpportunityRadar", self.EN)
-
-    def test_badge_test_count_matches_suite(self):
-        """徽章上的用例数必须等于真实用例数，否则徽章会悄悄过期。"""
-        tests_dir = os.path.join(ROOT, "tests")
-        suite = unittest.TestLoader().discover(tests_dir, pattern="test_*.py", top_level_dir=tests_dir)
-        n = suite.countTestCases()
-        for rel in ("README.md", "README.zh-CN.md"):
-            with self.subTest(file=rel):
-                self.assertIn(f"unittest-{n}-", read(rel),
-                              f"{rel} 的 unittest 徽章数字与真实用例数（{n}）不一致")
-
-    def test_quick_start_is_first_section(self):
-        for name, text in (("README.md", self.EN), ("README.zh-CN.md", self.ZH)):
-            with self.subTest(file=name):
-                first = re.search(r"^##\s+(.*)$", text, re.M).group(1)
-                self.assertRegex(first, r"Quick start|快速开始",
-                                 f"{name} 的第一个章节应为快速开始，实际为 {first!r}")
+    def test_both_readmes_exist_and_cross_link(self):
+        for rel in READMES:
+            self.assertTrue(os.path.exists(os.path.join(ROOT, rel)), f"{rel} 不存在")
+        self.assertIn("./README.zh-CN.md", read("README.md"))
+        self.assertIn("./README.md", read("README.zh-CN.md"))
 
     def test_internal_anchors_resolve(self):
-        """徽章/目录里的 #anchor 必须真的指向存在的标题。"""
-        for name, text in (("README.md", self.EN), ("README.zh-CN.md", self.ZH)):
-            with self.subTest(file=name):
+        """`](#anchor)` 必须指向本文件里存在的标题。"""
+        for rel in READMES:
+            with self.subTest(file=rel):
+                text = read(rel)
                 anchors = set(re.findall(r"\]\(#([^)]+)\)", text))
-                available = heading_anchors(text)
-                broken = sorted(a for a in anchors if a not in available)
-                self.assertEqual(broken, [], f"{name} 存在失效锚点：{broken}")
+                broken = sorted(a for a in anchors if a not in heading_anchors(text))
+                self.assertEqual(broken, [], f"{rel} 存在失效锚点：{broken}")
 
-    def test_section_headers_carry_emoji(self):
-        for name, text in (("README.md", self.EN), ("README.zh-CN.md", self.ZH)):
-            with self.subTest(file=name):
-                headers = re.findall(r"^##\s+(.*)$", text, re.M)
-                without = [h for h in headers if not re.match(r"^[^\w\s]", h)]
-                self.assertEqual(without, [], f"{name} 有章节标题缺少 emoji：{without}")
-
-    def test_structure_aligned(self):
-        en = re.findall(r"^##\s+(.*)$", self.EN, re.M)
-        zh = re.findall(r"^##\s+(.*)$", self.ZH, re.M)
-        self.assertEqual(len(en), len(zh),
-                         f"中英 README 章节数不一致：{len(en)} vs {len(zh)}")
-
+    def test_readme_does_not_overclaim_host_support(self):
+        """不要把"有联网"等同于"会加载 SKILL.md"。"""
+        for rel in READMES:
+            with self.subTest(file=rel):
+                low = read(rel).lower()
+                self.assertNotIn("any web-capable host agent", low)
+                self.assertNotIn("no api keys", low)
 
 
 if __name__ == "__main__":

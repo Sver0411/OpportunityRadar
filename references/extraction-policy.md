@@ -42,11 +42,29 @@ Step 8 的执行规范。目标：把网页变成 `opportunity.schema.json` 记�
 ```
 
 需要追踪证据的字段（`scripts/common.py` 的 `EVIDENCE_FIELDS`，`score.py` 会自动指出缺口）：
-`deadline`、`education_level`、`graduation_window`、`major_requirement`、
-`language_requirement`、`nationality_requirement`、`GPA_requirement`、`compensation`。
+`deadline`、`education_level`、`student_year`、`graduation_window`、`major_requirement`、
+`language_requirement`、`nationality_requirement`、`school_requirement`、`GPA_requirement`、`compensation`。
 
 `status` 取值只能是 `explicit` / `inferred` / `unknown`；
 `explicit` 建议附 `source_url`，能附 `quote`（页面原句）更好，便于复核。
+
+### 1.2 evidence 直接决定能否硬性淘汰（必须理解其后果）
+
+`scripts/score.py` 的 **Evidence Gate** 按 `status` 决定字段是否够格做硬性判断：
+
+| status | 硬性淘汰（判不符合） | 说明 |
+|---|---|---|
+| `explicit` | ✅ | 页面明写，可作为门槛 |
+| `inferred` | ❌ | 推断值**不得**用于淘汰，改判 `Unknown` |
+| `unknown` | ❌ | 同上 |
+| 有条目但该字段缺席 | ❌ | 同 `unknown` |
+| 整条记录没有 `evidence` | ✅（兼容旧格式） | 但结论封顶 `Probably Eligible`，并提示 `provenance_unavailable` |
+
+实操含义：**标注要诚实**。把推断出来的要求标成 `explicit` 会导致用户被错误地淘汰；
+反之，页面分明写了却标成 `unknown`，会让本来可以确定的判断退化成"信息不足"。
+标错方向的代价不对称——**宁可标 `unknown`，也不要为了"看起来完整"而标 `explicit`**。
+
+尚未确认的字段，宁可省略 entry 也不要写 `explicit`。
 
 ### 反幻觉的典型例子（必读）
 

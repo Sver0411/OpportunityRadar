@@ -141,7 +141,11 @@ class TestSkillFrontmatter(unittest.TestCase):
         import re
         m = re.search(r"^description:\s*(.+)$", self.text, re.M)
         desc = m.group(1)
-        self.assertLess(len(desc), 1536, "description 过长会被截断，影响触发可靠性")
+        # 说明：Agent Skills 规范**没有**规定 description 的独立长度上限；
+        # 文档化的约束是 description + when_to_use 在 skill listing 中被截断到 1536 字符。
+        # 这里用更保守的自设预算 1024，保证触发信息在列表里完整可见。
+        self.assertLessEqual(len(desc), 1024,
+                             "description 超出本项目自设预算（触发信息会被截断）")
         self.assertIn("最近有什么适合我的机会", desc)
         self.assertIn("Do NOT activate", desc)
 

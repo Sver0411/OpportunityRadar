@@ -7,7 +7,6 @@
 **发现那些你根本不知道该搜什么的机会。**
 
 [![tests](https://github.com/Sver0411/OpportunityRadar/actions/workflows/test.yml/badge.svg)](https://github.com/Sver0411/OpportunityRadar/actions/workflows/test.yml)
-[![unittest](https://img.shields.io/badge/unittest-158-4B9B6F)](#-测试)
 [![license](https://img.shields.io/badge/license-MIT-3DA639)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.8%2B-3776AB?logo=python&logoColor=white)](#-辅助脚本)
 [![Agent Skills](https://img.shields.io/badge/Agent%20Skills-compatible-534AB7)](#-安装)
@@ -18,7 +17,7 @@
 
 覆盖 13 类机会 🗂️ · 回官方来源验证 🛡️ · 当地语言搜索 🌏 · 自动去重 🧹 · 判定可解释 📝
 
-*适配任何具备联网能力的宿主 Agent · 不注册、不上云、无遥测 🏠*
+*面向支持 Agent Skills 且具备联网能力的宿主 · 不注册、不上云、无遥测 🏠*
 
 </div>
 
@@ -32,7 +31,8 @@ git clone https://github.com/Sver0411/OpportunityRadar.git opportunity-radar
 cp -r opportunity-radar ~/.workbuddy/skills/opportunity-radar   # 或换成你所用 Agent 的 skills 目录
 ```
 
-然后直接提问即可，不需要配置，也不需要 API Key：
+然后直接提问即可。OpportunityRadar 自身不需要额外 API Key
+（宿主的联网搜索能力可能有它自己的配置）：
 
 ```text
 我是物联网工程大三学生，会 C、Python 和 ESP32，最近有什么值得参加的？
@@ -110,6 +110,10 @@ OpportunityRadar 用一套协议（而不是一段 Prompt）补上这个缺口�
   即使模型更想给出肯定答案。语义判断只负责 `related field`、经验相关性这类模糊表述。
 - **画像缺失 ≠ 不满足。** 渐进式画像本来就会有缺项；用户没填语言成绩是 `Unknown`，不是
   不符合。只有用户**明确表示**不具备时才会给出否定结论。
+- **只有 explicit 证据才能淘汰你。** 每个关键字段都带 `evidence.status`：
+  `inferred` / `unknown` 的值不能用来判不符合，只能把结论降为 `Unknown` 交语义复核。
+  完全不带 `evidence` 的旧格式记录仍可判断（legacy 模式），但结论封顶在 `Probably Eligible`。
+- **页面对资格什么都没写 → `Unknown`，不是"大概率符合"。**
 - **已验证优先于看起来完整。** 事实只从官方来源断言，未确认的一律标注出来。
 
 ---
@@ -285,13 +289,21 @@ python3 scripts/score.py --profile examples/profile.example.json \
 | # | 机会 | 类别 | Match | 紧迫 | Priority | 档 | 资格 | 判定来源 |
 |---|---|---|---|---|---|---|---|---|
 | 1 | Nagi Robotics Robot Hackathon | competition | 81 | 35 | 74 | Medium | Eligible | hard_constraint |
-| 2 | 2027 Summer Internship Program | career | 74 | 68 | 73 | Medium | Probably Ineligible | hard_constraint |
-| 3 | Kagura University Undergraduate Research Program | research | 65 | 35 | 60 | Medium | Unknown | hard_constraint |
+| 2 | Tokyo Embedded Challenge 2026 | competition | 70 | 50 | 67 | Medium | Probably Eligible | hard_constraint |
+| 3 | Nagi Robotics 2027 Internship | career | 73 | 50 | 62 | Medium | Unknown | hard_constraint |
+| 4 | Kagura University Undergraduate Research Program | research | 65 | 35 | 60 | Medium | Unknown | hard_constraint |
+
 ```
 
-（这段输出本身是刻意设计的示范：虚构的 Nagi 实习要求 2028 年 3 月毕业，而示例画像预计 2028 年 6 月
-毕业 —— 不同届，因此判为不符合资格。Kagura 那条是 `Unknown`，因为画像没有 JLPT 成绩，
-Skill 不会替你假设一个。）
+这段输出刻意展示了四种情形（数据为虚构）：
+
+- **`Eligible`** —— 页面每一项硬条件都带 `evidence.status: explicit`，且全部满足。
+- **`Probably Eligible`** —— 该记录完全没有 `evidence` 结构（旧格式）：硬条件能判断，
+  但由于来源未标注，结论封顶在 Probably Eligible。
+- **`Unknown`** —— 页面没写任何资格条件，或画像缺少判断所需的事实
+  （Kagura 那条要求 JLPT N2，而画像没有日语成绩；Skill 不会替你假设一个）。
+- 虚构的 Nagi 实习被判 **`Ineligible` 并排除**：它要求 2028 年 3 月毕业，而示例画像预计
+  2028 年 6 月毕业 —— 不同届。
 
 行为要点：`Priority = 0.85 × Match + 0.15 × Urgency`；未知要求按中性分处理而不是 0 分；
 硬条件不会被模型 verdict 推翻；评分体系不一致时（GPA 3.0/4.0 与 85/100）返回 `Unknown`，

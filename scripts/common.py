@@ -54,9 +54,9 @@ EVIDENCE_STATUSES = ("explicit", "inferred", "unknown")
 
 #: 需要逐字段追踪证据的关键字段（见 references/extraction-policy.md）
 EVIDENCE_FIELDS = (
-    "deadline", "education_level", "graduation_window", "major_requirement",
-    "language_requirement", "nationality_requirement", "GPA_requirement",
-    "compensation",
+    "deadline", "education_level", "student_year", "graduation_window",
+    "major_requirement", "language_requirement", "nationality_requirement",
+    "school_requirement", "GPA_requirement", "compensation",
 )
 
 DEADLINE_TYPES = ("fixed", "range", "rolling", "asap", "flexible", "tbd", "unknown")
@@ -153,6 +153,55 @@ def canonical_url(url) -> str | None:
 def is_same_url(a, b) -> bool:
     ca, cb = canonical_url(a), canonical_url(b)
     return bool(ca) and ca == cb
+
+
+# ---------------------------------------------------------------- 国家/地区规范化
+
+#: 国家/地区别名 → 规范值。只收录**含义无歧义**的写法：
+#: 刻意不含 "no"/"in"/"it"/"at"/"be"/"is" 这类同时是常用英文单词的两字母代码，
+#: 也不收录需要按"中国香港/中国台湾"表述的地区，避免任何主权表述风险。
+COUNTRY_ALIASES = {
+    "us": "us", "usa": "us", "u.s.": "us", "u.s.a.": "us", "united states": "us",
+    "united states of america": "us", "america": "us", "美国": "us",
+    "uk": "uk", "u.k.": "uk", "united kingdom": "uk", "britain": "uk",
+    "great britain": "uk", "england": "uk", "英国": "uk",
+    "japan": "japan", "jp": "japan", "日本": "japan", "日本国": "japan",
+    "china": "china", "cn": "china", "中国": "china", "mainland china": "china",
+    "germany": "germany", "de": "germany", "德国": "germany", "ドイツ": "germany",
+    "korea": "korea", "south korea": "korea", "kr": "korea", "韩国": "korea", "한국": "korea",
+    "singapore": "singapore", "sg": "singapore", "新加坡": "singapore", "シンガポール": "singapore",
+    "canada": "canada", "ca": "canada", "加拿大": "canada", "カナダ": "canada",
+    "australia": "australia", "au": "australia", "澳大利亚": "australia",
+    "india": "india", "インド": "india", "印度": "india",
+    "france": "france", "fr": "france", "法国": "france", "フランス": "france",
+    "netherlands": "netherlands", "nl": "netherlands", "荷兰": "netherlands",
+    "switzerland": "switzerland", "ch": "switzerland", "瑞士": "switzerland",
+    "sweden": "sweden", "se": "sweden", "瑞典": "sweden",
+    "denmark": "denmark", "dk": "denmark", "finland": "finland", "fi": "finland",
+    "ireland": "ireland", "ie": "ireland", "spain": "spain", "es": "spain",
+    "italy": "italy", "brazil": "brazil", "br": "brazil", "mexico": "mexico", "mx": "mexico",
+    "remote": "remote", "worldwide": "remote", "global": "remote", "anywhere": "remote",
+    "远程": "remote", "全球": "remote",
+}
+
+
+def canonical_country(value) -> str | None:
+    """把国家/地区写法归一化为可比较的规范值（US / USA / United States → us）。
+
+    只接受**整体匹配**（或最后一层逗号段、括号内段），绝不做子串匹配 ——
+    否则 "US" 会命中 "Belarus"、"IN" 会命中 "Indonesia" 这类误判。
+    无法识别时返回 None，由调用方按"地区信息不足"处理，而不是猜。
+    """
+    if value in (None, ""):
+        return None
+    s = re.sub(r"\s+", " ", str(value).strip().lower())
+    if s in COUNTRY_ALIASES:
+        return COUNTRY_ALIASES[s]
+    for part in re.split(r"[,，/|()（）]", s):
+        p = part.strip()
+        if p in COUNTRY_ALIASES:
+            return COUNTRY_ALIASES[p]
+    return None
 
 
 # ---------------------------------------------------------------- ID 生成

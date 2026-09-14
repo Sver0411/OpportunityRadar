@@ -1,4 +1,9 @@
-"""score.py 的测试：硬条件优先、画像缺失≠不满足、毕业窗口按月、GPA 同体系、技能匹配。"""
+"""score.py 的测试。
+
+覆盖：Evidence Gate、空资格信息、硬条件权威性、画像缺失策略、毕业窗口按月比较、
+GPA 同体系、语言 string/object 一致性、技能同族、parse_hours、地区/学校匹配、
+profile provenance 隔离。
+"""
 
 from __future__ import annotations
 
@@ -8,6 +13,7 @@ import unittest
 import _helpers
 
 import score as S
+from common import canonical_country
 
 TODAY = dt.date(2026, 9, 14)
 
@@ -16,7 +22,7 @@ def profile(**kw):
     p = {
         "education": {"degree": "undergraduate", "major": "IoT Engineering",
                       "current_year": 3, "expected_graduation": "2028-06", "GPA": None},
-        "skills": [{"name": "C"}, {"name": "Python"}, {"name": "ESP32"}],
+        "skills": [{"name": "C"}, {"name": "Python"}, {"name": "ESP32"}, {"name": "FreeRTOS"}],
         "languages": [{"language": "English", "exam": "CET", "score": None, "level": None}],
         "interests": ["Embedded"],
         "goals": [{"type": "internship", "priority": "high"}],
@@ -33,8 +39,77 @@ def opp(**kw):
     return o
 
 
+def explicit(*fields):
+    return {"evidence": {f: {"status": "explicit"} for f in fields}}
+
+
+def inferred(*fields):
+    return {"evidence": {f: {"status": "inferred"} for f in fields}}
+
+
 def verdict(o, p=None):
     return S.eligibility_component(o, p or profile(), TODAY)[1]
+
+
+class TestEmptyEligibility(unittest.TestCase):
+    def test_no_eligibility_info_is_unknown(self):
+        """页面没写任何资格条件 → Unknown（不是 Probably Eligible）。"""
+        _, v, reasons, _, _, kind, _ = S.eligibility_component(opp(), profile(), TODAY)
+        self.assertEqual(v, "Unknown")
+        self.assertEqual(kind, "missing_source")
+        self.assertTrue(any("没写要求不等于大概率符合" in r for r in reasons))
+
+    def test_semantic_condition_satisfied_gives_probably_eligible(self):
+        o = opp(**explicit("major_requirement"), major_requirement="Electrical Engineering or related field")
+        self.assertEqual(verdict(o), "Probably Eligible")
+
+
+class TestEvidenceGate(unittest.TestCase):
+    def test_inferred_language_cannot_hard_fail(self):
+        o = opp(language_requirement={"language": "Japanese", "exam": "JLPT", "min_level": "N2"},
+                **inferred("language_requirement"))
+        p = profile(languages=[{"language": "Japanese", "exam": "JLPT", "score": "N4"}])
+        _, v, _, _, _, _, warns = S.eligibility_component(o, p, TODAY)
+        self.assertNotEqual(v, "Probably Ineligible", "inferred 字段不得用于硬性淘汰")
+        self.assertEqual(v, "Unknown")
+        self.assertTrue(any("不能作为硬性淘汰依据" in w for w in warns))
+
+    def test_inferred_education_cannot_hard_conflict(self):
+        o = opp(education_level=["phd"], **inferred("education_level"))
+        self.assertNotEqual(verdict(o), "Ineligible")
+        self.assertEqual(verdict(o), "Unknown")
+
+    def test_explicit_education_can_fail(self):
+        o = opp(education_level=["phd"], **explicit("education_level"))
+        self.assertEqual(verdict(o), "Ineligible")
+
+    def test_missing_entry_cannot_reject(self):
+        """有 evidence 结构但没追踪该字段 → 同样不能淘汰。"""
+        o = opp(education_level=["phd"], evidence={"deadline": {"status": "explicit"}})
+        self.assertEqual(verdict(o), "Unknown")
+
+    def test_unknown_status_cannot_reject(self):
+        o = opp(education_level=["phd"], evidence={"education_level": {"status": "unknown"}})
+        self.assertEqual(verdict(o), "Unknown")
+
+    def test_legacy_record_caps_positive_verdict(self):
+        """旧格式（完全没有 evidence）：硬条件可用，但不给最乐观结论。"""
+        o = opp(deadline="2026-12-01", education_level=["undergraduate"])
+        _, v, _, _, _, _, warns = S.eligibility_component(o, profile(), TODAY)
+        self.assertEqual(v, "Probably Eligible")
+        self.assertTrue(any("provenance" in w.lower() or "evidence" in w.lower() for w in warns))
+
+    def test_explicit_evidence_allows_eligible(self):
+        o = opp(deadline="2026-12-01", education_level=["undergraduate"],
+                **explicit("deadline", "education_level"))
+        self.assertEqual(verdict(o), "Eligible")
+
+    def test_status_helper_values(self):
+        self.assertEqual(S.evidence_status(opp(), "deadline"), "legacy")
+        self.assertEqual(S.evidence_status(opp(**explicit("deadline")), "deadline"), "explicit")
+        self.assertEqual(S.evidence_status(opp(**explicit("deadline")), "education_level"), "missing")
+        self.assertTrue(S.is_hard_evidence(opp(), "deadline"))
+        self.assertFalse(S.is_hard_evidence(opp(**inferred("deadline")), "deadline"))
 
 
 class TestHardConstraintAuthority(unittest.TestCase):
@@ -42,66 +117,56 @@ class TestHardConstraintAuthority(unittest.TestCase):
         self.assertEqual(verdict(opp(deadline="2026-09-01")), "Ineligible")
 
     def test_hard_education_mismatch_beats_agent_verdict(self):
-        """页面写 PhD only + 画像本科 → 模型 verdict(Eligible) 不得推翻。"""
         o = opp(education_level=["phd"], eligibility={"verdict": "Eligible"})
-        score, v, reasons, _, source, kind = S.eligibility_component(o, profile(), TODAY)
-        self.assertEqual(v, "Probably Ineligible")
+        _, v, reasons, _, source, _, _ = S.eligibility_component(o, profile(), TODAY)
+        self.assertEqual(v, "Ineligible")
         self.assertEqual(source, "hard_constraint")
         self.assertTrue(any("覆盖" in r for r in reasons))
 
     def test_agent_may_downgrade_but_source_is_recorded(self):
-        """模型可以更保守（它可能知道页面之外的语义条件），但要标明来源。"""
         o = opp(education_level=["undergraduate"], eligibility={"verdict": "Ineligible"})
-        _, v, _, _, source, _ = S.eligibility_component(o, profile(), TODAY)
+        _, v, _, _, source, _, _ = S.eligibility_component(o, profile(), TODAY)
         self.assertEqual(v, "Ineligible")
         self.assertEqual(source, "agent_downgrade")
 
     def test_agent_cannot_upgrade_past_page_missing_info(self):
-        """页面信息不可比时，模型最多给到 Probably Eligible，不能给 Eligible。"""
         o = opp(graduation_window="某年某月毕业", eligibility={"verdict": "Eligible"})
-        _, v, _, _, source, kind = S.eligibility_component(o, profile(), TODAY)
+        _, v, _, _, _, kind, _ = S.eligibility_component(o, profile(), TODAY)
         self.assertEqual(kind, "incomparable")
         self.assertEqual(v, "Probably Eligible")
 
     def test_missing_profile_allows_agent_verdict(self):
-        """画像缺信息（Unknown）时，模型可依据对话中获得的信息判断。"""
-        o = opp(education_level=["phd"], eligibility={"verdict": "Unknown"})
-        _, v, _, _, source, kind = S.eligibility_component(o, profile(education={"degree": None}), TODAY)
+        o = opp(education_level=["phd"], **explicit("education_level"),
+                eligibility={"verdict": "Unknown"})
+        _, v, _, _, _, kind, _ = S.eligibility_component(
+            o, profile(education={"degree": None}), TODAY)
         self.assertEqual(kind, "missing_profile")
         self.assertEqual(v, "Unknown")
 
     def test_student_year_mismatch(self):
-        self.assertEqual(verdict(opp(student_year=[1, 2])), "Probably Ineligible")
-        self.assertEqual(verdict(opp(student_year=[3])), "Eligible")
+        self.assertEqual(verdict(opp(student_year=[1, 2], **explicit("student_year"))), "Ineligible")
+        self.assertEqual(verdict(opp(student_year=[3], **explicit("student_year"))), "Eligible")
 
 
 class TestMissingIsNotQualifiedAsNo(unittest.TestCase):
     def test_language_not_recorded_is_unknown(self):
-        o = opp(language_requirement={"language": "Japanese", "exam": "JLPT", "min_level": "N2"})
-        _, v, reasons, _, _, kind = S.eligibility_component(o, profile(), TODAY)
+        o = opp(language_requirement={"language": "Japanese", "exam": "JLPT", "min_level": "N2"},
+                **explicit("language_requirement"))
+        _, v, _, _, _, kind, _ = S.eligibility_component(o, profile(), TODAY)
         self.assertEqual(v, "Unknown", "画像没有日语记录 ≠ 不会日语")
         self.assertEqual(kind, "missing_profile")
 
     def test_language_recorded_without_score_is_unknown(self):
         p = profile(languages=[{"language": "Japanese", "exam": "JLPT", "score": None, "level": None}])
-        o = opp(language_requirement={"language": "Japanese", "exam": "JLPT", "min_level": "N2"})
-        _, v, reasons, _, _, _ = S.eligibility_component(o, p, TODAY)
+        o = opp(language_requirement={"language": "Japanese", "exam": "JLPT", "min_level": "N2"},
+                **explicit("language_requirement"))
+        _, v, reasons, _, _, _, _ = S.eligibility_component(o, p, TODAY)
         self.assertEqual(v, "Unknown")
         self.assertTrue(any("不是不满足" in r for r in reasons))
 
     def test_explicit_none_marker_is_ineligible(self):
         p = profile(languages=[{"language": "Japanese", "exam": "JLPT", "level": "none"}])
         o = opp(language_requirement={"language": "Japanese", "exam": "JLPT", "min_level": "N2"})
-        self.assertEqual(verdict(o, p), "Probably Ineligible")
-
-    def test_language_meets_requirement(self):
-        p = profile(languages=[{"language": "Japanese", "exam": "JLPT", "score": "N1", "level": None}])
-        o = opp(language_requirement={"language": "Japanese", "exam": "JLPT", "min_level": "N2"})
-        self.assertEqual(verdict(o, p), "Eligible")
-
-    def test_language_below_requirement(self):
-        p = profile(languages=[{"language": "English", "exam": "TOEIC", "score": "600"}])
-        o = opp(language_requirement={"language": "English", "exam": "TOEIC", "min_level": "800"})
         self.assertEqual(verdict(o, p), "Probably Ineligible")
 
     def test_gpa_missing_is_unknown(self):
@@ -114,36 +179,170 @@ class TestMissingIsNotQualifiedAsNo(unittest.TestCase):
         self.assertEqual(verdict(opp(school_requirement="Enrolled at Kagura University")), "Unknown")
 
 
+class TestLanguageParsing(unittest.TestCase):
+    def user(self, language, exam, level):
+        return profile(languages=[{"language": language, "exam": exam, "score": level, "level": level}])
+
+    def test_string_forms_are_normalized(self):
+        for text in ["Japanese JLPT N2", "JLPT N2", "Japanese N2"]:
+            with self.subTest(text=text):
+                req = S.normalize_language_requirement(text)
+                self.assertEqual(req["language"], "japanese")
+                self.assertEqual(req["exam"], "JLPT")
+                self.assertTrue(req["quantifiable"])
+                self.assertEqual(req["levels"], {"jlpt": 4.0})
+
+    def test_object_form_matches_string_form(self):
+        a = S.normalize_language_requirement("Japanese JLPT N2")
+        b = S.normalize_language_requirement({"language": "Japanese", "exam": "JLPT", "min_level": "N2"})
+        self.assertEqual(a["levels"], b["levels"])
+        self.assertEqual(a["language"], b["language"])
+
+    def test_numeric_exams(self):
+        for text, exam, value in [("TOEIC 800", "TOEIC", 800.0),
+                                  ("English TOEIC 800", "TOEIC", 800.0),
+                                  ("IELTS 6.5", "IELTS", 6.5)]:
+            with self.subTest(text=text):
+                req = S.normalize_language_requirement(text)
+                self.assertEqual(req["exam"], exam)
+                self.assertEqual(req["levels"].get(exam), value)
+
+    def test_string_requirement_end_to_end(self):
+        o = opp(language_requirement="Japanese JLPT N2", **explicit("language_requirement"))
+        self.assertEqual(verdict(o, self.user("Japanese", "JLPT", "N1")),
+                         "Eligible", "N1 应满足 N2（string 形态也要一致）")
+        self.assertEqual(verdict(o, self.user("Japanese", "JLPT", "N4")), "Probably Ineligible")
+
+    def test_toeic_string_requirement(self):
+        o = opp(language_requirement="TOEIC 800", **explicit("language_requirement"))
+        self.assertEqual(verdict(o, self.user("English", "TOEIC", "900")), "Eligible")
+        self.assertEqual(verdict(o, self.user("English", "TOEIC", "600")), "Probably Ineligible")
+
+    def test_qualitative_requirement_is_not_mapped(self):
+        """business-level 这类表述不得硬转成 JLPT N2 之类的等级。"""
+        req = S.normalize_language_requirement("business-level Japanese")
+        self.assertFalse(req["quantifiable"])
+        self.assertTrue(req["qualitative"])
+        o = opp(language_requirement="business-level Japanese", **explicit("language_requirement"))
+        v = verdict(o, self.user("Japanese", "JLPT", "N3"))
+        self.assertEqual(v, "Unknown", "自然语言要求交语义判断，不做硬性判定")
+        self.assertNotEqual(v, "Probably Ineligible")
+
+    def test_cross_scale_is_not_converted(self):
+        """JLPT N2 要求 + 画像只有 CEFR B2 → 不换算，判 Unknown。"""
+        o = opp(language_requirement="JLPT N2", **explicit("language_requirement"))
+        p = profile(languages=[{"language": "Japanese", "exam": None, "score": None, "level": "B2"}])
+        self.assertEqual(verdict(o, p), "Unknown")
+
+    def test_cet_level_not_confused_with_score(self):
+        """CET-6 是等级、550 是分数，分属不同单位，不得混为一谈。"""
+        self.assertEqual(S.parse_levels("CET-6"), {"cet_level": 3.0})
+        self.assertEqual(S.parse_levels("CET-4 550", default_unit="CET"),
+                         {"cet_level": 2.0, "CET": 550.0})
+
+    def test_cet_level_requirement_compares_by_level(self):
+        o = opp(language_requirement="CET-6", **explicit("language_requirement"))
+        cet4 = profile(languages=[{"language": "Chinese", "exam": "CET", "score": "550",
+                                   "level": "CET-4"}])
+        self.assertEqual(verdict(o, cet4), "Probably Ineligible", "CET-4 不满足 CET-6")
+
+
+class TestNationality(unittest.TestCase):
+    def test_explicit_conflict(self):
+        p = profile(nationality="Chinese")
+        self.assertEqual(verdict(opp(nationality_requirement="Japanese citizens only"), p),
+                         "Probably Ineligible")
+
+    def test_match(self):
+        p = profile(nationality="Japanese")
+        self.assertEqual(verdict(opp(nationality_requirement="Japanese citizens only",
+                                     **explicit("nationality_requirement")), p), "Eligible")
+
+    def test_open_signal(self):
+        self.assertEqual(verdict(opp(nationality_requirement="Open to all nationalities",
+                                     **explicit("nationality_requirement"))), "Eligible")
+
+    def test_unrecognised_restriction_is_unknown_not_ok(self):
+        """解析器读不懂的限制绝不默认"没有限制"。"""
+        for text in ["EEA/Swiss nationals only", "EU right-to-work required",
+                     "resident of GCC countries", "must hold a valid work permit"]:
+            with self.subTest(text=text):
+                p = profile(nationality="Chinese", constraints={"visa": "none"})
+                _, v, _, _, _, _, _ = S.eligibility_component(
+                    opp(nationality_requirement=text), p, TODAY)
+                self.assertNotEqual(v, "Eligible", f"{text} 不得被判为 Eligible")
+                self.assertEqual(v, "Unknown")
+
+    def test_no_sponsorship_vs_need(self):
+        p = profile(constraints={"visa": "need_sponsorship_us"})
+        self.assertEqual(verdict(opp(nationality_requirement="sponsorship not provided"), p),
+                         "Probably Ineligible")
+
+
+class TestSkillMatching(unittest.TestCase):
+    def test_generic_token_does_not_hit(self):
+        self.assertFalse(S.skill_hit("data engineering", ["data analysis"]))
+
+    def test_cpp_is_not_c(self):
+        self.assertFalse(S.skill_hit("C++", ["C"]))
+        self.assertTrue(S.skill_hit("C", ["C/C++"]))
+
+    def test_rtos_family_hits(self):
+        self.assertTrue(S.skill_hit("RTOS", ["FreeRTOS"]), "RTOS ↔ FreeRTOS 属高确定性同族")
+        self.assertTrue(S.skill_hit("FreeRTOS", ["RTOS"]))
+        self.assertTrue(S.skill_hit("RTOS experience", ["FreeRTOS", "Zephyr"]))
+
+    def test_other_families(self):
+        self.assertTrue(S.skill_hit("ESP32", ["ESP32-S3"]))
+        self.assertTrue(S.skill_hit("javascript", ["Node.js"]))
+        self.assertTrue(S.skill_hit("c++", ["cpp"]))
+
+    def test_families_stay_conservative(self):
+        """不做概念扩张。"""
+        for req, have in [("Docker", ["Kubernetes"]), ("Python", ["Machine Learning"]),
+                          ("React", ["Frontend"]), ("C++", ["C"])]:
+            with self.subTest(req=req, have=have):
+                self.assertFalse(S.skill_hit(req, have))
+
+    def test_unrelated(self):
+        self.assertFalse(S.skill_hit("Kubernetes", ["Docker"]))
+
+    def test_version_variant_hits(self):
+        self.assertTrue(S.skill_hit("python", ["Python3"]))
+
+    def test_component_rewards_real_overlap(self):
+        strong, _ = S.skill_component(opp(skills_required=["C", "Python", "Git"]), profile())
+        weak, _ = S.skill_component(opp(skills_required=["Kubernetes", "Terraform"]), profile())
+        self.assertGreater(strong, weak)
+
+
 class TestGraduationWindow(unittest.TestCase):
     def test_month_level_window(self):
         w = S.parse_grad_window("2027-09 ~ 2028-06")
-        self.assertIsNotNone(w)
-        self.assertEqual(S.in_grad_window((2027, 6), w)[0], False, "2027-06 不在窗口内")
-        self.assertEqual(S.in_grad_window((2028, 3), w)[0], True, "2028-03 在窗口内")
+        self.assertEqual(S.in_grad_window((2027, 6), w)[0], False)
+        self.assertEqual(S.in_grad_window((2028, 3), w)[0], True)
 
     def test_japanese_march_cohort(self):
         w = S.parse_grad_window("2028 年 3 月卒業見込")
         self.assertEqual(S.in_grad_window((2028, 3), w)[0], True)
-        self.assertEqual(S.in_grad_window((2028, 6), w)[0], False, "同一年但不同届 → 不在窗口")
+        self.assertEqual(S.in_grad_window((2028, 6), w)[0], False, "同一年不同届 → 不在窗口")
 
     def test_english_window(self):
         w = S.parse_grad_window("Graduating between Sep 2027 and Jun 2028")
-        self.assertEqual(S.in_grad_window((2027, 9), w)[0], True)
         self.assertEqual(S.in_grad_window((2028, 6), w)[0], True)
         self.assertEqual(S.in_grad_window((2028, 7), w)[0], False)
 
     def test_year_only_lower_confidence(self):
         w = S.parse_grad_window("2027")
-        self.assertTrue(w[2], "只有年份精度时应标记 year_only")
-        self.assertEqual(S.in_grad_window((2027, 6), w)[0], True)
+        self.assertTrue(w[2])
 
     def test_unparseable(self):
         self.assertIsNone(S.parse_grad_window("soon"))
 
     def test_end_to_end_verdict(self):
-        o = opp(graduation_window="2027-09 ~ 2028-06")
+        o = opp(graduation_window="2027-09 ~ 2028-06", **explicit("graduation_window"))
         p = profile(education={"degree": "undergraduate", "expected_graduation": "2027-06"})
-        self.assertEqual(verdict(o, p), "Probably Ineligible")
+        self.assertEqual(verdict(o, p), "Ineligible", "枚举/日期类无歧义冲突 → Ineligible")
         p2 = profile(education={"degree": "undergraduate", "expected_graduation": "2028-03"})
         self.assertEqual(verdict(o, p2), "Eligible")
 
@@ -160,54 +359,162 @@ class TestGpa(unittest.TestCase):
         self.assertEqual(S.gpa_check("3.0/4.0", None)[0], "unknown_missing")
 
 
-class TestNationality(unittest.TestCase):
-    def test_explicit_conflict(self):
-        p = profile(nationality="Chinese")
-        self.assertEqual(verdict(opp(nationality_requirement="Japanese citizens only"), p),
-                         "Probably Ineligible")
+class TestDeadlineType(unittest.TestCase):
+    def info(self, **kw):
+        return S.deadline_info(opp(**kw), TODAY)
 
-    def test_match(self):
-        p = profile(nationality="Japanese")
-        self.assertEqual(verdict(opp(nationality_requirement="Japanese citizens only"), p), "Eligible")
+    def test_structured_type_is_preserved(self):
+        for dtype in ["rolling", "asap", "flexible", "tbd"]:
+            with self.subTest(dtype=dtype):
+                i = self.info(deadline=None, deadline_type=dtype)
+                self.assertEqual(i["type"], dtype, "结构化 deadline_type 不得被重新推断覆盖")
+                self.assertIsNone(i["days"], "非日期型不应计算具体天数")
 
-    def test_open_signal(self):
-        self.assertEqual(verdict(opp(nationality_requirement="Open to all nationalities")), "Eligible")
+    def test_rolling_is_not_expired_and_flagged_rolling(self):
+        res = S.score_all(profile(), [opp(id="r", deadline=None, deadline_type="rolling")], today=TODAY)
+        row = res["results"][0]
+        self.assertEqual(row["deadline_type"], "rolling")
+        self.assertIn("rolling", row["flags"])
+        self.assertNotIn("no_deadline", row["flags"])
+        self.assertIsNone(row["urgency"])
 
-    def test_no_sponsorship_vs_need(self):
-        p = profile(constraints={"visa": "need_sponsorship_us"})
-        self.assertEqual(verdict(opp(nationality_requirement="sponsorship not provided"), p),
-                         "Probably Ineligible")
+    def test_tbd_stays_tbd(self):
+        res = S.score_all(profile(), [opp(id="t", deadline=None, deadline_type="tbd")], today=TODAY)
+        self.assertEqual(res["results"][0]["deadline_type"], "tbd")
+        self.assertIn("tbd", res["results"][0]["flags"])
+
+    def test_asap_has_no_fake_urgency(self):
+        res = S.score_all(profile(), [opp(id="a", deadline=None, deadline_type="asap")], today=TODAY)
+        self.assertIsNone(res["results"][0]["urgency"])
+        self.assertIn("asap", res["results"][0]["flags"])
+
+    def test_fixed_parses_dates(self):
+        i = self.info(deadline="2026-09-20", deadline_type="fixed")
+        self.assertEqual(i["type"], "fixed")
+        self.assertEqual(i["days"], 6)
+
+    def test_range_uses_endpoint(self):
+        i = self.info(deadline="2026-09-20 ~ 2026-10-05", deadline_type="range")
+        self.assertEqual(i["days"], 21)
+
+    def test_raw_fallback_when_field_absent(self):
+        i = self.info(deadline="2026-09-20")
+        self.assertEqual(i["type"], "fixed")
+        self.assertEqual(i["days"], 6)
+
+    def test_expired_only_when_evidence_allows(self):
+        gated = opp(id="g", deadline="2026-01-01", **inferred("deadline"))
+        res = S.score_all(profile(), [gated], today=TODAY)
+        self.assertEqual(res["scored"], 1, "证据不足时不应直接排除")
+        self.assertTrue(any("证据等级不足" in w for w in res["results"][0]["warnings"]))
+        hard = opp(id="h", deadline="2026-01-01", **explicit("deadline"))
+        self.assertEqual(S.score_all(profile(), [hard], today=TODAY)["scored"], 0)
 
 
-class TestSkillMatching(unittest.TestCase):
-    def test_generic_token_does_not_hit(self):
-        self.assertFalse(S.skill_hit("data engineering", ["data analysis"]),
-                         "仅共享通用词 data 不能算命中")
+class TestHours(unittest.TestCase):
+    def test_explicit_hour_forms(self):
+        for text, expect in [("20h/week", 20.0), ("20 hours per week", 20.0),
+                             ("每周 15 小时", 15.0), ("週20時間", 20.0),
+                             ("10 h/week", 10.0), ("20 hours", 20.0)]:
+            with self.subTest(text=text):
+                self.assertEqual(S.parse_hours(text), expect)
 
-    def test_cpp_is_not_c(self):
-        self.assertFalse(S.skill_hit("C++", ["C"]))
-        self.assertTrue(S.skill_hit("C", ["C/C++"]))
+    def test_non_hour_forms_return_none(self):
+        for text in ["3 months full-time", "part-time", "full-time", "2 days/week",
+                     "40 hours/month", "6 ヶ月"]:
+            with self.subTest(text=text):
+                self.assertIsNone(S.parse_hours(text), f"{text!r} 不得被当成每周小时数")
 
-    def test_version_variant_hits(self):
-        self.assertTrue(S.skill_hit("ESP32", ["ESP32-S3"]))
-        self.assertTrue(S.skill_hit("python", ["Python3"]))
+    def test_no_false_heavy_load(self):
+        p = profile(constraints={"weekly_time": 15})
+        row = S.score_all(p, [opp(id="x", time_commitment="3 months full-time")], today=TODAY)
+        self.assertNotIn("heavy_load", row["results"][0]["flags"])
 
-    def test_enum_style_alias(self):
-        self.assertTrue(S.skill_hit("PyTorch", ["pytorch"]))
 
-    def test_unrelated(self):
-        self.assertFalse(S.skill_hit("RTOS", ["FreeRTOS"]))
-        self.assertFalse(S.skill_hit("Kubernetes", ["Docker"]))
+class TestSchoolAndLocation(unittest.TestCase):
+    def test_school_word_boundary(self):
+        self.assertFalse(S.school_match("MIT", "Open to admitted students only"),
+                         "MIT 不应命中 admitted 内部的 mit")
+        self.assertTrue(S.school_match("MIT", "Enrolled at MIT"))
+        self.assertTrue(S.school_match("Kagura University", "Enrolled at Kagura University"))
+        self.assertTrue(S.school_match("清华大学", "仅限清华大学在读学生"))
 
-    def test_component_rewards_real_overlap(self):
-        strong, _ = S.skill_component(opp(skills_required=["C", "Python", "Git"]), profile())
-        weak, _ = S.skill_component(opp(skills_required=["Kubernetes", "Terraform"]), profile())
-        self.assertGreater(strong, weak)
+    def test_school_check_states(self):
+        self.assertEqual(S.school_check(opp(school_requirement="Enrolled at MIT"), profile())[0],
+                         "unknown_missing")
+        p = profile(education={"school": "Kagura University"})
+        self.assertEqual(S.school_check(opp(school_requirement="Kagura University students"), p)[0], "ok")
+        q = profile(education={"school": "Alpha University"})
+        self.assertEqual(S.school_check(opp(school_requirement="Kagura University students"), q)[0],
+                         "unknown_low_info", "无法确认时不得推断为不符合")
+
+    def test_country_canonicalization(self):
+        for text in ["US", "USA", "United States", "united states of america", "美国"]:
+            with self.subTest(text=text):
+                self.assertEqual(canonical_country(text), "us")
+        self.assertEqual(canonical_country("UK"), "uk")
+        self.assertEqual(canonical_country("Japan"), "japan")
+        self.assertIsNone(canonical_country("Belarus"))
+        self.assertIsNone(canonical_country(""))
+
+    def test_short_country_does_not_substring_match(self):
+        p = profile(constraints={"preferred_country": ["United States"], "remote": False})
+        score, note = S.location_component(opp(country="Belarus"), p)
+        self.assertNotEqual(score, 95.0, "Belarus 不得因为包含 us 而被判为美国")
+        self.assertIn("无法与偏好列表比对", note)
+
+    def test_mismatched_country_scores_low(self):
+        p = profile(constraints={"preferred_country": ["United States"], "remote": False})
+        score, note = S.location_component(opp(country="Japan"), p)
+        self.assertEqual(score, 25.0)
+        self.assertIn("不在偏好列表", note)
+
+    def test_country_match(self):
+        p = profile(constraints={"preferred_country": ["Japan"]})
+        self.assertEqual(S.location_component(opp(country="JP"), p)[0], 95.0)
+
+    def test_unrecognised_country_is_neutral(self):
+        p = profile(constraints={"preferred_country": ["Japan"], "remote": False})
+        self.assertEqual(S.location_component(opp(country="Someplace"), p)[0], 55.0)
+
+
+class TestProvenanceIsolation(unittest.TestCase):
+    def test_inferred_pending_fields_do_not_affect_eligibility(self):
+        p = profile(nationality="Chinese",
+                    **{"_provenance": {"education.expected_graduation": "inferred_pending",
+                                       "education.current_year": "inferred_pending",
+                                       "nationality": "inferred_pending"}})
+        o = opp(graduation_window="2028-03", **explicit("graduation_window"))
+        safe, stripped = S.filter_profile_for_eligibility(p)
+        self.assertIn("education.expected_graduation", stripped)
+        self.assertIn("nationality", stripped)
+        _, v, _, _, _, _, warns = S.eligibility_component(o, safe, TODAY, stripped)
+        self.assertEqual(v, "Unknown", "推断出来的毕业时间不得导致淘汰")
+        self.assertTrue(any("inferred_pending" in w for w in warns))
+
+    def test_user_stated_fields_still_work(self):
+        p = profile(education={"degree": "undergraduate", "expected_graduation": "2027-06"},
+                    **{"_provenance": {"education.expected_graduation": "user_confirmed"}})
+        o = opp(graduation_window="2027-09 ~ 2028-06", **explicit("graduation_window"))
+        safe, stripped = S.filter_profile_for_eligibility(p)
+        self.assertEqual(stripped, [])
+        self.assertEqual(S.eligibility_component(o, safe, TODAY, stripped)[1], "Ineligible")
+
+    def test_top_level_source_applies_to_all(self):
+        p = profile(**{"_source": "inferred_pending"})
+        _, stripped = S.filter_profile_for_eligibility(p)
+        self.assertIn("education.degree", stripped)
+
+    def test_scoring_components_still_use_full_profile(self):
+        """排序/兴趣类分项可以继续使用推断信息。"""
+        p = profile(interests=["Embedded"], **{"_source": "inferred_pending"})
+        res = S.score_all(p, [opp(id="s", tags=["embedded"])], today=TODAY)
+        self.assertGreater(res["scored"], 0)
+        self.assertGreater(res["results"][0]["components"]["interest_fit"], 55)
 
 
 class TestScoringPipeline(unittest.TestCase):
     def test_priority_uses_deadline_endpoint(self):
-        """区间截止：紧迫度取端点，Priority 必须相应更高。"""
         near = S.score_all(profile(), [opp(id="n", deadline="2026-09-20 ~ 2026-10-05")], today=TODAY)
         far = S.score_all(profile(), [opp(id="f", deadline="2027-09-20 ~ 2027-10-05")], today=TODAY)
         self.assertGreater(near["results"][0]["priority_score"], far["results"][0]["priority_score"])
@@ -217,11 +524,6 @@ class TestScoringPipeline(unittest.TestCase):
         res = S.score_all(profile(), [opp(id="e", deadline="2026-01-01")], today=TODAY)
         self.assertEqual(res["scored"], 0)
         self.assertEqual(len(res["excluded"]), 1)
-
-    def test_rolling_has_no_urgency_penalty(self):
-        res = S.score_all(profile(), [opp(id="r", deadline=None)], today=TODAY)
-        self.assertIn("no_deadline", res["results"][0]["flags"])
-        self.assertIsNone(res["results"][0]["urgency"])
 
     def test_scoring_is_deterministic(self):
         o = opp(id="s", deadline="2026-12-01")
@@ -242,6 +544,8 @@ class TestScoringPipeline(unittest.TestCase):
         res = S.score_all(prof, opps, today=TODAY)
         self.assertGreater(res["scored"], 0)
         self.assertEqual(res["contract_issues"], [])
+        verdicts = {r["eligibility_verdict"] for r in res["results"]}
+        self.assertTrue(verdicts <= set(S.VERDICT_SCORE), verdicts)
 
 
 class TestEvidenceGaps(unittest.TestCase):

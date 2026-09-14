@@ -7,7 +7,6 @@
 **Find the opportunities you didn't know to search for.**
 
 [![tests](https://github.com/Sver0411/OpportunityRadar/actions/workflows/test.yml/badge.svg)](https://github.com/Sver0411/OpportunityRadar/actions/workflows/test.yml)
-[![unittest](https://img.shields.io/badge/unittest-158-4B9B6F)](#-tests)
 [![license](https://img.shields.io/badge/license-MIT-3DA639)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.8%2B-3776AB?logo=python&logoColor=white)](#-helper-scripts)
 [![Agent Skills](https://img.shields.io/badge/Agent%20Skills-compatible-534AB7)](#-installation)
@@ -18,7 +17,7 @@ Turns “最近有什么适合我的机会？” into a 13-step protocol 🎯
 
 Personalised across 13 categories 🗂️ · Official-source verified 🛡️ · Local-language search 🌏 · Duplicate-aware 🧹 · Explainable verdicts 📝
 
-*Works with any web-capable host agent · No accounts, no cloud, no telemetry 🏠*
+*Designed for Agent Skills-compatible hosts with web access · No accounts, no cloud, no telemetry 🏠*
 
 </div>
 
@@ -32,7 +31,8 @@ git clone https://github.com/Sver0411/OpportunityRadar.git opportunity-radar
 cp -r opportunity-radar ~/.workbuddy/skills/opportunity-radar   # or your agent's skills directory
 ```
 
-Then just ask — no configuration, no API keys:
+Then just ask. OpportunityRadar itself requires no additional API keys (your host's
+web search may have its own configuration):
 
 ```text
 我是物联网工程大三学生，会 C、Python 和 ESP32，最近有什么值得参加的？
@@ -113,6 +113,12 @@ The full step-by-step protocol lives in [`SKILL.md`](SKILL.md); three rules shap
 - **Missing profile data ≠ not qualified.** A progressive profile has gaps; a user who never
   entered a language score is `Unknown`, not ineligible. Only an explicit "I don't have this"
   produces a negative verdict.
+- **Only explicit evidence can rule you out.** Each key field carries an
+  `evidence.status`; `inferred` / `unknown` values cannot reject an opportunity — they downgrade
+  the verdict to `Unknown` for semantic review. Records with no evidence block at all still work
+  (legacy mode) but their conclusion is capped at `Probably Eligible`.
+- **A page that states nothing is `Unknown`, not "probably fine".** No stated requirement is not
+  the same as "probably qualifies".
 - **Verified beats complete.** Facts are asserted only from official sources, and anything
   unconfirmed is labelled as such.
 
@@ -298,14 +304,23 @@ python3 scripts/score.py --profile examples/profile.example.json \
 | # | 机会 | 类别 | Match | 紧迫 | Priority | 档 | 资格 | 判定来源 |
 |---|---|---|---|---|---|---|---|---|
 | 1 | Nagi Robotics Robot Hackathon | competition | 81 | 35 | 74 | Medium | Eligible | hard_constraint |
-| 2 | 2027 Summer Internship Program | career | 74 | 68 | 73 | Medium | Probably Ineligible | hard_constraint |
-| 3 | Kagura University Undergraduate Research Program | research | 65 | 35 | 60 | Medium | Unknown | hard_constraint |
+| 2 | Tokyo Embedded Challenge 2026 | competition | 70 | 50 | 67 | Medium | Probably Eligible | hard_constraint |
+| 3 | Nagi Robotics 2027 Internship | career | 73 | 50 | 62 | Medium | Unknown | hard_constraint |
+| 4 | Kagura University Undergraduate Research Program | research | 65 | 35 | 60 | Medium | Unknown | hard_constraint |
+
 ```
 
-(That output is a deliberate demonstration: the fictional Nagi internship targets March 2028
-graduates while the example profile graduates in June 2028 — different cohorts, so it is
-ineligible. The Kagura entry is `Unknown` because the profile has no JLPT score; the skill does
-not assume one.)
+A deliberate four-way demonstration on fictional data:
+
+- **`Eligible`** — every hard condition is stated on the page with `evidence.status: explicit`
+  and all of them match.
+- **`Probably Eligible`** — the record has no `evidence` block at all (legacy format): the hard
+  conditions check out, but the conclusion is capped because provenance is unknown.
+- **`Unknown`** — either the page states nothing about eligibility, or the profile lacks the
+  fact needed (the Kagura entry requires JLPT N2 and the profile has no Japanese score; the skill
+  does not assume one).
+- The fictional Nagi internship is **excluded** as `Ineligible`: it targets March 2028 graduates
+  while the example profile graduates in June 2028 — a different cohort.
 
 Behaviours: `Priority = 0.85 × Match + 0.15 × Urgency`; unknown requirements score neutrally
 instead of zero; hard constraints cannot be overturned by a model verdict; a mismatched score

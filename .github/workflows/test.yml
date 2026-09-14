@@ -12,7 +12,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ["3.9", "3.12"]
+        # 3.8 is the lowest version the README/compatibility claims, so CI must cover it.
+        python-version: ["3.8", "3.12"]
 
     steps:
       - uses: actions/checkout@v4
