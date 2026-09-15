@@ -1,0 +1,57 @@
+{
+  "_note": "SIMULATED PROGRESSIVE PROFILE — 仅记录用户原话，其余留 null。",
+  "profile_version": 1,
+  "updated_at": "2026-09-15",
+  "education": {
+    "school": null,
+    "school_country": "China",
+    "school_city": "Hangzhou",
+    "school_level": null,
+    "degree": "undergraduate",
+    "major": "会计",
+    "major_family": "business_econ",
+    "enrollment_year": null,
+    "current_year": 2,
+    "expected_graduation": null,
+    "GPA": null,
+    "ranking": null
+  },
+  "skills": [
+    {"name": "Excel", "level": "self-learning", "evidence": null},
+    {"name": "Python", "level": "beginner", "evidence": null}
+  ],
+  "languages": [],
+  "experience": {
+    "projects": null,
+    "github": null,
+    "research": null,
+    "internships": null,
+    "competitions": null,
+    "open_source": null,
+    "certificates": null,
+    "portfolio": null
+  },
+  "interests": ["data", "Excel", "Python"],
+  "goals": [
+    {"type": "internship", "priority": "high"},
+    {"type": "competition", "priority": "high"}
+  ],
+  "constraints": {
+    "preferred_country": null,
+    "preferred_city": null,
+    "remote": null,
+    "relocation": false,
+    "unpaid": null,
+    "budget": null,
+    "weekly_time": null,
+    "available_period": null,
+    "visa": null,
+    "language_constraint": null
+  },
+  "_source": "user_stated",
+  "_notes": [
+    "用户原话：会计大二，在杭州读书，纯会计没意思，自学 Excel 和一点 Python，想找实习或比赛，不想去太远的地方。",
+    "FINDING: 用户真实意图为『江浙沪/杭州就近 + 可接受远程』。但 locales.py 的 target_regions 只接受国家级 region（preferred_country）或 school_country fallback，无法表达城市/省域级（江浙沪）定位；schema 中 preferred_city 字段存在但 planner 不做地区解析。本 run 经 school_country=China 触发 primary=zh-CN fallback，江浙沪倾向只能以备注形式保留，无法成为硬筛选。",
+    "远程可接受意图按演练要求未置 remote 标志（保持 null），作为 soft 偏好记于此处；relocation=false 来自『不想去太远的地方』。"
+  ]
+}

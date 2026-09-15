@@ -1,0 +1,76 @@
+{
+  "_note": "SIMULATED profile for u4-bio-japan (beta usability rehearsal). Built only from the input JSON; missing fields are null, not invented.",
+  "profile_version": 1,
+  "updated_at": "2026-09-15",
+  "education": {
+    "school": null,
+    "school_country": null,
+    "school_city": null,
+    "school_level": null,
+    "degree": "master",
+    "major": "Biology",
+    "major_family": "lifesci_chem",
+    "enrollment_year": 2025,
+    "current_year": 1,
+    "expected_graduation": "2028-06",
+    "GPA": null,
+    "ranking": null
+  },
+  "skills": [
+    { "name": "lab work", "level": "beginner", "evidence": null },
+    { "name": "data analysis", "level": "beginner", "evidence": null }
+  ],
+  "languages": [
+    {
+      "language": "Japanese",
+      "exam": "JLPT",
+      "score": "N3",
+      "level": null
+    },
+    {
+      "language": "English",
+      "exam": null,
+      "score": null,
+      "level": "intermediate"
+    }
+  ],
+  "experience": {
+    "projects": null,
+    "github": null,
+    "research": null,
+    "internships": null,
+    "competitions": null,
+    "open_source": null,
+    "certificates": null,
+    "portfolio": null
+  },
+  "interests": [
+    "biology",
+    "molecular",
+    "ecology"
+  ],
+  "goals": [
+    { "type": "research", "priority": "high" },
+    { "type": "education", "priority": "medium" },
+    { "type": "funding", "priority": "medium" }
+  ],
+  "constraints": {
+    "preferred_country": ["Japan"],
+    "preferred_city": null,
+    "remote": false,
+    "relocation": true,
+    "unpaid": null,
+    "budget": null,
+    "weekly_time": null,
+    "available_period": "2027-07 ~ 2027-09",
+    "visa": null,
+    "language_constraint": null
+  },
+  "nationality": null,
+  "_source": "user_stated",
+  "_notes": [
+    "用户原话：研一生物，导师放养，想暑假去日本做个短期科研，日语只会一点 N3 水平，英语还行，怎么找？",
+    "导师放养 = 需自行寻找并联系教授/项目，无现成课题组通道。",
+    "N3 低于大多数日语实验室的硬性语言门槛（通常 N2+），指向英语授课/英语运营的项目更现实。"
+  ]
+}

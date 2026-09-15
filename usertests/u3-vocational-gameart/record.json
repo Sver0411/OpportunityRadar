@@ -1,0 +1,154 @@
+{
+  "user_id": "u3-vocational-gameart",
+  "timestamp": "2026-09-15T10:00:00+08:00",
+  "profile_used": {
+    "education": {
+      "degree": "associate",
+      "major": "游戏美术 / Game Art",
+      "major_family": "design_media",
+      "current_year": null,
+      "school_country": "China"
+    },
+    "skills": [
+      {"name": "Blender", "level": "unknown"},
+      {"name": "Concept Art / 原画", "level": "unknown"}
+    ],
+    "interests": ["Game Jam", "3D Art", "Concept Art", "Illustration", "Game Design", "Animation"],
+    "goals": [
+      {"type": "competition", "priority": "high"},
+      {"type": "project", "priority": "high"}
+    ],
+    "constraints": {"preferred_country": ["China"], "remote": true},
+    "missing_fields": ["current_year", "graduation_window", "gpa", "nationality"]
+  },
+  "locale_plan": {
+    "mode": "B",
+    "regions": ["china", "remote"],
+    "region_source": "profile_fallback+remote_ok",
+    "primary_locales": ["zh-CN"],
+    "optional_locales": ["en"],
+    "load_files": ["references/locales/generic.md", "references/locales/cn.md"],
+    "layer_ratios": {"exploit": 0.60, "adjacent": 0.25, "explore": 0.15}
+  },
+  "queries": [
+    "游戏美术 比赛 大学生 作品集 2026 报名",
+    "腾讯 网易 游戏创作大赛 2026 报名 学生",
+    "Global Game Jam 2026 registration student remote online",
+    "game art contest 2026 students illustration portfolio competition",
+    "原画 插画 比赛 2026 大学生 投稿 设计"
+  ],
+  "searches_used": 5,
+  "fetches_used": 4,
+  "results": [
+    {
+      "title": "《三角洲行动》共创赛区（2026腾讯游戏创作大赛）",
+      "organization": "腾讯天美 J3 工作室 / 琳琅天上",
+      "category": "competition",
+      "official_url": "https://df.qq.com/cp/a20260407txyxds/m.html",
+      "deadline": "2026-09-15",
+      "freshness": "open",
+      "zone": "recommended_now",
+      "eligibility_verdict": "Eligible",
+      "notes": "Tier A 官方页已核验。资格原文：'年满18周岁…不限学历、不限专业，全球公开报名'。4 个美术赛道（干员概念设计/至臻外观/衍生多元创作/典藏武器外观）对口原画与 Blender。线上投稿。今日（9/15）截止，需立即行动。"
+    },
+    {
+      "title": "《洛克王国：世界》高校游戏创作赛区（2026腾讯游戏创作大赛）",
+      "organization": "腾讯游戏学堂 / 腾娱",
+      "category": "competition",
+      "official_url": "https://gameinstitute.qq.com/awards2026/roco",
+      "deadline": "2026-09-15T12:00:00+08:00",
+      "freshness": "open",
+      "zone": "recommended_now",
+      "eligibility_verdict": "Eligible",
+      "notes": "Tier A 官方页已核验。资格：'2023年-2030年毕业的学生，学历不限，专业不限'。赛道含动画导演/游戏灯光/游戏特效（偏美术表现）。邮件投稿 roco_operation@tencent.com。今日中午 12:00 前截止。"
+    },
+    {
+      "title": "Cygames Creative Contest 2026",
+      "organization": "Cygames",
+      "category": "competition",
+      "official_url": "https://contest.cygames.co.jp/",
+      "deadline": "2026-11-24",
+      "freshness": "open",
+      "zone": "recommended_now",
+      "eligibility_verdict": "Unknown",
+      "notes": "Tier A 官网（由 indie-guider 文章原始链接确认）。部门含角色插画/背景插画/3DCG，高度对口。资格列'大学/短期大学/高等专门学校/专门学校/高中'等在读生；未写明国籍/居住地限制，但海外学生领奖流程（银行账户等）需先邮件确认。适合远程投稿、时间宽裕。"
+    },
+    {
+      "title": "第20届中国好创意大赛（CCDC）",
+      "organization": "中国好创意暨全国数字艺术设计大赛组织委员会",
+      "category": "competition",
+      "official_url": null,
+      "deadline": "2026-09-30",
+      "freshness": "unknown",
+      "zone": "worth_verifying",
+      "eligibility_verdict": "Unknown",
+      "notes": "仅第三方聚合信息（未找到官方确认来源）。含插画/动画/UI 等适合作品集；需核官网确认是否纳入专科生及确切截稿时间。"
+    },
+    {
+      "title": "2026腾讯游戏创作大赛·主赛区（自由创意/文化命题/AI/小红花）",
+      "organization": "腾讯游戏学堂",
+      "category": "competition",
+      "official_url": "https://gameinstitute.qq.com/awards2026/culture",
+      "deadline": "2026-09-15",
+      "freshness": "open",
+      "zone": "worth_verifying",
+      "eligibility_verdict": "Eligible",
+      "notes": "Tier A 已核验，资格'面向在校高校生、毕业3年内学生'（含专科）。但偏游戏开发，需 15 分钟可玩 Demo + PPT，纯美术 alone 不顺手，故列为备选而非首选。"
+    },
+    {
+      "title": "GGAC 第七届全球游戏动漫美术大赛",
+      "organization": "中国电影美术学会",
+      "category": "competition",
+      "official_url": null,
+      "deadline": "2026-06",
+      "freshness": "expired",
+      "zone": "excluded",
+      "eligibility_verdict": "Ineligible",
+      "notes": "2026 年截稿约 6 月，已过期。下一轮关注 GGAC 2027。"
+    },
+    {
+      "title": "第14届未来设计师·全国高校数字艺术设计大赛（NCDA）",
+      "organization": "工信部人才交流中心",
+      "category": "competition",
+      "official_url": "https://www.ncda.org.cn",
+      "deadline": "2026-06-02",
+      "freshness": "expired",
+      "zone": "excluded",
+      "eligibility_verdict": "Ineligible",
+      "notes": "作品征集即日起-2026/6/2，已过期。下一轮关注 NCDA 2027。"
+    },
+    {
+      "title": "Global Game Jam 2026 中国区",
+      "organization": "GGJ / CiGA",
+      "category": "competition",
+      "official_url": "https://www.gmhub.com/jams/ggj2026",
+      "deadline": "2026-02-01",
+      "freshness": "expired",
+      "zone": "excluded",
+      "eligibility_verdict": "Ineligible",
+      "notes": "GGJ 2026 于 1/26–2/1 举办，已结束。年度赛事，关注 GGJ 2027（约 2027 年 1 月）。"
+    },
+    {
+      "title": "第九届 CUTe 杯游戏美术设计创意大赛（台湾）",
+      "organization": "中国科技大学数位多媒体设计系",
+      "category": "competition",
+      "official_url": "https://www.cyivs.cy.edu.tw/wp-content/uploads/sites/132/2026/04/%E7%AB%B6%E8%B3%BD%E8%BE%A6%E6%B3%95.pdf",
+      "deadline": "2026-05-31",
+      "freshness": "expired",
+      "zone": "excluded",
+      "eligibility_verdict": "Ineligible",
+      "notes": "资格明确限'全国高中职在学学生'（不含专科/大专），且 5/31 已过期——页面对学历有真实限制，故如实排除并已在回复中说明。"
+    }
+  ],
+  "followup_questions": [
+    "更想冲游戏美术/原画方向，还是也想投泛设计/插画类（后者选择更多、节奏更慢）？",
+    "两个腾讯赛道今天内就截止；若来不及，能否接受线下/到校参与的同类赛事，还是只投纯线上？"
+  ],
+  "findings": [
+    "未发现任何页面把'专科'作为资格负面：三角洲'不限学历、不限专业'、洛克王国'学历不限、专业不限'、Cygames 资格列举含'专门学校'（职业学校），均无专科限制。偏差陷阱未触发。",
+    "未向用户推送编程类机会；推荐全部为游戏美术/原画/3D/灯光特效等美术向，符合'专科游戏美术生+作品集+远程'画像。",
+    "真实学历限制仅出现在台湾 CUTe 杯（限高中职）并已如实排除，不属于对专科的偏见。",
+    "两个最对口赛道（三角洲、洛克王国）恰好今日截止，已明确标注紧迫性；Cygames 开放至 11/24 作为宽裕备选。",
+    "CCDC（中国好创意）仅第三方信息、无官方确认来源，按信任策略放入'值得继续核实'而非推荐区。"
+  ]
+}

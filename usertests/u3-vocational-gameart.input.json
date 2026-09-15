@@ -1,0 +1,6 @@
+{
+  "_note": "SIMULATED USER SESSION — 虚构测试用户，用于 v0.2-beta 真人测试前的彩排。非真实个人。",
+  "user_id": "u3-vocational-gameart",
+  "user_input": "我是专科的游戏美术生，会点 Blender 和原画，有没有那种比赛或者项目能让作品集好看点的？远程的最好。",
+  "expected_focus": "作品集导向、学历不限、远程"
+}

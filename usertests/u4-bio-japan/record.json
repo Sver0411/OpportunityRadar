@@ -1,0 +1,130 @@
+{
+  "user_id": "u4-bio-japan",
+  "timestamp": "2026-09-15",
+  "profile_used": {
+    "education": {
+      "degree": "master",
+      "major": "Biology",
+      "major_family": "lifesci_chem",
+      "current_year": 1,
+      "expected_graduation": "2028-06"
+    },
+    "languages": [
+      { "language": "Japanese", "exam": "JLPT", "score": "N3", "level": null },
+      { "language": "English", "exam": null, "score": null, "level": "intermediate" }
+    ],
+    "interests": ["biology", "molecular", "ecology"],
+    "goals": [
+      { "type": "research", "priority": "high" },
+      { "type": "education", "priority": "medium" },
+      { "type": "funding", "priority": "medium" }
+    ],
+    "constraints": {
+      "preferred_country": ["Japan"],
+      "remote": false,
+      "available_period": "2027-07 ~ 2027-09"
+    },
+    "nationality": null,
+    "_notes": [
+      "导师放养 = 需自行寻找并联系教授/项目",
+      "N3 低于多数日语实验室的硬性门槛，指向英语项目更现实"
+    ]
+  },
+  "locale_plan": {
+    "regions": ["japan"],
+    "primary_locales": ["ja-JP"],
+    "optional_locales": ["en"],
+    "load_files": ["references/locales/generic.md", "references/locales/jp.md"],
+    "region_source": "explicit_additive",
+    "mode": "A"
+  },
+  "queries": [
+    "UTokyo UTRIP 2027 summer research program international students biology",
+    "OIST research internship 2027 application graduate student Japan English",
+    "Japan summer research program international students biology English based 2027",
+    "JSPS Summer Program 2027 graduate students research Japan application",
+    "AMGEN Scholars Asia University of Tokyo 2027 summer undergraduate research"
+  ],
+  "searches_used": 5,
+  "fetches_used": 4,
+  "results": [
+    {
+      "title": "OIST Research Internship (Spring 2027 round)",
+      "organization": "Okinawa Institute of Science and Technology (OIST)",
+      "category": "research",
+      "official_url": "https://www.oist.jp/",
+      "deadline": "2026-10-15",
+      "freshness": "likely_open",
+      "zone": "recommended_now",
+      "eligibility_verdict": "Eligible",
+      "notes": "全英文运作、全额资助（约2,400日元/日+往返机票+住宿+签证协助）；任何年级硕士生均可申，不要求日语、IELTS/TOEFL非必须。Spring 2027 周期 2027-04-01~2027-09-30 覆盖暑假。官方首页确认英语+资助+实习项目存在；具体资格细节来自聚合站（Tier C/D），子页本轮404未直接打开。"
+    },
+    {
+      "title": "NIG Summer Internship (NIG-INTERN)",
+      "organization": "National Institute of Genetics (NIG) / SOKENDAI",
+      "category": "research",
+      "official_url": "https://www.nig.ac.jp/nig/EN/",
+      "deadline": null,
+      "freshness": "unknown",
+      "zone": "worth_verifying",
+      "eligibility_verdict": "Probably Eligible",
+      "notes": "遗传/分子生物方向，全英文实验室、全额资助（机票+住宿）；早中期硕士生在考虑范围。2026 轮约1月初截止，2027 轮预计 2026-12~2027-01 开放。本轮官网首页未直接暴露暑期实习子页→需回官网 Education/Research 栏核对确切资格与开放时间。"
+    },
+    {
+      "title": "RIKEN Research Intern / International Program Associate (IPA)",
+      "organization": "RIKEN",
+      "category": "research",
+      "official_url": "https://www.riken.jp/eng/",
+      "deadline": null,
+      "freshness": "likely_open",
+      "zone": "worth_verifying",
+      "eligibility_verdict": "Probably Eligible",
+      "notes": "英语运作的研究所，多个生命科学 unit，硕士可申；通常走'先联系 host 研究员'的滚动通道。本轮 /eng/careers/student/ 子页404，未拿到确切资格页→需在 RIKEN 官网学生招募页确认 IPA 资格与流程。"
+    },
+    {
+      "title": "UTokyo UTRIP",
+      "organization": "University of Tokyo, Graduate School of Science",
+      "category": "research",
+      "official_url": "https://www.s.u-tokyo.ac.jp/en/utrip/program/eligibility.html",
+      "deadline": "2027-01-07",
+      "freshness": "likely_open",
+      "zone": "excluded",
+      "eligibility_verdict": "Ineligible",
+      "notes": "官方资格页明确限定：须为日本境外大学的 Bachelor's degree 在读（且项目结束后仍回本科继续学期），并优先三年级本科生。研一硕士不符合 → 排除。2027 轮预计 2026-11 开放。"
+    },
+    {
+      "title": "Amgen Scholars Asia (UTokyo / Kyoto U)",
+      "organization": "Amgen Foundation / UTokyo, Kyoto University",
+      "category": "research",
+      "official_url": "https://amgenscholars.com/",
+      "deadline": null,
+      "freshness": "unknown",
+      "zone": "excluded",
+      "eligibility_verdict": "Ineligible",
+      "notes": "仅限本科在校生（项目结束仍需回本科继续至少一学期）。硕士学生不符合 → 排除。亚洲轮（含东大、京大）通常 11 月开放、2 月截止。"
+    },
+    {
+      "title": "JSPS Summer Program",
+      "organization": "Japan Society for the Promotion of Science",
+      "category": "research",
+      "official_url": "https://www.jsps.go.jp/english/e-fellow/e-summer/",
+      "deadline": null,
+      "freshness": "unknown",
+      "zone": "excluded",
+      "eligibility_verdict": "Probably Ineligible",
+      "notes": "仅面向美/英/法/德/加/瑞公民（或永久居民）。若用户持中国或其他国籍则不符合 → 大概率排除。另需先在日本找到愿意接收的 host 研究员。"
+    }
+  ],
+  "followup_questions": [
+    "能不能接受自费？还是必须靠奖学金/资助覆盖？（OIST/NIG 全奖，但冷邮件那条多半要自理机票住宿）",
+    "想进什么方向的实验室？（如分子生物、生态、神经、发育——方向定了可把匹配单元/教授收得更准）"
+  ],
+  "findings": [
+    "Locale 计划：目标地区 japan → 主搜语言 ja-JP + 候选 en，已加载 jp.md；JP locale 与英文候选（en optional）均纳入，符合预期。",
+    "N3 诚实处理：未替日语实验室编造'需 N2'要求（页面未写即不作为硬门槛）；基于已确认事实说明日语实验室通常需 N2+ 且要联系教授，对 N3 不现实，已把主线转向英语项目（OIST/NIG/RIKEN/UTRIP/AMGEN 均英文运作）。",
+    "Summer 2027 时间线已诚实设预期：多数日本暑期项目 2026-12~2027-02 才开放申请（OIST Spring 2027 轮是少数已开、且覆盖暑假的窗口，截止 2026-10-15）。",
+    "研一硕士身份会排除仅限本科的项目：UTRIP、AMGEN 经官方资格页确认排除；JSPS 因国籍限制大概率排除。",
+    "验证缺口（诚实标注）：OIST/NIG/RIKEN 的官方资格子页本轮未直接打开（404/首页未暴露），相关事实来自官方首页+聚合站，状态记为 partially/未完整官方复核，已全部放入'值得继续核实'或标注需回官网确认。",
+    "搜索以英文为主（目标项目工作语言即英文）；本轮未额外跑 ja-JP 本地语 pass——对 N3 用户，日语实验室招聘多要求 N2+ 且不相关，故未优先；若需找日语组冷邮件目标可补一轮 ja-JP。"
+  ]
+}

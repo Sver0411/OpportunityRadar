@@ -1,0 +1,24 @@
+{
+  "user_id": "u3-vocational-gameart",
+  "education": {
+    "degree": "associate",
+    "major": "游戏美术 / Game Art",
+    "major_family": "design_media",
+    "current_year": null,
+    "school_country": "China"
+  },
+  "skills": [
+    {"name": "Blender", "level": "unknown"},
+    {"name": "Concept Art / 原画", "level": "unknown"}
+  ],
+  "interests": ["Game Jam", "3D Art", "Concept Art", "Illustration", "Game Design", "Animation"],
+  "goals": [
+    {"type": "competition", "priority": "high"},
+    {"type": "project", "priority": "high"}
+  ],
+  "constraints": {
+    "preferred_country": ["China"],
+    "remote": true
+  },
+  "_source": "user_stated"
+}

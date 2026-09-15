@@ -1,0 +1,6 @@
+{
+  "_note": "SIMULATED USER SESSION — 虚构测试用户，用于 v0.2-beta 真人测试前的彩排。非真实个人。",
+  "user_id": "u2-cs-confused",
+  "user_input": "计算机大三，学校一般，简历上就一个课设，现在这时间点还有什么能投的或者能参加的？秋招是不是没戏了。",
+  "expected_focus": "当下时间点还能投什么、低简历门槛、诚实告知秋招窗口"
+}

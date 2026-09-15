@@ -1,0 +1,139 @@
+{
+  "user_id": "u2-cs-confused",
+  "timestamp": "2026-09-15T10:00:00+08:00",
+  "profile_used": {
+    "education": {
+      "degree": "undergraduate",
+      "major": "Computer Science",
+      "current_year": 3,
+      "school_country": "China"
+    },
+    "school": null,
+    "school_tier_known": false,
+    "skills": [{ "name": "one course project only", "level": "unknown" }],
+    "interests": [],
+    "goals": [
+      { "type": "career", "priority": "high" },
+      { "type": "competition", "priority": "medium" },
+      { "type": "open_source", "priority": "medium" },
+      { "type": "skill_development", "priority": "medium" },
+      { "type": "project", "priority": "medium" }
+    ],
+    "constraints": {},
+    "progressive_gaps": {
+      "school_tier": "unnamed; user said 学校一般 (ordinary). 985/211/双一流 status NOT confirmed — affects 保研/夏令营/部分企业硬门槛",
+      "graduation_year": "not stated; current_year=3 on 2026-09-15. Need to confirm 2027届 vs 2028届 to judge whether current 秋招 applies",
+      "resume": "only one course project; prefer low-barrier, portfolio-building items",
+      "languages": "none recorded",
+      "interests": "none recorded — Explore layer stays generic"
+    }
+  },
+  "locale_plan": {
+    "regions": ["china"],
+    "region_source": "profile_fallback (school_country=China; no preferred_country set)",
+    "primary_locales": ["zh-CN"],
+    "optional_locales": ["en"],
+    "load_files": ["references/locales/generic.md", "references/locales/cn.md"],
+    "mode": "A",
+    "layer_ratios": { "exploit": 0.70, "adjacent": 0.20, "explore": 0.10 }
+  },
+  "queries": [
+    "2027届 秋招 时间线 提前批 正式批 2026 启动 截止",
+    "计算机 大三 学生 竞赛 2026年 报名 截止 算法 程序设计",
+    "开源之夏 2026 报名 时间 学生 项目 截止",
+    "阿里 字节 腾讯 2027届 校园招聘 秋招 时间 2026年9月",
+    "计算机 大三 日常实习 寒假实习 2026 招聘 还能投"
+  ],
+  "searches_used": 5,
+  "fetches_used": 4,
+  "results": [
+    {
+      "title": "2027届互联网大厂校园招聘（字节/腾讯/阿里/百度/小米/滴滴等）",
+      "organization": "字节跳动 / 腾讯 / 阿里巴巴 / 百度 等",
+      "category": "career",
+      "official_url": "https://jobs.bytedance.com/campus",
+      "deadline": "rolling / 招满即止（字节网申至 2027-05-31；阿里/百度常年开放）",
+      "freshness": "open",
+      "zone": "recommended_now",
+      "eligibility_verdict": "Probably Eligible",
+      "notes": "面向 2027 届（毕业 2026.9–2027.8），本科可投研发/算法岗；AI 方向扩招。多家已于 2026-07/08 启动，正式批 9–10 月高峰。简历仅一个课设需重点包装。"
+    },
+    {
+      "title": "2027届央国企/银行校园招聘（工行科技菁英、中石油、华能等）",
+      "organization": "中国工商银行 / 中国石油 / 中国华能 等",
+      "category": "career",
+      "official_url": "https://job.icbc.com.cn",
+      "deadline": "工行网申 2026-09-04~10-08；中石油 2026-09-09~10-15；华能 2026-09-16~10-31",
+      "freshness": "open",
+      "zone": "recommended_now",
+      "eligibility_verdict": "Probably Eligible",
+      "notes": "9–11 月主窗口；工行科技菁英本科可投，县域岗对双非更友好。需学信网学籍+CET 证明。学校层次（985/211/双一流 vs 双非）未确认，影响岗位选择。"
+    },
+    {
+      "title": "2026年度第七届大学生算法设计与编程挑战赛（秋季赛）",
+      "organization": "大学生算法设计与编程挑战赛组织委员会",
+      "category": "competition",
+      "official_url": "https://new.saikr.com/vse/adpc2026autumn",
+      "deadline": "报名 2026-11-13；比赛 2026-11-15",
+      "freshness": "open",
+      "zone": "recommended_now",
+      "eligibility_verdict": "Eligible",
+      "notes": "在校本科、专业不限，线上，支持 C/C++/Java/Python，单人可报，报名费 69 元。已官方页核实。低门槛补简历。"
+    },
+    {
+      "title": "开源之夏 2026（点亮计划 2.0）",
+      "organization": "中国科学院软件研究所",
+      "category": "open_source",
+      "official_url": "https://summer.ospp.ac.cn/",
+      "deadline": "全年滚动开放（无固定截止）",
+      "freshness": "likely_open",
+      "zone": "worth_verifying",
+      "eligibility_verdict": "Unknown",
+      "notes": "面向年满 18 周岁在校生，全年开放（官方站已确认）。但现有项目多要求熟练 C/内核或 Rust，单课设背景可能不够；需确认自身能力，可作长期目标。"
+    },
+    {
+      "title": "计算机日常实习（滚动招募）",
+      "organization": "各企业 / 实习平台（智联、牛客等）",
+      "category": "career",
+      "official_url": null,
+      "deadline": "rolling",
+      "freshness": "unknown",
+      "zone": "worth_verifying",
+      "eligibility_verdict": "Unknown",
+      "notes": "第三方聚合显示大量'经验不限、本科'实习滚动招募；需回企业官网确认具体岗位与截止，未找到统一官方确认来源。"
+    },
+    {
+      "title": "中国移动'梧桐·鸿鹄'2026研学冬令营（寒假线上实习）",
+      "organization": "中国移动",
+      "category": "career",
+      "official_url": "https://www.job.sjtu.edu.cn/career/zpxx/view/zpxx/149907694030032896",
+      "deadline": "2026-01-18（已过期）",
+      "freshness": "expired",
+      "zone": "excluded",
+      "eligibility_verdict": "Ineligible",
+      "notes": "寒假实习专项，截止已过；2027 寒假实习预计 2026 年底开放，到时再关注。"
+    },
+    {
+      "title": "2026 保研夏令营 / ACM 校赛（中南林、川大等）",
+      "organization": "各高校",
+      "category": "competition",
+      "official_url": null,
+      "deadline": "2026-05 / 06 已截止",
+      "freshness": "expired",
+      "zone": "excluded",
+      "eligibility_verdict": "Ineligible",
+      "notes": "2026 年校赛/夏令营已结束；若用户为 2028 届，2027 夏令营才是其窗口（明年春夏）。"
+    }
+  ],
+  "followup_questions": [
+    "你哪年毕业？2027 届还是 2028 届？（决定现在这场秋招是不是你的；2027 届=正在进行，2028 届=明年才到）",
+    "学校是 985/211/双一流，还是双非/普通本科？（影响保研夏令营及部分企业校招硬门槛）"
+  ],
+  "findings": [
+    "2027 届秋招时间线可从官方/权威来源核实：提前批 2026 年 6–8 月，正式批 2026 年 8–11 月（9–10 月高峰），补录 11–12 月。今天是 2026-09-15，正处于正式批高峰，'秋招没戏'对 2027 届不成立。",
+    "字节/腾讯/阿里/百度/小米/滴滴均已于 2026-07/08 启动 2027 届校招，多家网申招满即止或常年开放，现在仍可投（官方站 jobs.bytedance.com/campus 已核实）。",
+    "工行 2027 校招官方页已上线（job.icbc.com.cn 列出'2027年度校园招聘启事'），网申 9/4–10/8，科技岗本科可投。",
+    "用户'大三'与'2026 秋招'存在届别歧义：若 2027 毕业则正是窗口；若 2028 毕业则本届非其窗口，需追问确认。",
+    "开源之夏 2026 已确认全年开放（summer.ospp.ac.cn），但项目技能门槛高（C/内核/Rust），对单课设背景偏难，列为继续核实。"
+  ]
+}

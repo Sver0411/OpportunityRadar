@@ -1,0 +1,180 @@
+{
+  "user_id": "u1-acc-to-data",
+  "timestamp": "2026-09-15",
+  "profile_used": {
+    "_note": "仅记录用户原话，其余留 null",
+    "education": {
+      "school": null,
+      "school_country": "China",
+      "school_city": "Hangzhou",
+      "school_level": null,
+      "degree": "undergraduate",
+      "major": "会计",
+      "major_family": "business_econ",
+      "enrollment_year": null,
+      "current_year": 2,
+      "expected_graduation": null,
+      "GPA": null,
+      "ranking": null
+    },
+    "skills": [
+      {"name": "Excel", "level": "self-learning", "evidence": null},
+      {"name": "Python", "level": "beginner", "evidence": null}
+    ],
+    "languages": [],
+    "experience": {
+      "projects": null, "github": null, "research": null, "internships": null,
+      "competitions": null, "open_source": null, "certificates": null, "portfolio": null
+    },
+    "interests": ["data", "Excel", "Python"],
+    "goals": [
+      {"type": "internship", "priority": "high"},
+      {"type": "competition", "priority": "high"}
+    ],
+    "constraints": {
+      "preferred_country": null,
+      "preferred_city": null,
+      "remote": null,
+      "relocation": false,
+      "unpaid": null, "budget": null, "weekly_time": null,
+      "available_period": null, "visa": null, "language_constraint": null
+    }
+  },
+  "locale_plan": {
+    "mode": "A",
+    "regions": ["china"],
+    "region_source": "profile_fallback (school_country=China)",
+    "primary_locales": ["zh-CN"],
+    "optional_locales": ["en"],
+    "load_files": ["references/locales/generic.md", "references/locales/cn.md"],
+    "categories_searched": ["career", "competition", "skill_development", "open_source", "project", "networking", "research", "funding", "event"],
+    "layer_ratios": {"exploit": 0.70, "adjacent": 0.20, "explore": 0.10},
+    "notes": [
+      "未声明 preferred_country → 用学校所在国 China 作为 fallback，主语言 zh-CN",
+      "用户意图『江浙沪/杭州就近 + 可接受远程』无法在 planner 中表达（见 findings）"
+    ]
+  },
+  "queries": [
+    "浙江省大学生财会信息化竞赛 2026 报名 截止 时间",
+    "阿里天池 大数据竞赛 2026 报名 学生 截止 时间",
+    "杭州 财务 数据分析 实习生 大二 本科 2026 招聘",
+    "全国大学生会计技能大赛 案例大赛 2026 本科生 报名",
+    "GitHub Student Developer Pack 2026 学生 免费 申请 认证"
+  ],
+  "searches_used": 5,
+  "fetches_used": 4,
+  "results": [
+    {
+      "title": "浙江省大学生财会信息化竞赛（\"天平杯\"第二十三届）",
+      "organization": "浙江省大学生科技竞赛委员会（浙江财经大学承办）",
+      "category": "competition",
+      "official_url": "http://www.zjcontest.cn/",
+      "deadline": "2026-09-24（报名）；决赛 2026-11-14",
+      "freshness": "open",
+      "zone": "recommended_now",
+      "eligibility_verdict": "Probably Eligible",
+      "notes": "江浙沪省级 A 类竞赛，会计专业高度对口；面向浙江省及其他省市普通高校经济、管理类等专业在校本科生（大二未排除）。3 人组队、以学校为单位报名，需先过校赛选拔。学校名未提供，需确认本校是否组织。"
+    },
+    {
+      "title": "第十一届\"科云杯\"全国大学生财会职业能力大赛",
+      "organization": "中国商业会计学会 / 厦门科云",
+      "category": "competition",
+      "official_url": "http://match.xmkeyun.com.cn/#/competition",
+      "deadline": "2026-10-30（报名）；本科组选拔赛 2026-11-21",
+      "freshness": "likely_open",
+      "zone": "recommended_now",
+      "eligibility_verdict": "Probably Eligible",
+      "notes": "全国财会竞赛，本科组；未写年级限制，大二可能可参加。官方页 fetch 失败，日期来自官方站搜索摘要，建议报名前再确认一次。"
+    },
+    {
+      "title": "阿里天池 大数据竞赛 / 学习赛",
+      "organization": "阿里云",
+      "category": "competition",
+      "official_url": "https://tianchi.aliyun.com/",
+      "deadline": "rolling（学习赛常年开放；正式赛随档期）",
+      "freshness": "likely_open",
+      "zone": "recommended_now",
+      "eligibility_verdict": "Eligible",
+      "notes": "远程、免费、练 Python 与数据处理；学习赛（如 NLP 系列）适合初学者。首页旗舰赛（AIOps）报名已截止，但学习赛常年可参加，匹配用户自学 Python + 想做数据的方向。"
+    },
+    {
+      "title": "GitHub Student Developer Pack",
+      "organization": "GitHub Education",
+      "category": "skill_development",
+      "official_url": "https://education.github.com/pack",
+      "deadline": "rolling（在校期间有效，需定期重认证）",
+      "freshness": "open",
+      "zone": "worth_verifying",
+      "eligibility_verdict": "Eligible",
+      "notes": "官网确认开放、对学生免费、全球可用；国内学生用学信网报告可认证。非实习/比赛，作为技能资源推荐（Copilot、JetBrains、云额度对自学 Python 很有用）。"
+    },
+    {
+      "title": "滴滴 S&FO-财务BP实习生（杭州余杭）",
+      "organization": "滴滴",
+      "category": "career",
+      "official_url": null,
+      "discovery_url": "https://m.quanzhi.com/job/detail/69a3aef5fc45f4104926a64f",
+      "deadline": "2026-12-30（第三方显示）",
+      "freshness": "unknown",
+      "zone": "worth_verifying",
+      "eligibility_verdict": "Unknown",
+      "notes": "要求 Excel 熟练 + 财务数据分析，与用户技能匹配；来源为第三方招聘聚合站，未找到官方校招页确认，且大二能否投不确定。"
+    },
+    {
+      "title": "网易电商财务实习生 / 众安科技数据分析实习生（杭州）",
+      "organization": "网易 / 众安科技",
+      "category": "career",
+      "official_url": null,
+      "discovery_url": "https://www.deizao.net/index/index/shixixq/jobid/239909",
+      "deadline": "2027-01-06 / 2026-10-22（第三方显示）",
+      "freshness": "unknown",
+      "zone": "worth_verifying",
+      "eligibility_verdict": "Unknown",
+      "notes": "杭州，要求 Excel 与简单数据分析，与用户技能匹配；均来自第三方聚合站，需回官方招聘页确认且确认接收大二。"
+    },
+    {
+      "title": "全国高校商业精英挑战赛会计与商业管理案例竞赛 2026",
+      "organization": "中国贸促会商业行业委员会等",
+      "category": "competition",
+      "official_url": "https://new.saikr.com/vse/58083",
+      "deadline": "2026-03-25（已结束）",
+      "freshness": "closed",
+      "zone": "excluded",
+      "eligibility_verdict": "Ineligible",
+      "notes": "2026 批次报名 3/25 已截止（saikr 显示『报名已结束』），列入已排除，等明年批次。"
+    },
+    {
+      "title": "全国大学生会计技能大赛（正保会计网校）2026",
+      "organization": "正保会计网校",
+      "category": "competition",
+      "official_url": "https://www.chinaacc.com/xiaoyuan/caikuaidasai15/",
+      "deadline": "2026-06（4–6 月）",
+      "freshness": "expired",
+      "zone": "excluded",
+      "eligibility_verdict": "Ineligible",
+      "notes": "2026 赛期 4–6 月，现已过；期待明年批次。"
+    },
+    {
+      "title": "CCKS2026 大模型知识编辑评测（天池）",
+      "organization": "浙江大学 / 阿里云天池",
+      "category": "competition",
+      "official_url": "https://tianchi.aliyun.com/competition/entrance/532479",
+      "deadline": "2026-07-15",
+      "freshness": "expired",
+      "zone": "excluded",
+      "eligibility_verdict": "Ineligible",
+      "notes": "报名 7/15 已截止，已排除。"
+    }
+  ],
+  "followup_questions": [
+    "你们学校/学院会统一组织这类省级财会竞赛报名吗？（很多要走学校渠道、先过校赛选拔）——这决定我能否直接给报名入口，还是先找本校负责老师。",
+    "你学 Python 是想往『财务数据分析/财务数字化』走，还是更泛地学编程？另外大概每周能投入多少时间？这两个信息能让我把实习和竞赛的推荐排得更准。"
+  ],
+  "findings": [
+    "城市/省域级定位缺失：locales.py 的 target_regions 只接受国家级 region（preferred_country）或 school_country fallback，无法表达『江浙沪/杭州就近』这类省域诉求；schema 中 preferred_city 字段存在但 planner 不用于地区解析。本 run 经 school_country=China 触发 zh-CN，江浙沪倾向只能以备注保留，无法成为硬筛选。建议：扩展 locales.py 支持省/都市圈 hint，或在 constraints 增加 region_hint 文本字段供检索时加权。",
+    "按演练要求未设 preferred_country 与 remote 标志，远程可接受的意图未进入 planner；目前靠 school_country=China fallback 命中中文机会，但用户『江浙沪 + 远程』的偏好未被结构化表达。",
+    "科云杯官方页 fetch 失败，日期依赖搜索摘要，最终验证率未达 100%（约 1/4 候选未能完成 canonical fetch）。",
+    "杭州实习条目（滴滴/网易/众安）仅来自第三方聚合站（quanzhi/deizao），未回官方校招页确认，相关条目只能留在『值得继续核实』，无法进入『现在可以申请』。",
+    "画像缺口（影响判断精度）：学校名、GPA、毕业年份、是否通过学校渠道报名、具体发展方向（财务数据分析 vs 泛编程）、每周可投入时间——补上这些可把资格判定从 Unknown/Probably 提升至 Eligible 并解锁更精准的实习推荐。"
+  ]
+}

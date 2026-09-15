@@ -1,0 +1,6 @@
+{
+  "_note": "SIMULATED USER SESSION — 虚构测试用户，用于 v0.2-beta 真人测试前的彩排。非真实个人。",
+  "user_id": "u4-bio-japan",
+  "user_input": "研一生物，导师放养，想暑假去日本做个短期科研，日语只会一点 N3 水平，英语还行，怎么找？",
+  "expected_focus": "日本暑期科研、N3 不够时的英语项目、申请路径"
+}

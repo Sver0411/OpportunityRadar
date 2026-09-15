@@ -1,0 +1,6 @@
+{
+  "_note": "SIMULATED USER SESSION — 虚构测试用户，用于 v0.2-beta 真人测试前的彩排。非真实个人。",
+  "user_id": "u1-acc-to-data",
+  "user_input": "我是学会计的大二学生，在杭州读书，感觉纯会计没意思，最近在自学 Excel 和一点 Python，有没有适合我的实习或者比赛？不太想去太远的地方。",
+  "expected_focus": "会计+数据交叉、江浙沪/远程、低门槛入口"
+}
