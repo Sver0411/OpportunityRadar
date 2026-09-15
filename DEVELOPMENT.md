@@ -108,6 +108,14 @@ rules plus dynamic language detection — and the examples deliberately cover se
 people (CS/security in the US, biology in Germany, design in France, IoT in Japan) so no single
 route reads as the default.
 
+One nuance about the seed tables (COUNTRY_ALIASES, PLACES, INTEREST_ALIASES): they are
+**normalization and acceleration, not boundaries**. Their only jobs are (a) canonicalization so
+comparisons and tests are reproducible, (b) fast place→country→language inference, (c) scoring
+signals that behave identically across runs. The agent's semantic layer always takes precedence:
+a place, field or interest it extracts that the tables don't know passes through as a hint and
+is used anyway. Nothing is gated by the tables. When a missing entry causes a real failure, the
+failure-driven process adds it — entries are not collected speculatively.
+
 ### Locale precedence and responsibility boundary
 
 `target_regions()` implements **precedence, not merging**: an explicit request override
