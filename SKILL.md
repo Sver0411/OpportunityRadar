@@ -132,8 +132,9 @@ Single source of truth: enums, weights, tracked fields and ID/URL rules live in
    in that order, never merged blindly. When the host agent identifies a location that
    `scripts/locales.py` does not know, pass it explicitly as a region hint (`--countries`)
    instead of dropping it. Then resolve the search languages (`scripts/locales.py`) and build the
-   `category × layer × language` matrix. `optional_locales` are candidates, not mandatory search
-   passes.
+   `category × layer × language` matrix. City/province hints（`place_hints`，如 "杭州"、
+   "江浙沪"）must be carried into the queries themselves — country-level language alone loses
+   city intent. `optional_locales` are candidates, not mandatory search passes.
    Localize the taxonomy's intent templates into the target languages; when a first pass surfaces
    pages in another language, add that language to the next round. Every expansion must trace
    back to a profile signal; max two semantic hops.

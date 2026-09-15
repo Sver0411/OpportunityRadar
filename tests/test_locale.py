@@ -429,5 +429,52 @@ class TestGlobalRemoteIntentPatch(unittest.TestCase):
             "constraints": {"preferred_country": ["Kenya"]}})["unknown_regions"], ["Kenya"])
 
 
+class TestPlaceLevelTargeting(unittest.TestCase):
+    """城市级定位缺失修复（用户彩排 u1 暴露）：省/市级地名要进 place_hints 并带动国家。"""
+
+    def test_hangzhou_in_request(self):
+        p = {"education": {"school_country": "China"}, "constraints": {"remote": True}}
+        plan = L.search_plan(p, request_text="我是学会计的大二学生，在杭州读书，不太想去太远的地方")
+        self.assertEqual(plan["regions"], ["china"])
+        self.assertIn("杭州", plan["place_hints"])
+        self.assertEqual(plan["primary_locales"], ["zh-CN"])
+
+    def test_structured_preferred_city(self):
+        plan = L.search_plan({"constraints": {"preferred_city": ["杭州"], "remote": True}})
+        self.assertEqual(plan["regions"], ["china", "remote"])
+        self.assertEqual(plan["place_hints"], ["杭州"])
+        self.assertEqual(plan["primary_locales"][0], "zh-CN")
+
+    def test_province_and_multi_area(self):
+        plan = L.search_plan({"constraints": {"preferred_region": ["浙江"]}})
+        self.assertEqual(plan["regions"], ["china"])
+        self.assertEqual(plan["place_hints"], ["浙江"])
+        plan2 = L.search_plan({"constraints": {"preferred_region": ["江浙沪"]}})
+        self.assertEqual(plan2["regions"], ["china"])
+        self.assertEqual(plan2["place_hints"], ["江浙沪"])
+
+    def test_override_with_city(self):
+        plan = L.search_plan({"constraints": {"preferred_country": ["US"]}},
+                             request_text="这次只找杭州的机会")
+        self.assertEqual(plan["regions"], ["china"])
+        self.assertEqual(plan["place_hints"], ["杭州"])
+        self.assertEqual(plan["region_source"], "explicit_override")
+
+    def test_unlisted_city_is_preserved(self):
+        plan = L.search_plan({"constraints": {"preferred_city": ["贵阳"], "remote": True}})
+        self.assertIn("贵阳", plan["place_hints"])
+        self.assertIn("贵阳", plan["unknown_regions"])
+
+    def test_international_city_cjk(self):
+        plan = L.search_plan({"constraints": {"preferred_city": ["东京"]}})
+        self.assertEqual(plan["regions"], ["japan"])
+        self.assertEqual(plan["place_hints"], ["东京"])
+        self.assertEqual(plan["primary_locales"], ["ja-JP"])
+
+    def test_no_false_positive_place(self):
+        plan = L.search_plan({}, request_text="I want a good mentor and a nice team")
+        self.assertEqual(plan["place_hints"], [])
+
+
 if __name__ == "__main__":
     unittest.main()

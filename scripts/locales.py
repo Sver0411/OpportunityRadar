@@ -44,6 +44,88 @@ _ASCII_MULTIWORD_ALIASES = tuple(sorted(
     (a for a in COUNTRY_ALIASES if " " in a and re.fullmatch(r"[A-Za-z ]+", a)),
     key=len, reverse=True))
 
+# ---------------------------------------------------------------- 地名（省/市级）
+#
+# Benchmark/彩排失败驱动：用户说"在杭州读书，不想去太远"时，国家级解析丢失了城市意图，
+# 搜索 query 里也不会带"杭州"。这张表是**保守的种子表**（不是地理数据库）：
+#   * 中国：省级行政区 + 主要城市（CJK 名唯一性强，子串匹配安全）
+#   * 国际：少数知名城市（拉丁名只做整词匹配，避免 "paris"/"austin" 这类同名误判）
+# 没有列出的地名走 unknown passthrough，由 Agent 结构化传入。
+PLACES = {
+    # ---- 中国：省级 ----
+    "北京": ("china", "province"), "上海": ("china", "province"), "天津": ("china", "province"),
+    "重庆": ("china", "province"), "河北": ("china", "province"), "山西": ("china", "province"),
+    "辽宁": ("china", "province"), "吉林": ("china", "province"), "黑龙江": ("china", "province"),
+    "江苏": ("china", "province"), "浙江": ("china", "province"), "安徽": ("china", "province"),
+    "福建": ("china", "province"), "江西": ("china", "province"), "山东": ("china", "province"),
+    "河南": ("china", "province"), "湖北": ("china", "province"), "湖南": ("china", "province"),
+    "广东": ("china", "province"), "海南": ("china", "province"), "四川": ("china", "province"),
+    "贵州": ("china", "province"), "云南": ("china", "province"), "陕西": ("china", "province"),
+    "甘肃": ("china", "province"), "青海": ("china", "province"), "广西": ("china", "province"),
+    "内蒙古": ("china", "province"), "新疆": ("china", "province"), "西藏": ("china", "province"),
+    "宁夏": ("china", "province"),
+    # ---- 中国：主要城市 ----
+    "杭州": ("china", "city"), "宁波": ("china", "city"), "温州": ("china", "city"),
+    "南京": ("china", "city"), "苏州": ("china", "city"), "无锡": ("china", "city"),
+    "广州": ("china", "city"), "深圳": ("china", "city"), "东莞": ("china", "city"),
+    "成都": ("china", "city"), "武汉": ("china", "city"), "西安": ("china", "city"),
+    "青岛": ("china", "city"), "厦门": ("china", "city"), "大连": ("china", "city"),
+    "沈阳": ("china", "city"), "哈尔滨": ("china", "city"), "长春": ("china", "city"),
+    "长沙": ("china", "city"), "郑州": ("china", "city"), "合肥": ("china", "city"),
+    "福州": ("china", "city"), "济南": ("china", "city"), "昆明": ("china", "city"),
+    # ---- 中国：多省区域短语 ----
+    "江浙沪": ("china", "region"), "长三角": ("china", "region"), "珠三角": ("china", "region"),
+    "大湾区": ("china", "region"), "京津冀": ("china", "region"),
+    # ---- 国际：知名城市（拉丁名整词匹配）----
+    "tokyo": ("japan", "city"), "osaka": ("japan", "city"), "nagoya": ("japan", "city"),
+    "kyoto": ("japan", "city"), "sendai": ("japan", "city"), "fukuoka": ("japan", "city"),
+    "berlin": ("germany", "city"), "munich": ("germany", "city"), "hamburg": ("germany", "city"),
+    "heidelberg": ("germany", "city"), "frankfurt": ("germany", "city"),
+    "paris": ("france", "city"), "lyon": ("france", "city"),
+    "london": ("uk", "city"), "manchester": ("uk", "city"), "edinburgh": ("uk", "city"),
+    "seoul": ("korea", "city"),
+    "new york": ("us", "city"), "san francisco": ("us", "city"), "boston": ("us", "city"),
+    "seattle": ("us", "city"), "chicago": ("us", "city"), "austin": ("us", "city"),
+    "amsterdam": ("netherlands", "city"), "zurich": ("switzerland", "city"),
+    # ---- 国际城市的 CJK 写法 ----
+    "东京": ("japan", "city"), "大阪": ("japan", "city"), "名古屋": ("japan", "city"),
+    "京都": ("japan", "city"), "仙台": ("japan", "city"), "福冈": ("japan", "city"),
+    "柏林": ("germany", "city"), "慕尼黑": ("germany", "city"), "海德堡": ("germany", "city"),
+    "巴黎": ("france", "city"), "里昂": ("france", "city"),
+    "伦敦": ("uk", "city"), "曼彻斯特": ("uk", "city"), "爱丁堡": ("uk", "city"),
+    "首尔": ("korea", "city"), "阿姆斯特丹": ("netherlands", "city"), "苏黎世": ("switzerland", "city"),
+}
+
+#: 拉丁多词地名（子串匹配安全）
+_PLACE_MULTIWORD = tuple(sorted((a for a in PLACES if " " in a), key=len, reverse=True))
+#: 拉丁单词地名（整词匹配）
+_PLACE_LATIN_WORD = tuple(sorted((a for a in PLACES if re.fullmatch(r"[a-z]+", a)), key=len, reverse=True))
+#: CJK 地名（子串匹配安全）
+_PLACE_CJK = tuple(sorted((a for a in PLACES if re.search(r"[\u3040-\u30ff\u4e00-\u9fff]", a)),
+                          key=len, reverse=True))
+
+
+def resolve_places(text) -> list:
+    """从文本中识别省/市级地名 → [{name, country, level}]（保守：拉丁单词必须整词）。"""
+    out: list = []
+    low = " " + str(text or "").lower() + " "
+
+    def add(name):
+        if name not in [p["name"] for p in out]:
+            country, level = PLACES[name]
+            out.append({"name": name, "country": country, "level": level})
+
+    for a in _PLACE_MULTIWORD:
+        if a in low:
+            add(a)
+    for w in re.findall(r"[a-z]+", low):
+        if w in _PLACE_LATIN_WORD:
+            add(w)
+    for a in _PLACE_CJK:
+        if a in text:
+            add(a)
+    return out
+
 #: 目标地区 → 搜索语言。primary 为该地区的当地语言，secondary 是"有国际项目价值时"的补充。
 #: 这张表可以按需扩展；**没有列出的国家不受影响**（见 resolve_locales 的 unknown 处理）。
 REGION_LOCALES = {
@@ -148,7 +230,9 @@ def target_regions(profile, request_text: str = "") -> dict:
     | `profile_fallback`  | 请求没有地区 | preferred_country → school_country |
     | `default_remote`    | 什么都没有 | Global/Remote |
 
-    返回 {regions, unknown_regions, hints, source, notes}。
+    返回 {regions, unknown_regions, place_hints, hints, source, notes}。
+    `place_hints` 是省/市级地名（如 "杭州"、"浙江"、"江浙沪"、"东京"），供搜索 query 直接使用 ——
+    **地区和搜索语言之外，还要把地名带进 query**，否则城市意图会丢失。
 
     职责边界：本函数只做 **canonicalization + 已知别名解析**（best-effort）；
     从复杂自然语言里提取地理意图是宿主 Agent 的语义层职责 —— 请把解析结果通过
@@ -186,20 +270,38 @@ def target_regions(profile, request_text: str = "") -> dict:
         c = canonical_country(raw)
         (pref if c else unknown).append(c if c else raw)
     school = canonical_country((profile.get("education") or {}).get("school_country"))
+    # 省/市级地名：来自请求文本 + 结构化偏好（preferred_city / preferred_region）
+    req_places = resolve_places(req)
+    city_raw = [str(x) for x in as_list(cons.get("preferred_city"))]
+    region_raw = [str(x) for x in as_list(cons.get("preferred_region"))]
+    pref_places = resolve_places("、".join(city_raw + region_raw))
+    place_unknown = [x for x in (city_raw + region_raw)
+                     if x not in {p["name"] for p in pref_places}]
+    unknown = list(dict.fromkeys(unknown + place_unknown))
+    place_hints = ([p["name"] for p in req_places]
+                   + [p["name"] for p in pref_places]
+                   + place_unknown)
+    place_hints = list(dict.fromkeys(place_hints))
+
     # preferred_country 一旦声明（哪怕全部未收录）就独占；school_country 只是 fallback，
     # 不会被追加成第二个搜索目标。
-    declared = bool(pref_raw)
+    # preferred_country / preferred_city / preferred_region 任一声明都算显式偏好
+    declared = bool(pref_raw) or bool(city_raw) or bool(region_raw)
     remote_ok = bool((profile.get("constraints") or {}).get("remote"))
     global_pref = any(str(x).strip().lower() in _GLOBAL_MARKERS for x in pref_raw)
 
     req_known = known_in(req)
-    is_override = req_known and any(m in req.lower() for m in OVERRIDE_MARKERS)
+    is_override = (req_known or req_places) and any(m in req.lower() for m in OVERRIDE_MARKERS)
+
+    req_countries = list(req_known) + [p["country"] for p in req_places
+                                        if p["country"] not in req_known]
 
     if is_override:
-        regions, source = req_known, "explicit_override"
+        regions, source = req_countries, "explicit_override"
         notes.append("请求明确限定地区（override）→ 画像中的长期地区偏好本轮不参与")
-    elif req_known:
-        regions = req_known + [r for r in pref if r not in req_known]
+    elif req_countries:
+        regions = req_countries + [r for r in (pref + [p["country"] for p in pref_places])
+                                   if r not in req_countries]
         source = "explicit_additive"
         notes.append("请求提到地区 → 请求地区优先；画像地区保留在其后，可按语义舍弃")
     elif global_pref:
@@ -207,7 +309,8 @@ def target_regions(profile, request_text: str = "") -> dict:
         regions, source = ["remote"], "global_intent"
         notes.append("画像明确声明全球/远程目标 → 不使用学校所在国作为搜索地区")
     elif declared:
-        regions, source = pref, "profile_fallback"
+        regions, source = list(pref) + [p["country"] for p in pref_places
+                                        if p["country"] not in pref], "profile_fallback"
         if remote_ok and "remote" not in regions:
             # 「国家 + 也可以远程」：国家为主，remote 作为附加目标
             regions = regions + ["remote"]
@@ -235,7 +338,9 @@ def target_regions(profile, request_text: str = "") -> dict:
                      "（按页面语言动态扩展，功能不受影响）：" + "、".join(unknown))
     # region_hints = 已知地区 + 未收录地区（两者都保留，不能二选一）
     return {"regions": regions, "unknown_regions": unknown,
-            "hints": list(regions) + [u for u in unknown if u not in regions],
+            "place_hints": place_hints,
+            "hints": list(regions) + list(place_hints)
+                     + [u for u in unknown if u not in regions],
             "source": source, "notes": notes}
 
 
@@ -301,7 +406,8 @@ def resolve_locales(profile, request_text: str = "") -> dict:
     if not primary:
         primary = ["en"]
     return {"regions": regions, "unknown_regions": unknown,
-            "region_hints": tp["hints"], "region_source": tp["source"],
+            "region_hints": tp["hints"], "place_hints": tp["place_hints"],
+            "region_source": tp["source"],
             "primary_locales": primary, "optional_locales": optional,
             "load_files": files, "notes": notes}
 
@@ -440,6 +546,7 @@ def search_plan(profile, mode: str = "A", request_text: str = "") -> dict:
         "regions": loc["regions"],
         "unknown_regions": loc["unknown_regions"],
         "region_hints": loc["region_hints"],
+        "place_hints": loc["place_hints"],
         "region_source": loc["region_source"],
         "primary_locales": loc["primary_locales"],
         "optional_locales": loc["optional_locales"],
@@ -457,6 +564,7 @@ def search_plan(profile, mode: str = "A", request_text: str = "") -> dict:
 def _render_text(plan: dict) -> str:
     out = [f"mode: {plan['mode']}",
            f"regions: {', '.join(plan['regions'])}"
+           + (f"  (place hints: {', '.join(plan['place_hints'])})" if plan.get('place_hints') else "")
            + (f"  (未收录地区，按通用规则处理: {', '.join(plan['unknown_regions'])})"
               if plan["unknown_regions"] else ""),
            f"primary locales: {', '.join(plan['primary_locales'])}",

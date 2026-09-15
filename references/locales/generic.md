@@ -53,6 +53,18 @@ Free-text 的地区识别是 **best-effort**（只认 `COUNTRY_ALIASES` 里的�
 **不要**从"用户说中文"推断用户在中国，也不要从"用户专业是 IoT"推断用户想去日本。
 语言与专业都不是地区证据。
 
+### 1.1 省/市级定位（place hints）
+
+国家级只解决"用哪种语言"；用户说"在杭州读书""江浙沪优先"时，**地名必须进入搜索 query**，
+否则城市意图会丢失（彩排 u1 的真实教训）。
+
+- 画像字段：`constraints.preferred_city`（城市）/ `constraints.preferred_region`（省、大区，如 浙江 / 江浙沪）。
+- `scripts/locales.py` 会把识别到的地名放进 `place_hints`，并解析出所属国家参与 precedence
+  （杭州 → china；东京 → japan；未收录的地名原样保留为 hint，不丢弃）。
+- 生成 query 时：`<intent> + <place_hints>`（如 "会计 实习 杭州"、"internship Hangzhou"），
+  而不是只搜国家级。
+- 种子表刻意保守（中国省市 + 少量国际城市）；未收录地名不影响运行，由 Agent 结构化传入。
+
 ## 2. 解析语言计划
 
 | 情况 | primary | secondary |
