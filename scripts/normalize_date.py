@@ -372,7 +372,21 @@ def main(argv=None) -> int:
                     help="a/b/y 顺序歧义时的解释（默认 auto→month/day）")
     ap.add_argument("--format", choices=["json", "iso"], default="json")
     ap.add_argument("--jsonl", action="store_true", help="多行输入时输出 JSONL")
+    ap.add_argument("--freshness", metavar="PATH",
+                    help="读取 JSON（单条或 {opportunities:[...]})，输出每条的 freshness 状态")
     args = ap.parse_args(argv)
+    if args.freshness:
+        ref = dt.date.fromisoformat(args.now) if args.now else dt.date.today()
+        with open(args.freshness, encoding="utf-8") as fh:
+            data = json.load(fh)
+        recs = data.get("opportunities", [data]) if isinstance(data, dict) else data
+        out = []
+        for r in recs:
+            if not isinstance(r, dict):
+                continue
+            out.append({"id": r.get("id"), "title": r.get("title"), **freshness(r, ref)})
+        print(json.dumps(out, ensure_ascii=False, indent=2))
+        return 0
 
     if args.file:
         with open(args.file, encoding="utf-8") as fh:
@@ -397,8 +411,8 @@ def main(argv=None) -> int:
     return 0
 
 
-if __name__ == "__main__":
-    sys.exit(main())
+
+# ---------------------------------------------------------------- CLI 入口
 
 
 # ---------------------------------------------------------------- Freshness
@@ -498,3 +512,7 @@ def freshness(opp, today=None) -> dict:
                 "deadline_iso": None, "deadline_type": dtype, "cycle_year": cyear}
     return {"status": "unknown", "reason": f"周期为 {cyear} 年但截止日未抽取到 → 状态需人工确认",
             "deadline_iso": None, "deadline_type": dtype, "cycle_year": cyear}
+
+
+if __name__ == "__main__":
+    sys.exit(main())
