@@ -1,47 +1,78 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" role="img" aria-labelledby="title desc">
-  <title id="title">OpportunityRadar</title>
-  <desc id="desc">A radar beam discovers opportunities beyond the obvious path.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 520" role="img" aria-labelledby="title desc">
+  <title id="title">OpportunityRadar 如何找到值得看的机会</title>
+  <desc id="desc">用户提出问题后，依次发现更多机会、核实官网信息、判断申请资格，最后得到可行动的清单。</desc>
   <defs>
     <linearGradient id="bg" x2="1" y2="1">
-      <stop offset="0" stop-color="#071628"/>
-      <stop offset="1" stop-color="#10334b"/>
+      <stop offset="0" stop-color="#071826"/>
+      <stop offset="1" stop-color="#11364a"/>
     </linearGradient>
-    <linearGradient id="beam" x2="1" y2="0">
-      <stop offset="0" stop-color="#45e2c2" stop-opacity=".06"/>
-      <stop offset="1" stop-color="#45e2c2" stop-opacity=".28"/>
+    <linearGradient id="card" x2="0" y2="1">
+      <stop offset="0" stop-color="#163c50"/>
+      <stop offset="1" stop-color="#0d2a3e"/>
     </linearGradient>
-    <linearGradient id="word" x2="0" y2="1">
-      <stop offset="0" stop-color="#ffffff"/>
-      <stop offset="1" stop-color="#c6e6ea"/>
-    </linearGradient>
+    <style>
+      .base { font-family: Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif; }
+      .light { fill: #f2fbfc; }
+      .muted { fill: #b1d1d8; }
+      .accent { fill: #63e3cb; }
+    </style>
   </defs>
-  <rect width="1200" height="360" rx="24" fill="url(#bg)"/>
-  <g fill="none" stroke="#79c8c8" opacity=".17">
-    <path d="M0 90h1200M0 180h1200M0 270h1200"/>
-    <path d="M100 0v360M200 0v360M300 0v360M400 0v360M500 0v360M600 0v360M700 0v360M800 0v360M900 0v360M1000 0v360M1100 0v360"/>
+  <rect width="1200" height="520" rx="22" fill="url(#bg)"/>
+  <path d="M32 32h1136v456H32z" fill="none" stroke="#6abfc1" stroke-opacity=".18"/>
+  <circle cx="1094" cy="80" r="110" fill="none" stroke="#74c5c3" stroke-opacity=".14"/>
+  <circle cx="1094" cy="80" r="72" fill="none" stroke="#74c5c3" stroke-opacity=".2"/>
+  <circle cx="1094" cy="80" r="31" fill="none" stroke="#74c5c3" stroke-opacity=".3"/>
+  <path d="M1094 80 1180 11" stroke="#63e3cb" stroke-width="2" stroke-opacity=".7"/>
+  <circle cx="1094" cy="80" r="5" fill="#63e3cb"/>
+
+  <g class="base">
+    <text x="65" y="57" class="accent" font-size="18" font-weight="700" letter-spacing="1">OPPORTUNITY RADAR</text>
+    <text x="65" y="105" class="light" font-size="37" font-weight="700">从一个问题，找到真正值得看的机会</text>
+    <text x="66" y="138" class="muted" font-size="19">不只找链接：还会核实来源、判断资格，告诉你下一步先做什么。</text>
   </g>
-  <g transform="translate(920 180)">
-    <circle r="146" fill="none" stroke="#77b8be" stroke-opacity=".24"/>
-    <circle r="108" fill="none" stroke="#77b8be" stroke-opacity=".34"/>
-    <circle r="70" fill="none" stroke="#77b8be" stroke-opacity=".48"/>
-    <circle r="31" fill="none" stroke="#77b8be" stroke-opacity=".7"/>
-    <path d="M0 0 133-61A146 146 0 0 1 142 35Z" fill="url(#beam)"/>
-    <path d="M0 0 133-61" stroke="#51ead0" stroke-width="2" opacity=".9"/>
-    <circle r="7" fill="#5af1d2"/>
-    <circle cx="86" cy="-70" r="7" fill="#ffcf6b"/>
-    <circle cx="-109" cy="38" r="5" fill="#73aaff"/>
-    <circle cx="57" cy="112" r="6" fill="#a986ff"/>
-    <circle cx="138" cy="28" r="5" fill="#5af1d2"/>
-    <path d="M86-70l-19-18M-109 38l-20 12M57 112l8 20" stroke="#b5d8da" stroke-opacity=".55"/>
+
+  <rect x="65" y="163" width="1070" height="57" rx="14" fill="#d9faf3"/>
+  <circle cx="99" cy="192" r="14" fill="#0e765f"/>
+  <text x="94" y="199" class="base" fill="#ffffff" font-size="20" font-weight="700">?</text>
+  <text x="130" y="199" class="base" fill="#0a3040" font-size="23" font-weight="700">你问：最近有什么适合我的机会？</text>
+
+  <g fill="url(#card)" stroke="#4e8998" stroke-opacity=".55">
+    <rect x="65" y="245" width="250" height="157" rx="17"/>
+    <rect x="338" y="245" width="250" height="157" rx="17"/>
+    <rect x="611" y="245" width="250" height="157" rx="17"/>
+    <rect x="884" y="245" width="250" height="157" rx="17"/>
   </g>
-  <g font-family="Arial, Helvetica, sans-serif" fill="url(#word)">
-    <text x="68" y="167" font-size="57" font-weight="750" letter-spacing="-2">Opportunity</text>
-    <text x="68" y="225" font-size="57" font-weight="750" letter-spacing="-2">Radar<tspan fill="#5af1d2">.</tspan></text>
+  <g class="base">
+    <text x="88" y="278" class="accent" font-size="17" font-weight="700">01 / 找</text>
+    <text x="361" y="278" class="accent" font-size="17" font-weight="700">02 / 查</text>
+    <text x="634" y="278" class="accent" font-size="17" font-weight="700">03 / 筛</text>
+    <text x="907" y="278" class="accent" font-size="17" font-weight="700">04 / 选</text>
+    <text x="88" y="317" class="light" font-size="24" font-weight="700">发现更多机会</text>
+    <text x="361" y="317" class="light" font-size="24" font-weight="700">核实官网信息</text>
+    <text x="634" y="317" class="light" font-size="24" font-weight="700">判断能否申请</text>
+    <text x="907" y="317" class="light" font-size="24" font-weight="700">给出下一步</text>
+    <text x="88" y="350" class="muted" font-size="17">工作、科研、比赛</text>
+    <text x="88" y="378" class="muted" font-size="17">奖学金、项目……</text>
+    <text x="361" y="350" class="muted" font-size="17">报名时间、申请条件</text>
+    <text x="361" y="378" class="muted" font-size="17">与官方申请入口</text>
+    <text x="634" y="350" class="muted" font-size="17">与你的背景逐项比对</text>
+    <text x="634" y="378" class="muted" font-size="17">不确定的单独标出</text>
+    <text x="907" y="350" class="muted" font-size="17">哪条值得先看</text>
+    <text x="907" y="378" class="muted" font-size="17">为什么值得看</text>
   </g>
-  <path d="M70 260h245" stroke="#5af1d2" stroke-width="4" stroke-linecap="round"/>
-  <g fill="#8db6c0" opacity=".75">
-    <circle cx="70" cy="293" r="3"/>
-    <circle cx="89" cy="293" r="3"/>
-    <circle cx="108" cy="293" r="3"/>
+  <g fill="none" stroke="#63e3cb" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M320 324h10m-5-5 5 5-5 5"/>
+    <path d="M593 324h10m-5-5 5 5-5 5"/>
+    <path d="M866 324h10m-5-5 5 5-5 5"/>
+  </g>
+
+  <text x="65" y="461" class="base light" font-size="19" font-weight="700">最后得到</text>
+  <g class="base" font-size="18" font-weight="700">
+    <rect x="171" y="429" width="281" height="48" rx="11" fill="#194f47" stroke="#5addb8"/>
+    <text x="199" y="460" fill="#b8ffe3">现在值得看</text>
+    <rect x="465" y="429" width="281" height="48" rx="11" fill="#4b3a20" stroke="#e5b958"/>
+    <text x="493" y="460" fill="#ffe5a8">还需要核实</text>
+    <rect x="759" y="429" width="375" height="48" rx="11" fill="#2c3c4b" stroke="#7894a8"/>
+    <text x="787" y="460" fill="#d3e2ec">已过期或不符合</text>
   </g>
 </svg>

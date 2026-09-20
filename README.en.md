@@ -1,4 +1,4 @@
-![OpportunityRadar — a radar sweep beyond the obvious search](assets/opportunity-radar-banner.svg)
+![OpportunityRadar — from a question to a checked shortlist](assets/opportunity-radar-banner.en.svg)
 
 <div align="center">
 
@@ -6,18 +6,30 @@
 
 # OpportunityRadar
 
-**Go beyond the search terms you already know.**
+**Find the opportunities you didn't know to search for.**
 
-An Agent Skill that turns a vague ambition into a researched shortlist you can actually use.
+Ask what to do next. Get a shortlist that explains what fits, what is open, and what is worth your time.
 
 [![Tests](https://github.com/Sver0411/OpportunityRadar/actions/workflows/test.yml/badge.svg)](https://github.com/Sver0411/OpportunityRadar/actions/workflows/test.yml)
 [![MIT license](https://img.shields.io/badge/license-MIT-3DA639)](LICENSE)
 
 </div>
 
-Some of the best opportunities are hiding behind search terms you've never tried. A keyword search can only look where you point it. OpportunityRadar helps your agent sweep the wider landscape, investigate promising leads, and bring back the ones that deserve your attention.
+You cannot apply to an opportunity you never found. And you cannot trust a deadline just because a job board still shows it.
 
-This is more than link gathering: it connects each lead to your goals, checks the important claims on authoritative pages, and shows you what is ready, what is uncertain, and what is a dead end. Think of it as a scout that brings back evidence, not just coordinates.
+OpportunityRadar helps a web-enabled agent search beyond your first keywords, check promising leads on official pages, and tell you which ones you can act on. It is built to answer the useful question: **“What should I look at next, and why?”**
+
+## More than a list of links
+
+| What you need | What the skill does |
+|---|---|
+| **More options** | Search across 13 categories, including jobs, research, funding, open source, and projects—without adding irrelevant categories to a focused request. |
+| **Facts you can check** | Use third-party pages to find leads, then check important claims against official sources. Unconfirmed details are labelled as such. |
+| **A clear eligibility answer** | Compare stated requirements with what you have actually shared. If something is missing, say what needs checking. |
+| **A useful order** | Put deadlines and application status alongside fit, so you know what needs attention first. |
+| **Less repetition** | Optional local files keep track of what you have seen or saved and flag important changes. |
+
+The goal is not the longest list. It is a short list you can understand and use.
 
 ## When to use it
 
@@ -35,7 +47,7 @@ You can change direction mid-conversation. A preference for local jobs in one tu
 
 The skill is intended for students, recent graduates, and early-career explorers in any field—not just software engineers. It can look across 13 opportunity categories, from internships and research to competitions, scholarships, exchange programmes, open source, events, and creative projects. A narrow request stays narrow; breadth is useful only when it uncovers something genuinely relevant.
 
-## What makes a recommendation useful
+## Every lead has to earn its place
 
 Each result should answer a few practical questions:
 
@@ -44,7 +56,7 @@ Each result should answer a few practical questions:
 3. **Is it current?** Is there a verified application window or deadline?
 4. **Where did that come from?** Can you inspect the official source yourself?
 
-OpportunityRadar separates **ready to consider now**, **promising but unconfirmed**, and **closed or clearly ineligible** leads. A listing on a job board can start the search; it doesn't, by itself, prove that a programme is still accepting applicants. Missing information stays missing instead of becoming a confident guess.
+OpportunityRadar separates **ready to consider now**, **promising but unconfirmed**, and **closed or clearly ineligible** leads. A listing on a job board can start the search; it doesn't, by itself, prove that a programme is still accepting applicants. Missing information stays missing instead of becoming a confident guess. If only a few leads survive the checks, only a few make the shortlist.
 
 This distinction matters in easy-to-miss cases. Next year's graduate intake may already be recruiting. A master's programme awards a master's degree; that does not mean applicants must already hold one. The skill keeps cohort, application timing, current qualifications, and target degree separate.
 
