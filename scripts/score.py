@@ -43,6 +43,7 @@ from common import (  # noqa: E402
     validate_opportunity,
 )
 from normalize_date import freshness, parse_date  # noqa: E402
+from readiness import readiness  # noqa: E402
 
 VERDICT_ORDER = {
     "Eligible": 0, "Probably Eligible": 1, "Unknown": 2,
@@ -1150,6 +1151,9 @@ def recommendation_zone(row: dict) -> str:
         return "excluded"
     if row.get("verdict") == "Ineligible":
         return "excluded"
+    if row.get("conflicts"):
+        # 时间冲突 / dealbreaker：不是 Ineligible，但不能和低投入机会一样推荐（V3 §35）
+        return "worth_verifying"
     if row["freshness"]["status"] in OPEN_FRESHNESS \
             and str(row.get("official_url") or "").strip() \
             and row.get("verification_status") == "verified_official" \
@@ -1321,6 +1325,20 @@ def score_all(profile, opps, seen_index=None, today=None, strict=False, context=
         if not str(opp.get("official_url") or "").strip():
             flags.append("no_canonical_source")
             warnings.append("未找到官方来源（canonical source），不得进入 Recommended now")
+
+        # V3：readiness + 冲突检测（gate 的一部分，不改权重）
+        rd = readiness(opp, profile)
+        conflicts = []
+        for b in rd["blockers"]:
+            if "时间冲突" in b:
+                conflicts.append("heavy_commitment_conflict")
+                flags.append("heavy_commitment_conflict")
+            else:
+                conflicts.append("dealbreaker_conflict")
+                flags.append("dealbreaker_conflict")
+            warnings.append(b)
+        if rd["status"] == "unknown":
+            flags.append("readiness_unknown")
         if needs_llm:
             flags.append("needs_semantic_check")
         if not opp.get("language_requirement"):
@@ -1356,8 +1374,12 @@ def score_all(profile, opps, seen_index=None, today=None, strict=False, context=
             "deadline_source": dinfo["source"],
             "freshness": fr["status"],
             "freshness_reason": fr["reason"],
+            "readiness": rd["status"],
+            "readiness_detail": rd,
+            "conflicts": conflicts,
             "zone": recommendation_zone({"freshness": fr, "official_url": opp.get("official_url"),
                                           "verification_status": opp.get("verification_status"),
+                                          "conflicts": conflicts,
                                           "application_status_evidence": actionable_evidence(opp, today),
                                           "size_verified": size_verified,
                                           "verdict": verdict, "match": match}),

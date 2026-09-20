@@ -1,0 +1,76 @@
+{
+  "_note": "FICTIONAL TEST PERSONA — 仅用于 OpportunityRadar benchmark（V3 职业场景）。不是真实个人，禁止当产品示例数据使用。",
+  "persona_id": "manager",
+  "display": "Manager",
+  "question": "最近有什么真正值得我关注的机会？",
+  "life_stage": [
+    "working"
+  ],
+  "career_stage": [
+    "manager"
+  ],
+  "employment": {
+    "status": "full_time",
+    "function": "engineering",
+    "seniority": "manager",
+    "years_of_experience": 12,
+    "management_level": "manager"
+  },
+  "education": {
+    "degree": "undergraduate",
+    "major": "Information Systems",
+    "major_family": "cs_software",
+    "current_year": null,
+    "expected_graduation": "2014-06",
+    "school_country": "Singapore"
+  },
+  "skills": [
+    {
+      "name": "people management"
+    },
+    {
+      "name": "stakeholder communication"
+    }
+  ],
+  "languages": [
+    {
+      "language": "English",
+      "level": "native"
+    }
+  ],
+  "interests": [
+    "business"
+  ],
+  "goals": [
+    {
+      "type": "networking",
+      "priority": "high"
+    },
+    {
+      "type": "skill",
+      "priority": "medium"
+    }
+  ],
+  "constraints": {
+    "preferred_country": [
+      "Singapore"
+    ],
+    "remote": true,
+    "weekly_time": "4"
+  },
+  "career_state": {
+    "promotion_target": "Director",
+    "management_intent": "high"
+  },
+  "decision_preferences": {
+    "prefer_networking": "high",
+    "prefer_structured_program": "high"
+  },
+  "dealbreakers": [
+    "必须长期线下"
+  ],
+  "green_lights": [
+    "能认识同行",
+    "leadership 项目"
+  ]
+}

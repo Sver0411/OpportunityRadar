@@ -1,0 +1,91 @@
+{
+  "_note": "FICTIONAL TEST PERSONA — 仅用于 OpportunityRadar benchmark（V3 职业场景）。不是真实个人，禁止当产品示例数据使用。",
+  "persona_id": "returning-to-school",
+  "display": "Working Professional Returning to School",
+  "question": "最近有什么真正值得我关注的机会？",
+  "life_stage": [
+    "working",
+    "studying_and_working"
+  ],
+  "career_stage": [
+    "mid_career",
+    "graduate_student"
+  ],
+  "employment": {
+    "status": "full_time",
+    "industry": "automotive",
+    "function": "engineering",
+    "seniority": "senior",
+    "years_of_experience": 8
+  },
+  "education": {
+    "degree": "undergraduate",
+    "major": "Vehicle Engineering",
+    "major_family": "me_aero",
+    "current_year": null,
+    "expected_graduation": "2018-06",
+    "school_country": "China"
+  },
+  "skills": [
+    {
+      "name": "CAD"
+    },
+    {
+      "name": "systems engineering"
+    }
+  ],
+  "languages": [
+    {
+      "language": "Chinese",
+      "level": "native"
+    },
+    {
+      "language": "Japanese",
+      "exam": "JLPT",
+      "score": "N3"
+    }
+  ],
+  "interests": [
+    "me_aero",
+    "research"
+  ],
+  "goals": [
+    {
+      "type": "education",
+      "priority": "high"
+    },
+    {
+      "type": "research",
+      "priority": "medium"
+    },
+    {
+      "type": "career",
+      "priority": "medium"
+    }
+  ],
+  "constraints": {
+    "preferred_country": [
+      "Japan"
+    ],
+    "remote": false,
+    "relocation": true,
+    "weekly_time": "8"
+  },
+  "career_state": {
+    "target_country": "Japan",
+    "switch_intent": "medium",
+    "timeline": "24 months"
+  },
+  "decision_preferences": {
+    "prefer_structured_program": "high",
+    "time_horizon": "long"
+  },
+  "dealbreakers": [
+    "必须立刻辞职"
+  ],
+  "green_lights": [
+    "能保留工作",
+    "奖学金",
+    "能接触教授"
+  ]
+}

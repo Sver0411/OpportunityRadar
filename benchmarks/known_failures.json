@@ -1,0 +1,16 @@
+{
+  "_note": "Declared benchmark gate failures. A metric below its threshold is never silently marked PASS; it must be listed here with a reason, and the report text must state FAIL for it.",
+  "known_failures": [
+    {
+      "persona": "iot-embedded",
+      "gate": "final_verification_pct",
+      "value": 67,
+      "threshold": 80,
+      "operator": ">=",
+      "severity": "medium",
+      "reason": "Round-2 re-run: 3 条 Recommended now 中 2 条官方页核实成功，1 条（全国大学生智能汽车竞赛官方页返回无关内容/反爬）无法验证；当时按 gate 规则应已降级，但记录中仍在主推荐区。",
+      "planned_action": "严格化：抓取失败或返回无关内容时，verification_status 必须降级为 unverified 并移出 Recommended now（与 F11 同源）；修完重跑该 persona 验证。",
+      "status": "open"
+    }
+  ]
+}

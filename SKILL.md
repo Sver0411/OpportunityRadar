@@ -114,6 +114,10 @@ Deterministic helpers (Full Mode; never re-implement inline):
 | `scripts/state.py` | seen/saved/ignored CRUD, change detection, feedback weighting suggestion |
 | `scripts/locales.py` | Resolve target regions → search languages + which locale files to load; search-plan skeleton; dynamic language detection (`--detect`) |
 | `scripts/common.py` | Shared enums, URL canonicalization, ID generation, lightweight contract validation |
+| `scripts/readiness.py` | Readiness: how far the user is from actually starting (not admission probability) |
+| `scripts/graph.py` | Opportunity graph: produces → unlocks → goal contribution; gap → bridge opportunities |
+| `scripts/coverage.py` | Search coverage ledger (region/locale/category depth) + one plain-language statement |
+| `scripts/utility.py` | Personal Utility: High/Medium/Low + reasons (worth investing resources now?) |
 
 Single source of truth: enums, weights, tracked fields and ID/URL rules live in
 `scripts/common.py`; `schemas/*.json` and the references must match it.
@@ -167,9 +171,19 @@ Single source of truth: enums, weights, tracked fields and ID/URL rules live in
 10. **Check eligibility.** Per high-ranked item give one of Eligible / Probably Eligible /
     Unknown / Probably Ineligible / Ineligible, with the deciding reasons.
     **Hard constraints outrank model judgement** (see Cross-cutting rules).
-11. **Rank.** Run `scripts/score.py` for components, then apply judgement.
+11. **Assess readiness (not probability).** For high-ranked items state how far the user is
+    from starting (`scripts/readiness.py`): ready_now / minor / short / major preparation /
+    blocked / unknown, with ready_items / missing_items / blockers. **Never output admission chance.**
+11b. **Value, effort and connections.** Record `outcomes` (so "unpaid" is not "worthless"),
+    `effort` / `cost` / `time_to_value`, and `produces` → `unlocks` → `goal_contribution`
+    (`scripts/graph.py`). Use `unlocks[].type` when the follow-up is not actually found; never
+    fabricate an `opportunity_id`. Unknown stays Unknown.
+11c. **Personal Utility.** Decide whether it deserves the user's resources *now*
+    (`scripts/utility.py` → High/Medium/Low + reasons). Separate from Match (fit) and Priority
+    (urgency): a high-match but very expensive opportunity can be Low utility.
+12. **Rank.** Run `scripts/score.py` for components, then apply judgement.
     Sort primarily by Priority (Match + urgency), not Match alone.
-12. **Explore adjacents.** Actively search adjacent and non-obvious directions — this is why
+12b. **Explore adjacents.** Actively search adjacent and non-obvious directions — this is why
     the skill exists. Include them when they meet the quality and verification bar; never pad
     with weak items to satisfy a quota. If nothing qualifies, say so in one line.
 13. **FINAL_RECOMMENDATION_CHECK, then return.** Before writing the answer, run the gate on
@@ -188,6 +202,18 @@ Single source of truth: enums, weights, tracked fields and ID/URL rules live in
     If the budget only allows 4 verified items, return 4. Each item still carries what it is,
     why it fits, eligibility verdict, deadline, cautions, official source, value.
     Optionally write the JSON artifact to `.opportunity-radar/last-run.json`.
+
+**Decision model (three separate questions).**
+  * *Match* — is it a fit?  *Priority* — is it urgent?  *Utility* — does it deserve resources now?
+  Utility weighs eligibility, goal fit, readiness, outcome value, effort, cost, time-to-value,
+  future optionality, trust and urgency. Output **High / Medium / Low + reasons only** — never a bare score.
+
+**Opportunity portfolio (for open-ended asks).** Prefer a portfolio over a plain top-N list,
+choosing only the groups that fit this user: 现在就该处理 / 高上限但难 / 低投入 / 形成公开成果 /
+认识人和资源 / 为半年后铺路 / 意想不到。Do not fill every group.
+
+**Prohibitions.** No admission probability, no predicted salary, no "搜遍了所有机会", no fabricated
+`unlocks[].opportunity_id`.
 
 **Budget split.** At the start of a run, split the budget explicitly: **Discovery Budget**
 (expand queries, collect candidates) and **Verification Budget** (return to official pages).

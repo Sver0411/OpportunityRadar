@@ -160,7 +160,13 @@ Known limitations of this benchmark:
 | Final recommendation verification | ≥80% | 67% (2/3) | **100%** | **100%** | **100%** |
 | Locale 计划正确 | ✅ | ja-JP+zh-CN ✅ | fr-FR ✅ | **remote/global_intent ✅**（v1 是 Brazil） | de-DE+nl-NL ✅ |
 
-**全部 hard quality gates 达标。** F01/F02/F05 的根因已消除；F03/F04 的聚合站结果全部降入
+**达标情况（按门槛逐项判定，见 `benchmarks/gates.json`）：**
+- expired leakage = 0、unverified actionable leakage = 0：**PASS**（4/4 persona）
+- final recommendation verification ≥80%：**IoT 67% 未达标（FAIL）**，Design / Environment / Biology 均 100%
+- radar-only useful ≥2：**PASS**（2–3）
+- 未达标项已写入 `benchmarks/known_failures.json`，**不通过降低门槛来让报告好看**。
+
+F01/F02/F05 的根因已消除；F03/F04 的聚合站结果全部降入
 Worth verifying；design 主推荐验证率 29% → 100%（代价：主推荐缩到 2 条）。
 
 ## Round 2 的两个诚实发现

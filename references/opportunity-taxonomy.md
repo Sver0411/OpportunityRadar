@@ -438,3 +438,43 @@ alumni mentoring program
 - ❌ 用分类名单凑数：13 类各来一条，用户看不完也用不上。
 - ❌ 给"考试报名时间"这类纯查询打上 `language` 类当成机会推荐。
 - ❌ 一条机会挂 5 个 primary 类。primary 只有一个。
+
+---
+
+## 14. 职业阶段含义（V3：扩展现有类别，不新增一级分类）
+
+同一个 category 对不同人生阶段意味着完全不同的东西。下面只做**扩展**，不动 13 个一级分类。
+
+### career
+- 学生：internship / campus recruiting / graduate program / student ambassador
+- 职场：experienced hire / lateral move / internal mobility / referral / remote role /
+  international role / contract / freelance / consulting / fractional role /
+  senior / staff / lead / management role / specialist role
+
+### education
+- 学生：undergraduate / master / PhD / exchange / summer school
+- 职场：part-time master / professional master / MBA / EMBA / executive education /
+  certificate programme / career conversion programme / company-sponsored study /
+  short-term overseas programme
+- 注意：`education_level` 是**申请人当前学历门槛**；项目授予的学位写 `program_degree`。
+
+### research
+- 学生：undergraduate research / RA / summer research / lab opening
+- 职场：industrial research / industry-academia collaboration / research consortium /
+  technical committee / standards participation / whitepaper collaboration /
+  patent collaboration / visiting researcher / research fellowship
+
+### networking
+- 学生：student society / mentor programme / alumni / conference
+- 职场：industry association / professional committee / expert network / mentor programme /
+  founder community / technical community / conference speaker / community organizer /
+  professional society
+
+### entrepreneurship
+- 学生：startup competition / campus incubator / idea contest
+- 职场：accelerator / incubator / startup grant / founder programme / cofounder matching /
+  venture studio / entrepreneur-in-residence / open innovation / corporate venture programme
+
+### 产出视角（不是新分类，是 outcome facet）
+同一个机会可以同时是 `competition` 且 `portfolio: High`、`skill: High`、
+`financial: Low` —— **"没工资"不等于"没价值"**。见 schema 的 `outcomes`。

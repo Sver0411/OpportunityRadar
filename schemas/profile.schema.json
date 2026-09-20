@@ -434,9 +434,30 @@
         },
         "organization_size": {
           "anyOf": [
-            {"type": "string", "enum": ["micro", "small", "medium", "large"]},
-            {"type": "array", "items": {"type": "string", "enum": ["micro", "small", "medium", "large"]}},
-            {"type": "null"}
+            {
+              "type": "string",
+              "enum": [
+                "micro",
+                "small",
+                "medium",
+                "large"
+              ]
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "micro",
+                  "small",
+                  "medium",
+                  "large"
+                ]
+              }
+            },
+            {
+              "type": "null"
+            }
           ],
           "description": "仅在用户明确限定企业规模时使用；本轮限定优先放在临时 context，而非持久画像"
         },
@@ -560,6 +581,528 @@
       "items": {
         "type": "string"
       }
+    },
+    "life_stage": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "string",
+        "enum": [
+          "student",
+          "working",
+          "studying_and_working",
+          "career_break",
+          "unemployed",
+          "self_employed",
+          "founder"
+        ]
+      },
+      "description": "人生状态（可多标签）：真实的人不是单一状态"
+    },
+    "career_stage": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "string",
+        "enum": [
+          "pre_college",
+          "undergraduate",
+          "graduate_student",
+          "new_grad",
+          "early_career",
+          "mid_career",
+          "senior_ic",
+          "manager",
+          "executive",
+          "researcher",
+          "founder",
+          "freelancer",
+          "career_switcher",
+          "returning_to_work"
+        ]
+      },
+      "description": "职业阶段（可多标签）"
+    },
+    "employment": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "status": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "full_time",
+            "part_time",
+            "contract",
+            "intern",
+            "self_employed",
+            "freelance",
+            "unemployed",
+            "on_leave",
+            "student_worker",
+            "unknown",
+            null
+          ]
+        },
+        "industry": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "company_type": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "startup",
+            "sme",
+            "large_enterprise",
+            "public_sector",
+            "nonprofit",
+            "university",
+            "research_institute",
+            "unknown",
+            null
+          ]
+        },
+        "company_size": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "micro",
+            "small",
+            "medium",
+            "large",
+            "unknown",
+            null
+          ]
+        },
+        "role": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "function": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "engineering",
+            "research",
+            "product",
+            "design",
+            "data",
+            "sales",
+            "marketing",
+            "operations",
+            "finance",
+            "hr",
+            "support",
+            "other",
+            "unknown",
+            null
+          ]
+        },
+        "seniority": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "intern",
+            "junior",
+            "mid",
+            "senior",
+            "staff",
+            "principal",
+            "lead",
+            "manager",
+            "director",
+            "unknown",
+            null
+          ]
+        },
+        "years_of_experience": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "management_level": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "none",
+            "team_lead",
+            "manager",
+            "director",
+            "executive",
+            "unknown",
+            null
+          ]
+        },
+        "employment_type": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "permanent",
+            "fixed_term",
+            "contract",
+            "temporary",
+            "apprenticeship",
+            "unknown",
+            null
+          ]
+        }
+      },
+      "additionalProperties": true,
+      "description": "职业信息（渐进式，缺失保持 null）"
+    },
+    "career_state": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "current_direction": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "target_role": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "target_industry": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "target_company_type": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "target_country": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "promotion_target": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "switch_intent": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "high",
+            "medium",
+            "low",
+            "unknown",
+            null
+          ],
+          "description": "换工作/换方向意向"
+        },
+        "management_intent": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "high",
+            "medium",
+            "low",
+            "unknown",
+            null
+          ],
+          "description": "管理路线意向"
+        },
+        "specialist_intent": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "high",
+            "medium",
+            "low",
+            "unknown",
+            null
+          ],
+          "description": "专家路线意向"
+        },
+        "entrepreneurship_intent": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "high",
+            "medium",
+            "low",
+            "unknown",
+            null
+          ],
+          "description": "创业意向"
+        },
+        "compensation_growth_intent": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "high",
+            "medium",
+            "low",
+            "unknown",
+            null
+          ],
+          "description": "涨薪导向"
+        },
+        "work_life_balance_intent": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "high",
+            "medium",
+            "low",
+            "unknown",
+            null
+          ],
+          "description": "工作生活平衡导向"
+        },
+        "timeline": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "growth_bottlenecks": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": true,
+      "description": "职业状态与目标方向"
+    },
+    "decision_preferences": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "risk_tolerance": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "high",
+            "medium",
+            "low",
+            "unknown",
+            null
+          ],
+          "description": "风险承受度"
+        },
+        "competition_tolerance": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "high",
+            "medium",
+            "low",
+            "unknown",
+            null
+          ],
+          "description": "竞争激烈机会的接受度"
+        },
+        "time_horizon": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "short",
+            "medium",
+            "long",
+            "unknown",
+            null
+          ]
+        },
+        "prefer_public_output": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "high",
+            "medium",
+            "low",
+            "unknown",
+            null
+          ],
+          "description": "偏好公开成果"
+        },
+        "prefer_low_commitment": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "high",
+            "medium",
+            "low",
+            "unknown",
+            null
+          ],
+          "description": "偏好低投入"
+        },
+        "prefer_high_upside": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "high",
+            "medium",
+            "low",
+            "unknown",
+            null
+          ],
+          "description": "偏好高上限"
+        },
+        "prefer_structured_program": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "high",
+            "medium",
+            "low",
+            "unknown",
+            null
+          ],
+          "description": "偏好有组织项目"
+        },
+        "prefer_independent_work": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "high",
+            "medium",
+            "low",
+            "unknown",
+            null
+          ],
+          "description": "偏好独立工作"
+        },
+        "prefer_networking": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "high",
+            "medium",
+            "low",
+            "unknown",
+            null
+          ],
+          "description": "偏好认识人"
+        },
+        "prefer_remote": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "high",
+            "medium",
+            "low",
+            "unknown",
+            null
+          ],
+          "description": "偏好远程"
+        },
+        "prefer_paid": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "high",
+            "medium",
+            "low",
+            "unknown",
+            null
+          ],
+          "description": "偏好有报酬"
+        }
+      },
+      "additionalProperties": true,
+      "description": "决策偏好：背景相同的两个人选择方式可能完全不同"
+    },
+    "dealbreakers": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "string"
+      },
+      "description": "明确不接受的条件（用户语言）；inferred 的不得冒充 user_stated"
+    },
+    "green_lights": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "string"
+      },
+      "description": "明确加分的条件（用户语言）"
     }
   },
   "$defs": {

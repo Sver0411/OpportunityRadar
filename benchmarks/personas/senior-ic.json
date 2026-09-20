@@ -1,0 +1,84 @@
+{
+  "_note": "FICTIONAL TEST PERSONA — 仅用于 OpportunityRadar benchmark（V3 职业场景）。不是真实个人，禁止当产品示例数据使用。",
+  "persona_id": "senior-ic",
+  "display": "Senior IC",
+  "question": "最近有什么真正值得我关注的机会？",
+  "life_stage": [
+    "working"
+  ],
+  "career_stage": [
+    "senior_ic"
+  ],
+  "employment": {
+    "status": "full_time",
+    "industry": "cloud",
+    "function": "engineering",
+    "seniority": "senior",
+    "years_of_experience": 8,
+    "management_level": "none"
+  },
+  "education": {
+    "degree": "master",
+    "major": "Computer Science",
+    "major_family": "cs_software",
+    "current_year": null,
+    "expected_graduation": "2018-06",
+    "school_country": "United States"
+  },
+  "skills": [
+    {
+      "name": "Go"
+    },
+    {
+      "name": "Kubernetes"
+    },
+    {
+      "name": "distributed systems"
+    }
+  ],
+  "languages": [
+    {
+      "language": "English",
+      "level": "native"
+    }
+  ],
+  "interests": [
+    "open_source",
+    "ai"
+  ],
+  "goals": [
+    {
+      "type": "networking",
+      "priority": "medium"
+    },
+    {
+      "type": "skill",
+      "priority": "medium"
+    }
+  ],
+  "constraints": {
+    "preferred_country": [],
+    "remote": true,
+    "weekly_time": "5"
+  },
+  "career_state": {
+    "current_direction": "Backend/infra",
+    "promotion_target": "Staff engineer",
+    "specialist_intent": "high",
+    "management_intent": "low"
+  },
+  "decision_preferences": {
+    "prefer_public_output": "high",
+    "prefer_high_upside": "medium",
+    "time_horizon": "long"
+  },
+  "dealbreakers": [
+    "纯听讲活动",
+    "高昂报名费"
+  ],
+  "green_lights": [
+    "公开署名",
+    "技术委员会",
+    "演讲机会"
+  ]
+}

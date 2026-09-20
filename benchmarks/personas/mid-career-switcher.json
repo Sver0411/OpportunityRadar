@@ -1,0 +1,88 @@
+{
+  "_note": "FICTIONAL TEST PERSONA — 仅用于 OpportunityRadar benchmark（V3 职业场景）。不是真实个人，禁止当产品示例数据使用。",
+  "persona_id": "mid-career-switcher",
+  "display": "Mid-career Career Switcher",
+  "question": "最近有什么真正值得我关注的机会？",
+  "life_stage": [
+    "working"
+  ],
+  "career_stage": [
+    "mid_career",
+    "career_switcher"
+  ],
+  "employment": {
+    "status": "full_time",
+    "industry": "manufacturing",
+    "function": "operations",
+    "seniority": "senior",
+    "years_of_experience": 9
+  },
+  "education": {
+    "degree": "undergraduate",
+    "major": "Mechanical Engineering",
+    "major_family": "me_aero",
+    "current_year": null,
+    "expected_graduation": "2017-06",
+    "school_country": "China"
+  },
+  "skills": [
+    {
+      "name": "Excel"
+    },
+    {
+      "name": "project management"
+    },
+    {
+      "name": "data analysis"
+    }
+  ],
+  "languages": [
+    {
+      "language": "Chinese",
+      "level": "native"
+    },
+    {
+      "language": "English",
+      "level": "B2"
+    }
+  ],
+  "interests": [
+    "data",
+    "business"
+  ],
+  "goals": [
+    {
+      "type": "career",
+      "priority": "high"
+    },
+    {
+      "type": "skill",
+      "priority": "high"
+    }
+  ],
+  "constraints": {
+    "preferred_country": [
+      "China"
+    ],
+    "remote": true,
+    "weekly_time": "8"
+  },
+  "career_state": {
+    "current_direction": "Factory operations",
+    "target_role": "Data analyst",
+    "switch_intent": "high",
+    "timeline": "18 months"
+  },
+  "decision_preferences": {
+    "prefer_low_commitment": "medium",
+    "prefer_structured_program": "high"
+  },
+  "dealbreakers": [
+    "每周超过 15 小时",
+    "必须长期线下"
+  ],
+  "green_lights": [
+    "有证书",
+    "能形成作品"
+  ]
+}

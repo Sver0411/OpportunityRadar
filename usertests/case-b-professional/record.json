@@ -1,0 +1,122 @@
+{
+  "case": "B",
+  "persona_id": "early-career-engineer",
+  "timestamp": "2026-09-20",
+  "locale_plan": {
+    "mode": "D",
+    "regions": ["japan", "remote"],
+    "region_source": "profile_fallback",
+    "primary_locales": ["ja-JP"],
+    "optional_locales": ["en", "zh-CN"],
+    "load_files": ["references/locales/generic.md", "references/locales/jp.md"],
+    "categories_searched": ["open_source", "skill_development", "event", "networking", "competition", "career", "education"],
+    "place_hints": [],
+    "layer_ratios": {"exploit": 0.60, "adjacent": 0.25, "explore": 0.15}
+  },
+  "queries": [
+    "Edge AI TinyML open source contribution good first issue 2026 GitHub",
+    "エッジAI 開発者プログラム Edge AI developer program Coral Jetson STM32Cube.AI 無料",
+    "Edge AI conference Japan 2026 call for speakers エッジAI 勉強会 コミュニティ",
+    "TinyML Edge AI challenge contest 2026 hardware competition professional",
+    "Edge AI engineer remote jobs Japan エッジAIエンジニア 求人 リモート 経験者",
+    "Edge AI professional certificate course part-time TinyML training online 2026"
+  ],
+  "searches_used": 6,
+  "fetches_used": 4,
+  "results": [
+    {
+      "title": "STM32 Edge AI Suite (STM32Cube.AI / NanoEdge AI Studio / ST Edge AI Developer Cloud)",
+      "organization": "STMicroelectronics",
+      "category": "skill_development",
+      "official_url": "https://stm32ai.st.com/resources/",
+      "deadline": "rolling",
+      "freshness": "open",
+      "zone": "recommended_now",
+      "eligibility_verdict": "Eligible",
+      "readiness": "ready_now",
+      "outcomes": {"career": "Medium", "skill": "High", "portfolio": "High", "financial": "High", "networking": "Low"},
+      "effort": "3-5 h/week self-paced, free",
+      "note": "Free ST dev tools + 50+ example cases + MOOC; directly uses his Embedded C/RTOS. Produces public Edge AI demo on STM32."
+    },
+    {
+      "title": "HarvardX TinyML Professional Certificate (edX)",
+      "organization": "Harvard University / Google TensorFlow",
+      "category": "education",
+      "official_url": "https://www.edx.org/certificates/professional-certificate/harvardx-tiny-machine-learning",
+      "deadline": "rolling",
+      "freshness": "open",
+      "zone": "recommended_now",
+      "eligibility_verdict": "Eligible",
+      "readiness": "minor_preparation",
+      "outcomes": {"career": "Medium", "skill": "High", "portfolio": "Medium", "financial": "Low", "networking": "Low"},
+      "effort": "2-4 h/week, ~$807.30, 16 weeks self-paced",
+      "note": "Builds the missing ML foundation; hands-on Arduino kit. Needs a little Python first (prereq missing in profile)."
+    },
+    {
+      "title": "TinyMLDelta open source contribution",
+      "organization": "TinyMLDelta (GitHub OSS)",
+      "category": "open_source",
+      "official_url": "https://github.com/felixgalindo/TinyMLDelta/blob/main/CONTRIBUTING.md",
+      "deadline": "rolling",
+      "freshness": "open",
+      "zone": "recommended_now",
+      "eligibility_verdict": "Probably Eligible",
+      "readiness": "ready_now",
+      "outcomes": {"career": "Medium", "skill": "High", "portfolio": "High", "financial": "Low", "networking": "Medium"},
+      "effort": "flexible 2-4 h/week, remote",
+      "note": "Welcomes embedded AI devs; C runtime + STM32/ESP32/NRF52 ports match his C/Git. Early-stage repo, no big-brand backing."
+    },
+    {
+      "title": "ONE Summit Japan 2026 (Open Networking & Edge Summit)",
+      "organization": "Linux Foundation / LF Edge",
+      "category": "event",
+      "official_url": "https://events.linuxfoundation.org/open-networking-edge-summit-japan/",
+      "deadline": "2026-12-11 (event); CFP closed 2025-08-24",
+      "freshness": "open",
+      "zone": "recommended_now",
+      "eligibility_verdict": "Eligible",
+      "readiness": "ready_now",
+      "outcomes": {"career": "Low", "skill": "Medium", "portfolio": "Low", "financial": "Low", "networking": "High"},
+      "effort": "2 days attendance, Tokyo, Dec 10-11 2026",
+      "note": "Attendance open; CFP closed so speaker route deferred to next edition. Best as low-cost Japan networking entry."
+    },
+    {
+      "title": "Japan Edge AI Engineer roles (Daijob / Idein / RobotJobJapan)",
+      "organization": "Multiple Japan employers",
+      "category": "career",
+      "official_url": "https://www.daijob.com/en/jobs/detail/1546523",
+      "deadline": "rolling",
+      "freshness": "open",
+      "zone": "worth_verifying",
+      "eligibility_verdict": "Probably Ineligible",
+      "readiness": "major_preparation",
+      "outcomes": {"career": "High", "skill": "High", "portfolio": "Medium", "financial": "Medium", "networking": "Medium"},
+      "effort": "full-time (future main track, not within 6h/week)",
+      "note": "Target role for 6-12 months out. Current blockers: no ML deployment experience + Japanese only N4 (roles require N2). Used to reverse-engineer the gap."
+    },
+    {
+      "title": "EDGE AI CHALLENGE 2026 (Kaggle)",
+      "organization": "Kaggle",
+      "category": "competition",
+      "official_url": "https://www.kaggle.com/competitions/edge-ai-challenge-2026",
+      "deadline": "unknown",
+      "freshness": "open",
+      "zone": "excluded",
+      "eligibility_verdict": "Unknown",
+      "readiness": "unknown",
+      "outcomes": {"career": "Low", "skill": "Medium", "portfolio": "Medium", "financial": "Low", "networking": "Low"},
+      "effort": "varies",
+      "note": "Page labels it as a playground 'for students' (Vietnamese: dành cho sinh viên). Excluded as a primary pick to avoid the student-only regression; not a fit for a working engineer."
+    }
+  ],
+  "student_only_result": false,
+  "verdict": "未发生回归：本轮推荐全部为职场人士适用的专业机会（免费开发者工具、专业认证、行业大会、开源贡献、目标岗位），主推中未出现仅面向学生的竞赛或实习。仅学生向的 Kaggle 赛与已截止的 IEEE COINS TinyML 赛被显式排除。",
+  "findings": [
+    "V3 职业阶段扩展生效：career 类正确解释为 experienced-hire / 目标岗位参照，而非学生实习；未触发'全部退化成实习'。",
+    "Mode D 能力反推落到了真实机会：岗位高频要求 ML 部署经验与日语 N2，反向对应到 STM32 套件 + Harvard 证书 + 开源贡献作为补齐路径。",
+    "开源贡献（TinyMLDelta）作为非求职入口被纳入主推，直接满足画像的'公开作品/GitHub 可展示'诉求，是回归检查的关键正向信号。",
+    "dealbreaker 守住：4 条主推均非无薪长期实习、周投入均 ≤6h，未触碰'每周超15小时'。",
+    "验证率 100%：4 条主推均回到官方一手来源（ST / edX / Linux Foundation / GitHub），达到最终推荐验证 ≥80% 的要求。",
+    "学生向机会被显式排除而非忽略：Kaggle EDGE AI CHALLENGE（面向学生）、IEEE COINS TinyML 赛（6月截止）未进入主推，并在记录中留痕。"
+  ]
+}

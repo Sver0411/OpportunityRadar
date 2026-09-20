@@ -145,6 +145,56 @@ def is_explicit_none(value) -> bool:
     return bool(s) and s in LANGUAGE_NONE_MARKERS
 
 
+# ---------------------------------------------------------------- V3 枚举
+# 全部 optional、向后兼容；老 profile / opportunity JSON 不含这些字段也必须能跑。
+
+#: 人生状态（可多标签：真实的人不是单一状态）
+LIFE_STAGES = ("student", "working", "studying_and_working", "career_break",
+               "unemployed", "self_employed", "founder")
+
+#: 职业阶段（可多标签，如 ["early_career", "career_switcher"]）
+CAREER_STAGES = ("pre_college", "undergraduate", "graduate_student", "new_grad",
+                 "early_career", "mid_career", "senior_ic", "manager", "executive",
+                 "researcher", "founder", "freelancer", "career_switcher",
+                 "returning_to_work")
+
+#: outcome facet：回答"这个机会能给我带来什么"，不是"它是什么"
+OUTCOME_FACETS = ("career", "research", "portfolio", "admission", "credential",
+                  "network", "financial", "reputation", "exposure", "skill",
+                  "interest", "management", "entrepreneurship")
+
+#: 通用等级（outcome / capital / optionality / leverage 共用）
+LEVELS = ("high", "medium", "low", "unknown")
+
+#: 准备度（≠ 资格，≠ 录取率）
+READINESS_STATUSES = ("ready_now", "minor_preparation", "short_preparation",
+                      "major_preparation", "blocked", "unknown")
+
+#: 价值显现周期
+TIME_TO_VALUE = ("immediate", "weeks", "months", "long_term", "unknown")
+
+#: 时间灵活度
+SCHEDULE_FLEXIBILITY = ("high", "medium", "low", "unknown")
+
+#: Career capital 维度（针对已工作的人）
+CAPITAL_DIMS = ("skill_capital", "portfolio_capital", "network_capital",
+                "reputation_capital", "credential_capital", "domain_capital",
+                "management_capital", "research_capital")
+
+#: 申请生命周期状态（state.py 扩展用）
+APPLICATION_STATUSES = ("discovered", "viewed", "interested", "saved", "preparing",
+                        "applied", "interviewing", "accepted", "rejected",
+                        "withdrawn", "completed", "ignored")
+
+#: Personal Utility 档位（只给用户这三档，不输出裸分数）
+UTILITY_BANDS = ("high", "medium", "low", "unknown")
+
+#: 搜索意图（内部 steering，不暴露给用户）
+INTENTS = ("discover", "urgent", "portfolio_building", "career_switch", "promotion",
+           "research_path", "education_path", "income_growth", "low_commitment",
+           "unknown_unknowns", "capability_backfill", "network_building",
+           "entrepreneurship")
+
 #: state.py 变化检测跟踪的字段（见 references/state-and-feedback.md §2）
 TRACKED_FIELDS = (
     "deadline", "application_open", "cost", "compensation",

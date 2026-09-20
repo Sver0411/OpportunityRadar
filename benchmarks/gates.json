@@ -1,0 +1,155 @@
+{
+  "thresholds": {
+    "expired_leakage_max": 0,
+    "unverified_actionable_leakage_max": 0,
+    "final_verification_pct_min": 80,
+    "radar_only_useful_min": 2
+  },
+  "gates": {
+    "iot-embedded": {
+      "expired_leakage": 0,
+      "unverified_actionable_leakage": 0,
+      "final_verification_pct": 67,
+      "radar_only_useful": 2,
+      "recommended_now": 3
+    },
+    "design": {
+      "expired_leakage": 0,
+      "unverified_actionable_leakage": 0,
+      "final_verification_pct": 100,
+      "radar_only_useful": 3,
+      "recommended_now": 2
+    },
+    "environment": {
+      "expired_leakage": 0,
+      "unverified_actionable_leakage": 0,
+      "final_verification_pct": 100,
+      "radar_only_useful": 3,
+      "recommended_now": 3
+    },
+    "biology": {
+      "expired_leakage": 0,
+      "unverified_actionable_leakage": 0,
+      "final_verification_pct": 100,
+      "radar_only_useful": 3,
+      "recommended_now": 2
+    }
+  },
+  "results": {
+    "iot-embedded": {
+      "expired_leakage": {
+        "value": 0,
+        "threshold": 0,
+        "operator": "<=",
+        "status": "PASS"
+      },
+      "unverified_actionable_leakage": {
+        "value": 0,
+        "threshold": 0,
+        "operator": "<=",
+        "status": "PASS"
+      },
+      "final_verification_pct": {
+        "value": 67,
+        "threshold": 80,
+        "operator": ">=",
+        "status": "FAIL"
+      },
+      "radar_only_useful": {
+        "value": 2,
+        "threshold": 2,
+        "operator": ">=",
+        "status": "PASS"
+      }
+    },
+    "design": {
+      "expired_leakage": {
+        "value": 0,
+        "threshold": 0,
+        "operator": "<=",
+        "status": "PASS"
+      },
+      "unverified_actionable_leakage": {
+        "value": 0,
+        "threshold": 0,
+        "operator": "<=",
+        "status": "PASS"
+      },
+      "final_verification_pct": {
+        "value": 100,
+        "threshold": 80,
+        "operator": ">=",
+        "status": "PASS"
+      },
+      "radar_only_useful": {
+        "value": 3,
+        "threshold": 2,
+        "operator": ">=",
+        "status": "PASS"
+      }
+    },
+    "environment": {
+      "expired_leakage": {
+        "value": 0,
+        "threshold": 0,
+        "operator": "<=",
+        "status": "PASS"
+      },
+      "unverified_actionable_leakage": {
+        "value": 0,
+        "threshold": 0,
+        "operator": "<=",
+        "status": "PASS"
+      },
+      "final_verification_pct": {
+        "value": 100,
+        "threshold": 80,
+        "operator": ">=",
+        "status": "PASS"
+      },
+      "radar_only_useful": {
+        "value": 3,
+        "threshold": 2,
+        "operator": ">=",
+        "status": "PASS"
+      }
+    },
+    "biology": {
+      "expired_leakage": {
+        "value": 0,
+        "threshold": 0,
+        "operator": "<=",
+        "status": "PASS"
+      },
+      "unverified_actionable_leakage": {
+        "value": 0,
+        "threshold": 0,
+        "operator": "<=",
+        "status": "PASS"
+      },
+      "final_verification_pct": {
+        "value": 100,
+        "threshold": 80,
+        "operator": ">=",
+        "status": "PASS"
+      },
+      "radar_only_useful": {
+        "value": 3,
+        "threshold": 2,
+        "operator": ">=",
+        "status": "PASS"
+      }
+    }
+  },
+  "all_pass": false,
+  "failures": [
+    {
+      "persona": "iot-embedded",
+      "gate": "final_verification_pct",
+      "value": 67,
+      "threshold": 80,
+      "operator": ">=",
+      "status": "FAIL"
+    }
+  ]
+}

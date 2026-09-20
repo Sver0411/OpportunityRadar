@@ -68,7 +68,10 @@
       ]
     },
     "region": {
-      "type": ["string", "null"],
+      "type": [
+        "string",
+        "null"
+      ],
       "description": "官方地点所在省/州/大区；由城市推导时须标注 inferred，不得冒充官方明写"
     },
     "remote": {
@@ -95,21 +98,50 @@
       "description": "申请人当前学历门槛，不是教育项目授予的学位。未写明或仅写 \"students\" 时 → null"
     },
     "program_degree": {
-      "anyOf": [{"$ref": "#/$defs/educationLevel"}, {"type": "null"}],
+      "anyOf": [
+        {
+          "$ref": "#/$defs/educationLevel"
+        },
+        {
+          "type": "null"
+        }
+      ],
       "description": "教育项目完成后授予的学位，例如硕士项目为 master；不得填入 education_level"
     },
     "cohort_year": {
-      "type": ["integer", "null"],
+      "type": [
+        "integer",
+        "null"
+      ],
       "description": "毕业届别/入学届别，不等于报名开放年份"
     },
     "organization_size": {
-      "type": ["string", "null"],
-      "enum": ["micro", "small", "medium", "large", "unknown", null],
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "micro",
+        "small",
+        "medium",
+        "large",
+        "unknown",
+        null
+      ],
       "description": "有可靠规模证据时填写；专精特新、上市与否不能单独推出规模"
     },
     "organization_type": {
-      "type": ["string", "null"],
-      "enum": ["independent", "subsidiary", "group", "unknown", null]
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "independent",
+        "subsidiary",
+        "group",
+        "unknown",
+        null
+      ]
     },
     "student_year": {
       "anyOf": [
@@ -239,8 +271,17 @@
       "description": "报名开放日，YYYY-MM-DD 或 RFC3339；年份不明 → null"
     },
     "application_status": {
-      "type": ["string", "null"],
-      "enum": ["open", "closed", "not_open", "unknown", null],
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "open",
+        "closed",
+        "not_open",
+        "unknown",
+        null
+      ],
       "description": "官方页面观察到的申请状态；必须在 evidence.application_status 记录来源和核验日期"
     },
     "deadline": {
@@ -526,6 +567,568 @@
         "type": "string"
       },
       "description": "冲突说明、Explicit/Inferred/Unknown 标注、滚动招募等"
+    },
+    "outcomes": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "career": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "high",
+            "medium",
+            "low",
+            "unknown",
+            null
+          ],
+          "description": "career 方面的产出"
+        },
+        "research": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "high",
+            "medium",
+            "low",
+            "unknown",
+            null
+          ],
+          "description": "research 方面的产出"
+        },
+        "portfolio": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "high",
+            "medium",
+            "low",
+            "unknown",
+            null
+          ],
+          "description": "portfolio 方面的产出"
+        },
+        "admission": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "high",
+            "medium",
+            "low",
+            "unknown",
+            null
+          ],
+          "description": "admission 方面的产出"
+        },
+        "credential": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "high",
+            "medium",
+            "low",
+            "unknown",
+            null
+          ],
+          "description": "credential 方面的产出"
+        },
+        "network": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "high",
+            "medium",
+            "low",
+            "unknown",
+            null
+          ],
+          "description": "network 方面的产出"
+        },
+        "financial": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "high",
+            "medium",
+            "low",
+            "unknown",
+            null
+          ],
+          "description": "financial 方面的产出"
+        },
+        "reputation": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "high",
+            "medium",
+            "low",
+            "unknown",
+            null
+          ],
+          "description": "reputation 方面的产出"
+        },
+        "exposure": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "high",
+            "medium",
+            "low",
+            "unknown",
+            null
+          ],
+          "description": "exposure 方面的产出"
+        },
+        "skill": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "high",
+            "medium",
+            "low",
+            "unknown",
+            null
+          ],
+          "description": "skill 方面的产出"
+        },
+        "interest": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "high",
+            "medium",
+            "low",
+            "unknown",
+            null
+          ],
+          "description": "interest 方面的产出"
+        },
+        "management": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "high",
+            "medium",
+            "low",
+            "unknown",
+            null
+          ],
+          "description": "management 方面的产出"
+        },
+        "entrepreneurship": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "high",
+            "medium",
+            "low",
+            "unknown",
+            null
+          ],
+          "description": "entrepreneurship 方面的产出"
+        }
+      },
+      "additionalProperties": true,
+      "description": "机会能带来什么（≠ 它是什么）：'没工资'不等于'没价值'"
+    },
+    "readiness": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "status": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "ready_now",
+            "minor_preparation",
+            "short_preparation",
+            "major_preparation",
+            "blocked",
+            "unknown",
+            null
+          ]
+        },
+        "estimated_preparation": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "ready_items": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string"
+          }
+        },
+        "missing_items": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string"
+          }
+        },
+        "blockers": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": true,
+      "description": "准备度（离真正开始还有多远）；不是录取概率，禁止输出录取率"
+    },
+    "effort": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "estimated_hours": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "weekly_commitment": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "duration": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "preparation_complexity": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "high",
+            "medium",
+            "low",
+            "unknown",
+            null
+          ],
+          "description": "准备复杂度"
+        }
+      },
+      "additionalProperties": true
+    },
+    "time_to_value": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "immediate",
+        "weeks",
+        "months",
+        "long_term",
+        "unknown",
+        null
+      ]
+    },
+    "schedule_flexibility": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "high",
+        "medium",
+        "low",
+        "unknown",
+        null
+      ]
+    },
+    "career_capital": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "skill_capital": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "high",
+            "medium",
+            "low",
+            "unknown",
+            null
+          ],
+          "description": "skill_capital"
+        },
+        "portfolio_capital": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "high",
+            "medium",
+            "low",
+            "unknown",
+            null
+          ],
+          "description": "portfolio_capital"
+        },
+        "network_capital": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "high",
+            "medium",
+            "low",
+            "unknown",
+            null
+          ],
+          "description": "network_capital"
+        },
+        "reputation_capital": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "high",
+            "medium",
+            "low",
+            "unknown",
+            null
+          ],
+          "description": "reputation_capital"
+        },
+        "credential_capital": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "high",
+            "medium",
+            "low",
+            "unknown",
+            null
+          ],
+          "description": "credential_capital"
+        },
+        "domain_capital": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "high",
+            "medium",
+            "low",
+            "unknown",
+            null
+          ],
+          "description": "domain_capital"
+        },
+        "management_capital": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "high",
+            "medium",
+            "low",
+            "unknown",
+            null
+          ],
+          "description": "management_capital"
+        },
+        "research_capital": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "high",
+            "medium",
+            "low",
+            "unknown",
+            null
+          ],
+          "description": "research_capital"
+        }
+      },
+      "additionalProperties": true,
+      "description": "对已工作的人：积累哪种职业资本"
+    },
+    "future_optionality": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "level": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "high",
+            "medium",
+            "low",
+            "unknown",
+            null
+          ],
+          "description": "未来可选择空间的提升"
+        },
+        "reason": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": true
+    },
+    "career_leverage": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "level": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "high",
+            "medium",
+            "low",
+            "unknown",
+            null
+          ],
+          "description": "是否显著提高下一阶段获得更好机会的能力"
+        },
+        "reason": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": true,
+      "description": "不等于'名企=High'；依据可验证成果/稀缺经历/公开声誉/强人脉/后续通道/真实技能/角色升级"
+    },
+    "prerequisites": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "string"
+      }
+    },
+    "produces": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "string"
+      },
+      "description": "完成后产生的成果（仓库、论文、证书、演讲记录…）"
+    },
+    "unlocks": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "opportunity_id": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "已发现的真实后续机会才填；未发现必须 null，禁止编造"
+          }
+        }
+      },
+      "description": "完成后打开的后续机会类型或真实机会"
+    },
+    "related_opportunities": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "string"
+      }
+    },
+    "goal_contribution": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "string"
+      },
+      "description": "对哪些目标有贡献"
     }
   },
   "$defs": {

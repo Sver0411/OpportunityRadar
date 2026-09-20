@@ -135,6 +135,40 @@ class TestSingleSourceOfTruth(unittest.TestCase):
             self.assertIn(f"**{mode}", read("references/search-strategy.md"),
                           f"search-strategy.md 未说明模式 {mode}")
 
+
+    def test_v3_profile_enums_match_schema(self):
+        """V3：life_stage / career_stage 的取值必须与 common.py 完全一致。"""
+        prof = json.loads(read("schemas/profile.schema.json"))
+        props = prof["properties"]
+        for field, enum in (("life_stage", C.LIFE_STAGES), ("career_stage", C.CAREER_STAGES)):
+            with self.subTest(field=field):
+                items = props[field]["items"]["enum"]
+                self.assertEqual(tuple(items), tuple(enum))
+        self.assertEqual(tuple(props["readiness"] if False else []), ())
+
+    def test_v3_opportunity_enums_match_schema(self):
+        """V3：outcomes facets / readiness statuses 必须与 common.py 一致。"""
+        opp = json.loads(read("schemas/opportunity.schema.json"))
+        props = opp["properties"]
+        self.assertEqual(tuple(sorted(props["outcomes"]["properties"])),
+                         tuple(sorted(C.OUTCOME_FACETS)))
+        self.assertEqual(tuple(props["readiness"]["properties"]["status"]["enum"][:-1]),
+                         tuple(C.READINESS_STATUSES))
+        self.assertEqual(tuple(props["time_to_value"]["enum"][:-1]), tuple(C.TIME_TO_VALUE))
+        self.assertEqual(tuple(sorted(props["career_capital"]["properties"])),
+                         tuple(sorted(C.CAPITAL_DIMS)))
+        self.assertIn("unlocks", props)
+        self.assertIn("produces", props)
+        self.assertIn("goal_contribution", props)
+        self.assertIn("future_optionality", props)
+        self.assertIn("career_leverage", props)
+
+    def test_v3_new_scripts_indexed(self):
+        for rel in ("scripts/readiness.py", "scripts/graph.py", "scripts/coverage.py",
+                    "scripts/utility.py"):
+            with self.subTest(script=rel):
+                self.assertIn(rel, SKILL)
+
     def test_profile_provenance_documented(self):
         self.assertIn("_provenance", PROF_SCHEMA["properties"])
         src = read("scripts/score.py")

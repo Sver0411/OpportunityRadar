@@ -1,0 +1,82 @@
+{
+  "_note": "FICTIONAL TEST PERSONA — 仅用于 OpportunityRadar benchmark（V3 职业场景）。不是真实个人，禁止当产品示例数据使用。",
+  "persona_id": "founder",
+  "display": "Founder",
+  "question": "最近有什么真正值得我关注的机会？",
+  "life_stage": [
+    "founder"
+  ],
+  "career_stage": [
+    "founder"
+  ],
+  "employment": {
+    "status": "self_employed",
+    "industry": "climate tech",
+    "function": "other",
+    "seniority": "lead",
+    "years_of_experience": 7
+  },
+  "education": {
+    "degree": "master",
+    "major": "Environmental Engineering",
+    "major_family": "environment_agri",
+    "current_year": null,
+    "expected_graduation": "2019-06",
+    "school_country": "Germany"
+  },
+  "skills": [
+    {
+      "name": "pitching"
+    },
+    {
+      "name": "climate modeling"
+    }
+  ],
+  "languages": [
+    {
+      "language": "German",
+      "level": "native"
+    },
+    {
+      "language": "English",
+      "level": "C1"
+    }
+  ],
+  "interests": [
+    "entrepreneurship",
+    "environment"
+  ],
+  "goals": [
+    {
+      "type": "entrepreneurship",
+      "priority": "high"
+    },
+    {
+      "type": "funding",
+      "priority": "high"
+    }
+  ],
+  "constraints": {
+    "preferred_country": [
+      "Germany"
+    ],
+    "remote": true,
+    "weekly_time": "12"
+  },
+  "career_state": {
+    "entrepreneurship_intent": "high",
+    "timeline": "6 months"
+  },
+  "decision_preferences": {
+    "prefer_high_upside": "high",
+    "risk_tolerance": "high"
+  },
+  "dealbreakers": [
+    "占股要求过高"
+  ],
+  "green_lights": [
+    "有资助",
+    "有导师",
+    "能接客户"
+  ]
+}

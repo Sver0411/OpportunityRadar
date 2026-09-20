@@ -1,0 +1,100 @@
+{
+  "_note": "FICTIONAL TEST PERSONA — 仅用于 OpportunityRadar benchmark（V3 职业场景）。不是真实个人，禁止当产品示例数据使用。",
+  "persona_id": "early-career-engineer",
+  "display": "Early Career Engineer",
+  "question": "最近有什么真正值得我关注的机会？",
+  "life_stage": [
+    "working"
+  ],
+  "career_stage": [
+    "early_career"
+  ],
+  "employment": {
+    "status": "full_time",
+    "industry": "semiconductor",
+    "function": "engineering",
+    "seniority": "mid",
+    "years_of_experience": 3,
+    "role": "Embedded firmware engineer"
+  },
+  "education": {
+    "degree": "undergraduate",
+    "major": "Electronic Engineering",
+    "major_family": "iot_embedded",
+    "current_year": null,
+    "expected_graduation": "2023-06",
+    "school_country": "China"
+  },
+  "skills": [
+    {
+      "name": "C"
+    },
+    {
+      "name": "Embedded C"
+    },
+    {
+      "name": "RTOS"
+    },
+    {
+      "name": "Git"
+    }
+  ],
+  "languages": [
+    {
+      "language": "Chinese",
+      "level": "native"
+    },
+    {
+      "language": "English",
+      "exam": "IELTS",
+      "score": "6.0"
+    }
+  ],
+  "interests": [
+    "embedded",
+    "ai"
+  ],
+  "goals": [
+    {
+      "type": "skill",
+      "priority": "high"
+    },
+    {
+      "type": "career",
+      "priority": "medium"
+    }
+  ],
+  "constraints": {
+    "preferred_country": [
+      "Japan"
+    ],
+    "remote": true,
+    "weekly_time": "6",
+    "relocation": false
+  },
+  "career_state": {
+    "current_direction": "Embedded firmware",
+    "target_role": "Edge AI engineer",
+    "target_country": "Japan",
+    "switch_intent": "high",
+    "timeline": "12 months",
+    "growth_bottlenecks": [
+      "无 ML 基础",
+      "日语 N4"
+    ]
+  },
+  "decision_preferences": {
+    "prefer_public_output": "high",
+    "prefer_low_commitment": "high",
+    "time_horizon": "long"
+  },
+  "dealbreakers": [
+    "无薪长期实习",
+    "每周超过 15 小时"
+  ],
+  "green_lights": [
+    "有公开作品",
+    "GitHub 可展示",
+    "有导师"
+  ]
+}
