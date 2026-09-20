@@ -158,3 +158,20 @@ Opportunity B  Match 88  Deadline 2 天后     → Priority ≈ 88×0.85 + 100×
 - ❌ 把 Explore 层当作"凑数的第 8 条"而不是真正的发现。
 - ❌ 同一项目因来源不同重复占据多个名额（应先跑 dedupe）。
 - ❌ 对 Unknown 的资格直接按 0 分处理（会把大量真实可申请的机会错杀）。
+
+## Bridge 评分（P1 ①）
+
+Bridge（补缺口的机会）不能只看 Match；`scripts/graph.py` 的 `BRIDGE_WEIGHTS` 是单一来源：
+
+| 因子 | 权重 | 说明 |
+|---|---:|---|
+| `gap_coverage` | 0.26 | 覆盖缺口的程度 |
+| `time_to_evidence` | 0.22 | 多久能产生**可展示的真实证据**（公开 PR/论文/演讲 > 证书） |
+| `readiness` | 0.16 | 离开始还有多远 |
+| `future_optionality` | 0.12 | 做完打开多少后续机会 |
+| `evidence_quality` | 0.10 | 官方核实程度 |
+| `effort_fit` | 0.08 | 与每周可用时间是否匹配 |
+| `trust` | 0.06 | 来源层级 |
+
+**3 小时的证书 ≠ 15 小时的公开 PR**：排序看"投入 → 产出什么证据 → 对目标机会有多大作用"。
+Bridge 与普通机会使用同一套 gate，不因为"很适合补缺口"而降门槛。

@@ -116,9 +116,11 @@ Deterministic helpers (Full Mode; never re-implement inline):
 | `scripts/common.py` | Shared enums, URL canonicalization, ID generation, lightweight contract validation |
 | `scripts/readiness.py` | Readiness: how far the user is from actually starting (not admission probability) |
 | `scripts/graph.py` | Opportunity graph: produces → unlocks → goal contribution; gap → bridge opportunities |
+| `scripts/gaps.py` | Evidence-backed gap model (skill vs research vs leadership vs network…), each gap citing "N of M target opportunities require X" |
 | `scripts/coverage.py` | Search coverage ledger (region/locale/category depth) + one plain-language statement |
 | `scripts/utility.py` | Personal Utility: High/Medium/Low + reasons (worth investing resources now?) |
 | `scripts/evidence.py` | Pre-gate evidence check: canonical source + official verification + dated application-status evidence; distinguishes "we forgot to record" from "the page cannot confirm" |
+| `scripts/portfolio.py` | Resource-constrained portfolio (now / bridge / low_cost / high_upside / long_term / explore), never exceeds the user's weekly budget |
 
 Single source of truth: enums, weights, tracked fields and ID/URL rules live in
 `scripts/common.py`; `schemas/*.json` and the references must match it.
@@ -182,6 +184,15 @@ Single source of truth: enums, weights, tracked fields and ID/URL rules live in
 11c. **Personal Utility.** Decide whether it deserves the user's resources *now*
     (`scripts/utility.py` → High/Medium/Low + reasons). Separate from Match (fit) and Priority
     (urgency): a high-match but very expensive opportunity can be Low utility.
+11d. **Gaps → bridge opportunities.** Derive gaps from **real evidence only**
+    (`scripts/gaps.py`): requirements of the scanned target opportunities, the user's stated
+    target, or requirements repeating across several opportunities — every gap must be able to
+    say "N of M target opportunities require X". Type the gap honestly (skill / research /
+    network / leadership / public_reputation / language / portfolio / location_visa …);
+    **do not classify everything as a skill gap**. Then find a **real** bridge opportunity
+    (`scripts/graph.py` — same gates as any opportunity, never a course list unless nothing real
+    exists) and record the chain gap → bridge → produced evidence → target. When no real bridge
+    exists, say so and log it as a source-intelligence need.
 12. **Rank.** Run `scripts/score.py` for components, then apply judgement.
     Sort primarily by Priority (Match + urgency), not Match alone.
 12b. **Explore adjacents.** Actively search adjacent and non-obvious directions — this is why
@@ -209,9 +220,13 @@ Single source of truth: enums, weights, tracked fields and ID/URL rules live in
   Utility weighs eligibility, goal fit, readiness, outcome value, effort, cost, time-to-value,
   future optionality, trust and urgency. Output **High / Medium / Low + reasons only** — never a bare score.
 
-**Opportunity portfolio (for open-ended asks).** Prefer a portfolio over a plain top-N list,
-choosing only the groups that fit this user: 现在就该处理 / 高上限但难 / 低投入 / 形成公开成果 /
-认识人和资源 / 为半年后铺路 / 意想不到。Do not fill every group.
+**Opportunity portfolio (for open-ended asks).** Build it with `scripts/portfolio.py`: roles
+(now / bridge / low_cost / high_upside / long_term / explore) are **earned, never padded** — a
+role only appears if an item genuinely qualifies. The portfolio must respect the user's
+resources: the sum of weekly commitments may not exceed `constraints.weekly_time`; drop the
+lowest-priority items instead and report what was dropped (`portfolio_resource_conflict_rate`
+must stay 0). When several routes are reasonable, offer side-by-side alternatives
+("如果你优先升职 → A+B；如果想转方向 → A+C") instead of making a life decision for the user.
 
 **Prohibitions.** No admission probability, no predicted salary, no "搜遍了所有机会", no fabricated
 `unlocks[].opportunity_id`.

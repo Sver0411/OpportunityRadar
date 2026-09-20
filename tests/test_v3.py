@@ -98,19 +98,25 @@ class TestGraph(unittest.TestCase):
         g = G.build_graph([a, b])
         self.assertTrue(any(e["from"] == "a" and e["to"] == "b" for e in g["edges"]))
 
-    def test_gap_to_bridge_prefers_low_commitment_public_output(self):
+    def test_gap_to_bridge_prefers_public_evidence_over_certificate(self):
+        """Bridge 排序不能只看耗时：公开 PR 的证据强于 3 小时证书。"""
         bridge = opp(id="bridge", title="Edge AI contribution",
-                     produces=["GitHub PR"],
+                     produces=["GitHub PR", "public contribution"],
                      unlocks=[{"type": "edge_ai_role"}],
-                     effort={"weekly_commitment": "4-6 h"})
-        heavy = opp(id="heavy", title="Edge AI bootcamp",
+                     effort={"weekly_commitment": "4-6 h"},
+                     verification_status="verified_official",
+                     evidence={"application_status": {"status": "explicit",
+                                                      "source_url": "https://x.example",
+                                                      "verified_at": "2026-09-19"}})
+        heavy = opp(id="heavy", title="Edge AI course",
                     produces=["certificate"],
                     unlocks=[{"type": "course"}],
                     effort={"weekly_commitment": "25 h/week"})
         res = G.bridges_for_gap("Edge AI", [heavy, bridge])
         self.assertTrue(res)
-        self.assertEqual(res[0]["id"], "bridge")
-        self.assertTrue(res[0]["public_output"])
+        self.assertEqual(res[0]["opportunity_id"], "bridge")
+        self.assertEqual(res[0]["time_to_evidence"]["strength"], "strong")
+        self.assertTrue(res[0]["evidence_complete"])
 
     def test_gap_without_bridge_is_honest(self):
         report = G.gap_to_bridge_report(["Quantum knitting"], [opp()])
