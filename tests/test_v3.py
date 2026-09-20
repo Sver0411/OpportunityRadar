@@ -223,7 +223,8 @@ class TestP0FixesFromCDE(unittest.TestCase):
         row = {"freshness": {"status": "open"}, "official_url": "https://x.example",
                "verdict": "Eligible", "match": 48, "utility": "high",
                "verification_status": "verified_official",
-               "application_status_evidence": True}
+               "application_status_evidence": True,
+               "evidence_complete": True, "actionable": True}
         self.assertEqual(S.recommendation_zone(row), "recommended_now")
         row["utility"] = "medium"
         self.assertEqual(S.recommendation_zone(row), "worth_verifying")
@@ -248,6 +249,43 @@ class TestP0FixesFromCDE(unittest.TestCase):
                          {"weekly_commitment": "4 h"})
         u = U.personal_utility(opp(cost="free", outcomes={"skill": "high"}), PRO_WORKER)
         self.assertIn(u["band"], ("high", "medium", "low", "unknown"))
+
+
+
+class TestDemotionClassification(unittest.TestCase):
+    """区分三类失败：漏记证据(process) / 页面无法确认或没去核实(process) / 官网打不开(infrastructure)。"""
+
+    def _reason(self, opp_kw, row=None, evc=None):
+        import evidence as EV
+        base = opp(**opp_kw)
+        evc = evc or EV.check(base, dt.date(2026, 9, 20))
+        row = row or {"freshness": {"status": "open"}, "conflicts": []}
+        return EV.demotion_reason(base, row, evc)
+
+    def test_missing_official_source_is_process(self):
+        r = self._reason({"official_url": None}, evc={"missing": ["official_url"]})
+        self.assertEqual(r["code"], "no_canonical_source")
+        self.assertEqual(r["kind"], "process")
+
+    def test_not_attempted_vs_blocked(self):
+        not_tried = self._reason({"official_url": "https://x.example",
+                                  "verification_status": "unverified"})
+        self.assertEqual(not_tried["code"], "verification_not_attempted")
+        self.assertEqual(not_tried["kind"], "process")
+        blocked = self._reason({"official_url": "https://x.example",
+                                "verification_status": "unverified",
+                                "notes": "fetch blocked (403 / captcha)"})
+        self.assertEqual(blocked["code"], "page_not_verifiable")
+        self.assertEqual(blocked["kind"], "infrastructure")
+
+    def test_page_cannot_confirm_is_fact(self):
+        import evidence as EV
+        # 已核实过官方页、但页面本身不写当前状态 → fact
+        o = opp(deadline=None, title="Some programme", verification_status="verified_official")
+        evc = EV.check(o, dt.date(2026, 9, 20))
+        r = EV.demotion_reason(o, {"freshness": {"status": "unknown"}, "conflicts": []}, evc)
+        self.assertEqual(r["code"], "page_cannot_confirm")
+        self.assertEqual(r["kind"], "fact")
 
 
 if __name__ == "__main__":

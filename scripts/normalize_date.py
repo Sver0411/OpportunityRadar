@@ -421,13 +421,28 @@ def main(argv=None) -> int:
 # 以及"2026 赛季"在 2026-09 之后仍被当作当前机会。Freshness Gate 把"这个项目当前处于什么状态"
 # 变成显式的确定性判断，宁可给出 unknown，也不默认成 open。
 
-FRESHNESS_STATUSES = ("open", "likely_open", "unknown", "closed", "expired", "future")
+FRESHNESS_STATUSES = ("open", "likely_open", "evergreen", "recurring",
+                      "unknown", "closed", "expired", "future")
 
 #: 已确认无法再申请的状态（进入 excluded，不进入主推荐）
 CLOSED_STATUSES = ("closed", "expired")
 
 #: 每个季节的**最后一个月**（北半球）：过了它就认为该季节的周期已结束
 SEASON_LAST_MONTH = {"winter": 2, "spring": 5, "summer": 8, "autumn": 11}
+
+#: 长期存在、没有传统报名周期的路径（contributor / community / certification …）。
+#: **evergreen ≠ 现在可参与**：只有页面给出"当前可参与"证据时才允许进主推荐。
+EVERGREEN_PATTERNS = (
+    "evergreen", "always open", "always-open", "permanently open", "ongoing programme",
+    "ongoing program", "open indefinitely", "no deadline", "year-round", "year round",
+    "长期有效", "长期开放", "常年开放", "随时参与", "长期招募",
+)
+
+#: 周期性开放（每年/每届一次）：当前周期是否开放仍需证据。
+RECURRING_PATTERNS = (
+    "annual", "annually", "yearly", "every year", "biennial", "each edition", "per edition",
+    "每年", "年度", "每年一次", "每两年",
+)
 
 
 def _years_in(text) -> list:
@@ -454,7 +469,9 @@ def freshness(opp, today=None) -> dict:
       1. deadline 可解析且在今天之后            → open
       2. deadline 可解析但已过（非 rolling）    → expired
       3. deadline_type = rolling / asap / flexible → likely_open
-      4. deadline_type = tbd                    → unknown
+      4. deadline_type = evergreen              → evergreen（需"当前可参与"证据）
+      5. deadline_type = recurring              → 按周期年份 future/closed/recurring
+      6. deadline_type = tbd                    → unknown
       5. 无 deadline：仅按真正的活动/申请周期判断；毕业届别不是申请日期
          - 出现的最晚年份 < 今年                → closed
          - == 今年且该季节已过                  → closed
@@ -502,6 +519,24 @@ def freshness(opp, today=None) -> dict:
         return {"status": "likely_open", "reason": f"deadline_type={declared}（无固定/弹性截止）",
                 "deadline_iso": iso, "deadline_type": dtype, "cycle_year": None}
 
+    if declared == "evergreen":
+        # 长期存在 ≠ 今天可参与：需要 application_status 证据才能进 actionable zone
+        return {"status": "evergreen",
+                "reason": "长期开放型机会（无报名周期）→ 需要『当前可参与』证据才能进主推荐",
+                "deadline_iso": iso, "deadline_type": dtype, "cycle_year": None}
+
+    if declared == "recurring":
+        cy = max(_years_in(" ".join(str(opp.get(k) or "") for k in
+                                    ("title", "cycle", "event_start", "event_end"))) or [0]) or None
+        if cy and cy > today.year:
+            return {"status": "future", "reason": f"周期性项目，下一周期在 {cy} 年（尚未开放）",
+                    "deadline_iso": iso, "deadline_type": dtype, "cycle_year": cy}
+        if cy and cy < today.year:
+            return {"status": "closed", "reason": f"周期性项目，上一周期在 {cy} 年",
+                    "deadline_iso": iso, "deadline_type": dtype, "cycle_year": cy}
+        return {"status": "recurring", "reason": "周期性开放 → 当前周期是否开放需要页面证据",
+                "deadline_iso": iso, "deadline_type": dtype, "cycle_year": cy}
+
     if iso:
         days = (parsed or {}).get("urgency_days")
         if days is not None and days < 0:
@@ -524,6 +559,21 @@ def freshness(opp, today=None) -> dict:
     years = _years_in(blob)
     cyear = max(years) if years else None
     season = _season_in(blob)
+
+    text = " ".join(str(opp.get(k) or "") for k in ("title", "summary", "notes")).lower()
+    if any(p in text for p in ROLLING_PATTERNS) or re.search(r"rolling|随時|常時|先着", text):
+        return {"status": "likely_open", "reason": "页面写明持续/滚动接受（rolling）",
+                "deadline_iso": None, "deadline_type": "rolling", "cycle_year": cyear}
+    if any(p in text for p in EVERGREEN_PATTERNS):
+        return {"status": "evergreen",
+                "reason": "页面写明长期开放（evergreen）→ 需要『当前可参与』证据",
+                "deadline_iso": None, "deadline_type": "evergreen", "cycle_year": cyear}
+    if any(p in text for p in RECURRING_PATTERNS):
+        if cyear and cyear > today.year:
+            return {"status": "future", "reason": f"周期性项目，下一周期 {cyear} 年",
+                    "deadline_iso": None, "deadline_type": "recurring", "cycle_year": cyear}
+        return {"status": "recurring", "reason": "页面提示周期性开放 → 当前周期需证据确认",
+                "deadline_iso": None, "deadline_type": "recurring", "cycle_year": cyear}
 
     if cyear is None:
         return {"status": "unknown", "reason": "无可确认的申请周期；毕业届别不能推断开放状态",

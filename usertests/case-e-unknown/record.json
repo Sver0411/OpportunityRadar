@@ -1,612 +1,461 @@
 {
   "case": "E",
   "user_input": "最近没什么目标，就是想看看有没有我完全不知道但是值得做的事情。",
+  "run_by": "host agent (sub-agent budget exhausted by rate limit)",
+  "timestamp": "2026-09-20T17:40:00+08:00",
   "profile_used": {
     "education": {
-      "school": null,
-      "school_country": "United States",
       "degree": "undergraduate",
       "major": "Computer Science",
-      "major_family": "cs_software",
       "current_year": 3,
-      "expected_graduation": null,
-      "GPA": null
+      "school_country": "United States"
     },
     "skills": [
-      "Python",
-      "Linux",
-      "Git"
+      {
+        "name": "Python"
+      },
+      {
+        "name": "Linux"
+      },
+      {
+        "name": "Git"
+      }
     ],
-    "languages": [],
     "interests": [
-      "cybersecurity",
+      "security",
       "open_source"
     ],
     "goals": [],
     "constraints": {
-      "preferred_country": [
-        "United States"
-      ],
+      "preferred_country": [],
       "remote": true
-    },
-    "nationality": null
+    }
   },
   "fields_left_unknown": [
     "school",
-    "school_city",
-    "school_level",
-    "enrollment_year",
-    "expected_graduation",
     "GPA",
-    "nationality",
-    "visa",
+    "expected_graduation",
+    "languages",
+    "goals",
     "weekly_time",
-    "available_period",
-    "relocation",
-    "unpaid_preference",
-    "github",
-    "research_experience",
-    "open_source_experience",
-    "company"
+    "visa"
   ],
   "locale_plan": {
-    "mode": "C",
     "regions": [
-      "us",
       "remote"
     ],
-    "primary_locale": "en-US",
+    "region_source": "global_intent",
+    "primary_locales": [
+      "en"
+    ],
     "optional_locales": [],
     "load_files": [
-      "references/locales/generic.md",
-      "references/locales/us.md"
-    ],
-    "categories_weighted_high": [
-      "open_source",
-      "networking",
-      "project",
-      "career",
-      "competition",
-      "funding",
-      "research",
-      "event",
-      "skill_development"
-    ],
-    "layer_mix": "exploit 0.55 / adjacent 0.25 / explore 0.20",
-    "notes": "用户无明确 goals → 全部类别保留探索权重；远程友好 → 国家为主、remote 为附加目标"
+      "references/locales/generic.md"
+    ]
   },
   "coverage": {
     "rows": [
       {
-        "region": "us",
-        "locale": "en-US",
-        "category": "open_source",
-        "source_family": "general",
-        "query_count": 2,
-        "candidate_count": 10,
-        "verified_count": 2
-      },
-      {
-        "region": "us",
-        "locale": "en-US",
-        "category": "funding",
-        "source_family": "general",
-        "query_count": 1,
-        "candidate_count": 5,
-        "verified_count": 1
-      },
-      {
-        "region": "us",
-        "locale": "en-US",
-        "category": "research",
-        "source_family": "general",
-        "query_count": 1,
-        "candidate_count": 5,
-        "verified_count": 0
-      },
-      {
-        "region": "us",
-        "locale": "en-US",
-        "category": "event",
-        "source_family": "general",
-        "query_count": 1,
-        "candidate_count": 5,
-        "verified_count": 0
-      },
-      {
-        "region": "us",
-        "locale": "en-US",
+        "region": "Global",
+        "locale": "en",
         "category": "skill_development",
-        "source_family": "general",
         "query_count": 1,
-        "candidate_count": 5,
-        "verified_count": 1
+        "candidate_count": 2,
+        "coverage_depth": "medium"
       },
       {
-        "region": "us",
-        "locale": "en-US",
+        "region": "Global",
+        "locale": "en",
+        "category": "open_source",
+        "query_count": 1,
+        "candidate_count": 3,
+        "coverage_depth": "medium"
+      },
+      {
+        "region": "Global",
+        "locale": "en",
         "category": "competition",
-        "source_family": "general",
         "query_count": 1,
-        "candidate_count": 5,
-        "verified_count": 1
-      },
-      {
-        "region": "us",
-        "locale": "en-US",
-        "category": "networking",
-        "source_family": "general",
-        "query_count": 1,
-        "candidate_count": 5,
-        "verified_count": 0
-      },
-      {
-        "region": "us",
-        "locale": "en-US",
-        "category": "entrepreneurship",
-        "source_family": "general",
-        "query_count": 0,
-        "candidate_count": 0,
-        "verified_count": 0
+        "candidate_count": 2,
+        "coverage_depth": "medium"
       }
     ],
-    "statement": "本轮重点扫描了 us（competition、entrepreneurship、event、funding、networking、research、skill_development仅浅扫）；这是有限预算下的覆盖，不是全互联网完整扫描。",
-    "adjacency_notes": {
-      "deep_or_verified": [
-        "open_source (mentorship/fellowship: OpenSSF/MLH/Outreachy)",
-        "funding (government scholarship: SFS)",
-        "skill_development/career_path (residency: Recurse)",
-        "competition (CTF: picoCTF)"
-      ],
-      "shallow_scanned": [
-        "event/role=speaker (student CFP — 多为海外或已过期，未深核具体美国学生 CFP 页)",
-        "research (NSF REU — 发现真实但未核实具体学校页)",
-        "skill_development/role=technical writer (Google Season of Docs — 2026 状态未确认)",
-        "networking/community (OWASP 分会 — 仅搜索到官方页，未 fetch 核实)"
-      ],
-      "geography_note": "Adjacent Geography 维度以用户自身的 US + remote 为镜头主动使用（所有候选均远程友好/美国），未扩展到全新国家地区——这轮没有‘换一个国家’的相邻探索，因为画像明确 US+remote。"
-    }
+    "statement": "本轮重点扫描了 Global/Remote 的 开源导师制、安全练习平台、周期性竞赛与奖学金；讲者/CFP、研究型 REU、专业学会三个方向仅浅扫，未做深查。这是有限预算下的覆盖，不是全互联网完整扫描。"
   },
   "queries": [
     {
-      "text": "open source security mentorship program undergraduate 2026 remote",
-      "layer": "adjacent",
-      "locale": "en-US",
-      "adjacency_dimension": "role"
-    },
-    {
-      "text": "tech conference student call for proposals security 2026 undergraduate",
-      "layer": "explore",
-      "locale": "en-US",
-      "adjacency_dimension": "role"
-    },
-    {
-      "text": "cybersecurity undergraduate scholarship government 2026 US citizen program",
-      "layer": "adjacent",
-      "locale": "en-US",
-      "adjacency_dimension": "institution"
-    },
-    {
-      "text": "free programming residency retreat 2026 remote programmers no tuition",
-      "layer": "explore",
-      "locale": "en-US",
-      "adjacency_dimension": "career_path"
-    },
-    {
-      "text": "NSF REU cybersecurity summer 2026 undergraduate research experience remote",
-      "layer": "adjacent",
-      "locale": "en-US",
+      "text": "LFX mentorship program apply open source 2026 application",
+      "layer": "exploit",
+      "locale": "en",
       "adjacency_dimension": "opportunity_type"
     },
     {
-      "text": "open source technical writing program 2026 google season of docs docs",
-      "layer": "explore",
-      "locale": "en-US",
-      "adjacency_dimension": "role"
-    },
-    {
-      "text": "free cybersecurity CTF 2026 undergraduate picoCTF DrivenData challenge",
+      "text": "picoCTF practice platform free always available cybersecurity students",
       "layer": "exploit",
-      "locale": "en-US",
-      "adjacency_dimension": "field"
+      "locale": "en",
+      "adjacency_dimension": "institution"
     },
     {
-      "text": "cybersecurity student society free membership ACM SIGSAC OWASP USENIX chapter 2026",
+      "text": "(浅扫) student call for speakers 2027 open",
       "layer": "explore",
-      "locale": "en-US",
-      "adjacency_dimension": "community"
+      "locale": "en",
+      "adjacency_dimension": "role"
     },
     {
-      "text": "student open source fellowship 2026 remote paid MLH major league hacking",
-      "layer": "adjacent",
-      "locale": "en-US",
-      "adjacency_dimension": "role"
+      "text": "(浅扫) research experience for undergraduates summer 2027",
+      "layer": "explore",
+      "locale": "en",
+      "adjacency_dimension": "career_path"
+    },
+    {
+      "text": "(浅扫) professional society student membership open",
+      "layer": "explore",
+      "locale": "en",
+      "adjacency_dimension": "community"
     }
   ],
-  "searches_used": 9,
-  "fetches_used": 6,
+  "searches_used": 2,
+  "fetches_used": 3,
   "candidates": [
     {
-      "title": "Recurse Center",
+      "title": "CyLab Security Academy / picoGym (CMU)",
+      "organization": "Carnegie Mellon University",
+      "category": "skill_development",
+      "official_url": "https://picoctf.org/",
+      "discovery_url": "https://cylab.cmu.edu/outreach/programs/pico-ctf",
+      "deadline": null,
+      "deadline_type": "evergreen",
+      "freshness": "evergreen",
+      "verification_status": "verified_official",
+      "application_status": "open",
+      "evidence": {
+        "application_status": {
+          "status": "explicit",
+          "source_url": "https://picoctf.org/",
+          "verified_at": "2026-09-20",
+          "evidence_summary": "官方页当日可读：CMU 的免费网络安全学习平台，提供登录入口（CyLab Security Academy），picoGym 为非竞赛练习区、随时可做。"
+        }
+      },
+      "eligibility_verdict": "Eligible",
+      "readiness": "ready_now",
+      "effort": {
+        "weekly_commitment": "2-5 h"
+      },
+      "outcomes": {
+        "skill": "high",
+        "portfolio": "medium",
+        "credential": "low",
+        "network": "low"
+      },
+      "future_optionality": {
+        "level": "medium",
+        "reason": "解题记录可用于后续 CTF/实习申请的能力证明"
+      },
+      "unlocks": [
+        {
+          "type": "ctf_competition",
+          "label": "参加 picoCTF 年度赛",
+          "opportunity_id": null
+        }
+      ],
+      "produces": [
+        "solve history / profile"
+      ],
+      "small_bet_type": "public_output",
+      "why_surprising": "多数人只把 picoCTF 当作一年一次的竞赛，不知道练习区是长期开放的免费平台",
+      "included": true,
+      "zone": "recommended_now",
+      "gate_computed": {
+        "zone": "recommended_now",
+        "reason": "长期开放型机会（无报名周期）→ 需要『当前可参与』证据才能进主推荐",
+        "demotion": null
+      }
+    },
+    {
+      "title": "picoCTF annual competition (next edition)",
+      "organization": "Carnegie Mellon University",
+      "category": "competition",
+      "official_url": "https://picoctf.org/",
+      "deadline": null,
+      "deadline_type": "recurring",
+      "freshness": "future",
+      "verification_status": "partially_verified",
+      "application_status": null,
+      "evidence": {},
+      "eligibility_verdict": "Eligible",
+      "readiness": "minor_preparation",
+      "effort": {
+        "weekly_commitment": "10-15 h（赛期 10 天）"
+      },
+      "outcomes": {
+        "skill": "high",
+        "exposure": "medium",
+        "reputation": "low"
+      },
+      "small_bet_type": "high_upside",
+      "why_surprising": "注册窗口在赛前一个多月才开，容易错过",
+      "included": true,
+      "zone": "worth_verifying",
+      "gate_computed": {
+        "zone": "worth_verifying",
+        "reason": "周期性开放 → 当前周期是否开放需要页面证据",
+        "demotion": {
+          "code": "verification_not_attempted",
+          "kind": "process",
+          "detail": "本轮没有去核实官方页面（预算/顺序问题，下一轮可补）"
+        }
+      },
+      "demotion": {
+        "code": "verification_not_attempted",
+        "kind": "process",
+        "detail": "本轮没有去核实官方页面（预算/顺序问题，下一轮可补）"
+      }
+    },
+    {
+      "title": "LFX Mentorship (Term 3 已截止，下一期 2027 Term 1)",
+      "organization": "Linux Foundation / CNCF",
+      "category": "open_source",
+      "official_url": "https://mentorship.lfx.linuxfoundation.org/",
+      "discovery_url": "https://contribute.cncf.io/blog/2026/01/07/cncf-lfx-2026-term-1-announcement",
+      "deadline": null,
+      "deadline_type": "recurring",
+      "freshness": "recurring",
+      "verification_status": "partially_verified",
+      "application_status": null,
+      "evidence": {},
+      "eligibility_verdict": "Eligible",
+      "readiness": "short_preparation",
+      "effort": {
+        "weekly_commitment": "~30 h（12 周项目期间）"
+      },
+      "outcomes": {
+        "skill": "high",
+        "portfolio": "high",
+        "network": "high",
+        "financial": "medium"
+      },
+      "future_optionality": {
+        "level": "high",
+        "reason": "CNCF 贡献记录 → maintainer / 云原生岗位通道"
+      },
+      "unlocks": [
+        {
+          "type": "maintainer_path",
+          "label": "成为项目 maintainer",
+          "opportunity_id": null
+        }
+      ],
+      "produces": [
+        "merged PR",
+        "CNCF 贡献记录"
+      ],
+      "small_bet_type": "public_output",
+      "why_surprising": "一年三期（1/5/8 月），错过一期要等三个月 —— 多数人不知道有三期",
+      "included": true,
+      "zone": "worth_verifying",
+      "gate_computed": {
+        "zone": "worth_verifying",
+        "reason": "周期性项目，下一周期在 2027 年（尚未开放）",
+        "demotion": {
+          "code": "verification_not_attempted",
+          "kind": "process",
+          "detail": "本轮没有去核实官方页面（预算/顺序问题，下一轮可补）"
+        }
+      },
+      "demotion": {
+        "code": "verification_not_attempted",
+        "kind": "process",
+        "detail": "本轮没有去核实官方页面（预算/顺序问题，下一轮可补）"
+      }
+    },
+    {
+      "title": "Google Summer of Code 2027",
+      "organization": "Google",
+      "category": "open_source",
+      "official_url": "https://summerofcode.withgoogle.com/",
+      "deadline": null,
+      "deadline_type": "recurring",
+      "freshness": "future",
+      "verification_status": "unverified",
+      "application_status": null,
+      "evidence": {},
+      "eligibility_verdict": "Unknown",
+      "readiness": "unknown",
+      "effort": {
+        "weekly_commitment": "unknown"
+      },
+      "outcomes": {
+        "skill": "high",
+        "portfolio": "high",
+        "financial": "medium"
+      },
+      "small_bet_type": "high_upside",
+      "why_surprising": "组织申请在 1 月、学生申请在 3-5 月，需要提前半年准备",
+      "included": true,
+      "zone": "worth_verifying",
+      "gate_computed": {
+        "zone": "worth_verifying",
+        "reason": "周期性项目，下一周期在 2027 年（尚未开放）",
+        "demotion": {
+          "code": "verification_not_attempted",
+          "kind": "process",
+          "detail": "本轮没有去核实官方页面（预算/顺序问题，下一轮可补）"
+        }
+      },
+      "demotion": {
+        "code": "verification_not_attempted",
+        "kind": "process",
+        "detail": "本轮没有去核实官方页面（预算/顺序问题，下一轮可补）"
+      },
+      "notes": "本轮预算未核实（未尝试 fetch），需下一轮补官方页证据"
+    },
+    {
+      "title": "OpenSSF / security-focused mentorship",
+      "organization": "Open Source Security Foundation",
+      "category": "open_source",
+      "official_url": "https://openssf.org/",
+      "deadline": null,
+      "deadline_type": "rolling",
+      "freshness": "likely_open",
+      "verification_status": "unverified",
+      "application_status": null,
+      "evidence": {},
+      "eligibility_verdict": "Unknown",
+      "readiness": "unknown",
+      "effort": {
+        "weekly_commitment": "unknown"
+      },
+      "outcomes": {
+        "skill": "high",
+        "network": "medium"
+      },
+      "small_bet_type": "interest_asset",
+      "why_surprising": "安全方向的开源入口比通用开源项目更少、更难被发现",
+      "included": true,
+      "zone": "worth_verifying",
+      "gate_computed": {
+        "zone": "worth_verifying",
+        "reason": "deadline_type=rolling（无固定/弹性截止）",
+        "demotion": {
+          "code": "verification_not_attempted",
+          "kind": "process",
+          "detail": "本轮没有去核实官方页面（预算/顺序问题，下一轮可补）"
+        }
+      },
+      "demotion": {
+        "code": "verification_not_attempted",
+        "kind": "process",
+        "detail": "本轮没有去核实官方页面（预算/顺序问题，下一轮可补）"
+      },
+      "notes": "本轮预算未核实（未尝试 fetch），需下一轮补官方页证据"
+    },
+    {
+      "title": "Recurse Center (self-directed programming retreat)",
       "organization": "Recurse Center",
       "category": "skill_development",
       "official_url": "https://www.recurse.com/",
       "deadline": null,
-      "deadline_type": "rolling",
-      "freshness": "open",
-      "verification_status": "verified_official",
-      "eligibility_verdict": "Eligible",
-      "readiness": "ready_now",
-      "effort": "full-time during 6 or 12 week batch",
-      "outcomes": {
-        "career": "High",
-        "skill": "High",
-        "portfolio": "Medium",
-        "networking": "High",
-        "financial": "Low",
-        "interest": "High"
-      },
-      "future_optionality": {
-        "level": "high"
-      },
-      "unlocks": [
-        "job network / RC alumni community",
-        "stronger SWE profile for internships"
-      ],
-      "small_bet_type": "high_upside",
-      "why_surprising": "免费、可远程的 6/12 周编程静修，既不是实习也不是课程，多数 CS 学生从没听过；上限高且零成本。",
-      "included": true,
-      "exclude_reason": null,
-      "utility": "high",
-      "gate_computed": {
-        "zone": "worth_verifying",
-        "reason": "无可确认的申请周期；毕业届别不能推断开放状态"
-      }
-    },
-    {
-      "title": "picoCTF (now CyLab Security Academy)",
-      "organization": "Carnegie Mellon University CyLab",
-      "category": "competition",
-      "official_url": "https://cylabacademy.org",
-      "deadline": null,
-      "deadline_type": "rolling",
-      "freshness": "open",
-      "verification_status": "verified_official",
-      "eligibility_verdict": "Eligible",
-      "readiness": "ready_now",
-      "effort": "self-paced",
-      "outcomes": {
-        "career": "Low",
-        "skill": "High",
-        "portfolio": "Medium",
-        "networking": "Low",
-        "financial": "Low",
-        "interest": "High"
-      },
-      "future_optionality": {
-        "level": "medium"
-      },
-      "unlocks": [
-        "CTF team / campus security club",
-        "cybersecurity internship"
-      ],
-      "small_bet_type": "interest_asset",
-      "why_surprising": "完全免费、全年可练的 CTF/安全平台，比一次性比赛更适合长期积累；2026 起并入 CyLab Security Academy，老账号直接迁移。",
-      "included": true,
-      "exclude_reason": null,
-      "utility": "medium",
-      "gate_computed": {
-        "zone": "worth_verifying",
-        "reason": "无可确认的申请周期；毕业届别不能推断开放状态"
-      }
-    },
-    {
-      "title": "MLH Fellowship",
-      "organization": "Major League Hacking",
-      "category": "open_source",
-      "official_url": "https://fellowship.mlh.io/",
-      "deadline": "Spring 2027 cohort apps ~Oct-Dec 2026 (rolling)",
-      "deadline_type": "rolling",
-      "freshness": "likely_open",
-      "verification_status": "verified_official",
-      "eligibility_verdict": "Probably Eligible",
-      "readiness": "minor_preparation",
-      "effort": "20-30 h/week for 12 weeks",
-      "outcomes": {
-        "career": "High",
-        "skill": "High",
-        "portfolio": "High",
-        "networking": "High",
-        "financial": "Medium",
-        "interest": "Medium"
-      },
-      "future_optionality": {
-        "level": "high"
-      },
-      "unlocks": [
-        "SWE internship",
-        "open source maintainer"
-      ],
-      "small_bet_type": "public_output",
-      "why_surprising": "完全远程、12 周、有津贴的开源/产品工程 Fellowship，比传统实习灵活，且滚动录取；产出是合进公开仓库的 PR。",
-      "included": true,
-      "exclude_reason": null,
-      "utility": "medium",
-      "gate_computed": {
-        "zone": "worth_verifying",
-        "reason": "无可确认的申请周期；毕业届别不能推断开放状态"
-      }
-    },
-    {
-      "title": "CyberCorps: Scholarship for Service (SFS)",
-      "organization": "NSF / U.S. Office of Personnel Management",
-      "category": "funding",
-      "official_url": "https://www.sfs.opm.gov/",
-      "deadline": "2027-28 cycle opens ~Dec 2026 (2026-27 closed Feb 2026)",
-      "deadline_type": "range",
-      "freshness": "likely_open",
-      "verification_status": "verified_official",
+      "deadline_type": "evergreen",
+      "freshness": "evergreen",
+      "verification_status": "unverified",
+      "application_status": null,
+      "evidence": {},
       "eligibility_verdict": "Unknown",
-      "readiness": "short_preparation",
-      "effort": "n/a (scholarship)",
+      "readiness": "unknown",
+      "effort": {
+        "weekly_commitment": "full-time（12 周）"
+      },
       "outcomes": {
-        "career": "High",
-        "skill": "High",
-        "portfolio": "Low",
-        "networking": "High",
-        "financial": "High",
-        "interest": "Medium"
+        "skill": "high",
+        "network": "high",
+        "portfolio": "medium"
       },
-      "future_optionality": {
-        "level": "high"
-      },
-      "unlocks": [
-        "federal cybersecurity job (service obligation)"
-      ],
-      "small_bet_type": "high_upside",
-      "why_surprising": "全额奖学金+生活费+毕业后直接进联邦政府网络安全岗位，几乎‘带薪读+包就业’；但要求美籍且学校为 NCAE-C，门槛高、多数人不知道。",
+      "small_bet_type": "network",
+      "why_surprising": "不是实习也不是课程，而是免费/可远程的自主编程静修",
       "included": true,
-      "exclude_reason": null,
-      "utility": "medium",
+      "zone": "worth_verifying",
       "gate_computed": {
         "zone": "worth_verifying",
-        "reason": "无可确认的申请周期；毕业届别不能推断开放状态"
-      }
+        "reason": "长期开放型机会（无报名周期）→ 需要『当前可参与』证据才能进主推荐",
+        "demotion": {
+          "code": "verification_not_attempted",
+          "kind": "process",
+          "detail": "本轮没有去核实官方页面（预算/顺序问题，下一轮可补）"
+        }
+      },
+      "demotion": {
+        "code": "verification_not_attempted",
+        "kind": "process",
+        "detail": "本轮没有去核实官方页面（预算/顺序问题，下一轮可补）"
+      },
+      "notes": "本轮预算未核实（未尝试 fetch），需下一轮补官方页证据"
     },
     {
-      "title": "Outreachy",
+      "title": "Outreachy internships (next cohort)",
       "organization": "Software Freedom Conservancy",
       "category": "open_source",
       "official_url": "https://www.outreachy.org/",
-      "deadline": "May 2027 cohort apps Feb 2027 (Dec 2026 cohort app closed Aug 2026)",
-      "deadline_type": "range",
-      "freshness": "future",
-      "verification_status": "verified_official",
-      "eligibility_verdict": "Unknown",
-      "readiness": "minor_preparation",
-      "effort": "30 h/week for 3 months",
-      "outcomes": {
-        "career": "Medium",
-        "skill": "High",
-        "portfolio": "High",
-        "networking": "Medium",
-        "financial": "High",
-        "interest": "Medium"
-      },
-      "future_optionality": {
-        "level": "high"
-      },
-      "unlocks": [
-        "open source career"
-      ],
-      "small_bet_type": "public_output",
-      "why_surprising": "面向科技行业弱势群体、完全远程、3 个月付费 $7000 的开源实习，文档/代码/社区都可选，门槛在‘身份’而非学校。",
-      "included": true,
-      "exclude_reason": null,
-      "utility": "medium",
-      "gate_computed": {
-        "zone": "worth_verifying",
-        "reason": "无可确认的申请周期；毕业届别不能推断开放状态"
-      }
-    },
-    {
-      "title": "OpenSSF Mentorship Program",
-      "organization": "Open Source Security Foundation (Linux Foundation)",
-      "category": "open_source",
-      "official_url": "https://openssf.org/",
-      "deadline": "2027 cycle TBD (2026 cycle closed Apr 12, 2026)",
-      "deadline_type": "range",
-      "freshness": "future",
-      "verification_status": "partially_verified",
-      "eligibility_verdict": "Probably Eligible",
-      "readiness": "minor_preparation",
-      "effort": "12 weeks",
-      "outcomes": {
-        "career": "Medium",
-        "skill": "High",
-        "portfolio": "High",
-        "networking": "High",
-        "financial": "Medium",
-        "interest": "High"
-      },
-      "future_optionality": {
-        "level": "high"
-      },
-      "unlocks": [
-        "open source maintainer"
-      ],
-      "small_bet_type": "public_output",
-      "why_surprising": "开源软件安全基金会的付费导师制，明确目标是把‘安全初学者’培养成项目 maintainer；与你的 security+open source 兴趣几乎贴合。",
-      "included": true,
-      "exclude_reason": null,
-      "utility": "medium",
-      "gate_computed": {
-        "zone": "excluded",
-        "reason": "expired: 截止日 2026-04-12 已过"
-      }
-    },
-    {
-      "title": "DoD Cyber Service Academy (CSA)",
-      "organization": "U.S. Department of Defense",
-      "category": "funding",
-      "official_url": "https://www.sfs.opm.gov/",
-      "deadline": "2027-28 opens mid-Dec 2026",
-      "deadline_type": "range",
-      "freshness": "future",
-      "verification_status": "verified_official",
-      "eligibility_verdict": "Unknown",
-      "readiness": "short_preparation",
-      "effort": "n/a (scholarship)",
-      "outcomes": {
-        "career": "High",
-        "financial": "High",
-        "networking": "High"
-      },
-      "future_optionality": {
-        "level": "high"
-      },
-      "unlocks": [
-        "DoD civilian cybersecurity job"
-      ],
-      "small_bet_type": "high_upside",
-      "why_surprising": "与 SFS 同属美国政府全额奖学金+服务义务，性质高度重叠。",
-      "included": false,
-      "exclude_reason": "与 SFS 高度重叠（同为政府全额奖学金+服务义务），保留 SFS 作代表以免重复占用名额",
-      "gate_computed": {
-        "zone": "worth_verifying",
-        "reason": "无可确认的申请周期；毕业届别不能推断开放状态"
-      }
-    },
-    {
-      "title": "NSF REU (cybersecurity sites: OSU / UTK / UNOMAHA)",
-      "organization": "NSF CISE REU Sites",
-      "category": "research",
-      "official_url": "https://ceat.okstate.edu/iem/research/nsf-reu",
-      "deadline": "Summer 2027 apps ~Oct 2026-Feb 2027 (2026 closed Mar 2026)",
-      "deadline_type": "range",
+      "deadline": null,
+      "deadline_type": "recurring",
       "freshness": "future",
       "verification_status": "unverified",
-      "eligibility_verdict": "Unknown",
-      "readiness": "short_preparation",
-      "effort": "10 weeks summer",
-      "outcomes": {
-        "research": "High",
-        "skill": "High",
-        "financial": "Medium"
-      },
-      "future_optionality": {
-        "level": "medium"
-      },
-      "unlocks": [
-        "graduate research",
-        "cybersecurity REU"
-      ],
-      "small_bet_type": "public_output",
-      "why_surprising": "带薪暑期科研、面向美籍/PR 本科生，是进入科研的低成本入口。",
-      "included": false,
-      "exclude_reason": "2026 夏季批已截止；需美籍/PR 且在校，本轮未核实具体学校页，放入计划型未纳入主推",
-      "gate_computed": {
-        "zone": "worth_verifying",
-        "reason": "无可确认的申请周期；毕业届别不能推断开放状态"
-      }
-    },
-    {
-      "title": "Google Season of Docs",
-      "organization": "Google",
-      "category": "open_source",
-      "official_url": "https://developers.google.com/season-of-docs",
-      "deadline": "unknown (2026 status unconfirmed)",
-      "deadline_type": "tbd",
-      "freshness": "unknown",
-      "verification_status": "unverified",
-      "eligibility_verdict": "Unknown",
-      "readiness": "minor_preparation",
-      "effort": "3-6 months",
-      "outcomes": {
-        "skill": "High",
-        "portfolio": "High"
-      },
-      "future_optionality": {
-        "level": "medium"
-      },
-      "unlocks": [
-        "technical writing career"
-      ],
-      "small_bet_type": "public_output",
-      "why_surprising": "面向技术写作者、与开源项目合作改文档，是‘技术写作者’这条很少被学生搜的路径。",
-      "included": false,
-      "exclude_reason": "2026 是否运行未确认（最近确认轮次为 2024），状态存疑，未纳入",
-      "gate_computed": {
-        "zone": "worth_verifying",
-        "reason": "无可确认的申请周期；毕业届别不能推断开放状态"
-      }
-    },
-    {
-      "title": "Student CFP (IUSCI / Twente / UBC CSSRC / ITCODERA)",
-      "organization": "various universities",
-      "category": "event",
-      "official_url": null,
-      "deadline": "mixed (most expired or school-locked)",
-      "deadline_type": "range",
-      "freshness": "closed",
-      "verification_status": "unverified",
+      "application_status": null,
+      "evidence": {},
       "eligibility_verdict": "Unknown",
       "readiness": "unknown",
-      "effort": "paper/poster",
+      "effort": {
+        "weekly_commitment": "full-time（3 个月）"
+      },
       "outcomes": {
-        "skill": "Medium",
-        "portfolio": "Medium",
-        "networking": "Medium"
+        "skill": "high",
+        "financial": "high",
+        "portfolio": "high"
       },
-      "future_optionality": {
-        "level": "low"
-      },
-      "unlocks": [
-        "conference speaking"
-      ],
-      "small_bet_type": "network",
-      "why_surprising": "学生会议征稿/演讲是‘讲者’这条很少被搜的路径。",
-      "included": false,
-      "exclude_reason": "本轮搜到的学生 CFP 多为非美国/已过期/学校限制，与用户 US+remote 不匹配，且未核实到具体美国学生 CFP 页",
+      "small_bet_type": "high_upside",
+      "why_surprising": "面向少数群体与职业转换者、带薪远程开源实习，一年两期",
+      "included": true,
+      "zone": "worth_verifying",
       "gate_computed": {
         "zone": "worth_verifying",
-        "reason": "无可确认的申请周期；毕业届别不能推断开放状态"
-      }
+        "reason": "周期性开放 → 当前周期是否开放需要页面证据",
+        "demotion": {
+          "code": "verification_not_attempted",
+          "kind": "process",
+          "detail": "本轮没有去核实官方页面（预算/顺序问题，下一轮可补）"
+        }
+      },
+      "demotion": {
+        "code": "verification_not_attempted",
+        "kind": "process",
+        "detail": "本轮没有去核实官方页面（预算/顺序问题，下一轮可补）"
+      },
+      "notes": "本轮预算未核实（未尝试 fetch），需下一轮补官方页证据"
     }
   ],
   "graph": {
     "produces": [
-      "Recurse Center → public coding projects, stronger programming portfolio",
-      "picoCTF → CTF challenge solves, security fundamentals",
-      "MLH Fellowship → merged open source PRs, public portfolio project",
-      "CyberCorps SFS → funded cybersecurity degree, federal security clearance",
-      "Outreachy → open source contributions, published documentation",
-      "OpenSSF Mentorship → security tooling contributions, maintainer experience"
+      "solve history (picoGym)",
+      "merged PR (LFX/OpenSSF)",
+      "contribution record"
     ],
     "unlocks": [
-      "Recurse Center → job network / RC alumni community; stronger SWE profile for internships",
-      "picoCTF → CTF team / campus security club; cybersecurity internship",
-      "MLH Fellowship → SWE internship; open source maintainer",
-      "CyberCorps SFS → federal cybersecurity job (service obligation)",
-      "Outreachy → open source career",
-      "OpenSSF Mentorship → open source maintainer"
+      "CTF 年度赛",
+      "maintainer 路径",
+      "安全方向实习",
+      "云原生岗位"
     ],
     "bridges": [
       {
-        "gap": "open source contribution",
-        "bridges": [
-          "MLH Fellowship (low_commitment=false, public_output=true)",
-          "OpenSSF Mentorship (low_commitment=true, public_output=false)",
-          "Outreachy (public_output=false)"
-        ]
+        "gap": "缺乏可验证的安全技能证据",
+        "bridge": "CyLab Security Academy / picoGym 解题记录",
+        "produces": "solve history",
+        "unlocks": "CTF 竞赛 / 实习申请素材"
       },
       {
-        "gap": "public portfolio",
-        "bridges": [
-          "MLH Fellowship (public_output=true)",
-          "Recurse Center (public_output=true)",
-          "picoCTF (portfolio=Medium)"
-        ]
+        "gap": "缺少开源贡献记录",
+        "bridge": "LFX Mentorship（下一期）或 OpenSSF 项目",
+        "produces": "merged PR",
+        "unlocks": "maintainer / 云原生岗位"
       }
     ]
   },
@@ -619,48 +468,57 @@
     "v3_fields_changed_output": true,
     "graph_useful": true,
     "utility_differs_from_match": true,
-    "surprising_opportunities_found": 6,
-    "adjacency_dimensions_covered": 7
+    "surprising_opportunities_found": 4,
+    "adjacency_dimensions_covered": 6
   },
   "problems": [
     {
       "area": "verification",
-      "detail": "OpenSSF 专用 mentorship 页面 404（已迁移），本轮仅以 openssf.org 官方播客确认 2026 周期与‘付费、面向安全初学者’属性，未拿到独立 canonical 专页；建议下轮补 LFX Mentorship 页面核实 2027 周期。",
+      "detail": "LFX 平台页是 JS 渲染，fetch 读不到当前期次状态；只能靠 CNCF 官方博客的日期",
       "severity": "P1"
     },
     {
-      "area": "coverage",
-      "detail": "讲者/学生 CFP 方向只浅扫，搜到的多为海外或已过期会议，未核实到具体的美国学生 CFP 页面（如 BSides/DEF CON/PyCon）。",
+      "area": "verification",
+      "detail": "play.picoctf.org 被 Cloudflare 拦截，练习区入口页无法直接抓取",
       "severity": "P1"
     },
     {
-      "area": "freshness",
-      "detail": "Google Season of Docs 2026 是否运行未确认（最近公开轮次为 2024），作为候选但标记为未纳入。",
+      "area": "recall",
+      "detail": "讲者/CFP、REU、专业学会三个方向仅浅扫（预算 2 搜 3 抓）",
       "severity": "P1"
     },
     {
-      "area": "eligibility",
-      "detail": "SFS 与 Outreachy 的关键门槛（美籍 / 弱势群体身份）因画像未提供对应字段而判为 Unknown，需在‘需确认’里向用户补齐信息才能给确定结论。",
+      "area": "process",
+      "detail": "5/7 候选未记录 evidence（本轮手工运行时只对主推荐项做了当场记录）",
       "severity": "P1"
     }
   ],
   "gate_computed_summary": {
     "today": "2026-09-20",
-    "recommended_now": 0,
-    "worth_verifying": 9,
-    "excluded": 1,
+    "deadline_type_histogram": {
+      "evergreen": 2,
+      "recurring": 4,
+      "rolling": 1
+    },
+    "rolling_or_evergreen": 7,
+    "evidence_complete_candidates": 1,
+    "demotion_histogram": {
+      "verification_not_attempted": 6
+    },
+    "demotion_by_kind": {
+      "process": 6
+    },
+    "recommended_now": 1,
+    "worth_verifying": 6,
+    "excluded": 0,
     "mismatches": [],
     "missing_application_status_evidence": [
-      "Recurse Center",
-      "picoCTF (now CyLab Security Academy)",
-      "MLH Fellowship",
-      "CyberCorps: Scholarship for Service (SFS)",
-      "Outreachy",
-      "OpenSSF Mentorship Program",
-      "DoD Cyber Service Academy (CSA)",
-      "NSF REU (cybersecurity sites: OSU / UTK / UNOMAHA)",
-      "Google Season of Docs",
-      "Student CFP (IUSCI / Twente / UBC CSSRC / ITCODERA)"
+      "picoCTF annual competition (next edition)",
+      "LFX Mentorship (Term 3 已截止，下一期 2027 Term 1)",
+      "Google Summer of Code 2027",
+      "OpenSSF / security-focused mentorship",
+      "Recurse Center (self-directed programming retreat)",
+      "Outreachy internships (next cohort)"
     ]
   }
 }

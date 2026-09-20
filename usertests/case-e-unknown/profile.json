@@ -1,55 +1,28 @@
 {
-  "profile_version": 1,
-  "updated_at": "2026-09-20",
   "education": {
-    "school": null,
-    "school_country": "United States",
-    "school_city": null,
-    "school_level": null,
     "degree": "undergraduate",
     "major": "Computer Science",
-    "major_family": "cs_software",
-    "enrollment_year": null,
     "current_year": 3,
-    "expected_graduation": null,
-    "GPA": null,
-    "ranking": null
+    "school_country": "United States"
   },
   "skills": [
-    {"name": "Python", "level": "intermediate", "evidence": null},
-    {"name": "Linux", "level": "intermediate", "evidence": null},
-    {"name": "Git", "level": "intermediate", "evidence": null}
+    {
+      "name": "Python"
+    },
+    {
+      "name": "Linux"
+    },
+    {
+      "name": "Git"
+    }
   ],
-  "languages": [],
-  "experience": {
-    "projects": null,
-    "github": null,
-    "research": null,
-    "internships": null,
-    "competitions": null,
-    "open_source": null,
-    "certificates": null,
-    "portfolio": null
-  },
-  "interests": ["cybersecurity", "open_source"],
+  "interests": [
+    "security",
+    "open_source"
+  ],
   "goals": [],
   "constraints": {
-    "preferred_country": ["United States"],
-    "preferred_city": null,
-    "remote": true,
-    "relocation": null,
-    "unpaid": null,
-    "budget": null,
-    "weekly_time": null,
-    "available_period": null,
-    "visa": null,
-    "language_constraint": null
-  },
-  "nationality": null,
-  "_source": "user_stated",
-  "_notes": [
-    "用户原话：最近没什么目标，就是想看看有没有我完全不知道但是值得做的事情。",
-    "已知：大三 CS 学生，美国在读，远程友好；技能 Python/Linux/Git；兴趣 cybersecurity + 开源。",
-    "其余字段用户未提供，保持 Unknown：学校、GPA、毕业时间、国籍、签证、每周可用时间、公司等。"
-  ]
+    "preferred_country": [],
+    "remote": true
+  }
 }

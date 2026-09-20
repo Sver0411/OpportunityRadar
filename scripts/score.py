@@ -45,6 +45,7 @@ from common import (  # noqa: E402
 from normalize_date import freshness, parse_date  # noqa: E402
 from readiness import readiness  # noqa: E402
 from utility import personal_utility  # noqa: E402
+import evidence as EV  # noqa: E402
 
 VERDICT_ORDER = {
     "Eligible": 0, "Probably Eligible": 1, "Unknown": 2,
@@ -1181,11 +1182,14 @@ def recommendation_zone(row: dict) -> str:
     if row.get("conflicts"):
         # 时间冲突 / dealbreaker：不是 Ineligible，但不能和低投入机会一样推荐（V3 §35）
         return "worth_verifying"
-    if row["freshness"]["status"] in OPEN_FRESHNESS \
+    # actionable 已编码：open/likely_open，或 evergreen/recurring + 当前参与证据
+    if row.get("actionable") \
             and str(row.get("official_url") or "").strip() \
             and row.get("verification_status") == "verified_official" \
             and row.get("application_status_evidence") \
             and row.get("size_verified", True) \
+            and row.get("evidence_complete") \
+            and row.get("actionable") \
             and (row.get("match", 0) >= MIN_RECOMMEND_MATCH or row.get("utility") == "high"):
         return "recommended_now"
     return "worth_verifying"
@@ -1367,9 +1371,28 @@ def score_all(profile, opps, seen_index=None, today=None, strict=False, context=
         if rd["status"] == "unknown":
             flags.append("readiness_unknown")
 
+        # V3：证据前置检查（extraction 后、gate 前）—— Match/Utility 都不能绕过
+        evc = EV.check(opp, today)
+        actionable = fr["status"] in OPEN_FRESHNESS or (
+            fr["status"] in ("evergreen", "recurring") and evc["participation_open"])
+        if not evc["complete"]:
+            flags.append("evidence_incomplete")
+            warnings.append("证据不完整：缺少 " + "、".join(evc["missing"])
+                            + "（不得进入 Recommended now）")
+
         # V3：Personal Utility（决策层）—— 让 Utility 真正影响推荐，不只是 JSON 字段
         util = personal_utility(opp, profile, {"eligibility_verdict": verdict, "components": comp,
                                                "urgency": None})
+
+        _row = {"freshness": fr, "official_url": opp.get("official_url"),
+                "verification_status": opp.get("verification_status"),
+                "application_status_evidence": actionable_evidence(opp, today),
+                "size_verified": locals().get("size_verified", True),
+                "conflicts": conflicts, "evidence_complete": evc["complete"],
+                "actionable": actionable, "utility": util["band"], "match": match,
+                "verdict": verdict}
+        zone = recommendation_zone(_row)
+        demotion = None if zone == "recommended_now" else EV.demotion_reason(opp, _row, evc)
         if needs_llm:
             flags.append("needs_semantic_check")
         if not opp.get("language_requirement"):
@@ -1405,19 +1428,18 @@ def score_all(profile, opps, seen_index=None, today=None, strict=False, context=
             "deadline_source": dinfo["source"],
             "freshness": fr["status"],
             "freshness_reason": fr["reason"],
+            "evidence_complete": evc["complete"],
+            "evidence_missing": evc["missing"],
+            "evidence_verified_at": evc["application_status"]["verified_at"],
+            "participation_open": evc["participation_open"],
+            "actionable": actionable,
             "utility": util["band"],
             "utility_reasons": util["reasons"][:3],
             "readiness": rd["status"],
             "readiness_detail": rd,
             "conflicts": conflicts,
-            "zone": recommendation_zone({"freshness": fr, "official_url": opp.get("official_url"),
-                                          "verification_status": opp.get("verification_status"),
-                                          "conflicts": conflicts,
-                                          "utility": util["band"],
-                                          "match": match,
-                                          "application_status_evidence": actionable_evidence(opp, today),
-                                          "size_verified": size_verified,
-                                          "verdict": verdict, "match": match}),
+            "zone": zone,
+            "demotion": demotion,
             "priority_score": priority,
             "priority_band": band(priority),
             "flags": flags,

@@ -1,139 +1,113 @@
-# Case C — Promotion（升 Senior 资本）回归测试记录
+# Case C — Round-3 Transcript（升 Senior 资本建设 / 后端·云原生 / 新加坡+远程）
 
-> P0 回归：修复缺陷 #1（V3 outcome facets 未进入 scoring，导致 CFP/开源/委员会角色卡在 ~48 < 55）
-> 与缺陷 #2（run 未记录 tightened gate 要求的证据结构，导致 recommended_now 不可达）。
-> 今天：2026-09-20。使用真实 WebSearch + WebFetch，仅收录有官方来源的实时机会。
-
----
-
-## ① 用户原话
+## ① 原话（用户真实输入）
 
 > "我现在不想跳槽，就是想让自己未来更容易升 Senior。我是做后端/云原生的，五年经验，base 在新加坡，远程也行。"
 
-解读（不发明）：目标是**升 Senior 的资本建设**，不是找新工作。五年经验接近 Senior 门槛，应侧重**可见度、技术领导力、跨团队影响力**。地区=新加坡+全球远程，主语言英文。
+解析要点：
+- **不想跳槽** → 排除所有 career 类招聘 / 求职入口；目标不是"找下一份工作"。
+- **更容易升 Senior** → 目标 = 积累"升职资本"：技术领导力、跨团队影响力、团队外的可见度。
+- **后端 / 云原生，5 年** → 接近 Senior 门槛，应侧重可见度与影响力而非基础技能。
+- **base 新加坡，远程也行** → 地区 = 新加坡 + 全球远程；主语言英文（en-SG）。
 
----
+## ② 画像（仅来自输入，未发明字段）
 
-## ② 画像（仅来自输入，未发明雇主/GPA/毕业年份/技术栈）
+| 字段 | 值 | 来源 |
+|---|---|---|
+| 职业阶段 | working / mid_career | 推断自"5 年经验" |
+| 年限 | 5 | 用户原话 |
+| 领域 | backend / cloud-native（工作方向，非学位专业） | 用户原话 |
+| 地区 | preferred_country=Singapore，remote=true，relocation=false | 用户原话 |
+| 目标派生（由"升 Senior"推出，非原话） | open_source / networking / event / research / skill / funding | 升 Senior 资本的常见手段 |
+| **未知字段（刻意留空）** | 学历学位、雇主、具体技术栈(K8s/Go/云平台)、GitHub/开源史、国籍/签证、语言成绩、每周可投入时间 | 用户未提供 |
 
-- life_stage: working；career_stage: mid_career；years_experience: 5
-- education.degree: null；major: backend / cloud-native（行业方向，非学位专业）
-- skills: backend(unknown), cloud-native(unknown)
-- languages: English(unknown)
-- goals（按优先级）: open_source(high)、networking(high)、event(high)、research(medium)、skill(medium)、funding(low)
-- constraints: preferred_country=[Singapore], remote=true, relocation=false, unpaid=true
-- 明确未提供：雇主、具体技术栈(K8s/Go/云平台)、GitHub/开源贡献史、国籍/签证、每周可投入时间
-
----
+> 画像纪律：未提供即 `Unknown`，不编造。据此 maintainer/mentor 类资格只能给 `Probably Eligible`。
 
 ## ③ locale / coverage
 
-- locales.py：`mode: A`，regions: singapore + remote，primary_locales: en-SG，optional: zh-CN/ms-SG
-- 类别覆盖（≥3 类，避免退化成实习/招聘）：event、open_source、networking、research、skill_development 各≥1 条
-- 预算：6 WebSearch + 5 WebFetch（已用满）。3 条官方页成功取回证据，2 条官方页取回失败（见⑥）
+- **Mode A（profile discovery）**；但本轮为"升职资本建设"而非求职，故类别权重偏向 event / open_source / networking / research / skill，刻意压低 career 求职。
+- **地区解析**（来自 `scripts/locales.py`）：regions = `singapore, remote`；primary locale = `en-SG`；optional = `zh-CN, ms-SG`（候选，未强搜）。
+- **类别覆盖**：event、open_source、research、skill_development、networking 各 ≥1 条；全部为非求职类（开源/社区/会议/认证），未退化成招聘板。
+- **预算**：6 WebSearch + 5 WebFetch 已用满。本轮 5 个官方页（KubeCon CFP、CNCF contribute、CKA 认证、TAG、LFX Mentorship 时间表）均成功取回并记录 explicit 证据；CNCG Singapore 群组页未以 WebFetch 打开，按 canonical-source gate 留作 worth_verifying。
 
----
+## ④ queries（真实 WebSearch，6 条）
 
-## ④ queries（6 次 WebSearch）
+1. KubeCon CloudNativeCon 2027 CFP call for proposals deadline speaker submission — event
+2. CNCF contributor ladder become a maintainer getting started contribute.cncf.io — open_source
+3. CKA CKAD CKS Kubernetes certification Linux Foundation register online exam 2026 — skill_development
+4. CNCF Technical Advisory Group TAG working group join participate contribute.cncf.io — research
+5. LFX Mentorship become a mentor Linux Foundation terms application Spring Summer Fall — networking
+6. CNCF Cloud Native Community Group Singapore chapter organizer community.cncf.io — networking (en-SG)
 
-1. `KubeCon CloudNativeCon 2027 CFP call for proposals speaker deadline` — event
-2. `CNCF become a project maintainer contributor ladder how to participate 2026` — open_source
-3. `CNCF CKA CKAD CKS certification exam register schedule 2026 Linux Foundation` — skill
-4. `CNCF Community Group Singapore chapter local meetup community.cncf.io` — networking
-5. `LFX Mentorship Linux Foundation become a mentor 2026 application` — networking
-6. `CNCF Technical Advisory Group TAG working group join participate contribute.cncf.io` — research
+真实 WebFetch（5）：上述 1–5 的官方页全部命中并取回原文；CNCG 群组页未打开（见 ③）。
 
----
+## ⑤ 候选与排除
 
-## ⑤ 候选与排除（7 个候选）
+**进入推荐区（recommended_now，4）：**
+- `cncf-kubecon-eu-2027-cfp` — KubeCon+CloudNativeCon Europe 2027 CFP（演讲征集）
+- `cncf-contributor-maintainer-path` — CNCF 开源贡献者路径（通往 Maintainer）
+- `cncf-cka-ckad-cks` — CKA/CKAD/CKS Kubernetes 认证
+- `cncf-tag-working-group` — CNCF TAG / Working Group 参与
 
-进入主推荐区（recommended_now，3 个，均 fetched + verified_official + 当日 evidence）：
-- C1 KubeCon + CloudNativeCon Europe 2027 CFP（event）
-- C2 CNCF 开源贡献者路径→Maintainer（open_source）
-- C3 CKA/CKAD/CKS Kubernetes 认证（skill）
+**值得核实（worth_verifying，3）：**
+- `lfx-mentorship-mentor` — LFX Mentorship（Mentor 身份）：recurring，官方文档确认按 Spring/Summer/Fall 循环，但**无法确认当前有开放的 Mentor 申请窗口** → 缺 dated open 观察。
+- `cncg-singapore-organizer` — Cloud Native Community Group Singapore 组织者：evergreen，搜索显示 2026 仍有线下 meetup，但官方群组页未打开核实"成为组织者"入口 → 官方页未核实成功。
+- `acm-singapore-committee` — ACM Singapore 委员：**未找到官方确认来源**（official_url 为空）→ 仅留作待核实。
 
-值得继续核实（worth_verifying，4 个）：
-- C4 CNCF TAG / Working Group 参与（research）— 搜索到官方页显示开放，但本轮未 fetch 确认
-- C5 LFX Mentorship 以 Mentor 身份（networking）— 官方 Mentor 文档显示按 Term 招募；fetch 跳登录墙
-- C6 Cloud Native Community Group Singapore 组织者（networking）— 搜索显示群组活跃；群组页 fetch 返回 404
-- C7 ACM Singapore 委员会（networking）— 未找到官方确认来源，留作待核实
-
-排除：无（没有过期/明确不符合项）。C7 因无 canonical source 未进主区，但留在 worth_verifying 而非丢弃。
-
----
+**未搜/排除方向：** 一切 career 招聘类（用户明确不想跳槽）；学生专属项目（与"5 年职场"画像不符）。
 
 ## ⑥ verification / evidence / eligibility / readiness / utility
 
-**已 fetch 并记录的真实证据（verified_official + evidence，verified_at=2026-09-20）：**
+本轮严格执行新规则：`recommended_now` 必须同时满足 **canonical source + verified_official + dated application_status 证据（explicit+source_url+verified_at 在 30 天内）+ evidence 完整 + match≥55 或 utility=high**。
 
-| 候选 | 官方页（当日 fetch） | application_status | deadline |
-|---|---|---|---|
-| C1 KubeCon CFP | events.linuxfoundation.org/kubecon-cloudnativecon-europe/program/cfp | open（"Submissions are due by 11 October…"） | 2026-10-11 explicit |
-| C2 CNCF 贡献者路径 | contribute.cncf.io/contributors/getting-started | open（"Contributing… doesn't require permission… start contributing"） | rolling（无固定截止）explicit |
-| C3 CKA 认证 | www.cncf.io/certification/cka/ | open（"register for exam" 入口） | rolling（常年报名）explicit |
+| 候选 | deadline_type（本轮新分类） | verification | application_status | 证据(dated) | 资格 | readiness | 落入区 |
+|---|---|---|---|---|---|---|---|
+| KubeCon CFP | fixed | verified_official | open | ✅ explicit 2026-09-20 | Eligible | minor | **recommended_now** |
+| CNCF Maintainer | rolling | verified_official | open | ✅ explicit 2026-09-20 | Probably Eligible | minor | **recommended_now** |
+| CKA/CKAD/CKS | **evergreen** | verified_official | open | ✅ explicit 2026-09-20 | Eligible | ready_now | **recommended_now** |
+| CNCF TAG | rolling | verified_official | open | ✅ explicit 2026-09-20 | Eligible | ready_now | **recommended_now** |
+| LFX Mentor | **recurring** | verified_official | recurring(非 open) | ⚠️ unknown：仅确认循环结构 | Probably Eligible | minor | worth_verifying |
+| CNCG Singapore | **evergreen** | partially_verified | null | ⚠️ unknown：页未打开 | Eligible | minor | worth_verifying |
+| ACM Singapore | evergreen | unverified | null | ❌ 无来源 | Unknown | unknown | worth_verifying |
 
-**fetch 失败、如实降级（未伪造 verified_official）：**
-- C6 community.cncf.io/singapore → 404（SPA 路由），未取得'成为组织者'入口 → partially_verified
-- C5 mentorship.lfx.linuxfoundation.org/participate/mentor → 跳 LF SSO 登录页，未取得正文 → partially_verified（evidence 取自官方 LFX gitbook 文档，标注来源）
+**关键新规则体现：** evergreen/recurring 本身"长期存在"≠"今天能参与"。CKA 虽是 evergreen，但因记录了 dated `application_status=open` 证据，合法进入推荐区；LFX Mentor 虽是 recurring 且官方页已核实，但因**没有**"当前开放窗口"的 dated 观察，按证据前置检查被挡在 worth_verifying（降级性质 = fact：页面无法确认）。
 
-**eligibility（按硬性条件，无 inferred 升级）：**
-- C1 Eligible（CFP 对从业者开放，无硬性门槛）
-- C2 Probably Eligible（maintainer 需 12 个月贡献+提名，画像缺开源史，只能给 Probably）
-- C3 Eligible（认证无学历/身份门槛）
-- C4 Eligible；C5 Probably Eligible；C6 Eligible；C7 Unknown
-
-**readiness：** C3 ready_now；C1/C2/C5/C6 minor_preparation；C4 ready_now；C7 unknown
-**utility：** 三者均为 medium-high（资格+准备度+产出/未来通道明确），但主区由 **match≥55** 命中（非仅靠 utility）。C1 match≈68、C2≈68、C3≈60，均≥55。
-
-**关键修复验证：** 缺陷 #2 要求的结构（verification_status=verified_official + application_status/evidence.deadline explicit + source_url + verified_at 当日）已为 C1/C2/C3 记录；`actionable_evidence` 因此为真，freshness 对 rolling 项返回 likely_open → 三者全部进入 recommended_now。上一轮因缺该结构，recommended_now=0；本轮=3。
-
----
-
-## ⑦ graph（机会图谱）
-
-- produces：C2 合并 PR/OWNERS → C1 公开演讲 → C3 认证凭证 → C4 标准文档 → C5 指导记录 → C6 本地领导力
-- unlocks：C2→C1/C6（maintainer 是 Ambassador/演讲跳板）；C4→C1；C3→C2（Kubestronaut 增信）；C5→C2；C6→C1
-- bridges：公开贡献(C2) → 外部可见度(C1/C6) → 升 Senior 的'影响超出团队'证据；考证(C3) 补可信度 → 进 TAG(C4)/做导师(C5)
-
----
-
-## ⑧ 【用户看到的最终回答】（白话中文，无内部术语）
-
-你不想跳槽，只想**更容易升 Senior**——那重点就不是"再找一份工作"，而是攒够**升职评审看得见的资本**：行业外部影响力、技术领导力、带人/带项目的能力。基于你「后端/云原生、五年经验、base 新加坡、可远程」的情况，我筛了开源、社区、会议、认证这几类（不是招聘帖），以下 3 个现在就能动手：
-
-1. **投 KubeCon + CloudNativeCon Europe 2027 的演讲（CFP）** — 截止 **2026-10-11**（还有 21 天），官网明确在收稿、鼓励首次演讲者。一次旗舰会议演讲，就是"技术影响力超出本团队"最硬、可验证的证据，直接能写进升职材料。
-2. **走 CNCF 开源贡献者路径，目标做 Maintainer** — 官方贡献者页明确写"贡献不需要许可，直接开始"。持续给云原生项目发 PR、做 review，约一年后被现 maintainer 提名。这是"带动项目/他人"的第三方背书，比口头说"熟悉开源"分量重得多。
-3. **考 CKA / CKAD / CKS（Kubernetes 认证）** — 官网常年开放报名（约 $445/门，远程在线考）。五年经验者的"硬通货"：简历和答辩里第三方可验证的 K8s 能力。
-
-另外 3 个值得关注、但我**没能在这轮把官方申请入口核实清楚**，先放"待确认"：
-- **进 CNCF 的 TAG / Working Group**（参与定标准，Senior 级"设定标准而非只执行"的强证据）
-- **以 Mentor 身份参加 LFX Mentorship**（带新人 = 直接对应"培养他人"维度）
-- **做 Cloud Native Community Group Singapore 的组织者**（就在新加坡本地，零成本建技术社区领导力）
-
-> 坦白说：后两个的官方页我这轮抓取失败（一个 404、一个跳登录），所以没敢标"现在就能申请"，建议你点进去确认下入口。想让我深挖哪条、或你补充下具体技术栈/开源经历，我可以更精准地判断你能不能上。
-
----
-
-## 真实 gate 输出（_apply_gate.py，2026-09-20）
+## ⑦ graph（机会之间的桥接）
 
 ```
-[Case C] gate 重算: recommended=3 worth_verifying=4 excluded=0 | 手工标注与 gate 不一致: 0
-    缺 evidence.application_status 的候选: 1/7
+produces:
+  KubeCon 演讲 → 公开演讲 / slides / 外部可见技术影响力
+  CNCF Maintainer → 合并 PR / OWNERS / 技术决策权
+  CKA 认证 → 行业认证凭证
+  CNCF TAG → 标准文档 / 跨项目影响力
+  LFX Mentor → mentee 产出 / 跨公司指导记录
+  CNCG SG → 本地社区领导力 / 本地人脉
+
+unlocks（彼此放大）:
+  Maintainer → KubeCon 演讲 & CNCF Ambassador
+  TAG → KubeCon 深度演讲
+  CKA(Kubestronaut) → 更易被采纳为 maintainer
+  LFX Mentor → maintainer 关系
+  CNCG SG → 本地 meetup 演讲
+
+bridge:
+  主线：公开贡献(Maintainer) → 外部可见度(KubeCon/CNCG) → 升 Senior 的"影响超出团队"证据
+  辅线：考证(CKA) 补可信度 → 进 TAG / 做导师 → 技术领导力与 mentorship 证据
+  汇聚目标：promotion_to_senior（第三方可验证的技术领导力 / 行业影响力 / 培养他人）
 ```
 
-- recommended_now（3）：C1 KubeCon CFP、C2 CNCF Maintainer 路径、C3 CKA/CKAD/CKS
-- worth_verifying（4）：C4 CNCF TAG、C5 LFX Mentor、C6 CNCG Singapore、C7 ACM Singapore
-- excluded（0）：无
-- 缺失 evidence.application_status 的候选：仅 C7（ACM Singapore，本就未进主区）
+## ⑧【用户最终回答】白话中文
 
----
+你不想跳槽、想攒"升 Senior 的底气"，那重点就不在找下一份工作，而是把自己在本团队之外的影响力做出来。给你 4 个现在就能动手的（都已确认官方页、当前开放）：
 
-## 验收与剩余问题
+1. **投 KubeCon Europe 2027 的演讲**（截止 2026-10-11，远程投稿）。一次旗舰会议演讲，是评审眼里最硬核的"技术影响力出圈"证据。
+2. **去 CNCF 项目做贡献、往 Maintainer 走**（随时能开始，不用许可）。持续贡献约一年、被现 maintainer 提名，这是比"我会开源"强得多的第三方背书。
+3. **考 CKA / CKAD / CKS**（全年可报名，在线考 $445）。Senior 答辩里，"有 CKA"比"熟悉 K8s"实在得多。
+4. **加入 CNCF 的技术顾问组 TAG**（随时能参加公开会议）。参与定标准，是"影响超出本团队"的直接体现。
 
-- ✅ 未退化成招聘板（job-board degeneration）：全部为非求职类（开源/社区/会议/认证）。
-- ✅ 缺陷 #1（V3 outcomes 进入 scoring）与 #2（evidence 前提）均已修复：recommended_now 由 0 → 3。
-- ✅ 无过期/无来源项混入主区；主区官方验证率 3/3 = 100%。
-- ⚠️ P1：C6 官方群组页 404、C5 官方 Mentor 页跳登录，导致这两条只能 worth_verifying（如实降级，未伪造 verified_official）。需额外 fetch 配额才能认证进主区。
-- ⚠️ P1：画像未提供具体技术栈与开源贡献史，maintainer/mentor 类资格只能给 Probably Eligible，无法进一步收紧。
-- P2：6+5 预算已用满，2 次失败 fetch 挤占了验证预算。
-- 无 P0 残留（两个被回归的缺陷均已修复并通过真实 gate 验证）。
+另外 3 个先别急着冲，值得你留意核实：
+- **LFX Mentorship 做导师**：每年 Spring/Summer/Fall 招，但我没查到"现在正开放申请"的官方确认——等下届开放再看看。
+- **新加坡本地 Cloud Native 社区组织者**：你 base 新加坡、零成本，但官方"成为组织者"入口这轮没打开核实，先去 meetup 混个脸熟。
+- **ACM Singapore 委员**：没找到官方确认来源，先放一边。
+
+一句话：**先把演讲、开源贡献、考证、进 TAG 这四件事做起来，你的"升 Senior 材料"就有了团队外可验证的证据。**

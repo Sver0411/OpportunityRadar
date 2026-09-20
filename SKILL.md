@@ -118,6 +118,7 @@ Deterministic helpers (Full Mode; never re-implement inline):
 | `scripts/graph.py` | Opportunity graph: produces → unlocks → goal contribution; gap → bridge opportunities |
 | `scripts/coverage.py` | Search coverage ledger (region/locale/category depth) + one plain-language statement |
 | `scripts/utility.py` | Personal Utility: High/Medium/Low + reasons (worth investing resources now?) |
+| `scripts/evidence.py` | Pre-gate evidence check: canonical source + official verification + dated application-status evidence; distinguishes "we forgot to record" from "the page cannot confirm" |
 
 Single source of truth: enums, weights, tracked fields and ID/URL rules live in
 `scripts/common.py`; `schemas/*.json` and the references must match it.

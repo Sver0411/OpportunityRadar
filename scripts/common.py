@@ -59,7 +59,8 @@ EVIDENCE_FIELDS = (
     "school_requirement", "GPA_requirement", "compensation", "organization_size",
 )
 
-DEADLINE_TYPES = ("fixed", "range", "rolling", "asap", "flexible", "tbd", "unknown")
+DEADLINE_TYPES = ("fixed", "range", "rolling", "evergreen", "recurring",
+                  "asap", "flexible", "tbd", "unknown")
 
 LAYERS = ("exploit", "adjacent", "explore")
 

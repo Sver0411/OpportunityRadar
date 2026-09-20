@@ -565,6 +565,46 @@ class TestEvidenceGaps(unittest.TestCase):
         self.assertTrue(any("major_requirement" in g for g in gaps), "explicit 但缺 source_url 也应提示")
 
 
+class TestEvidencePrecondition(unittest.TestCase):
+    """P0：证据不完整时，任何 Match/Utility 都不能让它进主推荐。"""
+
+    def _run(self, **extra):
+        base = {"id": "e", "deadline": "2026-10-03", "official_url": "https://a.example",
+                "education_level": ["undergraduate"]}
+        base.update(extra)
+        return S.score_all(profile(), [opp(**base)], today=dt.date(2026, 9, 14))["results"][0]
+
+    def test_without_application_status_evidence(self):
+        row = self._run(verification_status="verified_official")
+        self.assertEqual(row["zone"], "worth_verifying")
+        self.assertIn("evidence_incomplete", row["flags"])
+        self.assertEqual(row["demotion"]["code"], "missing_evidence_structure")
+
+    def test_stale_evidence_is_incomplete(self):
+        row = self._run(verification_status="verified_official", application_status="open",
+                        evidence={"application_status": {"status": "explicit",
+                                                         "source_url": "https://a.example",
+                                                         "verified_at": "2026-01-01"}})
+        self.assertFalse(row["evidence_complete"])
+        self.assertEqual(row["zone"], "worth_verifying")
+
+    def test_complete_evidence_can_recommend(self):
+        row = self._run(verification_status="verified_official", application_status="open",
+                        evidence={"application_status": {"status": "explicit",
+                                                         "source_url": "https://a.example",
+                                                         "verified_at": "2026-09-13"}})
+        self.assertTrue(row["evidence_complete"])
+        self.assertTrue(row["actionable"])
+        self.assertEqual(row["zone"], "recommended_now")
+
+    def test_evergreen_needs_participation_evidence(self):
+        """evergreen ≠ verified open：没有当前参与证据时不得进主推荐。"""
+        row = self._run(deadline=None, deadline_type="evergreen")
+        self.assertEqual(row["freshness"], "evergreen")
+        self.assertFalse(row["actionable"])
+        self.assertEqual(row["zone"], "worth_verifying")
+
+
 class TestFreshnessGate(unittest.TestCase):
     """F01/F02：已结束的机会不得因为 deadline=null 或赛季未解析而进入推荐。"""
 
@@ -617,10 +657,15 @@ class TestCanonicalSourceGate(unittest.TestCase):
         return S.score_all(profile(), [o], today=dt.date(2026, 9, 14))
 
     def verified(self, o):
+        """官方已核实 + 当前状态证据（V3 起：只有 deadline 证据不够）。"""
         o["verification_status"] = "verified_official"
+        o["application_status"] = "open"
         o["last_verified"] = "2026-09-14"
         o["evidence"] = {"deadline": {"status": "explicit", "source_url": o["official_url"],
-                                      "verified_at": "2026-09-14"}}
+                                      "verified_at": "2026-09-14"},
+                         "application_status": {"status": "explicit",
+                                                "source_url": o["official_url"],
+                                                "verified_at": "2026-09-14"}}
         return o
 
     def test_official_url_present_can_be_recommended(self):

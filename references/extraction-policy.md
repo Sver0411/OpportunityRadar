@@ -222,6 +222,21 @@ python3 scripts/normalize_date.py "9月20日" --default-year 2026 --now 2026-09-
 > 宁可说"我找到了这个项目，但当前申请状态无法确认"，
 > 也不要说"现在可以申请"。
 
+## 6.1b deadline_type 的完整取值（含 evergreen / recurring）
+
+| 取值 | 含义 | freshness |
+|---|---|---|
+| `fixed` / `range` | 固定日或区间截止 | 按日期 → open / expired |
+| `rolling` | 官方持续接受，可能随时关闭 | likely_open |
+| `evergreen` | 长期存在、没有报名周期（contributor / community / certification 路径） | **evergreen**（需"当前可参与"证据） |
+| `recurring` | 周期性开放（每年/每届） | 按周期年份 → future / closed / recurring |
+| `asap` / `flexible` | 尽快 / 可协商 | likely_open |
+| `tbd` | 官方未定 | unknown |
+| `unknown` | 无法判断 | unknown |
+
+**evergreen ≠ verified open**：长期存在不等于今天能参与。只有页面给出"当前可参与"证据
+（`evidence.application_status` 为 explicit 且状态为 open）时，才允许进入 actionable zone。
+
 ## 6.2 主推荐的证据前提（P0，来自 C/D/E 验收）
 
 `recommended_now` 不是"看起来可以申请"，而是**有当天的官方观测**：

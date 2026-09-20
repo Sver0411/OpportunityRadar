@@ -35,6 +35,11 @@ def opp_from_candidate(c, idx, case):
         "effort": c.get("effort") or {},
         "prerequisites": c.get("prerequisites") or [],
         "application_status": c.get("application_status"),
+        "deadline_type": c.get("deadline_type"),
+        "event_end": c.get("event_end"),
+        "cycle": c.get("cycle"),
+        "summary": c.get("summary"),
+        "notes": c.get("notes"),
         "evidence": c.get("evidence") or {},
         "outcomes": c.get("outcomes") or {},
         "produces": c.get("produces") or [],
@@ -74,14 +79,37 @@ def main() -> None:
             else:
                 computed_zone = "excluded"
                 reason = excluded_by_id.get(oid, "")
-            c["gate_computed"] = {"zone": computed_zone, "reason": reason}
+            dem = None
+            if oid in by_id:
+                dem = by_id[oid].get("demotion")
+            elif excluded_by_id.get(oid):
+                dem = {"code": "closed_or_ineligible", "kind": "fact",
+                       "detail": excluded_by_id.get(oid)}
+            c["gate_computed"] = {"zone": computed_zone, "reason": reason, "demotion": dem}
+            if dem:
+                c["demotion"] = dem
             if declared and declared != computed_zone:
                 mismatches.append({"title": c.get("title"),
                                    "declared": declared, "computed": computed_zone,
                                    "reason": reason})
 
+        from collections import Counter
+        dt_hist = Counter(str(c.get("deadline_type")) for c in cands)
+        dem_hist = Counter((c.get("demotion") or {}).get("code") for c in cands
+                           if c.get("demotion"))
+        dem_kind = Counter((c.get("demotion") or {}).get("kind") for c in cands
+                           if c.get("demotion"))
+        ev_complete = sum(1 for c in cands if c.get("evidence", {}) or
+                          (c.get("official_url") and c.get("application_status"))
+                          and (c.get("evidence") or {}).get("application_status"))
         record["gate_computed_summary"] = {
             "today": TODAY.isoformat(),
+            "deadline_type_histogram": dict(dt_hist),
+            "rolling_or_evergreen": sum(1 for c in cands
+                                        if str(c.get("deadline_type")) in ("rolling", "evergreen", "recurring")),
+            "evidence_complete_candidates": ev_complete,
+            "demotion_histogram": dict(dem_hist),
+            "demotion_by_kind": dict(dem_kind),
             "recommended_now": sum(1 for c in cands
                                    if c["gate_computed"]["zone"] == "recommended_now"),
             "worth_verifying": sum(1 for c in cands
@@ -96,6 +124,10 @@ def main() -> None:
               f"worth_verifying={s['worth_verifying']} excluded={s['excluded']} "
               f"| 手工标注与 gate 不一致: {len(mismatches)}")
         print(f"    缺 evidence.application_status 的候选: {len(missing_evidence)}/{len(cands)}")
+        print(f"    deadline_type 分布: {dict(Counter(str(c.get('deadline_type')) for c in cands))}")
+        print(f"    降级原因: {dict(Counter((c.get('demotion') or {}).get('code') for c in cands if c.get('demotion')))}")
+        print(f"    降级性质(process=漏记/fact=页面无法确认/infrastructure=打不开): "
+              f"{dict(Counter((c.get('demotion') or {}).get('kind') for c in cands if c.get('demotion')))}")
         for m in mismatches:
             print(f"    - {str(m['title'])[:44]}: 标注={m['declared']} → gate={m['computed']} "
                   f"({str(m['reason'])[:60]})")

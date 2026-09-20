@@ -300,13 +300,15 @@
         "fixed",
         "range",
         "rolling",
+        "evergreen",
+        "recurring",
         "asap",
         "flexible",
         "tbd",
         "unknown",
         null
       ],
-      "description": "截止日语义（由 scripts/normalize_date.py 判定）。rolling=滚动招募、asap=尽快无日期、tbd=未公布，三者不可混为一谈；区间类紧迫度以 end（=deadline）为准"
+      "description": "fixed/range=固定或区间截止；rolling=官方持续接受（可能随时关闭）；evergreen=长期存在无报名周期（仍需『当前可参与』证据）；recurring=周期性开放（当前周期是否开放需证据）；asap/flexible/tbd/unknown"
     },
     "event_start": {
       "type": [

@@ -1,0 +1,164 @@
+{
+  "_note": "Freshness / evidence 事实链 fixture。today=2026-09-20。每条给出期望的 freshness 与 zone，由 tests/test_freshness_evidence_cases.py 断言。全部为合成数据，不是真实机会。",
+  "today": "2026-09-20",
+  "profile": {
+    "education": {"degree": "undergraduate", "major": "Computer Science",
+                  "current_year": 3, "expected_graduation": "2028-06"},
+    "skills": [{"name": "Python"}, {"name": "Linux"}, {"name": "Git"}],
+    "interests": ["security", "open_source"],
+    "goals": [{"type": "internship", "priority": "high"},
+              {"type": "open_source", "priority": "high"},
+              {"type": "skill", "priority": "medium"},
+              {"type": "networking", "priority": "medium"},
+              {"type": "research", "priority": "medium"}],
+    "constraints": {"preferred_country": ["United States"], "remote": true, "weekly_time": "15"}
+  },
+  "cases": [
+    {
+      "id": "fixed_deadline_open",
+      "label": "固定截止日且当前开放",
+      "opportunity": {
+        "id": "c1", "title": "Security internship 2027", "organization": "Northstar",
+        "primary_category": "career", "tags": ["security", "python"],
+        "official_url": "https://northstar.example/careers/security-intern",
+        "deadline": "2026-11-15", "deadline_type": "fixed",
+        "verification_status": "verified_official", "application_status": "open",
+        "evidence": {"application_status": {"status": "explicit",
+                                            "source_url": "https://northstar.example/careers/security-intern",
+                                            "verified_at": "2026-09-19"}},
+        "remote": true, "education_level": ["undergraduate"]
+      },
+      "expected": {"freshness": "open", "zone": "recommended_now"}
+    },
+    {
+      "id": "fixed_deadline_expired",
+      "label": "固定截止日已过期",
+      "opportunity": {
+        "id": "c2", "title": "Security internship 2026", "organization": "Northstar",
+        "primary_category": "career", "tags": ["security"],
+        "official_url": "https://northstar.example/careers/2026",
+        "deadline": "2026-04-20", "deadline_type": "fixed",
+        "verification_status": "verified_official", "remote": true
+      },
+      "expected": {"freshness": "expired", "zone": "excluded"}
+    },
+    {
+      "id": "rolling_officially_open",
+      "label": "rolling + 官方明确开放",
+      "opportunity": {
+        "id": "c3", "title": "Open source security tooling — rolling contributions",
+        "organization": "Atlas OSS", "primary_category": "open_source", "tags": ["security", "git"],
+        "official_url": "https://atlas-oss.example/contribute",
+        "deadline": null, "deadline_type": "rolling",
+        "verification_status": "verified_official", "application_status": "open",
+        "evidence": {"application_status": {"status": "explicit",
+                                            "source_url": "https://atlas-oss.example/contribute",
+                                            "verified_at": "2026-09-19"}},
+        "remote": true
+      },
+      "expected": {"freshness": "likely_open", "zone": "recommended_now"}
+    },
+    {
+      "id": "evergreen_with_entry",
+      "label": "evergreen + 页面有当前参与入口",
+      "opportunity": {
+        "id": "c4", "title": "Cloud vendor student contributor programme",
+        "organization": "Helio Cloud", "primary_category": "open_source",
+        "tags": ["open source", "python"],
+        "official_url": "https://helio.example/contributors",
+        "deadline": null, "deadline_type": "evergreen",
+        "summary": "Always open for new contributors",
+        "verification_status": "verified_official", "application_status": "open",
+        "evidence": {"application_status": {"status": "explicit",
+                                            "source_url": "https://helio.example/contributors",
+                                            "verified_at": "2026-09-19",
+                                            "evidence_summary": "Official page currently provides an active contribution path."}},
+        "remote": true
+      },
+      "expected": {"freshness": "evergreen", "zone": "recommended_now",
+                   "actionable": true}
+    },
+    {
+      "id": "evergreen_without_entry",
+      "label": "evergreen 但页面只有介绍、无当前参与入口",
+      "opportunity": {
+        "id": "c5", "title": "Open source community programme",
+        "organization": "Atlas OSS", "primary_category": "open_source", "tags": ["open source"],
+        "official_url": "https://atlas-oss.example/community",
+        "deadline": null, "deadline_type": "evergreen",
+        "verification_status": "verified_official",
+        "remote": true
+      },
+      "expected": {"freshness": "evergreen", "zone": "worth_verifying",
+                   "actionable": false}
+    },
+    {
+      "id": "recurring_not_started",
+      "label": "周期性项目，当前周期尚未开始",
+      "opportunity": {
+        "id": "c6", "title": "Annual security challenge 2027", "organization": "Cyber League",
+        "primary_category": "competition", "tags": ["security"],
+        "official_url": "https://cyber-league.example/2027",
+        "deadline": null, "deadline_type": "recurring", "cycle": "2027",
+        "verification_status": "verified_official", "remote": true
+      },
+      "expected": {"freshness": "future", "zone": "worth_verifying"}
+    },
+    {
+      "id": "recurring_current_open",
+      "label": "周期性项目，当前周期开放（有证据）",
+      "opportunity": {
+        "id": "c7", "title": "Security challenge 2026 autumn round", "organization": "Cyber League",
+        "primary_category": "competition", "tags": ["security", "ctf"],
+        "official_url": "https://cyber-league.example/2026-autumn",
+        "deadline": null, "deadline_type": "recurring", "cycle": "2026",
+        "verification_status": "verified_official", "application_status": "open",
+        "evidence": {"application_status": {"status": "explicit",
+                                            "source_url": "https://cyber-league.example/2026-autumn",
+                                            "verified_at": "2026-09-19"}},
+        "remote": true
+      },
+      "expected": {"freshness": "recurring", "zone": "recommended_now",
+                   "actionable": true}
+    },
+    {
+      "id": "null_unconfirmable",
+      "label": "deadline=null 且完全无法确认",
+      "opportunity": {
+        "id": "c8", "title": "Some programme", "organization": "Unknown org",
+        "primary_category": "career", "tags": ["security"],
+        "official_url": "https://unknown.example/programme",
+        "deadline": null, "verification_status": "verified_official", "remote": true
+      },
+      "expected": {"freshness": "unknown", "zone": "worth_verifying"}
+    },
+    {
+      "id": "third_party_claims_open",
+      "label": "第三方说开放，官网没有证据",
+      "opportunity": {
+        "id": "c9", "title": "Security internship (aggregator listing)", "organization": "Unknown",
+        "primary_category": "career", "tags": ["security"],
+        "official_url": null, "discovery_url": "https://aggregator.example/p/9",
+        "deadline": "2026-12-01", "deadline_type": "fixed",
+        "verification_status": "unverified", "remote": true
+      },
+      "expected": {"freshness": "open", "zone": "worth_verifying",
+                   "demotion_code": "no_canonical_source"}
+    },
+    {
+      "id": "official_blocked",
+      "label": "官网反爬 / 无法读取",
+      "opportunity": {
+        "id": "c10", "title": "Security fellowship 2027", "organization": "Shield Labs",
+        "primary_category": "career", "tags": ["security"],
+        "official_url": "https://shield-labs.example/fellowship",
+        "deadline": "2026-11-30", "deadline_type": "fixed",
+        "verification_status": "unverified",
+        "notes": "fetch blocked (403 / captcha)",
+        "remote": true
+      },
+      "expected": {"freshness": "open", "zone": "worth_verifying",
+                   "demotion_code": "page_not_verifiable"}
+    }
+  ]
+}

@@ -13,7 +13,7 @@
       {
         "type": "education",
         "priority": "high",
-        "note": "申请日本硕士；不想立刻辞职，倾向在职/兼职/在线/企业派遣等非脱产路径"
+        "note": "申请日本硕士；不想立刻辞职，倾向在职/在线/企业派遣等非脱产路径"
       },
       {
         "type": "language",
@@ -58,8 +58,8 @@
   "fields_left_unknown": [
     "major / major_family",
     "GPA",
-    "school / school_level",
-    "Japanese & English test scores (JLPT/TOEFL/IELTS)",
+    "school / school_level / 是否已取得学士学位",
+    "Japanese & English test scores (JLPT / TOEFL / IELTS)",
     "undergraduate graduation year / cohort",
     "current employer / industry / role",
     "nationality",
@@ -102,16 +102,16 @@
         "region": "Japan",
         "locale": "ja",
         "category": "education",
-        "queries": 2,
-        "candidates": 6,
-        "verified": 3
+        "queries": 4,
+        "candidates": 4,
+        "verified": 4
       },
       {
         "region": "Japan",
         "locale": "en",
         "category": "funding",
-        "queries": 3,
-        "candidates": 5,
+        "queries": 1,
+        "candidates": 2,
         "verified": 2
       },
       {
@@ -126,8 +126,8 @@
         "region": "Japan",
         "locale": "en",
         "category": "language",
-        "queries": 1,
-        "candidates": 2,
+        "queries": 0,
+        "candidates": 1,
         "verified": 0
       },
       {
@@ -135,45 +135,45 @@
         "locale": "en",
         "category": "career",
         "queries": 0,
-        "candidates": 1,
+        "candidates": 0,
         "verified": 0
       }
     ],
-    "statement": "本轮重点扫描了 Japan（language、research、career 仅浅扫）、remote（career 仅浅扫）；这是有限预算下的覆盖，不是全互联网完整扫描。"
+    "statement": "本轮覆盖 education（在职/在线硕士）/ funding（在职人士可申奖学金）/ research（研究生制度搭桥）；language 与 career 仅浅扫。预算内 7 次搜索 + 5 次官方页抓取，重点核实 3–4 个拟推荐项的当前开放状态。"
   },
   "queries": [
     {
-      "text": "社会人向け 修士課程 通信教育 大学院 日本 在職",
+      "text": "放送大学 大学院 修士課程 2027年度 入学 募集 出願",
       "layer": "exploit",
       "locale": "ja"
     },
     {
-      "text": "ADB Japan Scholarship Program master's 2027 application deadline",
+      "text": "SBI大学院大学 オンラインMBA 2027年度 出願 募集要項",
       "layer": "exploit",
-      "locale": "en"
+      "locale": "ja"
     },
     {
-      "text": "研究生 制度 日本 大学院 入学 社会人 外国人",
+      "text": "教育テック大学院大学 フルオンライン修士 2027 出願 募集",
+      "layer": "exploit",
+      "locale": "ja"
+    },
+    {
+      "text": "法政大学 社会人大学院 2027年度 入試 出願 募集",
+      "layer": "exploit",
+      "locale": "ja"
+    },
+    {
+      "text": "大阪経済大学 大学院 社会人入試 2027 出願 締切",
       "layer": "adjacent",
       "locale": "ja"
     },
     {
-      "text": "MEXT Young Leaders Program 2027 application deadline Japan",
+      "text": "ADB-JSP 2027 Japan scholarship master application deadline university",
       "layer": "adjacent",
       "locale": "en"
     },
     {
-      "text": "社会人 大学院 夜間 働きながら 修士 日本 2027 入学",
-      "layer": "explore",
-      "locale": "ja"
-    },
-    {
-      "text": "Japanese language preparatory course international graduate students Japan university",
-      "layer": "explore",
-      "locale": "en"
-    },
-    {
-      "text": "奨学金 修士課程 日本 社会人 派遣留学生 企業",
+      "text": "日本 研究生 制度 大学院 外国人 社会人 出願 教授 内諾",
       "layer": "explore",
       "locale": "ja"
     }
@@ -182,92 +182,40 @@
   "fetches_used": 5,
   "candidates": [
     {
-      "id": "ouj-master-distance",
-      "title": "放送大学 大学院修士課程（通信教育）",
-      "organization": "放送大学 (The Open University of Japan)",
-      "category": "education",
-      "official_url": "https://www.ouj.ac.jp/admission/gakuin/",
-      "discovery_url": "https://www.ouj.ac.jp/",
-      "deadline": null,
-      "freshness": "likely_open",
-      "freshness_note": "通信教育，每年4月/10月入学；官网已发布2027年度修士全科生入学说明会，属常态化滚动招生（脚本对 periodic 输入返 unknown，按政策判 likely_open）",
-      "verification_status": "verified_official",
-      "eligibility_verdict": "Unknown",
-      "eligibility_note": "硕士要求学士或同等学力（页面未在本轮提取文本明示，属硕士项目通行要求）；用户学历 null → 不臆测",
-      "readiness": "short_preparation",
-      "effort": "flexible / 自宅学習＋スクーリング（远程，可边工作）",
-      "outcomes": {
-        "career": "Medium",
-        "skill": "Medium",
-        "portfolio": "Low",
-        "financial": "Low",
-        "networking": "Low"
-      },
-      "unlocks": [
-        "現職のまま修士取得",
-        "japan_master (type)"
-      ],
-      "zone": "worth_verifying",
-      "included": true,
-      "exclude_reason": null,
-      "gate_computed": {
-        "zone": "worth_verifying",
-        "reason": "无可确认的申请周期；毕业届别不能推断开放状态"
-      },
-      "zone_declared_by_agent": "recommended_now",
-      "zone_note": "手工标注为 recommended_now，但真实 gate 因缺少 evidence.application_status 降级"
-    },
-    {
-      "id": "sbi-online-mba",
-      "title": "SBI大学院大学 オンラインMBA（専門職大学院・远程教育）",
-      "organization": "SBI大学院大学",
-      "category": "education",
-      "official_url": "https://www.sbi-u.ac.jp/",
-      "discovery_url": "https://www.sbi-u.ac.jp/sbiuniv_chn",
-      "deadline": null,
-      "freshness": "likely_open",
-      "freshness_note": "春/秋两次招生，常态化招生",
-      "verification_status": "verified_official",
-      "eligibility_verdict": "Unknown",
-      "eligibility_note": "学士+3年以上工作经验+入学考试+日语约N1（页面明示N1级）；用户工作5年✓ 但学历/日语等级 null → Unknown",
-      "readiness": "major_preparation",
-      "effort": "灵活（在线）但需入学考试与日语N1",
-      "outcomes": {
-        "career": "High",
-        "skill": "Medium",
-        "portfolio": "Low",
-        "financial": "Low",
-        "networking": "Medium"
-      },
-      "unlocks": [
-        "現職のままMBA",
-        "japan_master (type)"
-      ],
-      "zone": "worth_verifying",
-      "included": true,
-      "exclude_reason": null,
-      "gate_computed": {
-        "zone": "worth_verifying",
-        "reason": "无可确认的申请周期；毕业届别不能推断开放状态"
-      },
-      "zone_declared_by_agent": "recommended_now",
-      "zone_note": "手工标注为 recommended_now，但真实 gate 因缺少 evidence.application_status 降级"
-    },
-    {
       "id": "embatech-online",
-      "title": "教育テック大学院大学（EMBA TECH）フルオンライン修士",
+      "title": "教育テック大学院大学 フルオンライン修士（MEBA / MEIT）",
       "organization": "学校法人OCC 教育テック大学院大学",
       "category": "education",
+      "secondary_categories": [
+        "career"
+      ],
+      "country": "Japan",
+      "region": "Japan",
       "official_url": "https://www.e-mbatech.ac.jp/news/post-3124",
       "discovery_url": "https://www.e-mbatech.ac.jp/news/post-3124",
       "deadline": null,
-      "freshness": "likely_open",
-      "freshness_note": "脚本对 rolling 输入判 likely_open；全在线，常态化招生",
+      "deadline_type": "recurring",
+      "freshness_note": "年1回（4月入学）の recurring 入試；2027年4月入学の説明会登録が公式にお知らせ『申込受付中』（2026-08-01 掲載）",
+      "application_status": "open",
       "verification_status": "verified_official",
+      "evidence": {
+        "application_status": {
+          "status": "explicit",
+          "source_url": "https://www.e-mbatech.ac.jp/2026/8",
+          "verified_at": "2026-09-20",
+          "evidence_summary": "2026-08-01 公式お知らせ『【申込受付中】2027年度4月入学 オンライン説明会開催』を 2026-09-20 に確認。2027年4月入学の募集・説明会登録が現在受付中。"
+        },
+        "deadline": {
+          "status": "explicit",
+          "source_url": "https://www.e-mbatech.ac.jp/2026/8",
+          "verified_at": "2026-09-20",
+          "note": "4月入学の recurring サイクル；出願期間の詳細は説明会/募集要項で確認（情報セッション登録は現在 open）"
+        }
+      },
       "eligibility_verdict": "Unknown",
-      "eligibility_note": "学士+2年全职经验+JLPT N2；用户工作5年✓，但学历/日语 null → Unknown；方向偏教育DX/经营，与用户未知专业匹配待确认",
+      "eligibility_note": "公式要件：学士（または同等）+ 実務経験2年以上 + 日本語 JLPT N2 相当。ユーザーは実務5年✓、ただし学士の有無・JLPT レベルは未申告→Unknown。専攻は教育DX・教育経営に特化（ユーザー専攻不明、合致度要確認）",
       "readiness": "major_preparation",
-      "effort": "6-10 h/week 在线；平日夜・土曜",
+      "effort": "フルオンライン；平日夜(18:30–21:40 JST)・土曜(09:00–17:50)／週15–20h想定",
       "outcomes": {
         "career": "Medium",
         "skill": "Medium",
@@ -275,35 +223,257 @@
         "financial": "Low",
         "networking": "Low"
       },
-      "unlocks": [
-        "仕事を続けながら修士（海外からも可）",
+      "produces": [
+        "在職のまま日本の修士号",
         "japan_master (type)"
+      ],
+      "unlocks": [
+        "現職のまま修士（日本/海外から可）",
+        "japan_master_while_working"
+      ],
+      "tags": [
+        "online",
+        "part-time",
+        "working-professional",
+        "japan-master",
+        "recurring-intake"
+      ],
+      "zone": "recommended_now",
+      "included": true,
+      "exclude_reason": null,
+      "zone_declared_by_agent": "recommended_now",
+      "zone_note": "公式ページで 2027年4月入学の説明会登録『申込受付中』を日付付きで確認（evidence.application_status を記録）→ 新ルール下で actionable",
+      "gate_computed": {
+        "zone": "recommended_now",
+        "reason": "周期性开放 → 当前周期是否开放需要页面证据",
+        "demotion": null
+      }
+    },
+    {
+      "id": "ouj-master-distance",
+      "title": "放送大学 大学院修士課程（通信教育）",
+      "organization": "放送大学 (The Open University of Japan)",
+      "category": "education",
+      "country": "Japan",
+      "region": "Japan",
+      "official_url": "https://www.ouj.ac.jp/admission/gakuin/",
+      "discovery_url": "https://www.ouj.ac.jp/",
+      "deadline": null,
+      "deadline_type": "recurring",
+      "freshness_note": "4月/10月入学の recurring 通信教育。2027年4月入学 修士全科生の出願は 2026-08-15～08-25（公式『終了しました』）；次サイクル(2027年10月入学)の出願期間は未発表",
+      "application_status": null,
+      "verification_status": "verified_official",
+      "evidence": {
+        "deadline": {
+          "status": "explicit",
+          "source_url": "https://www.ouj.ac.jp/admission/gakuin/",
+          "verified_at": "2026-09-20",
+          "note": "修士全科生 2027年4月入学 出願期間 2026-08-15～08-25（終了）。次回(2027年10月入学)の募集時期は未掲載"
+        }
+      },
+      "eligibility_verdict": "Unknown",
+      "eligibility_note": "修士は学士または同等学力が原則（ページ要綱による）。ユーザー 実務5年✓、学士の有無は未申告→Unknown",
+      "readiness": "short_preparation",
+      "effort": "通信教育（自宅学習＋スクーリング）；働きながら可",
+      "outcomes": {
+        "career": "Medium",
+        "skill": "Medium",
+        "portfolio": "Low",
+        "financial": "Low",
+        "networking": "Low"
+      },
+      "produces": [
+        "在職のまま修士取得",
+        "japan_master (type)"
+      ],
+      "unlocks": [
+        "現職のまま修士",
+        "japan_master_while_working"
+      ],
+      "tags": [
+        "distance",
+        "part-time",
+        "working-professional",
+        "recurring-intake"
       ],
       "zone": "worth_verifying",
       "included": true,
       "exclude_reason": null,
+      "zone_declared_by_agent": "worth_verifying",
+      "zone_note": "recurring だが現在 open な出願窓口なし（2027年4月は締切済、次回未発表）→ 新ルール下では application_status 証拠がなく actionable にならず worth_verifying",
       "gate_computed": {
         "zone": "worth_verifying",
-        "reason": "无可确认的申请周期；毕业届别不能推断开放状态"
+        "reason": "周期性开放 → 当前周期是否开放需要页面证据",
+        "demotion": {
+          "code": "page_cannot_confirm",
+          "kind": "fact",
+          "detail": "页面无法确认当前是否可参与（freshness=recurring，无参与入口证据）"
+        }
       },
-      "zone_declared_by_agent": "recommended_now",
-      "zone_note": "手工标注为 recommended_now，但真实 gate 因缺少 evidence.application_status 降级"
+      "demotion": {
+        "code": "page_cannot_confirm",
+        "kind": "fact",
+        "detail": "页面无法确认当前是否可参与（freshness=recurring，无参与入口证据）"
+      }
     },
     {
-      "id": "adbjsp-2027",
-      "title": "ADB-JSP 2027（東大 GSFS / APU 等）全额奖硕",
-      "organization": "Asian Development Bank + 日本文部科学省（各加盟大学実施）",
+      "id": "sbi-online-mba",
+      "title": "SBI大学院大学 オンラインMBA（専門職大学院・远程教育）",
+      "organization": "SBI大学院大学",
+      "category": "education",
+      "secondary_categories": [
+        "career"
+      ],
+      "country": "Japan",
+      "region": "Japan",
+      "official_url": "https://www.sbi-u.ac.jp/sbiuniv_eng",
+      "discovery_url": "https://www.sbi-u.ac.jp/sbiuniv_eng",
+      "deadline": null,
+      "deadline_type": "recurring",
+      "freshness_note": "春/秋2回募集の recurring。公式 About ページは『Intake in spring and autumn』『business people to study while continuing to work』を確認できるが、2027年の具体的な出願受付時期は当該ページに記載なし",
+      "application_status": null,
+      "verification_status": "verified_official",
+      "evidence": {
+        "deadline": {
+          "status": "inferred",
+          "source_url": "https://www.sbi-u.ac.jp/sbiuniv_eng",
+          "verified_at": "2026-09-20",
+          "note": "春・秋2回募集であることは明示されているが、現在の出願受付状況は当ページから確認不可（入試情報ページの追加確認が必要）"
+        }
+      },
+      "eligibility_verdict": "Unknown",
+      "eligibility_note": "公式要件：4年制大学卒（同等）+ 正社員として3年以上の実務 + 入学選考（日本語約N1水準が実質前提）。ユーザー 実務5年✓、学士/日本語は未申告→Unknown",
+      "readiness": "major_preparation",
+      "effort": "オンライン（柔軟）だが入学選考＋日本語要件あり",
+      "outcomes": {
+        "career": "High",
+        "skill": "Medium",
+        "portfolio": "Low",
+        "financial": "Low",
+        "networking": "Medium"
+      },
+      "produces": [
+        "現職のままMBA",
+        "japan_master (type)"
+      ],
+      "unlocks": [
+        "現職のままMBA",
+        "japan_master_while_working"
+      ],
+      "tags": [
+        "online",
+        "mba",
+        "working-professional",
+        "recurring-intake"
+      ],
+      "zone": "worth_verifying",
+      "included": true,
+      "exclude_reason": null,
+      "zone_declared_by_agent": "worth_verifying",
+      "zone_note": "公式 About ページは出願時期を明示せず、現在の『open』を確認できない（page_cannot_confirm）→ 新ルール下で actionable にならず worth_verifying",
+      "gate_computed": {
+        "zone": "worth_verifying",
+        "reason": "周期性开放 → 当前周期是否开放需要页面证据",
+        "demotion": {
+          "code": "page_cannot_confirm",
+          "kind": "fact",
+          "detail": "页面无法确认当前是否可参与（freshness=recurring，无参与入口证据）"
+        }
+      },
+      "demotion": {
+        "code": "page_cannot_confirm",
+        "kind": "fact",
+        "detail": "页面无法确认当前是否可参与（freshness=recurring，无参与入口证据）"
+      }
+    },
+    {
+      "id": "osakaue-working",
+      "title": "大阪経済大学 大学院 社会人入試（サテライトコース）",
+      "organization": "大阪経済大学",
+      "category": "education",
+      "country": "Japan",
+      "region": "Japan",
+      "official_url": "https://www.osaka-ue.ac.jp/education/graduate/entranceexamination.html",
+      "discovery_url": "https://www.osaka-ue.ac.jp/education/graduate/entranceexamination.html",
+      "deadline": null,
+      "deadline_type": "recurring",
+      "freshness_note": "4月入学の recurring 入試（秋季・春季）。2027年度4月入学【春季】出願期間 2027-01-04～01-14（未開催）；【秋季】は 2026-08-24～09-03（終了）。社会人入試は平日夜間・土曜昼間のサテライトコースあり",
+      "application_status": null,
+      "verification_status": "verified_official",
+      "evidence": {
+        "deadline": {
+          "status": "explicit",
+          "source_url": "https://www.osaka-ue.ac.jp/education/graduate/entranceexamination.html",
+          "verified_at": "2026-09-20",
+          "note": "春季出願 2027-01-04～01-14（未開催）；秋季出願 2026-08-24～09-03（終了）。社会人入試（サテライトコース）は平日夜間・土曜開講"
+        }
+      },
+      "eligibility_verdict": "Unknown",
+      "eligibility_note": "学士 + 入学；社会人入試は実務経験を要す（サテライトコースは社会人4年以上等）。学士の有無は未申告→Unknown",
+      "readiness": "major_preparation",
+      "effort": "社会人入試（在職可）；平日夜間・土曜昼間",
+      "outcomes": {
+        "career": "Medium",
+        "skill": "Medium",
+        "portfolio": "Low",
+        "financial": "Low",
+        "networking": "Medium"
+      },
+      "produces": [
+        "現職のまま修士",
+        "japan_master (type)"
+      ],
+      "unlocks": [
+        "現職のまま修士"
+      ],
+      "tags": [
+        "part-time",
+        "evening",
+        "working-professional",
+        "recurring-intake"
+      ],
+      "zone": "worth_verifying",
+      "included": true,
+      "exclude_reason": null,
+      "zone_declared_by_agent": "worth_verifying",
+      "zone_note": "recurring だが次の open 窓口は 2027-01-04（未開催）→ application_status 証拠なしで actionable にならず worth_verifying",
+      "gate_computed": {
+        "zone": "worth_verifying",
+        "reason": "周期性开放 → 当前周期是否开放需要页面证据",
+        "demotion": {
+          "code": "page_cannot_confirm",
+          "kind": "fact",
+          "detail": "页面无法确认当前是否可参与（freshness=recurring，无参与入口证据）"
+        }
+      },
+      "demotion": {
+        "code": "page_cannot_confirm",
+        "kind": "fact",
+        "detail": "页面无法确认当前是否可参与（freshness=recurring，无参与入口证据）"
+      }
+    },
+    {
+      "id": "adb-jsp-2027",
+      "title": "ADB-JSP 2027（複数実施校の修士向け全額奨学金）",
+      "organization": "Asian Development Bank + 日本文部科学省（各校実施）",
       "category": "funding",
+      "secondary_categories": [
+        "education"
+      ],
+      "country": "Japan",
+      "region": "Japan",
       "official_url": null,
       "discovery_url": "https://scholarpositions.com/adb-japan-scholarship-2027",
-      "deadline": "2026-12-10 (U-Tokyo GSFS) / 2026-11-05 (APU R1)",
-      "freshness": "open",
-      "freshness_note": "截止在未来，但本轮未回官方页核实（仅聚合站）",
+      "deadline": null,
+      "deadline_type": "recurring",
+      "freshness_note": "毎年実施の recurring 奨学金。東京大学 国際保健学系 2027 の締切は 2026-06-30 で既に終了（別途 excluded に記載）。他実施校（APU 等）は 2027 度に将来の締切（例: APU R1 2026-11-05 / R2 2027-01-08、第三者情報）ありが、公式確認源なし",
+      "application_status": null,
       "verification_status": "unverified",
+      "evidence": {},
       "eligibility_verdict": "Unknown",
-      "eligibility_note": "ADB借款加盟国国籍+学士+2年经验+年龄≤35+学成归国；用户工作5年✓，但国籍/年龄未知；且为赴日全日制，与'不想立刻辞职'短期冲突",
+      "eligibility_note": "ADB借款加盟国国籍 + 学士 + 2年実務 + 35歳以下（原則）+ 帰国義務；ユーザー 実務5年✓、国籍/年齢/学士は未申告→Unknown。最大の懸念は『日本でフルタイム2年』が『すぐには辞めない』と短期的に衝突",
       "readiness": "major_preparation",
-      "effort": "full-time（赴日1-2年）",
+      "effort": "full-time（赴日1–2年）／他校の将来枠あり",
       "outcomes": {
         "career": "Medium",
         "skill": "High",
@@ -311,15 +481,97 @@
         "financial": "High",
         "networking": "High"
       },
+      "produces": [
+        "funded_master_japan"
+      ],
       "unlocks": [
-        "funded_master_japan (full-time, 需辞职)"
+        "funded_master_japan (full-time, 要辞職)"
+      ],
+      "tags": [
+        "scholarship",
+        "fully-funded",
+        "full-time-conflict"
       ],
       "zone": "worth_verifying",
       "included": true,
       "exclude_reason": null,
+      "zone_declared_by_agent": "worth_verifying",
+      "zone_note": "他校に将来の open 窓口の可能性あり（未公式確認）が、原則フルタイム赴日で『不脱産』と衝突→要確認",
       "gate_computed": {
         "zone": "worth_verifying",
-        "reason": "截止日 2026-12-10（还有 46 天）"
+        "reason": "周期性项目，下一周期在 2027 年（尚未开放）",
+        "demotion": {
+          "code": "no_canonical_source",
+          "kind": "process",
+          "detail": "没有找到官方来源"
+        }
+      },
+      "demotion": {
+        "code": "no_canonical_source",
+        "kind": "process",
+        "detail": "没有找到官方来源"
+      }
+    },
+    {
+      "id": "research-student",
+      "title": "研究生（Research Student）制度で教授接点（在職しながら準備）",
+      "organization": "各大学研究科（教授内諾制）",
+      "category": "research",
+      "secondary_categories": [
+        "education"
+      ],
+      "country": null,
+      "region": null,
+      "official_url": null,
+      "discovery_url": "https://liuxue.xdf.cn/blog/blog_7609653.shtml",
+      "deadline": null,
+      "deadline_type": "evergreen",
+      "freshness_note": "常態的な移行経路（教授内諾制）；個別研究科ごとにタイミングが異なるため単一公式ソースなし",
+      "application_status": null,
+      "verification_status": "unverified",
+      "evidence": {},
+      "eligibility_verdict": "Unknown",
+      "eligibility_note": "外籍・日本の修士志望；具体的な研究科要件は未確認（個別公式ページの追加確認が必要）",
+      "readiness": "major_preparation",
+      "effort": "柔軟（在職しながら教授へ連絡・研究計画書準備）",
+      "outcomes": {
+        "career": "Low",
+        "skill": "High",
+        "portfolio": "Medium",
+        "financial": "Low",
+        "networking": "High"
+      },
+      "produces": [
+        "教授内諾",
+        "研究計画書"
+      ],
+      "unlocks": [
+        "master_admission (教授内諾)",
+        "research_strength"
+      ],
+      "tags": [
+        "bridge",
+        "professor-contact",
+        "evergreen"
+      ],
+      "zone": "worth_verifying",
+      "included": true,
+      "exclude_reason": null,
+      "zone_declared_by_agent": "worth_verifying",
+      "zone_note": "Explore/bridge 層。公式単一ソースなし（キャノニカル未確保）→ 新ルール下で recommended にならず worth_verifying",
+      "gate_computed": {
+        "zone": "worth_verifying",
+        "reason": "长期开放型机会（无报名周期）→ 需要『当前可参与』证据才能进主推荐",
+        "demotion": {
+          "code": "no_canonical_source",
+          "kind": "process",
+          "detail": "没有找到官方来源"
+        }
+      },
+      "demotion": {
+        "code": "no_canonical_source",
+        "kind": "process",
+        "detail": "没有找到官方来源"
       }
     },
     {
@@ -327,14 +579,25 @@
       "title": "MEXT Young Leaders' Program (YLP) 2027",
       "organization": "MEXT / GRIPS・一橋・名古屋・九州",
       "category": "funding",
+      "country": "Japan",
+      "region": "Japan",
       "official_url": "https://www.mext.go.jp/en/policy/education/highered/title02/detail02/sdetail02/sdetail02/1374094.htm",
       "discovery_url": "https://www.mext.go.jp/en/policy/education/highered/title02/detail02/sdetail02/sdetail02/1374094.htm",
-      "deadline": "2026-09-18 (例: マレーシア)",
-      "freshness": "unknown",
-      "freshness_note": "各国截止8-9月不一，部分已过的；需按国籍确认",
+      "deadline": "2026-09-18",
+      "deadline_type": "fixed",
+      "freshness_note": "各国締切 8–9 月；例（マレーシア）2026-09-18 で既に過去",
+      "application_status": "closed",
       "verification_status": "verified_official",
+      "evidence": {
+        "deadline": {
+          "status": "explicit",
+          "source_url": "https://www.mext.go.jp/en/policy/education/highered/title02/detail02/sdetail02/sdetail02/1374094.htm",
+          "verified_at": "2026-09-20",
+          "note": "各国別締切 8–9 月；2026-09-18 時点で主要国は締切済"
+        }
+      },
       "eligibility_verdict": "Unknown",
-      "eligibility_note": "面向年轻专业人士（公职/法律/医疗/经营）；需本国推荐机关提名；1年全日制 → 与'不脱产'有张力",
+      "eligibility_note": "若手専門職対象（1年フルタイム）→ 『不脱産』と衝突",
       "readiness": "major_preparation",
       "effort": "full-time（1年）",
       "outcomes": {
@@ -344,34 +607,59 @@
         "financial": "High",
         "networking": "High"
       },
+      "produces": [],
       "unlocks": [
         "funded_master_japan (full-time)"
       ],
+      "tags": [
+        "scholarship",
+        "full-time-conflict"
+      ],
       "zone": "excluded",
-      "included": true,
-      "exclude_reason": null,
+      "included": false,
+      "exclude_reason": "締切 2026-09-18 で既に過去（today 2026-09-20）；1年フルタイムで『すぐ辞めない』と衝突",
+      "zone_declared_by_agent": "excluded",
       "gate_computed": {
         "zone": "excluded",
-        "reason": "expired: 截止日 2026-09-18 已过"
+        "reason": "expired: 截止日 2026-09-18 已过",
+        "demotion": {
+          "code": "closed_or_ineligible",
+          "kind": "fact",
+          "detail": "expired: 截止日 2026-09-18 已过"
+        }
       },
-      "zone_declared_by_agent": "worth_verifying",
-      "zone_note": "原标注 worth_verifying，真实 gate 判定 excluded：expired: 截止日 2026-09-18 已过"
+      "demotion": {
+        "code": "closed_or_ineligible",
+        "kind": "fact",
+        "detail": "expired: 截止日 2026-09-18 已过"
+      }
     },
     {
       "id": "jasso-gs-prep",
       "title": "JASSO 東京日本語教育センター 大学院準備課程",
       "organization": "JASSO（日本学生支援機構）",
       "category": "language",
+      "country": "Japan",
+      "region": "Japan",
       "official_url": "https://www.jasso.go.jp/en/ryugaku/jlec/tjlec/enrollment/",
       "discovery_url": "https://www.jasso.go.jp/en/ryugaku/jlec/tjlec/enrollment/__icsFiles/afieldfile/2025/11/14/guidelines_en_202604_2.pdf",
-      "deadline": "2025-11-27 (2026年4月入学，已过期；下一期约2026年底)",
-      "freshness": "future",
-      "freshness_note": "本期已过期，下一入学周期未确认",
+      "deadline": "2025-11-27",
+      "deadline_type": "fixed",
+      "freshness_note": "2026年4月入学の締切 2025-11-27 で既に過去；次期は約2026年末の見込み（未公式）",
+      "application_status": "closed",
       "verification_status": "partially_verified",
+      "evidence": {
+        "deadline": {
+          "status": "explicit",
+          "source_url": "https://www.jasso.go.jp/en/ryugaku/jlec/tjlec/enrollment/",
+          "verified_at": "2026-09-20",
+          "note": "2026年4月入学 締切 2025-11-27 で終了"
+        }
+      },
       "eligibility_verdict": "Unknown",
-      "eligibility_note": "外籍、拟赴日读硕；用户意图匹配但需先取得录取",
+      "eligibility_note": "外籍・日本の修士志望；先在日/日本語準備が前提",
       "readiness": "short_preparation",
-      "effort": "1年全日制日语（需在日）",
+      "effort": "1年フルタイム日本語（在日要）",
       "outcomes": {
         "career": "Low",
         "skill": "High",
@@ -379,116 +667,31 @@
         "financial": "Low",
         "networking": "Low"
       },
+      "produces": [],
       "unlocks": [
-        "master_admission (日语就绪)"
+        "master_admission (日本語就绪)"
+      ],
+      "tags": [
+        "japanese-prep",
+        "full-time-conflict"
       ],
       "zone": "excluded",
-      "included": true,
-      "exclude_reason": null,
+      "included": false,
+      "exclude_reason": "2026年4月入学 締切 2025-11-27 で既に過去",
+      "zone_declared_by_agent": "excluded",
       "gate_computed": {
         "zone": "excluded",
-        "reason": "expired: 截止日 2025-11-27 已过"
+        "reason": "expired: 截止日 2025-11-27 已过",
+        "demotion": {
+          "code": "closed_or_ineligible",
+          "kind": "fact",
+          "detail": "expired: 截止日 2025-11-27 已过"
+        }
       },
-      "zone_declared_by_agent": "worth_verifying",
-      "zone_note": "原标注 worth_verifying，真实 gate 判定 excluded：expired: 截止日 2025-11-27 已过"
-    },
-    {
-      "id": "hosei-working",
-      "title": "法政大学 社会人大学院（昼夜開講）",
-      "organization": "法政大学",
-      "category": "education",
-      "official_url": "https://www.en.hosei.ac.jp/LUC2HOSEI/cdata/luc2hosei_9292_jaen.html",
-      "discovery_url": "https://www.en.hosei.ac.jp/LUC2HOSEI/cdata/luc2hosei_9292_jaen.html",
-      "deadline": null,
-      "freshness": "likely_open",
-      "freshness_note": "社会人向け夜間/土曜授课，常态化招生（具体截止未回官方页核实）",
-      "verification_status": "unverified",
-      "eligibility_verdict": "Unknown",
-      "eligibility_note": "学士+入学；学历 null → Unknown",
-      "readiness": "major_preparation",
-      "effort": "夜间/周六上课（可在职）",
-      "outcomes": {
-        "career": "Medium",
-        "skill": "Medium",
-        "portfolio": "Low",
-        "financial": "Low",
-        "networking": "Medium"
-      },
-      "unlocks": [
-        "現職のまま修士"
-      ],
-      "zone": "worth_verifying",
-      "included": true,
-      "exclude_reason": null,
-      "gate_computed": {
-        "zone": "worth_verifying",
-        "reason": "无可确认的申请周期；毕业届别不能推断开放状态"
-      }
-    },
-    {
-      "id": "osakaue-working",
-      "title": "大阪経済大学 大学院 社会人入試",
-      "organization": "大阪経済大学",
-      "category": "education",
-      "official_url": "https://www.osaka-ue.ac.jp/education/graduate/entranceexamination.html",
-      "discovery_url": "https://www.osaka-ue.ac.jp/education/graduate/entranceexamination.html",
-      "deadline": "2027-02-20 (春季試験)",
-      "freshness": "future",
-      "freshness_note": "2027年4月入学春季試験；2026-09-19試験已过的",
-      "verification_status": "unverified",
-      "eligibility_verdict": "Unknown",
-      "eligibility_note": "学士+入学；学历 null → Unknown",
-      "readiness": "major_preparation",
-      "effort": "社会人入試（在職可）",
-      "outcomes": {
-        "career": "Medium",
-        "skill": "Medium",
-        "portfolio": "Low",
-        "financial": "Low",
-        "networking": "Medium"
-      },
-      "unlocks": [
-        "現職のまま修士"
-      ],
-      "zone": "worth_verifying",
-      "included": true,
-      "exclude_reason": null,
-      "gate_computed": {
-        "zone": "worth_verifying",
-        "reason": "截止日 2027-02-20（还有 153 天）"
-      }
-    },
-    {
-      "id": "research-student",
-      "title": "研究生（Research Student）制度で教授接点",
-      "organization": "各大学研究科（教授内诺制）",
-      "category": "research",
-      "official_url": null,
-      "discovery_url": "https://baike.baidu.com/item/日本研究生",
-      "deadline": null,
-      "freshness": "likely_open",
-      "freshness_note": "常态化过渡路径；需回具体大学官方页核实研究科要求",
-      "verification_status": "unverified",
-      "eligibility_verdict": "Unknown",
-      "eligibility_note": "外籍、拟读硕；具体研究科要求未核实",
-      "readiness": "major_preparation",
-      "effort": "灵活（可边工作边准备联系教授）",
-      "outcomes": {
-        "career": "Low",
-        "skill": "High",
-        "portfolio": "Medium",
-        "financial": "Low",
-        "networking": "High"
-      },
-      "unlocks": [
-        "master_admission (教授内诺)"
-      ],
-      "zone": "worth_verifying",
-      "included": true,
-      "exclude_reason": null,
-      "gate_computed": {
-        "zone": "worth_verifying",
-        "reason": "无可确认的申请周期；毕业届别不能推断开放状态"
+      "demotion": {
+        "code": "closed_or_ineligible",
+        "kind": "fact",
+        "detail": "expired: 截止日 2025-11-27 已过"
       }
     },
     {
@@ -496,76 +699,183 @@
       "title": "Nagoya University GSID ADB-JSP 2027",
       "organization": "Nagoya University GSID",
       "category": "funding",
+      "country": "Japan",
+      "region": "Japan",
       "official_url": "https://en.nagoya-u.ac.jp/news/articles/nagoya-university-gsid-announces-adb-japan-scholarship-program-applications-for-2027/",
       "discovery_url": "https://en.nagoya-u.ac.jp/news/articles/nagoya-university-gsid-announces-adb-japan-scholarship-program-applications-for-2027/",
       "deadline": "2026-06-16",
-      "freshness": "expired",
-      "freshness_note": "脚本确认截止 2026-06-16 已过（今天 2026-09-20）",
+      "deadline_type": "fixed",
+      "freshness_note": "出願期間 2026-06-01～06-16 で既に過去",
+      "application_status": "closed",
       "verification_status": "verified_official",
+      "evidence": {
+        "deadline": {
+          "status": "explicit",
+          "source_url": "https://en.nagoya-u.ac.jp/news/articles/nagoya-university-gsid-announces-adb-japan-scholarship-program-applications-for-2027/",
+          "verified_at": "2026-09-20",
+          "note": "出願期間 2026-06-01～06-16 終了"
+        }
+      },
       "eligibility_verdict": "Ineligible",
-      "eligibility_note": "申请期已结束",
+      "eligibility_note": "出願期間終了",
       "readiness": "blocked",
       "effort": "n/a",
       "outcomes": {},
+      "produces": [],
       "unlocks": [],
+      "tags": [
+        "scholarship",
+        "expired"
+      ],
       "zone": "excluded",
       "included": false,
-      "exclude_reason": "申请期 2026-06-01～06-16 已过期（今天 2026-09-20），脚本 freshness=expired",
+      "exclude_reason": "出願期間 2026-06-01～06-16 で既に過去（today 2026-09-20）",
+      "zone_declared_by_agent": "excluded",
       "gate_computed": {
         "zone": "excluded",
-        "reason": "expired: 截止日 2026-06-16 已过"
+        "reason": "expired: 截止日 2026-06-16 已过",
+        "demotion": {
+          "code": "closed_or_ineligible",
+          "kind": "fact",
+          "detail": "expired: 截止日 2026-06-16 已过"
+        }
+      },
+      "demotion": {
+        "code": "closed_or_ineligible",
+        "kind": "fact",
+        "detail": "expired: 截止日 2026-06-16 已过"
+      }
+    },
+    {
+      "id": "utokyo-sih-adbjsp-2027",
+      "title": "U-Tokyo School of International Health ADB-JSP 2027",
+      "organization": "The University of Tokyo, School of International Health",
+      "category": "funding",
+      "country": "Japan",
+      "region": "Japan",
+      "official_url": "https://www.sih.m.u-tokyo.ac.jp/?p=32",
+      "discovery_url": "https://www.sih.m.u-tokyo.ac.jp/?p=32",
+      "deadline": "2026-06-30",
+      "deadline_type": "fixed",
+      "freshness_note": "公式締切 2026-06-30 (17:00 JST) で既に過去（本ラウンド公式ページで確認）",
+      "application_status": "closed",
+      "verification_status": "verified_official",
+      "evidence": {
+        "deadline": {
+          "status": "explicit",
+          "source_url": "https://www.sih.m.u-tokyo.ac.jp/?p=32",
+          "verified_at": "2026-09-20",
+          "note": "ADB-JSP 2027 締切 2026-06-30 (17:00 JST) 終了"
+        }
+      },
+      "eligibility_verdict": "Ineligible",
+      "eligibility_note": "出願締切終了",
+      "readiness": "blocked",
+      "effort": "n/a",
+      "outcomes": {},
+      "produces": [],
+      "unlocks": [],
+      "tags": [
+        "scholarship",
+        "expired"
+      ],
+      "zone": "excluded",
+      "included": false,
+      "exclude_reason": "公式締切 2026-06-30 で既に過去（today 2026-09-20）",
+      "zone_declared_by_agent": "excluded",
+      "gate_computed": {
+        "zone": "excluded",
+        "reason": "expired: 截止日 2026-06-30 已过",
+        "demotion": {
+          "code": "closed_or_ineligible",
+          "kind": "fact",
+          "detail": "expired: 截止日 2026-06-30 已过"
+        }
+      },
+      "demotion": {
+        "code": "closed_or_ineligible",
+        "kind": "fact",
+        "detail": "expired: 截止日 2026-06-30 已过"
       }
     },
     {
       "id": "tsukuba-mba-2027",
       "title": "筑波大学 MBA（社会人）2027年4月入学",
-      "organization": "筑波大学 东京キャンパス",
+      "organization": "筑波大学 東京キャンパス",
       "category": "education",
+      "country": "Japan",
+      "region": "Japan",
       "official_url": "https://www.office.otsuka.tsukuba.ac.jp/examinee/mbaib_flowchart-2/",
       "discovery_url": "https://www.office.otsuka.tsukuba.ac.jp/examinee/mbaib_flowchart-2/",
       "deadline": "2026-09-11",
-      "freshness": "expired",
-      "freshness_note": "网报 2026-08-25～09-11 已截止（项目常年招生，下轮另算）",
+      "deadline_type": "fixed",
+      "freshness_note": "2027年4月入学 ネット出願 2026-08-25～09-11 で既に過去（常設プログラム、次年度は別途）",
+      "application_status": "closed",
       "verification_status": "verified_official",
+      "evidence": {
+        "deadline": {
+          "status": "explicit",
+          "source_url": "https://www.office.otsuka.tsukuba.ac.jp/examinee/mbaib_flowchart-2/",
+          "verified_at": "2026-09-20",
+          "note": "ネット出願 2026-08-25～09-11 終了"
+        }
+      },
       "eligibility_verdict": "Ineligible",
-      "eligibility_note": "本轮网报窗口已关闭",
+      "eligibility_note": "本ラウンドの出願窓口は閉鎖",
       "readiness": "blocked",
       "effort": "n/a",
       "outcomes": {},
+      "produces": [],
       "unlocks": [],
+      "tags": [
+        "mba",
+        "expired"
+      ],
       "zone": "excluded",
       "included": false,
-      "exclude_reason": "2027年4月入学网报已于 2026-09-11 截止，脚本 freshness=expired（常年项目，后续轮次可再关注）",
+      "exclude_reason": "2027年4月入学 ネット出願 2026-09-11 で既に過去",
+      "zone_declared_by_agent": "excluded",
       "gate_computed": {
         "zone": "excluded",
-        "reason": "expired: 截止日 2026-09-11 已过"
+        "reason": "expired: 截止日 2026-09-11 已过",
+        "demotion": {
+          "code": "closed_or_ineligible",
+          "kind": "fact",
+          "detail": "expired: 截止日 2026-09-11 已过"
+        }
+      },
+      "demotion": {
+        "code": "closed_or_ineligible",
+        "kind": "fact",
+        "detail": "expired: 截止日 2026-09-11 已过"
       }
     }
   ],
   "graph": {
     "produces": [
-      "放送大学/在线MBA/EMBA TECH（在职可）→ 修士学位 + 在職実績",
-      "日语准备 → JLPT N2/N1 資格 + 学術日本語力",
-      "研究生制度 → 教授内诺 + 研究計画書 + 研究活動実績",
-      "ADB-JSP/YLP → 全額資金 + 日本修士入学"
+      "EMBA TECH フルオンライン修士（在職可）→ 修士号 + 在職実績",
+      "放送大学/オンラインMBA（在職可）→ 修士号 + 在職実績",
+      "日本語準備 → JLPT N2/N1 資格",
+      "研究生制度 → 教授内諾 + 研究計画書",
+      "ADB-JSP（他校将来枠）→ 全額資金 + 日本修士（但要フルタイム）"
     ],
     "unlocks": [
       "現職のまま修士 (japan_master_while_working)",
-      "master_admission 资格（日语就绪 / 教授内诺）",
-      "funded_master_japan（全日制，需辞职）"
+      "master_admission 資格（日本語就绪 / 教授内諾）",
+      "funded_master_japan（フルタイム、要辞職）"
     ],
     "bridges": [
       {
         "gap": "JLPT",
         "bridge": "日本語能力準備（JLPT N2/N1）",
         "unlocks": [
-          "SBI(N1)/EMBA TECH(N2)/一般修士出願资格"
+          "SBI(N1)/EMBA TECH(N2)/一般修士出願資格"
         ],
         "low_commitment": true
       },
       {
         "gap": "research experience / 教授联系",
-        "bridge": "研究生制度（教授内诺制）",
+        "bridge": "研究生制度（教授内諾制）",
         "unlocks": [
           "修士本課程 admission"
         ],
@@ -590,47 +900,62 @@
     "v3_fields_changed_output": true,
     "graph_useful": true,
     "utility_differs_from_match": true,
-    "surprising_opportunities_found": 3
+    "surprising_opportunities_found": 1
   },
   "problems": [
     {
-      "area": "coverage/verification",
-      "detail": "language（日语准备）与 research（研究生制度）两类候选未回官方页核实（fetch 预算用尽），仅以官方域名的搜索结果作为 discovery，按 policy 降入'需核实'。research_student 仅有 D 级发现源。",
-      "severity": "P1"
-    },
-    {
-      "area": "coverage",
-      "detail": "career（企业派遣/社内支援）与 networking 两类本轮 0 次专门查询，仅靠目标推导带出；公司是否愿送读需用户自行向 HR 确认，未被真实机会覆盖。",
+      "area": "evidence/actionability",
+      "detail": "放送大学・SBI・大阪経済は公式ページで『現在 open』を確認できず（次回窓口未発表/当ページ非表示）→ 新ルール下では recommended にならず worth_verifying に留まる。これは事実上の制限（page_cannot_confirm）であり、過大評価を避けるため正しい。",
       "severity": "P1"
     },
     {
       "area": "profile gap",
-      "detail": "用户未给专业/日语水平/学历，导致所有教育类推荐的资格只能判 Unknown，无法按专业匹配具体研究科；EMBA TECH 方向偏教育，与用户未知专业可能不匹配。",
+      "detail": "ユーザーが学士の有無・JLPT レベル・国籍を申告していないため、全教育类推奨の資格は Unknown のまま（専攻合致も EMBA TECH は教育DX特化で要確認）。",
       "severity": "P1"
     },
     {
-      "area": "freshness nuance",
-      "detail": "放送大学/SBI 等常态化远程招生被标 likely_open，但脚本对 periodic 输入返回 unknown；此处按政策（常态化滚动招生）人工判 likely_open，已在 freshness_note 标注，留痕以便复核。",
+      "area": "coverage",
+      "detail": "career（企业派遣/社内支援）と networking は本轮 0 回专门查询；会社が送读を認めるかはユーザー自身が HR に確認が必要で、真实機会として未覆盖。",
+      "severity": "P1"
+    },
+    {
+      "area": "funding conflict",
+      "detail": "ADB-JSP 等奨学金は原則フルタイム赴日で『すぐ辞めない』と短期的に衝突；他校の将来枠のみが理论上有望だが未公式確認。",
       "severity": "P1"
     }
   ],
   "gate_computed_summary": {
     "today": "2026-09-20",
-    "recommended_now": 0,
-    "worth_verifying": 7,
-    "excluded": 4,
+    "deadline_type_histogram": {
+      "recurring": 5,
+      "evergreen": 1,
+      "fixed": 5
+    },
+    "rolling_or_evergreen": 6,
+    "evidence_complete_candidates": 9,
+    "demotion_histogram": {
+      "page_cannot_confirm": 3,
+      "no_canonical_source": 2,
+      "closed_or_ineligible": 5
+    },
+    "demotion_by_kind": {
+      "fact": 8,
+      "process": 2
+    },
+    "recommended_now": 1,
+    "worth_verifying": 5,
+    "excluded": 5,
     "mismatches": [],
     "missing_application_status_evidence": [
       "放送大学 大学院修士課程（通信教育）",
       "SBI大学院大学 オンラインMBA（専門職大学院・远程教育）",
-      "教育テック大学院大学（EMBA TECH）フルオンライン修士",
-      "ADB-JSP 2027（東大 GSFS / APU 等）全额奖硕",
+      "大阪経済大学 大学院 社会人入試（サテライトコース）",
+      "ADB-JSP 2027（複数実施校の修士向け全額奨学金）",
+      "研究生（Research Student）制度で教授接点（在職しながら準備）",
       "MEXT Young Leaders' Program (YLP) 2027",
       "JASSO 東京日本語教育センター 大学院準備課程",
-      "法政大学 社会人大学院（昼夜開講）",
-      "大阪経済大学 大学院 社会人入試",
-      "研究生（Research Student）制度で教授接点",
       "Nagoya University GSID ADB-JSP 2027",
+      "U-Tokyo School of International Health ADB-JSP 2027",
       "筑波大学 MBA（社会人）2027年4月入学"
     ]
   }
