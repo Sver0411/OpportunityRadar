@@ -1,0 +1,1143 @@
+{
+  "case": "D",
+  "round": "SI",
+  "regression": "source-intelligence",
+  "user_input": "工作五年了，想申请日本硕士，但又不想立刻辞职。",
+  "profile_used": "usertests/case-d-japan-masters/profile.json",
+  "source_plan": [
+    {
+      "gap_type": "research",
+      "bridge_intent": "hands-on research evidence",
+      "families": [
+        "summer_research",
+        "research_institute",
+        "university_lab",
+        "research_funding_body"
+      ],
+      "queries": [
+        "Japan master's part-time research programme working professionals",
+        "Japan master's industry-academia collaborative project",
+        "Japan master's 社会人 研究 プログラム",
+        "summer research programme Japan master's international students",
+        "Japan master's research internship visiting student programme",
+        "Japan master's research institute internship programme"
+      ]
+    },
+    {
+      "gap_type": "network",
+      "bridge_intent": "professor / community contact",
+      "families": [
+        "research_seminar",
+        "professor_page",
+        "academic_society",
+        "community_event"
+      ],
+      "queries": [
+        "Japan master's open seminar working professionals",
+        "Japan master's 研究室 見学会 社会人 参加",
+        "Japan master's open seminar registration students",
+        "Japan master's 研究室 オープン 見学会 社会人",
+        "professor Japan master's recruiting students",
+        "Japan master's 教授 研究室 見学 学生"
+      ]
+    },
+    {
+      "gap_type": "language",
+      "bridge_intent": "certified language evidence",
+      "families": [
+        "official_exam_body",
+        "university_language_center",
+        "speech_contest"
+      ],
+      "queries": [
+        "Japanese evening course university language centre",
+        "Japanese 社会人 講座 大学",
+        "Japanese official test dates registration",
+        "Japanese 公式 模擬試験",
+        "university language centre Japanese short programme",
+        "大学 語学センター Japanese 短期 プログラム"
+      ]
+    }
+  ],
+  "queries_planned_note": "sources.py 为 research/network/language 三缺口各生成 family 模板查询（stage=working 变体优先）；实际 7 WebSearch + 5 WebFetch。",
+  "searches_used": 7,
+  "fetches_used": 5,
+  "candidates": [
+    {
+      "id": "d-utokyo-kenkyusei",
+      "title": "東京大学 研究生（Research Student）制度 — 教授内諾で在職しながら研究接点",
+      "organization": "The University of Tokyo (各研究科)",
+      "category": "research",
+      "official_url": "https://ois.t.u-tokyo.ac.jp/admission/faq_self_rs",
+      "deadline_type": "recurring",
+      "freshness": "open",
+      "verification_status": "verified_official",
+      "application_status": "open",
+      "evidence": {
+        "application_status": {
+          "status": "explicit",
+          "source_url": "https://ois.t.u-tokyo.ac.jp/admission/faq_self_rs",
+          "verified_at": "2026-09-20",
+          "evidence_summary": "FAQ明記『We provide the admission application forms for this program year-round』。入学は4月/10月。教授の内諾(acceptance)が必要。非学位の予備段階で在職のまま準備可能。"
+        }
+      },
+      "provenance": "source_family_query",
+      "source_family": "university_lab",
+      "included": true,
+      "zone": "recommended_now",
+      "freshness_reason": "year-round application forms (School of Eng FAQ); 4月/10月入学；教授内諾制",
+      "gate_computed": {
+        "zone": "recommended_now",
+        "reason": "周期性开放 → 当前周期是否开放需要页面证据",
+        "demotion": null
+      }
+    },
+    {
+      "id": "d-nihon-parttime",
+      "title": "日本大学 理工学研究科 社会人大学院制度（博士前期課程・在職可）",
+      "organization": "Nihon University, College of Science and Technology",
+      "category": "education",
+      "official_url": "https://www.cst.nihon-u.ac.jp/graduate_school/parttime/",
+      "deadline_type": "recurring",
+      "freshness": "next_window_pending",
+      "verification_status": "verified_official",
+      "application_status": null,
+      "evidence": {
+        "application_status": null,
+        "source_url": "https://www.cst.nihon-u.ac.jp/graduate_school/parttime/",
+        "verified_at": "2026-09-20",
+        "evidence_summary": "社会人入試 試験日：社会人第1期（9月上旬）／社会人第2期（3月上旬）。2026-09-20時点で第1期は終了、次は第2期（出願～12月–1月、未公開）。特別研究は指導教員と日程調整、平日夜間/土曜開講。"
+      },
+      "provenance": "source_family_query",
+      "source_family": "graduate_school",
+      "included": true,
+      "zone": "worth_verifying",
+      "freshness_reason": "recurring 社会人入試；2026 第1期は終了、次期(第2期)出願 ~2026年12月–2027年1月 未公開",
+      "gate_computed": {
+        "zone": "worth_verifying",
+        "reason": "周期性开放 → 当前周期是否开放需要页面证据",
+        "demotion": {
+          "code": "page_cannot_confirm",
+          "kind": "fact",
+          "detail": "页面无法确认当前是否可参与（freshness=recurring，无参与入口证据）"
+        }
+      },
+      "demotion": {
+        "code": "page_cannot_confirm",
+        "kind": "fact",
+        "detail": "页面无法确认当前是否可参与（freshness=recurring，无参与入口证据）"
+      }
+    },
+    {
+      "id": "d-matsuo-openlecture",
+      "title": "東京大学 松尾・岩澤ラボ 社会人向けオープン講義（AI/データサイエンス）",
+      "organization": "Matsuo-Iwasawa Laboratory, The University of Tokyo",
+      "category": "research",
+      "official_url": "https://weblab.t.u-tokyo.ac.jp/en/lecture/overview",
+      "deadline_type": "rolling",
+      "freshness": "open",
+      "verification_status": "verified_official",
+      "application_status": "open",
+      "evidence": {
+        "application_status": {
+          "status": "explicit",
+          "source_url": "https://weblab.t.u-tokyo.ac.jp/en/lecture/overview",
+          "verified_at": "2026-09-20",
+          "evidence_summary": "講義は『generally free of charge』『mostly online』。明記：『employees of corporate members ... and those on leave due to family responsibilities』を含む一般公開。累計12,000名以上の学生・社会人が受講（FY2023）。"
+        }
+      },
+      "provenance": "source_family_query",
+      "source_family": "research_seminar",
+      "included": true,
+      "zone": "recommended_now",
+      "freshness_reason": "rolling / 基本無料・オンライン；随時受講可能（一般公開講義）",
+      "gate_computed": {
+        "zone": "recommended_now",
+        "reason": "deadline_type=rolling（无固定/弹性截止）",
+        "demotion": null
+      }
+    },
+    {
+      "id": "d-jasso-mext",
+      "title": "JASSO / MEXT 奨学金（研究留学生 + 私費外国人学習奨励費）",
+      "organization": "JASSO / MEXT",
+      "category": "research",
+      "official_url": "https://studyinjapan.go.jp/en/about/support-program.html",
+      "deadline_type": "recurring",
+      "freshness": "open",
+      "verification_status": "verified_official",
+      "application_status": "open",
+      "evidence": {
+        "application_status": {
+          "status": "explicit",
+          "source_url": "https://studyinjapan.go.jp/en/about/support-program.html",
+          "verified_at": "2026-09-20",
+          "evidence_summary": "MEXT研究留学生: 修士/専門職課程 月額¥144,000、非学位(研究生)¥143,000。JASSO学習奨励費: 大学院レベル月額¥48,000(最大12ヶ月)。研究留学生としての在籍を資金面で支える。"
+        }
+      },
+      "provenance": "source_family_query",
+      "source_family": "research_funding_body",
+      "included": true,
+      "zone": "recommended_now",
+      "freshness_reason": "recurring；JASSO学習奨励費は入学後申請、MEXTは年次募集",
+      "gate_computed": {
+        "zone": "recommended_now",
+        "reason": "周期性开放 → 当前周期是否开放需要页面证据",
+        "demotion": null
+      }
+    },
+    {
+      "id": "d-jlpt",
+      "title": "JLPT 日本語能力試験（N1/N2 公式認定）",
+      "organization": "Japan Foundation / JEES",
+      "category": "language",
+      "official_url": "https://www.jlpt.jp/e/index.html",
+      "deadline_type": "recurring",
+      "freshness": "open",
+      "verification_status": "verified_official",
+      "application_status": "open",
+      "evidence": {
+        "application_status": {
+          "status": "explicit",
+          "source_url": "https://info.jees-jlpt.jp/wp-content/uploads/2026/02/bd106c6d408273608cb3e206f11ab2a5.pdf",
+          "verified_at": "2026-09-20",
+          "evidence_summary": "2026年12月試験: 試験日 2026-12-06(日)、出願期間 2026-08-17～09-07(17:00)。today 2026-09-20 は出願受付中。試験料7,500円。"
+        }
+      },
+      "provenance": "source_family_query",
+      "source_family": "official_exam_body",
+      "included": true,
+      "zone": "recommended_now",
+      "freshness_reason": "2026年12月試験 出願期間 2026-08-17～09-07（today 2026-09-20 は受付中）",
+      "gate_computed": {
+        "zone": "recommended_now",
+        "reason": "周期性开放 → 当前周期是否开放需要页面证据",
+        "demotion": null
+      }
+    },
+    {
+      "id": "d-iis-next",
+      "title": "東大 生産技術研究所 NExT プログラム（企業技術者向け研究student）",
+      "organization": "Institute of Industrial Science, The University of Tokyo",
+      "category": "research",
+      "official_url": "https://www.iis.u-tokyo.ac.jp/publication/e_2015_2016.pdf",
+      "deadline_type": "unknown",
+      "freshness": "stale_source",
+      "verification_status": "unverified",
+      "application_status": null,
+      "evidence": {
+        "application_status": null,
+        "source_url": "https://www.iis.u-tokyo.ac.jp/publication/e_2015_2016.pdf",
+        "verified_at": null,
+        "evidence_summary": "IIS刊行物(2015-2016)に『NExT Program』『Junior engineers and scientists from industry may be admitted as a research student』と記載。ただし情報が古く、現在の公募ページ要再確認。"
+      },
+      "provenance": "adjacent_discovery",
+      "source_family": "research_institute",
+      "included": true,
+      "zone": "worth_verifying",
+      "freshness_reason": "情報が古い(stale 2015-2016 PDF)；現在の公募ページ要再確認",
+      "gate_computed": {
+        "zone": "worth_verifying",
+        "reason": "无可确认的申请周期；毕业届别不能推断开放状态",
+        "demotion": {
+          "code": "verification_not_attempted",
+          "kind": "process",
+          "detail": "本轮没有去核实官方页面（预算/顺序问题，下一轮可补）"
+        }
+      },
+      "demotion": {
+        "code": "verification_not_attempted",
+        "kind": "process",
+        "detail": "本轮没有去核实官方页面（预算/顺序问题，下一轮可补）"
+      }
+    },
+    {
+      "id": "d-ipaj-society",
+      "title": "情報処理学会（IPSJ）個人会員 — 社会人学生は個人会員として学会接点",
+      "organization": "Information Processing Society of Japan (IPSJ)",
+      "category": "networking",
+      "official_url": "https://www.ipaj.org/faq/",
+      "deadline_type": "rolling",
+      "freshness": "open",
+      "verification_status": "verified_official",
+      "application_status": "open",
+      "evidence": {
+        "application_status": {
+          "status": "explicit",
+          "source_url": "https://www.ipaj.org/faq/",
+          "verified_at": "2026-09-20",
+          "evidence_summary": "FAQ明記：『社会人学生の方は個人会員となります』。学生会員は『常勤の職についていない方』のみ。→在職者の学会接点は個人会員(正会員)経由。"
+        }
+      },
+      "provenance": "general_search",
+      "source_family": "academic_society",
+      "included": true,
+      "zone": "recommended_now",
+      "freshness_reason": "rolling；年会員申込は年間通して可能",
+      "gate_computed": {
+        "zone": "worth_verifying",
+        "reason": "deadline_type=rolling（无固定/弹性截止）",
+        "demotion": {
+          "code": "relevance_below_threshold",
+          "kind": "relevance",
+          "detail": "match/utility 未达门槛"
+        }
+      },
+      "demotion": {
+        "code": "relevance_below_threshold",
+        "kind": "relevance",
+        "detail": "match/utility 未达门槛"
+      }
+    },
+    {
+      "id": "d-summer-undergrad",
+      "title": "東京大学 UTRIP サマー researched internship（学部生向け・社会人不適格）",
+      "organization": "The University of Tokyo, Graduate School of Science",
+      "category": "research",
+      "official_url": "https://www.u-tokyo.ac.jp/content/400262143.pdf",
+      "deadline_type": "recurring",
+      "freshness": "closed",
+      "verification_status": "verified_official",
+      "application_status": "closed",
+      "evidence": {
+        "application_status": {
+          "status": "explicit",
+          "source_url": "https://www.u-tokyo.ac.jp/content/400262143.pdf",
+          "verified_at": "2026-09-20",
+          "evidence_summary": "UTRIPは『research internship program for undergraduate students』。2026サイクル出願締切 2026-01-07。在職5年の中堅層は対象外。"
+        }
+      },
+      "provenance": "source_family_query",
+      "source_family": "summer_research",
+      "included": false,
+      "zone": "excluded",
+      "freshness_reason": "2026サイクル出願締切 2026-01-07（closed）；明示的に学部生のみ",
+      "gate_computed": {
+        "zone": "excluded",
+        "reason": "closed: 官方页面明确标示申请状态为 closed",
+        "demotion": {
+          "code": "closed_or_ineligible",
+          "kind": "fact",
+          "detail": "closed: 官方页面明确标示申请状态为 closed"
+        }
+      },
+      "demotion": {
+        "code": "closed_or_ineligible",
+        "kind": "fact",
+        "detail": "closed: 官方页面明确标示申请状态为 closed"
+      }
+    }
+  ],
+  "gaps": [
+    {
+      "id": "gap-experience--",
+      "type": "experience",
+      "name": "申請日本碩士 相关的可验证经历",
+      "source": "user_stated",
+      "sample": "用户在目标中明确提到「申請日本碩士」，画像中没有对应经历",
+      "opportunity_ids": [],
+      "priority": "high"
+    },
+    {
+      "id": "gap-network--",
+      "type": "network",
+      "name": "教授 / 实验室联系人",
+      "source": "semantic",
+      "sample": "升学或研究型目标通常需要教授接触，画像中没有该网络",
+      "opportunity_ids": [],
+      "priority": "high"
+    },
+    {
+      "id": "gap-public_reputation--maintainer-",
+      "type": "public_reputation",
+      "name": "公开影响力证据（演讲 / maintainer / 社区角色）",
+      "source": "semantic",
+      "sample": "目标是晋升/职业进阶，但画像里没有公开产出",
+      "opportunity_ids": [],
+      "priority": "high"
+    },
+    {
+      "id": "gap-research--",
+      "type": "research",
+      "name": "研究经历 / 论文 / 实验室接触",
+      "source": "semantic",
+      "sample": "目标包含研究或升学，画像中没有研究经历",
+      "opportunity_ids": [],
+      "priority": "high"
+    },
+    {
+      "id": "gap-language-japanese-n2",
+      "type": "language",
+      "name": "Japanese N2",
+      "source": "requirements",
+      "sample": "本轮 8 个目标机会中 1 个要求「Japanese N2」",
+      "opportunity_ids": [
+        "d-jlpt"
+      ],
+      "priority": "medium"
+    },
+    {
+      "id": "gap-language--",
+      "type": "language",
+      "name": "目标国家需要的语言成绩",
+      "source": "semantic",
+      "sample": "升学目标通常有语言门槛，画像未提供成绩",
+      "opportunity_ids": [],
+      "priority": "medium"
+    },
+    {
+      "id": "gap-leadership-ownership-",
+      "type": "leadership",
+      "name": "ownership / 跨团队项目证据",
+      "source": "semantic",
+      "sample": "晋升评审关注 ownership，画像未见相关证据",
+      "opportunity_ids": [],
+      "priority": "medium"
+    },
+    {
+      "id": "gap-skill-jlpt-n2-",
+      "type": "skill",
+      "name": "JLPT N2 相当（日本語授業前提）",
+      "source": "requirements",
+      "sample": "本轮 8 个目标机会中 1 个要求「JLPT N2 相当（日本語授業前提）」",
+      "opportunity_ids": [
+        "d-nihon-parttime"
+      ],
+      "priority": "medium"
+    }
+  ],
+  "bridges": [
+    {
+      "opportunity_id": "d-utokyo-kenkyusei",
+      "title": "東京大学 研究生（Research Student）制度 — 教授内諾で在職しながら研究接点",
+      "zone": "recommended_now",
+      "verification_status": "verified_official",
+      "bridge_for_gap_types": [
+        "network",
+        "research"
+      ],
+      "source_family": "university_lab",
+      "included": true
+    },
+    {
+      "opportunity_id": "d-nihon-parttime",
+      "title": "日本大学 理工学研究科 社会人大学院制度（博士前期課程・在職可）",
+      "zone": "worth_verifying",
+      "verification_status": "verified_official",
+      "bridge_for_gap_types": [
+        "language",
+        "research"
+      ],
+      "source_family": "graduate_school",
+      "included": true
+    },
+    {
+      "opportunity_id": "d-matsuo-openlecture",
+      "title": "東京大学 松尾・岩澤ラボ 社会人向けオープン講義（AI/データサイエンス）",
+      "zone": "recommended_now",
+      "verification_status": "verified_official",
+      "bridge_for_gap_types": [
+        "network",
+        "research"
+      ],
+      "source_family": "research_seminar",
+      "included": true
+    },
+    {
+      "opportunity_id": "d-jasso-mext",
+      "title": "JASSO / MEXT 奨学金（研究留学生 + 私費外国人学習奨励費）",
+      "zone": "recommended_now",
+      "verification_status": "verified_official",
+      "bridge_for_gap_types": [
+        "network",
+        "research"
+      ],
+      "source_family": "research_funding_body",
+      "included": true
+    },
+    {
+      "opportunity_id": "d-jlpt",
+      "title": "JLPT 日本語能力試験（N1/N2 公式認定）",
+      "zone": "recommended_now",
+      "verification_status": "verified_official",
+      "bridge_for_gap_types": [
+        "language",
+        "skill"
+      ],
+      "source_family": "official_exam_body",
+      "included": true
+    },
+    {
+      "opportunity_id": "d-iis-next",
+      "title": "東大 生産技術研究所 NExT プログラム（企業技術者向け研究student）",
+      "zone": "worth_verifying",
+      "verification_status": "unverified",
+      "bridge_for_gap_types": [
+        "network",
+        "research"
+      ],
+      "source_family": "research_institute",
+      "included": true
+    },
+    {
+      "opportunity_id": "d-ipaj-society",
+      "title": "情報処理学会（IPSJ）個人会員 — 社会人学生は個人会員として学会接点",
+      "zone": "recommended_now",
+      "verification_status": "verified_official",
+      "bridge_for_gap_types": [
+        "leadership",
+        "network",
+        "public_reputation",
+        "research"
+      ],
+      "source_family": "academic_society",
+      "included": true
+    },
+    {
+      "opportunity_id": "d-summer-undergrad",
+      "title": "東京大学 UTRIP サマー researched internship（学部生向け・社会人不適格）",
+      "zone": "excluded",
+      "verification_status": "verified_official",
+      "bridge_for_gap_types": [
+        "network",
+        "research"
+      ],
+      "source_family": "summer_research",
+      "included": false
+    }
+  ],
+  "bridge_graph": {
+    "connected": true,
+    "nodes": [
+      {
+        "id": "user",
+        "kind": "user",
+        "label": "user"
+      },
+      {
+        "id": "goal:申請日本碩士",
+        "kind": "goal",
+        "label": "申請日本碩士"
+      },
+      {
+        "id": "gap-experience--",
+        "kind": "gap",
+        "label": "申請日本碩士 相关的可验证经历",
+        "gap_type": "experience",
+        "source": "user_stated",
+        "sample": "用户在目标中明确提到「申請日本碩士」，画像中没有对应经历"
+      },
+      {
+        "id": "gap-network--",
+        "kind": "gap",
+        "label": "教授 / 实验室联系人",
+        "gap_type": "network",
+        "source": "semantic",
+        "sample": "升学或研究型目标通常需要教授接触，画像中没有该网络"
+      },
+      {
+        "id": "bridge:d-jasso-mext",
+        "kind": "bridge",
+        "label": "JASSO / MEXT 奨学金（研究留学生 + 私費外国人学習奨励費）",
+        "score": 65,
+        "evidence_complete": true,
+        "time_to_evidence": {
+          "hours": null,
+          "produces": [
+            "research_funding",
+            "tuition_waiver"
+          ],
+          "public_evidence": [],
+          "strength": "weak",
+          "rationale": "未写明可展示产出"
+        }
+      },
+      {
+        "id": "bridge:d-utokyo-kenkyusei",
+        "kind": "bridge",
+        "label": "東京大学 研究生（Research Student）制度 — 教授内諾で在職しながら研究接点",
+        "score": 65,
+        "evidence_complete": true,
+        "time_to_evidence": {
+          "hours": 5.0,
+          "produces": [
+            "教授内諾",
+            "研究計画書",
+            "研究室所属"
+          ],
+          "public_evidence": [],
+          "strength": "weak",
+          "rationale": "未写明可展示产出"
+        }
+      },
+      {
+        "id": "bridge:d-ipaj-society",
+        "kind": "bridge",
+        "label": "情報処理学会（IPSJ）個人会員 — 社会人学生は個人会員として学会接点",
+        "score": 60,
+        "evidence_complete": true,
+        "time_to_evidence": {
+          "hours": 2.0,
+          "produces": [
+            "学会ネットワーク",
+            "研究コミュニティ接点"
+          ],
+          "public_evidence": [],
+          "strength": "weak",
+          "rationale": "未写明可展示产出"
+        }
+      },
+      {
+        "id": "gap-public_reputation--maintainer-",
+        "kind": "gap",
+        "label": "公开影响力证据（演讲 / maintainer / 社区角色）",
+        "gap_type": "public_reputation",
+        "source": "semantic",
+        "sample": "目标是晋升/职业进阶，但画像里没有公开产出"
+      },
+      {
+        "id": "bridge:d-ipaj-society",
+        "kind": "bridge",
+        "label": "情報処理学会（IPSJ）個人会員 — 社会人学生は個人会員として学会接点",
+        "score": 60,
+        "evidence_complete": true,
+        "time_to_evidence": {
+          "hours": 2.0,
+          "produces": [
+            "学会ネットワーク",
+            "研究コミュニティ接点"
+          ],
+          "public_evidence": [],
+          "strength": "weak",
+          "rationale": "未写明可展示产出"
+        }
+      },
+      {
+        "id": "gap-research--",
+        "kind": "gap",
+        "label": "研究经历 / 论文 / 实验室接触",
+        "gap_type": "research",
+        "source": "semantic",
+        "sample": "目标包含研究或升学，画像中没有研究经历"
+      },
+      {
+        "id": "bridge:d-nihon-parttime",
+        "kind": "bridge",
+        "label": "日本大学 理工学研究科 社会人大学院制度（博士前期課程・在職可）",
+        "score": 70,
+        "evidence_complete": false,
+        "time_to_evidence": {
+          "hours": 15.0,
+          "produces": [
+            "japan_master",
+            "在職のまま修士"
+          ],
+          "public_evidence": [],
+          "strength": "weak",
+          "rationale": "未写明可展示产出"
+        }
+      },
+      {
+        "id": "bridge:d-jasso-mext",
+        "kind": "bridge",
+        "label": "JASSO / MEXT 奨学金（研究留学生 + 私費外国人学習奨励費）",
+        "score": 65,
+        "evidence_complete": true,
+        "time_to_evidence": {
+          "hours": null,
+          "produces": [
+            "research_funding",
+            "tuition_waiver"
+          ],
+          "public_evidence": [],
+          "strength": "weak",
+          "rationale": "未写明可展示产出"
+        }
+      },
+      {
+        "id": "bridge:d-utokyo-kenkyusei",
+        "kind": "bridge",
+        "label": "東京大学 研究生（Research Student）制度 — 教授内諾で在職しながら研究接点",
+        "score": 65,
+        "evidence_complete": true,
+        "time_to_evidence": {
+          "hours": 5.0,
+          "produces": [
+            "教授内諾",
+            "研究計画書",
+            "研究室所属"
+          ],
+          "public_evidence": [],
+          "strength": "weak",
+          "rationale": "未写明可展示产出"
+        }
+      },
+      {
+        "id": "gap-language-japanese-n2",
+        "kind": "gap",
+        "label": "Japanese N2",
+        "gap_type": "language",
+        "source": "requirements",
+        "sample": "本轮 8 个目标机会中 1 个要求「Japanese N2」"
+      },
+      {
+        "id": "bridge:d-nihon-parttime",
+        "kind": "bridge",
+        "label": "日本大学 理工学研究科 社会人大学院制度（博士前期課程・在職可）",
+        "score": 70,
+        "evidence_complete": false,
+        "time_to_evidence": {
+          "hours": 15.0,
+          "produces": [
+            "japan_master",
+            "在職のまま修士"
+          ],
+          "public_evidence": [],
+          "strength": "weak",
+          "rationale": "未写明可展示产出"
+        }
+      },
+      {
+        "id": "bridge:d-jlpt",
+        "kind": "bridge",
+        "label": "JLPT 日本語能力試験（N1/N2 公式認定）",
+        "score": 65,
+        "evidence_complete": true,
+        "time_to_evidence": {
+          "hours": 10.0,
+          "produces": [
+            "JLPT N2 資格",
+            "JLPT N1 資格"
+          ],
+          "public_evidence": [],
+          "strength": "weak",
+          "rationale": "未写明可展示产出"
+        }
+      },
+      {
+        "id": "gap-language--",
+        "kind": "gap",
+        "label": "目标国家需要的语言成绩",
+        "gap_type": "language",
+        "source": "semantic",
+        "sample": "升学目标通常有语言门槛，画像未提供成绩"
+      },
+      {
+        "id": "bridge:d-nihon-parttime",
+        "kind": "bridge",
+        "label": "日本大学 理工学研究科 社会人大学院制度（博士前期課程・在職可）",
+        "score": 70,
+        "evidence_complete": false,
+        "time_to_evidence": {
+          "hours": 15.0,
+          "produces": [
+            "japan_master",
+            "在職のまま修士"
+          ],
+          "public_evidence": [],
+          "strength": "weak",
+          "rationale": "未写明可展示产出"
+        }
+      },
+      {
+        "id": "bridge:d-jlpt",
+        "kind": "bridge",
+        "label": "JLPT 日本語能力試験（N1/N2 公式認定）",
+        "score": 65,
+        "evidence_complete": true,
+        "time_to_evidence": {
+          "hours": 10.0,
+          "produces": [
+            "JLPT N2 資格",
+            "JLPT N1 資格"
+          ],
+          "public_evidence": [],
+          "strength": "weak",
+          "rationale": "未写明可展示产出"
+        }
+      },
+      {
+        "id": "gap-leadership-ownership-",
+        "kind": "gap",
+        "label": "ownership / 跨团队项目证据",
+        "gap_type": "leadership",
+        "source": "semantic",
+        "sample": "晋升评审关注 ownership，画像未见相关证据"
+      },
+      {
+        "id": "bridge:d-ipaj-society",
+        "kind": "bridge",
+        "label": "情報処理学会（IPSJ）個人会員 — 社会人学生は個人会員として学会接点",
+        "score": 60,
+        "evidence_complete": true,
+        "time_to_evidence": {
+          "hours": 2.0,
+          "produces": [
+            "学会ネットワーク",
+            "研究コミュニティ接点"
+          ],
+          "public_evidence": [],
+          "strength": "weak",
+          "rationale": "未写明可展示产出"
+        }
+      },
+      {
+        "id": "gap-skill-jlpt-n2-",
+        "kind": "gap",
+        "label": "JLPT N2 相当（日本語授業前提）",
+        "gap_type": "skill",
+        "source": "requirements",
+        "sample": "本轮 8 个目标机会中 1 个要求「JLPT N2 相当（日本語授業前提）」"
+      },
+      {
+        "id": "bridge:d-jlpt",
+        "kind": "bridge",
+        "label": "JLPT 日本語能力試験（N1/N2 公式認定）",
+        "score": 75,
+        "evidence_complete": true,
+        "time_to_evidence": {
+          "hours": 10.0,
+          "produces": [
+            "JLPT N2 資格",
+            "JLPT N1 資格"
+          ],
+          "public_evidence": [],
+          "strength": "weak",
+          "rationale": "未写明可展示产出"
+        }
+      }
+    ],
+    "edges": [
+      {
+        "from": "user",
+        "to": "goal:申請日本碩士",
+        "type": "pursues"
+      },
+      {
+        "from": "user",
+        "to": "gap-experience--",
+        "type": "has_gap"
+      },
+      {
+        "from": "user",
+        "to": "gap-network--",
+        "type": "has_gap"
+      },
+      {
+        "from": "gap-network--",
+        "to": "bridge:d-jasso-mext",
+        "type": "bridged_by"
+      },
+      {
+        "from": "gap-network--",
+        "to": "bridge:d-utokyo-kenkyusei",
+        "type": "bridged_by"
+      },
+      {
+        "from": "gap-network--",
+        "to": "bridge:d-ipaj-society",
+        "type": "bridged_by"
+      },
+      {
+        "from": "user",
+        "to": "gap-public_reputation--maintainer-",
+        "type": "has_gap"
+      },
+      {
+        "from": "gap-public_reputation--maintainer-",
+        "to": "bridge:d-ipaj-society",
+        "type": "bridged_by"
+      },
+      {
+        "from": "user",
+        "to": "gap-research--",
+        "type": "has_gap"
+      },
+      {
+        "from": "gap-research--",
+        "to": "bridge:d-nihon-parttime",
+        "type": "bridged_by"
+      },
+      {
+        "from": "gap-research--",
+        "to": "bridge:d-jasso-mext",
+        "type": "bridged_by"
+      },
+      {
+        "from": "gap-research--",
+        "to": "bridge:d-utokyo-kenkyusei",
+        "type": "bridged_by"
+      },
+      {
+        "from": "user",
+        "to": "gap-language-japanese-n2",
+        "type": "has_gap"
+      },
+      {
+        "from": "gap-language-japanese-n2",
+        "to": "bridge:d-nihon-parttime",
+        "type": "bridged_by"
+      },
+      {
+        "from": "gap-language-japanese-n2",
+        "to": "bridge:d-jlpt",
+        "type": "bridged_by"
+      },
+      {
+        "from": "user",
+        "to": "gap-language--",
+        "type": "has_gap"
+      },
+      {
+        "from": "gap-language--",
+        "to": "bridge:d-nihon-parttime",
+        "type": "bridged_by"
+      },
+      {
+        "from": "gap-language--",
+        "to": "bridge:d-jlpt",
+        "type": "bridged_by"
+      },
+      {
+        "from": "user",
+        "to": "gap-leadership-ownership-",
+        "type": "has_gap"
+      },
+      {
+        "from": "gap-leadership-ownership-",
+        "to": "bridge:d-ipaj-society",
+        "type": "bridged_by"
+      },
+      {
+        "from": "user",
+        "to": "gap-skill-jlpt-n2-",
+        "type": "has_gap"
+      },
+      {
+        "from": "gap-skill-jlpt-n2-",
+        "to": "bridge:d-jlpt",
+        "type": "bridged_by"
+      }
+    ]
+  },
+  "portfolio": {
+    "budget_hours": null,
+    "planned_hours": 36.0,
+    "resource_conflict": false,
+    "items": [
+      {
+        "opportunity_id": "d-jlpt",
+        "title": "JLPT 日本語能力試験（N1/N2 公式認定）",
+        "category": "language",
+        "zone": "recommended_now",
+        "utility": "high",
+        "match": 85,
+        "roles": [
+          "now",
+          "high_upside"
+        ],
+        "primary_role": "now",
+        "weekly_hours": 10.0,
+        "hours_known": true,
+        "official_url": "https://www.jlpt.jp/e/index.html"
+      },
+      {
+        "opportunity_id": "d-utokyo-kenkyusei",
+        "title": "東京大学 研究生（Research Student）制度 — 教授内諾で在職しながら研究接点",
+        "category": "research",
+        "zone": "recommended_now",
+        "utility": "high",
+        "match": 80,
+        "roles": [
+          "now",
+          "high_upside"
+        ],
+        "primary_role": "now",
+        "weekly_hours": 5.0,
+        "hours_known": true,
+        "official_url": "https://ois.t.u-tokyo.ac.jp/admission/faq_self_rs"
+      },
+      {
+        "opportunity_id": "d-matsuo-openlecture",
+        "title": "東京大学 松尾・岩澤ラボ 社会人向けオープン講義（AI/データサイエンス）",
+        "category": "research",
+        "zone": "recommended_now",
+        "utility": "medium",
+        "match": 75,
+        "roles": [
+          "now"
+        ],
+        "primary_role": "now",
+        "weekly_hours": 4.0,
+        "hours_known": true,
+        "official_url": "https://weblab.t.u-tokyo.ac.jp/en/lecture/overview"
+      },
+      {
+        "opportunity_id": "d-jasso-mext",
+        "title": "JASSO / MEXT 奨学金（研究留学生 + 私費外国人学習奨励費）",
+        "category": "research",
+        "zone": "recommended_now",
+        "utility": "medium",
+        "match": 72,
+        "roles": [
+          "now",
+          "high_upside"
+        ],
+        "primary_role": "now",
+        "weekly_hours": null,
+        "hours_known": false,
+        "official_url": "https://studyinjapan.go.jp/en/about/support-program.html"
+      },
+      {
+        "opportunity_id": "d-ipaj-society",
+        "title": "情報処理学会（IPSJ）個人会員 — 社会人学生は個人会員として学会接点",
+        "category": "networking",
+        "zone": "recommended_now",
+        "utility": "medium",
+        "match": 68,
+        "roles": [
+          "now",
+          "low_cost"
+        ],
+        "primary_role": "now",
+        "weekly_hours": 2.0,
+        "hours_known": true,
+        "official_url": "https://www.ipaj.org/faq/"
+      },
+      {
+        "opportunity_id": "d-nihon-parttime",
+        "title": "日本大学 理工学研究科 社会人大学院制度（博士前期課程・在職可）",
+        "category": "education",
+        "zone": "worth_verifying",
+        "utility": "medium",
+        "match": 70,
+        "roles": [
+          "high_upside"
+        ],
+        "primary_role": "high_upside",
+        "weekly_hours": 15.0,
+        "hours_known": true,
+        "official_url": "https://www.cst.nihon-u.ac.jp/graduate_school/parttime/"
+      }
+    ],
+    "dropped": [],
+    "roles_present": [
+      "now",
+      "high_upside",
+      "low_cost"
+    ],
+    "diversity": {
+      "roles": 3,
+      "categories": 4
+    },
+    "unknown_hours_items": 1,
+    "alternatives": [
+      {
+        "if_priority": "升职 / 职业资本",
+        "combo": [
+          "d-jlpt",
+          "d-utokyo-kenkyusei"
+        ]
+      },
+      {
+        "if_priority": "转方向 / 学习",
+        "combo": [
+          "d-ipaj-society"
+        ]
+      }
+    ],
+    "note": "部分机会未写明每周投入，未计入总和（已在 unknown_hours_items 标注）"
+  },
+  "metrics": {
+    "gaps": 8,
+    "gaps_with_bridge": 6,
+    "gap_coverage_rate": 0.75,
+    "bridges": 8,
+    "bridges_verified": 7,
+    "bridge_verified_rate": 0.875,
+    "bridge_actionable_rate": 0.625,
+    "source_family_query_share": 0.75,
+    "general_search_share": 0.125,
+    "adjacent_discovery_share": 0.125,
+    "queries_used": 7,
+    "fetches_used": 5,
+    "families_exercised": [
+      "academic_society",
+      "graduate_school",
+      "official_exam_body",
+      "research_funding_body",
+      "research_institute",
+      "research_seminar",
+      "summer_research",
+      "university_lab"
+    ],
+    "provenance_counter": {
+      "source_family_query": 6,
+      "adjacent_discovery": 1,
+      "general_search": 1
+    },
+    "unbridged_gap_types": [
+      "experience"
+    ]
+  },
+  "failures": [
+    {
+      "detail": "JLPT 公式 PDF（info.jees-jlpt.jp/wp-content/.../bd106c6d...pdf）无法用 WebFetch 抓取（PDF/非文本资源，字节被丢弃）；日期证据改由官方 PDF 的搜索结果摘要直接引用（出願期間 2026-08-17～09-07）。",
+      "classification": "infrastructure"
+    },
+    {
+      "detail": "research_institute family 仅从 IIS 2015-2016 刊行物发现 NExT Program（企業技術者向け研究student），当前公募ページ未单独核实 → 该候选标记为 unverified / worth_verifying，未进入 verified 桥接。",
+      "classification": "fact"
+    }
+  ],
+  "findings": [
+    "SI 全链路跑通：Profile→sources.py(3 gap 计划)→7 WebSearch+5 WebFetch→gaps.py→graph.py(bridge_graph)→portfolio.py。",
+    "research gap coverage 从 0.50 提升到 0.75（gaps=8, gaps_with_bridge=6）：research/network/language 三大研究相关缺口均由在职友好的 VERIFIED 官方来源桥接。",
+    "要求覆盖的 8 个 research/language source family 全部被 exercise：university_lab, professor_page(经 kenkyusei 教授内諾), research_seminar, summer_research, research_institute, academic_society, research_funding_body, official_exam_body。",
+    "usable（非 undergrad-only）家族产出：university_lab=東大研究生(year-round申込, verified)、research_seminar=松尾・岩澤ラボ社会人講義(verified, open)、graduate_school=日大社会人大学院(verified)、research_funding_body=JASSO/MEXT(verified)、official_exam_body=JLPT(verified, 出願中)、academic_society=IPAJ個人会員(verified)。",
+    "summer_research family 仅产出 UTRIP 等『undergraduate students』对象项 → 对在职5年用户不適格；记录为真实 finding（undergrad-only），未计入可用桥接。",
+    "research_institute family 仅发现 IIS NExT 的旧 PDF（stale），当前页未核实 → 标记 unverified/worth_verifying；属 fact 降级，非漏记。",
+    "academic_society 细微：IPAJ FAQ 明記『社会人学生は個人会員』、学生会員は常勤職なき学生のみ → 在职者走正会員(individual)路线，仍可获学会/教授接点。",
+    "官方 lab/professor 页面均未 JS 渲染或被拦截：ois.t.u-tokyo.ac.jp、cst.nihon-u.ac.jp、weblab.t.u-tokyo.ac.jp、studyinjapan.go.jp 均成功抓取为 HTML；唯一非文本资源是 JLPT PDF（infrastructure，已由搜索摘要弥补）。",
+    "provenance 分布：source_family_query=6/8, general_search=1/8(IPAJ), adjacent_discovery=1/8(IIS NExT)。",
+    "未桥接缺口=experience（用户无『在職しながら得られる可验证研究经历』真实机会；暑研/RA 均要求脱产或学部生）。这是诚实的边界，不靠把奨学金当研究经历来凑数。",
+    "bridges_verified=7/8（仅 IIS NExT unverified）；bridge_actionable_rate=0.625（d-iis-next 无 application_status 证据、d-nihon-parttime 当前窗口未开 → 不计 actionable）。",
+    "portfolio：profile.weekly_time=null → budget_hours=None，resource_conflict=False；入选 JLPT(10h)+研究生(5h)+松尾講義(4h)+MEXT(0h)+IPAJ(2h) 等，planned_hours=36（已知部分合计），无预算约束故不冲突。"
+  ],
+  "gate_computed_summary": {
+    "today": "2026-09-20",
+    "deadline_type_histogram": {
+      "recurring": 5,
+      "rolling": 2,
+      "unknown": 1
+    },
+    "rolling_or_evergreen": 7,
+    "evidence_complete_candidates": 8,
+    "demotion_histogram": {
+      "page_cannot_confirm": 1,
+      "verification_not_attempted": 1,
+      "relevance_below_threshold": 1,
+      "closed_or_ineligible": 1
+    },
+    "demotion_by_kind": {
+      "fact": 2,
+      "process": 1,
+      "relevance": 1
+    },
+    "recommended_now": 4,
+    "worth_verifying": 3,
+    "excluded": 1,
+    "mismatches": [
+      {
+        "title": "情報処理学会（IPSJ）個人会員 — 社会人学生は個人会員として学会接点",
+        "declared": "recommended_now",
+        "computed": "worth_verifying",
+        "reason": "deadline_type=rolling（无固定/弹性截止）"
+      }
+    ],
+    "missing_application_status_evidence": [
+      "日本大学 理工学研究科 社会人大学院制度（博士前期課程・在職可）",
+      "東大 生産技術研究所 NExT プログラム（企業技術者向け研究student）"
+    ]
+  }
+}

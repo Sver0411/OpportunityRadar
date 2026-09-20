@@ -50,8 +50,13 @@ def opp_from_candidate(c, idx, case):
 
 
 def main() -> None:
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--record", default="record.json",
+                    help="记录文件名（SI 轮次用 record-si.json）")
+    args = ap.parse_args()
     for case, d in CASES.items():
-        rec_path = os.path.join(HERE, d, "record.json")
+        rec_path = os.path.join(HERE, d, args.record)
         prof_path = os.path.join(HERE, d, "profile.json")
         if not (os.path.exists(rec_path) and os.path.exists(prof_path)):
             print(f"[Case {case}] 缺文件，跳过")

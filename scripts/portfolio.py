@@ -145,15 +145,21 @@ def build_portfolio(rows, profile=None, bridges=None, budget_hours=None) -> dict
     return {
         "budget_hours": budget_hours,
         "planned_hours": round(planned, 2),
-        "resource_conflict": bool(budget_hours is not None and planned > budget_hours + 1e-9),
+        # 预算未知时**不能**报成"无冲突"：冲突与否未知
+        "resource_conflict": (None if budget_hours is None
+                              else bool(planned > budget_hours + 1e-9)),
+        "budget_unknown": budget_hours is None,
         "items": selected,
         "dropped": dropped,
         "roles_present": [r for r in ROLE_ORDER if r in roles_present],
         "diversity": {"roles": len(roles_present), "categories": len(cats)},
         "unknown_hours_items": unknown_hours,
         "alternatives": alternatives,
-        "note": ("部分机会未写明每周投入，未计入总和（已在 unknown_hours_items 标注）"
-                 if unknown_hours else ""),
+        "note": "；".join(x for x in (
+            "每周可用时间未知 → 无法校验资源约束，请先确认 constraints.weekly_time"
+            if budget_hours is None else "",
+            ("部分机会未写明每周投入，未计入总和（已在 unknown_hours_items 标注）"
+             if unknown_hours else "")) if x),
     }
 
 
@@ -161,10 +167,13 @@ def metrics(portfolios) -> dict:
     """P1 指标：资源冲突率必须为 0。"""
     if not portfolios:
         return {}
-    conflicts = sum(1 for p in portfolios if p.get("resource_conflict"))
+    known = [p for p in portfolios if p.get("budget_hours") is not None]
+    conflicts = sum(1 for p in known if p.get("resource_conflict"))
     return {
         "portfolios": len(portfolios),
-        "portfolio_resource_conflict_rate": round(conflicts / len(portfolios), 3),
+        # 只统计**预算已知**的组合；预算未知的不算"无冲突"
+        "portfolios_with_known_budget": len(known),
+        "portfolio_resource_conflict_rate": (round(conflicts / len(known), 3) if known else None),
         "portfolio_diversity_avg_roles": round(
             sum(p["diversity"]["roles"] for p in portfolios) / len(portfolios), 2),
         "portfolio_diversity_avg_categories": round(

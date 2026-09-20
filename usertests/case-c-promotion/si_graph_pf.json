@@ -1,0 +1,1450 @@
+{
+ "gaps": [
+  {
+   "id": "gap-experience--senior-",
+   "type": "experience",
+   "name": "升 Senior 相关的可验证经历",
+   "source": "user_stated",
+   "sample": "用户在目标中明确提到「升 Senior」，画像中没有对应经历",
+   "opportunity_ids": [],
+   "priority": "high"
+  },
+  {
+   "id": "gap-network--",
+   "type": "network",
+   "name": "教授 / 实验室联系人",
+   "source": "semantic",
+   "sample": "升学或研究型目标通常需要教授接触，画像中没有该网络",
+   "opportunity_ids": [],
+   "priority": "high"
+  },
+  {
+   "id": "gap-public_reputation--maintainer-",
+   "type": "public_reputation",
+   "name": "公开影响力证据（演讲 / maintainer / 社区角色）",
+   "source": "semantic",
+   "sample": "目标是晋升/职业进阶，但画像里没有公开产出",
+   "opportunity_ids": [],
+   "priority": "high"
+  },
+  {
+   "id": "gap-research--",
+   "type": "research",
+   "name": "研究经历 / 论文 / 实验室接触",
+   "source": "semantic",
+   "sample": "目标包含研究或升学，画像中没有研究经历",
+   "opportunity_ids": [],
+   "priority": "high"
+  },
+  {
+   "id": "gap-leadership-ownership-",
+   "type": "leadership",
+   "name": "ownership / 跨团队项目证据",
+   "source": "semantic",
+   "sample": "晋升评审关注 ownership，画像未见相关证据",
+   "opportunity_ids": [],
+   "priority": "medium"
+  },
+  {
+   "id": "gap-skill-cncf-sig-tag-",
+   "type": "skill",
+   "name": "CNCF SIG/TAG 成员 或 项目贡献",
+   "source": "requirements",
+   "sample": "本轮 7 个目标机会中 1 个要求「CNCF SIG/TAG 成员 或 项目贡献」",
+   "opportunity_ids": [
+    "si-cncf-ambassador"
+   ],
+   "priority": "medium"
+  },
+  {
+   "id": "gap-skill-cncf-slack-",
+   "type": "skill",
+   "name": "CNCF Slack 账号（免费）",
+   "source": "requirements",
+   "sample": "本轮 7 个目标机会中 1 个要求「CNCF Slack 账号（免费）」",
+   "opportunity_ids": [
+    "si-cncf-tag"
+   ],
+   "priority": "medium"
+  },
+  {
+   "id": "gap-skill-cncf-maintainer-mentor-",
+   "type": "skill",
+   "name": "CNCF 项目 maintainer 资格（才能以 mentor 身份提案项目）",
+   "source": "requirements",
+   "sample": "本轮 7 个目标机会中 1 个要求「CNCF 项目 maintainer 资格（才能以 mentor 身份提案项目）」",
+   "opportunity_ids": [
+    "si-lfx-mentorship"
+   ],
+   "priority": "medium"
+  },
+  {
+   "id": "gap-skill-github-",
+   "type": "skill",
+   "name": "GitHub 账号",
+   "source": "requirements",
+   "sample": "本轮 7 个目标机会中 1 个要求「GitHub 账号」",
+   "opportunity_ids": [
+    "si-k8s-sig"
+   ],
+   "priority": "medium"
+  },
+  {
+   "id": "gap-skill-go-kubernetes-",
+   "type": "skill",
+   "name": "Go / Kubernetes 基础",
+   "source": "requirements",
+   "sample": "本轮 7 个目标机会中 1 个要求「Go / Kubernetes 基础」",
+   "opportunity_ids": [
+    "si-k8s-sig"
+   ],
+   "priority": "medium"
+  },
+  {
+   "id": "gap-skill--",
+   "type": "skill",
+   "name": "云原生相关实践经验（演讲主题）",
+   "source": "requirements",
+   "sample": "本轮 7 个目标机会中 1 个要求「云原生相关实践经验（演讲主题）」",
+   "opportunity_ids": [
+    "si-kubecon-2027-cfp"
+   ],
+   "priority": "medium"
+  },
+  {
+   "id": "gap-skill--",
+   "type": "skill",
+   "name": "公开演讲 / 内容创作 / 社区组织（至少两项）",
+   "source": "requirements",
+   "sample": "本轮 7 个目标机会中 1 个要求「公开演讲 / 内容创作 / 社区组织（至少两项）」",
+   "opportunity_ids": [
+    "si-cncf-ambassador"
+   ],
+   "priority": "medium"
+  },
+  {
+   "id": "gap-skill--",
+   "type": "skill",
+   "name": "对某一云原生领域的兴趣",
+   "source": "requirements",
+   "sample": "本轮 7 个目标机会中 1 个要求「对某一云原生领域的兴趣」",
+   "opportunity_ids": [
+    "si-cncf-tag"
+   ],
+   "priority": "medium"
+  },
+  {
+   "id": "gap-skill--cncf-contributor-pr-",
+   "type": "skill",
+   "name": "成为 CNCF 项目 contributor（先有 PR 合并）",
+   "source": "requirements",
+   "sample": "本轮 7 个目标机会中 1 个要求「成为 CNCF 项目 contributor（先有 PR 合并）」",
+   "opportunity_ids": [
+    "si-cncf-maintainer"
+   ],
+   "priority": "medium"
+  },
+  {
+   "id": "gap-skill--",
+   "type": "skill",
+   "name": "新加坡本地或远程组织意愿",
+   "source": "requirements",
+   "sample": "本轮 7 个目标机会中 1 个要求「新加坡本地或远程组织意愿」",
+   "opportunity_ids": [
+    "si-cncg-sg"
+   ],
+   "priority": "medium"
+  },
+  {
+   "id": "gap-skill--",
+   "type": "skill",
+   "name": "英语演讲能力",
+   "source": "requirements",
+   "sample": "本轮 7 个目标机会中 1 个要求「英语演讲能力」",
+   "opportunity_ids": [
+    "si-kubecon-2027-cfp"
+   ],
+   "priority": "medium"
+  }
+ ],
+ "graph": {
+  "nodes": [
+   {
+    "id": "user",
+    "kind": "user",
+    "label": "user"
+   },
+   {
+    "id": "goal:{'type': 'open_source', 'priority': 'high'}",
+    "kind": "goal",
+    "label": {
+     "type": "open_source",
+     "priority": "high"
+    }
+   },
+   {
+    "id": "gap-experience--senior-",
+    "kind": "gap",
+    "label": "升 Senior 相关的可验证经历",
+    "gap_type": "experience",
+    "source": "user_stated",
+    "sample": "用户在目标中明确提到「升 Senior」，画像中没有对应经历"
+   },
+   {
+    "id": "bridge:si-cncf-maintainer",
+    "kind": "bridge",
+    "label": "CNCF 项目 Maintainer 路径（contributor ladder → OWNERS 提名）",
+    "score": 84,
+    "evidence_complete": true,
+    "time_to_evidence": {
+     "hours": 6.0,
+     "produces": [
+      "maintainer / approver 身份",
+      "项目治理参与",
+      "Senior 级 ownership 证据"
+     ],
+     "public_evidence": [
+      "maintainer / approver 身份"
+     ],
+     "strength": "strong",
+     "rationale": "产出可公开验证的成果"
+    }
+   },
+   {
+    "id": "evidence:si-cncf-maintainer:maintainer / approver 身份",
+    "kind": "evidence",
+    "label": "maintainer / approver 身份"
+   },
+   {
+    "id": "bridge:si-k8s-sig",
+    "kind": "bridge",
+    "label": "Kubernetes SIG 贡献者路径（good first issue → contributor ladder）",
+    "score": 84,
+    "evidence_complete": true,
+    "time_to_evidence": {
+     "hours": 4.0,
+     "produces": [
+      "合并的 PR（公开产出）",
+      "Kubernetes contributor 身份",
+      "reviewer / member 晋升路径"
+     ],
+     "public_evidence": [
+      "合并的 PR（公开产出）"
+     ],
+     "strength": "strong",
+     "rationale": "产出可公开验证的成果"
+    }
+   },
+   {
+    "id": "evidence:si-k8s-sig:合并的 PR（公开产出）",
+    "kind": "evidence",
+    "label": "合并的 PR（公开产出）"
+   },
+   {
+    "id": "bridge:si-kubecon-2027-cfp",
+    "kind": "bridge",
+    "label": "KubeCon + CloudNativeCon Europe 2027 CFP（演讲征集）",
+    "score": 84,
+    "evidence_complete": true,
+    "time_to_evidence": {
+     "hours": 4.0,
+     "produces": [
+      "会议演讲（团队外可见度）",
+      "program committee 评审接触",
+      "Senior 评审看重的影响力证据"
+     ],
+     "public_evidence": [
+      "会议演讲（团队外可见度）",
+      "program committee 评审接触"
+     ],
+     "strength": "strong",
+     "rationale": "产出可公开验证的成果"
+    }
+   },
+   {
+    "id": "evidence:si-kubecon-2027-cfp:会议演讲（团队外可见度）",
+    "kind": "evidence",
+    "label": "会议演讲（团队外可见度）"
+   },
+   {
+    "id": "evidence:si-kubecon-2027-cfp:program committee 评审接触",
+    "kind": "evidence",
+    "label": "program committee 评审接触"
+   },
+   {
+    "id": "gap-network--",
+    "kind": "gap",
+    "label": "教授 / 实验室联系人",
+    "gap_type": "network",
+    "source": "semantic",
+    "sample": "升学或研究型目标通常需要教授接触，画像中没有该网络"
+   },
+   {
+    "id": "bridge:si-cncf-maintainer",
+    "kind": "bridge",
+    "label": "CNCF 项目 Maintainer 路径（contributor ladder → OWNERS 提名）",
+    "score": 84,
+    "evidence_complete": true,
+    "time_to_evidence": {
+     "hours": 6.0,
+     "produces": [
+      "maintainer / approver 身份",
+      "项目治理参与",
+      "Senior 级 ownership 证据"
+     ],
+     "public_evidence": [
+      "maintainer / approver 身份"
+     ],
+     "strength": "strong",
+     "rationale": "产出可公开验证的成果"
+    }
+   },
+   {
+    "id": "evidence:si-cncf-maintainer:maintainer / approver 身份",
+    "kind": "evidence",
+    "label": "maintainer / approver 身份"
+   },
+   {
+    "id": "bridge:si-k8s-sig",
+    "kind": "bridge",
+    "label": "Kubernetes SIG 贡献者路径（good first issue → contributor ladder）",
+    "score": 84,
+    "evidence_complete": true,
+    "time_to_evidence": {
+     "hours": 4.0,
+     "produces": [
+      "合并的 PR（公开产出）",
+      "Kubernetes contributor 身份",
+      "reviewer / member 晋升路径"
+     ],
+     "public_evidence": [
+      "合并的 PR（公开产出）"
+     ],
+     "strength": "strong",
+     "rationale": "产出可公开验证的成果"
+    }
+   },
+   {
+    "id": "evidence:si-k8s-sig:合并的 PR（公开产出）",
+    "kind": "evidence",
+    "label": "合并的 PR（公开产出）"
+   },
+   {
+    "id": "bridge:si-kubecon-2027-cfp",
+    "kind": "bridge",
+    "label": "KubeCon + CloudNativeCon Europe 2027 CFP（演讲征集）",
+    "score": 84,
+    "evidence_complete": true,
+    "time_to_evidence": {
+     "hours": 4.0,
+     "produces": [
+      "会议演讲（团队外可见度）",
+      "program committee 评审接触",
+      "Senior 评审看重的影响力证据"
+     ],
+     "public_evidence": [
+      "会议演讲（团队外可见度）",
+      "program committee 评审接触"
+     ],
+     "strength": "strong",
+     "rationale": "产出可公开验证的成果"
+    }
+   },
+   {
+    "id": "evidence:si-kubecon-2027-cfp:会议演讲（团队外可见度）",
+    "kind": "evidence",
+    "label": "会议演讲（团队外可见度）"
+   },
+   {
+    "id": "evidence:si-kubecon-2027-cfp:program committee 评审接触",
+    "kind": "evidence",
+    "label": "program committee 评审接触"
+   },
+   {
+    "id": "gap-public_reputation--maintainer-",
+    "kind": "gap",
+    "label": "公开影响力证据（演讲 / maintainer / 社区角色）",
+    "gap_type": "public_reputation",
+    "source": "semantic",
+    "sample": "目标是晋升/职业进阶，但画像里没有公开产出"
+   },
+   {
+    "id": "bridge:si-cncf-maintainer",
+    "kind": "bridge",
+    "label": "CNCF 项目 Maintainer 路径（contributor ladder → OWNERS 提名）",
+    "score": 84,
+    "evidence_complete": true,
+    "time_to_evidence": {
+     "hours": 6.0,
+     "produces": [
+      "maintainer / approver 身份",
+      "项目治理参与",
+      "Senior 级 ownership 证据"
+     ],
+     "public_evidence": [
+      "maintainer / approver 身份"
+     ],
+     "strength": "strong",
+     "rationale": "产出可公开验证的成果"
+    }
+   },
+   {
+    "id": "evidence:si-cncf-maintainer:maintainer / approver 身份",
+    "kind": "evidence",
+    "label": "maintainer / approver 身份"
+   },
+   {
+    "id": "bridge:si-k8s-sig",
+    "kind": "bridge",
+    "label": "Kubernetes SIG 贡献者路径（good first issue → contributor ladder）",
+    "score": 84,
+    "evidence_complete": true,
+    "time_to_evidence": {
+     "hours": 4.0,
+     "produces": [
+      "合并的 PR（公开产出）",
+      "Kubernetes contributor 身份",
+      "reviewer / member 晋升路径"
+     ],
+     "public_evidence": [
+      "合并的 PR（公开产出）"
+     ],
+     "strength": "strong",
+     "rationale": "产出可公开验证的成果"
+    }
+   },
+   {
+    "id": "evidence:si-k8s-sig:合并的 PR（公开产出）",
+    "kind": "evidence",
+    "label": "合并的 PR（公开产出）"
+   },
+   {
+    "id": "bridge:si-kubecon-2027-cfp",
+    "kind": "bridge",
+    "label": "KubeCon + CloudNativeCon Europe 2027 CFP（演讲征集）",
+    "score": 84,
+    "evidence_complete": true,
+    "time_to_evidence": {
+     "hours": 4.0,
+     "produces": [
+      "会议演讲（团队外可见度）",
+      "program committee 评审接触",
+      "Senior 评审看重的影响力证据"
+     ],
+     "public_evidence": [
+      "会议演讲（团队外可见度）",
+      "program committee 评审接触"
+     ],
+     "strength": "strong",
+     "rationale": "产出可公开验证的成果"
+    }
+   },
+   {
+    "id": "evidence:si-kubecon-2027-cfp:会议演讲（团队外可见度）",
+    "kind": "evidence",
+    "label": "会议演讲（团队外可见度）"
+   },
+   {
+    "id": "evidence:si-kubecon-2027-cfp:program committee 评审接触",
+    "kind": "evidence",
+    "label": "program committee 评审接触"
+   },
+   {
+    "id": "gap-research--",
+    "kind": "gap",
+    "label": "研究经历 / 论文 / 实验室接触",
+    "gap_type": "research",
+    "source": "semantic",
+    "sample": "目标包含研究或升学，画像中没有研究经历"
+   },
+   {
+    "id": "gap-leadership-ownership-",
+    "kind": "gap",
+    "label": "ownership / 跨团队项目证据",
+    "gap_type": "leadership",
+    "source": "semantic",
+    "sample": "晋升评审关注 ownership，画像未见相关证据"
+   },
+   {
+    "id": "bridge:si-cncf-maintainer",
+    "kind": "bridge",
+    "label": "CNCF 项目 Maintainer 路径（contributor ladder → OWNERS 提名）",
+    "score": 84,
+    "evidence_complete": true,
+    "time_to_evidence": {
+     "hours": 6.0,
+     "produces": [
+      "maintainer / approver 身份",
+      "项目治理参与",
+      "Senior 级 ownership 证据"
+     ],
+     "public_evidence": [
+      "maintainer / approver 身份"
+     ],
+     "strength": "strong",
+     "rationale": "产出可公开验证的成果"
+    }
+   },
+   {
+    "id": "evidence:si-cncf-maintainer:maintainer / approver 身份",
+    "kind": "evidence",
+    "label": "maintainer / approver 身份"
+   },
+   {
+    "id": "bridge:si-k8s-sig",
+    "kind": "bridge",
+    "label": "Kubernetes SIG 贡献者路径（good first issue → contributor ladder）",
+    "score": 84,
+    "evidence_complete": true,
+    "time_to_evidence": {
+     "hours": 4.0,
+     "produces": [
+      "合并的 PR（公开产出）",
+      "Kubernetes contributor 身份",
+      "reviewer / member 晋升路径"
+     ],
+     "public_evidence": [
+      "合并的 PR（公开产出）"
+     ],
+     "strength": "strong",
+     "rationale": "产出可公开验证的成果"
+    }
+   },
+   {
+    "id": "evidence:si-k8s-sig:合并的 PR（公开产出）",
+    "kind": "evidence",
+    "label": "合并的 PR（公开产出）"
+   },
+   {
+    "id": "bridge:si-cncf-ambassador",
+    "kind": "bridge",
+    "label": "CNCF Ambassador 计划（年度申请）",
+    "score": 70,
+    "evidence_complete": true,
+    "time_to_evidence": {
+     "hours": 2.0,
+     "produces": [
+      "Ambassador 身份",
+      "全球 Ambassador 网络",
+      "CNCF 活动资源与差旅支持"
+     ],
+     "public_evidence": [],
+     "strength": "weak",
+     "rationale": "未写明可展示产出"
+    }
+   },
+   {
+    "id": "gap-skill-cncf-sig-tag-",
+    "kind": "gap",
+    "label": "CNCF SIG/TAG 成员 或 项目贡献",
+    "gap_type": "skill",
+    "source": "requirements",
+    "sample": "本轮 7 个目标机会中 1 个要求「CNCF SIG/TAG 成员 或 项目贡献」"
+   },
+   {
+    "id": "bridge:si-cncf-maintainer",
+    "kind": "bridge",
+    "label": "CNCF 项目 Maintainer 路径（contributor ladder → OWNERS 提名）",
+    "score": 84,
+    "evidence_complete": true,
+    "time_to_evidence": {
+     "hours": 6.0,
+     "produces": [
+      "maintainer / approver 身份",
+      "项目治理参与",
+      "Senior 级 ownership 证据"
+     ],
+     "public_evidence": [
+      "maintainer / approver 身份"
+     ],
+     "strength": "strong",
+     "rationale": "产出可公开验证的成果"
+    }
+   },
+   {
+    "id": "evidence:si-cncf-maintainer:maintainer / approver 身份",
+    "kind": "evidence",
+    "label": "maintainer / approver 身份"
+   },
+   {
+    "id": "bridge:si-k8s-sig",
+    "kind": "bridge",
+    "label": "Kubernetes SIG 贡献者路径（good first issue → contributor ladder）",
+    "score": 84,
+    "evidence_complete": true,
+    "time_to_evidence": {
+     "hours": 4.0,
+     "produces": [
+      "合并的 PR（公开产出）",
+      "Kubernetes contributor 身份",
+      "reviewer / member 晋升路径"
+     ],
+     "public_evidence": [
+      "合并的 PR（公开产出）"
+     ],
+     "strength": "strong",
+     "rationale": "产出可公开验证的成果"
+    }
+   },
+   {
+    "id": "evidence:si-k8s-sig:合并的 PR（公开产出）",
+    "kind": "evidence",
+    "label": "合并的 PR（公开产出）"
+   },
+   {
+    "id": "bridge:si-cncf-ambassador",
+    "kind": "bridge",
+    "label": "CNCF Ambassador 计划（年度申请）",
+    "score": 80,
+    "evidence_complete": true,
+    "time_to_evidence": {
+     "hours": 2.0,
+     "produces": [
+      "Ambassador 身份",
+      "全球 Ambassador 网络",
+      "CNCF 活动资源与差旅支持"
+     ],
+     "public_evidence": [],
+     "strength": "weak",
+     "rationale": "未写明可展示产出"
+    }
+   },
+   {
+    "id": "gap-skill-cncf-slack-",
+    "kind": "gap",
+    "label": "CNCF Slack 账号（免费）",
+    "gap_type": "skill",
+    "source": "requirements",
+    "sample": "本轮 7 个目标机会中 1 个要求「CNCF Slack 账号（免费）」"
+   },
+   {
+    "id": "bridge:si-cncf-maintainer",
+    "kind": "bridge",
+    "label": "CNCF 项目 Maintainer 路径（contributor ladder → OWNERS 提名）",
+    "score": 84,
+    "evidence_complete": true,
+    "time_to_evidence": {
+     "hours": 6.0,
+     "produces": [
+      "maintainer / approver 身份",
+      "项目治理参与",
+      "Senior 级 ownership 证据"
+     ],
+     "public_evidence": [
+      "maintainer / approver 身份"
+     ],
+     "strength": "strong",
+     "rationale": "产出可公开验证的成果"
+    }
+   },
+   {
+    "id": "evidence:si-cncf-maintainer:maintainer / approver 身份",
+    "kind": "evidence",
+    "label": "maintainer / approver 身份"
+   },
+   {
+    "id": "bridge:si-cncf-ambassador",
+    "kind": "bridge",
+    "label": "CNCF Ambassador 计划（年度申请）",
+    "score": 70,
+    "evidence_complete": true,
+    "time_to_evidence": {
+     "hours": 2.0,
+     "produces": [
+      "Ambassador 身份",
+      "全球 Ambassador 网络",
+      "CNCF 活动资源与差旅支持"
+     ],
+     "public_evidence": [],
+     "strength": "weak",
+     "rationale": "未写明可展示产出"
+    }
+   },
+   {
+    "id": "bridge:si-cncf-tag",
+    "kind": "bridge",
+    "label": "CNCF Technical Advisory Group (TAG) 参与 — 工作组的公开贡献与领导力路径",
+    "score": 70,
+    "evidence_complete": true,
+    "time_to_evidence": {
+     "hours": 3.0,
+     "produces": [
+      "公开贡献记录（文档/评审/倡议）",
+      "社区可见度",
+      "TAG 领导层（Tech Lead/Chair）提名路径"
+     ],
+     "public_evidence": [],
+     "strength": "weak",
+     "rationale": "未写明可展示产出"
+    }
+   },
+   {
+    "id": "gap-skill-cncf-maintainer-mentor-",
+    "kind": "gap",
+    "label": "CNCF 项目 maintainer 资格（才能以 mentor 身份提案项目）",
+    "gap_type": "skill",
+    "source": "requirements",
+    "sample": "本轮 7 个目标机会中 1 个要求「CNCF 项目 maintainer 资格（才能以 mentor 身份提案项目）」"
+   },
+   {
+    "id": "bridge:si-cncf-maintainer",
+    "kind": "bridge",
+    "label": "CNCF 项目 Maintainer 路径（contributor ladder → OWNERS 提名）",
+    "score": 94,
+    "evidence_complete": true,
+    "time_to_evidence": {
+     "hours": 6.0,
+     "produces": [
+      "maintainer / approver 身份",
+      "项目治理参与",
+      "Senior 级 ownership 证据"
+     ],
+     "public_evidence": [
+      "maintainer / approver 身份"
+     ],
+     "strength": "strong",
+     "rationale": "产出可公开验证的成果"
+    }
+   },
+   {
+    "id": "evidence:si-cncf-maintainer:maintainer / approver 身份",
+    "kind": "evidence",
+    "label": "maintainer / approver 身份"
+   },
+   {
+    "id": "bridge:si-cncf-ambassador",
+    "kind": "bridge",
+    "label": "CNCF Ambassador 计划（年度申请）",
+    "score": 80,
+    "evidence_complete": true,
+    "time_to_evidence": {
+     "hours": 2.0,
+     "produces": [
+      "Ambassador 身份",
+      "全球 Ambassador 网络",
+      "CNCF 活动资源与差旅支持"
+     ],
+     "public_evidence": [],
+     "strength": "weak",
+     "rationale": "未写明可展示产出"
+    }
+   },
+   {
+    "id": "bridge:si-lfx-mentorship",
+    "kind": "bridge",
+    "label": "LFX Mentorship（CNCF）— 以 Mentor 身份参与（需项目 maintainer 资格）",
+    "score": 75,
+    "evidence_complete": true,
+    "time_to_evidence": {
+     "hours": 3.0,
+     "produces": [
+      "mentor 经历",
+      "培养新贡献者",
+      "社区声誉"
+     ],
+     "public_evidence": [],
+     "strength": "weak",
+     "rationale": "未写明可展示产出"
+    }
+   },
+   {
+    "id": "gap-skill-github-",
+    "kind": "gap",
+    "label": "GitHub 账号",
+    "gap_type": "skill",
+    "source": "requirements",
+    "sample": "本轮 7 个目标机会中 1 个要求「GitHub 账号」"
+   },
+   {
+    "id": "gap-skill-go-kubernetes-",
+    "kind": "gap",
+    "label": "Go / Kubernetes 基础",
+    "gap_type": "skill",
+    "source": "requirements",
+    "sample": "本轮 7 个目标机会中 1 个要求「Go / Kubernetes 基础」"
+   },
+   {
+    "id": "bridge:si-k8s-sig",
+    "kind": "bridge",
+    "label": "Kubernetes SIG 贡献者路径（good first issue → contributor ladder）",
+    "score": 84,
+    "evidence_complete": true,
+    "time_to_evidence": {
+     "hours": 4.0,
+     "produces": [
+      "合并的 PR（公开产出）",
+      "Kubernetes contributor 身份",
+      "reviewer / member 晋升路径"
+     ],
+     "public_evidence": [
+      "合并的 PR（公开产出）"
+     ],
+     "strength": "strong",
+     "rationale": "产出可公开验证的成果"
+    }
+   },
+   {
+    "id": "evidence:si-k8s-sig:合并的 PR（公开产出）",
+    "kind": "evidence",
+    "label": "合并的 PR（公开产出）"
+   },
+   {
+    "id": "gap-skill--",
+    "kind": "gap",
+    "label": "云原生相关实践经验（演讲主题）",
+    "gap_type": "skill",
+    "source": "requirements",
+    "sample": "本轮 7 个目标机会中 1 个要求「云原生相关实践经验（演讲主题）」"
+   },
+   {
+    "id": "gap-skill--",
+    "kind": "gap",
+    "label": "公开演讲 / 内容创作 / 社区组织（至少两项）",
+    "gap_type": "skill",
+    "source": "requirements",
+    "sample": "本轮 7 个目标机会中 1 个要求「公开演讲 / 内容创作 / 社区组织（至少两项）」"
+   },
+   {
+    "id": "gap-skill--",
+    "kind": "gap",
+    "label": "对某一云原生领域的兴趣",
+    "gap_type": "skill",
+    "source": "requirements",
+    "sample": "本轮 7 个目标机会中 1 个要求「对某一云原生领域的兴趣」"
+   },
+   {
+    "id": "gap-skill--cncf-contributor-pr-",
+    "kind": "gap",
+    "label": "成为 CNCF 项目 contributor（先有 PR 合并）",
+    "gap_type": "skill",
+    "source": "requirements",
+    "sample": "本轮 7 个目标机会中 1 个要求「成为 CNCF 项目 contributor（先有 PR 合并）」"
+   },
+   {
+    "id": "bridge:si-cncf-maintainer",
+    "kind": "bridge",
+    "label": "CNCF 项目 Maintainer 路径（contributor ladder → OWNERS 提名）",
+    "score": 94,
+    "evidence_complete": true,
+    "time_to_evidence": {
+     "hours": 6.0,
+     "produces": [
+      "maintainer / approver 身份",
+      "项目治理参与",
+      "Senior 级 ownership 证据"
+     ],
+     "public_evidence": [
+      "maintainer / approver 身份"
+     ],
+     "strength": "strong",
+     "rationale": "产出可公开验证的成果"
+    }
+   },
+   {
+    "id": "evidence:si-cncf-maintainer:maintainer / approver 身份",
+    "kind": "evidence",
+    "label": "maintainer / approver 身份"
+   },
+   {
+    "id": "bridge:si-k8s-sig",
+    "kind": "bridge",
+    "label": "Kubernetes SIG 贡献者路径（good first issue → contributor ladder）",
+    "score": 94,
+    "evidence_complete": true,
+    "time_to_evidence": {
+     "hours": 4.0,
+     "produces": [
+      "合并的 PR（公开产出）",
+      "Kubernetes contributor 身份",
+      "reviewer / member 晋升路径"
+     ],
+     "public_evidence": [
+      "合并的 PR（公开产出）"
+     ],
+     "strength": "strong",
+     "rationale": "产出可公开验证的成果"
+    }
+   },
+   {
+    "id": "evidence:si-k8s-sig:合并的 PR（公开产出）",
+    "kind": "evidence",
+    "label": "合并的 PR（公开产出）"
+   },
+   {
+    "id": "bridge:si-lfx-mentorship",
+    "kind": "bridge",
+    "label": "LFX Mentorship（CNCF）— 以 Mentor 身份参与（需项目 maintainer 资格）",
+    "score": 75,
+    "evidence_complete": true,
+    "time_to_evidence": {
+     "hours": 3.0,
+     "produces": [
+      "mentor 经历",
+      "培养新贡献者",
+      "社区声誉"
+     ],
+     "public_evidence": [],
+     "strength": "weak",
+     "rationale": "未写明可展示产出"
+    }
+   },
+   {
+    "id": "gap-skill--",
+    "kind": "gap",
+    "label": "新加坡本地或远程组织意愿",
+    "gap_type": "skill",
+    "source": "requirements",
+    "sample": "本轮 7 个目标机会中 1 个要求「新加坡本地或远程组织意愿」"
+   },
+   {
+    "id": "gap-skill--",
+    "kind": "gap",
+    "label": "英语演讲能力",
+    "gap_type": "skill",
+    "source": "requirements",
+    "sample": "本轮 7 个目标机会中 1 个要求「英语演讲能力」"
+   }
+  ],
+  "edges": [
+   {
+    "from": "user",
+    "to": "goal:{'type': 'open_source', 'priority': 'high'}",
+    "type": "pursues"
+   },
+   {
+    "from": "user",
+    "to": "gap-experience--senior-",
+    "type": "has_gap"
+   },
+   {
+    "from": "gap-experience--senior-",
+    "to": "bridge:si-cncf-maintainer",
+    "type": "bridged_by"
+   },
+   {
+    "from": "bridge:si-cncf-maintainer",
+    "to": "evidence:si-cncf-maintainer:maintainer / approver 身份",
+    "type": "produces"
+   },
+   {
+    "from": "evidence:si-cncf-maintainer:maintainer / approver 身份",
+    "to": "goal:{'type': 'open_source', 'priority': 'high'}",
+    "type": "contributes_to"
+   },
+   {
+    "from": "gap-experience--senior-",
+    "to": "bridge:si-k8s-sig",
+    "type": "bridged_by"
+   },
+   {
+    "from": "bridge:si-k8s-sig",
+    "to": "evidence:si-k8s-sig:合并的 PR（公开产出）",
+    "type": "produces"
+   },
+   {
+    "from": "evidence:si-k8s-sig:合并的 PR（公开产出）",
+    "to": "goal:{'type': 'open_source', 'priority': 'high'}",
+    "type": "contributes_to"
+   },
+   {
+    "from": "gap-experience--senior-",
+    "to": "bridge:si-kubecon-2027-cfp",
+    "type": "bridged_by"
+   },
+   {
+    "from": "bridge:si-kubecon-2027-cfp",
+    "to": "evidence:si-kubecon-2027-cfp:会议演讲（团队外可见度）",
+    "type": "produces"
+   },
+   {
+    "from": "evidence:si-kubecon-2027-cfp:会议演讲（团队外可见度）",
+    "to": "goal:{'type': 'open_source', 'priority': 'high'}",
+    "type": "contributes_to"
+   },
+   {
+    "from": "bridge:si-kubecon-2027-cfp",
+    "to": "evidence:si-kubecon-2027-cfp:program committee 评审接触",
+    "type": "produces"
+   },
+   {
+    "from": "evidence:si-kubecon-2027-cfp:program committee 评审接触",
+    "to": "goal:{'type': 'open_source', 'priority': 'high'}",
+    "type": "contributes_to"
+   },
+   {
+    "from": "user",
+    "to": "gap-network--",
+    "type": "has_gap"
+   },
+   {
+    "from": "gap-network--",
+    "to": "bridge:si-cncf-maintainer",
+    "type": "bridged_by"
+   },
+   {
+    "from": "bridge:si-cncf-maintainer",
+    "to": "evidence:si-cncf-maintainer:maintainer / approver 身份",
+    "type": "produces"
+   },
+   {
+    "from": "evidence:si-cncf-maintainer:maintainer / approver 身份",
+    "to": "goal:{'type': 'open_source', 'priority': 'high'}",
+    "type": "contributes_to"
+   },
+   {
+    "from": "gap-network--",
+    "to": "bridge:si-k8s-sig",
+    "type": "bridged_by"
+   },
+   {
+    "from": "bridge:si-k8s-sig",
+    "to": "evidence:si-k8s-sig:合并的 PR（公开产出）",
+    "type": "produces"
+   },
+   {
+    "from": "evidence:si-k8s-sig:合并的 PR（公开产出）",
+    "to": "goal:{'type': 'open_source', 'priority': 'high'}",
+    "type": "contributes_to"
+   },
+   {
+    "from": "gap-network--",
+    "to": "bridge:si-kubecon-2027-cfp",
+    "type": "bridged_by"
+   },
+   {
+    "from": "bridge:si-kubecon-2027-cfp",
+    "to": "evidence:si-kubecon-2027-cfp:会议演讲（团队外可见度）",
+    "type": "produces"
+   },
+   {
+    "from": "evidence:si-kubecon-2027-cfp:会议演讲（团队外可见度）",
+    "to": "goal:{'type': 'open_source', 'priority': 'high'}",
+    "type": "contributes_to"
+   },
+   {
+    "from": "bridge:si-kubecon-2027-cfp",
+    "to": "evidence:si-kubecon-2027-cfp:program committee 评审接触",
+    "type": "produces"
+   },
+   {
+    "from": "evidence:si-kubecon-2027-cfp:program committee 评审接触",
+    "to": "goal:{'type': 'open_source', 'priority': 'high'}",
+    "type": "contributes_to"
+   },
+   {
+    "from": "user",
+    "to": "gap-public_reputation--maintainer-",
+    "type": "has_gap"
+   },
+   {
+    "from": "gap-public_reputation--maintainer-",
+    "to": "bridge:si-cncf-maintainer",
+    "type": "bridged_by"
+   },
+   {
+    "from": "bridge:si-cncf-maintainer",
+    "to": "evidence:si-cncf-maintainer:maintainer / approver 身份",
+    "type": "produces"
+   },
+   {
+    "from": "evidence:si-cncf-maintainer:maintainer / approver 身份",
+    "to": "goal:{'type': 'open_source', 'priority': 'high'}",
+    "type": "contributes_to"
+   },
+   {
+    "from": "gap-public_reputation--maintainer-",
+    "to": "bridge:si-k8s-sig",
+    "type": "bridged_by"
+   },
+   {
+    "from": "bridge:si-k8s-sig",
+    "to": "evidence:si-k8s-sig:合并的 PR（公开产出）",
+    "type": "produces"
+   },
+   {
+    "from": "evidence:si-k8s-sig:合并的 PR（公开产出）",
+    "to": "goal:{'type': 'open_source', 'priority': 'high'}",
+    "type": "contributes_to"
+   },
+   {
+    "from": "gap-public_reputation--maintainer-",
+    "to": "bridge:si-kubecon-2027-cfp",
+    "type": "bridged_by"
+   },
+   {
+    "from": "bridge:si-kubecon-2027-cfp",
+    "to": "evidence:si-kubecon-2027-cfp:会议演讲（团队外可见度）",
+    "type": "produces"
+   },
+   {
+    "from": "evidence:si-kubecon-2027-cfp:会议演讲（团队外可见度）",
+    "to": "goal:{'type': 'open_source', 'priority': 'high'}",
+    "type": "contributes_to"
+   },
+   {
+    "from": "bridge:si-kubecon-2027-cfp",
+    "to": "evidence:si-kubecon-2027-cfp:program committee 评审接触",
+    "type": "produces"
+   },
+   {
+    "from": "evidence:si-kubecon-2027-cfp:program committee 评审接触",
+    "to": "goal:{'type': 'open_source', 'priority': 'high'}",
+    "type": "contributes_to"
+   },
+   {
+    "from": "user",
+    "to": "gap-research--",
+    "type": "has_gap"
+   },
+   {
+    "from": "user",
+    "to": "gap-leadership-ownership-",
+    "type": "has_gap"
+   },
+   {
+    "from": "gap-leadership-ownership-",
+    "to": "bridge:si-cncf-maintainer",
+    "type": "bridged_by"
+   },
+   {
+    "from": "bridge:si-cncf-maintainer",
+    "to": "evidence:si-cncf-maintainer:maintainer / approver 身份",
+    "type": "produces"
+   },
+   {
+    "from": "evidence:si-cncf-maintainer:maintainer / approver 身份",
+    "to": "goal:{'type': 'open_source', 'priority': 'high'}",
+    "type": "contributes_to"
+   },
+   {
+    "from": "gap-leadership-ownership-",
+    "to": "bridge:si-k8s-sig",
+    "type": "bridged_by"
+   },
+   {
+    "from": "bridge:si-k8s-sig",
+    "to": "evidence:si-k8s-sig:合并的 PR（公开产出）",
+    "type": "produces"
+   },
+   {
+    "from": "evidence:si-k8s-sig:合并的 PR（公开产出）",
+    "to": "goal:{'type': 'open_source', 'priority': 'high'}",
+    "type": "contributes_to"
+   },
+   {
+    "from": "gap-leadership-ownership-",
+    "to": "bridge:si-cncf-ambassador",
+    "type": "bridged_by"
+   },
+   {
+    "from": "user",
+    "to": "gap-skill-cncf-sig-tag-",
+    "type": "has_gap"
+   },
+   {
+    "from": "gap-skill-cncf-sig-tag-",
+    "to": "bridge:si-cncf-maintainer",
+    "type": "bridged_by"
+   },
+   {
+    "from": "bridge:si-cncf-maintainer",
+    "to": "evidence:si-cncf-maintainer:maintainer / approver 身份",
+    "type": "produces"
+   },
+   {
+    "from": "evidence:si-cncf-maintainer:maintainer / approver 身份",
+    "to": "goal:{'type': 'open_source', 'priority': 'high'}",
+    "type": "contributes_to"
+   },
+   {
+    "from": "gap-skill-cncf-sig-tag-",
+    "to": "bridge:si-k8s-sig",
+    "type": "bridged_by"
+   },
+   {
+    "from": "bridge:si-k8s-sig",
+    "to": "evidence:si-k8s-sig:合并的 PR（公开产出）",
+    "type": "produces"
+   },
+   {
+    "from": "evidence:si-k8s-sig:合并的 PR（公开产出）",
+    "to": "goal:{'type': 'open_source', 'priority': 'high'}",
+    "type": "contributes_to"
+   },
+   {
+    "from": "gap-skill-cncf-sig-tag-",
+    "to": "bridge:si-cncf-ambassador",
+    "type": "bridged_by"
+   },
+   {
+    "from": "user",
+    "to": "gap-skill-cncf-slack-",
+    "type": "has_gap"
+   },
+   {
+    "from": "gap-skill-cncf-slack-",
+    "to": "bridge:si-cncf-maintainer",
+    "type": "bridged_by"
+   },
+   {
+    "from": "bridge:si-cncf-maintainer",
+    "to": "evidence:si-cncf-maintainer:maintainer / approver 身份",
+    "type": "produces"
+   },
+   {
+    "from": "evidence:si-cncf-maintainer:maintainer / approver 身份",
+    "to": "goal:{'type': 'open_source', 'priority': 'high'}",
+    "type": "contributes_to"
+   },
+   {
+    "from": "gap-skill-cncf-slack-",
+    "to": "bridge:si-cncf-ambassador",
+    "type": "bridged_by"
+   },
+   {
+    "from": "gap-skill-cncf-slack-",
+    "to": "bridge:si-cncf-tag",
+    "type": "bridged_by"
+   },
+   {
+    "from": "user",
+    "to": "gap-skill-cncf-maintainer-mentor-",
+    "type": "has_gap"
+   },
+   {
+    "from": "gap-skill-cncf-maintainer-mentor-",
+    "to": "bridge:si-cncf-maintainer",
+    "type": "bridged_by"
+   },
+   {
+    "from": "bridge:si-cncf-maintainer",
+    "to": "evidence:si-cncf-maintainer:maintainer / approver 身份",
+    "type": "produces"
+   },
+   {
+    "from": "evidence:si-cncf-maintainer:maintainer / approver 身份",
+    "to": "goal:{'type': 'open_source', 'priority': 'high'}",
+    "type": "contributes_to"
+   },
+   {
+    "from": "gap-skill-cncf-maintainer-mentor-",
+    "to": "bridge:si-cncf-ambassador",
+    "type": "bridged_by"
+   },
+   {
+    "from": "gap-skill-cncf-maintainer-mentor-",
+    "to": "bridge:si-lfx-mentorship",
+    "type": "bridged_by"
+   },
+   {
+    "from": "user",
+    "to": "gap-skill-github-",
+    "type": "has_gap"
+   },
+   {
+    "from": "user",
+    "to": "gap-skill-go-kubernetes-",
+    "type": "has_gap"
+   },
+   {
+    "from": "gap-skill-go-kubernetes-",
+    "to": "bridge:si-k8s-sig",
+    "type": "bridged_by"
+   },
+   {
+    "from": "bridge:si-k8s-sig",
+    "to": "evidence:si-k8s-sig:合并的 PR（公开产出）",
+    "type": "produces"
+   },
+   {
+    "from": "evidence:si-k8s-sig:合并的 PR（公开产出）",
+    "to": "goal:{'type': 'open_source', 'priority': 'high'}",
+    "type": "contributes_to"
+   },
+   {
+    "from": "user",
+    "to": "gap-skill--",
+    "type": "has_gap"
+   },
+   {
+    "from": "user",
+    "to": "gap-skill--",
+    "type": "has_gap"
+   },
+   {
+    "from": "user",
+    "to": "gap-skill--",
+    "type": "has_gap"
+   },
+   {
+    "from": "user",
+    "to": "gap-skill--cncf-contributor-pr-",
+    "type": "has_gap"
+   },
+   {
+    "from": "gap-skill--cncf-contributor-pr-",
+    "to": "bridge:si-cncf-maintainer",
+    "type": "bridged_by"
+   },
+   {
+    "from": "bridge:si-cncf-maintainer",
+    "to": "evidence:si-cncf-maintainer:maintainer / approver 身份",
+    "type": "produces"
+   },
+   {
+    "from": "evidence:si-cncf-maintainer:maintainer / approver 身份",
+    "to": "goal:{'type': 'open_source', 'priority': 'high'}",
+    "type": "contributes_to"
+   },
+   {
+    "from": "gap-skill--cncf-contributor-pr-",
+    "to": "bridge:si-k8s-sig",
+    "type": "bridged_by"
+   },
+   {
+    "from": "bridge:si-k8s-sig",
+    "to": "evidence:si-k8s-sig:合并的 PR（公开产出）",
+    "type": "produces"
+   },
+   {
+    "from": "evidence:si-k8s-sig:合并的 PR（公开产出）",
+    "to": "goal:{'type': 'open_source', 'priority': 'high'}",
+    "type": "contributes_to"
+   },
+   {
+    "from": "gap-skill--cncf-contributor-pr-",
+    "to": "bridge:si-lfx-mentorship",
+    "type": "bridged_by"
+   },
+   {
+    "from": "user",
+    "to": "gap-skill--",
+    "type": "has_gap"
+   },
+   {
+    "from": "user",
+    "to": "gap-skill--",
+    "type": "has_gap"
+   }
+  ],
+  "connected": true
+ },
+ "portfolio": {
+  "budget_hours": 5.0,
+  "planned_hours": 3.0,
+  "resource_conflict": false,
+  "items": [
+   {
+    "opportunity_id": "si-cncf-tag",
+    "title": "CNCF Technical Advisory Group (TAG) 参与 — 工作组的公开贡献与领导力路径",
+    "category": "open_source",
+    "zone": "recommended_now",
+    "utility": "medium",
+    "match": 68,
+    "roles": [
+     "now",
+     "high_upside",
+     "long_term"
+    ],
+    "primary_role": "now",
+    "weekly_hours": 3.0,
+    "hours_known": true,
+    "official_url": null
+   },
+   {
+    "opportunity_id": "si-cncg-sg",
+    "title": "Cloud Native Community Group (CNCG) Singapore — 组织者 / Chapter Lead",
+    "category": "networking",
+    "zone": "worth_verifying",
+    "utility": "medium",
+    "match": 67,
+    "roles": [
+     "high_upside",
+     "long_term",
+     "explore"
+    ],
+    "primary_role": "high_upside",
+    "weekly_hours": null,
+    "hours_known": false,
+    "official_url": null
+   }
+  ],
+  "dropped": [
+   {
+    "opportunity_id": "si-cncf-maintainer",
+    "title": "CNCF 项目 Maintainer 路径（contributor ladder → OWNERS 提名）",
+    "category": "open_source",
+    "zone": "recommended_now",
+    "utility": "medium",
+    "match": 68,
+    "roles": [
+     "now",
+     "high_upside",
+     "long_term"
+    ],
+    "primary_role": "now",
+    "weekly_hours": 6.0,
+    "hours_known": true,
+    "official_url": null,
+    "dropped_reason": "超出每周预算（累计 0h + 6h > 5h）"
+   },
+   {
+    "opportunity_id": "si-k8s-sig",
+    "title": "Kubernetes SIG 贡献者路径（good first issue → contributor ladder）",
+    "category": "open_source",
+    "zone": "recommended_now",
+    "utility": "medium",
+    "match": 68,
+    "roles": [
+     "now",
+     "high_upside",
+     "long_term"
+    ],
+    "primary_role": "now",
+    "weekly_hours": 4.0,
+    "hours_known": true,
+    "official_url": null,
+    "dropped_reason": "超出每周预算（累计 3h + 4h > 5h）"
+   },
+   {
+    "opportunity_id": "si-kubecon-2027-cfp",
+    "title": "KubeCon + CloudNativeCon Europe 2027 CFP（演讲征集）",
+    "category": "event",
+    "zone": "recommended_now",
+    "utility": "medium",
+    "match": 68,
+    "roles": [
+     "now",
+     "high_upside",
+     "long_term"
+    ],
+    "primary_role": "now",
+    "weekly_hours": 4.0,
+    "hours_known": true,
+    "official_url": null,
+    "dropped_reason": "超出每周预算（累计 3h + 4h > 5h）"
+   }
+  ],
+  "roles_present": [
+   "now",
+   "high_upside",
+   "long_term",
+   "explore"
+  ],
+  "diversity": {
+   "roles": 4,
+   "categories": 2
+  },
+  "unknown_hours_items": 1,
+  "alternatives": [],
+  "note": "部分机会未写明每周投入，未计入总和（已在 unknown_hours_items 标注）"
+ },
+ "bridge_ids": [
+  "si-kubecon-2027-cfp",
+  "si-cncf-ambassador",
+  "si-cncf-tag",
+  "si-k8s-sig",
+  "si-lfx-mentorship",
+  "si-cncf-maintainer"
+ ]
+}

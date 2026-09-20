@@ -117,6 +117,7 @@ Deterministic helpers (Full Mode; never re-implement inline):
 | `scripts/readiness.py` | Readiness: how far the user is from actually starting (not admission probability) |
 | `scripts/graph.py` | Opportunity graph: produces → unlocks → goal contribution; gap → bridge opportunities |
 | `scripts/gaps.py` | Evidence-backed gap model (skill vs research vs leadership vs network…), each gap citing "N of M target opportunities require X" |
+| `scripts/sources.py` | Minimal source intelligence: gap type → bridge intent → source family → targeted queries (research / language / OSS entry), stage-aware, with general-search fallback |
 | `scripts/coverage.py` | Search coverage ledger (region/locale/category depth) + one plain-language statement |
 | `scripts/utility.py` | Personal Utility: High/Medium/Low + reasons (worth investing resources now?) |
 | `scripts/evidence.py` | Pre-gate evidence check: canonical source + official verification + dated application-status evidence; distinguishes "we forgot to record" from "the page cannot confirm" |
@@ -157,6 +158,14 @@ Single source of truth: enums, weights, tracked fields and ID/URL rules live in
    mode — never search irrelevant categories just to hit a number.
 5. **Discover candidates.** Cheap breadth-first pass: title, organization, deadline, link,
    `discovery_url` and its trust tier.
+5b. **Plan sources, not just queries (minimal source intelligence).** For each gap or intent
+    (`scripts/sources.py`): gap type → bridge intent → source family → targeted query, with
+    **general search as fallback**. Stage matters — a working professional's research bridge
+    (part-time programme, open seminar, industry-academia project) differs from an
+    undergraduate's (summer research, undergraduate lab). Record each candidate's provenance
+    (`known_source` / `source_family_query` / `general_search` / `adjacent_discovery`).
+    A source family is a **starting point, never a whitelist**: sources absent from the registry
+    are still discovered normally. See `references/source-families/`.
 6. **Find canonical sources.** Locate the official page (program/company/university/organizer).
    Tier C/D may discover; Tier A/B must confirm.
 7. **Verify important facts.** On the canonical page confirm at least: application window /

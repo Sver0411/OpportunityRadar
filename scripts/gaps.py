@@ -38,6 +38,20 @@ GOAL_TO_GAP_TYPES = {
 }
 
 
+#: 手续/工具类前置（不是能力缺口）：不进入 Gap，单独记录以免污染覆盖率分母
+LOGISTICS_PREREQUISITE_PATTERNS = (
+    "slack", "discord", "github account", "github profile", "email", "e-mail", "form",
+    "registration", "sign up", "signup", "account", "cv", "resume", "transcript",
+    "motivation letter", "personal statement", "fee", "payment", "账号", "报名", "联系方式",
+    "简历", "成绩单", "陈述", "费用", "邮箱",
+)
+
+
+def is_logistics(requirement) -> bool:
+    low = str(requirement or "").lower()
+    return any(p in low for p in LOGISTICS_PREREQUISITE_PATTERNS)
+
+
 def _tokens(text):
     return {t for t in re.split(r"[^0-9a-z\u4e00-\u9fff]+", str(text or "").lower()) if t}
 
@@ -74,6 +88,7 @@ def collect_gaps(opportunities, profile=None, goals=None, stated_target=None) ->
 
     # 1/3. 来自真实机会的硬性要求（重复出现 → 优先级更高）
     req_counter: dict = {}
+    logistics: list = []
     for o in opportunities or []:
         if not isinstance(o, dict):
             continue
@@ -82,6 +97,9 @@ def collect_gaps(opportunities, profile=None, goals=None, stated_target=None) ->
                              ("required_materials", "portfolio")):
             for req in (o.get(field) or []):
                 if _covered(req, profile):
+                    continue
+                if is_logistics(req):            # 手续类前置不当作缺口
+                    logistics.append(str(req))
                     continue
                 req_counter.setdefault((gtype, str(req)), []).append(oid)
         lang = o.get("language_requirement")
@@ -141,6 +159,8 @@ def collect_gaps(opportunities, profile=None, goals=None, stated_target=None) ->
 
     out = sorted(gaps.values(), key=lambda g: ({"high": 0, "medium": 1, "low": 2}[g["priority"]],
                                                g["type"], g["name"]))
+    for gap in out:
+        gap["logistics_prerequisites"] = sorted(set(logistics))[:5]
     return out
 
 

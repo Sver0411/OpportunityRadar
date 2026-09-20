@@ -207,11 +207,21 @@ class TestResourceReferences(unittest.TestCase):
         on_disk = {f"references/{f}" for f in os.listdir(os.path.join(ROOT, "references"))
                    if os.path.isfile(os.path.join(ROOT, "references", f))}
         # locales/ 是一个目录：SKILL.md 说明"generic 常加载 + 按地区加载 <cc>.md"即可
-        locales_indexed = "references/locales" in SKILL
+        groups = ("references/locales", "references/source-families")
         for f in sorted(on_disk - indexed):
             with self.subTest(file=f):
-                self.assertTrue(locales_indexed and f.startswith("references/locales"),
+                self.assertTrue(any(g in SKILL and f.startswith(g) for g in groups),
                                 f"未被索引：{f}")
+
+    def test_source_family_files_documented(self):
+        """source-families 里的每个文件都要在它自己的 README 中列出。"""
+        d = os.path.join(ROOT, "references", "source-families")
+        readme = read("references/source-families/README.md")
+        for f in sorted(os.listdir(d)):
+            if f == "README.md" or not f.endswith(".md"):
+                continue
+            with self.subTest(file=f):
+                self.assertIn(f, readme, f"{f} 未在 source-families/README.md 中列出")
 
     def test_locale_files_all_documented(self):
         import locales as L
