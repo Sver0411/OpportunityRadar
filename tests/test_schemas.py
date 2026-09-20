@@ -155,7 +155,7 @@ class TestSkillFrontmatter(unittest.TestCase):
         self.assertLessEqual(len(desc), 1024,
                              "description 超出本项目自设预算（触发信息会被截断）")
         self.assertIn("最近有什么适合我的机会", desc)
-        self.assertIn("Do NOT activate", desc)
+        self.assertIn("不触发", desc)
 
     def test_compatibility_within_500_chars(self):
         import re

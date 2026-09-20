@@ -1,4 +1,4 @@
-![OpportunityRadar：从一个问题到经过核实的机会清单](assets/opportunity-radar-overview-glass.svg)
+![OpportunityRadar：从一个问题到经过核实的机会清单](assets/opportunity-radar-overview-light.svg)
 
 <div align="center">
 

@@ -1,4 +1,4 @@
-![OpportunityRadar — from a question to a checked shortlist](assets/opportunity-radar-overview-glass.en.svg)
+![OpportunityRadar — from a question to a checked shortlist](assets/opportunity-radar-overview-light.en.svg)
 
 <div align="center">
 

@@ -1,6 +1,6 @@
 ---
 name: opportunity-radar
-description: Personal opportunity discovery protocol for students, graduate students, and early-career users. Activates when the user asks what opportunities fit them, what they should do next, or whether there are competitions / internships / research programs / open-source programs / scholarships / student programs / events worth joining — including opportunities they would not have known to search for. Triggers include "最近有什么适合我的机会", "我最近可以做点什么", "有没有适合我的比赛/实习/科研/开源项目", "有没有我可能不知道的机会", "我想以后做 X，现在做什么最好". Do NOT activate for plain factual lookups (definitions, test dates, prices) unless the user asks to evaluate the thing against their own situation.
+description: 面向学生、研究生和职场新人的个人机会发现 Skill。用户询问“最近有什么适合我的机会”“我现在可以做什么”“有没有适合我的实习、工作、科研、竞赛、开源项目、奖学金或交流项目”，或希望根据自身背景判断下一步时启用；也会寻找用户尚未想到的相关机会。纯定义、考试日期、价格等事实查询不触发，除非用户要求结合自身情况评估。
 license: MIT
 compatibility: Requires a web-capable host agent (web search plus page fetch or browser) for discovery and verification. Python 3.8+ is needed for the deterministic helpers in scripts/ (standard library only, no network); without it, run Protocol-only Mode and apply the reference rules by hand. No external services, credentials, or paid APIs.
 metadata:

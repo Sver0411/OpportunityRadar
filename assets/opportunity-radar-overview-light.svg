@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 540" role="img" aria-labelledby="title desc">
+  <title id="title">OpportunityRadar：从一个问题，到值得行动的机会</title>
+  <desc id="desc">输入你的目标，发现相关机会，核实官方信息，对照申请条件，得到有优先级的下一步建议。</desc>
+  <defs>
+    <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity=".98"/>
+      <stop offset=".52" stop-color="#f7f8fa" stop-opacity=".88"/>
+      <stop offset="1" stop-color="#eef0f3" stop-opacity=".70"/>
+    </linearGradient>
+    <linearGradient id="sheen" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity=".95"/>
+      <stop offset=".43" stop-color="#ffffff" stop-opacity=".12"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity=".60"/>
+    </linearGradient>
+    <radialGradient id="refraction">
+      <stop offset="0" stop-color="#d9dfe6" stop-opacity=".48"/>
+      <stop offset="1" stop-color="#eef1f4" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="shadow" x="-20%" y="-40%" width="140%" height="190%">
+      <feDropShadow dx="0" dy="9" stdDeviation="14" flood-color="#717b88" flood-opacity=".13"/>
+    </filter>
+    <style>
+      .type { font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'PingFang SC', 'Microsoft YaHei', sans-serif; }
+      .ink { fill: #1d1d1f; }
+      .muted { fill: #666a70; }
+      .subtle { fill: #858a91; }
+    </style>
+  </defs>
+  <rect width="1200" height="540" fill="#ffffff"/>
+  <ellipse cx="980" cy="250" rx="250" ry="170" fill="url(#refraction)"/>
+  <ellipse cx="240" cy="400" rx="210" ry="130" fill="url(#refraction)" opacity=".42"/>
+
+  <text x="64" y="53" class="type muted" font-size="17" font-weight="600" letter-spacing="1">OpportunityRadar</text>
+  <text x="64" y="110" class="type ink" font-size="40" font-weight="650">从一个问题，到值得行动的机会</text>
+  <text x="65" y="147" class="type muted" font-size="18">发现选择 · 核实信息 · 判断资格 · 排好优先级</text>
+
+  <rect x="64" y="176" width="1072" height="62" rx="22" fill="url(#glass)" stroke="#dce0e5" filter="url(#shadow)"/>
+  <rect x="65" y="177" width="1070" height="60" rx="21" fill="none" stroke="url(#sheen)"/>
+  <circle cx="100" cy="207" r="14" fill="#ffffff" stroke="#d5d9de"/>
+  <text x="95" y="214" class="type ink" font-size="19" font-weight="650">?</text>
+  <text x="129" y="215" class="type ink" font-size="22" font-weight="600">最近有什么适合我的机会？</text>
+  <text x="1057" y="214" class="type subtle" font-size="17">你的问题</text>
+
+  <g fill="url(#glass)" stroke="#dce0e5" filter="url(#shadow)">
+    <rect x="64" y="273" width="250" height="158" rx="25"/>
+    <rect x="338" y="273" width="250" height="158" rx="25"/>
+    <rect x="612" y="273" width="250" height="158" rx="25"/>
+    <rect x="886" y="273" width="250" height="158" rx="25"/>
+  </g>
+  <g fill="none" stroke="url(#sheen)">
+    <rect x="65" y="274" width="248" height="156" rx="24"/>
+    <rect x="339" y="274" width="248" height="156" rx="24"/>
+    <rect x="613" y="274" width="248" height="156" rx="24"/>
+    <rect x="887" y="274" width="248" height="156" rx="24"/>
+  </g>
+  <g class="type">
+    <text x="88" y="306" class="subtle" font-size="15" font-weight="600">01 / 发现</text>
+    <text x="362" y="306" class="subtle" font-size="15" font-weight="600">02 / 核实</text>
+    <text x="636" y="306" class="subtle" font-size="15" font-weight="600">03 / 判断</text>
+    <text x="910" y="306" class="subtle" font-size="15" font-weight="600">04 / 行动</text>
+    <text x="88" y="346" class="ink" font-size="24" font-weight="650">找到更多选择</text>
+    <text x="362" y="346" class="ink" font-size="24" font-weight="650">查清官方信息</text>
+    <text x="636" y="346" class="ink" font-size="24" font-weight="650">对照申请条件</text>
+    <text x="910" y="346" class="ink" font-size="24" font-weight="650">知道先做什么</text>
+    <text x="88" y="382" class="muted" font-size="17">工作、科研、竞赛、</text>
+    <text x="88" y="407" class="muted" font-size="17">奖学金等方向</text>
+    <text x="362" y="382" class="muted" font-size="17">开放时间、要求、</text>
+    <text x="362" y="407" class="muted" font-size="17">申请入口</text>
+    <text x="636" y="382" class="muted" font-size="17">哪些符合，哪些</text>
+    <text x="636" y="407" class="muted" font-size="17">还需要确认</text>
+    <text x="910" y="382" class="muted" font-size="17">给出推荐理由</text>
+    <text x="910" y="407" class="muted" font-size="17">和下一步</text>
+  </g>
+  <g fill="none" stroke="#adb4bc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M319 351h11m-5-5 5 5-5 5"/>
+    <path d="M593 351h11m-5-5 5 5-5 5"/>
+    <path d="M867 351h11m-5-5 5 5-5 5"/>
+  </g>
+
+  <text x="65" y="490" class="type muted" font-size="17" font-weight="600">输出</text>
+  <g class="type" font-size="17" font-weight="600">
+    <rect x="124" y="456" width="294" height="52" rx="18" fill="#f5f6f8" stroke="#dfe3e7"/>
+    <text x="146" y="489" class="ink">现在值得看</text>
+    <rect x="433" y="456" width="294" height="52" rx="18" fill="#ffffff" stroke="#dfe3e7"/>
+    <text x="455" y="489" class="ink">还需要核实</text>
+    <rect x="742" y="456" width="394" height="52" rx="18" fill="#ffffff" stroke="#dfe3e7"/>
+    <text x="764" y="489" class="ink">已关闭或不符合</text>
+  </g>
+</svg>
