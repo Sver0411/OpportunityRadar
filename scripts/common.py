@@ -200,7 +200,20 @@ INTENTS = ("discover", "urgent", "portfolio_building", "career_switch", "promoti
            "unknown_unknowns", "capability_backfill", "network_building",
            "entrepreneurship")
 
-#: state.py 变化检测跟踪的字段（见 references/state-and-feedback.md §2）
+#: 允许在 `.opportunity-radar/` 下写入的本地状态文件（唯一事实来源）
+#: 文档（SKILL.md / references/state-and-feedback.md）必须与此一致，由测试校验。
+STATE_FILES = ("profile.json", "seen.json", "saved.json", "ignored.json",
+               "last-run.json", "sources.json")
+
+#: `sources.json` 只允许保存的字段（轻量来源产出记录）
+#: 禁止：页面正文、搜索结果全文、用户个人信息、凭据
+SOURCE_STATE_FIELDS = ("source", "category", "region", "runs", "last_checked",
+                       "last_success", "historical_yield", "failure_type")
+
+#: state 目录名
+STATE_DIR = ".opportunity-radar"
+
+
 TRACKED_FIELDS = (
     "deadline", "application_open", "cost", "compensation",
     "application_status", "graduation_window", "education_level", "student_year",

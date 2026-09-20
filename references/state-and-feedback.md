@@ -13,7 +13,11 @@
 ├── seen.json                # 发现记录
 ├── saved.json               # Interested / Saved / Applied
 ├── ignored.json             # Ignored / Not Relevant
-└── last-run.json            # 上次 Discovery 的结构化产物（见 output-format.md）
+├── last-run.json            # 上次 Discovery 的结构化产物（见 output-format.md）
+└── sources.json             # 来源产出记录（极轻）：source / category / region / runs /
+                             # last_checked / last_success / historical_yield / failure_type
+                             # 禁止保存：页面正文、搜索结果全文、用户个人信息、凭据
+                             # 仅在启用 Source Intelligence 的产出记录时写入（scripts/sources.py）
 ```
 
 `.gitignore` 中应忽略整个目录（个人数据不进版本库）。

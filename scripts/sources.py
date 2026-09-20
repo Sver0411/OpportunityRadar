@@ -240,8 +240,9 @@ SOURCE_FRESHNESS = ("current", "likely_current", "stale", "historical", "unknown
 STALE_MARKERS = ("archive", "archived", "previous years", "past programme", "past program",
                  "過去の", "閉講", "終了しました", "no longer offered", "見送り",
                  "had been", "was held")
+#: 表示"当前/下一周期"的措辞（**不要写死年份**；年份判断用 today.year 动态完成）
 CURRENT_MARKERS = ("accepting applications", "now open", "currently open", "受付中",
-                   "募集中", "応募受付", "next cycle", "次回", "2027")
+                   "募集中", "応募受付", "next cycle", "次回", "next year")
 
 
 def _years(text):
@@ -285,8 +286,9 @@ def source_freshness(page, today=None) -> dict:
     if max_year is not None and max_year < today.year:
         return {"source_freshness": "historical", "years": years,
                 "signal": f"页面最晚年份 {max_year} 早于今年 {today.year}"}
+    next_year = str(today.year + 1)
     if max_year is not None and max_year >= today.year:
-        if max_year > today.year or any(m in low for m in CURRENT_MARKERS):
+        if max_year > today.year or next_year in low or any(m in low for m in CURRENT_MARKERS):
             return {"source_freshness": "current", "years": years,
                     "signal": f"页面提到 {max_year} 或当前/下一周期"}
         return {"source_freshness": "likely_current", "years": years,
@@ -370,6 +372,45 @@ def families_for_gap(gap) -> list:
     return list(INTENT_TO_FAMILIES.get(bridge_intent_for(gap), ()))
 
 
+#: family → 查询里应出现的领域词（用于判断一条 query 真正属于哪个 family）
+FAMILY_QUERY_MARKERS = {
+    # 注意：不要收录过于泛化的 "research programme" —— 会把在职者的 part-time 查询误匹配进来
+    "summer_research": ("summer research", "undergraduate research", "research internship",
+                        "visiting student", "サマー"),
+    "university_lab": ("laboratory", "lab ", "研究室"),
+    "professor_page": ("professor", "教授", "faculty"),
+    "research_seminar": ("seminar", "見学", "open seminar", "workshop"),
+    "research_institute": ("institute", "研究所", "research institute"),
+    "graduate_school": ("graduate school", "大学院", "pt programme", "part-time programme"),
+    "academic_society": ("society", "学会", "committee"),
+    "research_funding_body": ("grant", "fellowship", "助成", "stipend"),
+    "official_exam_body": ("test dates", "registration", "模擬試験", "exam"),
+    "university_language_center": ("language centre", "language center", "語学"),
+    "government_cultural_body": ("cultural institute", "文化機構", "文化"),
+    "language_exchange_program": ("language exchange", "言語交換", "exchange programme"),
+    "speech_contest": ("speech contest", "speech", "翻訳", "スピーチ"),
+    "scholarship_language_program": ("scholarship", "奖学金", "給付"),
+    "foundation": ("foundation", "基金会"),
+    "mentorship_program": ("mentorship", "mentor", "メンター"),
+    "working_group": ("working group", "sig ", "committee", "ワーキング"),
+    "contributor_guide": ("contributor guide", "good first issue", "contribute", "コントリビュート"),
+    "community_event": ("community event", "meetup", "勉強会", "cfp"),
+    "maintainer_program": ("maintainer", "governance", "メンテナー"),
+    "project_repository": ("repository", "contributors wanted", "repo"),
+    "bounty_program": ("bounty", "賞金"),
+}
+
+
+def _family_for_query(query, candidates) -> str | None:
+    """一条 query 真正属于哪个 family；匹配不到就返回 None（不要为了指标好看强挂）。"""
+    low = str(query or "").lower()
+    for fam in candidates or ():
+        for marker in FAMILY_QUERY_MARKERS.get(fam, ()):
+            if marker in low:
+                return fam
+    return None
+
+
 def stage_of(profile) -> str:
     """用于 query 规划的阶段（决定 Bridge 的形态，不只是文案）。
 
@@ -415,11 +456,12 @@ def plan_queries(gap, profile=None, topic=None, region=None, limit=6) -> list:
             downweighted.append({"family": fam, "stage": stage, "reason": "low_stage_fit"})
         else:
             selected.append({"family": fam, "stage": stage, "fit": fit})
-    # 1) 阶段专用 query 优先
+    # 1) 阶段专用 query 优先：family 按 **query 内容** 真实匹配，匹配不到就是 None（mixed）
     for tpl in STAGE_INTENT_OVERRIDES.get(stage, {}).get(intent, ()):
-        out.append({"query": tpl.format(topic=topic, lang=lang, ecosystem=topic),
-                    "family": ordered[0] if ordered else None, "bridge_intent": intent,
-                    "origin": "source_family_query", "stage": stage})
+        q = tpl.format(topic=topic, lang=lang, ecosystem=topic)
+        out.append({"query": q, "family": _family_for_query(q, fams), "bridge_intent": intent,
+                    "origin": "source_family_query", "stage": stage,
+                    "stage_fit": family_stage_fit(_family_for_query(q, fams) or "", stage)})
     # 2) family 模板（按阶段排序；low 的排在后面，预算耗尽自然被截掉）
     for fam in ordered:
         spec = SOURCE_FAMILIES.get(fam)
@@ -467,10 +509,13 @@ def record_yield(state_dir, source, category=None, region=None, outcome=None,
             data = json.load(open(path, encoding="utf-8"))
         except (OSError, ValueError):
             data = {"entries": {}}
+    from common import SOURCE_STATE_FIELDS as ALLOWED_FIELDS
     key = str(source)
-    e = data["entries"].setdefault(key, {"source": key, "category": category, "region": region,
-                                         "runs": 0, "last_checked": None, "last_success": None,
-                                         "historical_yield": 0, "failure_type": None})
+    e = data["entries"].setdefault(key, {f: (key if f == "source" else
+                                             category if f == "category" else
+                                             region if f == "region" else
+                                             0 if f in ("runs", "historical_yield") else None)
+                                         for f in ALLOWED_FIELDS})
     e["runs"] += 1
     import datetime as _dt
     today = _dt.date.today().isoformat()

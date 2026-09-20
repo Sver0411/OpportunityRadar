@@ -42,5 +42,17 @@
       "recommended": 1,
       "source": "usertests/case-e-unknown/record-si.json"
     }
+  },
+  "historical": {
+    "snapshot": "round-2 gates.json",
+    "iot_final_verification_pct": 67,
+    "historical_all_pass": false,
+    "note": "历史快照原样保留，不得改写；只有 status=resolved 标记是后加的"
+  },
+  "current": {
+    "active_failures": 0,
+    "current_all_pass": true,
+    "checked_at": "2026-09-20",
+    "note": "active_failures 为 0 ⇔ current_all_pass 为 true（由测试保证）"
   }
 }

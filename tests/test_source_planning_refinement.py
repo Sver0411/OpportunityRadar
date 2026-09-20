@@ -40,9 +40,14 @@ class TestStageFamilyApplicability(unittest.TestCase):
         self.assertEqual(SI.family_stage_fit("graduate_school", "working"), "high")
 
     def test_working_professional_plan_leads_with_working_friendly_families(self):
+        """阶段变体 query 可以没有 family（mixed），但第一条**带 family** 的必须适合该阶段。"""
         qs = SI.plan_queries({"type": "research", "name": "研究经历"}, WORKING,
                              topic="Edge AI", region="Japan")
-        first_family = qs[0]["family"]
+        self.assertTrue(all(q["origin"] in SI.CANDIDATE_ORIGINS for q in qs))
+        # 阶段变体：family 必须真实匹配或为 None，不得强挂
+        overrides = [q for q in qs if q.get("family") is None]
+        self.assertTrue(overrides, "阶段变体 query 允许 family=None（mixed）")
+        first_family = next(q["family"] for q in qs if q.get("family"))
         self.assertIn(first_family, ("research_institute", "graduate_school", "research_seminar"))
         self.assertNotEqual(first_family, "summer_research")
 

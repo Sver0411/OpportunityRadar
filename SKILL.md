@@ -312,7 +312,10 @@ Do not print internal mode IDs or raw scores; express behaviour and bands instea
 ├── seen.json        # first_seen / last_seen / tracked hash / change log
 ├── saved.json       # interested / saved / applied
 ├── ignored.json     # ignored / not_relevant
-└── last-run.json    # last discovery artifact
+├── last-run.json    # last discovery artifact
+└── sources.json     # lightweight source-yield counters (source/category/region/runs/
+                     # last_checked/last_success/historical_yield/failure_type)
+                     # NEVER page content, search results, personal data or credentials
 ```
 
 Allowed local state: only the files above. External side effects (applications, emails,

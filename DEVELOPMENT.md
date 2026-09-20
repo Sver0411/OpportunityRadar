@@ -3,6 +3,23 @@
 Internal notes for maintaining OpportunityRadar. Not needed to use the skill — it is a
 protocol, and the user-facing documentation is in [README.md](README.md).
 
+
+## V3 Core Status: Frozen for Real User Testing
+
+**冻结日期**：2026-09-20 · **冻结时的验证状态**：全部 unit tests 通过；`active_failures = 0`；
+`current_all_pass = true`；主推荐核验率 100%（IoT / Case B）；expired / unverified / stale / resource
+conflict 四类泄漏均为 0。
+
+**含义**：不是以后永不可改，而是**在真人测试之前，不再因为开发者自己的想象继续添加规则**。
+从此只有一条路径可以改核心逻辑：
+
+```
+真实用户失败 → 复现 → 定位 → 最小修复 → 回归测试
+```
+
+**冻结期间禁止新增**：Watch / Delta Scan、Application Lifecycle、更多 locale、更多 source family、
+新 taxonomy、新 ranking 权重、新 profile 字段、ML / 向量库 / crawler / UI。
+
 ---
 
 ## 1. Design decisions and trade-offs

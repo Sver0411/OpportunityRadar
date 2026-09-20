@@ -33,12 +33,15 @@
 |---|---|---|
 | | 点开 / 收藏 / 说会去申请 / 忽略 | |
 
-- Click Rate：点开 n / 共 m
-- Save Rate：收藏 n / 共 m
-- Action Rate：说会真的去做 n / 共 m
-- Surprise Rate：用户说"原来不知道" n / 共 m
-- False Positive Rate：用户说"这明显不适合我" n / 共 m
-- Time-to-action：从看到到说出要做什么的时间
+- **Action Intent Rate**（说"准备去做"）n / 共 m
+- **Observed Immediate Action Rate**（当场真的做了动作）n / 共 m
+  观察到什么：打开报名页 / 注册账号 / 收藏官方页 / 开始填表 / fork repo / 打开 issue / 加入活动
+- **Familiarity Rate**（用户原本已经知道）n / 共 m
+- **Surprise Rate**（"原来完全不知道"）n / 共 m
+- **False Positive Rate**（"明显不适合我"）n / 共 m
+- **Time-to-action**：从看到回答到说出/做出下一步的时间
+
+> 用户说"我会去看"算 Intent，**不算** Immediate Action。只记录观察到的动作。
 
 ## 4. 主观问题（逐字记录答案）
 
@@ -49,6 +52,26 @@
 5. 有没有你觉得应该出现、却没出现的东西？
 6. 如果下周再用一次，你会不会用？
 
-## 5. 观察笔记（只写看到的事实 + 明确的疑问）
+## 5. 用户提到"应该有却没出现"的机会（逐条核实前先原样记录）
+
+| # | 用户说的机会 | 用户为什么觉得该有 | 后续核实结论 |
+|---|---|---|---|
+| 1 | | | （session 后按 METRICS.md 的分类判定） |
+
+## 6. Follow-up（3–7 天后）
+
+- Follow-up date：
+- Did the user actually act?
+  - [ ] yes  [ ] no  [ ] partially  [ ] unknown
+- What action?
+
+| 当时表示有兴趣的机会 | 实际行动了吗 | 做了什么 | 备注 |
+|---|---|---|---|
+| | | | |
+
+- **Follow-up Action Rate**：实际行动 n / 当时有兴趣 m
+- **Intent → Action 衰减**：1 − Follow-up Action Rate
+
+## 7. 观察笔记（只写看到的事实 + 明确的疑问）
 
 - 
