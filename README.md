@@ -365,14 +365,15 @@ Notes on that output:
 
 ```bash
 python3 scripts/state.py init
-python3 scripts/state.py mark-seen --input .opportunity-radar/last-run.json
+python3 scripts/state.py mark-seen --input .opportunity-radar/last-run.json --ids example-id-1,example-id-2
 python3 scripts/state.py feedback saved --id <id> --category competition --tags robotics
 python3 scripts/state.py list --status saved
 python3 scripts/state.py suggest
 ```
 
-Change detection tracks eight fields (`deadline`, `application_open`, `cost`, `compensation`,
-`education_level`, `student_year`, `language_requirement`, `official_url`). Adding `utm_*`
+Only items actually shown to the user should be marked seen. Change detection tracks the
+eligibility, application-status, location, size, and source fields listed in
+`scripts/common.py` (`TRACKED_FIELDS`). Adding `utm_*`
 parameters does **not** count as a change. `suggest` only prints weighting advice — it never
 rewrites the profile.
 

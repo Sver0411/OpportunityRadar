@@ -455,10 +455,10 @@ def freshness(opp, today=None) -> dict:
       2. deadline 可解析但已过（非 rolling）    → expired
       3. deadline_type = rolling / asap / flexible → likely_open
       4. deadline_type = tbd                    → unknown
-      5. 无 deadline：按周期判断
+      5. 无 deadline：仅按真正的活动/申请周期判断；毕业届别不是申请日期
          - 出现的最晚年份 < 今年                → closed
          - == 今年且该季节已过                  → closed
-         - > 今年                              → future（未来周期，通常还没开放申请）
+         - > 今年                              → future（仅在明确为活动周期时）
          - 找不到年份                          → unknown
       6. event_end 已过                         → closed
     """
@@ -472,6 +472,32 @@ def freshness(opp, today=None) -> dict:
     dinfo_type = (parsed or {}).get("deadline_type")
     dtype = declared or dinfo_type
 
+    opened = opp.get("application_open")
+    opened_date = parse_date(str(opened), now=today.isoformat()) if opened else None
+    if opened_date and opened_date.get("iso") and opened_date["iso"] > today.isoformat():
+        return {"status": "future", "reason": f"官方报名开放日为 {opened_date['iso']}",
+                "deadline_iso": iso, "deadline_type": dtype, "cycle_year": None}
+
+    status_ev = (opp.get("evidence") or {}).get("application_status") or {}
+    stated_status = opp.get("application_status")
+    checked = status_ev.get("verified_at") or opp.get("last_verified")
+    try:
+        age = (today - dt.date.fromisoformat(str(checked)[:10])).days
+    except (TypeError, ValueError):
+        age = None
+    explicit_status = (status_ev.get("status") == "explicit" and bool(status_ev.get("source_url"))
+                       and age is not None and 0 <= age <= 30)
+    if explicit_status and stated_status in ("closed", "not_open"):
+        return {"status": "closed" if stated_status == "closed" else "future",
+                "reason": f"官方页面明确标示申请状态为 {stated_status}",
+                "deadline_iso": iso, "deadline_type": dtype, "cycle_year": None}
+
+    end_raw = opp.get("event_end")
+    end_parsed = parse_date(str(end_raw), now=today.isoformat()) if end_raw not in (None, "") else None
+    if end_parsed and end_parsed.get("iso") and (end_parsed.get("urgency_days") or 0) < 0:
+        return {"status": "closed", "reason": f"活动结束日 {end_parsed.get('iso')} 已过",
+                "deadline_iso": iso, "deadline_type": dtype, "cycle_year": None}
+
     if declared in ("rolling", "asap", "flexible"):
         return {"status": "likely_open", "reason": f"deadline_type={declared}（无固定/弹性截止）",
                 "deadline_iso": iso, "deadline_type": dtype, "cycle_year": None}
@@ -484,21 +510,23 @@ def freshness(opp, today=None) -> dict:
         return {"status": "open", "reason": f"截止日 {iso}（还有 {days} 天）", "deadline_iso": iso,
                 "deadline_type": dtype, "cycle_year": None}
 
+    if explicit_status:
+        if stated_status == "open":
+            return {"status": "likely_open", "reason": "官方页面明确标示申请开放；无固定截止日，需复核",
+                    "deadline_iso": None, "deadline_type": dtype, "cycle_year": None}
+
     # 没有明确 deadline：用周期（年份 / 季节 / 活动结束日）判断
-    blob = " ".join(str(opp.get(k) or "") for k in ("title", "cycle", "event_start", "event_end",
-                                                    "summary", "notes"))
+    blob = " ".join(str(opp.get(k) or "") for k in ("cycle", "event_start", "event_end"))
+    blob = re.sub(r"(?<!\d)(?:19|20)\d{2}\s*(?:届|卒|graduate|graduates|入学)", "", blob, flags=re.I)
+    title = str(opp.get("title") or "")
+    if not blob.strip() and not opp.get("cohort_year") and not re.search(r"(?<!\d)(?:19|20)\d{2}\s*(?:届|卒|graduate|graduates|入学)", title, re.I):
+        blob = title
     years = _years_in(blob)
     cyear = max(years) if years else None
     season = _season_in(blob)
 
-    end_raw = opp.get("event_end")
-    end_parsed = parse_date(str(end_raw), now=today.isoformat()) if end_raw not in (None, "") else None
-    if end_parsed and end_parsed.get("iso") and (end_parsed.get("urgency_days") or 0) < 0:
-        return {"status": "closed", "reason": f"活动结束日 {end_parsed.get('iso')} 已过",
-                "deadline_iso": None, "deadline_type": dtype, "cycle_year": cyear}
-
     if cyear is None:
-        return {"status": "unknown", "reason": "没有 deadline，也提取不到周期年份 → 无法确认当前状态",
+        return {"status": "unknown", "reason": "无可确认的申请周期；毕业届别不能推断开放状态",
                 "deadline_iso": None, "deadline_type": dtype, "cycle_year": None}
     if cyear < today.year:
         return {"status": "closed", "reason": f"周期年份 {cyear} 早于今年 {today.year}"

@@ -33,7 +33,7 @@ CATEGORIES = (
 )
 
 GOAL_TYPES = (
-    "internship", "fulltime", "research", "competition", "education", "language",
+    "career", "internship", "fulltime", "research", "competition", "education", "language",
     "skill", "open_source", "hobby", "funding", "event", "project",
     "entrepreneurship", "networking",
 )
@@ -54,9 +54,9 @@ EVIDENCE_STATUSES = ("explicit", "inferred", "unknown")
 
 #: 需要逐字段追踪证据的关键字段（见 references/extraction-policy.md）
 EVIDENCE_FIELDS = (
-    "deadline", "education_level", "student_year", "graduation_window",
+    "application_status", "deadline", "education_level", "student_year", "graduation_window",
     "major_requirement", "language_requirement", "nationality_requirement",
-    "school_requirement", "GPA_requirement", "compensation",
+    "school_requirement", "GPA_requirement", "compensation", "organization_size",
 )
 
 DEADLINE_TYPES = ("fixed", "range", "rolling", "asap", "flexible", "tbd", "unknown")
@@ -79,7 +79,7 @@ WEIGHTS = {
 
 #: 目标类型 → Opportunity 类别（score.py 与 locales.py 共用，避免两套映射）
 GOAL_TO_CATEGORY = {
-    "internship": ["career"], "fulltime": ["career"], "research": ["research"],
+    "career": ["career"], "internship": ["career"], "fulltime": ["career"], "research": ["research"],
     "competition": ["competition"], "education": ["education"], "language": ["language"],
     "skill": ["skill_development"], "open_source": ["open_source"], "hobby": ["hobby"],
     "funding": ["funding"], "event": ["event"], "project": ["project"],
@@ -148,7 +148,9 @@ def is_explicit_none(value) -> bool:
 #: state.py 变化检测跟踪的字段（见 references/state-and-feedback.md §2）
 TRACKED_FIELDS = (
     "deadline", "application_open", "cost", "compensation",
-    "education_level", "student_year", "language_requirement", "official_url",
+    "application_status", "graduation_window", "education_level", "student_year",
+    "major_requirement", "language_requirement", "official_url", "verification_status",
+    "country", "region", "city", "organization_size",
 )
 
 # ---------------------------------------------------------------- URL 规范化

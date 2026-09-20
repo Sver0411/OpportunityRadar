@@ -67,6 +67,10 @@
         "null"
       ]
     },
+    "region": {
+      "type": ["string", "null"],
+      "description": "官方地点所在省/州/大区；由城市推导时须标注 inferred，不得冒充官方明写"
+    },
     "remote": {
       "type": [
         "boolean",
@@ -88,7 +92,24 @@
           "type": "null"
         }
       ],
-      "description": "未写明或仅写 \"students\" 时 → null"
+      "description": "申请人当前学历门槛，不是教育项目授予的学位。未写明或仅写 \"students\" 时 → null"
+    },
+    "program_degree": {
+      "anyOf": [{"$ref": "#/$defs/educationLevel"}, {"type": "null"}],
+      "description": "教育项目完成后授予的学位，例如硕士项目为 master；不得填入 education_level"
+    },
+    "cohort_year": {
+      "type": ["integer", "null"],
+      "description": "毕业届别/入学届别，不等于报名开放年份"
+    },
+    "organization_size": {
+      "type": ["string", "null"],
+      "enum": ["micro", "small", "medium", "large", "unknown", null],
+      "description": "有可靠规模证据时填写；专精特新、上市与否不能单独推出规模"
+    },
+    "organization_type": {
+      "type": ["string", "null"],
+      "enum": ["independent", "subsidiary", "group", "unknown", null]
     },
     "student_year": {
       "anyOf": [
@@ -216,6 +237,11 @@
         "null"
       ],
       "description": "报名开放日，YYYY-MM-DD 或 RFC3339；年份不明 → null"
+    },
+    "application_status": {
+      "type": ["string", "null"],
+      "enum": ["open", "closed", "not_open", "unknown", null],
+      "description": "官方页面观察到的申请状态；必须在 evidence.application_status 记录来源和核验日期"
     },
     "deadline": {
       "type": [
@@ -441,6 +467,9 @@
         "$ref": "#/$defs/evidenceEntry"
       },
       "properties": {
+        "application_status": {
+          "$ref": "#/$defs/evidenceEntry"
+        },
         "deadline": {
           "$ref": "#/$defs/evidenceEntry"
         },
@@ -469,6 +498,9 @@
           "$ref": "#/$defs/evidenceEntry"
         },
         "compensation": {
+          "$ref": "#/$defs/evidenceEntry"
+        },
+        "organization_size": {
           "$ref": "#/$defs/evidenceEntry"
         }
       }

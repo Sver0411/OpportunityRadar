@@ -69,14 +69,15 @@
 
 ## 2. 变化检测（Seen State 的核心）
 
-**tracked 字段**（固定这 8 个，改了才有意义）：
+**tracked 字段**（以 `scripts/common.py` 的 `TRACKED_FIELDS` 为准）：
 
 ```
-deadline · application_open · cost · compensation ·
-education_level · student_year · language_requirement · official_url
+deadline · application_open · application_status · cost · compensation ·
+graduation_window · education_level · student_year · major_requirement ·
+language_requirement · official_url · verification_status · country · region · city · organization_size
 ```
 
-`tracked_hash` = 这 8 个字段值的规范化 JSON 的 SHA-256 前 16 位。
+`tracked_hash` = 上述字段值的规范化 JSON 的 SHA-256 前 16 位。
 
 ### 规范化规则（与 dedupe 完全共用，避免"同一个 URL 两套规则"）
 
@@ -89,10 +90,10 @@ education_level · student_year · language_requirement · official_url
   **同一机会 + 同一周期 → 同一 ID；同一项目 + 不同年份/周期 → 不同 ID**。
   ID 规则变更会导致历史 Seen State 失配，所以改动必须同步更新 `seen.json` 或接受一次重扫。
 
-每轮 Discovery 结束（Step 13 之前）对候选执行：
+最终答复确定后，只对**实际展示给用户**的机会执行；内部发现的候选不算 `seen`：
 
 ```bash
-python3 scripts/state.py mark-seen --input .opportunity-radar/last-run.json
+python3 scripts/state.py mark-seen --input .opportunity-radar/last-run.json --ids id-1,id-2
 ```
 
 输出分三类：
@@ -175,7 +176,7 @@ python3 scripts/state.py suggest
 |---|---|
 | Discovery 开始 | 若目录存在 → 读 `seen.json`（用于 novelty 与重复过滤）；读 `saved/ignored`（用于权重） |
 | 抽取完成后 | 写 `last-run.json` |
-| 排序完成后 | `mark-seen` 更新 seen |
+| 确定最终展示条目后 | `mark-seen --ids` 只更新展示过的 ID |
 | 用户表达态度 | `feedback` 写入 saved/ignored |
 | 用户问"我之前收藏的" | `list --status saved` |
 
@@ -197,7 +198,7 @@ python3 scripts/state.py suggest
 
 ```bash
 python3 scripts/state.py init                     # 创建目录与空状态文件（幂等）
-python3 scripts/state.py mark-seen --input last-run.json
+python3 scripts/state.py mark-seen --input last-run.json --ids id-1,id-2
 python3 scripts/state.py check --input last-run.json      # 只分类，不写入
 python3 scripts/state.py feedback saved --id <id> --note "..."
 python3 scripts/state.py list --status saved

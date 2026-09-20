@@ -5,7 +5,7 @@ license: MIT
 compatibility: Requires a web-capable host agent (web search plus page fetch or browser) for discovery and verification. Python 3.8+ is needed for the deterministic helpers in scripts/ (standard library only, no network); without it, run Protocol-only Mode and apply the reference rules by hand. No external services, credentials, or paid APIs.
 metadata:
   agent_created: "true"
-  version: "2.0"
+  version: "2.1"
 ---
 
 # OpportunityRadar
@@ -138,8 +138,15 @@ Single source of truth: enums, weights, tracked fields and ID/URL rules live in
    Localize the taxonomy's intent templates into the target languages; when a first pass surfaces
    pages in another language, add that language to the next round. Every expansion must trace
    back to a profile signal; max two semantic hops.
+   Treat the current request as a per-run context, not a silent profile rewrite. In Full Mode,
+   pass the same current goals and location constraints to `scripts/locales.py --context <json>`
+   and `scripts/score.py --context <json>`;
+   a new country preference replaces stale city/province preferences for this run. Explicit
+   constraints such as "small companies only" need verified organization-size evidence;
+   unknown size is a lead to check, not a qualifying match.
 4. **Search multiple categories.** Open-ended asks: aim for **≥5 categories**; goal-specific
-   asks: ≥3. This is a coverage guideline to avoid the "everything becomes internships" failure
+   asks: normally ≥2 relevant categories, or one when the user narrowly specifies a single
+   category. This is a coverage guideline to avoid the "everything becomes internships" failure
    mode — never search irrelevant categories just to hit a number.
 5. **Discover candidates.** Cheap breadth-first pass: title, organization, deadline, link,
    `discovery_url` and its trust tier.
@@ -147,7 +154,11 @@ Single source of truth: enums, weights, tracked fields and ID/URL rules live in
    Tier C/D may discover; Tier A/B must confirm.
 7. **Verify important facts.** On the canonical page confirm at least: application window /
    deadline, eligibility scope, official application path. Record `verification_status` and
-   `last_verified`. If no canonical page exists, write "未找到官方确认来源" — never invent a link.
+   `last_verified`. Distinguish the graduation/intake cohort from when applications open.
+   Record field-level `evidence.application_status` or `evidence.deadline` with the exact
+   official source and verification date; an organization homepage alone is not proof that
+   this specific opportunity is open. If no canonical page exists, write
+   "未找到官方确认来源" — never invent a link.
 8. **Extract structured data.** Fill the opportunity schema per `references/extraction-policy.md`.
    Tag key fields with `evidence.status` = explicit / inferred / unknown. Pass dates through
    `normalize_date.py`.
@@ -167,7 +178,7 @@ Single source of truth: enums, weights, tracked fields and ID/URL rules live in
 
     | Zone | Gate | Size |
     |---|---|---|
-    | **Recommended now** | freshness ∈ {open, likely_open} **AND** canonical source exists **AND** not Ineligible **AND** match ≥ 55 | 3–6 (fewer is fine) |
+    | **Recommended now** | freshness ∈ {open, likely_open} **AND** canonical source and recent explicit application/deadline evidence **AND** verified_official **AND** not Ineligible **AND** match ≥ 55 | 3–6 (fewer is fine) |
     | **Worth verifying** | freshness unknown / no canonical source / eligibility unknown | 3–8, labelled "需确认" |
     | **Closed / Excluded** | closed / expired / Ineligible | with reason |
 
@@ -196,7 +207,8 @@ variants only return already-seen or irrelevant results.
    Missing → `null` + "未找到官方确认来源".
 2b. **`deadline: null` is not "still open".** Every opportunity gets a `freshness`
    (`open` / `likely_open` / `unknown` / `closed` / `expired` / `future`) from
-   `scripts/normalize_date.py --freshness`. Past cycle (last year, season over, event ended)
+   `scripts/normalize_date.py --freshness`. A future graduation or intake cohort does not
+   mean applications are not yet open. Past application/event cycle or ended event
    ⇒ `closed` ⇒ excluded. When in doubt, answer "current status unconfirmed" — never "apply now".
 2c. **No canonical source ⇒ no "apply now".** Third-party-only findings are discovery leads:
    put them under "值得继续核实 / Unverified leads" with "未找到官方确认来源"; they must not appear
@@ -224,7 +236,8 @@ variants only return already-seen or irrelevant results.
 9. **Real requirements over generic advice.** For "how do I get stronger" asks, derive the
    requirement list from actually discovered postings and quantify as
    "在本次扫描到的 N 个机会中，X 出现在 M 个里" — never "学 X 就能多 N 个机会".
-10. **Novelty.** If state exists, mark already-seen items; re-show only when something changed.
+10. **Novelty.** If state exists, mark only items actually shown to the user as seen;
+    discovered-but-unshown candidates remain new. Re-show when something material changed.
 11. **Never silently rewrite the profile.** Suggest weighting changes instead.
 12. **Answer in the user's language**; keep program, organization and URL strings verbatim.
 
@@ -272,5 +285,5 @@ Details: `references/state-and-feedback.md`.
 - [ ] Are adjacent/explore items included when they qualified — and honestly reported as absent
       when they did not?
 - [ ] Did I keep side effects inside the optional `.opportunity-radar/` state directory?
-- [ ] Is the answer 5–15 items rather than a link dump?
+- [ ] Is the answer a concise selection (fewer than 5 is fine when evidence is sparse), not a link dump?
 - [ ] If running without scripts, did I say so instead of implying deterministic results?

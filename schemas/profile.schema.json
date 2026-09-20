@@ -354,6 +354,7 @@
             "type": "string",
             "description": "目标类型，与 opportunity taxonomy 的类别对齐",
             "enum": [
+              "career",
               "internship",
               "fulltime",
               "research",
@@ -430,6 +431,14 @@
             "type": "string"
           },
           "description": "省/大区级偏好（如 浙江、江浙沪、Bavaria）。与 preferred_city 一样是显式偏好，参与地区解析（scripts/locales.py 会把地名作为 place_hints 带进搜索 query）"
+        },
+        "organization_size": {
+          "anyOf": [
+            {"type": "string", "enum": ["micro", "small", "medium", "large"]},
+            {"type": "array", "items": {"type": "string", "enum": ["micro", "small", "medium", "large"]}},
+            {"type": "null"}
+          ],
+          "description": "仅在用户明确限定企业规模时使用；本轮限定优先放在临时 context，而非持久画像"
         },
         "remote": {
           "type": [

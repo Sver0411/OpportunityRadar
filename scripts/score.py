@@ -70,6 +70,7 @@ GOAL_TO_VALUE_DIM = {
     "hobby": ["interest"], "funding": ["financial"],
     "event": ["networking", "skill"], "project": ["portfolio", "skill"],
     "entrepreneurship": ["career", "networking"], "networking": ["networking"],
+    "career": ["career", "financial"],
 }
 
 VALUE_LEVEL = {"high": 1.0, "medium": 0.6, "low": 0.3, "unknown": 0.5, None: 0.5}
@@ -310,7 +311,10 @@ def parse_ym_pairs(text) -> list[tuple[int, int | None]]:
     """从文本中抽取 (年, 月) 对；只有年份时月为 None。"""
     s = str(text or "")
     out: list[tuple[int, int | None]] = []
-    for m in re.finditer(r"(?<!\d)(\d{4})\s*[-/.年]\s*(\d{1,2})\s*月?", s):
+    # A year range is not a year-month pair: 2026-2027 must retain both years.
+    if re.search(r"(?<!\d)(?:19|20)\d{2}\s*[-–—~～至到]\s*(?:19|20)\d{2}(?!\d)", s):
+        return [(int(y), None) for y in re.findall(r"(?<!\d)((?:19|20)\d{2})(?!\d)", s)]
+    for m in re.finditer(r"(?<!\d)(\d{4})\s*[-/.年]\s*(\d{1,2})(?!\d)\s*月?", s):
         y, mo = int(m.group(1)), int(m.group(2))
         if 1 <= mo <= 12:
             out.append((y, mo))
@@ -812,6 +816,8 @@ def eligibility_component(opp, profile, today, stripped_fields=None):
         reasons.append("滚动招募，无固定截止日")
 
     # 2. 学历（枚举值 → 无歧义）
+    # education_level is the applicant's *current* qualification, never the
+    # degree awarded by an education opportunity (program_degree).
     levels = [str(x) for x in as_list(opp.get("education_level"))]
     if levels and "any" not in levels:
         if not degree:
@@ -1021,17 +1027,25 @@ def location_component(opp, profile):
     c = profile.get("constraints") or {}
     pref_countries = [v for v in (canonical_country(x) for x in as_list(c.get("preferred_country"))) if v]
     pref_cities = as_list(c.get("preferred_city"))
+    pref_regions = as_list(c.get("preferred_region"))
     remote_pref = c.get("remote")
     relocation = c.get("relocation")
-    if not pref_countries and not pref_cities and remote_pref is None:
+    if not pref_countries and not pref_cities and not pref_regions and remote_pref is None:
         return 60.0, "画像未提供地区约束"
 
     raw_country = opp.get("country")
     opp_country = canonical_country(raw_country)
     opp_city = opp.get("city")
+    opp_region = opp.get("region")
 
     if pref_cities and opp_city and any(city_match(x, opp_city) for x in pref_cities):
         return 100.0, f"城市匹配：{opp_city}"
+    if pref_regions and opp_region and any(city_match(x, opp_region) for x in pref_regions):
+        return 98.0, f"省/地区匹配：{opp_region}"
+    if pref_regions and opp_region and not any(city_match(x, opp_region) for x in pref_regions):
+        return 30.0, f"省/地区 {opp_region} 不在偏好列表中"
+    if pref_regions and not opp_region and pref_countries and opp_country in pref_countries:
+        return 55.0, "国家匹配，但页面未证实所在省/地区"
     if pref_countries and opp_country and opp_country in pref_countries:
         return 95.0, f"国家/地区匹配：{raw_country}"
     if opp.get("remote") and remote_pref:
@@ -1138,9 +1152,31 @@ def recommendation_zone(row: dict) -> str:
         return "excluded"
     if row["freshness"]["status"] in OPEN_FRESHNESS \
             and str(row.get("official_url") or "").strip() \
+            and row.get("verification_status") == "verified_official" \
+            and row.get("application_status_evidence") \
+            and row.get("size_verified", True) \
             and row.get("match", 0) >= MIN_RECOMMEND_MATCH:
         return "recommended_now"
     return "worth_verifying"
+
+
+def actionable_evidence(opp, today):
+    """Only a dated, official, field-specific observation can support 'apply now'."""
+    if opp.get("verification_status") != "verified_official":
+        return False
+    ev = opp.get("evidence") or {}
+    for field in ("application_status", "deadline"):
+        item = ev.get(field) or {}
+        if item.get("status") != "explicit" or not item.get("source_url"):
+            continue
+        date_text = item.get("verified_at") or opp.get("last_verified")
+        try:
+            age = (today - dt.date.fromisoformat(str(date_text)[:10])).days
+        except (TypeError, ValueError):
+            continue
+        if 0 <= age <= 30:
+            return True
+    return False
 
 
 # ------------------------------------------------------------------ 主流程
@@ -1198,8 +1234,19 @@ def evidence_gaps(opp) -> list[str]:
     return gaps
 
 
-def score_all(profile, opps, seen_index=None, today=None, strict=False):
+def score_all(profile, opps, seen_index=None, today=None, strict=False, context=None):
     today = today or dt.date.today()
+    if context:
+        # Current-turn intent overrides persistent preferences for this run only.
+        profile = copy.deepcopy(profile)
+        if "goals" in context:
+            profile["goals"] = context["goals"]
+        current = context.get("constraints") or {}
+        retained = dict(profile.get("constraints") or {})
+        if "preferred_country" in current:
+            retained.pop("preferred_region", None)
+            retained.pop("preferred_city", None)
+        profile["constraints"] = {**retained, **current}
     results, excluded, contract_issues = [], [], []
     # 只用于资格判断：把 inferred_pending 的画像字段摘掉；其余分项仍用完整画像
     safe_profile, stripped = filter_profile_for_eligibility(profile)
@@ -1234,6 +1281,16 @@ def score_all(profile, opps, seen_index=None, today=None, strict=False):
             excluded.append({"id": opp.get("id"), "title": opp.get("title"),
                              "reason": f"{fr['status']}: {fr['reason']}"})
             continue
+
+        size_pref = as_list((profile.get("constraints") or {}).get("organization_size"))
+        size = opp.get("organization_size")
+        if size_pref and size and size != "unknown" and size not in size_pref:
+            excluded.append({"id": opp.get("id"), "title": opp.get("title"),
+                             "reason": f"企业规模 {size} 不符合本轮限定 {size_pref}"})
+            continue
+        size_ev = (opp.get("evidence") or {}).get("organization_size") or {}
+        size_verified = not size_pref or (size in size_pref and size_ev.get("status") == "explicit"
+                                          and bool(size_ev.get("source_url")))
 
         dinfo = deadline_info(opp, today)
         ug, dtype = dinfo["days"], dinfo["type"]
@@ -1300,6 +1357,9 @@ def score_all(profile, opps, seen_index=None, today=None, strict=False):
             "freshness": fr["status"],
             "freshness_reason": fr["reason"],
             "zone": recommendation_zone({"freshness": fr, "official_url": opp.get("official_url"),
+                                          "verification_status": opp.get("verification_status"),
+                                          "application_status_evidence": actionable_evidence(opp, today),
+                                          "size_verified": size_verified,
                                           "verdict": verdict, "match": match}),
             "priority_score": priority,
             "priority_band": band(priority),
@@ -1371,6 +1431,7 @@ def render_table(res):
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description="Opportunity 匹配度/优先级确定性打分（决策辅助）")
     ap.add_argument("--profile", required=True)
+    ap.add_argument("--context", help="本轮目标/地区 JSON；仅覆盖本轮评分，不修改画像")
     ap.add_argument("--opportunities", required=True)
     ap.add_argument("--seen", help="seen.json，用于 novelty 与重复处理")
     ap.add_argument("--today", help="参照日期 YYYY-MM-DD，默认今天")
@@ -1388,7 +1449,8 @@ def main(argv=None) -> int:
         seen_index = {k: v.get("status") for k, v in (load_json(args.seen).get("entries") or {}).items()}
 
     today = dt.date.fromisoformat(args.today) if args.today else None
-    res = score_all(profile, opps, seen_index, today, strict=args.strict)
+    context = load_json(args.context) if args.context else None
+    res = score_all(profile, opps, seen_index, today, strict=args.strict, context=context)
     if args.zone:
         keep = [r for r in res["results"] if r.get("zone") == args.zone]
         res["results"] = keep

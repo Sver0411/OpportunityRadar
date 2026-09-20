@@ -45,9 +45,10 @@ Closed / Excluded   ← 已过期/已结束，或明确不符合资格（附原�
 进入 **Recommended now** 的最低条件（`scripts/score.py` 的 `recommendation_zone()` 已实现）：
 
 1. `freshness ∈ {open, likely_open}`
-2. 有 canonical source（`official_url` 非空）
-3. `eligibility_verdict != Ineligible`
-4. `match_score >= 55`（最低质量门槛）
+2. 有具体 canonical source，且 `verification_status = verified_official`
+3. 近 30 日内从官方页面核验的 `evidence.application_status` 或 `evidence.deadline`（explicit、含 source_url 和 verified_at）
+4. `eligibility_verdict != Ineligible`
+5. `match_score >= 55`（最低质量门槛）
 
 其余进入 **Worth verifying**（`freshness = unknown`、无官方来源、match 偏低）。
 `closed` / `expired` / `Ineligible` 进 **Closed / Excluded** 并写明原因。

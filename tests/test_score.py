@@ -616,9 +616,16 @@ class TestCanonicalSourceGate(unittest.TestCase):
     def T(self, o):
         return S.score_all(profile(), [o], today=dt.date(2026, 9, 14))
 
+    def verified(self, o):
+        o["verification_status"] = "verified_official"
+        o["last_verified"] = "2026-09-14"
+        o["evidence"] = {"deadline": {"status": "explicit", "source_url": o["official_url"],
+                                      "verified_at": "2026-09-14"}}
+        return o
+
     def test_official_url_present_can_be_recommended(self):
-        r = self.T(opp(id="a", deadline="2026-10-03", official_url="https://official.example/jobs",
-                       education_level=["undergraduate"]))
+        r = self.T(self.verified(opp(id="a", deadline="2026-10-03", official_url="https://official.example/jobs",
+                                     education_level=["undergraduate"])))
         self.assertNotIn("no_canonical_source", r["results"][0]["flags"])
         self.assertEqual(r["results"][0]["zone"], "recommended_now")
 
@@ -633,7 +640,7 @@ class TestCanonicalSourceGate(unittest.TestCase):
 
     def test_no_expired_and_no_unverified_leakage_into_recommendations(self):
         """两个 hard quality gate：expired leakage = 0，unverified leakage = 0。"""
-        opps = [opp(id="ok", deadline="2026-10-03", official_url="https://a.example"),
+        opps = [self.verified(opp(id="ok", deadline="2026-10-03", official_url="https://a.example")),
                 opp(id="exp", deadline="2026-04-01", official_url="https://b.example"),
                 opp(id="agg", deadline="2026-10-03", official_url=None)]
         r = S.score_all(profile(), opps, today=dt.date(2026, 9, 14))
@@ -643,8 +650,8 @@ class TestCanonicalSourceGate(unittest.TestCase):
         self.assertEqual([x for x in recs if "no_canonical_source" in x["flags"]], [])
 
     def test_zone_filter(self):
-        r = S.score_all(profile(), [opp(id="ok", deadline="2026-10-03",
-                                        official_url="https://a.example"),
+        r = S.score_all(profile(), [self.verified(opp(id="ok", deadline="2026-10-03",
+                                                      official_url="https://a.example")),
                                     opp(id="agg", deadline="2026-10-03", official_url=None)],
                         today=dt.date(2026, 9, 14))
         self.assertEqual(r["zones"]["recommended_now"] >= 1, True)
