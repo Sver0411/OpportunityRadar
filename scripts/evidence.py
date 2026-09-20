@@ -28,6 +28,8 @@ import argparse
 import datetime as dt
 import json
 import os
+
+import sources as SI
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -87,9 +89,15 @@ def check(opp, today=None) -> dict:
     app = application_status_evidence(opp, today)
     if not app["present"]:
         missing.append("evidence.application_status(" + ",".join(app["missing"]) + ")")
+    # 页面时效（≠ 机会时效）：历史/陈旧页面可用于 discovery，但**不能满足"当前可申请"证据**
+    sf = SI.source_freshness(opp, today)
+    if sf["source_freshness"] in ("historical", "stale"):
+        missing.append(f"source_freshness:current(页面为 {sf['source_freshness']})")
     return {
         "complete": not missing,
         "missing": missing,
+        "source_freshness": sf["source_freshness"],
+        "source_freshness_signal": sf["signal"],
         "application_status": app,
         "participation_open": app["participation_open"],
         "checked_at": today.isoformat(),
@@ -111,6 +119,10 @@ def demotion_reason(opp, row, evc) -> dict:
                     "detail": "官方页面无法读取（反爬 / JS 渲染 / 404 / 超时）"}
         return {"code": "verification_not_attempted", "kind": "process",
                 "detail": "本轮没有去核实官方页面（预算/顺序问题，下一轮可补）"}
+    sf = (evc.get("source_freshness") or "unknown")
+    if sf in ("historical", "stale"):
+        return {"code": "source_found_not_current", "kind": "fact",
+                "detail": f"找到的页面不是当前信息（source_freshness={sf}）：{evc.get('source_freshness_signal','')}"}
     status = (row.get("freshness") or {}).get("status")
     if status in ("unknown", "evergreen", "recurring") and not row.get("participation_open"):
         # 页面本身无法确认"现在能参与" → 事实问题（不是我们忘了记录）

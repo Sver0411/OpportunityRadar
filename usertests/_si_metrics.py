@@ -125,5 +125,57 @@ def main() -> None:
     print("  real gap coverage change: Case D research gap 0.50 -> 0.75 (round 4 report)")
 
 
+def refinement_metrics() -> None:
+    """本轮 refinement 指标：stage 适配、gap 噪声、页面时效。"""
+    import datetime as _dt
+    print("\n=== Refinement metrics ===")
+    # stage
+    rows = []
+    for label, prof in (("working", {"life_stage": ["working"], "career_stage": ["mid_career"]}),
+                        ("undergraduate", {"life_stage": ["student"],
+                                           "career_stage": ["undergraduate"]})):
+        qs = SI.plan_queries({"type": "research", "name": "研究经历"}, prof,
+                             topic="Edge AI", region="Japan", limit=6)
+        stage = SI.stage_of(prof)
+        fits = [SI.family_stage_fit(q.get("family") or "", stage) for q in qs]
+        bad = sum(1 for f in fits if f in ("low", "never"))
+        good = sum(1 for f in fits if f in ("high", "medium"))
+        rows.append((label, bad / len(qs), good / len(qs), fits))
+    for label, bad_rate, precision, fits in rows:
+        print(f"  {label:<14} stage_inapplicable_query_rate={bad_rate:.2f} "
+              f"stage_family_precision={precision:.2f} fits={fits}")
+
+    # gap noise（用 T2 场景：目标机会里混有 logistics 前置）
+    prof = dict(EMBEDDED, career_state={"promotion_target": "Senior"},
+                goals=[{"type": "career", "priority": "high"}])
+    noisy = [opp(id="n1", title="Senior track programme", primary_category="career",
+                 skills_required=["leadership"],
+                 required_materials=["GitHub profile", "Slack account", "报名表"])]
+    gaps = GP.collect_gaps(noisy, prof)
+    noise = sum(1 for g in gaps if GP.is_logistics(g["name"]))
+    print(f"  gap_noise_rate = {noise / len(gaps) if gaps else 0:.2f} "
+          f"（development gaps={len(gaps)}，logistics={sum(len(g['logistics_prerequisites']) for g in gaps)}）")
+
+    # stale leakage
+    stale = [{"title": "Summer Research Program 2024"},
+             {"title": "Programme 2025"},
+             {"title": "Programme 2026"}]
+    statuses = [SI.source_freshness(o, _dt.date(2026, 9, 20))["source_freshness"] for o in stale]
+    leaked = sum(1 for s in statuses if s in ("current", "likely_current")) - 1  # 只有 2026 那条应通过
+    print(f"  source_freshness={statuses} → source_stale_leakage={max(0, leaked)}")
+
+    # Case C 记录里的真实数字
+    p2 = os.path.join(HERE, "case-c-promotion", "record-si.json")
+    if os.path.exists(p2):
+        rec = json.load(open(p2, encoding="utf-8"))
+        m = rec.get("metrics", {})
+        print(f"  Case C: gaps_total={m.get('gaps_total')} development={m.get('development_gaps')} "
+              f"logistics={m.get('logistics_prerequisites')} noise={m.get('gap_noise_rate')} "
+              f"coverage={m.get('gap_coverage_rate')} "
+              f"stage_inapplicable={m.get('stage_inapplicable_query_rate')} "
+              f"not_current={m.get('source_found_not_current_rate')}")
+
+
 if __name__ == "__main__":
     main()
+    refinement_metrics()

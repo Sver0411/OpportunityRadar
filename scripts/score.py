@@ -1439,6 +1439,7 @@ def score_all(profile, opps, seen_index=None, today=None, strict=False, context=
             "small_bet_type": opp.get("small_bet_type"),
             "evidence_complete": evc["complete"],
             "evidence_missing": evc["missing"],
+            "source_freshness": evc.get("source_freshness"),
             "evidence_verified_at": evc["application_status"]["verified_at"],
             "participation_open": evc["participation_open"],
             "actionable": actionable,

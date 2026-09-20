@@ -16,10 +16,60 @@
         "speech_contest"
       ],
       "queries": [
-        "CNCF community event CFP open",
-        "CNCF maintainer pathway governance",
-        "CNCF working group SIG join",
-        "CNCF technical committee participate"
+        {
+          "query": "CNCF community event CFP open",
+          "family": "community_event",
+          "stage": "working",
+          "stage_fit": "high",
+          "family_selected": true,
+          "family_downweighted": false,
+          "family_skipped": false
+        },
+        {
+          "query": "CNCF コミュニティ 勉強会 登壇",
+          "family": "community_event",
+          "stage": "working",
+          "stage_fit": "high",
+          "family_selected": true,
+          "family_downweighted": false,
+          "family_skipped": false
+        },
+        {
+          "query": "CNCF maintainer pathway governance",
+          "family": "maintainer_program",
+          "stage": "working",
+          "stage_fit": "high",
+          "family_selected": true,
+          "family_downweighted": false,
+          "family_skipped": false
+        },
+        {
+          "query": "CNCF メンテナー なるには",
+          "family": "maintainer_program",
+          "stage": "working",
+          "stage_fit": "high",
+          "family_selected": true,
+          "family_downweighted": false,
+          "family_skipped": false
+        },
+        {
+          "query": "CNCF working group SIG join",
+          "family": "working_group",
+          "stage": "working",
+          "stage_fit": "high",
+          "family_selected": true,
+          "family_downweighted": false,
+          "family_skipped": false
+        },
+        {
+          "query": "CNCF technical committee participate",
+          "family": "working_group",
+          "stage": "working",
+          "stage_fit": "high",
+          "family_selected": true,
+          "family_downweighted": false,
+          "family_skipped": false
+        }
       ]
     },
     {
@@ -31,10 +81,60 @@
         "foundation"
       ],
       "queries": [
-        "CNCF working group SIG join",
-        "CNCF technical committee participate",
-        "CNCF maintainer pathway governance",
-        "CNCF foundation contributor programme students"
+        {
+          "query": "CNCF working group SIG join",
+          "family": "working_group",
+          "stage": "working",
+          "stage_fit": "high",
+          "family_selected": true,
+          "family_downweighted": false,
+          "family_skipped": false
+        },
+        {
+          "query": "CNCF technical committee participate",
+          "family": "working_group",
+          "stage": "working",
+          "stage_fit": "high",
+          "family_selected": true,
+          "family_downweighted": false,
+          "family_skipped": false
+        },
+        {
+          "query": "CNCF maintainer pathway governance",
+          "family": "maintainer_program",
+          "stage": "working",
+          "stage_fit": "high",
+          "family_selected": true,
+          "family_downweighted": false,
+          "family_skipped": false
+        },
+        {
+          "query": "CNCF メンテナー なるには",
+          "family": "maintainer_program",
+          "stage": "working",
+          "stage_fit": "high",
+          "family_selected": true,
+          "family_downweighted": false,
+          "family_skipped": false
+        },
+        {
+          "query": "CNCF foundation contributor programme students",
+          "family": "foundation",
+          "stage": "working",
+          "stage_fit": "high",
+          "family_selected": true,
+          "family_downweighted": false,
+          "family_skipped": false
+        },
+        {
+          "query": "CNCF foundation mentorship programme",
+          "family": "foundation",
+          "stage": "working",
+          "stage_fit": "high",
+          "family_selected": true,
+          "family_downweighted": false,
+          "family_skipped": false
+        }
       ]
     },
     {
@@ -47,13 +147,64 @@
         "speech_contest"
       ],
       "queries": [
-        "CNCF contributor guide good first issue",
-        "CNCF mentorship programme apply",
-        "CNCF foundation contributor programme students"
+        {
+          "query": "CNCF contributor guide good first issue",
+          "family": "contributor_guide",
+          "stage": "working",
+          "stage_fit": "high",
+          "family_selected": true,
+          "family_downweighted": false,
+          "family_skipped": false
+        },
+        {
+          "query": "CNCF コントリビュート 方法",
+          "family": "contributor_guide",
+          "stage": "working",
+          "stage_fit": "high",
+          "family_selected": true,
+          "family_downweighted": false,
+          "family_skipped": false
+        },
+        {
+          "query": "CNCF mentorship programme apply",
+          "family": "mentorship_program",
+          "stage": "working",
+          "stage_fit": "high",
+          "family_selected": true,
+          "family_downweighted": false,
+          "family_skipped": false
+        },
+        {
+          "query": "CNCF メンターシップ 応募",
+          "family": "mentorship_program",
+          "stage": "working",
+          "stage_fit": "high",
+          "family_selected": true,
+          "family_downweighted": false,
+          "family_skipped": false
+        },
+        {
+          "query": "CNCF foundation contributor programme students",
+          "family": "foundation",
+          "stage": "working",
+          "stage_fit": "high",
+          "family_selected": true,
+          "family_downweighted": false,
+          "family_skipped": false
+        },
+        {
+          "query": "CNCF foundation mentorship programme",
+          "family": "foundation",
+          "stage": "working",
+          "stage_fit": "high",
+          "family_selected": true,
+          "family_downweighted": false,
+          "family_skipped": false
+        }
       ]
     }
   ],
-  "queries_planned_note": "sources.py 为 3 个缺口各生成 family 模板查询；实际执行 7 次 WebSearch（预算内）。",
+  "stage_of_user": "working",
   "actual_searches": [
     "CNCF Technical Advisory Group TAG join how to participate",
     "CNCF Ambassador program apply 2026",
@@ -61,31 +212,47 @@
     "KubeCon CloudNativeCon 2027 CFP call for proposals",
     "Kubernetes SIG contributor guide good first issue how to contribute",
     "CNCF contributor ladder become maintainer governance",
-    "cloud native community groups Singapore chapter lead organizer apply"
+    "KubeCon CloudNativeCon 2025 CFP archive call for proposals past edition"
   ],
   "searches_used": 7,
   "fetches_used": 5,
   "candidates": [
     {
-      "title": "CNCF Technical Advisory Group (TAG) 参与 — 工作组的公开贡献与领导力路径",
+      "title": "CNCF Technical Advisory Group (TAG) 参与 — 公开贡献与领导力路径",
       "organization": "Cloud Native Computing Foundation",
       "category": "open_source",
       "official_url": "https://contribute.cncf.io/community/tags",
       "deadline_type": "rolling",
       "freshness": "likely_open",
+      "source_freshness": "likely_current",
+      "source_freshness_signal": "页面年份为 2026（今年）",
       "verification_status": "verified_official",
       "application_status": "rolling",
       "evidence": {
-        "application_status": "explicit",
-        "source_url": "https://contribute.cncf.io/community/tags",
-        "verified_at": "2026-09-20",
-        "evidence_summary": "All TAG meetings are open to the public. No registration or membership required - simply join and observe or participate in discussions. Path to Leadership: Chairs nominate Tech Leads; community elects Chairs."
+        "application_status": {
+          "status": "explicit",
+          "source_url": "https://contribute.cncf.io/community/tags",
+          "verified_at": "2026-09-20",
+          "evidence_summary": "All TAG meetings are open to the public. No registration or membership required. Path to Leadership: Chairs nominate Tech Leads; community elects Chairs."
+        }
       },
       "provenance": "source_family_query",
       "source_family": "working_group",
       "included": true,
       "zone": "recommended_now",
-      "freshness_reason": "deadline_type=rolling（无固定/弹性截止）"
+      "freshness_reason": "deadline_type=rolling（无固定/弹性截止）",
+      "prerequisites": [
+        "对某一云原生领域的兴趣（TAG 参与）",
+        "CNCF Slack 账号（免费，参与沟通频道）"
+      ],
+      "logistics_prerequisites": [
+        "CNCF Slack 账号（免费，参与沟通频道）"
+      ],
+      "gate_computed": {
+        "zone": "recommended_now",
+        "reason": "deadline_type=rolling（无固定/弹性截止）",
+        "demotion": null
+      }
     },
     {
       "title": "KubeCon + CloudNativeCon Europe 2027 CFP（演讲征集）",
@@ -94,61 +261,104 @@
       "official_url": "https://events.linuxfoundation.org/kubecon-cloudnativecon-europe/program/cfp",
       "deadline_type": "fixed",
       "freshness": "open",
+      "source_freshness": "current",
+      "source_freshness_signal": "页面提到 2027 或当前/下一周期",
       "verification_status": "verified_official",
       "application_status": "open",
       "evidence": {
-        "application_status": "explicit",
-        "source_url": "https://events.linuxfoundation.org/kubecon-cloudnativecon-europe/program/cfp",
-        "verified_at": "2026-09-20",
-        "evidence_summary": "Submissions are due by 11 October at 11:59 PM CEST (UTC+2). CFP Opens 2 September 2026; CFP Closes 11 October 2026; Event Dates 15-18 March 2027, Barcelona."
+        "application_status": {
+          "status": "explicit",
+          "source_url": "https://events.linuxfoundation.org/kubecon-cloudnativecon-europe/program/cfp",
+          "verified_at": "2026-09-20",
+          "evidence_summary": "Submissions are due by 11 October at 11:59 PM CEST. CFP Closes 11 October 2026; Event Dates 15-18 March 2027, Barcelona."
+        }
       },
       "provenance": "source_family_query",
       "source_family": "community_event",
       "included": true,
       "zone": "recommended_now",
-      "freshness_reason": "截止日 2026-10-11（还有 21 天）"
+      "freshness_reason": "截止日 2026-10-11（还有 21 天）",
+      "prerequisites": [
+        "云原生相关实践经验（作为演讲主题）",
+        "英语演讲能力"
+      ],
+      "logistics_prerequisites": [],
+      "gate_computed": {
+        "zone": "recommended_now",
+        "reason": "官方页面明确标示申请开放；无固定截止日，需复核",
+        "demotion": null
+      }
     },
     {
-      "title": "Kubernetes SIG 贡献者路径（good first issue → contributor ladder）",
+      "title": "Kubernetes SIG 贡献者路径（good first issue -> contributor ladder）",
       "organization": "Kubernetes / CNCF",
       "category": "open_source",
       "official_url": "https://www.kubernetes.dev/docs/guide/first-contribution/",
       "deadline_type": "rolling",
       "freshness": "likely_open",
+      "source_freshness": "likely_current",
+      "source_freshness_signal": "页面年份为 2026（今年）",
       "verification_status": "verified_official",
       "application_status": "rolling",
       "evidence": {
-        "application_status": "explicit",
-        "source_url": "https://www.kubernetes.dev/docs/guide/first-contribution/",
-        "verified_at": "2026-09-20",
-        "evidence_summary": "A SIG is an open, community effort. Anybody is welcome to jump into a SIG... browse the issues labeled as a good first issue. No application required."
+        "application_status": {
+          "status": "explicit",
+          "source_url": "https://www.kubernetes.dev/docs/guide/first-contribution/",
+          "verified_at": "2026-09-20",
+          "evidence_summary": "A SIG is an open, community effort. Anybody is welcome to jump into a SIG... browse the issues labeled as a good first issue. No application required."
+        }
       },
       "provenance": "source_family_query",
       "source_family": "contributor_guide",
       "included": true,
       "zone": "recommended_now",
-      "freshness_reason": "deadline_type=rolling（无固定/弹性截止）"
+      "freshness_reason": "deadline_type=rolling（无固定/弹性截止）",
+      "prerequisites": [
+        "GitHub 账号（提交 PR）",
+        "Go / Kubernetes 基础"
+      ],
+      "logistics_prerequisites": [
+        "GitHub 账号（提交 PR）"
+      ],
+      "gate_computed": {
+        "zone": "recommended_now",
+        "reason": "deadline_type=rolling（无固定/弹性截止）",
+        "demotion": null
+      }
     },
     {
-      "title": "CNCF 项目 Maintainer 路径（contributor ladder → OWNERS 提名）",
+      "title": "CNCF 项目 Maintainer 路径（contributor ladder -> OWNERS 提名）",
       "organization": "CNCF",
       "category": "open_source",
       "official_url": "https://www.cncf.io/blog/2026/08/26/governance-guidance-for-cncf-projects-choosing-the-right-structure-for-your-projects-size-and-stage/",
       "deadline_type": "rolling",
       "freshness": "likely_open",
+      "source_freshness": "likely_current",
+      "source_freshness_signal": "页面年份为 2026（今年）",
       "verification_status": "verified_official",
       "application_status": "rolling",
       "evidence": {
-        "application_status": "explicit",
-        "source_url": "https://www.cncf.io/blog/2026/08/26/governance-guidance-for-cncf-projects-choosing-the-right-structure-for-your-projects-size-and-stage/",
-        "verified_at": "2026-09-20",
-        "evidence_summary": "Adopt the CNCF contributor ladder - contributor, reviewer, and maintainer levels. Maintainer process: nominated via PR to OWNERS file, approved by 2/3 current Maintainers. Ongoing (rolling) via contribution."
+        "application_status": {
+          "status": "explicit",
+          "source_url": "https://www.cncf.io/blog/2026/08/26/governance-guidance-for-cncf-projects-choosing-the-right-structure-for-your-projects-size-and-stage/",
+          "verified_at": "2026-09-20",
+          "evidence_summary": "Adopt the CNCF contributor ladder - contributor, reviewer, maintainer. Maintainer process: nominated via PR to OWNERS file, approved by 2/3 current Maintainers. Ongoing (rolling) via contribution."
+        }
       },
       "provenance": "source_family_query",
       "source_family": "foundation",
       "included": true,
       "zone": "recommended_now",
-      "freshness_reason": "deadline_type=rolling（无固定/弹性截止）"
+      "freshness_reason": "deadline_type=rolling（无固定/弹性截止）",
+      "prerequisites": [
+        "成为 CNCF 项目 contributor（先合并 PR）"
+      ],
+      "logistics_prerequisites": [],
+      "gate_computed": {
+        "zone": "recommended_now",
+        "reason": "deadline_type=rolling（无固定/弹性截止）",
+        "demotion": null
+      }
     },
     {
       "title": "CNCF Ambassador 计划（年度申请）",
@@ -156,20 +366,43 @@
       "category": "networking",
       "official_url": "https://www.cncf.io/people/ambassadors/",
       "deadline_type": "recurring",
-      "freshness": null,
+      "freshness": "closed",
+      "source_freshness": "current",
+      "source_freshness_signal": "页面提到 2027 或当前/下一周期",
       "verification_status": "verified_official",
       "application_status": "closed",
       "evidence": {
-        "application_status": "explicit",
-        "source_url": "https://www.cncf.io/people/ambassadors/FAQ/",
-        "verified_at": "2026-09-20",
-        "evidence_summary": "The program will accept applications for Ambassadors once a year. Application notifications will be sent the September after applications have closed. 2026 cycle closed; next application window 2027."
+        "application_status": {
+          "status": "explicit",
+          "source_url": "https://www.cncf.io/people/ambassadors/FAQ/",
+          "verified_at": "2026-09-20",
+          "evidence_summary": "The program will accept applications for Ambassadors once a year. Application notifications sent the September after applications have closed. 2026 cycle closed; next application window 2027."
+        }
       },
       "provenance": "source_family_query",
       "source_family": "maintainer_program",
       "included": true,
       "zone": "excluded",
-      "freshness_reason": null
+      "freshness_reason": null,
+      "prerequisites": [
+        "CNCF SIG/TAG 成员 或 项目贡献",
+        "公开演讲 / 内容创作 / 社区组织（至少两项）"
+      ],
+      "logistics_prerequisites": [],
+      "gate_computed": {
+        "zone": "excluded",
+        "reason": "closed: 官方页面明确标示申请状态为 closed",
+        "demotion": {
+          "code": "closed_or_ineligible",
+          "kind": "fact",
+          "detail": "closed: 官方页面明确标示申请状态为 closed"
+        }
+      },
+      "demotion": {
+        "code": "closed_or_ineligible",
+        "kind": "fact",
+        "detail": "closed: 官方页面明确标示申请状态为 closed"
+      }
     },
     {
       "title": "LFX Mentorship（CNCF）— 以 Mentor 身份参与（需项目 maintainer 资格）",
@@ -177,20 +410,42 @@
       "category": "networking",
       "official_url": "https://github.com/cncf/mentoring",
       "deadline_type": "recurring",
-      "freshness": null,
+      "freshness": "closed",
+      "source_freshness": "current",
+      "source_freshness_signal": "页面提到 2027 或当前/下一周期",
       "verification_status": "verified_official",
       "application_status": "closed",
       "evidence": {
-        "application_status": "explicit",
-        "source_url": "https://github.com/cncf/mentoring/blob/main/programs/lfx-mentorship/2026/03-Sep-Nov/README.md",
-        "verified_at": "2026-09-20",
-        "evidence_summary": "Term 03 - 2026 Sep-Nov Status: Planning. Mentee Applications Open Aug 3 - Aug 18; Mentor project proposals Jul 1-28 (both closed). Next window Term 1 2027."
+        "application_status": {
+          "status": "explicit",
+          "source_url": "https://github.com/cncf/mentoring/blob/main/programs/lfx-mentorship/2026/03-Sep-Nov/README.md",
+          "verified_at": "2026-09-20",
+          "evidence_summary": "Term 03 - 2026 Sep-Nov Status: Planning. Mentee Applications Open Aug 3 - Aug 18; Mentor project proposals Jul 1-28 (both closed). Next window Term 1 2027."
+        }
       },
       "provenance": "source_family_query",
       "source_family": "mentorship_program",
       "included": true,
       "zone": "excluded",
-      "freshness_reason": null
+      "freshness_reason": null,
+      "prerequisites": [
+        "CNCF 项目 maintainer 资格（才能以 mentor 身份提案项目）"
+      ],
+      "logistics_prerequisites": [],
+      "gate_computed": {
+        "zone": "excluded",
+        "reason": "closed: 官方页面明确标示申请状态为 closed",
+        "demotion": {
+          "code": "closed_or_ineligible",
+          "kind": "fact",
+          "detail": "closed: 官方页面明确标示申请状态为 closed"
+        }
+      },
+      "demotion": {
+        "code": "closed_or_ineligible",
+        "kind": "fact",
+        "detail": "closed: 官方页面明确标示申请状态为 closed"
+      }
     },
     {
       "title": "Cloud Native Community Group (CNCG) Singapore — 组织者 / Chapter Lead",
@@ -199,6 +454,8 @@
       "official_url": "https://community.cncf.io/",
       "deadline_type": "rolling",
       "freshness": "likely_open",
+      "source_freshness": "unknown",
+      "source_freshness_signal": "无法判断页面时效",
       "verification_status": "unverified",
       "application_status": null,
       "evidence": {
@@ -211,7 +468,64 @@
       "source_family": null,
       "included": true,
       "zone": "worth_verifying",
-      "freshness_reason": "deadline_type=rolling（无固定/弹性截止）"
+      "freshness_reason": "deadline_type=rolling（无固定/弹性截止）",
+      "prerequisites": [
+        "新加坡本地或远程组织意愿"
+      ],
+      "logistics_prerequisites": [],
+      "gate_computed": {
+        "zone": "worth_verifying",
+        "reason": "deadline_type=rolling（无固定/弹性截止）",
+        "demotion": {
+          "code": "verification_not_attempted",
+          "kind": "process",
+          "detail": "本轮没有去核实官方页面（预算/顺序问题，下一轮可补）"
+        }
+      },
+      "demotion": {
+        "code": "verification_not_attempted",
+        "kind": "process",
+        "detail": "本轮没有去核实官方页面（预算/顺序问题，下一轮可补）"
+      }
+    },
+    {
+      "title": "KubeCon + CloudNativeCon North America 2025 CFP（历史归档页）",
+      "organization": "CNCF / Linux Foundation",
+      "category": "event",
+      "official_url": "https://events.linuxfoundation.org/archive/2025/kubecon-cloudnativecon-north-america/program/cfp",
+      "deadline_type": "fixed",
+      "freshness": "historical",
+      "source_freshness": "historical",
+      "source_freshness_signal": "页面含已归档/已结束措辞",
+      "verification_status": "verified_official",
+      "application_status": null,
+      "evidence": {
+        "application_status": null,
+        "source_url": "https://events.linuxfoundation.org/archive/2025/kubecon-cloudnativecon-north-america/program/cfp",
+        "verified_at": "2026-09-20",
+        "evidence_summary": "Archive page (URL path /archive/2025/); event already passed — cannot satisfy current-evidence gate."
+      },
+      "provenance": "source_family_query",
+      "source_family": "community_event",
+      "included": false,
+      "zone": "excluded",
+      "freshness_reason": "无可确认的申请周期；毕业届别不能推断开放状态",
+      "prerequisites": [],
+      "logistics_prerequisites": [],
+      "gate_computed": {
+        "zone": "excluded",
+        "reason": "closed: 周期年份 2025 早于今年 2026",
+        "demotion": {
+          "code": "closed_or_ineligible",
+          "kind": "fact",
+          "detail": "closed: 周期年份 2025 早于今年 2026"
+        }
+      },
+      "demotion": {
+        "code": "closed_or_ineligible",
+        "kind": "fact",
+        "detail": "closed: 周期年份 2025 早于今年 2026"
+      }
     }
   ],
   "gaps": [
@@ -222,7 +536,11 @@
       "source": "user_stated",
       "sample": "用户在目标中明确提到「升 Senior」，画像中没有对应经历",
       "opportunity_ids": [],
-      "priority": "high"
+      "priority": "high",
+      "logistics_prerequisites": [
+        "CNCF Slack 账号（免费，参与沟通频道）",
+        "GitHub 账号（提交 PR）"
+      ]
     },
     {
       "id": "gap-network--",
@@ -231,7 +549,11 @@
       "source": "semantic",
       "sample": "升学或研究型目标通常需要教授接触，画像中没有该网络",
       "opportunity_ids": [],
-      "priority": "high"
+      "priority": "high",
+      "logistics_prerequisites": [
+        "CNCF Slack 账号（免费，参与沟通频道）",
+        "GitHub 账号（提交 PR）"
+      ]
     },
     {
       "id": "gap-public_reputation--maintainer-",
@@ -240,7 +562,11 @@
       "source": "semantic",
       "sample": "目标是晋升/职业进阶，但画像里没有公开产出",
       "opportunity_ids": [],
-      "priority": "high"
+      "priority": "high",
+      "logistics_prerequisites": [
+        "CNCF Slack 账号（免费，参与沟通频道）",
+        "GitHub 账号（提交 PR）"
+      ]
     },
     {
       "id": "gap-research--",
@@ -249,7 +575,11 @@
       "source": "semantic",
       "sample": "目标包含研究或升学，画像中没有研究经历",
       "opportunity_ids": [],
-      "priority": "high"
+      "priority": "high",
+      "logistics_prerequisites": [
+        "CNCF Slack 账号（免费，参与沟通频道）",
+        "GitHub 账号（提交 PR）"
+      ]
     },
     {
       "id": "gap-leadership-ownership-",
@@ -258,202 +588,264 @@
       "source": "semantic",
       "sample": "晋升评审关注 ownership，画像未见相关证据",
       "opportunity_ids": [],
-      "priority": "medium"
+      "priority": "medium",
+      "logistics_prerequisites": [
+        "CNCF Slack 账号（免费，参与沟通频道）",
+        "GitHub 账号（提交 PR）"
+      ]
     },
     {
       "id": "gap-skill-cncf-sig-tag-",
       "type": "skill",
       "name": "CNCF SIG/TAG 成员 或 项目贡献",
       "source": "requirements",
-      "sample": "本轮 7 个目标机会中 1 个要求「CNCF SIG/TAG 成员 或 项目贡献」",
+      "sample": "本轮 8 个目标机会中 1 个要求「CNCF SIG/TAG 成员 或 项目贡献」",
       "opportunity_ids": [
         "si-cncf-ambassador"
       ],
-      "priority": "medium"
-    },
-    {
-      "id": "gap-skill-cncf-slack-",
-      "type": "skill",
-      "name": "CNCF Slack 账号（免费）",
-      "source": "requirements",
-      "sample": "本轮 7 个目标机会中 1 个要求「CNCF Slack 账号（免费）」",
-      "opportunity_ids": [
-        "si-cncf-tag"
-      ],
-      "priority": "medium"
+      "priority": "medium",
+      "logistics_prerequisites": [
+        "CNCF Slack 账号（免费，参与沟通频道）",
+        "GitHub 账号（提交 PR）"
+      ]
     },
     {
       "id": "gap-skill-cncf-maintainer-mentor-",
       "type": "skill",
       "name": "CNCF 项目 maintainer 资格（才能以 mentor 身份提案项目）",
       "source": "requirements",
-      "sample": "本轮 7 个目标机会中 1 个要求「CNCF 项目 maintainer 资格（才能以 mentor 身份提案项目）」",
+      "sample": "本轮 8 个目标机会中 1 个要求「CNCF 项目 maintainer 资格（才能以 mentor 身份提案项目）」",
       "opportunity_ids": [
         "si-lfx-mentorship"
       ],
-      "priority": "medium"
-    },
-    {
-      "id": "gap-skill-github-",
-      "type": "skill",
-      "name": "GitHub 账号",
-      "source": "requirements",
-      "sample": "本轮 7 个目标机会中 1 个要求「GitHub 账号」",
-      "opportunity_ids": [
-        "si-k8s-sig"
-      ],
-      "priority": "medium"
+      "priority": "medium",
+      "logistics_prerequisites": [
+        "CNCF Slack 账号（免费，参与沟通频道）",
+        "GitHub 账号（提交 PR）"
+      ]
     },
     {
       "id": "gap-skill-go-kubernetes-",
       "type": "skill",
       "name": "Go / Kubernetes 基础",
       "source": "requirements",
-      "sample": "本轮 7 个目标机会中 1 个要求「Go / Kubernetes 基础」",
+      "sample": "本轮 8 个目标机会中 1 个要求「Go / Kubernetes 基础」",
       "opportunity_ids": [
         "si-k8s-sig"
       ],
-      "priority": "medium"
+      "priority": "medium",
+      "logistics_prerequisites": [
+        "CNCF Slack 账号（免费，参与沟通频道）",
+        "GitHub 账号（提交 PR）"
+      ]
     },
     {
       "id": "gap-skill--",
       "type": "skill",
-      "name": "云原生相关实践经验（演讲主题）",
+      "name": "云原生相关实践经验（作为演讲主题）",
       "source": "requirements",
-      "sample": "本轮 7 个目标机会中 1 个要求「云原生相关实践经验（演讲主题）」",
+      "sample": "本轮 8 个目标机会中 1 个要求「云原生相关实践经验（作为演讲主题）」",
       "opportunity_ids": [
         "si-kubecon-2027-cfp"
       ],
-      "priority": "medium"
+      "priority": "medium",
+      "logistics_prerequisites": [
+        "CNCF Slack 账号（免费，参与沟通频道）",
+        "GitHub 账号（提交 PR）"
+      ]
     },
     {
       "id": "gap-skill--",
       "type": "skill",
       "name": "公开演讲 / 内容创作 / 社区组织（至少两项）",
       "source": "requirements",
-      "sample": "本轮 7 个目标机会中 1 个要求「公开演讲 / 内容创作 / 社区组织（至少两项）」",
+      "sample": "本轮 8 个目标机会中 1 个要求「公开演讲 / 内容创作 / 社区组织（至少两项）」",
       "opportunity_ids": [
         "si-cncf-ambassador"
       ],
-      "priority": "medium"
+      "priority": "medium",
+      "logistics_prerequisites": [
+        "CNCF Slack 账号（免费，参与沟通频道）",
+        "GitHub 账号（提交 PR）"
+      ]
     },
     {
-      "id": "gap-skill--",
+      "id": "gap-skill--tag-",
       "type": "skill",
-      "name": "对某一云原生领域的兴趣",
+      "name": "对某一云原生领域的兴趣（TAG 参与）",
       "source": "requirements",
-      "sample": "本轮 7 个目标机会中 1 个要求「对某一云原生领域的兴趣」",
+      "sample": "本轮 8 个目标机会中 1 个要求「对某一云原生领域的兴趣（TAG 参与）」",
       "opportunity_ids": [
         "si-cncf-tag"
       ],
-      "priority": "medium"
+      "priority": "medium",
+      "logistics_prerequisites": [
+        "CNCF Slack 账号（免费，参与沟通频道）",
+        "GitHub 账号（提交 PR）"
+      ]
     },
     {
       "id": "gap-skill--cncf-contributor-pr-",
       "type": "skill",
-      "name": "成为 CNCF 项目 contributor（先有 PR 合并）",
+      "name": "成为 CNCF 项目 contributor（先合并 PR）",
       "source": "requirements",
-      "sample": "本轮 7 个目标机会中 1 个要求「成为 CNCF 项目 contributor（先有 PR 合并）」",
+      "sample": "本轮 8 个目标机会中 1 个要求「成为 CNCF 项目 contributor（先合并 PR）」",
       "opportunity_ids": [
         "si-cncf-maintainer"
       ],
-      "priority": "medium"
+      "priority": "medium",
+      "logistics_prerequisites": [
+        "CNCF Slack 账号（免费，参与沟通频道）",
+        "GitHub 账号（提交 PR）"
+      ]
     },
     {
       "id": "gap-skill--",
       "type": "skill",
       "name": "新加坡本地或远程组织意愿",
       "source": "requirements",
-      "sample": "本轮 7 个目标机会中 1 个要求「新加坡本地或远程组织意愿」",
+      "sample": "本轮 8 个目标机会中 1 个要求「新加坡本地或远程组织意愿」",
       "opportunity_ids": [
         "si-cncg-sg"
       ],
-      "priority": "medium"
+      "priority": "medium",
+      "logistics_prerequisites": [
+        "CNCF Slack 账号（免费，参与沟通频道）",
+        "GitHub 账号（提交 PR）"
+      ]
     },
     {
       "id": "gap-skill--",
       "type": "skill",
       "name": "英语演讲能力",
       "source": "requirements",
-      "sample": "本轮 7 个目标机会中 1 个要求「英语演讲能力」",
+      "sample": "本轮 8 个目标机会中 1 个要求「英语演讲能力」",
       "opportunity_ids": [
         "si-kubecon-2027-cfp"
       ],
-      "priority": "medium"
+      "priority": "medium",
+      "logistics_prerequisites": [
+        "CNCF Slack 账号（免费，参与沟通频道）",
+        "GitHub 账号（提交 PR）"
+      ]
     }
+  ],
+  "logistics_prerequisites": [
+    "CNCF Slack 账号（免费，参与沟通频道）",
+    "GitHub 账号（提交 PR）"
   ],
   "bridges": [
     {
-      "opportunity_id": "si-cncf-tag",
-      "title": "CNCF Technical Advisory Group (TAG) 参与 — 工作组的公开贡献与领导力路径",
-      "zone": "recommended_now",
+      "opportunity_id": "si-cncf-maintainer",
+      "title": "CNCF 项目 Maintainer 路径（contributor ladder -> OWNERS 提名）",
+      "category": "open_source",
+      "score": 84,
+      "gap_coverage": "medium",
+      "readiness": "minor_preparation",
       "verification_status": "verified_official",
+      "zone": "recommended_now",
       "bridge_for_gap_types": [
-        "public_reputation",
+        "experience",
         "leadership",
-        "network"
+        "network",
+        "public_reputation",
+        "skill"
+      ]
+    },
+    {
+      "opportunity_id": "si-cncf-tag",
+      "title": "CNCF Technical Advisory Group (TAG) 参与 — 公开贡献与领导力路径",
+      "category": "open_source",
+      "score": 84,
+      "gap_coverage": "medium",
+      "readiness": "minor_preparation",
+      "verification_status": "verified_official",
+      "zone": "recommended_now",
+      "bridge_for_gap_types": [
+        "experience",
+        "leadership",
+        "network",
+        "public_reputation",
+        "skill"
+      ]
+    },
+    {
+      "opportunity_id": "si-k8s-sig",
+      "title": "Kubernetes SIG 贡献者路径（good first issue -> contributor ladder）",
+      "category": "open_source",
+      "score": 84,
+      "gap_coverage": "medium",
+      "readiness": "minor_preparation",
+      "verification_status": "verified_official",
+      "zone": "recommended_now",
+      "bridge_for_gap_types": [
+        "experience",
+        "leadership",
+        "network",
+        "public_reputation",
+        "skill"
       ]
     },
     {
       "opportunity_id": "si-kubecon-2027-cfp",
       "title": "KubeCon + CloudNativeCon Europe 2027 CFP（演讲征集）",
-      "zone": "recommended_now",
+      "category": "event",
+      "score": 84,
+      "gap_coverage": "medium",
+      "readiness": "minor_preparation",
       "verification_status": "verified_official",
-      "bridge_for_gap_types": [
-        "public_reputation",
-        "leadership"
-      ]
-    },
-    {
-      "opportunity_id": "si-k8s-sig",
-      "title": "Kubernetes SIG 贡献者路径（good first issue → contributor ladder）",
       "zone": "recommended_now",
-      "verification_status": "verified_official",
       "bridge_for_gap_types": [
-        "portfolio",
-        "experience"
-      ]
-    },
-    {
-      "opportunity_id": "si-cncf-maintainer",
-      "title": "CNCF 项目 Maintainer 路径（contributor ladder → OWNERS 提名）",
-      "zone": "recommended_now",
-      "verification_status": "verified_official",
-      "bridge_for_gap_types": [
-        "leadership",
+        "network",
         "public_reputation"
       ]
     },
     {
       "opportunity_id": "si-cncf-ambassador",
       "title": "CNCF Ambassador 计划（年度申请）",
-      "zone": "excluded",
+      "category": "networking",
+      "score": 70,
+      "gap_coverage": "medium",
+      "readiness": "minor_preparation",
       "verification_status": "verified_official",
+      "zone": "excluded",
       "bridge_for_gap_types": [
+        "leadership",
+        "network",
         "public_reputation",
-        "leadership",
-        "network"
-      ]
-    },
-    {
-      "opportunity_id": "si-lfx-mentorship",
-      "title": "LFX Mentorship（CNCF）— 以 Mentor 身份参与（需项目 maintainer 资格）",
-      "zone": "excluded",
-      "verification_status": "verified_official",
-      "bridge_for_gap_types": [
-        "leadership",
-        "mentorship"
+        "skill"
       ]
     },
     {
       "opportunity_id": "si-cncg-sg",
       "title": "Cloud Native Community Group (CNCG) Singapore — 组织者 / Chapter Lead",
-      "zone": "worth_verifying",
+      "category": "networking",
+      "score": 65,
+      "gap_coverage": "medium",
+      "readiness": "minor_preparation",
       "verification_status": "unverified",
+      "zone": "worth_verifying",
       "bridge_for_gap_types": [
-        "public_reputation",
         "leadership",
-        "network"
+        "network",
+        "public_reputation",
+        "skill"
+      ]
+    },
+    {
+      "opportunity_id": "si-lfx-mentorship",
+      "title": "LFX Mentorship（CNCF）— 以 Mentor 身份参与（需项目 maintainer 资格）",
+      "category": "networking",
+      "score": 65,
+      "gap_coverage": "medium",
+      "readiness": "minor_preparation",
+      "verification_status": "verified_official",
+      "zone": "excluded",
+      "bridge_for_gap_types": [
+        "leadership",
+        "network",
+        "public_reputation",
+        "skill"
       ]
     }
   ],
@@ -461,20 +853,22 @@
     "budget_hours": 5.0,
     "planned_hours": 3.0,
     "resource_conflict": false,
+    "budget_unknown": false,
     "items": [
       {
         "opportunity_id": "si-cncf-tag",
-        "title": "CNCF Technical Advisory Group (TAG) 参与 — 工作组的公开贡献与领导力路径",
+        "title": "CNCF Technical Advisory Group (TAG) 参与 — 公开贡献与领导力路径",
         "category": "open_source",
         "zone": "recommended_now",
         "utility": "medium",
         "match": 68,
         "roles": [
+          "bridge",
           "now",
           "high_upside",
           "long_term"
         ],
-        "primary_role": "now",
+        "primary_role": "bridge",
         "weekly_hours": 3.0,
         "hours_known": true,
         "official_url": null
@@ -487,11 +881,11 @@
         "utility": "medium",
         "match": 67,
         "roles": [
+          "bridge",
           "high_upside",
-          "long_term",
-          "explore"
+          "long_term"
         ],
-        "primary_role": "high_upside",
+        "primary_role": "bridge",
         "weekly_hours": null,
         "hours_known": false,
         "official_url": null
@@ -500,17 +894,18 @@
     "dropped": [
       {
         "opportunity_id": "si-cncf-maintainer",
-        "title": "CNCF 项目 Maintainer 路径（contributor ladder → OWNERS 提名）",
+        "title": "CNCF 项目 Maintainer 路径（contributor ladder -> OWNERS 提名）",
         "category": "open_source",
         "zone": "recommended_now",
         "utility": "medium",
         "match": 68,
         "roles": [
+          "bridge",
           "now",
           "high_upside",
           "long_term"
         ],
-        "primary_role": "now",
+        "primary_role": "bridge",
         "weekly_hours": 6.0,
         "hours_known": true,
         "official_url": null,
@@ -518,17 +913,18 @@
       },
       {
         "opportunity_id": "si-k8s-sig",
-        "title": "Kubernetes SIG 贡献者路径（good first issue → contributor ladder）",
+        "title": "Kubernetes SIG 贡献者路径（good first issue -> contributor ladder）",
         "category": "open_source",
         "zone": "recommended_now",
         "utility": "medium",
         "match": 68,
         "roles": [
+          "bridge",
           "now",
           "high_upside",
           "long_term"
         ],
-        "primary_role": "now",
+        "primary_role": "bridge",
         "weekly_hours": 4.0,
         "hours_known": true,
         "official_url": null,
@@ -542,11 +938,12 @@
         "utility": "medium",
         "match": 68,
         "roles": [
+          "bridge",
           "now",
           "high_upside",
           "long_term"
         ],
-        "primary_role": "now",
+        "primary_role": "bridge",
         "weekly_hours": 4.0,
         "hours_known": true,
         "official_url": null,
@@ -554,10 +951,10 @@
       }
     ],
     "roles_present": [
+      "bridge",
       "now",
       "high_upside",
-      "long_term",
-      "explore"
+      "long_term"
     ],
     "diversity": {
       "roles": 4,
@@ -568,50 +965,75 @@
     "note": "部分机会未写明每周投入，未计入总和（已在 unknown_hours_items 标注）"
   },
   "metrics": {
-    "gaps": 16,
+    "gaps_total": 16,
+    "development_gaps": 14,
+    "logistics_prerequisites": 2,
+    "gap_noise_rate": 0.125,
     "gaps_with_bridge": 9,
-    "gap_coverage_rate": 0.562,
+    "gap_coverage_rate": 0.643,
     "bridges": 7,
     "bridges_verified": 6,
     "bridge_verified_rate": 0.857,
     "bridge_actionable_rate": 0.571,
-    "source_family_query_share": 0.857,
-    "general_search_share": 0.143,
+    "source_family_query_share": 0.875,
+    "general_search_share": 0.125,
+    "stage_inapplicable_query_rate": 0.0,
+    "stage_family_precision": 1.0,
+    "source_found_not_current_rate": 0.125,
     "queries_used": 7,
     "families_exercised": [
-      "foundation",
-      "mentorship_program",
       "working_group",
-      "contributor_guide",
       "community_event",
-      "maintainer_program"
+      "contributor_guide",
+      "foundation",
+      "maintainer_program",
+      "mentorship_program"
     ]
-  },
-  "gate_recomputed": {
-    "recommended_now": 4,
-    "worth_verifying": 1,
-    "excluded": 2,
-    "missing_application_status_evidence": 1,
-    "demotion": {
-      "closed_or_ineligible": 2,
-      "verification_not_attempted": 1
-    }
   },
   "failures": [
     {
-      "detail": "CNCG Singapore 具体 chapter 页面未单独核实：仅用 CNCG 平台 URL(community.cncf.io)，未 fetch 具体 SG chapter，无法进入 recommended_now（gate 判 verification_not_attempted/worth_verifying）。",
+      "detail": "CNCG Singapore 具体 chapter 页面未单独 fetch 核实：仅用 CNCG 平台 URL(community.cncf.io)，未 fetch 具体 SG chapter；gate 判 verification_not_attempted / worth_verifying（process 类，下一轮可补）。",
       "classification": "process"
+    },
+    {
+      "detail": "刻意 fetch 了 KubeCon 2025 North America 的 archive 页（/archive/2025/...）；source_freshness 判为 historical，无法满足'当前可申请'证据门，按 source_found_not_current 事实降级，不计入当前机会（fact 类）。",
+      "classification": "fact"
     }
   ],
   "findings": [
-    "SI 全链路跑通：Gap→Bridge Intent→Source Family→Query；public_reputation/leadership/portfolio 三个缺口各产出 family 模板查询。",
-    "实际 7 次 WebSearch + 5 次 WebFetch，全部命中真实官方来源（contribute.cncf.io、cncf.io/people/ambassadors、events.linuxfoundation.org、kubernetes.dev、github.com/cncf/mentoring、cncf.io/blog governance）。",
-    "要求覆盖的 6 个 source family 全部被使用：foundation(maintainer path)、mentorship_program(LFX)、working_group(TAG)、contributor_guide(K8s SIG)、community_event(KubeCon CFP)、maintainer_program(Ambassador)。",
-    "provenance 分布：source_family_query=6/7，general_search=1/7（CNCG Singapore 由通用搜索发现，未单独核实）。",
-    "与 baseline 比较：recommended_now 仍为 4（未超过上轮），但构成更贴合'升 Senior'——上轮含 1 个 skill 类认证(CKA)，本轮回合为 K8s SIG contributor_guide；4 个推荐项现在全部是 working-group/maintainer/CFP/contributor 类型（上轮 3/4）。",
-    "2 个 maintainer/mentorship 项（Ambassador、LFX）当前周期已关闭→被 gate 判 excluded，属诚实 fact 降级（2026 cycle closed），2027 会重开，非漏记。",
-    "gap_coverage_rate=0.562 含 prerequisite 噪声（Slack/GitHub 账号等被 collect_gaps 归入 skill gap）；5 个'升 Senior'语义缺口中 public_reputation/leadership/experience 被覆盖，network/research（学术导向）未覆盖——对在职后端工程师本就低相关。",
-    "job-board 回归检查：本案例目标为非招聘/非跳槽，未从任何招聘板引入候选，仅用官方社区源，符合'不推荐跳槽岗位'约束。",
-    "portfolio：profile.weekly_time 为 null，采用规划默认 5h/wk；resource_conflict=False；入选 CNCF TAG(3h,now) + CNCG SG(high_upside)；其余 3 个 recommended_now 仅因周时预算被 drop，仍可参与。"
-  ]
+    "SI 全链路用真实脚本重跑：gaps.py / score.py / graph.py / portfolio.py 真实执行（非手填）；7 WebSearch + 5 WebFetch，全部命中真实官方源，无发明 URL。",
+    "gaps.is_logistics() 修复生效：CNCF Slack 账号、GitHub 账号 2 项手续类前置被剥离到 logistics_prerequisites，不再计入 development_gaps；development_gaps=14，logistics_prerequisites=2，gap_noise_rate=0.125。",
+    "gap_coverage_rate 由 0.562(9/16，分母混 logistics) 提升到 0.643(9/14，仅对发展缺口计)；提升有限——那 2 项本就不是可被机会桥接的硬缺口。",
+    "sources.STAGE_FIT 生效：用户为 working，6 个相关 family 适配度全 high；stage_inapplicable_query_rate=0，stage_family_precision=1.0；无 family 因阶段被降权/跳过。",
+    "sources.source_freshness() 区分页面/机会时效：Ambassador/LFX 页面 current 但机会 closed（2026 周期截止，下次 2027）→ excluded(fact)；2025 归档页 source_freshness=historical，Gate 按过去周期 excluded（未当成当前机会，诚实记录）。无候选被字面标 source_found_not_current（Gate 给 closed_or_ineligible），但历史页确实被非当前处理。",
+    "bridges 由 graph.py 真实算出：7 个真实机会，verified 6/7(0.857)，actionable 4/7(0.571)，与上一轮手填一致。",
+    "portfolio：profile.weekly_time=null，采用默认 5h/wk；planned 3h，resource_conflict=False；入选 CNCF TAG + CNCG SG，其余 3 个 recommended_now 仅因周时超预算被 drop，仍可参与。",
+    "幸存 development_gaps 确为升 Senior 相关：公开影响力 / ownership / 技术影响力(contributor→maintainer) / 网络；但语义推导的 research / 教授-实验室网络缺口对在职后端工程师低相关，非本次 logistics 修复能解决——修复真实但影响温和。"
+  ],
+  "gate_computed_summary": {
+    "today": "2026-09-20",
+    "deadline_type_histogram": {
+      "rolling": 4,
+      "fixed": 2,
+      "recurring": 2
+    },
+    "rolling_or_evergreen": 6,
+    "evidence_complete_candidates": 8,
+    "demotion_histogram": {
+      "closed_or_ineligible": 3,
+      "verification_not_attempted": 1
+    },
+    "demotion_by_kind": {
+      "fact": 3,
+      "process": 1
+    },
+    "recommended_now": 4,
+    "worth_verifying": 1,
+    "excluded": 3,
+    "mismatches": [],
+    "missing_application_status_evidence": [
+      "Cloud Native Community Group (CNCG) Singapore — 组织者 / Chapter Lead",
+      "KubeCon + CloudNativeCon North America 2025 CFP（历史归档页）"
+    ]
+  }
 }

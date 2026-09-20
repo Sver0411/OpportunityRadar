@@ -3,161 +3,542 @@
   "round": "SI",
   "user_input": "最近没什么目标，就是想看看有没有我完全不知道但是值得做的事情。",
   "profile_used": {
-    "education": {"degree": "undergraduate", "major": "Computer Science", "current_year": 3, "school_country": "United States"},
-    "skills": [{"name": "Python"}, {"name": "Linux"}, {"name": "Git"}],
-    "interests": ["security", "open_source"],
+    "education": {
+      "degree": "undergraduate",
+      "major": "Computer Science",
+      "current_year": 3,
+      "school_country": "United States"
+    },
+    "skills": [
+      {
+        "name": "Python"
+      },
+      {
+        "name": "Linux"
+      },
+      {
+        "name": "Git"
+      }
+    ],
+    "interests": [
+      "security",
+      "open_source"
+    ],
     "goals": [],
-    "constraints": {"preferred_country": [], "remote": true},
+    "constraints": {
+      "preferred_country": [],
+      "remote": true
+    },
     "weekly_time": null
   },
   "source_plan": [
-    {"family": "contributor_guide", "bridge_intent": "public, verifiable artefact",
-     "query": "security open source contributor guide good first issue students", "origin": "source_family_query",
-     "provenance": "source_family_query", "surfaced": ["OWASP contributor projects (Juice Shop / BLT / PyGoat)"],
-     "note": "OWASP 安全基金会官方页确认免费、多个项目持续接受贡献，good first issue 式入口常驻开放"},
-    {"family": "mentorship_program", "bridge_intent": "public, verifiable artefact",
-     "query": "open source foundation mentorship programme students cybersecurity", "origin": "source_family_query",
-     "provenance": "source_family_query", "surfaced": ["OpenSSF Mentorship Program"],
-     "note": "2026 周期 3/24 开、4/12 截止、6/1-8/21 进行（openssf.org 官方播客）；下一期约 2027，日期未公布"},
-    {"family": "community_event", "bridge_intent": "network",
-     "query": "open source security community event CFP students 2026", "origin": "source_family_query",
-     "provenance": "source_family_query", "surfaced": [],
-     "note": "community_event 家族扫到的 2026 CFP（DefCon 5/1、OpenSSF 7/12、各 BSides）截止日均已过 → 记为 2027 常驻入口，不计入有效候选"},
-    {"family": "foundation", "bridge_intent": "public, verifiable artefact",
-     "query": "open source foundation mentorship programme students cybersecurity", "origin": "source_family_query",
-     "provenance": "source_family_query", "surfaced": ["OpenSSF Mentorship Program"],
-     "note": "与 mentorship_program 同源，收敛到 OpenSSF（安全专项基金会）"},
-    {"family": "general_search_fallback", "bridge_intent": "unknown-unknown",
-     "query": "CS student interested in security and open source unexpected opportunities worth doing", "origin": "general_search",
-     "provenance": "adjacent_discovery", "surfaced": ["Bug bounty / VDP (HackerOne, DoD VDP)"],
-     "note": "adjacent_discovery：漏洞赏金是完全未知的进项（既能练手又能赚钱，且产生可展示 write-up）"}
+    {
+      "family": "contributor_guide",
+      "bridge_intent": "public, verifiable artefact",
+      "query": "security open source contributor guide good first issue students",
+      "origin": "source_family_query",
+      "provenance": "source_family_query",
+      "surfaced": [
+        "OWASP contributor projects (Juice Shop / BLT / PyGoat)"
+      ],
+      "note": "OWASP 安全基金会官方页确认免费、多个项目持续接受贡献，good first issue 式入口常驻开放"
+    },
+    {
+      "family": "mentorship_program",
+      "bridge_intent": "public, verifiable artefact",
+      "query": "open source foundation mentorship programme students cybersecurity",
+      "origin": "source_family_query",
+      "provenance": "source_family_query",
+      "surfaced": [
+        "OpenSSF Mentorship Program"
+      ],
+      "note": "2026 周期 3/24 开、4/12 截止、6/1-8/21 进行（openssf.org 官方播客）；下一期约 2027，日期未公布"
+    },
+    {
+      "family": "community_event",
+      "bridge_intent": "network",
+      "query": "open source security community event CFP students 2026",
+      "origin": "source_family_query",
+      "provenance": "source_family_query",
+      "surfaced": [],
+      "note": "community_event 家族扫到的 2026 CFP（DefCon 5/1、OpenSSF 7/12、各 BSides）截止日均已过 → 记为 2027 常驻入口，不计入有效候选"
+    },
+    {
+      "family": "foundation",
+      "bridge_intent": "public, verifiable artefact",
+      "query": "open source foundation mentorship programme students cybersecurity",
+      "origin": "source_family_query",
+      "provenance": "source_family_query",
+      "surfaced": [
+        "OpenSSF Mentorship Program"
+      ],
+      "note": "与 mentorship_program 同源，收敛到 OpenSSF（安全专项基金会）"
+    },
+    {
+      "family": "general_search_fallback",
+      "bridge_intent": "unknown-unknown",
+      "query": "CS student interested in security and open source unexpected opportunities worth doing",
+      "origin": "general_search",
+      "provenance": "adjacent_discovery",
+      "surfaced": [
+        "Bug bounty / VDP (HackerOne, DoD VDP)"
+      ],
+      "note": "adjacent_discovery：漏洞赏金是完全未知的进项（既能练手又能赚钱，且产生可展示 write-up）"
+    }
   ],
   "candidates": [
     {
       "title": "CyLab Security Academy / picoGym (CMU)",
-      "organization": "Carnegie Mellon University", "category": "skill_development",
-      "official_url": "https://picoctf.org/", "deadline_type": "evergreen", "freshness": "evergreen",
-      "verification_status": "verified_official", "application_status": "open",
-      "evidence": {"application_status": {"status": "explicit", "source_url": "https://picoctf.org/",
-        "verified_at": "2026-09-20",
-        "evidence_summary": "官方页当日可读：已更名为 CyLab Security Academy，CMU 免费网络安全平台，登录入口开放、练习区(picoGym)随时可做"}},
-      "provenance": "general_search", "source_family": null, "included": true, "zone": "recommended_now",
-      "small_bet_type": "public_output", "weekly_commitment": "2-5 h", "why_surprising": "练习区长期开放，多数人只把它当一年一度竞赛"
+      "organization": "Carnegie Mellon University",
+      "category": "skill_development",
+      "official_url": "https://picoctf.org/",
+      "deadline_type": "evergreen",
+      "freshness": "evergreen",
+      "verification_status": "verified_official",
+      "application_status": "open",
+      "evidence": {
+        "application_status": {
+          "status": "explicit",
+          "source_url": "https://picoctf.org/",
+          "verified_at": "2026-09-20",
+          "evidence_summary": "官方页当日可读：已更名为 CyLab Security Academy，CMU 免费网络安全平台，登录入口开放、练习区(picoGym)随时可做"
+        }
+      },
+      "provenance": "general_search",
+      "source_family": null,
+      "included": true,
+      "zone": "recommended_now",
+      "small_bet_type": "public_output",
+      "weekly_commitment": "2-5 h",
+      "why_surprising": "练习区长期开放，多数人只把它当一年一度竞赛",
+      "gate_computed": {
+        "zone": "recommended_now",
+        "reason": "长期开放型机会（无报名周期）→ 需要『当前可参与』证据才能进主推荐",
+        "demotion": null
+      }
     },
     {
       "title": "picoCTF annual competition (next edition)",
-      "organization": "Carnegie Mellon University", "category": "competition",
-      "official_url": "https://picoctf.org/", "deadline_type": "recurring", "freshness": "future",
-      "verification_status": "partially_verified", "application_status": null,
-      "evidence": {"application_status": {"status": "missing",
-        "evidence_summary": "注册窗口在赛前一个多月才开，本轮未重新核验（沿用上一轮 discovery）"}},
-      "provenance": "general_search", "source_family": null, "included": true, "zone": "worth_verifying",
-      "small_bet_type": "high_upside", "weekly_commitment": "10-15 h (10 天赛期)"
+      "organization": "Carnegie Mellon University",
+      "category": "competition",
+      "official_url": "https://picoctf.org/",
+      "deadline_type": "recurring",
+      "freshness": "future",
+      "verification_status": "partially_verified",
+      "application_status": null,
+      "evidence": {
+        "application_status": {
+          "status": "missing",
+          "evidence_summary": "注册窗口在赛前一个多月才开，本轮未重新核验（沿用上一轮 discovery）"
+        }
+      },
+      "provenance": "general_search",
+      "source_family": null,
+      "included": true,
+      "zone": "worth_verifying",
+      "small_bet_type": "high_upside",
+      "weekly_commitment": "10-15 h (10 天赛期)",
+      "gate_computed": {
+        "zone": "worth_verifying",
+        "reason": "周期性开放 → 当前周期是否开放需要页面证据",
+        "demotion": {
+          "code": "verification_not_attempted",
+          "kind": "process",
+          "detail": "本轮没有去核实官方页面（预算/顺序问题，下一轮可补）"
+        }
+      },
+      "demotion": {
+        "code": "verification_not_attempted",
+        "kind": "process",
+        "detail": "本轮没有去核实官方页面（预算/顺序问题，下一轮可补）"
+      }
     },
     {
       "title": "LFX Mentorship (next term 2027)",
-      "organization": "Linux Foundation / CNCF", "category": "open_source",
-      "official_url": "https://mentorship.lfx.linuxfoundation.org/", "deadline_type": "recurring", "freshness": "recurring",
-      "verification_status": "partially_verified", "application_status": null,
-      "evidence": {"application_status": {"status": "missing", "evidence_summary": "一年三期(1/5/8月)，本轮未重新 fetch 核验，沿用上一轮 discovery"}},
-      "provenance": "general_search", "source_family": null, "included": true, "zone": "worth_verifying",
-      "small_bet_type": "public_output", "weekly_commitment": "~30 h (12 周)"
+      "organization": "Linux Foundation / CNCF",
+      "category": "open_source",
+      "official_url": "https://mentorship.lfx.linuxfoundation.org/",
+      "deadline_type": "recurring",
+      "freshness": "recurring",
+      "verification_status": "partially_verified",
+      "application_status": null,
+      "evidence": {
+        "application_status": {
+          "status": "missing",
+          "evidence_summary": "一年三期(1/5/8月)，本轮未重新 fetch 核验，沿用上一轮 discovery"
+        }
+      },
+      "provenance": "general_search",
+      "source_family": null,
+      "included": true,
+      "zone": "worth_verifying",
+      "small_bet_type": "public_output",
+      "weekly_commitment": "~30 h (12 周)",
+      "gate_computed": {
+        "zone": "worth_verifying",
+        "reason": "周期性项目，下一周期在 2027 年（尚未开放）",
+        "demotion": {
+          "code": "verification_not_attempted",
+          "kind": "process",
+          "detail": "本轮没有去核实官方页面（预算/顺序问题，下一轮可补）"
+        }
+      },
+      "demotion": {
+        "code": "verification_not_attempted",
+        "kind": "process",
+        "detail": "本轮没有去核实官方页面（预算/顺序问题，下一轮可补）"
+      }
     },
     {
       "title": "Google Summer of Code 2027",
-      "organization": "Google", "category": "open_source",
-      "official_url": "https://summerofcode.withgoogle.com/", "deadline_type": "recurring", "freshness": "future",
-      "verification_status": "unverified", "application_status": null,
-      "evidence": {"application_status": {"status": "missing", "evidence_summary": "本轮未核验，沿用上一轮 discovery"}},
-      "provenance": "general_search", "source_family": null, "included": true, "zone": "worth_verifying",
-      "small_bet_type": "high_upside", "weekly_commitment": "full-time (12 周)"
+      "organization": "Google",
+      "category": "open_source",
+      "official_url": "https://summerofcode.withgoogle.com/",
+      "deadline_type": "recurring",
+      "freshness": "future",
+      "verification_status": "unverified",
+      "application_status": null,
+      "evidence": {
+        "application_status": {
+          "status": "missing",
+          "evidence_summary": "本轮未核验，沿用上一轮 discovery"
+        }
+      },
+      "provenance": "general_search",
+      "source_family": null,
+      "included": true,
+      "zone": "worth_verifying",
+      "small_bet_type": "high_upside",
+      "weekly_commitment": "full-time (12 周)",
+      "gate_computed": {
+        "zone": "worth_verifying",
+        "reason": "周期性项目，下一周期在 2027 年（尚未开放）",
+        "demotion": {
+          "code": "verification_not_attempted",
+          "kind": "process",
+          "detail": "本轮没有去核实官方页面（预算/顺序问题，下一轮可补）"
+        }
+      },
+      "demotion": {
+        "code": "verification_not_attempted",
+        "kind": "process",
+        "detail": "本轮没有去核实官方页面（预算/顺序问题，下一轮可补）"
+      }
     },
     {
       "title": "Recurse Center (self-directed programming retreat)",
-      "organization": "Recurse Center", "category": "skill_development",
-      "official_url": "https://www.recurse.com/", "deadline_type": "evergreen", "freshness": "evergreen",
-      "verification_status": "unverified", "application_status": null,
-      "evidence": {"application_status": {"status": "missing", "evidence_summary": "本轮未核验，沿用上一轮 discovery"}},
-      "provenance": "general_search", "source_family": null, "included": true, "zone": "worth_verifying",
-      "small_bet_type": "network", "weekly_commitment": "full-time (6/12 周)"
+      "organization": "Recurse Center",
+      "category": "skill_development",
+      "official_url": "https://www.recurse.com/",
+      "deadline_type": "evergreen",
+      "freshness": "evergreen",
+      "verification_status": "unverified",
+      "application_status": null,
+      "evidence": {
+        "application_status": {
+          "status": "missing",
+          "evidence_summary": "本轮未核验，沿用上一轮 discovery"
+        }
+      },
+      "provenance": "general_search",
+      "source_family": null,
+      "included": true,
+      "zone": "worth_verifying",
+      "small_bet_type": "network",
+      "weekly_commitment": "full-time (6/12 周)",
+      "gate_computed": {
+        "zone": "worth_verifying",
+        "reason": "长期开放型机会（无报名周期）→ 需要『当前可参与』证据才能进主推荐",
+        "demotion": {
+          "code": "verification_not_attempted",
+          "kind": "process",
+          "detail": "本轮没有去核实官方页面（预算/顺序问题，下一轮可补）"
+        }
+      },
+      "demotion": {
+        "code": "verification_not_attempted",
+        "kind": "process",
+        "detail": "本轮没有去核实官方页面（预算/顺序问题，下一轮可补）"
+      }
     },
     {
       "title": "Outreachy (next cohort)",
-      "organization": "Software Freedom Conservancy", "category": "open_source",
-      "official_url": "https://www.outreachy.org/", "deadline_type": "recurring", "freshness": "future",
-      "verification_status": "unverified", "application_status": null,
-      "evidence": {"application_status": {"status": "missing", "evidence_summary": "一年两期，本轮未核验，沿用上一轮 discovery"}},
-      "provenance": "general_search", "source_family": null, "included": true, "zone": "worth_verifying",
-      "small_bet_type": "high_upside", "weekly_commitment": "full-time (3 个月)"
+      "organization": "Software Freedom Conservancy",
+      "category": "open_source",
+      "official_url": "https://www.outreachy.org/",
+      "deadline_type": "recurring",
+      "freshness": "future",
+      "verification_status": "unverified",
+      "application_status": null,
+      "evidence": {
+        "application_status": {
+          "status": "missing",
+          "evidence_summary": "一年两期，本轮未核验，沿用上一轮 discovery"
+        }
+      },
+      "provenance": "general_search",
+      "source_family": null,
+      "included": true,
+      "zone": "worth_verifying",
+      "small_bet_type": "high_upside",
+      "weekly_commitment": "full-time (3 个月)",
+      "gate_computed": {
+        "zone": "worth_verifying",
+        "reason": "周期性开放 → 当前周期是否开放需要页面证据",
+        "demotion": {
+          "code": "verification_not_attempted",
+          "kind": "process",
+          "detail": "本轮没有去核实官方页面（预算/顺序问题，下一轮可补）"
+        }
+      },
+      "demotion": {
+        "code": "verification_not_attempted",
+        "kind": "process",
+        "detail": "本轮没有去核实官方页面（预算/顺序问题，下一轮可补）"
+      }
     },
     {
       "title": "OpenSSF Mentorship Program (security-specific, paid)",
-      "organization": "Open Source Security Foundation", "category": "open_source",
-      "official_url": "https://openssf.org/", "deadline_type": "recurring", "freshness": "recurring",
-      "verification_status": "verified_official", "application_status": "closed_2026_next_2027_unconfirmed",
-      "evidence": {"application_status": {"status": "partial", "source_url": "https://openssf.org/podcast/2026/03/17/whats-in-the-soss-podcast-56-s3e8-empowering-new-maintainers-inside-the-openssf-mentorship-program",
-        "verified_at": "2026-09-20",
-        "evidence_summary": "openssf.org 官方播客确认 2026 周期 3/24 开、4/12 截止、6/1-8/21 进行，带薪、面向学生与代表性不足群体；2027 周期日期未公布"}},
-      "provenance": "source_family_query", "source_family": "mentorship_program", "included": true, "zone": "worth_verifying",
-      "small_bet_type": "high_upside", "weekly_commitment": "~30 h (12 周)",
-      "why_surprising": "安全专项带薪导师制，与通用 LFX/GSOC 不同，且上期 2/3 学员成为项目 maintainer"
+      "organization": "Open Source Security Foundation",
+      "category": "open_source",
+      "official_url": "https://openssf.org/",
+      "deadline_type": "recurring",
+      "freshness": "recurring",
+      "verification_status": "verified_official",
+      "application_status": "closed_2026_next_2027_unconfirmed",
+      "evidence": {
+        "application_status": {
+          "status": "partial",
+          "source_url": "https://openssf.org/podcast/2026/03/17/whats-in-the-soss-podcast-56-s3e8-empowering-new-maintainers-inside-the-openssf-mentorship-program",
+          "verified_at": "2026-09-20",
+          "evidence_summary": "openssf.org 官方播客确认 2026 周期 3/24 开、4/12 截止、6/1-8/21 进行，带薪、面向学生与代表性不足群体；2027 周期日期未公布"
+        }
+      },
+      "provenance": "source_family_query",
+      "source_family": "mentorship_program",
+      "included": true,
+      "zone": "worth_verifying",
+      "small_bet_type": "high_upside",
+      "weekly_commitment": "~30 h (12 周)",
+      "why_surprising": "安全专项带薪导师制，与通用 LFX/GSOC 不同，且上期 2/3 学员成为项目 maintainer",
+      "gate_computed": {
+        "zone": "worth_verifying",
+        "reason": "周期性开放 → 当前周期是否开放需要页面证据",
+        "demotion": {
+          "code": "page_cannot_confirm",
+          "kind": "fact",
+          "detail": "页面无法确认当前是否可参与（freshness=recurring，无参与入口证据）"
+        }
+      },
+      "demotion": {
+        "code": "page_cannot_confirm",
+        "kind": "fact",
+        "detail": "页面无法确认当前是否可参与（freshness=recurring，无参与入口证据）"
+      }
     },
     {
       "title": "OWASP contributor projects (Juice Shop / BLT / PyGoat)",
-      "organization": "OWASP Foundation", "category": "open_source",
-      "official_url": "https://owasp.org/", "deadline_type": "rolling", "freshness": "evergreen",
-      "verification_status": "verified_official", "application_status": "open_ongoing",
-      "evidence": {"application_status": {"status": "explicit", "source_url": "https://owasp.org/",
-        "verified_at": "2026-09-20",
-        "evidence_summary": "owasp.org 官方页确认免费、多个项目(Juice Shop/BLT/PyGoat/Nettacker)持续接受贡献，贡献入口常驻开放、无固定截止"}},
-      "provenance": "source_family_query", "source_family": "contributor_guide", "included": true, "zone": "worth_verifying",
-      "small_bet_type": "public_output", "weekly_commitment": "self-paced",
-      "why_surprising": "应用安全专项基金会，good first issue 式入口，比泛用开源项目更贴安全兴趣"
+      "organization": "OWASP Foundation",
+      "category": "open_source",
+      "official_url": "https://owasp.org/",
+      "deadline_type": "rolling",
+      "freshness": "evergreen",
+      "verification_status": "verified_official",
+      "application_status": "open_ongoing",
+      "evidence": {
+        "application_status": {
+          "status": "explicit",
+          "source_url": "https://owasp.org/",
+          "verified_at": "2026-09-20",
+          "evidence_summary": "owasp.org 官方页确认免费、多个项目(Juice Shop/BLT/PyGoat/Nettacker)持续接受贡献，贡献入口常驻开放、无固定截止"
+        }
+      },
+      "provenance": "source_family_query",
+      "source_family": "contributor_guide",
+      "included": true,
+      "zone": "worth_verifying",
+      "small_bet_type": "public_output",
+      "weekly_commitment": "self-paced",
+      "why_surprising": "应用安全专项基金会，good first issue 式入口，比泛用开源项目更贴安全兴趣",
+      "gate_computed": {
+        "zone": "recommended_now",
+        "reason": "deadline_type=rolling（无固定/弹性截止）",
+        "demotion": null
+      }
     },
     {
       "title": "Bug bounty / VDP (HackerOne, DoD VDP)",
-      "organization": "HackerOne / U.S. Department of Defense", "category": "open_source",
-      "official_url": "https://hackerone.com/", "deadline_type": "rolling", "freshness": "evergreen",
-      "verification_status": "unverified", "application_status": "open_ongoing",
-      "evidence": {"application_status": {"status": "missing", "evidence_summary": "平台型入口，本轮未单独 fetch 核验；作为 adjacent_discovery 记录的未知未知"}},
-      "provenance": "adjacent_discovery", "source_family": null, "included": true, "zone": "worth_verifying",
-      "small_bet_type": "high_upside", "weekly_commitment": "self-paced",
-      "why_surprising": "完全未知：报告漏洞既能练真实攻防、又能赚钱，还产出可展示 write-up"
+      "organization": "HackerOne / U.S. Department of Defense",
+      "category": "open_source",
+      "official_url": "https://hackerone.com/",
+      "deadline_type": "rolling",
+      "freshness": "evergreen",
+      "verification_status": "unverified",
+      "application_status": "open_ongoing",
+      "evidence": {
+        "application_status": {
+          "status": "missing",
+          "evidence_summary": "平台型入口，本轮未单独 fetch 核验；作为 adjacent_discovery 记录的未知未知"
+        }
+      },
+      "provenance": "adjacent_discovery",
+      "source_family": null,
+      "included": true,
+      "zone": "worth_verifying",
+      "small_bet_type": "high_upside",
+      "weekly_commitment": "self-paced",
+      "why_surprising": "完全未知：报告漏洞既能练真实攻防、又能赚钱，还产出可展示 write-up",
+      "gate_computed": {
+        "zone": "worth_verifying",
+        "reason": "deadline_type=rolling（无固定/弹性截止）",
+        "demotion": {
+          "code": "verification_not_attempted",
+          "kind": "process",
+          "detail": "本轮没有去核实官方页面（预算/顺序问题，下一轮可补）"
+        }
+      },
+      "demotion": {
+        "code": "verification_not_attempted",
+        "kind": "process",
+        "detail": "本轮没有去核实官方页面（预算/顺序问题，下一轮可补）"
+      }
     }
   ],
   "gaps": [],
   "bridges": [],
-  "bridge_graph": {"nodes": [{"id": "user", "kind": "user", "label": "user"}], "edges": [], "connected": false,
-    "note": "gaps 为空（用户无目标，也未从真实机会硬要求推出缺口）→ 无 bridge 节点；Source Intelligence 在此仅作为 unknown-unknown 的发现入口，而非 bridge 来源"},
+  "bridge_graph": {
+    "nodes": [
+      {
+        "id": "user",
+        "kind": "user",
+        "label": "user"
+      }
+    ],
+    "edges": [],
+    "connected": false,
+    "note": "gaps 为空（用户无目标，也未从真实机会硬要求推出缺口）→ 无 bridge 节点；Source Intelligence 在此仅作为 unknown-unknown 的发现入口，而非 bridge 来源"
+  },
   "portfolio": {
     "budget_hours": null,
     "planned_hours": 107.0,
     "resource_conflict": false,
-    "roles_present": ["now", "high_upside", "long_term"],
+    "roles_present": [
+      "now",
+      "high_upside",
+      "long_term"
+    ],
     "items": [
-      {"opportunity_id": "c1-picogym", "title": "CyLab Security Academy / picoGym (CMU)", "primary_role": "now", "roles": ["now"], "weekly_hours": 5.0},
-      {"opportunity_id": "c7-openssf-mentorship", "title": "OpenSSF Mentorship Program (security-specific, paid)", "primary_role": "high_upside", "roles": ["high_upside", "long_term"], "weekly_hours": 30.0},
-      {"opportunity_id": "c3-lfx", "title": "LFX Mentorship (next term 2027)", "primary_role": "high_upside", "roles": ["high_upside", "long_term"], "weekly_hours": 30.0},
-      {"opportunity_id": "c4-gsoc", "title": "Google Summer of Code 2027", "primary_role": "high_upside", "roles": ["high_upside", "long_term"], "weekly_hours": 12.0},
-      {"opportunity_id": "c6-outreachy", "title": "Outreachy (next cohort)", "primary_role": "high_upside", "roles": ["high_upside", "long_term"], "weekly_hours": 3.0},
-      {"opportunity_id": "c2-picoctf-annual", "title": "picoCTF annual competition (next edition)", "primary_role": "high_upside", "roles": ["high_upside", "long_term"], "weekly_hours": 15.0},
-      {"opportunity_id": "c9-bugbounty", "title": "Bug bounty / VDP (HackerOne, DoD VDP)", "primary_role": "high_upside", "roles": ["high_upside"], "weekly_hours": null},
-      {"opportunity_id": "c5-recurse", "title": "Recurse Center (self-directed retreat)", "primary_role": "high_upside", "roles": ["high_upside", "long_term"], "weekly_hours": 12.0}
+      {
+        "opportunity_id": "c1-picogym",
+        "title": "CyLab Security Academy / picoGym (CMU)",
+        "primary_role": "now",
+        "roles": [
+          "now"
+        ],
+        "weekly_hours": 5.0
+      },
+      {
+        "opportunity_id": "c7-openssf-mentorship",
+        "title": "OpenSSF Mentorship Program (security-specific, paid)",
+        "primary_role": "high_upside",
+        "roles": [
+          "high_upside",
+          "long_term"
+        ],
+        "weekly_hours": 30.0
+      },
+      {
+        "opportunity_id": "c3-lfx",
+        "title": "LFX Mentorship (next term 2027)",
+        "primary_role": "high_upside",
+        "roles": [
+          "high_upside",
+          "long_term"
+        ],
+        "weekly_hours": 30.0
+      },
+      {
+        "opportunity_id": "c4-gsoc",
+        "title": "Google Summer of Code 2027",
+        "primary_role": "high_upside",
+        "roles": [
+          "high_upside",
+          "long_term"
+        ],
+        "weekly_hours": 12.0
+      },
+      {
+        "opportunity_id": "c6-outreachy",
+        "title": "Outreachy (next cohort)",
+        "primary_role": "high_upside",
+        "roles": [
+          "high_upside",
+          "long_term"
+        ],
+        "weekly_hours": 3.0
+      },
+      {
+        "opportunity_id": "c2-picoctf-annual",
+        "title": "picoCTF annual competition (next edition)",
+        "primary_role": "high_upside",
+        "roles": [
+          "high_upside",
+          "long_term"
+        ],
+        "weekly_hours": 15.0
+      },
+      {
+        "opportunity_id": "c9-bugbounty",
+        "title": "Bug bounty / VDP (HackerOne, DoD VDP)",
+        "primary_role": "high_upside",
+        "roles": [
+          "high_upside"
+        ],
+        "weekly_hours": null
+      },
+      {
+        "opportunity_id": "c5-recurse",
+        "title": "Recurse Center (self-directed retreat)",
+        "primary_role": "high_upside",
+        "roles": [
+          "high_upside",
+          "long_term"
+        ],
+        "weekly_hours": 12.0
+      }
     ],
     "dropped": [],
-    "diversity": {"roles": 3, "categories": 3},
+    "diversity": {
+      "roles": 3,
+      "categories": 3
+    },
     "unknown_hours_items": 1,
     "note": "weekly_time 未知 → budget_hours=None，未触发资源冲突；组合以 'now'(picoGym) + 'high_upside'(OpenSSF/LFX/GSOC/Outreachy/漏洞赏金) 为主，无 low_cost 纯轻量项（picoGym 2-5h 超 2h 阈值）。"
   },
   "metrics": {
-    "gaps": 0, "gaps_with_bridge": 0, "gap_coverage_rate": 0.0,
-    "bridges": 0, "bridges_verified": 0, "bridge_verified_rate": 0.0, "bridge_actionable_rate": 0.0,
-    "source_family_query_share": 0.222, "general_search_share": 0.667, "adjacent_discovery_share": 0.111,
-    "queries_used": 7, "searches_used": 4, "fetches_used": 3
+    "gaps": 0,
+    "gaps_with_bridge": 0,
+    "gap_coverage_rate": 0.0,
+    "bridges": 0,
+    "bridges_verified": 0,
+    "bridge_verified_rate": 0.0,
+    "bridge_actionable_rate": 0.0,
+    "source_family_query_share": 0.222,
+    "general_search_share": 0.667,
+    "adjacent_discovery_share": 0.111,
+    "queries_used": 7,
+    "searches_used": 4,
+    "fetches_used": 3
   },
   "failures": [
-    {"detail": "OpenSSF 官网 /mentorship/ 路径 404（重定向后页面不存在）；2027 周期日期无法从官方页直接确认，仅能从 openssf.org 官方播客的 2026 周期日期推断下一期约 2027", "classification": "infrastructure"},
-    {"detail": "LFX / GSOC / Outreachy / Recurse 四个 carry-forward 候选本轮未重新 fetch 核验，证据沿用上一轮 discovery（general_search provenance）", "classification": "process"}
+    {
+      "detail": "OpenSSF 官网 /mentorship/ 路径 404（重定向后页面不存在）；2027 周期日期无法从官方页直接确认，仅能从 openssf.org 官方播客的 2026 周期日期推断下一期约 2027",
+      "classification": "infrastructure"
+    },
+    {
+      "detail": "LFX / GSOC / Outreachy / Recurse 四个 carry-forward 候选本轮未重新 fetch 核验，证据沿用上一轮 discovery（general_search provenance）",
+      "classification": "process"
+    }
   ],
   "over_search_check": {
     "candidates_found": 10,
@@ -171,5 +552,35 @@
     "已知发现(General Search)沿用并保留 6 个有效候选；新增 3 个 SI 驱动候选，全部兴趣对齐(security+open_source)且可核验",
     "答案仍避开 '实习+竞赛+课程' 三位一体：以开源贡献/导师制/漏洞赏金/社区为主",
     "预算 weekly_time 未知 → portfolio 无资源冲突；组合偏 now+high_upside，缺纯 low_cost 轻量项"
-  ]
+  ],
+  "gate_computed_summary": {
+    "today": "2026-09-20",
+    "deadline_type_histogram": {
+      "evergreen": 2,
+      "recurring": 5,
+      "rolling": 2
+    },
+    "rolling_or_evergreen": 9,
+    "evidence_complete_candidates": 9,
+    "demotion_histogram": {
+      "verification_not_attempted": 6,
+      "page_cannot_confirm": 1
+    },
+    "demotion_by_kind": {
+      "process": 6,
+      "fact": 1
+    },
+    "recommended_now": 2,
+    "worth_verifying": 7,
+    "excluded": 0,
+    "mismatches": [
+      {
+        "title": "OWASP contributor projects (Juice Shop / BLT / PyGoat)",
+        "declared": "worth_verifying",
+        "computed": "recommended_now",
+        "reason": "deadline_type=rolling（无固定/弹性截止）"
+      }
+    ],
+    "missing_application_status_evidence": []
+  }
 }

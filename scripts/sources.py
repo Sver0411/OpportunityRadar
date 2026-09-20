@@ -232,11 +232,75 @@ STAGE_INTENT_OVERRIDES = {
     },
 }
 
-#: 失败类型（沿用 process / fact / infrastructure 三分类）
+# ---------------------------------------------------------------- 页面新鲜度（≠ 机会新鲜度）
+#: source_freshness 回答"这个页面/公告是不是当前信息"；
+#: opportunity freshness 回答"这个机会现在是否开放"。**两者语义不同，不要混用。**
+SOURCE_FRESHNESS = ("current", "likely_current", "stale", "historical", "unknown")
+
+STALE_MARKERS = ("archive", "archived", "previous years", "past programme", "past program",
+                 "過去の", "閉講", "終了しました", "no longer offered", "見送り",
+                 "had been", "was held")
+CURRENT_MARKERS = ("accepting applications", "now open", "currently open", "受付中",
+                   "募集中", "応募受付", "next cycle", "次回", "2027")
+
+
+def _years(text):
+    import re
+    return [int(y) for y in re.findall(r"(?<!\d)((?:19|20)\d{2})(?!\d)", str(text or ""))]
+
+
+def source_freshness(page, today=None) -> dict:
+    """页面是否是"当前信息"。`page` 可以是 opportunity dict 或字符串。
+
+    判据（任一命中即给出结论，保守优先）：
+      1. archive / 已结束 措辞 → historical
+      2. 标题 / URL / 摘要里出现的年份：最晚年份 < 今年 → historical / stale
+      3. 最晚年份 == 今年 或 出现"下次/次年" → current / likely_current
+      4. 无法判断 → unknown
+    """
+    import datetime as _dt
+    today = today or _dt.date.today()
+    if isinstance(page, dict):
+        text = " ".join(str(page.get(k) or "") for k in
+                        ("title", "summary", "url", "official_url", "notes"))
+        updated = page.get("last_updated") or page.get("updated_at")
+    else:
+        text, updated = str(page or ""), None
+    low = text.lower()
+    years = _years(text)
+    max_year = max(years) if years else None
+    if any(m in low for m in STALE_MARKERS):
+        return {"source_freshness": "historical", "years": years,
+                "signal": "页面含已归档/已结束措辞"}
+    if updated:
+        try:
+            age = (today - _dt.date.fromisoformat(str(updated)[:10])).days
+            if age <= 365:
+                return {"source_freshness": "current", "years": years,
+                        "signal": f"页面标注最近更新 {updated}"}
+            return {"source_freshness": "stale", "years": years,
+                    "signal": f"最后更新在 {age} 天前"}
+        except (TypeError, ValueError):
+            pass
+    if max_year is not None and max_year < today.year:
+        return {"source_freshness": "historical", "years": years,
+                "signal": f"页面最晚年份 {max_year} 早于今年 {today.year}"}
+    if max_year is not None and max_year >= today.year:
+        if max_year > today.year or any(m in low for m in CURRENT_MARKERS):
+            return {"source_freshness": "current", "years": years,
+                    "signal": f"页面提到 {max_year} 或当前/下一周期"}
+        return {"source_freshness": "likely_current", "years": years,
+                "signal": f"页面年份为 {max_year}（今年）"}
+    return {"source_freshness": "unknown", "years": years, "signal": "无法判断页面时效"}
+
+
+#: 失败类型（沿用 process / fact / infrastructure 三分类）—— 不要全塞进 worth_verifying
 SOURCE_FAILURE_TYPES = {
     "source_not_found": "process",
-    "source_found_no_opportunity": "fact",
+    "source_found_current": "fact",
     "source_found_not_current": "fact",
+    "source_found_no_opportunity": "fact",
+    "source_found_not_applicable": "fact",
     "page_not_verifiable": "infrastructure",
     "js_rendered": "infrastructure",
     "blocked": "infrastructure",
@@ -245,6 +309,55 @@ SOURCE_FAILURE_TYPES = {
 #: 候选来源（用于 provenance 统计，不是白名单）
 CANDIDATE_ORIGINS = ("known_source", "source_family_query", "general_search", "adjacent_discovery")
 
+
+
+#: 阶段适配度（**只影响搜索优先级与预算**，不决定用户有没有资格）
+#:   high  = 该阶段的主力来源
+#:   medium= 视情况（depends）
+#:   low   = 通常不值得为该阶段花预算
+#:   never = 默认跳过（除非官方明确接受该阶段 —— 由 eligibility 层覆盖）
+STAGE_FIT = {
+    # family: {stage: high|medium|low|never}
+    "summer_research":       {"undergraduate": "high", "unknown": "medium",
+                              "working": "low", "founder": "low"},
+    "university_lab":        {"undergraduate": "high", "working": "medium", "unknown": "medium"},
+    "professor_page":        {"undergraduate": "high", "working": "medium", "unknown": "medium"},
+    "research_seminar":      {"undergraduate": "medium", "working": "high", "unknown": "medium"},
+    "research_institute":    {"undergraduate": "medium", "working": "high", "unknown": "medium"},
+    "graduate_school":       {"undergraduate": "medium", "working": "high", "unknown": "medium"},
+    "academic_society":      {"undergraduate": "medium", "working": "high", "unknown": "medium"},
+    "research_funding_body": {"undergraduate": "medium", "working": "medium", "unknown": "medium"},
+    "official_exam_body":    {"undergraduate": "high", "working": "high", "unknown": "high"},
+    "university_language_center": {"undergraduate": "high", "working": "high", "unknown": "medium"},
+    "government_cultural_body":   {"undergraduate": "medium", "working": "high", "unknown": "medium"},
+    "language_exchange_program":  {"undergraduate": "high", "working": "medium", "unknown": "medium"},
+    "speech_contest":        {"undergraduate": "medium", "working": "medium", "unknown": "medium"},
+    "scholarship_language_program": {"undergraduate": "high", "working": "medium", "unknown": "medium"},
+    "foundation":            {"undergraduate": "high", "working": "high", "founder": "high",
+                              "unknown": "medium"},
+    "mentorship_program":    {"undergraduate": "high", "working": "high", "unknown": "high"},
+    "working_group":         {"undergraduate": "medium", "working": "high", "founder": "high",
+                              "unknown": "medium"},
+    "contributor_guide":     {"undergraduate": "high", "working": "high", "unknown": "high"},
+    "community_event":       {"undergraduate": "high", "working": "high", "unknown": "high"},
+    "maintainer_program":    {"undergraduate": "medium", "working": "high", "founder": "high",
+                              "unknown": "medium"},
+    "project_repository":    {"undergraduate": "high", "working": "high", "unknown": "high"},
+    "bounty_program":        {"undergraduate": "medium", "working": "high", "unknown": "medium"},
+}
+
+STAGE_FIT_WEIGHT = {"high": 3, "medium": 2, "low": 1, "never": 0}
+
+
+def family_stage_fit(family, stage) -> str:
+    return STAGE_FIT.get(family, {}).get(stage or "unknown", "medium")
+
+
+def applicabity_note(family, stage) -> str:
+    """给用户/日志看的解释：**这是搜索优先级，不是资格判定**。"""
+    fit = family_stage_fit(family, stage)
+    return {"high": "该阶段的主力来源", "medium": "视情况可搜", "low": "通常优先级低",
+            "never": "默认跳过（若官方明确接受该阶段仍可命中）"}[fit]
 
 def bridge_intent_for(gap) -> str:
     if isinstance(gap, str):
@@ -291,13 +404,24 @@ def plan_queries(gap, profile=None, topic=None, region=None, limit=6) -> list:
             or ("Japanese" if ("japan" in str(region or "").lower() or "日本" in str(topic))
                 else "language"))
     out = []
+    selected, downweighted, skipped = [], [], []
+    # family 按阶段适配度排序（high 先搜），适配度为 never 的默认跳过
+    ordered = sorted(fams, key=lambda f: -STAGE_FIT_WEIGHT.get(family_stage_fit(f, stage), 2))
+    for fam in fams:
+        fit = family_stage_fit(fam, stage)
+        if fit == "never":
+            skipped.append({"family": fam, "stage": stage, "reason": "stage_inapplicable"})
+        elif fit == "low":
+            downweighted.append({"family": fam, "stage": stage, "reason": "low_stage_fit"})
+        else:
+            selected.append({"family": fam, "stage": stage, "fit": fit})
     # 1) 阶段专用 query 优先
     for tpl in STAGE_INTENT_OVERRIDES.get(stage, {}).get(intent, ()):
         out.append({"query": tpl.format(topic=topic, lang=lang, ecosystem=topic),
-                    "family": fams[0] if fams else None, "bridge_intent": intent,
+                    "family": ordered[0] if ordered else None, "bridge_intent": intent,
                     "origin": "source_family_query", "stage": stage})
-    # 2) family 模板
-    for fam in fams:
+    # 2) family 模板（按阶段排序；low 的排在后面，预算耗尽自然被截掉）
+    for fam in ordered:
         spec = SOURCE_FAMILIES.get(fam)
         if not spec:
             continue
@@ -305,13 +429,20 @@ def plan_queries(gap, profile=None, topic=None, region=None, limit=6) -> list:
             out.append({"query": tpl.format(topic=topic, lang=lang, exam=lang,
                                             ecosystem=topic, country=region or ""),
                         "family": fam, "bridge_intent": intent,
-                        "origin": "source_family_query", "stage": stage})
+                        "origin": "source_family_query", "stage": stage,
+                        "stage_fit": family_stage_fit(fam, stage)})
             if len(out) >= limit:
                 return out
     # 3) 兜底：通用搜索（未知来源照常被发现）
     if not out:
-        out.append({"query": f"{topic} opportunity students apply", "family": None,
+        out.append({"query": f"{topic} opportunity apply", "family": None,
                     "bridge_intent": intent, "origin": "general_search", "stage": stage})
+    for q in out:
+        q.setdefault("stage_fit", family_stage_fit(q.get("family") or "", stage))
+    for q in out[:limit]:
+        q["family_selected"] = any(s["family"] == q.get("family") for s in selected)
+        q["family_downweighted"] = any(d["family"] == q.get("family") for d in downweighted)
+        q["family_skipped"] = any(k["family"] == q.get("family") for k in skipped)
     return out[:limit]
 
 
