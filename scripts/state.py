@@ -11,7 +11,7 @@
 
 用法：
   python3 state.py init
-  python3 state.py mark-seen --input .opportunity-radar/last-run.json
+  python3 state.py mark-seen --input .opportunity-radar/last-run.json --ids shown-id-1,shown-id-2
   python3 state.py check --input opps.json
   python3 state.py feedback saved --id sony-embedded-internship-2027 --note "关注"
   python3 state.py list --status saved
@@ -181,8 +181,10 @@ def classify(base, records, write=True):
     return out
 
 
-def cmd_mark_seen(base, input_path, quiet=False):
+def cmd_mark_seen(base, input_path, quiet=False, ids=None):
     records = load_records(input_path)
+    if ids is not None:
+        records = [r for r in records if (r.get("id") or derive_id(r)) in ids]
     if not os.path.exists(base):
         os.makedirs(base, exist_ok=True)
         for kind in ("seen", "saved", "ignored"):
@@ -330,8 +332,9 @@ def main(argv=None) -> int:
     p = sub.add_parser("init", help="创建状态目录与空文件（幂等）")
     p.add_argument("--force", action="store_true")
 
-    p = sub.add_parser("mark-seen", help="标记已见并检测变化")
+    p = sub.add_parser("mark-seen", help="仅标记最终展示给用户的机会并检测变化")
     p.add_argument("--input", required=True)
+    p.add_argument("--ids", help="最终展示的机会 ID，逗号分隔；不要把所有发现候选标为已见")
     p.add_argument("--quiet", action="store_true")
 
     p = sub.add_parser("check", help="只分类（new/changed/repeat），不写入")
@@ -360,7 +363,10 @@ def main(argv=None) -> int:
     if args.cmd == "init":
         cmd_init(base, args.force)
     elif args.cmd == "mark-seen":
-        cmd_mark_seen(base, args.input, args.quiet)
+        if not args.ids and os.path.basename(args.input) == "last-run.json":
+            ap.error("last-run.json 含发现候选；请用 --ids 指定最终展示给用户的机会")
+        ids = {x.strip() for x in args.ids.split(",") if x.strip()} if args.ids else None
+        cmd_mark_seen(base, args.input, args.quiet, ids=ids)
     elif args.cmd == "check":
         cmd_check(base, args.input)
     elif args.cmd == "feedback":

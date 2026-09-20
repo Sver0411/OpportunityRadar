@@ -42,8 +42,9 @@ Step 8 的执行规范。目标：把网页变成 `opportunity.schema.json` 记�
 ```
 
 需要追踪证据的字段（`scripts/common.py` 的 `EVIDENCE_FIELDS`，`score.py` 会自动指出缺口）：
-`deadline`、`education_level`、`student_year`、`graduation_window`、`major_requirement`、
-`language_requirement`、`nationality_requirement`、`school_requirement`、`GPA_requirement`、`compensation`。
+`application_status`、`deadline`、`education_level`、`student_year`、`graduation_window`、
+`major_requirement`、`language_requirement`、`nationality_requirement`、`school_requirement`、
+`GPA_requirement`、`compensation`、`organization_size`。
 
 `status` 取值只能是 `explicit` / `inferred` / `unknown`；
 `explicit` 建议附 `source_url`，能附 `quote`（页面原句）更好，便于复核。
@@ -94,8 +95,10 @@ Step 8 的执行规范。目标：把网页变成 `opportunity.schema.json` 记�
 | `organization` | 主办/招聘主体 | 用官方主体名；不要把品牌子产品当主体 |
 | `primary_category` / `secondary_categories` | 判断 | 见 `opportunity-taxonomy.md` §14 消解表 |
 | `summary` | 页面 | ≤2 句、纯事实、无形容词堆砌、不复述"这是一个很好的机会" |
-| `country` / `city` | 页面 | 只写明确写出的地点；远程写 `remote: true` 并把 country 置 `null`（若确为全球远程） |
-| `education_level` | 页面 | 归一化见 §3；未写 → `null` |
+| `country` / `region` / `city` | 页面 | 只写明确写出的地点；由城市推导省/州时标明推断；远程写 `remote: true` 并把 country 置 `null`（若确为全球远程） |
+| `education_level` | 页面 | **申请人当前学历门槛**，不是项目授予学位；归一化见 §3；未写 → `null` |
+| `program_degree` / `cohort_year` | 页面 | 教育项目授予学位与毕业/入学届别单独记录，绝不当作申请人学历或申请开放年份 |
+| `organization_size` / `organization_type` | 可靠机构资料 | "小公司"须有规模与主体证据；未知填 `unknown`，不能从"专精特新"或品牌名推断 |
 | `student_year` | 页面 | 归一化见 §4 |
 | `graduation_window` | 页面 | 如"2027 年 3 月毕业"、"卒業年度 2028"；未写 → `null` |
 | `major_requirement` | 页面 | 原样保留（如 "Electrical Engineering or related field"），不要翻译成"电子相关"后丢失原句 |
@@ -104,7 +107,7 @@ Step 8 的执行规范。目标：把网页变成 `opportunity.schema.json` 记�
 | `nationality_requirement` | 页面 | 是否有国籍/签证限制；未写 → `null`（**不等于"无限制"**） |
 | `school_requirement` | 页面 | 是否限定学校层次/名单 |
 | `GPA_requirement` | 页面 | 原样字符串（"3.0/4.0"、"80 分以上"），不要换算 |
-| `application_open` / `deadline` | 页面 | 走 `normalize_date.py`；年份不明不要猜 |
+| `application_open` / `deadline` / `application_status` | 页面 | 走 `normalize_date.py`；开放状态需逐字段记录官方来源及核验日期，年份不明不要猜 |
 | `event_start` / `event_end` | 页面 | 同上；注意区分报名截止与活动日期 |
 | `cost` | 页面 | 报名费/参加费；免费写 `"free"`；未写 `null` |
 | `compensation` | 页面 | 薪资/奖金；**明确无薪要写出来**（"unpaid"、"無給"、"无薪"） |

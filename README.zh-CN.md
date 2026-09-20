@@ -346,14 +346,14 @@ python3 scripts/score.py --profile examples/profiles/cs-student.example.json \
 
 ```bash
 python3 scripts/state.py init
-python3 scripts/state.py mark-seen --input .opportunity-radar/last-run.json
+python3 scripts/state.py mark-seen --input .opportunity-radar/last-run.json --ids 示例ID1,示例ID2
 python3 scripts/state.py feedback saved --id <id> --category competition --tags robotics
 python3 scripts/state.py list --status saved
 python3 scripts/state.py suggest
 ```
 
-变化检测跟踪 8 个字段（`deadline`、`application_open`、`cost`、`compensation`、
-`education_level`、`student_year`、`language_requirement`、`official_url`）。
+只有最终展示给用户的条目才标记为已见。变化检测跟踪资格、申请状态、地点、企业规模与
+来源字段，完整清单以 `scripts/common.py` 的 `TRACKED_FIELDS` 为准。
 只追加 `utm_*` 参数**不算**变化。`suggest` 只输出权重建议，永远不会改写画像。
 
 ### `locales.py` —— 运行时决定搜索语言

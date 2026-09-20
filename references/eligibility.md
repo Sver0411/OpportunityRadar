@@ -81,6 +81,10 @@ Eligibility = Unknown
 
 `Ineligible` 的记录会从结果列表中移出，并进入 excluded 清单（附原因）。
 
+教育项目的 `program_degree` 是毕业后获得的学位，不能拿来与申请人当前学历比较。
+例如本科毕业生申请硕士：`program_degree=master`，只有官方明确要求本科学历时
+才填 `education_level=undergraduate`；未写申请学历则保留 `null` 并判资格未知。
+
 ## 1.4 两条不可违反的判定原则
 
 ### 原则一：硬条件优先于语义判断

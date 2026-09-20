@@ -582,6 +582,7 @@ def _render_text(plan: dict) -> str:
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description="运行时决定搜索语言与要加载的区域知识")
     ap.add_argument("--profile", help="画像 JSON 路径")
+    ap.add_argument("--context", help="本轮目标/地区 JSON；不修改长期画像")
     ap.add_argument("--countries", help="逗号分隔的目标地区（无 profile 时使用）")
     ap.add_argument("--request", default="", help="当前请求原文（可从中识别目标地区）")
     ap.add_argument("--mode", default="A", choices=["A", "B", "C", "D"])
@@ -611,6 +612,19 @@ def main(argv=None) -> int:
         profile = {"constraints": {"preferred_country": args.countries.split(",")}}
     else:
         ap.error("需要 --profile 或 --countries（或用 --detect / --list-locales）")
+
+    if args.context:
+        with open(args.context, encoding="utf-8") as fh:
+            context = json.load(fh)
+        profile = dict(profile)
+        current = context.get("constraints") or {}
+        retained = dict(profile.get("constraints") or {})
+        if "preferred_country" in current:
+            retained.pop("preferred_region", None)
+            retained.pop("preferred_city", None)
+        profile["constraints"] = {**retained, **current}
+        if "goals" in context:
+            profile["goals"] = context["goals"]
 
     plan = search_plan(profile, args.mode, args.request)
     print(json.dumps(plan, ensure_ascii=False, indent=2) if args.format == "json"
