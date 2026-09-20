@@ -1,0 +1,65 @@
+{
+  "candidates": 6,
+  "zones": {
+    "recommended_now": 0,
+    "worth_verifying": 6,
+    "excluded": 0
+  },
+  "decision_confidence": "medium",
+  "unknown_signals": [
+    "eligibility_known",
+    "financial_budget_known"
+  ],
+  "field_presence_rate": {
+    "skills_required": 0.0,
+    "produces": 1.0,
+    "effort": 0.5
+  },
+  "field_gap_breakdown": {
+    "skills_required": {
+      "present": 0,
+      "source_absent": 3,
+      "extraction_miss": 0,
+      "not_applicable": 3,
+      "unclassified": 0
+    },
+    "produces": {
+      "present": 6,
+      "source_absent": 0,
+      "extraction_miss": 0,
+      "not_applicable": 0,
+      "unclassified": 0
+    },
+    "effort": {
+      "present": 3,
+      "source_absent": 3,
+      "extraction_miss": 0,
+      "not_applicable": 0,
+      "unclassified": 0
+    }
+  },
+  "visible_gap_bridge_rate": 0.8,
+  "visible_evidence_output_rate": 1.0,
+  "visible_effort_rate": 0.6,
+  "unsupported_precision_count": 0,
+  "strong_claim_with_low_confidence_count": 0,
+  "self_directed_mixed_count": 0,
+  "persona_context_leakage_count": 0,
+  "portfolio": {
+    "budget": 5.0,
+    "planned": 4.0,
+    "conflict": false,
+    "roles": [
+      "bridge",
+      "high_upside",
+      "low_cost",
+      "long_term",
+      "explore"
+    ],
+    "dropped": 0
+  },
+  "development_gaps": [
+    "公开影响力证据（演讲 / maintainer / 社区角色）",
+    "ownership / 跨团队项目证据"
+  ]
+}

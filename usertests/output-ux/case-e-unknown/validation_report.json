@@ -1,0 +1,187 @@
+{
+  "profile_is_blank": {
+    "life_stage": [],
+    "education": {},
+    "skills": [],
+    "interests": [],
+    "goals": [],
+    "constraints": {}
+  },
+  "zones": {
+    "recommended_now": 3,
+    "worth_verifying": 4,
+    "excluded": 0
+  },
+  "decision_confidence": "low",
+  "confidence_unknown": [
+    "eligibility_known",
+    "evidence_completeness",
+    "financial_budget_known",
+    "goal_clarity",
+    "profile_completeness",
+    "time_budget_known"
+  ],
+  "explore_axes": [
+    "build",
+    "community",
+    "contribute",
+    "entrepreneurship",
+    "volunteer"
+  ],
+  "explore_axis_count": 5,
+  "technical_items": [],
+  "presented_count": 7,
+  "technical_share": 0.0,
+  "verified_rate": 0.429,
+  "actionable_rate": 0.714,
+  "field_presence": {
+    "skills_required": 0.143,
+    "produces": 0.571,
+    "effort": 0.429
+  },
+  "violations": [],
+  "audit": [
+    {
+      "opportunity_id": "unv-online-volunteering",
+      "title": "UN Online Volunteering（联合国志愿人员组织线上志愿）",
+      "zone": "recommended_now",
+      "category": "networking",
+      "explore_axis": [
+        "build",
+        "community",
+        "creative",
+        "research",
+        "volunteer"
+      ],
+      "origin": "general_search",
+      "source_family": null,
+      "query": "remote volunteer program open call 2027 anyone can join nonprofit global",
+      "verification_status": "verified_official",
+      "technical": {
+        "technical": false,
+        "by_category": false,
+        "by_keyword": []
+      },
+      "why_discovered": "空画像 → 无个性化 query；该候选来自上面那条 general_search"
+    },
+    {
+      "opportunity_id": "mentorshub-mentorship-2027",
+      "title": "MentorsHub Mentorship Programme（2027 届）",
+      "zone": "recommended_now",
+      "category": "networking",
+      "explore_axis": [
+        "community",
+        "contribute"
+      ],
+      "origin": "general_search",
+      "source_family": null,
+      "query": "remote volunteer program open call 2027 anyone can join nonprofit global",
+      "verification_status": "verified_official",
+      "technical": {
+        "technical": false,
+        "by_category": false,
+        "by_keyword": []
+      },
+      "why_discovered": "空画像 → 无个性化 query；该候选来自上面那条 general_search"
+    },
+    {
+      "opportunity_id": "weimar-poetry-film-award-2027",
+      "title": "12th Weimar Poetry Film Award（魏玛诗歌电影节征片）",
+      "zone": "recommended_now",
+      "category": "hobby",
+      "explore_axis": [
+        "build"
+      ],
+      "origin": "general_search",
+      "source_family": null,
+      "query": "remote volunteer program open call 2027 anyone can join nonprofit global",
+      "verification_status": "verified_official",
+      "technical": {
+        "technical": false,
+        "by_category": false,
+        "by_keyword": []
+      },
+      "why_discovered": "空画像 → 无个性化 query；该候选来自上面那条 general_search"
+    },
+    {
+      "opportunity_id": "hult-prize-2027",
+      "title": "Hult Prize（学生创业大赛）",
+      "zone": "worth_verifying",
+      "category": "entrepreneurship",
+      "explore_axis": [
+        "build",
+        "contribute",
+        "entrepreneurship"
+      ],
+      "origin": "general_search",
+      "source_family": null,
+      "query": "remote volunteer program open call 2027 anyone can join nonprofit global",
+      "verification_status": "partially_verified",
+      "technical": {
+        "technical": false,
+        "by_category": false,
+        "by_keyword": []
+      },
+      "why_discovered": "空画像 → 无个性化 query；该候选来自上面那条 general_search"
+    },
+    {
+      "opportunity_id": "venture-ch-2027",
+      "title": "venture.ch 2027（瑞士创业竞赛）",
+      "zone": "worth_verifying",
+      "category": "entrepreneurship",
+      "explore_axis": [
+        "entrepreneurship"
+      ],
+      "origin": "general_search",
+      "source_family": null,
+      "query": "remote volunteer program open call 2027 anyone can join nonprofit global",
+      "verification_status": "partially_verified",
+      "technical": {
+        "technical": false,
+        "by_category": false,
+        "by_keyword": []
+      },
+      "why_discovered": "空画像 → 无个性化 query；该候选来自上面那条 general_search"
+    },
+    {
+      "opportunity_id": "baylor-new-venture-competition-2027",
+      "title": "Baylor New Venture Competition 2027（第一轮）",
+      "zone": "worth_verifying",
+      "category": "entrepreneurship",
+      "explore_axis": [
+        "entrepreneurship"
+      ],
+      "origin": "general_search",
+      "source_family": null,
+      "query": "remote volunteer program open call 2027 anyone can join nonprofit global",
+      "verification_status": "unverified",
+      "technical": {
+        "technical": false,
+        "by_category": false,
+        "by_keyword": []
+      },
+      "why_discovered": "空画像 → 无个性化 query；该候选来自上面那条 general_search"
+    },
+    {
+      "opportunity_id": "outreach360-virtual-volunteer-teacher",
+      "title": "Outreach360 Virtual Impact Program — 线上志愿英语教师",
+      "zone": "worth_verifying",
+      "category": "networking",
+      "explore_axis": [
+        "community",
+        "contribute",
+        "volunteer"
+      ],
+      "origin": "general_search",
+      "source_family": null,
+      "query": "remote volunteer program open call 2027 anyone can join nonprofit global",
+      "verification_status": "unverified",
+      "technical": {
+        "technical": false,
+        "by_category": false,
+        "by_keyword": []
+      },
+      "why_discovered": "空画像 → 无个性化 query；该候选来自上面那条 general_search"
+    }
+  ]
+}

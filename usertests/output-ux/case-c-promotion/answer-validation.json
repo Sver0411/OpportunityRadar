@@ -1,0 +1,286 @@
+{
+  "confidence": {
+    "level": "medium",
+    "note": "方向明确但仍有关键 Unknown → 用「从目前信息看…更值得先验证」的口气",
+    "unknown": [
+      "eligibility_known",
+      "financial_budget_known"
+    ],
+    "reasons": [
+      "资格可判定的候选仅 0/6"
+    ]
+  },
+  "main": [],
+  "worth_verifying": [
+    {
+      "opportunity_id": "todo-group-2027-steering-committee",
+      "title": "TODO Group 2027 Steering Committee（OSPO 社区治理席位）",
+      "organization": "TODO Group / The Linux Foundation",
+      "category": "open_source",
+      "official_url": null,
+      "participation": {
+        "family": "open_source",
+        "label": "Contribution prerequisites",
+        "verdict": "Unknown",
+        "note": "官方页没有写参与门槛；开源贡献通常要求账号 / CLA / issue 认领等前置"
+      },
+      "action": {
+        "label": "现在可以行动",
+        "reason": "可参与、证据完整、资源约束已知"
+      },
+      "why_fit": "页面明确不限制国籍",
+      "gap_filled": {
+        "gap": "ownership / 跨团队项目证据",
+        "type": "leadership",
+        "relevance": "supporting_gap",
+        "bridge_score": 72
+      },
+      "effort": "每周约 1 h",
+      "leaves_behind": "委员会任职记录（公开可查）、社区治理与共识工作经验、面向同行与项目负责人的公开资历",
+      "next_value": "官方写明可延伸到活动演讲、研究贡献与跨生态人脉",
+      "needs_confirmation": [
+        "页面要求 英文（会议与邮件列表均以英文进行），你的资料中未记录该语言，无法判断（缺失不等于不会）",
+        "资格条件未写明"
+      ],
+      "needs_confirmation_details": {
+        "uncertain_reasons_raw": [
+          "页面要求 英文（会议与邮件列表均以英文进行），画像中未记录该语言 → 无法判断（缺失不等于不会）"
+        ],
+        "note": "结构化原文仅供程序使用；展示用 needs_confirmation 的人话版本"
+      },
+      "present_fields": [
+        "why_fit",
+        "gap_filled",
+        "effort",
+        "leaves_behind",
+        "next_value"
+      ]
+    },
+    {
+      "opportunity_id": "ossf-tac-open-participation",
+      "title": "OpenSSF Technical Advisory Council — 公开参与（TAC 讨论对社区开放）",
+      "organization": "Open Source Security Foundation (OpenSSF)",
+      "category": "open_source",
+      "official_url": null,
+      "participation": {
+        "family": "open_source",
+        "label": "Contribution prerequisites",
+        "verdict": "Unknown",
+        "note": "官方页没有写参与门槛；开源贡献通常要求账号 / CLA / issue 认领等前置"
+      },
+      "action": {
+        "label": "现在可以行动",
+        "reason": "可参与、证据完整、资源约束已知"
+      },
+      "why_fit": "滚动招募，无固定截止日；页面明确不限制国籍",
+      "gap_filled": {
+        "gap": "公开影响力证据（演讲 / maintainer / 社区角色）",
+        "type": "public_reputation",
+        "relevance": "supporting_gap",
+        "bridge_score": 82
+      },
+      "effort": "每周约 1 h",
+      "leaves_behind": "公开的提议与讨论记录（GitHub issue / 会议纪要）、与 TAC 成员的持续协作关系、在公开治理流程中的发言记录",
+      "next_value": "可在同一生态内继续走向工作组成员/维护者",
+      "needs_confirmation": [
+        "页面要求 英文（邮件列表/会议），你的资料中未记录该语言，无法判断（缺失不等于不会）",
+        "资格条件未写明"
+      ],
+      "needs_confirmation_details": {
+        "uncertain_reasons_raw": [
+          "页面要求 英文（邮件列表/会议），画像中未记录该语言 → 无法判断（缺失不等于不会）"
+        ],
+        "note": "结构化原文仅供程序使用；展示用 needs_confirmation 的人话版本"
+      },
+      "present_fields": [
+        "why_fit",
+        "gap_filled",
+        "effort",
+        "leaves_behind",
+        "next_value"
+      ]
+    },
+    {
+      "opportunity_id": "pycon-lithuania-2027-cfp",
+      "title": "PyCon Lithuania 2027 — Call for Papers",
+      "organization": "PyCon Lithuania",
+      "category": "event",
+      "official_url": null,
+      "participation": {
+        "family": "event",
+        "label": "Eligibility needs confirmation",
+        "verdict": "Unknown",
+        "note": "官网未给出明确的报名开放声明，需要先向主办方确认"
+      },
+      "action": {
+        "label": "现在可以行动",
+        "reason": "可参与、证据完整、资源约束已知"
+      },
+      "why_fit": "页面明确不限制国籍",
+      "gap_filled": {
+        "gap": "公开影响力证据（演讲 / maintainer / 社区角色）",
+        "type": "public_reputation",
+        "relevance": "supporting_gap",
+        "bridge_score": 82
+      },
+      "effort": "每周约 2 h",
+      "leaves_behind": "公开演讲记录（会议日程与录像）、演讲者的公开资历、在技术会议上的可见度",
+      "next_value": "首次演讲成功后可用于后续会议的投稿资历",
+      "needs_confirmation": [
+        "页面要求 演讲可用英语或立陶宛语，你的资料中未记录该语言，无法判断（缺失不等于不会）",
+        "页面有专业要求，但你的资料未提供专业，无法判断",
+        "资格条件未写明"
+      ],
+      "needs_confirmation_details": {
+        "uncertain_reasons_raw": [
+          "页面要求 演讲可用英语或立陶宛语，画像中未记录该语言 → 无法判断（缺失不等于不会）",
+          "页面有专业要求，但画像未提供专业 → 无法判断"
+        ],
+        "note": "结构化原文仅供程序使用；展示用 needs_confirmation 的人话版本"
+      },
+      "present_fields": [
+        "why_fit",
+        "gap_filled",
+        "effort",
+        "leaves_behind",
+        "next_value"
+      ]
+    },
+    {
+      "opportunity_id": "acmp-2027-call-for-speakers",
+      "title": "ACMP 2027 Call for Speakers（变更管理专业协会）",
+      "organization": "Association of Change Management Professionals (ACMP)",
+      "category": "event",
+      "official_url": null,
+      "participation": {
+        "family": "event",
+        "label": "Eligibility needs confirmation",
+        "verdict": "Unknown",
+        "note": "官网未给出明确的报名开放声明，需要先向主办方确认"
+      },
+      "action": {
+        "label": "值得进一步核实",
+        "reason": "关键信息（官方来源/报名状态）还没核实完整"
+      },
+      "why_fit": "与你已说明的情况有交集",
+      "gap_filled": {},
+      "effort": "官方页未写明投入强度",
+      "leaves_behind": "公开演讲/线上分享记录、专业协会内的可见度",
+      "next_value": "",
+      "needs_confirmation": [
+        "verification_status:verified_official",
+        "evidence.application_status(status=explicit,source_url,verified_at)",
+        "页面有专业要求，但你的资料未提供专业，无法判断",
+        "资格条件未写明"
+      ],
+      "needs_confirmation_details": {
+        "uncertain_reasons_raw": [
+          "页面有专业要求，但画像未提供专业 → 无法判断"
+        ],
+        "note": "结构化原文仅供程序使用；展示用 needs_confirmation 的人话版本"
+      },
+      "present_fields": [
+        "why_fit",
+        "effort",
+        "leaves_behind"
+      ]
+    },
+    {
+      "opportunity_id": "opentelemetry-contributor-ladder",
+      "title": "OpenTelemetry 贡献者阶梯（contributor → member → maintainer）",
+      "organization": "OpenTelemetry (CNCF)",
+      "category": "open_source",
+      "official_url": null,
+      "participation": {
+        "family": "open_source",
+        "label": "Contribution prerequisites",
+        "verdict": "Unknown",
+        "note": "官方页没有写参与门槛；开源贡献通常要求账号 / CLA / issue 认领等前置"
+      },
+      "action": {
+        "label": "值得进一步核实",
+        "reason": "关键信息（官方来源/报名状态）还没核实完整"
+      },
+      "why_fit": "滚动招募，无固定截止日",
+      "gap_filled": {
+        "gap": "公开影响力证据（演讲 / maintainer / 社区角色）",
+        "type": "public_reputation",
+        "relevance": "supporting_gap",
+        "bridge_score": 75
+      },
+      "effort": "官方页未写明投入强度",
+      "leaves_behind": "公开的贡献记录（PR / review）、社区角色与可见度",
+      "next_value": "",
+      "needs_confirmation": [
+        "verification_status:verified_official",
+        "evidence.application_status(status=explicit,source_url,verified_at,top-level application_status（机会侧 open/rolling/closed/not_open/unknown）)",
+        "页面未写明任何硬性资格条件，也没有可判定的冲突项，无法判断（没写要求不等于大概率符合）",
+        "资格条件未写明"
+      ],
+      "needs_confirmation_details": {
+        "uncertain_reasons_raw": [
+          "页面未写明任何硬性资格条件，也没有可判定的冲突项 → 无法判断（没写要求不等于大概率符合）"
+        ],
+        "note": "结构化原文仅供程序使用；展示用 needs_confirmation 的人话版本"
+      },
+      "present_fields": [
+        "why_fit",
+        "gap_filled",
+        "effort",
+        "leaves_behind"
+      ]
+    }
+  ],
+  "excluded": [],
+  "self_directed": [],
+  "allocation": {
+    "mode": "quantitative",
+    "items": [
+      {
+        "level": "主线",
+        "opportunity_id": "todo-group-2027-steering-committee",
+        "title": "TODO Group 2027 Steering Committee（OSPO 社区治理席位）",
+        "hours": null
+      },
+      {
+        "level": "辅线",
+        "opportunity_id": "ossf-tac-open-participation",
+        "title": "OpenSSF Technical Advisory Council — 公开参与（TAC 讨论对社区开放）",
+        "hours": null
+      },
+      {
+        "level": "辅线",
+        "opportunity_id": "pycon-lithuania-2027-cfp",
+        "title": "PyCon Lithuania 2027 — Call for Papers",
+        "hours": null
+      },
+      {
+        "level": "辅线",
+        "opportunity_id": "acmp-2027-call-for-speakers",
+        "title": "ACMP 2027 Call for Speakers（变更管理专业协会）",
+        "hours": null
+      },
+      {
+        "level": "辅线",
+        "opportunity_id": "opentelemetry-contributor-ladder",
+        "title": "OpenTelemetry 贡献者阶梯（contributor → member → maintainer）",
+        "hours": null
+      }
+    ],
+    "total_hours": 0.0,
+    "note": "合计约 0.0h/周，与你给出的每周可用时间对齐"
+  },
+  "unknown": [
+    "eligibility_known",
+    "financial_budget_known"
+  ],
+  "length_budget": {
+    "main": 0,
+    "worth_verifying": 5,
+    "limit": 5,
+    "note": "3–5 个主要机会 + 1 个简短 Portfolio/下一步 + 必要的 Unknown；不要写成人生规划论文"
+  },
+  "violations": [],
+  "ok": true,
+  "leakage": []
+}

@@ -421,3 +421,23 @@ class TestWhyFitIsUserFacing(unittest.TestCase):
         # 人话版本仍要保留原意，且结构化原文另存
         self.assertTrue(any("master" in x for x in card["needs_confirmation"]))
         self.assertTrue(card["needs_confirmation_details"]["uncertain_reasons_raw"])
+
+
+class TestCommunityFamilyHasOnlyThreeLabels(unittest.TestCase):
+    """用户规定 Community/Mentoring 一组只有三个标签，不得自造第四个 "Unknown"。"""
+
+    def test_community_labels_are_the_three_specified(self):
+        labels = set(P.PARTICIPATION_WORDING["community"].values())
+        self.assertEqual(labels, {"Open to join", "Prerequisites apply",
+                                  "Invitation / selection required"})
+        self.assertNotIn("Unknown", labels)
+
+    def test_unjudgeable_community_item_is_informative(self):
+        w = P.participation_wording("networking", "Unknown", "open", "verified_official")
+        self.assertEqual(w["label"], "Prerequisites apply")
+        self.assertEqual(w["verdict"], "Unknown")   # 底层判定不变
+
+    def test_event_family_keeps_its_three_labels_too(self):
+        labels = set(P.PARTICIPATION_WORDING["event"].values())
+        self.assertEqual(labels, {"Registration open", "Eligibility needs confirmation",
+                                  "Not currently open"})

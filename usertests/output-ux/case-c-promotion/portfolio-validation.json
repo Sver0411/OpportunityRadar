@@ -1,0 +1,138 @@
+{
+  "budget_hours": 5.0,
+  "planned_hours": 4.0,
+  "resource_conflict": false,
+  "budget_unknown": false,
+  "items": [
+    {
+      "opportunity_id": "todo-group-2027-steering-committee",
+      "title": "TODO Group 2027 Steering Committee（OSPO 社区治理席位）",
+      "category": "open_source",
+      "zone": "worth_verifying",
+      "utility": "medium",
+      "match": 51,
+      "roles": [
+        "bridge",
+        "high_upside",
+        "low_cost",
+        "long_term"
+      ],
+      "primary_role": "bridge",
+      "weekly_hours": 1.0,
+      "hours_known": true,
+      "official_url": null
+    },
+    {
+      "opportunity_id": "ossf-tac-open-participation",
+      "title": "OpenSSF Technical Advisory Council — 公开参与（TAC 讨论对社区开放）",
+      "category": "open_source",
+      "zone": "worth_verifying",
+      "utility": "medium",
+      "match": 51,
+      "roles": [
+        "bridge",
+        "low_cost",
+        "long_term"
+      ],
+      "primary_role": "bridge",
+      "weekly_hours": 1.0,
+      "hours_known": true,
+      "official_url": null
+    },
+    {
+      "opportunity_id": "pycon-lithuania-2027-cfp",
+      "title": "PyCon Lithuania 2027 — Call for Papers",
+      "category": "event",
+      "zone": "worth_verifying",
+      "utility": "medium",
+      "match": 51,
+      "roles": [
+        "bridge",
+        "high_upside",
+        "low_cost",
+        "long_term"
+      ],
+      "primary_role": "bridge",
+      "weekly_hours": 2.0,
+      "hours_known": true,
+      "official_url": null
+    },
+    {
+      "opportunity_id": "opentelemetry-contributor-ladder",
+      "title": "OpenTelemetry 贡献者阶梯（contributor → member → maintainer）",
+      "category": "open_source",
+      "zone": "worth_verifying",
+      "utility": "medium",
+      "match": 50,
+      "roles": [
+        "bridge",
+        "high_upside",
+        "long_term"
+      ],
+      "primary_role": "bridge",
+      "weekly_hours": null,
+      "hours_known": false,
+      "official_url": null
+    },
+    {
+      "opportunity_id": "php-tek-2027-cfp",
+      "title": "PHP Tek 2027 — Call for Presentations",
+      "category": "event",
+      "zone": "worth_verifying",
+      "utility": "medium",
+      "match": 50,
+      "roles": [
+        "long_term"
+      ],
+      "primary_role": "long_term",
+      "weekly_hours": null,
+      "hours_known": false,
+      "official_url": null
+    },
+    {
+      "opportunity_id": "acmp-2027-call-for-speakers",
+      "title": "ACMP 2027 Call for Speakers（变更管理专业协会）",
+      "category": "event",
+      "zone": "worth_verifying",
+      "utility": "medium",
+      "match": 50,
+      "roles": [
+        "explore"
+      ],
+      "primary_role": "explore",
+      "weekly_hours": null,
+      "hours_known": false,
+      "official_url": null
+    }
+  ],
+  "dropped": [],
+  "roles_present": [
+    "bridge",
+    "high_upside",
+    "low_cost",
+    "long_term",
+    "explore"
+  ],
+  "diversity": {
+    "roles": 5,
+    "categories": 2
+  },
+  "unknown_hours_items": 3,
+  "alternatives": [
+    {
+      "if_priority": "升职 / 职业资本",
+      "combo": [
+        "todo-group-2027-steering-committee",
+        "ossf-tac-open-participation"
+      ]
+    },
+    {
+      "if_priority": "转方向 / 学习",
+      "combo": [
+        "todo-group-2027-steering-committee",
+        "ossf-tac-open-participation"
+      ]
+    }
+  ],
+  "note": "部分机会未写明每周投入，未计入总和（已在 unknown_hours_items 标注）"
+}

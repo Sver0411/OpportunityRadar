@@ -1,0 +1,224 @@
+[
+  {
+    "opportunity_id": "ossf-tac-open-participation",
+    "title": "OpenSSF Technical Advisory Council — 公开参与（TAC 讨论对社区开放）",
+    "category": "open_source",
+    "official_url": "https://github.com/ossf/tac",
+    "gap_coverage": "medium",
+    "time_to_evidence": {
+      "hours": 1.0,
+      "produces": [
+        "公开的提议与讨论记录（GitHub issue / 会议纪要）",
+        "与 TAC 成员的持续协作关系",
+        "在公开治理流程中的发言记录"
+      ],
+      "public_evidence": [
+        "公开的提议与讨论记录（GitHub issue / 会议纪要）"
+      ],
+      "strength": "strong",
+      "rationale": "产出可公开验证的成果"
+    },
+    "readiness": "minor_preparation",
+    "effort": {
+      "weekly_commitment": "1 h"
+    },
+    "cost": "free",
+    "future_optionality": "medium",
+    "evidence_complete": true,
+    "factors": {
+      "gap_coverage": 0.6,
+      "time_to_evidence": 1.0,
+      "readiness": 0.8,
+      "future_optionality": 0.6,
+      "evidence_quality": 1.0,
+      "effort_fit": 1.0,
+      "trust": 1.0
+    },
+    "score": 82,
+    "gap": "公开影响力证据（演讲 / maintainer / 社区角色）"
+  },
+  {
+    "opportunity_id": "pycon-lithuania-2027-cfp",
+    "title": "PyCon Lithuania 2027 — Call for Papers",
+    "category": "event",
+    "official_url": "https://pycon.lt/2027/cfp",
+    "gap_coverage": "medium",
+    "time_to_evidence": {
+      "hours": 2.0,
+      "produces": [
+        "公开演讲记录（会议日程与录像）",
+        "演讲者的公开资历",
+        "在技术会议上的可见度"
+      ],
+      "public_evidence": [
+        "公开演讲记录（会议日程与录像）",
+        "演讲者的公开资历"
+      ],
+      "strength": "strong",
+      "rationale": "产出可公开验证的成果"
+    },
+    "readiness": "minor_preparation",
+    "effort": {
+      "weekly_commitment": "2 h"
+    },
+    "cost": "free",
+    "future_optionality": "medium",
+    "evidence_complete": true,
+    "factors": {
+      "gap_coverage": 0.6,
+      "time_to_evidence": 1.0,
+      "readiness": 0.8,
+      "future_optionality": 0.6,
+      "evidence_quality": 1.0,
+      "effort_fit": 1.0,
+      "trust": 1.0
+    },
+    "score": 82,
+    "gap": "公开影响力证据（演讲 / maintainer / 社区角色）"
+  },
+  {
+    "opportunity_id": "opentelemetry-contributor-ladder",
+    "title": "OpenTelemetry 贡献者阶梯（contributor → member → maintainer）",
+    "category": "open_source",
+    "official_url": "https://opentelemetry.io/community/members/",
+    "gap_coverage": "medium",
+    "time_to_evidence": {
+      "hours": null,
+      "produces": [
+        "公开的贡献记录（PR / review）",
+        "社区角色与可见度"
+      ],
+      "public_evidence": [
+        "公开的贡献记录（PR / review）"
+      ],
+      "strength": "strong",
+      "rationale": "产出可公开验证的成果"
+    },
+    "readiness": "unknown",
+    "effort": null,
+    "cost": "free",
+    "future_optionality": "high",
+    "evidence_complete": false,
+    "factors": {
+      "gap_coverage": 0.6,
+      "time_to_evidence": 1.0,
+      "readiness": 0.5,
+      "future_optionality": 1.0,
+      "evidence_quality": 0.5,
+      "effort_fit": 1.0,
+      "trust": 0.8
+    },
+    "score": 75,
+    "gap": "公开影响力证据（演讲 / maintainer / 社区角色）"
+  },
+  {
+    "opportunity_id": "ossf-tac-open-participation",
+    "title": "OpenSSF Technical Advisory Council — 公开参与（TAC 讨论对社区开放）",
+    "category": "open_source",
+    "official_url": "https://github.com/ossf/tac",
+    "gap_coverage": "medium",
+    "time_to_evidence": {
+      "hours": 1.0,
+      "produces": [
+        "公开的提议与讨论记录（GitHub issue / 会议纪要）",
+        "与 TAC 成员的持续协作关系",
+        "在公开治理流程中的发言记录"
+      ],
+      "public_evidence": [
+        "公开的提议与讨论记录（GitHub issue / 会议纪要）"
+      ],
+      "strength": "strong",
+      "rationale": "产出可公开验证的成果"
+    },
+    "readiness": "minor_preparation",
+    "effort": {
+      "weekly_commitment": "1 h"
+    },
+    "cost": "free",
+    "future_optionality": "medium",
+    "evidence_complete": true,
+    "factors": {
+      "gap_coverage": 0.6,
+      "time_to_evidence": 1.0,
+      "readiness": 0.8,
+      "future_optionality": 0.6,
+      "evidence_quality": 1.0,
+      "effort_fit": 1.0,
+      "trust": 1.0
+    },
+    "score": 82,
+    "gap": "ownership / 跨团队项目证据"
+  },
+  {
+    "opportunity_id": "opentelemetry-contributor-ladder",
+    "title": "OpenTelemetry 贡献者阶梯（contributor → member → maintainer）",
+    "category": "open_source",
+    "official_url": "https://opentelemetry.io/community/members/",
+    "gap_coverage": "medium",
+    "time_to_evidence": {
+      "hours": null,
+      "produces": [
+        "公开的贡献记录（PR / review）",
+        "社区角色与可见度"
+      ],
+      "public_evidence": [
+        "公开的贡献记录（PR / review）"
+      ],
+      "strength": "strong",
+      "rationale": "产出可公开验证的成果"
+    },
+    "readiness": "unknown",
+    "effort": null,
+    "cost": "free",
+    "future_optionality": "high",
+    "evidence_complete": false,
+    "factors": {
+      "gap_coverage": 0.6,
+      "time_to_evidence": 1.0,
+      "readiness": 0.5,
+      "future_optionality": 1.0,
+      "evidence_quality": 0.5,
+      "effort_fit": 1.0,
+      "trust": 0.8
+    },
+    "score": 75,
+    "gap": "ownership / 跨团队项目证据"
+  },
+  {
+    "opportunity_id": "todo-group-2027-steering-committee",
+    "title": "TODO Group 2027 Steering Committee（OSPO 社区治理席位）",
+    "category": "open_source",
+    "official_url": "https://todogroup.org/blog/2026-09-11-sc-nominations-2027",
+    "gap_coverage": "medium",
+    "time_to_evidence": {
+      "hours": 1.0,
+      "produces": [
+        "委员会任职记录（公开可查）",
+        "社区治理与共识工作经验",
+        "面向同行与项目负责人的公开资历",
+        "跨基金会生态的人脉"
+      ],
+      "public_evidence": [],
+      "strength": "weak",
+      "rationale": "未写明可展示产出"
+    },
+    "readiness": "minor_preparation",
+    "effort": {
+      "weekly_commitment": "1 h"
+    },
+    "cost": "free",
+    "future_optionality": "high",
+    "evidence_complete": true,
+    "factors": {
+      "gap_coverage": 0.6,
+      "time_to_evidence": 0.35,
+      "readiness": 0.8,
+      "future_optionality": 1.0,
+      "evidence_quality": 1.0,
+      "effort_fit": 1.0,
+      "trust": 1.0
+    },
+    "score": 72,
+    "gap": "ownership / 跨团队项目证据"
+  }
+]

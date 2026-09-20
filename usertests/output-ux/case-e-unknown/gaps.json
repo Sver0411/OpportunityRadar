@@ -1,1 +1,34 @@
-[]
+[
+  {
+    "id": "gap-skill-english",
+    "type": "skill",
+    "name": "English",
+    "source": "requirements",
+    "sample": "本轮 7 个目标机会中 1 个要求「English」",
+    "opportunity_ids": [
+      "outreach360-virtual-volunteer-teacher"
+    ],
+    "priority": "medium",
+    "logistics_prerequisites": [
+      "申请表单"
+    ],
+    "preparation_items": [
+      "剧照",
+      "可能需提供 NRIC / 学生证核验",
+      "在 UVP 平台创建志愿者档案（约 45 分钟）",
+      "导演与作者简介",
+      "梗概",
+      "观影拷贝或预览链接",
+      "诗文本（德/英）"
+    ],
+    "eligibility_constraints": [
+      "Singaporeans or PRs（非新加坡人/PR 可申请，录取取决于导师容量）",
+      "open to all nationalities"
+    ],
+    "relevance": {
+      "relevance": "contextual_gap",
+      "direction": "explore",
+      "reason": "用户没有明确方向，缺口只能作为探索参考（不产生 core_gap）"
+    }
+  }
+]

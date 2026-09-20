@@ -271,9 +271,11 @@ PARTICIPATION_WORDING = {
               "Unknown": "Eligibility needs confirmation",
               "Probably Ineligible": "Eligibility needs confirmation",
               "Ineligible": "Not currently open"},
+    # 用户规定 Community/Mentoring 只有三个标签（无 "Unknown"）→ 无法判定时用中间的
+    # "Prerequisites apply"，比直接写 "Unknown" 更有信息量且不越界。
     "community": {"Eligible": "Open to join",
                   "Probably Eligible": "Prerequisites apply",
-                  "Unknown": "Unknown",
+                  "Unknown": "Prerequisites apply",
                   "Probably Ineligible": "Invitation / selection required",
                   "Ineligible": "Invitation / selection required"},
 }
@@ -293,7 +295,8 @@ def participation_family(category) -> str:
 
 #: 页面本身没核实清楚时，各 family 用的"待确认"说法
 UNVERIFIED_LABEL = {"standard": "Unknown", "open_source": "Contribution prerequisites",
-                    "event": "Eligibility needs confirmation", "community": "Unknown"}
+                    "event": "Eligibility needs confirmation",
+                    "community": "Prerequisites apply"}
 
 #: 这些 verification_status 不允许给出肯定式说法
 UNCONFIRMED_VERIFICATION = ("unverified", "conflicting", "expired")

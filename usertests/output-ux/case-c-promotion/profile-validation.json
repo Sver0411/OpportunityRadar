@@ -1,0 +1,44 @@
+{
+  "_note": "Persona C 画像 —— 只来自本轮新 prompt。**不继承**上一轮 C 的 base 新加坡 / 后端 / 云原生（那来自另一句 prompt）。",
+  "_session": "C",
+  "user_input": "我工作三年了，现在不想跳槽，但感觉成长有点慢，每周大概只能拿出 5 个小时，我想以后更容易升 Senior，有什么值得做？",
+  "profile_version": 1,
+  "updated_at": "2026-09-21",
+  "life_stage": ["working"],
+  "career_stage": ["early_career"],
+  "years_experience": 3,
+  "education": {
+    "degree": null,
+    "major": null,
+    "school_country": null,
+    "note": "用户未提学历与专业"
+  },
+  "skills": [],
+  "_skills_note": "用户**没有说**任何技术栈；不得继承 ESP32 / Python / embedded / 后端。",
+  "interests": [],
+  "languages": [],
+  "experience": {
+    "research": null,
+    "open_source": null,
+    "portfolio": null,
+    "note": "用户只说『感觉成长有点慢』，未说做过什么"
+  },
+  "career_state": {
+    "promotion_target": "Senior",
+    "switch_intent": "low",
+    "_source": "user_stated",
+    "note": "『不想跳槽』+『想以后更容易升 Senior』→ 晋升意图明确、跳槽意图低"
+  },
+  "constraints": {
+    "preferred_country": [],
+    "remote": null,
+    "budget": null,
+    "weekly_time": "5",
+    "available_period": null
+  },
+  "goals": [
+    {"type": "career", "priority": "high", "note": "更容易升 Senior（用户原话）"}
+  ],
+  "nationality": null,
+  "_unknown_must_affect_output": ["所在地", "技术栈", "学历", "是否有开源贡献经历", "预算"]
+}

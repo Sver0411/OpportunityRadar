@@ -1,0 +1,256 @@
+{
+  "_note": "来自 usertests/case-e-unknown/record-si.json 的已核验候选，归一化为 opportunity 形状后重新过真实 gate。",
+  "opportunities": [
+    {
+      "id": "cylab-security-academy-picogym-cmu",
+      "title": "CyLab Security Academy / picoGym (CMU)",
+      "organization": "Carnegie Mellon University",
+      "primary_category": "skill_development",
+      "official_url": "https://picoctf.org/",
+      "application_status": "open",
+      "deadline": null,
+      "deadline_type": "evergreen",
+      "verification_status": "verified_official",
+      "evidence": {
+        "application_status": {
+          "status": "explicit",
+          "source_url": "https://picoctf.org/",
+          "verified_at": "2026-09-20",
+          "evidence_summary": "官方页当日可读：已更名为 CyLab Security Academy，CMU 免费网络安全平台，登录入口开放、练习区(picoGym)随时可做"
+        }
+      },
+      "trust_tier": "A",
+      "effort": {
+        "weekly_commitment": "2-5 h"
+      },
+      "produces": [],
+      "required_materials": [],
+      "skills_required": [],
+      "last_verified": "2026-09-20",
+      "layer": "exploit",
+      "notes": []
+    },
+    {
+      "id": "picoctf-annual-competition-next-edition",
+      "title": "picoCTF annual competition (next edition)",
+      "organization": "Carnegie Mellon University",
+      "primary_category": "competition",
+      "official_url": "https://picoctf.org/",
+      "application_status": null,
+      "deadline": null,
+      "deadline_type": "recurring",
+      "verification_status": "partially_verified",
+      "evidence": {
+        "application_status": {
+          "status": "missing",
+          "evidence_summary": "注册窗口在赛前一个多月才开，本轮未重新核验（沿用上一轮 discovery）"
+        }
+      },
+      "trust_tier": "C",
+      "effort": {
+        "weekly_commitment": "10-15 h (10 天赛期)"
+      },
+      "produces": [],
+      "required_materials": [],
+      "skills_required": [],
+      "last_verified": "2026-09-20",
+      "layer": "exploit",
+      "notes": []
+    },
+    {
+      "id": "lfx-mentorship-next-term-2027",
+      "title": "LFX Mentorship (next term 2027)",
+      "organization": "Linux Foundation / CNCF",
+      "primary_category": "open_source",
+      "official_url": "https://mentorship.lfx.linuxfoundation.org/",
+      "application_status": null,
+      "deadline": null,
+      "deadline_type": "recurring",
+      "verification_status": "partially_verified",
+      "evidence": {
+        "application_status": {
+          "status": "missing",
+          "evidence_summary": "一年三期(1/5/8月)，本轮未重新 fetch 核验，沿用上一轮 discovery"
+        }
+      },
+      "trust_tier": "C",
+      "effort": {
+        "weekly_commitment": "~30 h (12 周)"
+      },
+      "produces": [],
+      "required_materials": [],
+      "skills_required": [],
+      "last_verified": "2026-09-20",
+      "layer": "exploit",
+      "notes": []
+    },
+    {
+      "id": "google-summer-of-code-2027",
+      "title": "Google Summer of Code 2027",
+      "organization": "Google",
+      "primary_category": "open_source",
+      "official_url": "https://summerofcode.withgoogle.com/",
+      "application_status": null,
+      "deadline": null,
+      "deadline_type": "recurring",
+      "verification_status": "unverified",
+      "evidence": {
+        "application_status": {
+          "status": "missing",
+          "evidence_summary": "本轮未核验，沿用上一轮 discovery"
+        }
+      },
+      "trust_tier": "C",
+      "effort": {
+        "weekly_commitment": "full-time (12 周)"
+      },
+      "produces": [],
+      "required_materials": [],
+      "skills_required": [],
+      "last_verified": "2026-09-20",
+      "layer": "exploit",
+      "notes": []
+    },
+    {
+      "id": "recurse-center-self-directed-programming-retreat",
+      "title": "Recurse Center (self-directed programming retreat)",
+      "organization": "Recurse Center",
+      "primary_category": "skill_development",
+      "official_url": "https://www.recurse.com/",
+      "application_status": null,
+      "deadline": null,
+      "deadline_type": "evergreen",
+      "verification_status": "unverified",
+      "evidence": {
+        "application_status": {
+          "status": "missing",
+          "evidence_summary": "本轮未核验，沿用上一轮 discovery"
+        }
+      },
+      "trust_tier": "C",
+      "effort": {
+        "weekly_commitment": "full-time (6/12 周)"
+      },
+      "produces": [],
+      "required_materials": [],
+      "skills_required": [],
+      "last_verified": "2026-09-20",
+      "layer": "exploit",
+      "notes": []
+    },
+    {
+      "id": "outreachy-next-cohort",
+      "title": "Outreachy (next cohort)",
+      "organization": "Software Freedom Conservancy",
+      "primary_category": "open_source",
+      "official_url": "https://www.outreachy.org/",
+      "application_status": null,
+      "deadline": null,
+      "deadline_type": "recurring",
+      "verification_status": "unverified",
+      "evidence": {
+        "application_status": {
+          "status": "missing",
+          "evidence_summary": "一年两期，本轮未核验，沿用上一轮 discovery"
+        }
+      },
+      "trust_tier": "C",
+      "effort": {
+        "weekly_commitment": "full-time (3 个月)"
+      },
+      "produces": [],
+      "required_materials": [],
+      "skills_required": [],
+      "last_verified": "2026-09-20",
+      "layer": "exploit",
+      "notes": []
+    },
+    {
+      "id": "openssf-mentorship-program-security-specific-pai",
+      "title": "OpenSSF Mentorship Program (security-specific, paid)",
+      "organization": "Open Source Security Foundation",
+      "primary_category": "open_source",
+      "official_url": "https://openssf.org/",
+      "application_status": "unknown",
+      "deadline": null,
+      "deadline_type": "recurring",
+      "verification_status": "verified_official",
+      "evidence": {
+        "application_status": {
+          "status": "partial",
+          "source_url": "https://openssf.org/podcast/2026/03/17/whats-in-the-soss-podcast-56-s3e8-empowering-new-maintainers-inside-the-openssf-mentorship-program",
+          "verified_at": "2026-09-20",
+          "evidence_summary": "openssf.org 官方播客确认 2026 周期 3/24 开、4/12 截止、6/1-8/21 进行，带薪、面向学生与代表性不足群体；2027 周期日期未公布"
+        }
+      },
+      "trust_tier": "A",
+      "effort": {
+        "weekly_commitment": "~30 h (12 周)"
+      },
+      "produces": [],
+      "required_materials": [],
+      "skills_required": [],
+      "last_verified": "2026-09-20",
+      "layer": "exploit",
+      "notes": [],
+      "_source_family": "mentorship_program"
+    },
+    {
+      "id": "owasp-contributor-projects-juice-shop-blt-pygoat",
+      "title": "OWASP contributor projects (Juice Shop / BLT / PyGoat)",
+      "organization": "OWASP Foundation",
+      "primary_category": "open_source",
+      "official_url": "https://owasp.org/",
+      "application_status": "unknown",
+      "deadline": null,
+      "deadline_type": "rolling",
+      "verification_status": "verified_official",
+      "evidence": {
+        "application_status": {
+          "status": "explicit",
+          "source_url": "https://owasp.org/",
+          "verified_at": "2026-09-20",
+          "evidence_summary": "owasp.org 官方页确认免费、多个项目(Juice Shop/BLT/PyGoat/Nettacker)持续接受贡献，贡献入口常驻开放、无固定截止"
+        }
+      },
+      "trust_tier": "A",
+      "effort": {
+        "weekly_commitment": "self-paced"
+      },
+      "produces": [],
+      "required_materials": [],
+      "skills_required": [],
+      "last_verified": "2026-09-20",
+      "layer": "exploit",
+      "notes": [],
+      "_source_family": "contributor_guide"
+    },
+    {
+      "id": "bug-bounty-vdp-hackerone-dod-vdp",
+      "title": "Bug bounty / VDP (HackerOne, DoD VDP)",
+      "organization": "HackerOne / U.S. Department of Defense",
+      "primary_category": "open_source",
+      "official_url": "https://hackerone.com/",
+      "application_status": "unknown",
+      "deadline": null,
+      "deadline_type": "rolling",
+      "verification_status": "unverified",
+      "evidence": {
+        "application_status": {
+          "status": "missing",
+          "evidence_summary": "平台型入口，本轮未单独 fetch 核验；作为 adjacent_discovery 记录的未知未知"
+        }
+      },
+      "trust_tier": "C",
+      "effort": {
+        "weekly_commitment": "self-paced"
+      },
+      "produces": [],
+      "required_materials": [],
+      "skills_required": [],
+      "last_verified": "2026-09-20",
+      "layer": "exploit",
+      "notes": []
+    }
+  ]
+}

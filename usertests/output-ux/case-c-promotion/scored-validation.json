@@ -1,0 +1,609 @@
+{
+  "zones": {
+    "recommended_now": 0,
+    "worth_verifying": 6,
+    "excluded": 0
+  },
+  "results": [
+    {
+      "id": "todo-group-2027-steering-committee",
+      "title": "TODO Group 2027 Steering Committee（OSPO 社区治理席位）",
+      "organization": "TODO Group / The Linux Foundation",
+      "primary_category": "open_source",
+      "layer": "exploit",
+      "components": {
+        "eligibility": 55,
+        "goal_fit": 15.0,
+        "skill_fit": 50.0,
+        "interest_fit": 55.0,
+        "location_fit": 60.0,
+        "value_fit": 55.0,
+        "trust": 100,
+        "novelty": 80.0
+      },
+      "eligibility_verdict": "Unknown",
+      "eligibility_source": "hard_constraint",
+      "eligibility_kind": "missing_profile",
+      "eligibility_reasons": [
+        "页面明确不限制国籍",
+        "页面要求 英文（会议与邮件列表均以英文进行），画像中未记录该语言 → 无法判断（缺失不等于不会）"
+      ],
+      "match_score": 51,
+      "match_band": "Low",
+      "urgency": 68.0,
+      "days_remaining": 29,
+      "deadline_type": "fixed",
+      "deadline_source": "field+parse",
+      "freshness": "open",
+      "freshness_reason": "截止日 2026-10-20（还有 29 天）",
+      "effort": {
+        "weekly_commitment": "1 h"
+      },
+      "time_commitment": "每月 1 小时会议，合计通常每月 2-4 小时",
+      "time_to_value": "months",
+      "future_optionality": {
+        "level": "high",
+        "reason": "官方写明可延伸到活动演讲、研究贡献与跨生态人脉"
+      },
+      "outcomes": {
+        "reputation": "high",
+        "network": "high",
+        "management": "medium",
+        "skill": "low"
+      },
+      "produces": [
+        "委员会任职记录（公开可查）",
+        "社区治理与共识工作经验",
+        "面向同行与项目负责人的公开资历",
+        "跨基金会生态的人脉"
+      ],
+      "small_bet_type": null,
+      "evidence_complete": true,
+      "evidence_missing": [],
+      "source_freshness": "current",
+      "evidence_verified_at": "2026-09-21",
+      "participation_open": true,
+      "actionable": true,
+      "utility": "medium",
+      "utility_reasons": [
+        "值得考虑，但有一项成本或不确定性需要先确认",
+        "需补：候选人申请表"
+      ],
+      "readiness": "minor_preparation",
+      "readiness_detail": {
+        "status": "minor_preparation",
+        "ready_items": [],
+        "missing_items": [
+          "需准备材料：候选人申请表"
+        ],
+        "blockers": [],
+        "estimated_preparation": "几小时到 1–2 天",
+        "notes": []
+      },
+      "conflicts": [],
+      "zone": "worth_verifying",
+      "demotion": {
+        "code": "relevance_below_threshold",
+        "kind": "relevance",
+        "detail": "match/utility 未达门槛"
+      },
+      "priority_score": 54,
+      "priority_band": "Low",
+      "flags": [],
+      "warnings": [
+        "存在 inferred/unknown 证据：乐观结论封顶在 Probably Eligible，不能给出 Eligible"
+      ],
+      "reasons": {
+        "goal_fit": "与声明的目标不重合",
+        "skill_fit": "画像未提供技能，按中性处理",
+        "interest_fit": "画像未提供兴趣",
+        "location_fit": "画像未提供地区约束",
+        "value_fit": "尚未评估价值维度",
+        "trust": "来源 Tier A，3 项关键事实已官方确认",
+        "novelty": "无本地状态，按新机会处理"
+      }
+    },
+    {
+      "id": "ossf-tac-open-participation",
+      "title": "OpenSSF Technical Advisory Council — 公开参与（TAC 讨论对社区开放）",
+      "organization": "Open Source Security Foundation (OpenSSF)",
+      "primary_category": "open_source",
+      "layer": "exploit",
+      "components": {
+        "eligibility": 55,
+        "goal_fit": 15.0,
+        "skill_fit": 50.0,
+        "interest_fit": 55.0,
+        "location_fit": 60.0,
+        "value_fit": 55.0,
+        "trust": 100,
+        "novelty": 80.0
+      },
+      "eligibility_verdict": "Unknown",
+      "eligibility_source": "hard_constraint",
+      "eligibility_kind": "missing_profile",
+      "eligibility_reasons": [
+        "滚动招募，无固定截止日",
+        "页面明确不限制国籍",
+        "页面要求 英文（邮件列表/会议），画像中未记录该语言 → 无法判断（缺失不等于不会）"
+      ],
+      "match_score": 51,
+      "match_band": "Low",
+      "urgency": null,
+      "days_remaining": null,
+      "deadline_type": "rolling",
+      "deadline_source": "field",
+      "freshness": "likely_open",
+      "freshness_reason": "deadline_type=rolling（无固定/弹性截止）",
+      "effort": {
+        "weekly_commitment": "1 h"
+      },
+      "time_commitment": "会议与邮件列表参与，强度自定",
+      "time_to_value": "weeks",
+      "future_optionality": {
+        "level": "medium",
+        "reason": "可在同一生态内继续走向工作组成员/维护者"
+      },
+      "outcomes": {
+        "reputation": "medium",
+        "network": "high",
+        "skill": "low"
+      },
+      "produces": [
+        "公开的提议与讨论记录（GitHub issue / 会议纪要）",
+        "与 TAC 成员的持续协作关系",
+        "在公开治理流程中的发言记录"
+      ],
+      "small_bet_type": null,
+      "evidence_complete": true,
+      "evidence_missing": [],
+      "source_freshness": "unknown",
+      "evidence_verified_at": "2026-09-21",
+      "participation_open": true,
+      "actionable": true,
+      "utility": "medium",
+      "utility_reasons": [
+        "值得考虑，但有一项成本或不确定性需要先确认",
+        "需补：邮件列表订阅、Slack 邀请链接"
+      ],
+      "readiness": "minor_preparation",
+      "readiness_detail": {
+        "status": "minor_preparation",
+        "ready_items": [],
+        "missing_items": [
+          "需准备材料：邮件列表订阅",
+          "需准备材料：Slack 邀请链接"
+        ],
+        "blockers": [],
+        "estimated_preparation": "几小时到 1–2 天",
+        "notes": []
+      },
+      "conflicts": [],
+      "zone": "worth_verifying",
+      "demotion": {
+        "code": "relevance_below_threshold",
+        "kind": "relevance",
+        "detail": "match/utility 未达门槛"
+      },
+      "priority_score": 51,
+      "priority_band": "Low",
+      "flags": [
+        "rolling"
+      ],
+      "warnings": [
+        "存在 inferred/unknown 证据：乐观结论封顶在 Probably Eligible，不能给出 Eligible"
+      ],
+      "reasons": {
+        "goal_fit": "与声明的目标不重合",
+        "skill_fit": "画像未提供技能，按中性处理",
+        "interest_fit": "画像未提供兴趣",
+        "location_fit": "画像未提供地区约束",
+        "value_fit": "尚未评估价值维度",
+        "trust": "来源 Tier A，3 项关键事实已官方确认",
+        "novelty": "无本地状态，按新机会处理"
+      }
+    },
+    {
+      "id": "pycon-lithuania-2027-cfp",
+      "title": "PyCon Lithuania 2027 — Call for Papers",
+      "organization": "PyCon Lithuania",
+      "primary_category": "event",
+      "layer": "adjacent",
+      "components": {
+        "eligibility": 55,
+        "goal_fit": 15.0,
+        "skill_fit": 50.0,
+        "interest_fit": 55.0,
+        "location_fit": 60.0,
+        "value_fit": 55.0,
+        "trust": 100,
+        "novelty": 80.0
+      },
+      "eligibility_verdict": "Unknown",
+      "eligibility_source": "hard_constraint",
+      "eligibility_kind": "missing_profile",
+      "eligibility_reasons": [
+        "页面明确不限制国籍",
+        "页面要求 演讲可用英语或立陶宛语，画像中未记录该语言 → 无法判断（缺失不等于不会）",
+        "页面有专业要求，但画像未提供专业 → 无法判断"
+      ],
+      "match_score": 51,
+      "match_band": "Low",
+      "urgency": 35.0,
+      "days_remaining": 114,
+      "deadline_type": "fixed",
+      "deadline_source": "field+parse",
+      "freshness": "open",
+      "freshness_reason": "截止日 2027-01-13（还有 114 天）",
+      "effort": {
+        "weekly_commitment": "2 h"
+      },
+      "time_commitment": "准备一个 30 分钟演讲",
+      "time_to_value": "months",
+      "future_optionality": {
+        "level": "medium",
+        "reason": "首次演讲成功后可用于后续会议的投稿资历"
+      },
+      "outcomes": {
+        "reputation": "high",
+        "network": "medium",
+        "skill": "medium"
+      },
+      "produces": [
+        "公开演讲记录（会议日程与录像）",
+        "演讲者的公开资历",
+        "在技术会议上的可见度"
+      ],
+      "small_bet_type": null,
+      "evidence_complete": true,
+      "evidence_missing": [],
+      "source_freshness": "current",
+      "evidence_verified_at": "2026-09-21",
+      "participation_open": true,
+      "actionable": true,
+      "utility": "medium",
+      "utility_reasons": [
+        "值得考虑，但有一项成本或不确定性需要先确认",
+        "需补：标题、摘要、演讲者简介"
+      ],
+      "readiness": "minor_preparation",
+      "readiness_detail": {
+        "status": "minor_preparation",
+        "ready_items": [],
+        "missing_items": [
+          "需准备材料：标题、摘要、演讲者简介"
+        ],
+        "blockers": [],
+        "estimated_preparation": "几小时到 1–2 天",
+        "notes": []
+      },
+      "conflicts": [],
+      "zone": "worth_verifying",
+      "demotion": {
+        "code": "relevance_below_threshold",
+        "kind": "relevance",
+        "detail": "match/utility 未达门槛"
+      },
+      "priority_score": 49,
+      "priority_band": "Low",
+      "flags": [],
+      "warnings": [
+        "存在 inferred/unknown 证据：乐观结论封顶在 Probably Eligible，不能给出 Eligible"
+      ],
+      "reasons": {
+        "goal_fit": "与声明的目标不重合",
+        "skill_fit": "画像未提供技能，按中性处理",
+        "interest_fit": "画像未提供兴趣",
+        "location_fit": "画像未提供地区约束",
+        "value_fit": "尚未评估价值维度",
+        "trust": "来源 Tier A，3 项关键事实已官方确认",
+        "novelty": "无本地状态，按新机会处理"
+      }
+    },
+    {
+      "id": "acmp-2027-call-for-speakers",
+      "title": "ACMP 2027 Call for Speakers（变更管理专业协会）",
+      "organization": "Association of Change Management Professionals (ACMP)",
+      "primary_category": "event",
+      "layer": "explore",
+      "components": {
+        "eligibility": 55,
+        "goal_fit": 15.0,
+        "skill_fit": 50.0,
+        "interest_fit": 55.0,
+        "location_fit": 60.0,
+        "value_fit": 55.0,
+        "trust": 75,
+        "novelty": 80.0
+      },
+      "eligibility_verdict": "Unknown",
+      "eligibility_source": "hard_constraint",
+      "eligibility_kind": "missing_profile",
+      "eligibility_reasons": [
+        "页面有专业要求，但画像未提供专业 → 无法判断"
+      ],
+      "match_score": 50,
+      "match_band": "Low",
+      "urgency": 82.0,
+      "days_remaining": 9,
+      "deadline_type": "fixed",
+      "deadline_source": "field+parse",
+      "freshness": "open",
+      "freshness_reason": "截止日 2026-09-30（还有 9 天）",
+      "effort": null,
+      "time_commitment": null,
+      "time_to_value": null,
+      "future_optionality": {
+        "level": "low"
+      },
+      "outcomes": {
+        "reputation": "medium",
+        "network": "medium"
+      },
+      "produces": [
+        "公开演讲/线上分享记录",
+        "专业协会内的可见度"
+      ],
+      "small_bet_type": null,
+      "evidence_complete": false,
+      "evidence_missing": [
+        "verification_status:verified_official",
+        "evidence.application_status(status=explicit,source_url,verified_at)"
+      ],
+      "source_freshness": "current",
+      "evidence_verified_at": null,
+      "participation_open": false,
+      "actionable": true,
+      "utility": "medium",
+      "utility_reasons": [
+        "值得考虑，但有一项成本或不确定性需要先确认"
+      ],
+      "readiness": "unknown",
+      "readiness_detail": {
+        "status": "unknown",
+        "ready_items": [],
+        "missing_items": [],
+        "blockers": [],
+        "estimated_preparation": "无法估计",
+        "notes": [
+          "页面未写明前置要求，且画像缺少可比对信息 → 准备度未知"
+        ]
+      },
+      "conflicts": [],
+      "zone": "worth_verifying",
+      "demotion": {
+        "code": "verification_not_attempted",
+        "kind": "process",
+        "detail": "本轮没有去核实官方页面（预算/顺序问题，下一轮可补）"
+      },
+      "priority_score": 47,
+      "priority_band": "Low",
+      "flags": [
+        "urgent",
+        "unverified",
+        "readiness_unknown",
+        "evidence_incomplete",
+        "language_unspecified",
+        "provenance_unavailable"
+      ],
+      "warnings": [
+        "未找到官方确认来源",
+        "证据不完整：缺少 verification_status:verified_official、evidence.application_status(status=explicit,source_url,verified_at)（不得进入 Recommended now）",
+        "页面未写明语言要求"
+      ],
+      "reasons": {
+        "goal_fit": "与声明的目标不重合",
+        "skill_fit": "画像未提供技能，按中性处理",
+        "interest_fit": "画像未提供兴趣",
+        "location_fit": "画像未提供地区约束",
+        "value_fit": "尚未评估价值维度",
+        "trust": "来源 Tier B，未获官方确认",
+        "novelty": "无本地状态，按新机会处理"
+      }
+    },
+    {
+      "id": "opentelemetry-contributor-ladder",
+      "title": "OpenTelemetry 贡献者阶梯（contributor → member → maintainer）",
+      "organization": "OpenTelemetry (CNCF)",
+      "primary_category": "open_source",
+      "layer": "adjacent",
+      "components": {
+        "eligibility": 55,
+        "goal_fit": 15.0,
+        "skill_fit": 50.0,
+        "interest_fit": 55.0,
+        "location_fit": 60.0,
+        "value_fit": 55.0,
+        "trust": 75,
+        "novelty": 80.0
+      },
+      "eligibility_verdict": "Unknown",
+      "eligibility_source": "hard_constraint",
+      "eligibility_kind": "missing_source",
+      "eligibility_reasons": [
+        "滚动招募，无固定截止日",
+        "页面未写明任何硬性资格条件，也没有可判定的冲突项 → 无法判断（没写要求不等于大概率符合）"
+      ],
+      "match_score": 50,
+      "match_band": "Low",
+      "urgency": null,
+      "days_remaining": null,
+      "deadline_type": "rolling",
+      "deadline_source": "field",
+      "freshness": "likely_open",
+      "freshness_reason": "deadline_type=rolling（无固定/弹性截止）",
+      "effort": null,
+      "time_commitment": null,
+      "time_to_value": null,
+      "future_optionality": {
+        "level": "high"
+      },
+      "outcomes": {
+        "reputation": "medium",
+        "skill": "medium",
+        "network": "medium"
+      },
+      "produces": [
+        "公开的贡献记录（PR / review）",
+        "社区角色与可见度"
+      ],
+      "small_bet_type": null,
+      "evidence_complete": false,
+      "evidence_missing": [
+        "verification_status:verified_official",
+        "evidence.application_status(status=explicit,source_url,verified_at,top-level application_status（机会侧 open/rolling/closed/not_open/unknown）)"
+      ],
+      "source_freshness": "unknown",
+      "evidence_verified_at": null,
+      "participation_open": false,
+      "actionable": true,
+      "utility": "medium",
+      "utility_reasons": [
+        "值得考虑，但有一项成本或不确定性需要先确认"
+      ],
+      "readiness": "unknown",
+      "readiness_detail": {
+        "status": "unknown",
+        "ready_items": [],
+        "missing_items": [],
+        "blockers": [],
+        "estimated_preparation": "无法估计",
+        "notes": [
+          "页面未写明前置要求，且画像缺少可比对信息 → 准备度未知"
+        ]
+      },
+      "conflicts": [],
+      "zone": "worth_verifying",
+      "demotion": {
+        "code": "verification_not_attempted",
+        "kind": "process",
+        "detail": "本轮没有去核实官方页面（预算/顺序问题，下一轮可补）"
+      },
+      "priority_score": 42,
+      "priority_band": "Low",
+      "flags": [
+        "rolling",
+        "unverified",
+        "readiness_unknown",
+        "evidence_incomplete",
+        "language_unspecified",
+        "provenance_unavailable"
+      ],
+      "warnings": [
+        "未找到官方确认来源",
+        "证据不完整：缺少 verification_status:verified_official、evidence.application_status(status=explicit,source_url,verified_at,top-level application_status（机会侧 open/rolling/closed/not_open/unknown）)（不得进入 Recommended now）",
+        "页面未写明语言要求"
+      ],
+      "reasons": {
+        "goal_fit": "与声明的目标不重合",
+        "skill_fit": "画像未提供技能，按中性处理",
+        "interest_fit": "画像未提供兴趣",
+        "location_fit": "画像未提供地区约束",
+        "value_fit": "尚未评估价值维度",
+        "trust": "来源 Tier B，未获官方确认",
+        "novelty": "无本地状态，按新机会处理"
+      }
+    },
+    {
+      "id": "php-tek-2027-cfp",
+      "title": "PHP Tek 2027 — Call for Presentations",
+      "organization": "PHP Tek",
+      "primary_category": "event",
+      "layer": "adjacent",
+      "components": {
+        "eligibility": 55,
+        "goal_fit": 15.0,
+        "skill_fit": 50.0,
+        "interest_fit": 55.0,
+        "location_fit": 60.0,
+        "value_fit": 55.0,
+        "trust": 75,
+        "novelty": 80.0
+      },
+      "eligibility_verdict": "Unknown",
+      "eligibility_source": "hard_constraint",
+      "eligibility_kind": "missing_profile",
+      "eligibility_reasons": [
+        "页面要求 英文，画像中未记录该语言 → 无法判断（缺失不等于不会）",
+        "页面有专业要求，但画像未提供专业 → 无法判断"
+      ],
+      "match_score": 50,
+      "match_band": "Low",
+      "urgency": null,
+      "days_remaining": null,
+      "deadline_type": "unknown",
+      "deadline_source": "field",
+      "freshness": "future",
+      "freshness_reason": "周期在 2027 年（未来周期，申请通常尚未开放）",
+      "effort": null,
+      "time_commitment": null,
+      "time_to_value": "months",
+      "future_optionality": {
+        "level": "low"
+      },
+      "outcomes": {
+        "reputation": "medium",
+        "network": "medium"
+      },
+      "produces": [
+        "公开演讲记录",
+        "差旅与住宿由主办方承担",
+        "会议门票"
+      ],
+      "small_bet_type": null,
+      "evidence_complete": false,
+      "evidence_missing": [
+        "verification_status:verified_official",
+        "evidence.application_status(status=explicit,source_url,verified_at,top-level application_status（机会侧 open/rolling/closed/not_open/unknown）)"
+      ],
+      "source_freshness": "current",
+      "evidence_verified_at": null,
+      "participation_open": false,
+      "actionable": false,
+      "utility": "medium",
+      "utility_reasons": [
+        "值得考虑，但有一项成本或不确定性需要先确认"
+      ],
+      "readiness": "unknown",
+      "readiness_detail": {
+        "status": "unknown",
+        "ready_items": [],
+        "missing_items": [],
+        "blockers": [],
+        "estimated_preparation": "无法估计",
+        "notes": [
+          "页面未写明前置要求，且画像缺少可比对信息 → 准备度未知"
+        ]
+      },
+      "conflicts": [],
+      "zone": "worth_verifying",
+      "demotion": {
+        "code": "verification_not_attempted",
+        "kind": "process",
+        "detail": "本轮没有去核实官方页面（预算/顺序问题，下一轮可补）"
+      },
+      "priority_score": 42,
+      "priority_band": "Low",
+      "flags": [
+        "no_deadline",
+        "unverified",
+        "readiness_unknown",
+        "evidence_incomplete",
+        "provenance_unavailable"
+      ],
+      "warnings": [
+        "未找到官方确认来源",
+        "证据不完整：缺少 verification_status:verified_official、evidence.application_status(status=explicit,source_url,verified_at,top-level application_status（机会侧 open/rolling/closed/not_open/unknown）)（不得进入 Recommended now）"
+      ],
+      "reasons": {
+        "goal_fit": "与声明的目标不重合",
+        "skill_fit": "画像未提供技能，按中性处理",
+        "interest_fit": "画像未提供兴趣",
+        "location_fit": "画像未提供地区约束",
+        "value_fit": "尚未评估价值维度",
+        "trust": "来源 Tier B，未获官方确认",
+        "novelty": "无本地状态，按新机会处理"
+      }
+    }
+  ]
+}

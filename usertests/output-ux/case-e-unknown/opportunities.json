@@ -1,256 +1,486 @@
 {
-  "_note": "来自 usertests/case-e-unknown/record-si.json 的已核验候选，归一化为 opportunity 形状后重新过真实 gate。",
+  "_note": "Persona E 的空画像 discovery 结果（2026-09-21：真实检索 4 次 + 官方页抓取 4 次）。画像为空 → **没有任何个性化**：query 由「无画像时必须覆盖多轴」驱动，不是由某个领域推导。",
+  "_session": "E",
+  "queries_used": [
+    {
+      "query": "remote volunteer program open call 2027 anyone can join nonprofit global",
+      "origin": "general_search",
+      "source_family": null,
+      "intended_axis": "volunteer / cross_domain"
+    },
+    {
+      "query": "open call creative writing film photography competition 2027 anyone can enter prize",
+      "origin": "general_search",
+      "source_family": null,
+      "intended_axis": "creative"
+    },
+    {
+      "query": "student startup competition accelerator applications open 2027 anyone worldwide idea stage",
+      "origin": "general_search",
+      "source_family": null,
+      "intended_axis": "entrepreneurship"
+    },
+    {
+      "query": "online mentorship program applications open 2027 community for beginners any field",
+      "origin": "general_search",
+      "source_family": null,
+      "intended_axis": "community"
+    }
+  ],
   "opportunities": [
     {
-      "id": "cylab-security-academy-picogym-cmu",
-      "title": "CyLab Security Academy / picoGym (CMU)",
-      "organization": "Carnegie Mellon University",
-      "primary_category": "skill_development",
-      "official_url": "https://picoctf.org/",
+      "id": "unv-online-volunteering",
+      "title": "UN Online Volunteering（联合国志愿人员组织线上志愿）",
+      "organization": "United Nations Volunteers (UNV)",
+      "primary_category": "networking",
+      "secondary_categories": [
+        "project"
+      ],
+      "tags": [
+        "volunteer",
+        "remote",
+        "global",
+        "certificate",
+        "no background required"
+      ],
+      "summary": "通过 UNV 的 Unified Volunteering Platform 支持联合国机构、政府与民间组织的线上志愿任务，领域覆盖研究、写作翻译、数据、传播、设计、项目支持等。",
+      "country": null,
+      "remote": true,
+      "student_year": null,
+      "major_requirement": null,
+      "skills_required": [],
+      "skills_preferred": [
+        "writing",
+        "translation",
+        "data analysis",
+        "graphic design",
+        "research"
+      ],
+      "language_requirement": "每个任务的要求由招募组织自行设定（常见为英语/法语/西班牙语工作能力）",
+      "nationality_requirement": "open to all nationalities",
+      "school_requirement": null,
+      "GPA_requirement": null,
+      "application_open": null,
+      "deadline": null,
+      "deadline_type": "rolling",
+      "cost": "free",
+      "compensation": "unpaid",
+      "time_commitment": "每个任务每周最多 20 小时、最长 12 周",
+      "effort": {
+        "weekly_commitment": "最多 20 h"
+      },
+      "produces": [
+        "志愿任务的实际产出（报告/翻译/设计/数据等）",
+        "招募组织签发的电子感谢证书",
+        "国际合作经历记录"
+      ],
+      "unlocks": [
+        {
+          "type": "international_experience"
+        }
+      ],
+      "future_optionality": {
+        "level": "medium",
+        "reason": "官方写明可积累发展领域经验与跨组织人脉"
+      },
+      "time_to_value": "weeks",
+      "outcomes": {
+        "network": "medium",
+        "skill": "medium",
+        "portfolio": "low",
+        "credential": "medium"
+      },
+      "required_materials": [
+        "在 UVP 平台创建志愿者档案（约 45 分钟）"
+      ],
+      "official_url": "https://www.unv.org/become-online-volunteer",
+      "discovery_url": "https://www.idealist.org/en/volunteer-opportunity",
+      "application_status": "rolling",
+      "evidence": {
+        "application_status": {
+          "status": "explicit",
+          "source_url": "https://www.unv.org/become-online-volunteer",
+          "verified_at": "2026-09-21",
+          "evidence_summary": "官方页 Requirements：'you must be at least 18 years of age'；'There is no particular background required to become an Online Volunteer'；任务通过 Unified Volunteering Platform 持续发布，无年度截止"
+        },
+        "age_requirement": {
+          "status": "explicit",
+          "source_url": "https://www.unv.org/become-online-volunteer",
+          "verified_at": "2026-09-21",
+          "evidence_summary": "必须年满 18 岁；无背景要求；任务级别各自设定条件"
+        },
+        "nationality_requirement": {
+          "status": "explicit",
+          "source_url": "https://www.unv.org/become-online-volunteer",
+          "verified_at": "2026-09-21",
+          "evidence_summary": "官方原文：'Anyone interested ... can become an Online Volunteer, regardless of your background or location'"
+        }
+      },
+      "trust_tier": "A",
+      "verification_status": "verified_official",
+      "last_verified": "2026-09-21",
+      "layer": "explore",
+      "provenance": "general_search",
+      "source_family": null,
+      "notes": [
+        "官方明确：线上志愿者与 UNV/招募组织**不是雇佣关系**，且**不提供任何津贴或财务报酬** → 卡片必须写清这是无报酬机会",
+        "修正：删去 education_level —— 官方页写 'no particular background required'，平台级唯一硬要求是 18+（schema 里没有年龄字段，见报告）",
+        "补：官方页明确不看背景与所在地 → 用 nationality_requirement 表达‘不限国籍’"
+      ]
+    },
+    {
+      "id": "weimar-poetry-film-award-2027",
+      "title": "12th Weimar Poetry Film Award（魏玛诗歌电影节征片）",
+      "organization": "Literary Society of Thuringia (LGT) / Bauhaus-University",
+      "primary_category": "hobby",
+      "secondary_categories": [
+        "competition"
+      ],
+      "tags": [
+        "film",
+        "poetry",
+        "creative",
+        "open call",
+        "international",
+        "any age"
+      ],
+      "summary": "面向全球的诗歌短片征件：任何国家、任何年龄均可参加，每人最多投 3 部 15 分钟以内短片；由 3 位评审选出最佳动画与最佳影片，另设学生新人奖与观众奖。",
+      "country": "Germany",
+      "city": "Weimar",
+      "remote": true,
+      "student_year": null,
+      "major_requirement": null,
+      "skills_required": [],
+      "skills_preferred": [
+        "film making",
+        "animation",
+        "writing"
+      ],
+      "language_requirement": "提交材料需为德语或英语",
+      "nationality_requirement": "open to all nationalities",
+      "school_requirement": null,
+      "GPA_requirement": null,
+      "application_open": "2026-06-09",
+      "deadline": "2027-02-28",
+      "deadline_type": "range",
+      "event_start": "2027-05-20",
+      "event_end": "2027-05-22",
+      "cost": "通过 FilmFreeway 提交（费用以平台为准）",
+      "prize": "最佳动画 €1,200 / 最佳影片 €1,200 / 学生新人奖 €500 / 观众奖 €250",
+      "produces": [
+        "入围或展映的短片作品",
+        "电影节评审反馈",
+        "奖金与获奖记录（若获奖）"
+      ],
+      "unlocks": [
+        {
+          "type": "creative_portfolio"
+        }
+      ],
+      "future_optionality": {
+        "level": "medium"
+      },
+      "time_to_value": "months",
+      "outcomes": {
+        "portfolio": "high",
+        "reputation": "medium",
+        "network": "low"
+      },
+      "required_materials": [
+        "观影拷贝或预览链接",
+        "剧照",
+        "梗概",
+        "诗文本（德/英）",
+        "导演与作者简介"
+      ],
+      "official_url": "https://poetryfilmtage.de/call-2027-weimar-poetry-film-award/",
+      "discovery_url": "https://poetryfilmtage.de/call-2027-weimar-poetry-film-award/",
       "application_status": "open",
-      "deadline": null,
-      "deadline_type": "evergreen",
-      "verification_status": "verified_official",
       "evidence": {
         "application_status": {
           "status": "explicit",
-          "source_url": "https://picoctf.org/",
-          "verified_at": "2026-09-20",
-          "evidence_summary": "官方页当日可读：已更名为 CyLab Security Academy，CMU 免费网络安全平台，登录入口开放、练习区(picoGym)随时可做"
+          "source_url": "https://poetryfilmtage.de/call-2027-weimar-poetry-film-award/",
+          "verified_at": "2026-09-21",
+          "evidence_summary": "官方 Dates & Deadlines：Opening June 9, 2026；Earlybird December 31, 2026；Regular Deadline February 28, 2027"
+        },
+        "eligibility": {
+          "status": "explicit",
+          "source_url": "https://poetryfilmtage.de/call-2027-weimar-poetry-film-award/",
+          "verified_at": "2026-09-21",
+          "evidence_summary": "'Filmmakers from any nation and of any age are welcome to participate' —— 无年龄/国籍/学历限制"
+        },
+        "nationality_requirement": {
+          "status": "explicit",
+          "source_url": "https://poetryfilmtage.de/call-2027-weimar-poetry-film-award/",
+          "verified_at": "2026-09-21",
+          "evidence_summary": "官方原文：'Filmmakers from any nation and of any age are welcome to participate' → 明确不限制国籍与年龄"
         }
       },
       "trust_tier": "A",
-      "effort": {
-        "weekly_commitment": "2-5 h"
-      },
-      "produces": [],
-      "required_materials": [],
-      "skills_required": [],
-      "last_verified": "2026-09-20",
-      "layer": "exploit",
-      "notes": []
-    },
-    {
-      "id": "picoctf-annual-competition-next-edition",
-      "title": "picoCTF annual competition (next edition)",
-      "organization": "Carnegie Mellon University",
-      "primary_category": "competition",
-      "official_url": "https://picoctf.org/",
-      "application_status": null,
-      "deadline": null,
-      "deadline_type": "recurring",
-      "verification_status": "partially_verified",
-      "evidence": {
-        "application_status": {
-          "status": "missing",
-          "evidence_summary": "注册窗口在赛前一个多月才开，本轮未重新核验（沿用上一轮 discovery）"
-        }
-      },
-      "trust_tier": "C",
-      "effort": {
-        "weekly_commitment": "10-15 h (10 天赛期)"
-      },
-      "produces": [],
-      "required_materials": [],
-      "skills_required": [],
-      "last_verified": "2026-09-20",
-      "layer": "exploit",
-      "notes": []
-    },
-    {
-      "id": "lfx-mentorship-next-term-2027",
-      "title": "LFX Mentorship (next term 2027)",
-      "organization": "Linux Foundation / CNCF",
-      "primary_category": "open_source",
-      "official_url": "https://mentorship.lfx.linuxfoundation.org/",
-      "application_status": null,
-      "deadline": null,
-      "deadline_type": "recurring",
-      "verification_status": "partially_verified",
-      "evidence": {
-        "application_status": {
-          "status": "missing",
-          "evidence_summary": "一年三期(1/5/8月)，本轮未重新 fetch 核验，沿用上一轮 discovery"
-        }
-      },
-      "trust_tier": "C",
-      "effort": {
-        "weekly_commitment": "~30 h (12 周)"
-      },
-      "produces": [],
-      "required_materials": [],
-      "skills_required": [],
-      "last_verified": "2026-09-20",
-      "layer": "exploit",
-      "notes": []
-    },
-    {
-      "id": "google-summer-of-code-2027",
-      "title": "Google Summer of Code 2027",
-      "organization": "Google",
-      "primary_category": "open_source",
-      "official_url": "https://summerofcode.withgoogle.com/",
-      "application_status": null,
-      "deadline": null,
-      "deadline_type": "recurring",
-      "verification_status": "unverified",
-      "evidence": {
-        "application_status": {
-          "status": "missing",
-          "evidence_summary": "本轮未核验，沿用上一轮 discovery"
-        }
-      },
-      "trust_tier": "C",
-      "effort": {
-        "weekly_commitment": "full-time (12 周)"
-      },
-      "produces": [],
-      "required_materials": [],
-      "skills_required": [],
-      "last_verified": "2026-09-20",
-      "layer": "exploit",
-      "notes": []
-    },
-    {
-      "id": "recurse-center-self-directed-programming-retreat",
-      "title": "Recurse Center (self-directed programming retreat)",
-      "organization": "Recurse Center",
-      "primary_category": "skill_development",
-      "official_url": "https://www.recurse.com/",
-      "application_status": null,
-      "deadline": null,
-      "deadline_type": "evergreen",
-      "verification_status": "unverified",
-      "evidence": {
-        "application_status": {
-          "status": "missing",
-          "evidence_summary": "本轮未核验，沿用上一轮 discovery"
-        }
-      },
-      "trust_tier": "C",
-      "effort": {
-        "weekly_commitment": "full-time (6/12 周)"
-      },
-      "produces": [],
-      "required_materials": [],
-      "skills_required": [],
-      "last_verified": "2026-09-20",
-      "layer": "exploit",
-      "notes": []
-    },
-    {
-      "id": "outreachy-next-cohort",
-      "title": "Outreachy (next cohort)",
-      "organization": "Software Freedom Conservancy",
-      "primary_category": "open_source",
-      "official_url": "https://www.outreachy.org/",
-      "application_status": null,
-      "deadline": null,
-      "deadline_type": "recurring",
-      "verification_status": "unverified",
-      "evidence": {
-        "application_status": {
-          "status": "missing",
-          "evidence_summary": "一年两期，本轮未核验，沿用上一轮 discovery"
-        }
-      },
-      "trust_tier": "C",
-      "effort": {
-        "weekly_commitment": "full-time (3 个月)"
-      },
-      "produces": [],
-      "required_materials": [],
-      "skills_required": [],
-      "last_verified": "2026-09-20",
-      "layer": "exploit",
-      "notes": []
-    },
-    {
-      "id": "openssf-mentorship-program-security-specific-pai",
-      "title": "OpenSSF Mentorship Program (security-specific, paid)",
-      "organization": "Open Source Security Foundation",
-      "primary_category": "open_source",
-      "official_url": "https://openssf.org/",
-      "application_status": "unknown",
-      "deadline": null,
-      "deadline_type": "recurring",
       "verification_status": "verified_official",
-      "evidence": {
-        "application_status": {
-          "status": "partial",
-          "source_url": "https://openssf.org/podcast/2026/03/17/whats-in-the-soss-podcast-56-s3e8-empowering-new-maintainers-inside-the-openssf-mentorship-program",
-          "verified_at": "2026-09-20",
-          "evidence_summary": "openssf.org 官方播客确认 2026 周期 3/24 开、4/12 截止、6/1-8/21 进行，带薪、面向学生与代表性不足群体；2027 周期日期未公布"
-        }
-      },
-      "trust_tier": "A",
-      "effort": {
-        "weekly_commitment": "~30 h (12 周)"
-      },
-      "produces": [],
-      "required_materials": [],
-      "skills_required": [],
-      "last_verified": "2026-09-20",
-      "layer": "exploit",
-      "notes": [],
-      "_source_family": "mentorship_program"
+      "last_verified": "2026-09-21",
+      "layer": "explore",
+      "provenance": "general_search",
+      "source_family": null,
+      "notes": [
+        "这条机会**没有任何资格限制** → 空画像也能得到 Eligible，说明『空画像必然 Unknown』不成立",
+        "修正：删去 education_level —— 官方页明确『任何国家、任何年龄』，无学历要求（原先是我加的，与证据矛盾）",
+        "补：官方页明确『任何国家』→ 用 nationality_requirement 表达‘不限国籍’，不是自造限制"
+      ]
     },
     {
-      "id": "owasp-contributor-projects-juice-shop-blt-pygoat",
-      "title": "OWASP contributor projects (Juice Shop / BLT / PyGoat)",
-      "organization": "OWASP Foundation",
-      "primary_category": "open_source",
-      "official_url": "https://owasp.org/",
-      "application_status": "unknown",
-      "deadline": null,
-      "deadline_type": "rolling",
-      "verification_status": "verified_official",
+      "id": "mentorshub-mentorship-2027",
+      "title": "MentorsHub Mentorship Programme（2027 届）",
+      "organization": "MentorsHub Ltd（新加坡，非营利）",
+      "primary_category": "networking",
+      "secondary_categories": [
+        "skill_development"
+      ],
+      "tags": [
+        "mentorship",
+        "coaching",
+        "community",
+        "year-long"
+      ],
+      "summary": "为期一年的无偿一对一导师计划：心理测评、两天线下 retreat、双月 1:1 导师会谈与教练支持，面向「还没想清楚要做什么」的阶段。",
+      "country": "Singapore",
+      "city": "Singapore",
+      "remote": false,
+      "student_year": null,
+      "major_requirement": null,
+      "skills_required": [],
+      "skills_preferred": [],
+      "nationality_requirement": "Singaporeans or PRs（非新加坡人/PR 可申请，录取取决于导师容量）",
+      "GPA_requirement": null,
+      "deadline": "2026-10-31",
+      "deadline_type": "fixed",
+      "event_start": "2027-01-01",
+      "event_end": "2027-12-31",
+      "cost": "录取后需付 commitment fee（学生 $150 / 在职 $250，用于两天 retreat）",
+      "time_commitment": "为期一年；双月一次 1:1 + 两天线下 retreat",
+      "effort": {
+        "weekly_commitment": "1 h"
+      },
+      "produces": [
+        "一年的导师与教练支持",
+        "心理测评与自我认知结果",
+        "完成课程后可申请 MentorsHub 推荐信"
+      ],
+      "unlocks": [
+        {
+          "type": "mentor_network"
+        }
+      ],
+      "future_optionality": {
+        "level": "medium",
+        "reason": "官方写明完成课程后**可以申请推荐信**"
+      },
+      "time_to_value": "months",
+      "outcomes": {
+        "network": "high",
+        "skill": "medium",
+        "credential": "low"
+      },
+      "required_materials": [
+        "申请表单",
+        "可能需提供 NRIC / 学生证核验"
+      ],
+      "official_url": "https://www.mentorshub.sg/programmes",
+      "discovery_url": "https://discover.nyc.gov.sg/events/mentorshub-mentoring-programme-mt4mtkvw",
+      "application_status": "open",
       "evidence": {
         "application_status": {
           "status": "explicit",
-          "source_url": "https://owasp.org/",
-          "verified_at": "2026-09-20",
-          "evidence_summary": "owasp.org 官方页确认免费、多个项目(Juice Shop/BLT/PyGoat/Nettacker)持续接受贡献，贡献入口常驻开放、无固定截止"
+          "source_url": "https://www.mentorshub.sg/programmes",
+          "verified_at": "2026-09-21",
+          "evidence_summary": "官方页：'Applications are now open. Apply by 31st October 2026 to be considered for the upcoming intake (Jan-Dec 2027).'"
+        },
+        "student_year": {
+          "status": "explicit",
+          "source_url": "https://www.mentorshub.sg/programmes",
+          "verified_at": "2026-09-21",
+          "evidence_summary": "面向 'final years of tertiary studies up to the first two years in their first job (approximately 21-30 years old)'"
         }
       },
       "trust_tier": "A",
-      "effort": {
-        "weekly_commitment": "self-paced"
-      },
-      "produces": [],
-      "required_materials": [],
-      "skills_required": [],
-      "last_verified": "2026-09-20",
-      "layer": "exploit",
-      "notes": [],
-      "_source_family": "contributor_guide"
+      "verification_status": "verified_official",
+      "last_verified": "2026-09-21",
+      "layer": "explore",
+      "provenance": "general_search",
+      "source_family": null,
+      "notes": [
+        "有 commitment fee（学生 $150 / 在职 $250）→ 必须出现在「还需要确认」",
+        "年龄/阶段门槛约 21-30 岁 → 画像未提供年龄时只能是 Unknown",
+        "修正：删去 education_level —— 官方门槛是『约 21-30 岁 / 毕业前后阶段』，不是学历"
+      ]
     },
     {
-      "id": "bug-bounty-vdp-hackerone-dod-vdp",
-      "title": "Bug bounty / VDP (HackerOne, DoD VDP)",
-      "organization": "HackerOne / U.S. Department of Defense",
-      "primary_category": "open_source",
-      "official_url": "https://hackerone.com/",
-      "application_status": "unknown",
-      "deadline": null,
-      "deadline_type": "rolling",
-      "verification_status": "unverified",
-      "evidence": {
-        "application_status": {
-          "status": "missing",
-          "evidence_summary": "平台型入口，本轮未单独 fetch 核验；作为 adjacent_discovery 记录的未知未知"
-        }
-      },
-      "trust_tier": "C",
-      "effort": {
-        "weekly_commitment": "self-paced"
-      },
-      "produces": [],
-      "required_materials": [],
+      "id": "hult-prize-2027",
+      "title": "Hult Prize（学生创业大赛）",
+      "organization": "Hult Prize Foundation",
+      "primary_category": "entrepreneurship",
+      "secondary_categories": [
+        "competition"
+      ],
+      "tags": [
+        "startup",
+        "social impact",
+        "global",
+        "seed funding"
+      ],
+      "summary": "面向全球学生的创业比赛，分校园赛/Open Application、国家级、数字孵化器、全球加速器、全球决赛五阶段，冠军获 100 万美元种子资金。",
+      "country": null,
+      "remote": true,
+      "education_level": [
+        "undergraduate",
+        "master"
+      ],
       "skills_required": [],
-      "last_verified": "2026-09-20",
-      "layer": "exploit",
-      "notes": []
+      "official_url": "https://www.hultprize.org/",
+      "discovery_url": "https://reigngigs.com/2026/07/17/hult-prize",
+      "application_status": null,
+      "deadline": null,
+      "deadline_type": "unknown",
+      "verification_status": "partially_verified",
+      "evidence": null,
+      "trust_tier": "A",
+      "last_verified": "2026-09-21",
+      "layer": "explore",
+      "provenance": "general_search",
+      "source_family": null,
+      "notes": [
+        "官方首页只有愿景与过往获奖者，**没有** 2027 时间线与资格条款 → 只能算『存在但无法确认窗口』",
+        "第三方页面声称 Qualifiers 在 9 月-2 月，属二手信息，不作为证据"
+      ]
+    },
+    {
+      "id": "venture-ch-2027",
+      "title": "venture.ch 2027（瑞士创业竞赛）",
+      "organization": "venture.ch / ETH Zurich",
+      "primary_category": "entrepreneurship",
+      "tags": [
+        "startup",
+        "competition",
+        "no equity",
+        "free"
+      ],
+      "summary": "瑞士自 1997 年举办的创业竞赛；2027 届 10 月 1 日开放申请、11 月 30 日截止，免费参加、不占股份，奖项总额 CHF 150,000。",
+      "country": "Switzerland",
+      "remote": false,
+      "education_level": [
+        "undergraduate",
+        "master",
+        "doctor",
+        "graduate"
+      ],
+      "skills_required": [],
+      "team_requirement": "需组队提交（团队、想法、为什么重要）",
+      "application_open": "2026-10-01",
+      "deadline": "2026-11-30",
+      "deadline_type": "fixed",
+      "cost": "free",
+      "prize": "CHF 150,000（六个垂直奖项 + Spotlight + 观众奖）",
+      "official_url": "https://www.venture.ch/",
+      "discovery_url": "https://www.venture.ch/",
+      "application_status": "not_open",
+      "evidence": null,
+      "trust_tier": "B",
+      "verification_status": "partially_verified",
+      "last_verified": "2026-09-21",
+      "layer": "explore",
+      "provenance": "general_search",
+      "source_family": null,
+      "notes": [
+        "官方页写 'The 2027 competition opens October 1' → 本轮（9/21）尚未开放，属 future 窗口",
+        "未抓取官方页正文，日期来自搜索摘要 → partially_verified"
+      ]
+    },
+    {
+      "id": "outreach360-virtual-volunteer-teacher",
+      "title": "Outreach360 Virtual Impact Program — 线上志愿英语教师",
+      "organization": "Outreach360",
+      "primary_category": "networking",
+      "tags": [
+        "volunteer",
+        "remote",
+        "teaching",
+        "training provided"
+      ],
+      "summary": "远程为拉美学生做线上英语教学；服务期 2027-01-12 至 2027-04-16，每周约 12 小时、5 天/周，提供培训与语言文化支持。",
+      "country": null,
+      "remote": true,
+      "education_level": [
+        "undergraduate",
+        "master",
+        "graduate"
+      ],
+      "skills_required": [
+        "English"
+      ],
+      "deadline": "2027-01-12",
+      "deadline_type": "fixed",
+      "cost": "free",
+      "compensation": "unpaid",
+      "time_commitment": "2027-01-12 至 2027-04-16，每周约 12 小时、5 天/周",
+      "effort": {
+        "weekly_commitment": "12 h"
+      },
+      "produces": [
+        "线上教学实践记录",
+        "培训与语言文化支持",
+        "国际志愿服务经历"
+      ],
+      "official_url": "https://www.outreach360.org/english-teacher",
+      "discovery_url": "https://www.idealist.org/en/volunteer-opportunity/15f98aaee4cc4ecf9ced469f502d0390-speak-english-go-global-as-a-virtual-volunteer-english-teacher-session-starts-on-january-12-2027-outreach360-peoria",
+      "application_status": null,
+      "evidence": null,
+      "trust_tier": "C",
+      "verification_status": "unverified",
+      "last_verified": null,
+      "layer": "explore",
+      "provenance": "general_search",
+      "source_family": null,
+      "notes": [
+        "来自 Idealist 志愿平台（第三方）→ 未到 Outreach360 官方页核实；且要求英语教学能力，画像未提供语言信息"
+      ]
+    },
+    {
+      "id": "baylor-new-venture-competition-2027",
+      "title": "Baylor New Venture Competition 2027（第一轮）",
+      "organization": "Baylor University",
+      "primary_category": "entrepreneurship",
+      "tags": [
+        "startup",
+        "competition",
+        "students worldwide",
+        "executive summary"
+      ],
+      "summary": "面向全球非营利认证大学学生与近期校友的创业赛；第一轮只需两页执行摘要 + 学生身份证明，截止 2026 年 10 月 1 日。",
+      "country": "United States",
+      "remote": true,
+      "education_level": [
+        "undergraduate",
+        "master"
+      ],
+      "skills_required": [],
+      "application_open": "2026-04-01",
+      "deadline": "2026-10-01",
+      "deadline_type": "fixed",
+      "cost": "free",
+      "prize": "各赛道名次奖金",
+      "official_url": "https://calendar.hkust.edu.hk/events/baylor-new-venture-competition-0",
+      "discovery_url": "https://calendar.hkust.edu.hk/events/baylor-new-venture-competition-0",
+      "application_status": null,
+      "evidence": null,
+      "trust_tier": "C",
+      "verification_status": "unverified",
+      "last_verified": "2026-09-21",
+      "layer": "explore",
+      "provenance": "general_search",
+      "source_family": null,
+      "notes": [
+        "只在第三方会议日历上看到，未到 Baylor 官方页核实；要求『非营利认证大学学生/近期校友』→ 画像未提供在读状态，无法判定"
+      ]
     }
   ]
 }

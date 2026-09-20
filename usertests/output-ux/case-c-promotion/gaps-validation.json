@@ -1,0 +1,52 @@
+[
+  {
+    "id": "gap-public_reputation--maintainer-",
+    "type": "public_reputation",
+    "name": "公开影响力证据（演讲 / maintainer / 社区角色）",
+    "source": "semantic",
+    "sample": "目标是晋升/职业进阶，但画像里没有公开产出",
+    "opportunity_ids": [],
+    "priority": "high",
+    "logistics_prerequisites": [
+      "Slack 邀请链接",
+      "候选人申请表"
+    ],
+    "preparation_items": [
+      "标题、摘要、演讲者简介",
+      "邮件列表订阅"
+    ],
+    "eligibility_constraints": [
+      "open to all nationalities"
+    ],
+    "relevance": {
+      "relevance": "supporting_gap",
+      "direction": "promotion",
+      "reason": "与方向「promotion」相关，但不是硬门槛（增强项）"
+    }
+  },
+  {
+    "id": "gap-leadership-ownership-",
+    "type": "leadership",
+    "name": "ownership / 跨团队项目证据",
+    "source": "semantic",
+    "sample": "晋升评审关注 ownership，画像未见相关证据",
+    "opportunity_ids": [],
+    "priority": "medium",
+    "logistics_prerequisites": [
+      "Slack 邀请链接",
+      "候选人申请表"
+    ],
+    "preparation_items": [
+      "标题、摘要、演讲者简介",
+      "邮件列表订阅"
+    ],
+    "eligibility_constraints": [
+      "open to all nationalities"
+    ],
+    "relevance": {
+      "relevance": "supporting_gap",
+      "direction": "promotion",
+      "reason": "与方向「promotion」相关，但不是硬门槛（增强项）"
+    }
+  }
+]
