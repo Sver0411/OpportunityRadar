@@ -1,0 +1,51 @@
+{
+  "life_stage": [
+    "student"
+  ],
+  "career_stage": [
+    "undergraduate"
+  ],
+  "education": {
+    "degree": "undergraduate",
+    "major": "物联网工程",
+    "major_family": "cs_software",
+    "current_year": 2,
+    "school_country": "China",
+    "school_city": "杭州"
+  },
+  "skills": [
+    {
+      "name": "C"
+    },
+    {
+      "name": "Python"
+    },
+    {
+      "name": "ESP32"
+    }
+  ],
+  "interests": [
+    {
+      "name": "embedded"
+    },
+    {
+      "name": "IoT"
+    }
+  ],
+  "constraints": {
+    "preferred_country": [
+      "China"
+    ],
+    "remote": true,
+    "budget": "low",
+    "weekly_time": "8",
+    "preferred_city": "杭州"
+  },
+  "goals": [
+    {
+      "type": "skill",
+      "priority": "medium"
+    }
+  ],
+  "_note": "Skill 端到端实测用的画像（A 类：物联网工程大二、杭州+可远程、每周 8h）。所有机会与日期均来自 2026-09-20 的真实检索与官方页核验。"
+}

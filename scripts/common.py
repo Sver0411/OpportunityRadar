@@ -191,6 +191,28 @@ APPLICATION_STATUSES = ("discovered", "viewed", "interested", "saved", "preparin
                         "applied", "interviewing", "accepted", "rejected",
                         "withdrawn", "completed", "ignored")
 
+#: **机会侧**的申请状态（官方页面观察到的机会本身是否开放）。与上面**用户侧**的
+#: APPLICATION_STATUSES 是两件事，请不要混用：同一个 key `application_status`
+#: 在 opportunity 里指的是机会状态，在 state 里指的是用户进度。
+#: 必须与 schemas/opportunity.schema.json 的同名 enum 一致（由测试校验）。
+OPPORTUNITY_APPLICATION_STATUSES = ("open", "rolling", "closed", "not_open", "unknown")
+
+#: 视为"现在可以申请/参与"的机会侧状态（主推荐前置条件之一）
+PARTICIPATION_OPEN_STATUSES = ("open", "rolling")
+
+#: 中文能力词 → 英文同义 token（只收**直译**，不做语义外推）。
+#: 用途：机会要求写中文、画像写英文（或反之）时能互相识别，避免产生幻影缺口。
+#: 注意：**不要**把整个兴趣同族组映射过来 —— 「会 ESP32」不等于「会 RTOS」。
+SKILL_EQUIVALENTS = {
+    "嵌入式": "embedded", "嵌入式开发": "embedded", "单片机": "microcontroller",
+    "固件": "firmware", "物联网": "iot", "传感器": "sensor", "机器人": "robotics",
+    "无人机": "drone", "人工智能": "ai", "机器学习": "machine learning",
+    "深度学习": "deep learning", "大模型": "llm", "数据分析": "data analytics",
+    "网络安全": "security", "操作系统": "operating system", "数据结构与算法": "algorithm",
+    "前后端": "web", "前端开发": "frontend", "后端开发": "backend", "云计算": "cloud",
+    "模拟电路": "analog circuit", "数字电路": "digital circuit", "信号处理": "signal processing",
+}
+
 #: Personal Utility 档位（只给用户这三档，不输出裸分数）
 UTILITY_BANDS = ("high", "medium", "low", "unknown")
 

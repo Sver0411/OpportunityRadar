@@ -367,7 +367,9 @@ def main(argv=None) -> int:
     ap.add_argument("text", nargs="?", help="日期字符串；不提供时用 --file")
     ap.add_argument("--file", help="从文件逐行读取日期")
     ap.add_argument("--default-year", type=int, help="原文缺年份时使用的年份（会标记 year_unknown）")
-    ap.add_argument("--now", help="参照日期 YYYY-MM-DD，用于 days_until_*；默认今天")
+    # `--today` 与 scripts/score.py / scripts/evidence.py 保持一致；`--now` 保留兼容
+    ap.add_argument("--now", "--today", dest="now",
+                    help="参照日期 YYYY-MM-DD，用于 days_until_*；默认今天")
     ap.add_argument("--order", choices=["auto", "us", "eu"], default="auto",
                     help="a/b/y 顺序歧义时的解释（默认 auto→month/day）")
     ap.add_argument("--format", choices=["json", "iso"], default="json")

@@ -1,0 +1,611 @@
+{
+  "params": {
+    "weights": {
+      "eligibility": 0.26,
+      "goal_fit": 0.19,
+      "skill_fit": 0.15,
+      "interest_fit": 0.11,
+      "location_fit": 0.1,
+      "value_fit": 0.08,
+      "trust": 0.06,
+      "novelty": 0.05
+    },
+    "priority_formula": "0.85*match + 0.15*urgency（区间以截止端点计）",
+    "today": "2026-09-20",
+    "disclaimer": "确定性打分，仅作排序辅助；展示时用档次 + 理由，不要展示裸分数当结论"
+  },
+  "scored": 5,
+  "results": [
+    {
+      "id": "ospp-open-source-promotion-plan-2026",
+      "title": "开源之夏 2026（OSPP / 点亮计划 2.0）",
+      "organization": "中国科学院软件研究所",
+      "primary_category": "open_source",
+      "layer": "exploit",
+      "components": {
+        "eligibility": 82,
+        "goal_fit": 48.0,
+        "skill_fit": 0.0,
+        "interest_fit": 20.0,
+        "location_fit": 95.0,
+        "value_fit": 55.0,
+        "trust": 100,
+        "novelty": 80.0
+      },
+      "eligibility_verdict": "Probably Eligible",
+      "eligibility_source": "hard_constraint",
+      "eligibility_kind": "hard_ok",
+      "eligibility_reasons": [
+        "滚动招募，无固定截止日",
+        "学历相符（undergraduate 在 ['undergraduate', 'master', 'doctor'] 内）"
+      ],
+      "match_score": 57,
+      "match_band": "Low",
+      "urgency": null,
+      "days_remaining": null,
+      "deadline_type": "rolling",
+      "deadline_source": "field",
+      "freshness": "likely_open",
+      "freshness_reason": "deadline_type=rolling（无固定/弹性截止）",
+      "effort": {
+        "weekly_commitment": "5 h"
+      },
+      "time_commitment": "开发周期 2-4 个月，建议每周与导师沟通 1-2 次",
+      "time_to_value": "months",
+      "future_optionality": {
+        "level": "high",
+        "reason": "可继续参与经典/领航模式，并可延伸到社区角色"
+      },
+      "outcomes": {
+        "skill": "high",
+        "portfolio": "high",
+        "network": "medium",
+        "credential": "medium",
+        "financial": "low"
+      },
+      "produces": [
+        "合入上游的 GitHub PR",
+        "结项报告",
+        "结项证书",
+        "公开可查的开源贡献记录"
+      ],
+      "small_bet_type": null,
+      "evidence_complete": true,
+      "evidence_missing": [],
+      "source_freshness": "likely_current",
+      "evidence_verified_at": "2026-09-20",
+      "participation_open": true,
+      "actionable": true,
+      "utility": "medium",
+      "utility_reasons": [
+        "值得考虑，但有一项成本或不确定性需要先确认",
+        "需补：Git、个人资料、项目申请书"
+      ],
+      "readiness": "short_preparation",
+      "readiness_detail": {
+        "status": "short_preparation",
+        "ready_items": [
+          "具备：C 或 Python 或 Java"
+        ],
+        "missing_items": [
+          "需要补：Git",
+          "需准备材料：个人资料",
+          "需准备材料：项目申请书",
+          "需准备材料：身份证/学籍在线验证报告"
+        ],
+        "blockers": [],
+        "estimated_preparation": "几天到两周",
+        "notes": []
+      },
+      "conflicts": [],
+      "zone": "recommended_now",
+      "demotion": null,
+      "priority_score": 57,
+      "priority_band": "Low",
+      "flags": [
+        "rolling",
+        "language_unspecified"
+      ],
+      "warnings": [
+        "存在 inferred/unknown 证据：乐观结论封顶在 Probably Eligible，不能给出 Eligible",
+        "页面未写明语言要求"
+      ],
+      "reasons": {
+        "goal_fit": "作为次要类别命中目标 skill",
+        "skill_fit": "硬性技能覆盖 0/2",
+        "interest_fit": "未发现与画像兴趣的重合信号",
+        "location_fit": "国家/地区匹配：China",
+        "value_fit": "尚未评估价值维度",
+        "trust": "来源 Tier A，3 项关键事实已官方确认",
+        "novelty": "无本地状态，按新机会处理"
+      }
+    },
+    {
+      "id": "socchina-embedded-chip-design-design-track-2026",
+      "title": "第九届（2026）全国大学生嵌入式芯片与系统设计竞赛 — 设计专项赛 / FPGA 创新设计赛道",
+      "organization": "全国大学生嵌入式芯片与系统设计竞赛组委会",
+      "primary_category": "competition",
+      "layer": "exploit",
+      "components": {
+        "eligibility": 82,
+        "goal_fit": 48.0,
+        "skill_fit": 0.0,
+        "interest_fit": 20.0,
+        "location_fit": 95.0,
+        "value_fit": 55.0,
+        "trust": 100,
+        "novelty": 80.0
+      },
+      "eligibility_verdict": "Probably Eligible",
+      "eligibility_source": "hard_constraint",
+      "eligibility_kind": "hard_ok",
+      "eligibility_reasons": [
+        "学历相符（undergraduate 在 ['undergraduate', 'master'] 内）"
+      ],
+      "match_score": 57,
+      "match_band": "Low",
+      "urgency": null,
+      "days_remaining": null,
+      "deadline_type": "tbd",
+      "deadline_source": "field",
+      "freshness": "unknown",
+      "freshness_reason": "周期为 2026 年但截止日未抽取到 → 状态需人工确认",
+      "effort": {
+        "weekly_commitment": "6 h"
+      },
+      "time_commitment": null,
+      "time_to_value": "months",
+      "future_optionality": {
+        "level": "medium"
+      },
+      "outcomes": {
+        "skill": "high",
+        "portfolio": "high",
+        "reputation": "medium",
+        "credential": "medium"
+      },
+      "produces": [
+        "竞赛作品与演示",
+        "获奖证书（若获奖）",
+        "可展示的项目原型"
+      ],
+      "small_bet_type": null,
+      "evidence_complete": false,
+      "evidence_missing": [
+        "verification_status:verified_official",
+        "evidence.application_status(status=explicit,source_url,verified_at)"
+      ],
+      "source_freshness": "likely_current",
+      "evidence_verified_at": null,
+      "participation_open": false,
+      "actionable": false,
+      "utility": "medium",
+      "utility_reasons": [
+        "值得考虑，但有一项成本或不确定性需要先确认",
+        "需补：嵌入式开发"
+      ],
+      "readiness": "minor_preparation",
+      "readiness_detail": {
+        "status": "minor_preparation",
+        "ready_items": [
+          "具备：Verilog 或 C"
+        ],
+        "missing_items": [
+          "需要补：嵌入式开发"
+        ],
+        "blockers": [],
+        "estimated_preparation": "几小时到 1–2 天",
+        "notes": []
+      },
+      "conflicts": [],
+      "zone": "worth_verifying",
+      "demotion": {
+        "code": "verification_not_attempted",
+        "kind": "process",
+        "detail": "本轮没有去核实官方页面（预算/顺序问题，下一轮可补）"
+      },
+      "priority_score": 57,
+      "priority_band": "Low",
+      "flags": [
+        "tbd",
+        "evidence_incomplete",
+        "language_unspecified",
+        "provenance_unavailable"
+      ],
+      "warnings": [
+        "该记录没有 evidence 结构（旧格式）：硬性判断未标注来源，结论封顶在 Probably Eligible",
+        "证据不完整：缺少 verification_status:verified_official、evidence.application_status(status=explicit,source_url,verified_at)（不得进入 Recommended now）",
+        "页面未写明语言要求"
+      ],
+      "reasons": {
+        "goal_fit": "作为次要类别命中目标 skill",
+        "skill_fit": "硬性技能覆盖 0/2",
+        "interest_fit": "未发现与画像兴趣的重合信号",
+        "location_fit": "国家/地区匹配：China",
+        "value_fit": "尚未评估价值维度",
+        "trust": "来源 Tier A",
+        "novelty": "无本地状态，按新机会处理"
+      }
+    },
+    {
+      "id": "ustc-research-internship-program",
+      "title": "USTC Research Internship Program（中国科学技术大学科研实习）",
+      "organization": "University of Science and Technology of China",
+      "primary_category": "research",
+      "layer": "explore",
+      "components": {
+        "eligibility": 55,
+        "goal_fit": 15.0,
+        "skill_fit": 50.0,
+        "interest_fit": 20.0,
+        "location_fit": 95.0,
+        "value_fit": 55.0,
+        "trust": 100,
+        "novelty": 80.0
+      },
+      "eligibility_verdict": "Unknown",
+      "eligibility_source": "hard_constraint",
+      "eligibility_kind": "missing_profile",
+      "eligibility_reasons": [
+        "学历相符（undergraduate 在 ['undergraduate', 'master', 'doctor'] 内）",
+        "页面有国籍/工作许可限制（Non-Chinese citizens with a foreign pass），画像未提供国籍与签证信息 → 无法判断",
+        "页面要求 good command of English，画像中未记录该语言 → 无法判断（缺失不等于不会）"
+      ],
+      "match_score": 51,
+      "match_band": "Low",
+      "urgency": 82.0,
+      "days_remaining": 10,
+      "deadline_type": "range",
+      "deadline_source": "field+parse",
+      "freshness": "open",
+      "freshness_reason": "截止日 2026-09-30（还有 10 天）",
+      "effort": {
+        "weekly_commitment": "40 h"
+      },
+      "time_commitment": "3 months - 1 year",
+      "time_to_value": "months",
+      "future_optionality": {
+        "level": "high"
+      },
+      "outcomes": {
+        "research": "high",
+        "network": "high"
+      },
+      "produces": [
+        "研究项目经历",
+        "教授推荐潜力"
+      ],
+      "small_bet_type": null,
+      "evidence_complete": false,
+      "evidence_missing": [
+        "evidence.application_status(status=explicit,source_url,verified_at)"
+      ],
+      "source_freshness": "unknown",
+      "evidence_verified_at": null,
+      "participation_open": false,
+      "actionable": true,
+      "utility": "low",
+      "utility_reasons": [
+        "当前不建议优先投入：存在阻塞、资格不符或投入产出不匹配",
+        "时间冲突：机会约 40h/周，你的上限约 8h/周",
+        "需补：online application、supervisor approval"
+      ],
+      "readiness": "blocked",
+      "readiness_detail": {
+        "status": "blocked",
+        "ready_items": [],
+        "missing_items": [
+          "需准备材料：online application",
+          "需准备材料：supervisor approval"
+        ],
+        "blockers": [
+          "时间冲突：机会约 40h/周，你的上限约 8h/周"
+        ],
+        "estimated_preparation": "存在阻塞项，先解决阻塞",
+        "notes": [
+          "heavy commitment conflict：不是 Ineligible，但不能当低投入机会推荐"
+        ]
+      },
+      "conflicts": [
+        "heavy_commitment_conflict"
+      ],
+      "zone": "worth_verifying",
+      "demotion": {
+        "code": "missing_evidence_structure",
+        "kind": "process",
+        "detail": "官方页已核实但未记录当前状态证据（系统漏记，可补）"
+      },
+      "priority_score": 56,
+      "priority_band": "Low",
+      "flags": [
+        "urgent",
+        "heavy_commitment_conflict",
+        "evidence_incomplete"
+      ],
+      "warnings": [
+        "存在 inferred/unknown 证据：乐观结论封顶在 Probably Eligible，不能给出 Eligible",
+        "时间冲突：机会约 40h/周，你的上限约 8h/周",
+        "证据不完整：缺少 evidence.application_status(status=explicit,source_url,verified_at)（不得进入 Recommended now）"
+      ],
+      "reasons": {
+        "goal_fit": "与声明的目标不重合",
+        "skill_fit": "页面未写明技能要求",
+        "interest_fit": "未发现与画像兴趣的重合信号",
+        "location_fit": "国家/地区匹配：China",
+        "value_fit": "尚未评估价值维度",
+        "trust": "来源 Tier A，3 项关键事实已官方确认",
+        "novelty": "无本地状态，按新机会处理"
+      }
+    },
+    {
+      "id": "kaust-microelectronics-winter-camp-2027",
+      "title": "KAUST Microelectronics Winter Camp (MEWC) 2027",
+      "organization": "King Abdullah University of Science and Technology (KAUST)",
+      "primary_category": "research",
+      "layer": "adjacent",
+      "components": {
+        "eligibility": 55,
+        "goal_fit": 48.0,
+        "skill_fit": 0.0,
+        "interest_fit": 20.0,
+        "location_fit": 55.0,
+        "value_fit": 55.0,
+        "trust": 100,
+        "novelty": 80.0
+      },
+      "eligibility_verdict": "Unknown",
+      "eligibility_source": "hard_constraint",
+      "eligibility_kind": "missing_profile",
+      "eligibility_reasons": [
+        "学历相符（undergraduate 在 ['undergraduate', 'master'] 内）",
+        "画像未提供 GPA，无法确认是否达标",
+        "页面要求 strong English language proficiency，画像中未记录该语言 → 无法判断（缺失不等于不会）",
+        "专业要求需语义判断（related field 类表述）：不构成硬冲突，但要按组织方定义确认"
+      ],
+      "match_score": 46,
+      "match_band": "Low",
+      "urgency": 92.0,
+      "days_remaining": 4,
+      "deadline_type": "fixed",
+      "deadline_source": "field+parse",
+      "freshness": "open",
+      "freshness_reason": "截止日 2026-09-24（还有 4 天）",
+      "effort": {
+        "weekly_commitment": "40 h"
+      },
+      "time_commitment": "full-time, 6 weeks, on campus",
+      "time_to_value": "months",
+      "future_optionality": {
+        "level": "high"
+      },
+      "outcomes": {
+        "research": "high",
+        "portfolio": "medium",
+        "network": "high",
+        "credential": "medium"
+      },
+      "produces": [
+        "研究项目经历",
+        "e-poster 竞赛作品",
+        "结业证书",
+        "教授推荐信潜力"
+      ],
+      "small_bet_type": null,
+      "evidence_complete": true,
+      "evidence_missing": [],
+      "source_freshness": "current",
+      "evidence_verified_at": "2026-09-20",
+      "participation_open": true,
+      "actionable": true,
+      "utility": "low",
+      "utility_reasons": [
+        "当前不建议优先投入：存在阻塞、资格不符或投入产出不匹配",
+        "时间冲突：机会约 40h/周，你的上限约 8h/周",
+        "需补：research fundamentals、CV、official transcripts (English)"
+      ],
+      "readiness": "blocked",
+      "readiness_detail": {
+        "status": "blocked",
+        "ready_items": [],
+        "missing_items": [
+          "需要补：research fundamentals",
+          "需准备材料：CV",
+          "需准备材料：official transcripts (English)",
+          "需准备材料：passport copy"
+        ],
+        "blockers": [
+          "时间冲突：机会约 40h/周，你的上限约 8h/周"
+        ],
+        "estimated_preparation": "存在阻塞项，先解决阻塞",
+        "notes": [
+          "heavy commitment conflict：不是 Ineligible，但不能当低投入机会推荐"
+        ]
+      },
+      "conflicts": [
+        "heavy_commitment_conflict"
+      ],
+      "zone": "worth_verifying",
+      "demotion": {
+        "code": "conflict",
+        "kind": "fact",
+        "detail": "时间/dealbreaker 冲突"
+      },
+      "priority_score": 53,
+      "priority_band": "Low",
+      "flags": [
+        "urgent",
+        "heavy_commitment_conflict",
+        "needs_semantic_check"
+      ],
+      "warnings": [
+        "存在 inferred/unknown 证据：乐观结论封顶在 Probably Eligible，不能给出 Eligible",
+        "时间冲突：机会约 40h/周，你的上限约 8h/周"
+      ],
+      "reasons": {
+        "goal_fit": "作为次要类别命中目标 skill",
+        "skill_fit": "硬性技能覆盖 0/1",
+        "interest_fit": "未发现与画像兴趣的重合信号",
+        "location_fit": "页面地区写法（Saudi Arabia）无法与偏好列表比对 → 地区信息不足",
+        "value_fit": "尚未评估价值维度",
+        "trust": "来源 Tier A，3 项关键事实已官方确认",
+        "novelty": "无本地状态，按新机会处理"
+      }
+    },
+    {
+      "id": "allwinner-2027-campus-intern-embedded-software",
+      "title": "全志科技 2027 届校储实习生 — 嵌入式软件设计工程师",
+      "organization": "珠海全志科技股份有限公司",
+      "primary_category": "career",
+      "layer": "exploit",
+      "components": {
+        "eligibility": 55,
+        "goal_fit": 48.0,
+        "skill_fit": 37.5,
+        "interest_fit": 20.0,
+        "location_fit": 95.0,
+        "value_fit": 55.0,
+        "trust": 50,
+        "novelty": 80.0
+      },
+      "eligibility_verdict": "Unknown",
+      "eligibility_source": "hard_constraint",
+      "eligibility_kind": "missing_profile",
+      "eligibility_reasons": [
+        "学历相符（undergraduate 在 ['undergraduate', 'master'] 内）",
+        "页面要求毕业时间 2027，画像未提供毕业时间 → 无法判断"
+      ],
+      "match_score": 52,
+      "match_band": "Low",
+      "urgency": null,
+      "days_remaining": null,
+      "deadline_type": "unknown",
+      "deadline_source": "field",
+      "freshness": "unknown",
+      "freshness_reason": "无可确认的申请周期；毕业届别不能推断开放状态",
+      "effort": {
+        "weekly_commitment": "40 h"
+      },
+      "time_commitment": null,
+      "time_to_value": "months",
+      "future_optionality": {
+        "level": "medium"
+      },
+      "outcomes": {
+        "career": "high",
+        "skill": "high",
+        "financial": "medium"
+      },
+      "produces": [
+        "实习经历",
+        "真实芯片/SDK 工程经验"
+      ],
+      "small_bet_type": null,
+      "evidence_complete": false,
+      "evidence_missing": [
+        "verification_status:verified_official",
+        "evidence.application_status(status=explicit,source_url,verified_at,top-level application_status（机会侧 open/rolling/closed/not_open/unknown）)"
+      ],
+      "source_freshness": "current",
+      "evidence_verified_at": null,
+      "participation_open": false,
+      "actionable": false,
+      "utility": "low",
+      "utility_reasons": [
+        "当前不建议优先投入：存在阻塞、资格不符或投入产出不匹配",
+        "时间冲突：机会约 40h/周，你的上限约 8h/周",
+        "需补：嵌入式、CV"
+      ],
+      "readiness": "blocked",
+      "readiness_detail": {
+        "status": "blocked",
+        "ready_items": [
+          "具备：C"
+        ],
+        "missing_items": [
+          "需要补：嵌入式",
+          "需准备材料：CV"
+        ],
+        "blockers": [
+          "时间冲突：机会约 40h/周，你的上限约 8h/周"
+        ],
+        "estimated_preparation": "存在阻塞项，先解决阻塞",
+        "notes": [
+          "heavy commitment conflict：不是 Ineligible，但不能当低投入机会推荐"
+        ]
+      },
+      "conflicts": [
+        "heavy_commitment_conflict"
+      ],
+      "zone": "worth_verifying",
+      "demotion": {
+        "code": "verification_not_attempted",
+        "kind": "process",
+        "detail": "本轮没有去核实官方页面（预算/顺序问题，下一轮可补）"
+      },
+      "priority_score": 44,
+      "priority_band": "Low",
+      "flags": [
+        "no_deadline",
+        "unverified",
+        "heavy_commitment_conflict",
+        "evidence_incomplete",
+        "language_unspecified",
+        "provenance_unavailable"
+      ],
+      "warnings": [
+        "该记录没有 evidence 结构（旧格式）：硬性判断未标注来源，结论封顶在 Probably Eligible",
+        "未找到官方确认来源",
+        "时间冲突：机会约 40h/周，你的上限约 8h/周",
+        "证据不完整：缺少 verification_status:verified_official、evidence.application_status(status=explicit,source_url,verified_at,top-level application_status（机会侧 open/rolling/closed/not_open/unknown）)（不得进入 Recommended now）",
+        "页面未写明语言要求"
+      ],
+      "reasons": {
+        "goal_fit": "作为次要类别命中目标 skill",
+        "skill_fit": "硬性技能覆盖 1/2（命中：C）",
+        "interest_fit": "未发现与画像兴趣的重合信号",
+        "location_fit": "国家/地区匹配：China",
+        "value_fit": "尚未评估价值维度",
+        "trust": "来源 Tier C，未获官方确认",
+        "novelty": "无本地状态，按新机会处理"
+      }
+    }
+  ],
+  "excluded": [
+    {
+      "id": "national-iot-design-contest-2026",
+      "title": "2026 年（第十三届）全国大学生物联网设计竞赛",
+      "reason": "closed: 活动结束日 2026-08-31 已过"
+    },
+    {
+      "id": "ican-innovation-contest-2026",
+      "title": "第二十届 iCAN 大学生创新创业大赛（2026）",
+      "reason": "expired: 截止日 2026-08-31 已过"
+    }
+  ],
+  "contract_issues": [],
+  "diversity": {
+    "categories": {
+      "open_source": 1,
+      "competition": 1,
+      "research": 2,
+      "career": 1
+    },
+    "layers": {
+      "exploit": 3,
+      "explore": 1,
+      "adjacent": 1
+    },
+    "checks": {
+      "categories_ge_3": true,
+      "has_adjacent": true,
+      "has_explore": true,
+      "single_category_share_ok": true
+    },
+    "note": "这是覆盖面自检（参考值），不是硬性配额：Adjacent/Explore 只在达到质量与验证门槛时纳入，绝不为凑配额塞入弱机会。见 references/ranking.md §3。"
+  },
+  "zones": {
+    "recommended_now": 1,
+    "worth_verifying": 4,
+    "excluded": 2
+  }
+}

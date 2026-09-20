@@ -19,6 +19,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -31,23 +32,21 @@ SOURCE_FAMILIES = {
         "gap_types": ("research", "network", "experience"),
         "page_types": ("lab homepage", "lab openings", "faculty research page"),
         "intents": ("{topic} laboratory open positions students",
-                    "研究室 学生 募集 {topic}", "{topic} lab visiting student"),
+                    "{topic} lab visiting student"),
         "canonical_hint": "大学/机构域名（.edu/.ac.jp/.ac.uk/.edu.cn）+ 实验室页面",
         "domain_sensitive": True,
     },
     "professor_page": {
         "gap_types": ("network", "research"),
         "page_types": ("faculty profile", "advisor recruiting note"),
-        "intents": ("professor {topic} recruiting students",
-                    "{topic} 教授 研究室 見学 学生"),
+        "intents": ("professor {topic} recruiting students",),
         "canonical_hint": "教授个人主页 / 院系教員紹介",
         "domain_sensitive": True,
     },
     "research_seminar": {
         "gap_types": ("network", "research"),
         "page_types": ("open seminar", "lab tour", "workshop"),
-        "intents": ("{topic} open seminar registration students",
-                    "{topic} 研究室 オープン 見学会 社会人"),
+        "intents": ("{topic} open seminar registration students",),
         "canonical_hint": "院系/实验室公告页",
         "domain_sensitive": True,
     },
@@ -62,16 +61,14 @@ SOURCE_FAMILIES = {
     "research_institute": {
         "gap_types": ("research", "network"),
         "page_types": ("institute programme", "internship", "visiting researcher"),
-        "intents": ("{topic} research institute internship programme",
-                    "{topic} 研究所 インターン 社会人"),
+        "intents": ("{topic} research institute internship programme",),
         "canonical_hint": "研究所官方页",
         "domain_sensitive": True,
     },
     "academic_society": {
         "gap_types": ("network", "public_reputation", "research"),
         "page_types": ("society programme", "student chapter", "committee"),
-        "intents": ("{topic} professional society student member programme",
-                    "{topic} 学会 学生会員 参加"),
+        "intents": ("{topic} professional society student member programme",),
         "canonical_hint": "学会官方页",
         "domain_sensitive": False,
     },
@@ -86,8 +83,7 @@ SOURCE_FAMILIES = {
     "research_funding_body": {
         "gap_types": ("research", "portfolio"),
         "page_types": ("grant", "fellowship", "travel grant"),
-        "intents": ("{topic} research grant students apply",
-                    "{topic} 研究助成 学生 公募"),
+        "intents": ("{topic} research grant students apply",),
         "canonical_hint": "资助机构官方页",
         "domain_sensitive": True,
     },
@@ -95,39 +91,35 @@ SOURCE_FAMILIES = {
     "official_exam_body": {
         "gap_types": ("language",),
         "page_types": ("test dates", "sample questions", "official mock"),
-        "intents": ("{exam} official test dates registration", "{exam} 公式 模擬試験"),
+        "intents": ("{exam} official test dates registration",),
         "canonical_hint": "考试主办方官方页",
         "domain_sensitive": True,
     },
     "university_language_center": {
         "gap_types": ("language", "education"),
         "page_types": ("language centre course", "short programme"),
-        "intents": ("university language centre {lang} short programme",
-                    "大学 語学センター {lang} 短期 プログラム"),
+        "intents": ("university language centre {lang} short programme",),
         "canonical_hint": "大学语言中心官方页",
         "domain_sensitive": True,
     },
     "government_cultural_body": {
         "gap_types": ("language", "network"),
         "page_types": ("cultural institute course", "exchange programme"),
-        "intents": ("{country} cultural institute {lang} course programme",
-                    "{country} 文化機構 {lang} 講座 プログラム"),
+        "intents": ("{country} cultural institute {lang} course programme",),
         "canonical_hint": "官方文化机构页",
         "domain_sensitive": True,
     },
     "language_exchange_program": {
         "gap_types": ("language", "network"),
         "page_types": ("exchange", "language partner programme"),
-        "intents": ("{lang} language exchange programme university",
-                    "{lang} 言語交換 プログラム 大学"),
+        "intents": ("{lang} language exchange programme university",),
         "canonical_hint": "大学/机构项目页",
         "domain_sensitive": True,
     },
     "speech_contest": {
         "gap_types": ("language", "public_reputation", "portfolio"),
         "page_types": ("speech contest", "translation contest"),
-        "intents": ("{lang} speech contest students apply",
-                    "{lang} スピーチコンテスト 学生 応募"),
+        "intents": ("{lang} speech contest students apply",),
         "canonical_hint": "主办方官方页",
         "domain_sensitive": True,
     },
@@ -143,7 +135,7 @@ SOURCE_FAMILIES = {
     "mentorship_program": {
         "gap_types": ("portfolio", "network", "experience"),
         "page_types": ("mentorship page", "application round"),
-        "intents": ("{ecosystem} mentorship programme apply", "{ecosystem} メンターシップ 応募"),
+        "intents": ("{ecosystem} mentorship programme apply",),
         "canonical_hint": "项目官方页",
         "domain_sensitive": False,
     },
@@ -157,21 +149,21 @@ SOURCE_FAMILIES = {
     "contributor_guide": {
         "gap_types": ("portfolio", "experience"),
         "page_types": ("contributor guide", "good first issue", "contributor ladder"),
-        "intents": ("{ecosystem} contributor guide good first issue", "{ecosystem} コントリビュート 方法"),
+        "intents": ("{ecosystem} contributor guide good first issue",),
         "canonical_hint": "项目仓库/官方文档页",
         "domain_sensitive": False,
     },
     "community_event": {
         "gap_types": ("network", "public_reputation"),
         "page_types": ("community calendar", "meetup", "conference CFP"),
-        "intents": ("{ecosystem} community event CFP open", "{ecosystem} コミュニティ 勉強会 登壇"),
+        "intents": ("{ecosystem} community event CFP open",),
         "canonical_hint": "社区活动官方页",
         "domain_sensitive": False,
     },
     "maintainer_program": {
         "gap_types": ("leadership", "public_reputation"),
         "page_types": ("maintainer pathway", "governance"),
-        "intents": ("{ecosystem} maintainer pathway governance", "{ecosystem} メンテナー なるには"),
+        "intents": ("{ecosystem} maintainer pathway governance",),
         "canonical_hint": "项目治理页面",
         "domain_sensitive": False,
     },
@@ -214,12 +206,9 @@ INTENT_TO_FAMILIES = {
 STAGE_INTENT_OVERRIDES = {
     "working": {
         "hands-on research evidence": ("{topic} part-time research programme working professionals",
-                                       "{topic} industry-academia collaborative project",
-                                       "{topic} 社会人 研究 プログラム"),
-        "professor / community contact": ("{topic} open seminar working professionals",
-                                          "{topic} 研究室 見学会 社会人 参加"),
-        "certified language evidence": ("{lang} evening course university language centre",
-                                        "{lang} 社会人 講座 大学"),
+                                       "{topic} industry-academia collaborative project"),
+        "professor / community contact": ("{topic} open seminar working professionals",),
+        "certified language evidence": ("{lang} evening course university language centre",),
     },
     "undergraduate": {
         "hands-on research evidence": ("{topic} summer research programme undergraduate",
@@ -377,28 +366,154 @@ FAMILY_QUERY_MARKERS = {
     # 注意：不要收录过于泛化的 "research programme" —— 会把在职者的 part-time 查询误匹配进来
     "summer_research": ("summer research", "undergraduate research", "research internship",
                         "visiting student", "サマー"),
-    "university_lab": ("laboratory", "lab ", "研究室"),
-    "professor_page": ("professor", "教授", "faculty"),
-    "research_seminar": ("seminar", "見学", "open seminar", "workshop"),
+    "university_lab": ("laboratory", "lab ", "研究室", "实验室", "课题组"),
+    "professor_page": ("professor", "教授", "faculty", "招生"),
+    "research_seminar": ("seminar", "見学", "open seminar", "workshop", "开放讲座"),
     "research_institute": ("institute", "研究所", "research institute"),
     "graduate_school": ("graduate school", "大学院", "pt programme", "part-time programme"),
-    "academic_society": ("society", "学会", "committee"),
-    "research_funding_body": ("grant", "fellowship", "助成", "stipend"),
-    "official_exam_body": ("test dates", "registration", "模擬試験", "exam"),
-    "university_language_center": ("language centre", "language center", "語学"),
-    "government_cultural_body": ("cultural institute", "文化機構", "文化"),
-    "language_exchange_program": ("language exchange", "言語交換", "exchange programme"),
-    "speech_contest": ("speech contest", "speech", "翻訳", "スピーチ"),
+    "academic_society": ("society", "学会", "committee", "学生会员"),
+    "research_funding_body": ("grant", "fellowship", "助成", "stipend", "资助", "科研"),
+    "official_exam_body": ("test dates", "registration", "模擬試験", "exam", "考试"),
+    "university_language_center": ("language centre", "language center", "語学", "语言中心"),
+    "government_cultural_body": ("cultural institute", "文化機構", "文化", "文化机构"),
+    "language_exchange_program": ("language exchange", "言語交換", "exchange programme", "语言交换"),
+    "speech_contest": ("speech contest", "speech", "翻訳", "スピーチ", "演讲比赛"),
     "scholarship_language_program": ("scholarship", "奖学金", "給付"),
     "foundation": ("foundation", "基金会"),
-    "mentorship_program": ("mentorship", "mentor", "メンター"),
+    "mentorship_program": ("mentorship", "mentor", "メンター", "导师"),
     "working_group": ("working group", "sig ", "committee", "ワーキング"),
-    "contributor_guide": ("contributor guide", "good first issue", "contribute", "コントリビュート"),
-    "community_event": ("community event", "meetup", "勉強会", "cfp"),
-    "maintainer_program": ("maintainer", "governance", "メンテナー"),
+    "contributor_guide": ("contributor guide", "good first issue", "contribute", "コントリビュート", "贡献指南"),
+    "community_event": ("community event", "meetup", "勉強会", "cfp", "社区 活动", "社区活动"),
+    "maintainer_program": ("maintainer", "governance", "メンテナー", "维护者"),
     "project_repository": ("repository", "contributors wanted", "repo"),
     "bounty_program": ("bounty", "賞金"),
 }
+
+
+#: 非英语 query 模板：只在**目标地区真的需要该语言**时才发出。
+#: 语言由 locales.resolve_locales() 在运行时解析，不在这里推断、也不写死地区。
+LOCALE_INTENTS = {
+    # ---- Research ----
+    "university_lab": {
+        "ja": ("研究室 学生 募集 {topic}",),
+        "zh": ("{topic} 实验室 学生 招募", "{topic} 课题组 招 学生"),
+    },
+    "professor_page": {
+        "ja": ("{topic} 教授 研究室 見学 学生",),
+        "zh": ("{topic} 教授 招生 学生 联系",),
+    },
+    "research_seminar": {
+        "ja": ("{topic} 研究室 オープン 見学会 社会人",),
+        "zh": ("{topic} 开放讲座 报名 学生",),
+    },
+    "research_institute": {
+        "ja": ("{topic} 研究所 インターン 社会人",),
+        "zh": ("{topic} 研究所 实习 招募 学生",),
+    },
+    "academic_society": {
+        "ja": ("{topic} 学会 学生会員 参加",),
+        "zh": ("{topic} 学会 学生会员 加入",),
+    },
+    "research_funding_body": {
+        "ja": ("{topic} 研究助成 学生 公募",),
+        "zh": ("{topic} 科研 资助 学生 申请",),
+    },
+    # ---- Language ----
+    "official_exam_body": {
+        "ja": ("{exam} 公式 模擬試験",),
+        "zh": ("{exam} 官方 考试 时间 报名",),
+    },
+    "university_language_center": {
+        "ja": ("大学 語学センター {lang} 短期 プログラム",),
+        "zh": ("大学 语言中心 {lang} 短期 课程",),
+    },
+    "government_cultural_body": {
+        "ja": ("{country} 文化機構 {lang} 講座 プログラム",),
+        "zh": ("{country} 文化机构 {lang} 课程 项目",),
+    },
+    "language_exchange_program": {
+        "ja": ("{lang} 言語交換 プログラム 大学",),
+        "zh": ("{lang} 语言交换 项目 大学",),
+    },
+    "speech_contest": {
+        "ja": ("{lang} スピーチコンテスト 学生 応募",),
+        "zh": ("{lang} 演讲比赛 学生 报名",),
+    },
+    # ---- Open source ----
+    "mentorship_program": {
+        "ja": ("{ecosystem} メンターシップ 応募",),
+        "zh": ("{ecosystem} 导师 计划 申请 学生",),
+    },
+    "contributor_guide": {
+        "ja": ("{ecosystem} コントリビュート 方法",),
+        "zh": ("{ecosystem} 贡献指南 新手 任务",),
+    },
+    "community_event": {
+        "ja": ("{ecosystem} コミュニティ 勉強会 登壇",),
+        "zh": ("{ecosystem} 社区 活动 报名 演讲",),
+    },
+    "maintainer_program": {
+        "ja": ("{ecosystem} メンテナー なるには",),
+        "zh": ("{ecosystem} 维护者 路径 治理",),
+    },
+}
+
+#: 阶段 × 意图 的语言变体
+STAGE_INTENT_LOCALES = {
+    "working": {
+        "hands-on research evidence": {
+            "ja": ("{topic} 社会人 研究 プログラム",),
+            "zh": ("{topic} 在职 研究 项目 参与",),
+        },
+        "professor / community contact": {
+            "ja": ("{topic} 研究室 見学会 社会人 参加",),
+            "zh": ("{topic} 开放讲座 在职 参加",),
+        },
+        "certified language evidence": {
+            "ja": ("{lang} 社会人 講座 大学",),
+            "zh": ("{lang} 在职 语言 课程 大学",),
+        },
+    },
+}
+
+#: locale 代码 → 模板语言（未知 locale 一律按 en 处理）
+LOCALE_TEMPLATE_LANG = {"zh-CN": "zh", "zh-TW": "zh", "zh": "zh", "ja-JP": "ja", "ja": "ja",
+                        "en": "en", "en-US": "en", "en-GB": "en"}
+
+
+def query_languages(profile=None, request_text: str = "") -> list:
+    """本次运行应该发哪些语言的 query（顺序 = 优先级，由 locales 解析决定）。
+
+    未收录地区 / 无法解析时回落到 ["en"]（语言中立的底座）。
+    """
+    codes = []
+    try:
+        import locales as L
+        loc = L.resolve_locales(profile or {}, request_text or "")
+        codes = list(loc.get("primary_locales") or []) + list(loc.get("optional_locales") or [])
+    except Exception:
+        codes = []
+    langs = []
+    for c in codes:
+        lg = LOCALE_TEMPLATE_LANG.get(str(c))
+        if lg and lg not in langs:
+            langs.append(lg)
+    if "en" not in langs:                     # en 是语言中立底座，始终保留
+        langs.append("en")
+    return langs
+
+
+def _lang_variants(family, intent, stage, langs) -> list:
+    """某 family/意图在当前语言下应该发出的非英语模板。"""
+    out = []
+    for lg in langs:
+        if lg == "en":
+            continue
+        for tpl in (LOCALE_INTENTS.get(family) or {}).get(lg, ()):
+            out.append(tpl)
+        for tpl in ((STAGE_INTENT_LOCALES.get(stage) or {}).get(intent) or {}).get(lg, ()):
+            out.append(tpl)
+    return out
 
 
 def _family_for_query(query, candidates) -> str | None:
@@ -434,13 +549,18 @@ def stage_of(profile) -> str:
     return "unknown"
 
 
-def plan_queries(gap, profile=None, topic=None, region=None, limit=6) -> list:
-    """Gap → 具体 query（带来源 family / provenance / 阶段变体）。"""
+def plan_queries(gap, profile=None, topic=None, region=None, limit=6,
+                 request_text="", languages=None) -> list:
+    """Gap → 具体 query（带来源 family / provenance / 阶段变体 / 语言）。
+
+    **语言由运行时 locale 决定**：不在模板里写死任何非英语语言。
+    """
     profile = profile or {}
     topic = topic or (gap.get("name") if isinstance(gap, dict) else str(gap)) or "opportunity"
     intent = bridge_intent_for(gap)
     fams = families_for_gap(gap)
     stage = stage_of(profile)
+    langs = list(languages) if languages else query_languages(profile, request_text)
     lang = ((profile.get("constraints") or {}).get("language_constraint")
             or ("Japanese" if ("japan" in str(region or "").lower() or "日本" in str(topic))
                 else "language"))
@@ -456,30 +576,67 @@ def plan_queries(gap, profile=None, topic=None, region=None, limit=6) -> list:
             downweighted.append({"family": fam, "stage": stage, "reason": "low_stage_fit"})
         else:
             selected.append({"family": fam, "stage": stage, "fit": fit})
-    # 1) 阶段专用 query 优先：family 按 **query 内容** 真实匹配，匹配不到就是 None（mixed）
+    def _fmt(tpl):
+        return tpl.format(topic=topic, lang=lang, exam=lang, ecosystem=topic,
+                          country=region or "")
+
+    def _emit(q, fam, lang=None):
+        # 语言来自模板表（已知），不靠字符启发式猜 —— 纯汉字日语无法与中文区分
+        out.append({"query": q, "family": fam if fam else _family_for_query(q, fams),
+                    "bridge_intent": intent, "origin": "source_family_query", "stage": stage,
+                    "lang": lang or _query_lang(q), "languages": list(langs),
+                    "stage_fit": family_stage_fit(fam or "", stage)})
+
+    # 1) 阶段专用 query：语言变体优先（主 locale 先），英文模板兜底 → 目标语言先出
+    for lg in langs:
+        for tpl in (((STAGE_INTENT_LOCALES.get(stage) or {}).get(intent) or {}).get(lg) or ()):
+            _emit(_fmt(tpl), None, lang=lg)
     for tpl in STAGE_INTENT_OVERRIDES.get(stage, {}).get(intent, ()):
-        q = tpl.format(topic=topic, lang=lang, ecosystem=topic)
-        out.append({"query": q, "family": _family_for_query(q, fams), "bridge_intent": intent,
-                    "origin": "source_family_query", "stage": stage,
-                    "stage_fit": family_stage_fit(_family_for_query(q, fams) or "", stage)})
+        _emit(_fmt(tpl), None)
     # 2) family 模板（按阶段排序；low 的排在后面，预算耗尽自然被截掉）
     for fam in ordered:
         spec = SOURCE_FAMILIES.get(fam)
         if not spec:
             continue
+        for tg in langs:                      # 目标语言（zh/ja…）先，英文底座后
+            if tg == "en":
+                continue
+            for tpl in (LOCALE_INTENTS.get(fam) or {}).get(tg, ()):
+                _emit(_fmt(tpl), fam, lang=tg)
+                if len(out) >= limit:
+                    return _finalize(out, limit, selected, downweighted, skipped, stage)
         for tpl in spec["intents"]:
-            out.append({"query": tpl.format(topic=topic, lang=lang, exam=lang,
-                                            ecosystem=topic, country=region or ""),
-                        "family": fam, "bridge_intent": intent,
-                        "origin": "source_family_query", "stage": stage,
-                        "stage_fit": family_stage_fit(fam, stage)})
+            if _query_lang(tpl) != "en":      # 语言中立的契约：非英语必须走 LOCALE_INTENTS
+                continue
+            _emit(_fmt(tpl), fam)
             if len(out) >= limit:
-                return out
+                return _finalize(out, limit, selected, downweighted, skipped, stage)
     # 3) 兜底：通用搜索（未知来源照常被发现）
     if not out:
         out.append({"query": f"{topic} opportunity apply", "family": None,
-                    "bridge_intent": intent, "origin": "general_search", "stage": stage})
+                    "bridge_intent": intent, "origin": "general_search", "stage": stage,
+                    "lang": "en"})
+    return _finalize(out, limit, selected, downweighted, skipped, stage)
+
+
+_KANA_RE = re.compile(r"[\u3040-\u30ff]")
+_HAN_RE = re.compile(r"[\u3400-\u9fff]")
+
+
+def _query_lang(text) -> str:
+    """模板/query 的语言：kana → ja；纯汉字 → zh；否则 en。"""
+    t = str(text or "")
+    if _KANA_RE.search(t):
+        return "ja"
+    if _HAN_RE.search(t):
+        return "zh"
+    return "en"
+
+
+def _finalize(out, limit, selected, downweighted, skipped, stage) -> list:
+    """补齐 stage_fit / family_selected 等 provenance 字段并截断。"""
     for q in out:
+        q.setdefault("lang", _query_lang(q.get("query")))   # 仅兜底；语言变体自带 lang
         q.setdefault("stage_fit", family_stage_fit(q.get("family") or "", stage))
     for q in out[:limit]:
         q["family_selected"] = any(s["family"] == q.get("family") for s in selected)

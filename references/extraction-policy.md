@@ -46,6 +46,22 @@ Step 8 的执行规范。目标：把网页变成 `opportunity.schema.json` 记�
 `major_requirement`、`language_requirement`、`nationality_requirement`、`school_requirement`、
 `GPA_requirement`、`compensation`、`organization_size`。
 
+**`application_status` 有两个层次，都要写，且都不是用户自己的申请进度**：
+
+| 位置 | 含义 | 取值 |
+|---|---|---|
+| 顶层 `application_status` | **机会侧**状态：官方页面观察到的机会本身是否开放 | `open` / `rolling` / `closed` / `not_open` / `unknown` |
+| `evidence.application_status` | 该状态的证据 | `{status: explicit, source_url, verified_at}`（`verified_at` 30 天内） |
+
+`rolling` = 官网明确"持续招募、无固定截止"（如开源之夏）。两者缺一，机会都进不了主推荐区；
+缺顶层字段时报错会明确写 `top-level application_status`。**不要把** `saved` / `applied` 这类
+用户侧跟踪值（`scripts/state.py` 的那一套）填进机会侧字段。
+
+**`required_materials` 不等于缺口**：报名材料分三类去处理 ——
+公开产出物（portfolio / demo / writeup / 作品集）才可能构成 portfolio 缺口；
+手续类（CV、护照、申请表、身份/学籍证明、报名、费用）进 `logistics_prerequisites`；
+其余进 `preparation_items`。后两类**影响 readiness，不影响缺口统计与 Bridge 搜索**。
+
 `status` 取值只能是 `explicit` / `inferred` / `unknown`；
 `explicit` 建议附 `source_url`，能附 `quote`（页面原句）更好，便于复核。
 

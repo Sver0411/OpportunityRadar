@@ -8,6 +8,15 @@
 Gap Type → Bridge Intent → Source Family → Targeted Query → general search fallback
 ```
 
+## 语言由运行时决定（不要写死）
+
+family 的 query 模板只在**目标地区真的需要该语言**时才发出：语言来自
+`scripts/locales.py` 解析出的 locale（`sources.query_languages()` → `LOCALE_INTENTS`
+/ `STAGE_INTENT_LOCALES`）。英文是语言中立底座，始终保留。
+
+所以：中文用户不会收到日语 query，英文用户不会收到任何非英文 query。新增模板时
+**不要**把任何非英语语言直接写进 `SOURCE_FAMILIES[*]["intents"]`（有测试固定这一点）。
+
 ## 加载规则
 
 | 文件 | 何时加载 |

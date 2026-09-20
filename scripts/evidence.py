@@ -34,11 +34,10 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
+from common import PARTICIPATION_OPEN_STATUSES, OPPORTUNITY_APPLICATION_STATUSES  # noqa: E402,F401  （唯一事实来源在 common.py）
+
 #: 证据有效期（天）。与 normalize_date 中 explicit_status 的窗口保持一致。
 MAX_EVIDENCE_AGE_DAYS = 30
-
-#: 表示"当前可参与"的官方状态值
-PARTICIPATION_OPEN_STATUSES = ("open", "rolling")
 
 
 def _age_days(value, today):
@@ -64,7 +63,13 @@ def application_status_evidence(opp, today=None) -> dict:
     elif not (0 <= age <= MAX_EVIDENCE_AGE_DAYS):
         missing.append(f"verified_at(过期 {age} 天 > {MAX_EVIDENCE_AGE_DAYS})")
     if stated is None:
-        missing.append("application_status")
+        # 顶层字段（**机会侧**状态），与下面的 evidence 子键是两件事
+        missing.append("top-level application_status（机会侧 "
+                       + "/".join(OPPORTUNITY_APPLICATION_STATUSES) + "）")
+    elif stated not in OPPORTUNITY_APPLICATION_STATUSES:
+        # 常见误填：把**用户侧**跟踪状态（saved/applied…）填进了机会侧字段
+        missing.append(f"top-level application_status 取值非法({stated})："
+                       "这是机会侧状态，不是用户自己的申请进度")
     present = not missing
     return {
         "present": present,

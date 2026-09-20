@@ -277,12 +277,13 @@
       ],
       "enum": [
         "open",
+        "rolling",
         "closed",
         "not_open",
         "unknown",
         null
       ],
-      "description": "官方页面观察到的申请状态；必须在 evidence.application_status 记录来源和核验日期"
+      "description": "官方页面观察到的**机会**申请状态（不是用户自己的申请进度 —— 后者是 APP_STATUSES / state 里 saved/applied 那一套）。rolling = 官网明确持续招募、无固定截止。必须在 evidence.application_status 记录来源和核验日期；主推荐要求取值属于 PARTICIPATION_OPEN_STATUSES"
     },
     "deadline": {
       "type": [

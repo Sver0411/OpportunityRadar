@@ -164,8 +164,12 @@ Single source of truth: enums, weights, tracked fields and ID/URL rules live in
     (part-time programme, open seminar, industry-academia project) differs from an
     undergraduate's (summer research, undergraduate lab). Record each candidate's provenance
     (`known_source` / `source_family_query` / `general_search` / `adjacent_discovery`).
-    A source family is a **starting point, never a whitelist**: sources absent from the registry
-    are still discovered normally. See `references/source-families/`.
+    **Query language comes from the resolved locales, never from the template**: a family's
+    non-English templates are emitted only when that language is in the resolved locale list, so
+    a China/English user never receives Japanese queries (`sources.LOCALE_INTENTS`,
+    `sources.query_languages`). A source family is a **starting point, never a whitelist**:
+    sources absent from the registry are still discovered normally. See
+    `references/source-families/`.
 6. **Find canonical sources.** Locate the official page (program/company/university/organizer).
    Tier C/D may discover; Tier A/B must confirm.
 7. **Verify important facts.** On the canonical page confirm at least: application window /
@@ -198,7 +202,12 @@ Single source of truth: enums, weights, tracked fields and ID/URL rules live in
     target, or requirements repeating across several opportunities — every gap must be able to
     say "N of M target opportunities require X". Type the gap honestly (skill / research /
     network / leadership / public_reputation / language / portfolio / location_visa …);
-    **do not classify everything as a skill gap**. Then find a **real** bridge opportunity
+    **do not classify everything as a skill gap**. Participation logistics and application
+    materials (`CV`, `passport copy`, `申请表`, `个人资料`…) are **not** development gaps: they go
+    to `logistics_prerequisites` / `preparation_items` (they affect readiness, never the gap
+    denominator or the bridge search), and an opportunity-side restriction such as
+    `nationality_requirement` is an eligibility fact, not a gap of the user's. Then find a
+    **real** bridge opportunity
     (`scripts/graph.py` — same gates as any opportunity, never a course list unless nothing real
     exists) and record the chain gap → bridge → produced evidence → target. When no real bridge
     exists, say so and log it as a source-intelligence need.

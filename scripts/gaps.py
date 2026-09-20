@@ -23,6 +23,8 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
+from common import SKILL_EQUIVALENTS  # noqa: E402
+
 #: Gap 类型（不要都归类成 skill）
 GAP_TYPES = ("skill", "experience", "portfolio", "research", "language", "credential",
              "network", "leadership", "management", "location_visa", "education",
@@ -44,7 +46,25 @@ LOGISTICS_PREREQUISITE_PATTERNS = (
     "registration", "sign up", "signup", "account", "cv", "resume", "transcript",
     "motivation letter", "personal statement", "fee", "payment", "账号", "报名", "联系方式",
     "简历", "成绩单", "陈述", "费用", "邮箱",
+    # 2026-09-20 实测补全：这些同样是"参与手续/身份材料"，不是成长缺口
+    "passport", "id card", "national id", "online application", "application form",
+    "approval", "signature", "recommendation letter", "photo", "enrolment",
+    "enrollment", "proof of", "在读证明", "学籍", "身份证", "护照", "个人资料",
+    "申请表", "申请书", "报名表", "推荐信", "照片", "签名", "材料", "证明",
 )
+
+#: 只有在材料**本身是公开产出物**时，才允许当作 portfolio 缺口；
+#: 其余材料一律进 preparation_items（影响 readiness，不影响缺口分母与 Bridge 搜索）。
+PORTFOLIO_ARTEFACT_MARKERS = (
+    "portfolio", "showreel", "demo", "video", "writeup", "write-up", "publication",
+    "paper", "poster", "github repo", "repository", "report", "作品集", "作品",
+    "演示", "方案", "报告",
+)
+
+
+def is_portfolio_artefact(requirement) -> bool:
+    low = str(requirement or "").lower()
+    return any(m in low for m in PORTFOLIO_ARTEFACT_MARKERS)
 
 
 def is_logistics(requirement) -> bool:
@@ -56,20 +76,52 @@ def _tokens(text):
     return {t for t in re.split(r"[^0-9a-z\u4e00-\u9fff]+", str(text or "").lower()) if t}
 
 
-def _covered(requirement, profile) -> bool:
-    """要求是否被画像覆盖（保守：token 有交集才算覆盖）。"""
-    req = _tokens(requirement)
-    if not req:
-        return True
+_CJK_CHAR_RE = re.compile(r"[\u3400-\u9fff]")
+
+
+def _has_cjk(text) -> bool:
+    return bool(_CJK_CHAR_RE.search(str(text or "")))
+
+
+def _canon_tokens(text) -> set:
+    """token 归一化：中文能力词映射到英文同义 token（SKILL_EQUIVALENTS）。"""
+    out = set()
+    for t in _tokens(text):
+        out.add(SKILL_EQUIVALENTS.get(t, t))
+    return out
+
+
+def _cjk_contains(a_tokens, b_tokens) -> bool:
+    """中文子串互为包含也算覆盖（「嵌入式」⊂「嵌入式开发」，纯 token 相等会漏）。"""
+    a = {t for t in a_tokens if _has_cjk(t) and len(t) >= 2}
+    b = {t for t in b_tokens if _has_cjk(t) and len(t) >= 2}
+    return any(x in y or y in x for x in a for y in b)
+
+
+def _profile_tokens(profile) -> set:
+    """画像里表示"我已经具备"的 token：技能 + **兴趣** + 经历。"""
     have = set()
     for s in (profile.get("skills") or []):
         have |= _tokens(s.get("name") if isinstance(s, dict) else s)
+    for i in (profile.get("interests") or []):
+        have |= _tokens(i.get("name") if isinstance(i, dict) else i)
     exp = profile.get("experience") or {}
     for key in ("projects", "research", "internships", "competitions", "open_source",
                 "certificates", "portfolio"):
         for item in (exp.get(key) or []):
             have |= _tokens(item)
-    return bool(req & have)
+    return have
+
+
+def _covered(requirement, profile) -> bool:
+    """要求是否被画像覆盖（保守：token 有交集才算覆盖；支持中英互认与中文子串）。"""
+    req = _tokens(requirement)
+    if not req:
+        return True
+    have_raw = _profile_tokens(profile)
+    if _canon_tokens(requirement) & _canon_tokens(" ".join(have_raw)):
+        return True
+    return _cjk_contains(req, have_raw)
 
 
 #: 缺口相关性等级（先判相关性，再决定要不要为它花 Bridge 搜索预算）
@@ -201,12 +253,13 @@ def collect_gaps(opportunities, profile=None, goals=None, stated_target=None) ->
     # 1/3. 来自真实机会的硬性要求（重复出现 → 优先级更高）
     req_counter: dict = {}
     logistics: list = []
+    preparation: list = []            # 影响 readiness，不影响缺口分母
+    eligibility_constraints: list = []  # 机会侧的资格事实，不是用户的能力缺口
     for o in opportunities or []:
         if not isinstance(o, dict):
             continue
         oid = o.get("id")
-        for field, gtype in (("skills_required", "skill"), ("prerequisites", "skill"),
-                             ("required_materials", "portfolio")):
+        for field, gtype in (("skills_required", "skill"), ("prerequisites", "skill")):
             for req in (o.get(field) or []):
                 if _covered(req, profile):
                     continue
@@ -214,6 +267,16 @@ def collect_gaps(opportunities, profile=None, goals=None, stated_target=None) ->
                     logistics.append(str(req))
                     continue
                 req_counter.setdefault((gtype, str(req)), []).append(oid)
+        # 参与材料：只有**本身是公开产出物**时才可能是 portfolio 缺口
+        for mat in (o.get("required_materials") or []):
+            if _covered(mat, profile):
+                continue
+            if is_logistics(mat):
+                logistics.append(str(mat))
+            elif is_portfolio_artefact(mat):
+                req_counter.setdefault(("portfolio", str(mat)), []).append(oid)
+            else:
+                preparation.append(str(mat))
         lang = o.get("language_requirement")
         for item in (lang if isinstance(lang, list) else [lang] if lang else []):
             if isinstance(item, dict):
@@ -222,8 +285,10 @@ def collect_gaps(opportunities, profile=None, goals=None, stated_target=None) ->
                     req_counter.setdefault(("language", gap_name), []).append(oid)
         if o.get("school_requirement") and not profile.get("education", {}).get("school"):
             req_counter.setdefault(("credential", str(o["school_requirement"])), []).append(oid)
-        if o.get("nationality_requirement") and not profile.get("nationality"):
-            req_counter.setdefault(("location_visa", str(o["nationality_requirement"])), []).append(oid)
+        if o.get("nationality_requirement"):
+            # "仅限某国籍"是机会侧的资格事实 → 走资格判定，不是用户的缺口
+            # （以前它会被当成 location_visa gap，实测里产出「缺 Non-Chinese citizens」这种荒谬缺口）
+            eligibility_constraints.append(str(o["nationality_requirement"]))
 
     total = len([o for o in (opportunities or []) if isinstance(o, dict)]) or 1
     for (gtype, name), ids in sorted(req_counter.items(), key=lambda kv: -len(kv[1])):
@@ -272,7 +337,11 @@ def collect_gaps(opportunities, profile=None, goals=None, stated_target=None) ->
     out = sorted(gaps.values(), key=lambda g: ({"high": 0, "medium": 1, "low": 2}[g["priority"]],
                                                g["type"], g["name"]))
     for gap in out:
-        gap["logistics_prerequisites"] = sorted(set(logistics))[:5]
+        # 不做截断：这些"非缺口但必须记录"的项一旦被切掉就是静默丢弃，
+        # 要精简应在展示层做（见 references/output-format.md）。
+        gap["logistics_prerequisites"] = sorted(set(logistics))
+        gap["preparation_items"] = sorted(set(preparation))
+        gap["eligibility_constraints"] = sorted(set(eligibility_constraints))
         gap["relevance"] = gap_relevance(gap, profile)      # 相关性先于 Bridge 搜索
     order = {"core_gap": 0, "supporting_gap": 1, "contextual_gap": 2, "irrelevant": 3}
     out.sort(key=lambda g: (order.get(g["relevance"]["relevance"], 4),
@@ -312,6 +381,12 @@ def gap_summary(gaps) -> dict:
                                       if (g.get("relevance") or {}).get("relevance") == lvl)
                              for lvl in GAP_RELEVANCE_LEVELS},
             "development_gaps": len(development_gaps(gaps)),
+            "logistics_prerequisites": sorted({i for g in (gaps or [])
+                                               for i in (g.get("logistics_prerequisites") or [])}),
+            "preparation_items": sorted({i for g in (gaps or [])
+                                         for i in (g.get("preparation_items") or [])}),
+            "eligibility_constraints": sorted({i for g in (gaps or [])
+                                               for i in (g.get("eligibility_constraints") or [])}),
             "sources": {s: sum(1 for g in gaps if g["source"] == s)
                         for s in ("requirements", "user_stated", "repeated", "semantic")}}
 
