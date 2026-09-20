@@ -259,6 +259,10 @@ class TestRepoHygiene(unittest.TestCase):
     BANNED = ("TODO", "FIXME", "XXX", "待补充", "占位符")
     #: 本文件自身定义了上面的关键词，扫描时跳过以免自匹配
     SKIP_FILES = {"test_consistency.py"}
+    #: 正名白名单：这些是**真实存在的专有名词**，不是占位符。
+    #: 例：TODO Group 是 Linux Foundation 下的社区（真实机会名里会出现）。
+    #: 扫描前先去掉这些短语，`TODO:` 这类真占位符仍会被抓到。
+    ALLOWED_PHRASES = ("TODO Group", "TODO Steering Committee", "TODO 社区")
 
     def test_no_placeholders(self):
         hits = []
@@ -270,6 +274,8 @@ class TestRepoHygiene(unittest.TestCase):
                         or not fn.endswith((".md", ".json", ".py", ".txt"))):
                     continue
                 text = read(os.path.join(sub, fn) if sub else fn)
+                for phrase in self.ALLOWED_PHRASES:
+                    text = text.replace(phrase, "")
                 for kw in self.BANNED:
                     if kw in text:
                         hits.append(f"{p}: {kw}")
@@ -345,3 +351,22 @@ class TestDocsFunctional(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestPlaceholderScannerDoesNotFlagProperNouns(unittest.TestCase):
+    """真实数据暴露的误报：TODO Group 是 Linux Foundation 下的社区名，不是占位符。"""
+
+    def test_proper_noun_is_allowed_but_real_placeholders_still_caught(self):
+        banned = TestRepoHygiene.BANNED
+        allowed = TestRepoHygiene.ALLOWED_PHRASES
+        sample = "TODO Group 2027 Steering Committee 的申请窗口"
+        cleaned = sample
+        for p in allowed:
+            cleaned = cleaned.replace(p, "")
+        self.assertFalse(any(k in cleaned for k in banned), "正名被误判为占位符")
+
+        real = "TODO: 这里要补上来源"
+        cleaned2 = real
+        for p in allowed:
+            cleaned2 = cleaned2.replace(p, "")
+        self.assertTrue(any(k in cleaned2 for k in banned), "真占位符必须仍被抓到")

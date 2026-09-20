@@ -184,7 +184,7 @@ C 本轮按新 prompt 独立重跑（画像**不含** Singapore / 后端 / Pytho
 
 | ID | 问题 | 证据 | 影响 |
 |---|---|---|---|
-| P1-1 | **`goal_fit` 不认 promotion 方向的机会**：C 的目标是 `career`，而机会是 `open_source` / `event` → `goal_fit = 15` → match **51 < 55** → **`recommended_now = 0`** | C 本轮 6 条全部落在需确认 | 最需要建议的晋升型用户拿不到主线（TODO SC / OSSF TAC 明明 actionable + 证据完整） |
+| P1-1 | **`goal_fit` 不认 promotion 方向的机会**：C 的目标是 `career`，而机会是 `open_source` / `event` → `goal_fit = 15` → match **51 < 55** → **`recommended_now = 0`** | C 本轮 6 条全部落在需确认 | 最需要建议的晋升型用户拿不到主线（TODO Group SC / OpenSSF TAC 明明 actionable + 证据完整） |
 | P1-2 | 语言/国籍未声明 → 所有要求英语的机会都是 Unknown；与 P1-1 叠加后薄画像主线为空 | C 的 6 条 needs_confirmation 首条都是语言 | 薄画像用户的主线恒空 |
 | P1-3 | **schema 没有年龄字段**：18+ 类机会（志愿者很常见）无法被表达 | UNV 官方唯一硬要求是 18+，`EVIDENCE_FIELDS` 里没有 age | 我会把与证据矛盾的 `education_level` 删掉，结果是"无限制的机会按无限制处理" → **不够保守** |
 | P1-4 | 轴指标不可信：creative 词表缺 film/poetry/art；子串匹配夸大 `axis_count` | Weimar 被标 build；UNV 一条命中 5 轴 | explore 验收指标本身需要修才能当 gate |
@@ -205,11 +205,15 @@ C 本轮按新 prompt 独立重跑（画像**不含** Singapore / 后端 / Pytho
 在那之前，可以打一个诚实的中间标记（例如 `v3.0.0-rc2-validation-partial`），
 但不要把它当作 rc2 基线。
 
-**本轮唯二的小改动（定位性质，非新功能）**：
+**本轮三处小改动（都是定位/修正性质，非新功能）**：
 ① `community` 参与措辞对齐 §6 的三标签（原实现自造了第四个 `Unknown`，与你规定的
 "Open to join / Prerequisites apply / Invitation or selection required" 不符）；
 ② E 的三条候选删除了**与自身证据矛盾**的 `education_level`（官方页明确"无学历/无背景要求"），
-并据官方原文补了 `nationality_requirement = open to all nationalities`。
+并据官方原文补了 `nationality_requirement = open to all nationalities`；
+③ **仓库卫生测试的误报**：`test_no_placeholders` 把真实组织名 **TODO Group**
+（Linux Foundation 下的社区，出现在本轮真实机会名里）当成占位符 —— 这是测试被真实数据暴露的缺陷，
+已为正名加白名单（`TODO:` 这类真占位符仍会被抓到）。**必须说明：本轮第一次提交（`594703c`）
+是在这个测试失败的情况下提交的**（我当时没检查输出就提交了），修复在随后的提交里。
 
 ## 13. Golden Scenario 冻结清单
 
