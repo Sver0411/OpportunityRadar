@@ -44,6 +44,7 @@ from common import (  # noqa: E402
 )
 from normalize_date import freshness, parse_date  # noqa: E402
 from readiness import readiness  # noqa: E402
+from utility import personal_utility  # noqa: E402
 
 VERDICT_ORDER = {
     "Eligible": 0, "Probably Eligible": 1, "Unknown": 2,
@@ -956,11 +957,22 @@ def eligibility_component(opp, profile, today, stripped_fields=None):
 
 # ------------------------------------------------------------------ 其余分项
 
+LEVEL_SCORE = {"high": 1.0, "medium": 0.6, "low": 0.3, "unknown": 0.5, None: 0.5}
+
+
 def goal_component(opp, profile):
+    """目标契合：先看类别，再看 **V3 outcome facets**（跨类别命中）。
+
+    为什么需要 outcome：一个 CFP（`event`）对 networking / skill 目标是强契合，
+    但按类别匹配会判成"不重合" —— 这正是 V3 要修的"字段只存在于 JSON 里"的问题。
+    """
     goals = as_list(profile.get("goals"))
     if not goals:
         return 60.0, "画像未提供目标，按中性处理"
     cats = {opp.get("primary_category")} | set(as_list(opp.get("secondary_categories")))
+    outcomes = opp.get("outcomes") or {}
+    # 目标的"价值维度"名与 outcome facet 名不完全相同（networking ↔ network）
+    FACET_ALIAS = {"networking": "network", "financial": "financial"}
     best, note = 0.0, "与声明的目标不重合"
     for g in goals:
         if not isinstance(g, dict):
@@ -973,6 +985,14 @@ def goal_component(opp, profile):
             elif c in cats:
                 if w * 0.8 > best:
                     best, note = w * 0.8, f"作为次要类别命中目标 {g.get('type')}"
+            else:
+                # 跨类别：用"这个机会能带来什么"（outcome facet）命中目标
+                facet = FACET_ALIAS.get(c, c)
+                level = LEVEL_SCORE.get(str(outcomes.get(facet)).lower(), 0.5)
+                if facet in outcomes and level >= 0.6:
+                    v = w * level
+                    if v > best:
+                        best, note = v, f"产出 outcomes.{facet}={outcomes[facet]} 命中目标 {g.get('type')}"
     return (100.0 * best if best else 15.0), note
 
 
@@ -1002,6 +1022,8 @@ def interest_component(opp, profile):
                      " ".join(norm(t) for t in as_list(opp.get("tags"))),
                      norm(str(opp.get("primary_category"))),
                      " ".join(norm(x) for x in as_list(opp.get("major_requirement"))),
+                     " ".join(norm(k) for k in (opp.get("outcomes") or {})),
+                     " ".join(norm(x) for x in as_list(opp.get("produces"))),
                      " ".join(norm(x) for x in as_list(opp.get("skills_preferred"))),
                      " ".join(norm(x) for x in as_list(opp.get("skills_required")))])
     matched = []
@@ -1143,9 +1165,14 @@ def recommendation_zone(row: dict) -> str:
 
     返回三个输出区之一：
       * ``recommended_now``  —— 现在值得申请：freshness 为 open/likely_open、
-        有 canonical source、不是 Ineligible、match 达到最低门槛。
+        有 canonical source、官方已核实且有申请状态证据、不是 Ineligible，
+        并且（match 达到最低门槛 **或 Personal Utility 为 high**）。
       * ``worth_verifying``  —— 有价值但状态/来源/资格未确认，单独区域展示。
       * ``excluded``         —— 已过期/已结束，或明确不符合资格。
+
+    Utility 之所以能替代 match 门槛：渐进式画像下 match 常因未知分项偏低，
+    而 Utility 已经综合了 readiness / outcome / 投入 / 未来通道 ——
+    它是 V3 的决策层，不能只活在 JSON 里。
     """
     if row.get("freshness") and row["freshness"].get("status") in CLOSED_FRESHNESS:
         return "excluded"
@@ -1159,7 +1186,7 @@ def recommendation_zone(row: dict) -> str:
             and row.get("verification_status") == "verified_official" \
             and row.get("application_status_evidence") \
             and row.get("size_verified", True) \
-            and row.get("match", 0) >= MIN_RECOMMEND_MATCH:
+            and (row.get("match", 0) >= MIN_RECOMMEND_MATCH or row.get("utility") == "high"):
         return "recommended_now"
     return "worth_verifying"
 
@@ -1339,6 +1366,10 @@ def score_all(profile, opps, seen_index=None, today=None, strict=False, context=
             warnings.append(b)
         if rd["status"] == "unknown":
             flags.append("readiness_unknown")
+
+        # V3：Personal Utility（决策层）—— 让 Utility 真正影响推荐，不只是 JSON 字段
+        util = personal_utility(opp, profile, {"eligibility_verdict": verdict, "components": comp,
+                                               "urgency": None})
         if needs_llm:
             flags.append("needs_semantic_check")
         if not opp.get("language_requirement"):
@@ -1374,12 +1405,16 @@ def score_all(profile, opps, seen_index=None, today=None, strict=False, context=
             "deadline_source": dinfo["source"],
             "freshness": fr["status"],
             "freshness_reason": fr["reason"],
+            "utility": util["band"],
+            "utility_reasons": util["reasons"][:3],
             "readiness": rd["status"],
             "readiness_detail": rd,
             "conflicts": conflicts,
             "zone": recommendation_zone({"freshness": fr, "official_url": opp.get("official_url"),
                                           "verification_status": opp.get("verification_status"),
                                           "conflicts": conflicts,
+                                          "utility": util["band"],
+                                          "match": match,
                                           "application_status_evidence": actionable_evidence(opp, today),
                                           "size_verified": size_verified,
                                           "verdict": verdict, "match": match}),

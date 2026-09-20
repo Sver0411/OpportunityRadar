@@ -128,6 +128,10 @@ INTEREST_ALIASES = {
     "education": ["education", "teaching", "pedagogy", "curriculum", "教育"],
     "social_impact": ["social impact", "nonprofit", "civic", "community", "volunteer", "公益"],
     "sports": ["sports", "athletics", "fitness", "esports management"],
+    # ---- V3：职场与社区类兴趣（C/D/E 验收发现原先完全缺失，CFP/开源/社区机会匹配为 0）----
+    "open_source": ["open source", "oss", "github", "maintainer", "contributor", "开源"],
+    "networking": ["networking", "professional network", "community", "meetup", "人脉", "社群"],
+    "public_speaking": ["public speaking", "speaker", "talk", "presentation", "演讲"],
 }
 
 #: 语言条目里表示"明确不具备"的标记（score.py 资格判定与 locales.py 召回门控共用）。

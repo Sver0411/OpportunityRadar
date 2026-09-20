@@ -194,5 +194,61 @@ class TestV3Enums(unittest.TestCase):
         self.assertIn(u["band"], ("high", "medium", "low", "unknown"))
 
 
+
+class TestP0FixesFromCDE(unittest.TestCase):
+    """C/D/E 验收发现的 P0 缺陷回归（修复于 V3 P0 收尾）。"""
+
+    def test_outcome_facet_lifts_goal_fit_across_categories(self):
+        """CFP 属 event，但产出 network=high 命中 networking 目标 → 不得判为"不重合"。"""
+        import score as S
+        prof = {"goals": [{"type": "networking", "priority": "high"}]}
+        cfp = opp(primary_category="event",
+                  outcomes={"network": "high", "reputation": "high"})
+        score, note = S.goal_component(cfp, prof)
+        self.assertGreaterEqual(score, 60)
+        self.assertIn("network", note)
+        plain_event = opp(primary_category="event")          # 没有 outcomes → 仍然不重合
+        self.assertLess(S.goal_component(plain_event, prof)[0], 60)
+
+    def test_professional_interest_aliases_exist(self):
+        """验收发现 open_source / networking / public_speaking 完全缺失，导致 CFP/开源匹配为 0。"""
+        from common import INTEREST_ALIASES
+        for key in ("open_source", "networking", "public_speaking"):
+            with self.subTest(key=key):
+                self.assertIn(key, INTEREST_ALIASES)
+
+    def test_utility_can_qualify_recommendation(self):
+        """渐进式画像下 match 可能 < 55；Utility=high 时仍可进主推荐（否则主推荐区不可达）。"""
+        import score as S
+        row = {"freshness": {"status": "open"}, "official_url": "https://x.example",
+               "verdict": "Eligible", "match": 48, "utility": "high",
+               "verification_status": "verified_official",
+               "application_status_evidence": True}
+        self.assertEqual(S.recommendation_zone(row), "recommended_now")
+        row["utility"] = "medium"
+        self.assertEqual(S.recommendation_zone(row), "worth_verifying")
+
+    def test_recommended_now_requires_evidence_structure(self):
+        """P0：verified_official 但缺 evidence.application_status → 不能被认证为可申请。"""
+        import score as S
+        base = opp(verification_status="verified_official", deadline="2026-11-15",
+                   official_url="https://x.example")
+        self.assertFalse(S.actionable_evidence(base, dt.date(2026, 9, 20)))
+        base["evidence"] = {"application_status": {"status": "explicit",
+                                                   "source_url": "https://x.example",
+                                                   "verified_at": "2026-09-20"}}
+        self.assertTrue(S.actionable_evidence(base, dt.date(2026, 9, 20)))
+
+    def test_effort_and_cost_accept_both_shapes(self):
+        """真实验收里 effort/cost 既可能是对象也可能是字符串。"""
+        import readiness as R
+        import utility as U
+        self.assertEqual(R.effort_of({"effort": "6-8 h/week"}), {"weekly_commitment": "6-8 h/week"})
+        self.assertEqual(R.effort_of({"effort": {"weekly_commitment": "4 h"}}),
+                         {"weekly_commitment": "4 h"})
+        u = U.personal_utility(opp(cost="free", outcomes={"skill": "high"}), PRO_WORKER)
+        self.assertIn(u["band"], ("high", "medium", "low", "unknown"))
+
+
 if __name__ == "__main__":
     unittest.main()

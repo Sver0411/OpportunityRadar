@@ -222,6 +222,28 @@ python3 scripts/normalize_date.py "9月20日" --default-year 2026 --now 2026-09-
 > 宁可说"我找到了这个项目，但当前申请状态无法确认"，
 > 也不要说"现在可以申请"。
 
+## 6.2 主推荐的证据前提（P0，来自 C/D/E 验收）
+
+`recommended_now` 不是"看起来可以申请"，而是**有当天的官方观测**：
+
+```json
+"verification_status": "verified_official",
+"application_status": "open",
+"evidence": {
+  "application_status": {"status": "explicit",
+                         "source_url": "https://<official>/...",
+                         "verified_at": "YYYY-MM-DD"},
+  "deadline":           {"status": "explicit",
+                         "source_url": "https://<official>/...",
+                         "verified_at": "YYYY-MM-DD"}
+}
+```
+
+- 缺 `evidence.application_status` → 无论页面看起来多合适，都只能进 **Worth verifying**。
+- 结构化证据必须在**打开页面时**记录（`verified_at` 就是那天）；事后凭记忆补写等于伪造。
+- C/D/E 三组真实验收的教训：候选 100% 没有这个结构 → 真实 gate 一条都认证不了，
+  主推荐区等于不可达。这是协议要求，不是 gate 过严。
+
 ## 7. `tags` 生成
 
 3–8 个短标签，用于后续检索与兴趣匹配：

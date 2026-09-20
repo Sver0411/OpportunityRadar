@@ -1,0 +1,302 @@
+{
+  "opportunities": [
+    {
+      "id": "c1-kubecon-cfp",
+      "title": "KubeCon + CloudNativeCon CFP（演讲征集）",
+      "organization": "Cloud Native Computing Foundation / Linux Foundation",
+      "primary_category": "event",
+      "deadline": "2026-10-11",
+      "freshness": "open",
+      "official_url": "https://events.linuxfoundation.org/kubecon-cloudnativecon-europe/program/cfp",
+      "required_materials": [
+        "conference talk proposal"
+      ],
+      "effort": {
+        "weekly_commitment": "flexible, proposal ~5-10h then talk prep if accepted"
+      },
+      "eligibility_verdict": "Eligible",
+      "produces": [
+        "公开演讲",
+        "会议 slides",
+        "外部可见技术影响力"
+      ],
+      "unlocks": [
+        {
+          "type": "program_committee",
+          "label": "会议 program committee / 受邀演讲"
+        },
+        {
+          "type": "cncf_ambassador",
+          "label": "CNCF Ambassador"
+        }
+      ],
+      "goal_contribution": [
+        "promotion_to_senior",
+        "external_visibility"
+      ],
+      "outcomes": {
+        "career": "High",
+        "reputation": "High",
+        "exposure": "High",
+        "network": "High",
+        "skill": "Medium",
+        "portfolio": "Medium",
+        "management": "Low"
+      },
+      "future_optionality": {
+        "level": "high"
+      }
+    },
+    {
+      "id": "c2-cncf-maintainer",
+      "title": "CNCF 开源项目 Maintainer / Committer 路径（contributor ladder）",
+      "organization": "CNCF",
+      "primary_category": "open_source",
+      "deadline": "rolling",
+      "freshness": "open",
+      "official_url": "https://contribute.cncf.io/projects/best-practices/governance/leadership-selection",
+      "prerequisites": [
+        "12 months contributing to a CNCF project",
+        "reviewed at least 50 PRs"
+      ],
+      "effort": {
+        "weekly_commitment": "flexible, remote, ~2-4h/week ongoing"
+      },
+      "eligibility_verdict": "Probably Eligible",
+      "produces": [
+        "合并的 PR",
+        "公开的 OWNERS 记录",
+        "项目技术决策权"
+      ],
+      "unlocks": [
+        {
+          "type": "cncf_ambassador",
+          "label": "CNCF Ambassador / 技术委员会"
+        },
+        {
+          "type": "conference_speaker",
+          "label": "会议演讲邀请"
+        }
+      ],
+      "goal_contribution": [
+        "promotion_to_senior",
+        "technical_leadership"
+      ],
+      "outcomes": {
+        "career": "High",
+        "reputation": "High",
+        "portfolio": "High",
+        "network": "High",
+        "skill": "High",
+        "management": "Medium"
+      },
+      "future_optionality": {
+        "level": "high"
+      }
+    },
+    {
+      "id": "c3-cncf-tag",
+      "title": "CNCF Technical Advisory Group (TAG) / Working Group 参与",
+      "organization": "CNCF",
+      "primary_category": "research",
+      "deadline": "rolling",
+      "freshness": "open",
+      "official_url": "https://contribute.cncf.io/contributors",
+      "prerequisites": [],
+      "effort": {
+        "weekly_commitment": "attend open meetings / async Slack, ~1-2h/week"
+      },
+      "eligibility_verdict": "Eligible",
+      "produces": [
+        "标准/最佳实践文档贡献",
+        "跨项目影响力",
+        "会议记录"
+      ],
+      "unlocks": [
+        {
+          "type": "tag_chair",
+          "label": "TAG Chair / Tech Lead"
+        },
+        {
+          "type": "conference_speaker",
+          "label": "KubeCon 深度演讲"
+        }
+      ],
+      "goal_contribution": [
+        "promotion_to_senior",
+        "industry_influence"
+      ],
+      "outcomes": {
+        "reputation": "Medium",
+        "network": "High",
+        "skill": "Medium",
+        "career": "Medium",
+        "exposure": "Medium"
+      },
+      "future_optionality": {
+        "level": "high"
+      }
+    },
+    {
+      "id": "c4-cncg-sg",
+      "title": "Cloud Native Community Group Singapore — 组织者 / Chapter Lead",
+      "organization": "CNCF",
+      "primary_category": "networking",
+      "deadline": "rolling",
+      "freshness": "open",
+      "official_url": "https://community.cncf.io/singapore/",
+      "required_materials": [
+        "organizer application / join existing organizer team"
+      ],
+      "effort": {
+        "weekly_commitment": "a few hours per month, some in-person Singapore"
+      },
+      "eligibility_verdict": "Eligible",
+      "produces": [
+        "本地社区领导力",
+        "线下活动组织经验",
+        "本地人脉"
+      ],
+      "unlocks": [
+        {
+          "type": "cncf_ambassador",
+          "label": "CNCF Ambassador"
+        },
+        {
+          "type": "conference_speaker",
+          "label": "本地 meetup 演讲"
+        }
+      ],
+      "goal_contribution": [
+        "promotion_to_senior",
+        "community_leadership"
+      ],
+      "outcomes": {
+        "network": "High",
+        "reputation": "Medium",
+        "exposure": "Medium",
+        "career": "Medium",
+        "management": "Medium"
+      },
+      "future_optionality": {
+        "level": "medium"
+      }
+    },
+    {
+      "id": "c5-cka-cks",
+      "title": "CKA / CKAD / CKS Kubernetes 认证（CNCF/Linux Foundation）",
+      "organization": "CNCF / Linux Foundation",
+      "primary_category": "skill_development",
+      "deadline": "rolling",
+      "freshness": "open",
+      "official_url": "https://www.cncf.io/certification/cka/",
+      "prerequisites": [],
+      "effort": {
+        "weekly_commitment": "self-paced study ~3-5h/week for a few weeks"
+      },
+      "eligibility_verdict": "Eligible",
+      "produces": [
+        "行业认证凭证",
+        "可验证的 K8s 能力"
+      ],
+      "unlocks": [
+        {
+          "type": "kubestronaut",
+          "label": "Kubestronaut 计划（5 证全过）"
+        },
+        {
+          "type": "cncf_ambassador",
+          "label": "认证背书的可信度"
+        }
+      ],
+      "goal_contribution": [
+        "promotion_to_senior",
+        "credential"
+      ],
+      "outcomes": {
+        "credential": "High",
+        "career": "Medium",
+        "skill": "High"
+      },
+      "future_optionality": {
+        "level": "medium"
+      }
+    },
+    {
+      "id": "c6-lfx-mentor",
+      "title": "LFX Mentorship（Linux Foundation）— 以 Mentor 身份参与",
+      "organization": "Linux Foundation",
+      "primary_category": "networking",
+      "deadline": "rolling",
+      "freshness": "open",
+      "official_url": "https://mentorship.lfx.linuxfoundation.org/participate/mentor",
+      "prerequisites": [
+        "active contributor to a mentored CNCF project"
+      ],
+      "effort": {
+        "weekly_commitment": "mentor ~2-4h/week during a term"
+      },
+      "eligibility_verdict": "Probably Eligible",
+      "produces": [
+        "导师经历",
+        "mentee 产出",
+        "跨公司指导记录"
+      ],
+      "unlocks": [
+        {
+          "type": "cncf_maintainer",
+          "label": "更深的项目 maintainer 关系"
+        },
+        {
+          "type": "conference_speaker",
+          "label": "mentorship 主题演讲"
+        }
+      ],
+      "goal_contribution": [
+        "promotion_to_senior",
+        "mentorship"
+      ],
+      "outcomes": {
+        "management": "Medium",
+        "reputation": "Medium",
+        "network": "High",
+        "career": "Medium",
+        "skill": "Medium"
+      },
+      "future_optionality": {
+        "level": "high"
+      }
+    },
+    {
+      "id": "c7-acm-sg",
+      "title": "ACM Singapore — 委员会志愿者 / 委员",
+      "organization": "ACM Singapore",
+      "primary_category": "networking",
+      "deadline": "rolling",
+      "freshness": "unknown",
+      "official_url": null,
+      "eligibility_verdict": "Unknown",
+      "produces": [
+        "协会委员会经历"
+      ],
+      "unlocks": [
+        {
+          "type": "committee_lead",
+          "label": "委员会领导"
+        }
+      ],
+      "goal_contribution": [
+        "promotion_to_senior",
+        "community_leadership"
+      ],
+      "outcomes": {
+        "network": "Medium",
+        "reputation": "Low",
+        "career": "Low"
+      },
+      "future_optionality": {
+        "level": "medium"
+      }
+    }
+  ]
+}

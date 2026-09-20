@@ -1,0 +1,46 @@
+{
+  "profile_version": 1,
+  "updated_at": "2026-09-20",
+  "_source": "user_stated",
+  "education": {
+    "school": null,
+    "school_country": null,
+    "school_level": null,
+    "degree": null,
+    "major": null,
+    "major_family": null,
+    "expected_graduation": null,
+    "GPA": null
+  },
+  "languages": [],
+  "employment": {
+    "status": "full_time",
+    "years_of_experience": 5,
+    "industry": null,
+    "company_type": null,
+    "role": null,
+    "function": null,
+    "seniority": null
+  },
+  "life_stage": ["working"],
+  "career_stage": null,
+  "nationality": null,
+  "skills": null,
+  "interests": null,
+  "experience": null,
+  "goals": [
+    {"type": "education", "priority": "high", "note": "申请日本硕士（master's in Japan）；明确不想立刻辞职，倾向在职/兼职/通信/企业派遣等非脱产路径"},
+    {"type": "language", "priority": "medium", "note": "日语准备（JLPT），作为赴日读硕的语言门槛与申请加分项"},
+    {"type": "research", "priority": "medium", "note": "科研/研究接触与教授联系，作为提升录取可能性的搭桥项"},
+    {"type": "funding", "priority": "medium", "note": "奖学金/企业资助，降低脱产成本"},
+    {"type": "career", "priority": "medium", "note": "保持职业连续性：在职攻读、企业派遣、公司内部学习支持"}
+  ],
+  "constraints": {
+    "preferred_country": ["Japan"],
+    "remote": true,
+    "relocation": null,
+    "unpaid": null,
+    "budget": null,
+    "weekly_time": null
+  }
+}

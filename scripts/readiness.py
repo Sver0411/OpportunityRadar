@@ -53,6 +53,16 @@ def _hours(expr, allow_bare=False):
     return max(nums)
 
 
+def effort_of(opp) -> dict:
+    """`effort` 允许写成对象或字符串（真实抽取结果两种都有）。"""
+    eff = opp.get("effort")
+    if isinstance(eff, dict):
+        return eff
+    if isinstance(eff, str) and eff.strip():
+        return {"weekly_commitment": eff}
+    return {}
+
+
 def readiness(opp, profile) -> dict:
     """返回 {status, ready_items, missing_items, blockers, estimated_preparation, notes}。"""
     ready, missing, blockers, notes = [], [], [], []
@@ -88,7 +98,7 @@ def readiness(opp, profile) -> dict:
 
     cons = profile.get("constraints") or {}
     weekly_limit = _hours(cons.get("weekly_time"), allow_bare=True)
-    need = _hours((opp.get("effort") or {}).get("weekly_commitment"))
+    need = _hours(effort_of(opp).get("weekly_commitment"))
     if weekly_limit and need and need > weekly_limit * 1.5:
         blockers.append(f"时间冲突：机会约 {need:g}h/周，你的上限约 {weekly_limit:g}h/周")
         notes.append("heavy commitment conflict：不是 Ineligible，但不能当低投入机会推荐")

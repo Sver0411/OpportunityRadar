@@ -23,7 +23,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from readiness import readiness  # noqa: E402
+from readiness import effort_of, readiness  # noqa: E402
 
 LEVEL_SCORE = {"high": 1.0, "medium": 0.6, "low": 0.3, "unknown": 0.5, None: 0.5}
 
@@ -78,7 +78,7 @@ def _outcome_value(opp) -> float:
 
 def _effort_fit(opp, profile) -> tuple:
     cons = profile.get("constraints") or {}
-    eff = opp.get("effort") or {}
+    eff = effort_of(opp)
     weekly = str(eff.get("weekly_commitment") or "")
     limit = str(cons.get("weekly_time") or "")
     import re
@@ -98,7 +98,9 @@ def _effort_fit(opp, profile) -> tuple:
 
 def _cost_fit(opp, profile) -> tuple:
     pref_paid = (profile.get("decision_preferences") or {}).get("prefer_paid")
-    cost = opp.get("cost") or {}
+    cost = opp.get("cost")
+    if not isinstance(cost, dict):
+        cost = {} if cost in (None, "") else {"participation_cost": str(cost)}
     blob = " ".join(str(v or "") for v in cost.values()).lower()
     if not blob and opp.get("compensation") is None:
         return 0.5, None

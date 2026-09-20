@@ -1,0 +1,618 @@
+{
+  "case": "C",
+  "regression": "P0 re-run after fixing defect #1 (V3 outcomes feed goal fit + utility can qualify) and defect #2 (evidence precondition recorded for recommended_now).",
+  "user_input": "我现在不想跳槽，就是想让自己未来更容易升 Senior。我是做后端/云原生的，五年经验，base 在新加坡，远程也行。",
+  "profile_used": {
+    "life_stage": "working",
+    "career_stage": [
+      "mid_career"
+    ],
+    "years_experience": 5,
+    "education": {
+      "degree": null,
+      "major": "backend / cloud-native (field of work, not a degree major)",
+      "major_family": "cs_software",
+      "GPA": null
+    },
+    "skills": [
+      {
+        "name": "backend",
+        "level": "unknown"
+      },
+      {
+        "name": "cloud-native",
+        "level": "unknown"
+      }
+    ],
+    "languages": [
+      {
+        "language": "English",
+        "level": "unknown"
+      }
+    ],
+    "experience": {
+      "years_experience": 5,
+      "open_source": null,
+      "github": null,
+      "certificates": null
+    },
+    "goals": [
+      {
+        "type": "open_source",
+        "priority": "high"
+      },
+      {
+        "type": "networking",
+        "priority": "high"
+      },
+      {
+        "type": "event",
+        "priority": "high"
+      },
+      {
+        "type": "research",
+        "priority": "medium"
+      },
+      {
+        "type": "skill",
+        "priority": "medium"
+      },
+      {
+        "type": "funding",
+        "priority": "low"
+      }
+    ],
+    "constraints": {
+      "preferred_country": [
+        "Singapore"
+      ],
+      "remote": true,
+      "relocation": false,
+      "unpaid": true
+    },
+    "nationality": null
+  },
+  "fields_left_unknown": [
+    "雇主/公司名（未提供，不发明）",
+    "学历学位（degree: null）",
+    "具体技术栈（Kubernetes/Go/具体云平台，未提供，仅用 backend/cloud-native 泛化）",
+    "国籍/签证状态（nationality: null）",
+    "英语水平等级（仅写 English，无成绩）",
+    "每周可投入时间（weekly_time: null）",
+    "GitHub/开源贡献史（open_source: null）——影响 maintainer/mentor 类资格判定"
+  ],
+  "locale_plan": {
+    "mode": "A (profile discovery，本次为升 Senior 资本建设，非求职)",
+    "regions": [
+      "singapore",
+      "remote"
+    ],
+    "region_source": "profile constraints (preferred_country=Singapore, remote=true)",
+    "primary_locales": [
+      "en-SG"
+    ],
+    "optional_locales": [
+      "zh-CN",
+      "ms-SG"
+    ],
+    "load_files": [
+      "references/locales/generic.md"
+    ],
+    "categories_searched": [
+      "event",
+      "open_source",
+      "networking",
+      "research",
+      "skill_development"
+    ],
+    "layer_ratios": {
+      "exploit": 0.55,
+      "adjacent": 0.25,
+      "explore": 0.2
+    }
+  },
+  "coverage": {
+    "statement": "本轮扫描 singapore + 全球远程：event、open_source、research、skill_development、networking 各≥1 条；所有候选均为非求职类（开源/社区/会议/认证），未退化成招聘板。6 次 WebSearch + 5 次 WebFetch 已用满；3 条官方页成功取回并记录了 evidence，2 条官方页取回失败（404 / 登录墙）如实降级。",
+    "totals": {
+      "rows": 7,
+      "queries": 6,
+      "candidates": 7,
+      "verified": 3,
+      "fetched_real": 5,
+      "fetched_failed": 2
+    }
+  },
+  "queries": [
+    {
+      "text": "KubeCon CloudNativeCon 2027 CFP call for proposals speaker deadline",
+      "layer": "exploit",
+      "locale": "en",
+      "category": "event"
+    },
+    {
+      "text": "CNCF become a project maintainer contributor ladder how to participate 2026",
+      "layer": "exploit",
+      "locale": "en",
+      "category": "open_source"
+    },
+    {
+      "text": "CNCF CKA CKAD CKS certification exam register schedule 2026 Linux Foundation",
+      "layer": "exploit",
+      "locale": "en",
+      "category": "skill_development"
+    },
+    {
+      "text": "CNCF Community Group Singapore chapter local meetup community.cncf.io",
+      "layer": "exploit",
+      "locale": "en-SG",
+      "category": "networking"
+    },
+    {
+      "text": "LFX Mentorship Linux Foundation become a mentor 2026 application",
+      "layer": "exploit",
+      "locale": "en",
+      "category": "networking"
+    },
+    {
+      "text": "CNCF Technical Advisory Group TAG working group join participate contribute.cncf.io",
+      "layer": "exploit",
+      "locale": "en",
+      "category": "research"
+    }
+  ],
+  "searches_used": 6,
+  "fetches_used": 5,
+  "fetches_detail": {
+    "success": [
+      "https://events.linuxfoundation.org/kubecon-cloudnativecon-europe/program/cfp",
+      "https://contribute.cncf.io/contributors/getting-started",
+      "https://www.cncf.io/certification/cka/"
+    ],
+    "failed": {
+      "https://community.cncf.io/singapore/": "404 Page not found（JS/SPA 路由），未取得组织者申请证据",
+      "https://mentorship.lfx.linuxfoundation.org/participate/mentor": "跳转到 LF SSO 登录页，未取得 Become a Mentor 正文"
+    }
+  },
+  "candidates": [
+    {
+      "id": "cncf-kubecon-eu-2027-cfp",
+      "title": "KubeCon + CloudNativeCon Europe 2027 CFP（演讲征集）",
+      "organization": "Cloud Native Computing Foundation / Linux Foundation",
+      "category": "event",
+      "official_url": "https://events.linuxfoundation.org/kubecon-cloudnativecon-europe/program/cfp",
+      "discovery_url": "https://events.linuxfoundation.org/kubecon-cloudnativecon-europe/program/cfp",
+      "deadline": "2026-10-11",
+      "deadline_type": "fixed",
+      "freshness": "open",
+      "verification_status": "verified_official",
+      "last_verified": "2026-09-20",
+      "application_status": "open",
+      "evidence": {
+        "application_status": {
+          "status": "explicit",
+          "source_url": "https://events.linuxfoundation.org/kubecon-cloudnativecon-europe/program/cfp",
+          "verified_at": "2026-09-20",
+          "quote": "Submissions are due by 11 October at 11:59 PM CEST (UTC+2)"
+        },
+        "deadline": {
+          "status": "explicit",
+          "source_url": "https://events.linuxfoundation.org/kubecon-cloudnativecon-europe/program/cfp",
+          "verified_at": "2026-09-20",
+          "quote": "CFP Closes: Sunday, 11 October at 11:59 PM CEST (UTC+2)"
+        }
+      },
+      "eligibility_verdict": "Eligible",
+      "readiness": "minor_preparation",
+      "effort": "提案约 5-10h；若录用再准备演讲；远程提交，无地域/身份限制；CFP 对从业者开放并鼓励首次演讲者",
+      "outcomes": {
+        "career": "High",
+        "reputation": "High",
+        "exposure": "High",
+        "network": "High",
+        "skill": "Medium",
+        "portfolio": "Medium"
+      },
+      "career_capital": "reputation + exposure + network",
+      "career_leverage": "一次旗舰会议演讲 = 团队外的公开技术影响力，可直接作为升职材料里的'技术领导力/行业影响力'证据",
+      "future_optionality": "high — 演讲后常被邀做 program committee、其他会议演讲、CNCF Ambassador",
+      "unlocks": [
+        "program_committee",
+        "cncf_ambassador",
+        "invited_talks"
+      ],
+      "produces": [
+        "公开演讲",
+        "slides",
+        "外部可见技术影响力"
+      ],
+      "promotion_relevance": "Senior 评审最看重的就是'影响超出本团队'；KubeCon 演讲是行业公认、可验证的外部影响力标记。CFP 对所有从业者开放，并鼓励首次演讲者投稿。",
+      "included": true,
+      "exclude_reason": null,
+      "zone": "recommended_now",
+      "gate_computed": {
+        "zone": "recommended_now",
+        "reason": "截止日 2026-10-11（还有 21 天）"
+      }
+    },
+    {
+      "id": "cncf-contributor-maintainer-path",
+      "title": "CNCF 开源贡献者路径（通往 Maintainer / Committer）",
+      "organization": "CNCF",
+      "category": "open_source",
+      "official_url": "https://contribute.cncf.io/contributors/getting-started",
+      "discovery_url": "https://contribute.cncf.io/contributors/getting-started",
+      "deadline": "rolling",
+      "deadline_type": "rolling",
+      "freshness": "likely_open",
+      "verification_status": "verified_official",
+      "last_verified": "2026-09-20",
+      "application_status": "open",
+      "evidence": {
+        "application_status": {
+          "status": "explicit",
+          "source_url": "https://contribute.cncf.io/contributors/getting-started",
+          "verified_at": "2026-09-20",
+          "quote": "Contributing to an open source project doesn't require permission. ... don't hesitate to dive in and start contributing."
+        },
+        "deadline": {
+          "status": "explicit",
+          "source_url": "https://contribute.cncf.io/contributors/getting-started",
+          "verified_at": "2026-09-20",
+          "quote": "贡献为持续/滚动进行，无固定截止日（页面未设 closing date）"
+        }
+      },
+      "eligibility_verdict": "Probably Eligible",
+      "readiness": "minor_preparation",
+      "effort": "灵活、远程、约 2-4h/周持续贡献；约 12 个月贡献 + 50+ PR review 后被现 maintainer 提名",
+      "outcomes": {
+        "career": "High",
+        "reputation": "High",
+        "portfolio": "High",
+        "network": "High",
+        "skill": "High",
+        "management": "Medium"
+      },
+      "career_capital": "reputation + portfolio + network",
+      "career_leverage": "maintainer 拥有跨公司的技术决策权与 mentorship 责任，是'技术领导力'最硬证据之一",
+      "future_optionality": "high — 通向 CNCF Ambassador、技术委员会、会议演讲",
+      "unlocks": [
+        "cncf_ambassador",
+        "conference_speaker",
+        "tech_committee"
+      ],
+      "produces": [
+        "合并的 PR",
+        "OWNERS 记录",
+        "技术决策权"
+      ],
+      "promotion_relevance": "升 Senior 不只看个人产出，更看'能否带动项目/他人'；maintainer 头衔是第三方背书，比'熟悉开源'更有分量。",
+      "included": true,
+      "exclude_reason": null,
+      "zone": "recommended_now",
+      "gate_computed": {
+        "zone": "recommended_now",
+        "reason": "官方页面明确标示申请开放；无固定截止日，需复核"
+      }
+    },
+    {
+      "id": "cncf-cka-ckad-cks",
+      "title": "CKA / CKAD / CKS Kubernetes 认证（CNCF / Linux Foundation）",
+      "organization": "CNCF / Linux Foundation",
+      "category": "skill_development",
+      "official_url": "https://www.cncf.io/certification/cka/",
+      "discovery_url": "https://www.cncf.io/certification/cka/",
+      "deadline": "rolling",
+      "deadline_type": "rolling",
+      "freshness": "likely_open",
+      "verification_status": "verified_official",
+      "last_verified": "2026-09-20",
+      "application_status": "open",
+      "evidence": {
+        "application_status": {
+          "status": "explicit",
+          "source_url": "https://www.cncf.io/certification/cka/",
+          "verified_at": "2026-09-20",
+          "quote": "Cost $445 | Online Exam — [register for exam] 链接可直接报名"
+        },
+        "deadline": {
+          "status": "explicit",
+          "source_url": "https://www.cncf.io/certification/cka/",
+          "verified_at": "2026-09-20",
+          "quote": "在线考试常年开放报名，无固定招生截止（页面提供 register for exam 入口）"
+        }
+      },
+      "eligibility_verdict": "Eligible",
+      "readiness": "ready_now",
+      "effort": "自定进度，约 3-5h/周学几周；$445/证（CKA/CKAD），CKS 需先过 CKA；远程在线考试",
+      "outcomes": {
+        "credential": "High",
+        "career": "Medium",
+        "skill": "High"
+      },
+      "career_capital": "credential",
+      "career_leverage": "云原生最被行业认可的硬凭证；评审里'有 CKA/CKS'比口头'熟悉 K8s'更有分量",
+      "future_optionality": "medium — Kubestronaut 计划、认证背书可信度",
+      "unlocks": [
+        "kubestronaut"
+      ],
+      "produces": [
+        "行业认证凭证"
+      ],
+      "promotion_relevance": "升 Senior 需要可量化的能力证明；CKA/CKS 是简历与答辩里第三方可验证的 K8s 能力，五年经验者的'硬通货'。",
+      "included": true,
+      "exclude_reason": null,
+      "zone": "recommended_now",
+      "gate_computed": {
+        "zone": "recommended_now",
+        "reason": "官方页面明确标示申请开放；无固定截止日，需复核"
+      }
+    },
+    {
+      "id": "cncf-tag-working-group",
+      "title": "CNCF Technical Advisory Group (TAG) / Working Group 参与",
+      "organization": "CNCF",
+      "category": "research",
+      "official_url": "https://contribute.cncf.io/community/tags/",
+      "discovery_url": "https://contribute.cncf.io/community/tags/",
+      "deadline": "rolling",
+      "deadline_type": "rolling",
+      "freshness": "likely_open",
+      "verification_status": "partially_verified",
+      "last_verified": "2026-09-20",
+      "application_status": "open",
+      "evidence": {
+        "application_status": {
+          "status": "explicit",
+          "source_url": "https://contribute.cncf.io/community/tags/",
+          "verified_at": "2026-09-20",
+          "quote": "No registration or membership required - simply join and observe or participate in discussions."
+        },
+        "deadline": {
+          "status": "unknown",
+          "source_url": "https://contribute.cncf.io/community/tags/",
+          "note": "搜索结果页显示开放参与，但未在本轮 WebFetch 中打开确认（预算已用满）"
+        }
+      },
+      "eligibility_verdict": "Eligible",
+      "readiness": "ready_now",
+      "effort": "参加公开会议 / 异步 Slack，约 1-2h/周；无需前置资格",
+      "outcomes": {
+        "reputation": "Medium",
+        "network": "High",
+        "skill": "Medium",
+        "career": "Medium",
+        "exposure": "Medium"
+      },
+      "career_capital": "reputation + network（标准/方向影响力）",
+      "career_leverage": "参与定义云原生最佳实践 = '影响行业方向'，是 Senior 级'超出本团队影响'的强证据，且会议公开有记录可引用",
+      "future_optionality": "high — TAG Chair / Tech Lead、KubeCon 深度演讲",
+      "unlocks": [
+        "tag_chair",
+        "conference_speaker"
+      ],
+      "produces": [
+        "标准/最佳实践文档",
+        "跨项目影响力"
+      ],
+      "promotion_relevance": "Senior 评审常用'你是否在设定标准而非只是执行'来区分；进 TAG/WG 正是设定标准的入口。",
+      "included": true,
+      "exclude_reason": null,
+      "zone": "worth_verifying",
+      "gate_computed": {
+        "zone": "worth_verifying",
+        "reason": "官方页面明确标示申请开放；无固定截止日，需复核"
+      }
+    },
+    {
+      "id": "lfx-mentorship-mentor",
+      "title": "LFX Mentorship（Linux Foundation）— 以 Mentor 身份参与",
+      "organization": "Linux Foundation",
+      "category": "networking",
+      "official_url": "https://mentorship.lfx.linuxfoundation.org/participate/mentor",
+      "discovery_url": "https://docs.linuxfoundation.org/lfx/~gitbook/pdf?page=-M2O0OfDEY_wvDZBQ0E4&only=yes&limit=100",
+      "deadline": "rolling",
+      "deadline_type": "rolling",
+      "freshness": "likely_open",
+      "verification_status": "partially_verified",
+      "last_verified": "2026-09-20",
+      "application_status": "open",
+      "evidence": {
+        "application_status": {
+          "status": "explicit",
+          "source_url": "https://docs.linuxfoundation.org/lfx/~gitbook/pdf?page=-M2O0OfDEY_wvDZBQ0E4&only=yes&limit=100",
+          "verified_at": "2026-09-20",
+          "quote": "Become a Mentor ... Select the LFX mentorship you would like to join as a mentor, and the program administrator will be notified"
+        },
+        "deadline": {
+          "status": "unknown",
+          "source_url": "https://docs.linuxfoundation.org/lfx/~gitbook/pdf?page=-M2O0OfDEY_wvDZBQ0E4&only=yes&limit=100",
+          "note": "官方 Mentor 文档显示按 Term（Spring/Summer/Fall）招募；本轮 WebFetch 跳登录墙未取得正文，deadline 状态未在本轮 fetch 确认"
+        }
+      },
+      "eligibility_verdict": "Probably Eligible",
+      "readiness": "minor_preparation",
+      "effort": "导师约 2-4h/周 / 一届；需是所带项目的活跃贡献者；每年 Spring/Summer/Fall 三届",
+      "outcomes": {
+        "management": "Medium",
+        "reputation": "Medium",
+        "network": "High",
+        "career": "Medium",
+        "skill": "Medium"
+      },
+      "career_capital": "management（mentoring）+ reputation",
+      "career_leverage": "以导师身份带人 = 直接对应 Senior 评审的'mentorship / 培养他人'维度，且不依赖公司头衔",
+      "future_optionality": "high — 更深的项目 maintainer 关系、mentorship 主题演讲",
+      "unlocks": [
+        "cncf_maintainer",
+        "conference_speaker"
+      ],
+      "produces": [
+        "mentee 产出",
+        "跨公司指导记录"
+      ],
+      "promotion_relevance": "Senior 与 IC 的核心差别之一是'是否培养他人'；LFX 导师经历是行业公认的 leadership 证据，专门面向有经验的贡献者。",
+      "included": true,
+      "exclude_reason": null,
+      "zone": "worth_verifying",
+      "gate_computed": {
+        "zone": "worth_verifying",
+        "reason": "官方页面明确标示申请开放；无固定截止日，需复核"
+      }
+    },
+    {
+      "id": "cncg-singapore-organizer",
+      "title": "Cloud Native Community Group Singapore — 组织者 / Chapter Lead",
+      "organization": "CNCF",
+      "category": "networking",
+      "official_url": "https://community.cncf.io/singapore/",
+      "discovery_url": "https://community.cncf.io/events/details/cncf-cloud-native-singapore-presents-cncg-meetup-ai-and-kubernetes-innovations/",
+      "deadline": "rolling",
+      "deadline_type": "rolling",
+      "freshness": "likely_open",
+      "verification_status": "partially_verified",
+      "last_verified": "2026-09-20",
+      "application_status": "open",
+      "evidence": {
+        "application_status": {
+          "status": "unknown",
+          "source_url": "https://community.cncf.io/events/details/cncf-cloud-native-singapore-presents-cncg-meetup-ai-and-kubernetes-innovations/",
+          "note": "搜索结果显示 Cloud Native Singapore 群组活跃、有 Lead Organizer，但官方群组页 community.cncf.io/singapore 本轮 WebFetch 返回 404，未能确认'成为组织者'申请入口"
+        },
+        "deadline": {
+          "status": "unknown",
+          "source_url": "https://community.cncf.io/events/details/cncf-cloud-native-singapore-presents-cncg-meetup-ai-and-kubernetes-innovations/",
+          "note": "搜索页显示 2026 年有多场 Singapore 线下 meetup，但报名/组织者申请截止未在 fetch 中确认"
+        }
+      },
+      "eligibility_verdict": "Eligible",
+      "readiness": "minor_preparation",
+      "effort": "每月数小时，部分新加坡线下；官网明确'接受任何新本地社区加入网络'（搜索结果）",
+      "outcomes": {
+        "network": "High",
+        "reputation": "Medium",
+        "exposure": "Medium",
+        "career": "Medium",
+        "management": "Medium"
+      },
+      "career_capital": "network + community leadership",
+      "career_leverage": "本地社区组织者 = 可写进升职材料的'技术社区领导力'，就在新加坡、线下低成本建人脉",
+      "future_optionality": "medium-high — CNCF Ambassador、本地 meetup 演讲",
+      "unlocks": [
+        "cncf_ambassador",
+        "local_speaker"
+      ],
+      "produces": [
+        "本地社区领导力",
+        "本地人脉"
+      ],
+      "promotion_relevance": "Senior 评审看重'培养社区/带动他人'；CNCG Singapore 是最容易上手、零成本的切入点，且 base 就在新加坡。",
+      "included": true,
+      "exclude_reason": null,
+      "zone": "worth_verifying",
+      "gate_computed": {
+        "zone": "worth_verifying",
+        "reason": "无可确认的申请周期；毕业届别不能推断开放状态"
+      }
+    },
+    {
+      "id": "acm-singapore-committee",
+      "title": "ACM Singapore — 委员会志愿者 / 委员",
+      "organization": "ACM Singapore",
+      "category": "networking",
+      "official_url": null,
+      "discovery_url": null,
+      "deadline": "rolling",
+      "deadline_type": "rolling",
+      "freshness": "unknown",
+      "verification_status": "unverified",
+      "last_verified": null,
+      "application_status": null,
+      "evidence": {},
+      "eligibility_verdict": "Unknown",
+      "readiness": "unknown",
+      "effort": "未知",
+      "outcomes": {
+        "network": "Medium",
+        "reputation": "Low",
+        "career": "Low"
+      },
+      "career_capital": "network + community leadership",
+      "career_leverage": "协会委员 = 专业社群里的可见度，对新加坡本地声望有帮助",
+      "future_optionality": "medium",
+      "unlocks": [
+        "committee_lead"
+      ],
+      "produces": [
+        "本地专业网络"
+      ],
+      "promotion_relevance": "若想在新加坡专业圈建立声望，协会委员是路径；但本轮未找到官方确认来源，按 canonical-source gate 不进入 Recommended now。",
+      "included": false,
+      "exclude_reason": "未找到官方确认来源（仅第三方/搜索线索），按 canonical-source gate 不进入 Recommended now，留作待核实。",
+      "zone": "worth_verifying",
+      "gate_computed": {
+        "zone": "worth_verifying",
+        "reason": "无可确认的申请周期；毕业届别不能推断开放状态"
+      }
+    }
+  ],
+  "graph": {
+    "produces": [
+      "c2-cncf-maintainer（持续贡献）→ 产出：合并的 PR、OWNERS 记录、技术决策权",
+      "c1-kubecon-cfp（演讲）→ 产出：公开演讲、slides、外部可见技术影响力",
+      "c3-cka-cks（考证）→ 产出：行业认证凭证",
+      "c4-cncf-tag（进工作组）→ 产出：标准/最佳实践文档、跨项目影响力",
+      "c5-lfx-mentor（带人）→ 产出：mentee 产出、跨公司指导记录",
+      "c6-cncg-sg（组织社区）→ 产出：本地社区领导力、本地人脉"
+    ],
+    "unlocks": [
+      "c2 → c1 / c6（maintainer 是成为 CNCF Ambassador 与会议演讲的跳板）",
+      "c4 → c1（TAG 成员常被邀做 KubeCon 深度演讲）",
+      "c3 → c2（Kubestronaut 提升在 CNCF 项目里的可信度，利于贡献被接纳）",
+      "c5 → c2（导师关系深化为项目 maintainer 关系）",
+      "c6 → c1（本地 organizer 自然获得 meetup/会议演讲机会）"
+    ],
+    "bridges": [
+      "主线：公开贡献(c2) → 外部可见度(c1/c6) → 升 Senior 的'影响超出团队'证据",
+      "辅线：考证(c3) 补可信度 → 进 TAG(c4)/做导师(c5) → 技术领导力与 mentorship 证据",
+      "所有路径汇聚到同一目标：promotion_to_senior（第三方可验证的技术领导力 / 行业影响力 / 培养他人）"
+    ]
+  },
+  "acceptance_checks": {
+    "job_board_only_regression": false,
+    "student_only_regression": false,
+    "hallucinated_profile_fields": false,
+    "expired_in_recommended": false,
+    "unverified_in_recommended": false,
+    "v3_fields_changed_output": true,
+    "graph_useful": true,
+    "utility_differs_from_match": true,
+    "surprising_opportunities_found": 5
+  },
+  "problems": [
+    {
+      "area": "verification_fetch_failed",
+      "detail": "community.cncf.io/singapore 本轮 WebFetch 返回 404（SPA/JS 路由），未取得'成为组织者'申请入口证据；mentorship.lfx.linuxfoundation.org/participate/mentor 跳转到 LF SSO 登录页，未取得 Become a Mentor 正文。两条均按 evidence 前提如实降级为 partially_verified / worth_verifying，未伪造 verified_official。",
+      "severity": "P1"
+    },
+    {
+      "area": "profile_gap",
+      "detail": "画像未提供具体技术栈与开源贡献史，导致 maintainer/mentor 类资格只能给 Probably Eligible，无法进一步收紧。建议用户补充以细化判定。",
+      "severity": "P1"
+    },
+    {
+      "area": "budget",
+      "detail": "6 WebSearch + 5 WebFetch 已用满；2 条官方页取回失败挤占了验证预算，使得本可进 recommended_now 的 LFX Mentor / CNCG Singapore 只能留作 worth_verifying。若需把它们也认证进主区，需额外 fetch 配额。",
+      "severity": "P2"
+    }
+  ],
+  "gate_computed_summary": {
+    "today": "2026-09-20",
+    "recommended_now": 3,
+    "worth_verifying": 4,
+    "excluded": 0,
+    "mismatches": [],
+    "missing_application_status_evidence": [
+      "ACM Singapore — 委员会志愿者 / 委员"
+    ]
+  }
+}
