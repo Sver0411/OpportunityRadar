@@ -1,5 +1,5 @@
 {
-  "_note": "FORMAT / TOOLING EXAMPLE ONLY. All organizations and facts are fictional and must never be reused as verified opportunity data. 覆盖 Global / Remote、US、Europe、China、Japan 以及多种机会类型，用于演示 scripts/dedupe.py 与 scripts/score.py（含同一机会的多来源合并）。",
+  "_note": "FORMAT / TOOLING EXAMPLE ONLY. All organizations and facts are fictional and must never be reused as verified opportunity data. 覆盖 Global / Remote、US、Europe、China、Japan 以及多种机会类型，用于演示 scripts/dedupe.py 与 scripts/score.py（含同一机会的多来源合并）。 这 4 条带有完整的 evidence 结构，用于演示主推荐区（recommended_now）的输出。",
   "opportunities": [
     {
       "id": "nagi-robotics-summer-internship-2027",
@@ -411,14 +411,22 @@
       ],
       "official_url": "https://atlas-oss.example/mentorship",
       "discovery_url": "https://atlas-oss.example/programs",
-      "evidence": null,
+      "evidence": {
+        "application_status": {
+          "status": "explicit",
+          "source_url": "https://atlas-oss.example/mentorship",
+          "verified_at": "2026-09-14",
+          "evidence_summary": "示例数据：官方页当日显示开放申请"
+        }
+      },
       "trust_tier": "A",
-      "verification_status": "partially_verified",
+      "verification_status": "verified_official",
       "last_verified": "2026-09-13",
       "layer": "adjacent",
       "notes": [
         "滚动招募（rolling）"
-      ]
+      ],
+      "application_status": "open"
     },
     {
       "id": "auroral-society-conference-travel-grant-2026",
@@ -622,13 +630,20 @@
           "source_url": "https://northstar-labs.example/careers/security-intern-2027",
           "quote": "minimum GPA 3.0/4.0",
           "verified_at": "2026-09-14"
+        },
+        "application_status": {
+          "status": "explicit",
+          "source_url": "https://northstar-labs.example/careers/security-intern-2027",
+          "verified_at": "2026-09-14",
+          "evidence_summary": "示例数据：官方页当日显示开放申请"
         }
       },
       "trust_tier": "A",
       "verification_status": "verified_official",
       "last_verified": "2026-09-14",
       "layer": "exploit",
-      "notes": []
+      "notes": [],
+      "application_status": "open"
     },
     {
       "id": "meridian-university-reu-summer-research-2026",
@@ -837,13 +852,20 @@
           "status": "explicit",
           "source_url": "https://mira-design.example/student-award-2026",
           "verified_at": "2026-09-13"
+        },
+        "application_status": {
+          "status": "explicit",
+          "source_url": "https://mira-design.example/student-award-2026",
+          "verified_at": "2026-09-14",
+          "evidence_summary": "示例数据：官方页当日显示开放申请"
         }
       },
       "trust_tier": "A",
       "verification_status": "verified_official",
       "last_verified": "2026-09-13",
       "layer": "exploit",
-      "notes": []
+      "notes": [],
+      "application_status": "open"
     },
     {
       "id": "mira-design-award-aggregator-post",
@@ -1028,13 +1050,20 @@
           "source_url": "https://lumen-network.example/case-challenge",
           "quote": "Registration closes 28 November 2026",
           "verified_at": "2026-09-14"
+        },
+        "application_status": {
+          "status": "explicit",
+          "source_url": "https://lumen-network.example/case-challenge",
+          "verified_at": "2026-09-14",
+          "evidence_summary": "示例数据：官方页当日显示开放申请"
         }
       },
       "trust_tier": "A",
       "verification_status": "verified_official",
       "last_verified": "2026-09-14",
       "layer": "explore",
-      "notes": []
+      "notes": [],
+      "application_status": "open"
     }
   ]
 }

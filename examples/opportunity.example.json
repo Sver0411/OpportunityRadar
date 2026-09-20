@@ -48,12 +48,20 @@
   ],
   "official_url": "https://atlas-oss.example/mentorship",
   "discovery_url": "https://atlas-oss.example/programs",
-  "evidence": null,
+  "evidence": {
+    "application_status": {
+      "status": "explicit",
+      "source_url": "https://atlas-oss.example/mentorship",
+      "verified_at": "2026-09-14",
+      "evidence_summary": "示例数据：官方页当日显示开放申请"
+    }
+  },
   "trust_tier": "A",
-  "verification_status": "partially_verified",
+  "verification_status": "verified_official",
   "last_verified": "2026-09-13",
   "layer": "adjacent",
   "notes": [
     "滚动招募（rolling）"
-  ]
+  ],
+  "application_status": "open"
 }

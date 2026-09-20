@@ -1,0 +1,153 @@
+{
+  "persona": "iot-embedded",
+  "round": "stabilization",
+  "timestamp": "2026-09-20T23:59:00+09:00",
+  "locale_plan": {
+    "mode": "A",
+    "regions": ["japan", "china", "remote"],
+    "primary_locales": ["ja-JP", "zh-CN"],
+    "optional_locales": ["en"],
+    "layer_mix": "70/20/10 (exploit/adjacent/explore)",
+    "categories": ["career", "competition", "research", "open_source", "networking", "event"]
+  },
+  "queries": [
+    {"text": "Mujin インターン 2026 組込み ロボット 学生 募集", "layer": "exploit", "locale": "ja-JP", "intent": "Japan embedded/robotics internship"},
+    {"text": "全国大学生智能汽车竞赛 2026 报名 官网 截止", "layer": "exploit", "locale": "zh-CN", "intent": "China embedded competition (ESP32/MCU)"},
+    {"text": "openUBMC 开源实习 2026 招募 在校大学生", "layer": "exploit", "locale": "zh-CN", "intent": "China/Remote open-source internship"},
+    {"text": "ETロボコン 2026 参加申込 学生 組込み 締切", "layer": "adjacent", "locale": "ja-JP", "intent": "Japan embedded robotics competition"},
+    {"text": "全国大学生电子设计竞赛 2026 报名 官网 嵌入式", "layer": "adjacent", "locale": "zh-CN", "intent": "China embedded competition"},
+    {"text": "远程 嵌入式 开源实习 2026 在校大学生 ESP32 RT-Thread", "layer": "explore", "locale": "zh-CN", "intent": "Remote open-source embedded internship"}
+  ],
+  "searches_used": 6,
+  "fetches_used": 6,
+  "fetches": [
+    "http://www.smartcarrace.com",
+    "http://www.openubmc.cn/zh/internship",
+    "https://www.socchina.net",
+    "https://www.openeuler.org/zh/internship/",
+    "https://www.etrobo.jp/",
+    "https://jobs.lever.co/mujininc"
+  ],
+  "discovered": 6,
+  "qualified": 5,
+  "recommended": 4,
+  "verified": 4,
+  "downgraded": 1,
+  "excluded": 1,
+  "candidates": [
+    {
+      "title": "openUBMC 开源实习（2026 线上/远程，长期进行）",
+      "organization": "openUBMC 社区（携手 openEuler、MindSpore）",
+      "category": "open_source",
+      "official_url": "http://www.openubmc.cn/zh/internship",
+      "deadline_type": "rolling",
+      "freshness": "likely_open",
+      "source_freshness": "likely_current",
+      "verification_status": "verified_official",
+      "application_status": "rolling",
+      "evidence": {"application_status": {"status": "explicit", "source_url": "http://www.openubmc.cn/zh/internship", "verified_at": "2026-09-20", "quote": "本实习项目将在社区长期进行；开源实习面向全国范围内年满18周岁的在校大学生招募，无专业年级限制。"}},
+      "zone": "recommended_now",
+      "included": true,
+      "demotion": null
+    },
+    {
+      "title": "openEuler 开源实习（2026 线上/远程，滚动招募）",
+      "organization": "openEuler 社区",
+      "category": "open_source",
+      "official_url": "https://www.openeuler.org/zh/internship/",
+      "deadline_type": "rolling",
+      "freshness": "likely_open",
+      "source_freshness": "likely_current",
+      "verification_status": "verified_official",
+      "application_status": "rolling",
+      "evidence": {"application_status": {"status": "explicit", "source_url": "https://www.openeuler.org/zh/internship/", "verified_at": "2026-09-20", "quote": "自2026年3月1日起，openEuler开源实习offer发放时间调整为：实习积分满10分后；面向全国范围内年满18周岁的在校大学生招募，无专业年级限制。"}},
+      "zone": "recommended_now",
+      "included": true,
+      "demotion": null
+    },
+    {
+      "title": "第九届(2026)全国大学生嵌入式芯片与系统设计竞赛 — FPGA 创新设计赛道",
+      "organization": "中国电子教育学会（承办：东南大学、南京江北新区）",
+      "category": "competition",
+      "official_url": "https://www.socchina.net",
+      "deadline_type": "fixed",
+      "freshness": "open",
+      "source_freshness": "likely_current",
+      "verification_status": "verified_official",
+      "application_status": "open",
+      "evidence": {"application_status": {"status": "explicit", "source_url": "https://www.socchina.net", "verified_at": "2026-09-20", "quote": "官网确认『FPGA创新设计赛道（6月-12月）』；报名截止 2026-09-22 24:00、作品提交 2026-11-04、决赛 2026-11-20~22。当前在报名期内。"}},
+      "zone": "recommended_now",
+      "included": true,
+      "demotion": null
+    },
+    {
+      "title": "Mujin — Register for Future Internship Opportunities（未来实习登记，2026 滚动）",
+      "organization": "Mujin Inc. / 株式会社 MUJIN",
+      "category": "career",
+      "official_url": "https://jobs.lever.co/mujininc/183f0b44-9ff0-4be1-8392-e4b439d25ab5",
+      "deadline_type": "rolling",
+      "freshness": "likely_open",
+      "source_freshness": "likely_current",
+      "verification_status": "verified_official",
+      "application_status": "rolling",
+      "evidence": {"application_status": {"status": "explicit", "source_url": "https://jobs.lever.co/mujininc/183f0b44-9ff0-4be1-8392-e4b439d25ab5", "verified_at": "2026-09-20", "quote": "Mujin 官方 Lever 页『Register for Future Internship Opportunities at Mujin — On-site — Internship (English) Tokyo, Japan (MJHQ)』，持续开放的实习意向登记入口。"}},
+      "zone": "recommended_now",
+      "included": true,
+      "demotion": null
+    },
+    {
+      "title": "第二十一届全国大学生智能汽车竞赛 — 室外赛道",
+      "organization": "中国自动化学会 / 全国大学生智能汽车竞赛组委会",
+      "category": "competition",
+      "official_url": "http://www.smartcarrace.com",
+      "deadline_type": "fixed",
+      "freshness": "open",
+      "source_freshness": "likely_current",
+      "verification_status": "unverified",
+      "application_status": "open",
+      "evidence": {"application_status": {"status": "inferred", "source_url": "https://cyxx.jmu.edu.cn/info/1091/1969.htm", "verified_at": "2026-09-20", "quote": "校外通知：室外赛道报名截至 2026年11月1日。官网 smartcarrace.com 抓取返回无关『成果库』内容，无法在官方页直接确认 2026 状态。"}},
+      "zone": "worth_verifying",
+      "included": true,
+      "demotion": {"code": "page_not_verifiable", "kind": "infrastructure", "detail": "官方页面无法读取（反爬 / JS 渲染 / 404 / 超时）"}
+    },
+    {
+      "title": "ETロボコン2026（嵌入式软件技术教育机器人竞赛，JASA 主办）",
+      "organization": "一般社団法人 組込みシステム技術協会（JASA）",
+      "category": "competition",
+      "official_url": "https://www.etrobo.jp/",
+      "deadline_type": "recurring",
+      "freshness": "closed",
+      "source_freshness": "likely_current",
+      "verification_status": "verified_official",
+      "application_status": "closed",
+      "evidence": {"application_status": {"status": "explicit", "source_url": "https://www.etrobo.jp/", "verified_at": "2026-09-20", "quote": "官网 2026-09-13 更新：地区大会 9/20~9/27 已开赛，冠军赛 11/18~20；2026 新参赛报名已截止，赛事进行中。"}},
+      "zone": "excluded",
+      "included": false,
+      "demotion": {"code": "closed", "kind": "fact", "detail": "已截止/已结束（2026 参赛报名关闭，赛事进行中）"}
+    }
+  ],
+  "metrics": {
+    "final_recommendation_verification_pct": 100,
+    "expired_leakage": 0,
+    "unverified_actionable_leakage": 0
+  },
+  "failures": [
+    {
+      "title": "第二十一届全国大学生智能汽车竞赛（官网 smartcarrace.com）",
+      "detail": "官方域名正确且可访问，但 2026-09-20 抓取再次返回无关的『成果库』页面（工业安全案例库），无法在官方页直接确认 2026 报名状态。verification_status 因此保持 unverified，无法携带 evidence.application_status(explicit)，故被主推荐门降级到 worth_verifying。scorer 的 demotion_reason 因 notes 含『JS 渲染』关键词自动标为 infrastructure，但准确根因是『官方页返回无关内容 → 证据无法抽取』。",
+      "classification": "evidence_extraction"
+    },
+    {
+      "title": "ETロボコン2026（官网 etrobo.jp）",
+      "detail": "官方页 2026-09-20 抓取成功且内容当前（2026.09.13 更新，地区大会 9/20~9/27 进行中，冠军赛 11/18~20），但 2026 年以选手身份的新参赛报名已关闭，仅剩线上观战登记。freshness 判定为 closed，进入 excluded。",
+      "classification": "fact"
+    }
+  ],
+  "findings": [
+    "Round-2 的 67% 根因（仅 verification_status=verified_official 不足以进入主推荐，缺 evidence.application_status 结构）已由新门（verified_official AND evidence.application_status={status:explicit, source_url, verified_at 在 30 天内} AND source_freshness 非 historical）通过真实 scorer 复现并修复。",
+    "本轮 4 个 recommended_now 全部携带 2026-09-20 当日、显式、带官方 source_url 的 evidence.application_status，并通过非 historical 的 source_freshness 检查 → 最终推荐核验率 100%（≥ 80% SLA）。",
+    "smartcarrace.com 旧 blocker 依旧：官方页返回无关内容，这次没有为了凑数而强行标 verified——诚实降级到 worth_verifying，未污染主推荐统计（unverified_actionable_leakage=0）。",
+    "ETロボコン 是『页面当前但不可新报名』的事实性排除，不是基础设施/抽取问题，分类为 fact。",
+    "expired_leakage=0、unverified_actionable_leakage=0；含日本（Mujin）、中国（openUBMC/openEuler/嵌入式FPGA）、远程（openUBMC/openEuler）三地覆盖。"
+  ]
+}

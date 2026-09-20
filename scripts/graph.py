@@ -224,13 +224,20 @@ def bridges_for_gap(gap, opps, profile=None, limit: int = 3) -> list:
     return out[:limit]
 
 
-def gap_to_bridge_report(gaps, opps, profile=None) -> list:
-    """缺口列表 → [缺口 → 桥接机会 → 产出 → 后续通道]；无桥时如实说明（Source 需求）。"""
+def gap_to_bridge_report(gaps, opps, profile=None, include_contextual: bool = False) -> list:
+    """缺口列表 → [缺口 → 桥接机会 → 产出 → 后续通道]。
+
+    只对**发展缺口**（core + supporting）做 Bridge 搜索；contextual 默认跳过
+    （相关性判据先于 Bridge 搜索，避免浪费 query 预算）。
+    """
     report = []
     for g in gaps:
         if isinstance(g, str):                      # 兼容旧调用：字符串也当 gap 处理
             g = {"id": f"gap-{g}", "type": "skill", "name": g, "source": "user_stated",
                  "sample": "用户明确提出的缺口", "priority": "medium"}
+        rel = (g.get("relevance") or {}).get("relevance")
+        if rel in ("irrelevant",) or (rel == "contextual_gap" and not include_contextual):
+            continue
         bridges = bridges_for_gap(g, opps, profile)
         entry = {"gap": g, "bridges": bridges,
                  "note": ("优先真实学习型机会（开源/真实项目/社群），不是课程列表" if bridges

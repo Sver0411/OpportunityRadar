@@ -72,6 +72,118 @@ def _covered(requirement, profile) -> bool:
     return bool(req & have)
 
 
+#: 缺口相关性等级（先判相关性，再决定要不要为它花 Bridge 搜索预算）
+GAP_RELEVANCE_LEVELS = ("core_gap", "supporting_gap", "contextual_gap", "irrelevant")
+
+#: 职业方向 → 与之相关的发展缺口类型（相关性判据的骨架，不做关键词硬匹配）
+DIRECTION_AFFINITY = {
+    "promotion": ("public_reputation", "leadership", "management", "skill", "network",
+                  "experience"),
+    "switch": ("skill", "portfolio", "experience", "credential", "network"),
+    "research": ("research", "network", "language", "education", "portfolio",
+                 "public_reputation"),
+    "education": ("education", "language", "research", "portfolio", "network"),
+    "entrepreneurship": ("portfolio", "network", "leadership", "experience", "management"),
+    "skill_upgrade": ("skill", "portfolio", "experience", "credential"),
+    "income": ("skill", "credential", "experience"),
+    "explore": (),
+}
+
+#: 学术味道的缺口标记：非 research/education 方向时，这类缺口最多算 contextual
+ACADEMIC_MARKERS = ("教授", "professor", "lab", "实验室", "学会", "academic", "论文",
+                    "paper", "publication", "研究", "research")
+
+#: 目标类型 → 职业方向
+GOAL_TO_DIRECTION = {
+    "internship": "switch", "career": "promotion", "research": "research",
+    "education": "education", "skill": "skill_upgrade", "competition": "skill_upgrade",
+    "open_source": "skill_upgrade", "project": "skill_upgrade", "funding": "research",
+    "networking": "promotion", "event": "promotion", "entrepreneurship": "entrepreneurship",
+    "hobby": "explore",
+}
+
+
+def career_direction(profile) -> str:
+    """从 goals + career_state 推出**当前**职业方向（用于相关性判据，不用于猜人生）。"""
+    profile = profile or {}
+    cs = profile.get("career_state") or {}
+    if str(cs.get("switch_intent") or "").lower() == "high":
+        return "switch"
+    if str(cs.get("entrepreneurship_intent") or "").lower() == "high":
+        return "entrepreneurship"
+    if str(cs.get("management_intent") or "").lower() == "high":
+        return "promotion"
+    if cs.get("promotion_target"):
+        return "promotion"
+    if str(cs.get("compensation_growth_intent") or "").lower() == "high":
+        return "income"
+    for g in (profile.get("goals") or []):
+        if isinstance(g, dict):
+            d = GOAL_TO_DIRECTION.get(g.get("type"))
+            if d and d != "explore":
+                return d
+    return "explore"
+
+
+def _is_academic(gap) -> bool:
+    blob = f"{gap.get('name','')} {gap.get('sample','')}".lower()
+    return any(m in blob for m in ACADEMIC_MARKERS)
+
+
+def _matches_target(gap, profile) -> bool:
+    """缺口是否直接出现在用户声明的目标里（target_role / promotion_target / target_industry）。"""
+    cs = (profile or {}).get("career_state") or {}
+    target = " ".join(str(cs.get(k) or "") for k in
+                      ("target_role", "promotion_target", "target_industry", "current_direction"))
+    if not target.strip():
+        return False
+    gt = _tokens(gap.get("name"))
+    return bool(gt & _tokens(target))
+
+
+def gap_relevance(gap, profile=None) -> dict:
+    """判断一个潜在缺口对用户**当前目标**的相关度。
+
+    只看当前目标，不猜用户应该往哪走；目标模糊时一律不产生 core_gap。
+    """
+    profile = profile or {}
+    direction = career_direction(profile)
+    affinity = DIRECTION_AFFINITY.get(direction, ())
+    gtype = gap.get("type") or "skill"
+    n = len(gap.get("opportunity_ids") or [])
+    source = gap.get("source")
+    hard = source in ("requirements", "user_stated", "repeated")
+
+    if direction == "explore":
+        return {"relevance": "contextual_gap", "direction": direction,
+                "reason": "用户没有明确方向，缺口只能作为探索参考（不产生 core_gap）"}
+    if _is_academic(gap) and direction not in ("research", "education"):
+        return {"relevance": "contextual_gap", "direction": direction,
+                "reason": f"学术向缺口，与当前方向「{direction}」关系弱（只在部分机会中出现）"}
+    if gtype not in affinity:
+        return {"relevance": "contextual_gap", "direction": direction,
+                "reason": f"缺口类型 {gtype} 不在方向「{direction}」的关联网内"}
+    if hard and (n >= 2 or source == "user_stated" or _matches_target(gap, profile)):
+        why = (f"在 {n} 个目标机会中构成硬要求" if n >= 2
+               else "用户明确提出的目标里直接出现" if source == "user_stated"
+               else "出现在用户声明的目标方向里")
+        return {"relevance": "core_gap", "direction": direction,
+                "reason": f"方向「{direction}」的核心缺口（{why}）"}
+    return {"relevance": "supporting_gap", "direction": direction,
+            "reason": f"与方向「{direction}」相关，但不是硬门槛（增强项）"}
+
+
+def development_gaps(gaps) -> list:
+    """真正应该驱动 Bridge 搜索的缺口（core + supporting）。"""
+    return [g for g in (gaps or [])
+            if (g.get("relevance") or {}).get("relevance") in ("core_gap", "supporting_gap")]
+
+
+def contextual_gaps(gaps) -> list:
+    return [g for g in (gaps or [])
+            if (g.get("relevance") or {}).get("relevance") == "contextual_gap"]
+
+
 def collect_gaps(opportunities, profile=None, goals=None, stated_target=None) -> list:
     """收集 Gap（每条都带来源与样本量）。"""
     profile = profile or {}
@@ -161,6 +273,10 @@ def collect_gaps(opportunities, profile=None, goals=None, stated_target=None) ->
                                                g["type"], g["name"]))
     for gap in out:
         gap["logistics_prerequisites"] = sorted(set(logistics))[:5]
+        gap["relevance"] = gap_relevance(gap, profile)      # 相关性先于 Bridge 搜索
+    order = {"core_gap": 0, "supporting_gap": 1, "contextual_gap": 2, "irrelevant": 3}
+    out.sort(key=lambda g: (order.get(g["relevance"]["relevance"], 4),
+                            {"high": 0, "medium": 1, "low": 2}[g["priority"]], g["name"]))
     return out
 
 
@@ -192,6 +308,10 @@ def gap_summary(gaps) -> dict:
         by_type.setdefault(g["type"], 0)
         by_type[g["type"]] += 1
     return {"total": len(gaps or []), "by_type": by_type,
+            "by_relevance": {lvl: sum(1 for g in (gaps or [])
+                                      if (g.get("relevance") or {}).get("relevance") == lvl)
+                             for lvl in GAP_RELEVANCE_LEVELS},
+            "development_gaps": len(development_gaps(gaps)),
             "sources": {s: sum(1 for g in gaps if g["source"] == s)
                         for s in ("requirements", "user_stated", "repeated", "semantic")}}
 

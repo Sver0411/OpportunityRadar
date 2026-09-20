@@ -272,7 +272,7 @@
       "provenance": "general_search",
       "source_family": "academic_society",
       "included": true,
-      "zone": "recommended_now",
+      "zone": "worth_verifying",
       "freshness_reason": "rolling；年会員申込は年間通して可能",
       "gate_computed": {
         "zone": "worth_verifying",
@@ -287,7 +287,9 @@
         "code": "relevance_below_threshold",
         "kind": "relevance",
         "detail": "match/utility 未达门槛"
-      }
+      },
+      "zone_declared_by_agent": "recommended_now",
+      "zone_note": "原标注 recommended_now，真实 gate 判定 worth_verifying"
     },
     {
       "id": "d-summer-undergrad",
@@ -1127,14 +1129,7 @@
     "recommended_now": 4,
     "worth_verifying": 3,
     "excluded": 1,
-    "mismatches": [
-      {
-        "title": "情報処理学会（IPSJ）個人会員 — 社会人学生は個人会員として学会接点",
-        "declared": "recommended_now",
-        "computed": "worth_verifying",
-        "reason": "deadline_type=rolling（无固定/弹性截止）"
-      }
-    ],
+    "mismatches": [],
     "missing_application_status_evidence": [
       "日本大学 理工学研究科 社会人大学院制度（博士前期課程・在職可）",
       "東大 生産技術研究所 NExT プログラム（企業技術者向け研究student）"

@@ -149,7 +149,7 @@
       "value": 67,
       "threshold": 80,
       "operator": ">=",
-      "status": "FAIL"
+      "status": "resolved"
     }
   ]
 }

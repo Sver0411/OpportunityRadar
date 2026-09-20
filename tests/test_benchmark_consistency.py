@@ -45,11 +45,38 @@ class TestBenchmarkGates(unittest.TestCase):
 
     # 2) 失败必须显式声明
     def test_failures_are_declared(self):
-        declared = {(f["persona"], f["gate"]) for f in self.known["known_failures"]}
+        """round-2 的失败指标必须要么仍 active、要么已 resolved（后者需有实测通过值）。"""
+        active = {(f["persona"], f["gate"]) for f in self.known.get("known_failures", [])}
+        resolved = {(f["persona"], f["gate"]) for f in self.known.get("resolved_failures", [])}
         for f in self.gates["failures"]:
             with self.subTest(persona=f["persona"], gate=f["gate"]):
-                self.assertIn((f["persona"], f["gate"]), declared,
+                self.assertIn((f["persona"], f["gate"]), active | resolved,
                               f"未声明的失败指标：{f['persona']} / {f['gate']} = {f['value']}")
+
+    def test_resolved_failures_really_pass(self):
+        """已关闭的失败必须有实测通过值；不能只改状态或只改措辞。"""
+        stab_path = os.path.join(BM, "_metrics-stabilization.json")
+        if not os.path.exists(stab_path):
+            self.skipTest("no stabilization metrics yet")
+        with open(stab_path, encoding="utf-8") as fh:
+            stab = json.load(fh)["personas"]
+        for f in self.known.get("resolved_failures", []):
+            persona = f["persona"]
+            with self.subTest(persona=persona, gate=f["gate"]):
+                self.assertIn(persona, stab, "resolved failure has no measurement")
+                measured = stab[persona]["final_verification_pct"]
+                self.assertIsNotNone(measured, "resolved failure must carry a measured value")
+                self.assertGreaterEqual(measured, f["threshold"],
+                                        f"{persona}: measured {measured} below threshold")
+                self.assertGreaterEqual(measured, f["old_value"])
+                self.assertTrue(f.get("root_cause") and f.get("fix"))
+
+    def test_resolved_persona_not_still_active(self):
+        active = {(f["persona"], f["gate"]) for f in self.known.get("known_failures", [])}
+        for f in self.known.get("resolved_failures", []):
+            with self.subTest(persona=f["persona"]):
+                self.assertNotIn((f["persona"], f["gate"]), active,
+                                 "same failure cannot be both active and resolved")
 
     def test_all_pass_flag_is_consistent(self):
         self.assertEqual(self.gates["all_pass"], not self.gates["failures"])

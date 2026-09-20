@@ -1,16 +1,43 @@
 {
-  "_note": "Declared benchmark gate failures. A metric below its threshold is never silently marked PASS; it must be listed here with a reason, and the report text must state FAIL for it.",
-  "known_failures": [
+  "_note": "Declared benchmark gate failures. A metric below its threshold is never silently marked PASS; it must be listed here with a reason, and the report text must state FAIL for it. Resolved failures are moved to resolved_failures with root cause, fix and the measured passing value — history is preserved, never rewritten.",
+  "known_failures": [],
+  "resolved_failures": [
     {
       "persona": "iot-embedded",
       "gate": "final_verification_pct",
-      "value": 67,
+      "old_value": 67,
+      "new_value": 100,
       "threshold": 80,
       "operator": ">=",
       "severity": "medium",
-      "reason": "Round-2 re-run: 3 条 Recommended now 中 2 条官方页核实成功，1 条（全国大学生智能汽车竞赛官方页返回无关内容/反爬）无法验证；当时按 gate 规则应已降级，但记录中仍在主推荐区。",
-      "planned_action": "严格化：抓取失败或返回无关内容时，verification_status 必须降级为 unverified 并移出 Recommended now（与 F11 同源）；修完重跑该 persona 验证。",
-      "status": "open"
+      "resolved_at": "2026-09-20",
+      "resolved_in_commit": "see git log for this commit",
+      "root_cause": "Round-2 的三条主推荐里有一条（全国大学生智能汽车竞赛，smartcarrace.com）只有 verification_status=verified_official，却没有 evidence.application_status 结构；当时的 gate 不检查该结构，于是这条被算作『已核实』进入主推荐，把最终验证率压到 67%。",
+      "fix": "主推荐 gate 现在要求 canonical source + verified_official + 带日期的 application-status 证据（scripts/evidence.py 的前置检查）；缺结构的机会一律降级到 worth_verifying，不计入『已核实』。配套的 source_freshness 还会拒绝把历史页面当作当前证据。",
+      "measured_by": "benchmarks/runs/iot-embedded/record-si.json — 2026-09-20 真实联网重跑：4/4 主推荐均带当日官方 evidence（source_url + verified_at）",
+      "verification_measurement": {
+        "discovered": 6,
+        "qualified": 5,
+        "recommended": 4,
+        "verified": 4,
+        "downgraded": 1,
+        "excluded": 1,
+        "expired_leakage": 0,
+        "unverified_actionable_leakage": 0
+      },
+      "failure_classification": [
+        {
+          "title": "第二十一届全国大学生智能汽车竞赛（smartcarrace.com）",
+          "classification": "evidence_extraction",
+          "detail": "官方域可访问但返回无关页面，2026 报名证据无法抽取 → 诚实降级为 worth_verifying，未污染主推荐"
+        },
+        {
+          "title": "ETロボコン2026（etrobo.jp）",
+          "classification": "fact",
+          "detail": "页面为当前信息，但 2026 报名窗口已关闭 → freshness=closed，事实性排除"
+        }
+      ],
+      "history_note": "历史记录保留：不删除、不改写当时的报告，仅标注已解决、根因与解决方式。"
     }
   ]
 }

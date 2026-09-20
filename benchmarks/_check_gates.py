@@ -50,6 +50,14 @@ def main() -> None:
                 failures.append({"persona": pid, "gate": name, **per[name]})
         results[pid] = per
 
+    # 标注哪些失败后来已被解决（历史数值不改；关闭需要实测通过值，由测试校验）
+    known_path = os.path.join(HERE, "known_failures.json")
+    resolved = set()
+    if os.path.exists(known_path):
+        kd = json.load(open(known_path, encoding="utf-8"))
+        resolved = {(f["persona"], f["gate"]) for f in kd.get("resolved_failures", [])}
+    for f in failures:
+        f["status"] = "resolved" if (f["persona"], f["gate"]) in resolved else "active"
     json.dump({"thresholds": THRESHOLDS, "gates": gates, "results": results,
                "all_pass": not failures, "failures": failures},
               open(os.path.join(HERE, "gates.json"), "w", encoding="utf-8"),

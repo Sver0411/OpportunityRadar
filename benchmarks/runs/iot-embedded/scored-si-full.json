@@ -1,0 +1,482 @@
+{
+  "params": {
+    "weights": {
+      "eligibility": 0.26,
+      "goal_fit": 0.19,
+      "skill_fit": 0.15,
+      "interest_fit": 0.11,
+      "location_fit": 0.1,
+      "value_fit": 0.08,
+      "trust": 0.06,
+      "novelty": 0.05
+    },
+    "priority_formula": "0.85*match + 0.15*urgency（区间以截止端点计）",
+    "today": "2026-09-20",
+    "disclaimer": "确定性打分，仅作排序辅助；展示时用档次 + 理由，不要展示裸分数当结论"
+  },
+  "scored": 5,
+  "results": [
+    {
+      "id": "iot-embedded-mujin-future-internship-2026",
+      "title": "Mujin — Register for Future Internship Opportunities（未来实习登记，2026 滚动）",
+      "organization": "Mujin Inc. / 株式会社 MUJIN",
+      "primary_category": "career",
+      "layer": "exploit",
+      "components": {
+        "eligibility": 82,
+        "goal_fit": 100.0,
+        "skill_fit": 75.0,
+        "interest_fit": 75.0,
+        "location_fit": 95.0,
+        "value_fit": 55.0,
+        "trust": 100,
+        "novelty": 80.0
+      },
+      "eligibility_verdict": "Probably Eligible",
+      "eligibility_source": "hard_constraint",
+      "eligibility_kind": "hard_ok",
+      "eligibility_reasons": [
+        "滚动招募，无固定截止日",
+        "学历相符（undergraduate 在 ['undergraduate', 'master'] 内）"
+      ],
+      "match_score": 84,
+      "match_band": "High",
+      "urgency": null,
+      "days_remaining": null,
+      "deadline_type": "rolling",
+      "deadline_source": "field",
+      "freshness": "likely_open",
+      "freshness_reason": "deadline_type=rolling（无固定/弹性截止）",
+      "effort": null,
+      "time_commitment": "internship",
+      "time_to_value": null,
+      "future_optionality": null,
+      "outcomes": {},
+      "produces": [],
+      "small_bet_type": null,
+      "evidence_complete": true,
+      "evidence_missing": [],
+      "source_freshness": "likely_current",
+      "evidence_verified_at": "2026-09-20",
+      "participation_open": true,
+      "actionable": true,
+      "utility": "medium",
+      "utility_reasons": [
+        "值得考虑，但有一项成本或不确定性需要先确认"
+      ],
+      "readiness": "ready_now",
+      "readiness_detail": {
+        "status": "ready_now",
+        "ready_items": [
+          "具备：C",
+          "具备：Python"
+        ],
+        "missing_items": [],
+        "blockers": [],
+        "estimated_preparation": "可以直接开始",
+        "notes": []
+      },
+      "conflicts": [],
+      "zone": "recommended_now",
+      "demotion": null,
+      "priority_score": 84,
+      "priority_band": "High",
+      "flags": [
+        "rolling",
+        "language_unspecified"
+      ],
+      "warnings": [
+        "存在 inferred/unknown 证据：乐观结论封顶在 Probably Eligible，不能给出 Eligible",
+        "页面未写明语言要求"
+      ],
+      "reasons": {
+        "goal_fit": "命中目标 internship（priority=high）",
+        "skill_fit": "硬性技能覆盖 2/2（命中：C, Python）",
+        "interest_fit": "兴趣命中：robotics",
+        "location_fit": "国家/地区匹配：Japan",
+        "value_fit": "尚未评估价值维度",
+        "trust": "来源 Tier A，3 项关键事实已官方确认",
+        "novelty": "无本地状态，按新机会处理"
+      }
+    },
+    {
+      "id": "iot-embedded-openubmc-internship-2026",
+      "title": "openUBMC 开源实习（2026 线上/远程，长期进行）",
+      "organization": "openUBMC 社区（携手 openEuler、MindSpore）",
+      "primary_category": "open_source",
+      "layer": "exploit",
+      "components": {
+        "eligibility": 82,
+        "goal_fit": 80.0,
+        "skill_fit": 87.5,
+        "interest_fit": 75.0,
+        "location_fit": 95.0,
+        "value_fit": 55.0,
+        "trust": 100,
+        "novelty": 80.0
+      },
+      "eligibility_verdict": "Probably Eligible",
+      "eligibility_source": "hard_constraint",
+      "eligibility_kind": "hard_ok",
+      "eligibility_reasons": [
+        "滚动招募，无固定截止日",
+        "学历相符（undergraduate 在 ['undergraduate'] 内）"
+      ],
+      "match_score": 82,
+      "match_band": "High",
+      "urgency": null,
+      "days_remaining": null,
+      "deadline_type": "rolling",
+      "deadline_source": "field",
+      "freshness": "likely_open",
+      "freshness_reason": "deadline_type=rolling（无固定/弹性截止）",
+      "effort": null,
+      "time_commitment": "flexible, 6-month contract",
+      "time_to_value": null,
+      "future_optionality": null,
+      "outcomes": {},
+      "produces": [],
+      "small_bet_type": null,
+      "evidence_complete": true,
+      "evidence_missing": [],
+      "source_freshness": "likely_current",
+      "evidence_verified_at": "2026-09-20",
+      "participation_open": true,
+      "actionable": true,
+      "utility": "medium",
+      "utility_reasons": [
+        "值得考虑，但有一项成本或不确定性需要先确认"
+      ],
+      "readiness": "ready_now",
+      "readiness_detail": {
+        "status": "ready_now",
+        "ready_items": [
+          "具备：C",
+          "具备：Git",
+          "具备：Python"
+        ],
+        "missing_items": [],
+        "blockers": [],
+        "estimated_preparation": "可以直接开始",
+        "notes": []
+      },
+      "conflicts": [],
+      "zone": "recommended_now",
+      "demotion": null,
+      "priority_score": 82,
+      "priority_band": "High",
+      "flags": [
+        "rolling",
+        "language_unspecified"
+      ],
+      "warnings": [
+        "存在 inferred/unknown 证据：乐观结论封顶在 Probably Eligible，不能给出 Eligible",
+        "页面未写明语言要求"
+      ],
+      "reasons": {
+        "goal_fit": "作为次要类别命中目标 internship",
+        "skill_fit": "硬性技能覆盖 3/3（命中：C, Git, Python）",
+        "interest_fit": "兴趣命中：embedded",
+        "location_fit": "国家/地区匹配：China",
+        "value_fit": "尚未评估价值维度",
+        "trust": "来源 Tier A，3 项关键事实已官方确认",
+        "novelty": "无本地状态，按新机会处理"
+      }
+    },
+    {
+      "id": "iot-embedded-openeuler-internship-2026",
+      "title": "openEuler 开源实习（2026 线上/远程，滚动招募）",
+      "organization": "openEuler 社区",
+      "primary_category": "open_source",
+      "layer": "exploit",
+      "components": {
+        "eligibility": 82,
+        "goal_fit": 80.0,
+        "skill_fit": 75.0,
+        "interest_fit": 75.0,
+        "location_fit": 95.0,
+        "value_fit": 55.0,
+        "trust": 100,
+        "novelty": 80.0
+      },
+      "eligibility_verdict": "Probably Eligible",
+      "eligibility_source": "hard_constraint",
+      "eligibility_kind": "hard_ok",
+      "eligibility_reasons": [
+        "滚动招募，无固定截止日",
+        "学历相符（undergraduate 在 ['undergraduate'] 内）"
+      ],
+      "match_score": 80,
+      "match_band": "High",
+      "urgency": null,
+      "days_remaining": null,
+      "deadline_type": "rolling",
+      "deadline_source": "field",
+      "freshness": "likely_open",
+      "freshness_reason": "deadline_type=rolling（无固定/弹性截止）",
+      "effort": null,
+      "time_commitment": "flexible, 6-month contract",
+      "time_to_value": null,
+      "future_optionality": null,
+      "outcomes": {},
+      "produces": [],
+      "small_bet_type": null,
+      "evidence_complete": true,
+      "evidence_missing": [],
+      "source_freshness": "likely_current",
+      "evidence_verified_at": "2026-09-20",
+      "participation_open": true,
+      "actionable": true,
+      "utility": "medium",
+      "utility_reasons": [
+        "值得考虑，但有一项成本或不确定性需要先确认"
+      ],
+      "readiness": "ready_now",
+      "readiness_detail": {
+        "status": "ready_now",
+        "ready_items": [
+          "具备：C",
+          "具备：Git",
+          "具备：Python"
+        ],
+        "missing_items": [],
+        "blockers": [],
+        "estimated_preparation": "可以直接开始",
+        "notes": []
+      },
+      "conflicts": [],
+      "zone": "recommended_now",
+      "demotion": null,
+      "priority_score": 80,
+      "priority_band": "High",
+      "flags": [
+        "rolling",
+        "language_unspecified"
+      ],
+      "warnings": [
+        "存在 inferred/unknown 证据：乐观结论封顶在 Probably Eligible，不能给出 Eligible",
+        "页面未写明语言要求"
+      ],
+      "reasons": {
+        "goal_fit": "作为次要类别命中目标 internship",
+        "skill_fit": "硬性技能覆盖 3/3（命中：C, Git, Python）",
+        "interest_fit": "兴趣命中：embedded",
+        "location_fit": "国家/地区匹配：China",
+        "value_fit": "尚未评估价值维度",
+        "trust": "来源 Tier A，3 项关键事实已官方确认",
+        "novelty": "无本地状态，按新机会处理"
+      }
+    },
+    {
+      "id": "iot-embedded-embedded-fpga-contest-2026",
+      "title": "第九届(2026)全国大学生嵌入式芯片与系统设计竞赛 — FPGA 创新设计赛道",
+      "organization": "中国电子教育学会（承办：东南大学、南京江北新区）",
+      "primary_category": "competition",
+      "layer": "exploit",
+      "components": {
+        "eligibility": 82,
+        "goal_fit": 60.0,
+        "skill_fit": 37.5,
+        "interest_fit": 75.0,
+        "location_fit": 95.0,
+        "value_fit": 55.0,
+        "trust": 100,
+        "novelty": 80.0
+      },
+      "eligibility_verdict": "Probably Eligible",
+      "eligibility_source": "hard_constraint",
+      "eligibility_kind": "hard_ok",
+      "eligibility_reasons": [
+        "学历相符（undergraduate 在 ['undergraduate'] 内）"
+      ],
+      "match_score": 70,
+      "match_band": "Medium",
+      "urgency": 100.0,
+      "days_remaining": 2,
+      "deadline_type": "fixed",
+      "deadline_source": "field+parse",
+      "freshness": "open",
+      "freshness_reason": "截止日 2026-09-22（还有 2 天）",
+      "effort": null,
+      "time_commitment": "project-based",
+      "time_to_value": null,
+      "future_optionality": null,
+      "outcomes": {},
+      "produces": [],
+      "small_bet_type": null,
+      "evidence_complete": true,
+      "evidence_missing": [],
+      "source_freshness": "likely_current",
+      "evidence_verified_at": "2026-09-20",
+      "participation_open": true,
+      "actionable": true,
+      "utility": "medium",
+      "utility_reasons": [
+        "值得考虑，但有一项成本或不确定性需要先确认",
+        "需补：Embedded、FPGA"
+      ],
+      "readiness": "minor_preparation",
+      "readiness_detail": {
+        "status": "minor_preparation",
+        "ready_items": [
+          "具备：C"
+        ],
+        "missing_items": [
+          "需要补：Embedded",
+          "需要补：FPGA"
+        ],
+        "blockers": [],
+        "estimated_preparation": "几小时到 1–2 天",
+        "notes": []
+      },
+      "conflicts": [],
+      "zone": "recommended_now",
+      "demotion": null,
+      "priority_score": 74,
+      "priority_band": "Medium",
+      "flags": [
+        "urgent",
+        "language_unspecified"
+      ],
+      "warnings": [
+        "存在 inferred/unknown 证据：乐观结论封顶在 Probably Eligible，不能给出 Eligible",
+        "页面未写明语言要求"
+      ],
+      "reasons": {
+        "goal_fit": "命中目标 competition（priority=medium）",
+        "skill_fit": "硬性技能覆盖 1/3（命中：C）",
+        "interest_fit": "兴趣命中：embedded",
+        "location_fit": "国家/地区匹配：China",
+        "value_fit": "尚未评估价值维度",
+        "trust": "来源 Tier A，3 项关键事实已官方确认",
+        "novelty": "无本地状态，按新机会处理"
+      }
+    },
+    {
+      "id": "iot-embedded-smartcar-outdoor-2026",
+      "title": "第二十一届全国大学生智能汽车竞赛 — 室外赛道",
+      "organization": "中国自动化学会 / 全国大学生智能汽车竞赛组委会",
+      "primary_category": "competition",
+      "layer": "exploit",
+      "components": {
+        "eligibility": 82,
+        "goal_fit": 60.0,
+        "skill_fit": 62.5,
+        "interest_fit": 75.0,
+        "location_fit": 95.0,
+        "value_fit": 55.0,
+        "trust": 50,
+        "novelty": 80.0
+      },
+      "eligibility_verdict": "Probably Eligible",
+      "eligibility_source": "hard_constraint",
+      "eligibility_kind": "hard_ok",
+      "eligibility_reasons": [
+        "学历相符（undergraduate 在 ['undergraduate'] 内）"
+      ],
+      "match_score": 71,
+      "match_band": "Medium",
+      "urgency": 50.0,
+      "days_remaining": 42,
+      "deadline_type": "fixed",
+      "deadline_source": "field+parse",
+      "freshness": "open",
+      "freshness_reason": "截止日 2026-11-01（还有 42 天）",
+      "effort": null,
+      "time_commitment": "project-based",
+      "time_to_value": null,
+      "future_optionality": null,
+      "outcomes": {},
+      "produces": [],
+      "small_bet_type": null,
+      "evidence_complete": false,
+      "evidence_missing": [
+        "verification_status:verified_official",
+        "evidence.application_status(status=explicit)"
+      ],
+      "source_freshness": "likely_current",
+      "evidence_verified_at": "2026-09-20",
+      "participation_open": false,
+      "actionable": true,
+      "utility": "medium",
+      "utility_reasons": [
+        "值得考虑，但有一项成本或不确定性需要先确认",
+        "需补：Embedded"
+      ],
+      "readiness": "minor_preparation",
+      "readiness_detail": {
+        "status": "minor_preparation",
+        "ready_items": [
+          "具备：C",
+          "具备：ESP32"
+        ],
+        "missing_items": [
+          "需要补：Embedded"
+        ],
+        "blockers": [],
+        "estimated_preparation": "几小时到 1–2 天",
+        "notes": []
+      },
+      "conflicts": [],
+      "zone": "worth_verifying",
+      "demotion": {
+        "code": "page_not_verifiable",
+        "kind": "infrastructure",
+        "detail": "官方页面无法读取（反爬 / JS 渲染 / 404 / 超时）"
+      },
+      "priority_score": 60,
+      "priority_band": "Medium",
+      "flags": [
+        "unverified",
+        "evidence_incomplete",
+        "language_unspecified"
+      ],
+      "warnings": [
+        "存在 inferred/unknown 证据：乐观结论封顶在 Probably Eligible，不能给出 Eligible",
+        "未找到官方确认来源",
+        "证据不完整：缺少 verification_status:verified_official、evidence.application_status(status=explicit)（不得进入 Recommended now）",
+        "页面未写明语言要求",
+        "证据缺口 application_status: inferred"
+      ],
+      "reasons": {
+        "goal_fit": "命中目标 competition（priority=medium）",
+        "skill_fit": "硬性技能覆盖 2/3（命中：C, ESP32）",
+        "interest_fit": "兴趣命中：embedded",
+        "location_fit": "国家/地区匹配：China",
+        "value_fit": "尚未评估价值维度",
+        "trust": "来源 Tier C，未获官方确认",
+        "novelty": "无本地状态，按新机会处理"
+      }
+    }
+  ],
+  "excluded": [
+    {
+      "id": "iot-embedded-etrobocon-2026",
+      "title": "ETロボコン2026（嵌入式软件技术教育机器人竞赛，JASA 主办）",
+      "reason": "closed: 官方页面明确标示申请状态为 closed"
+    }
+  ],
+  "contract_issues": [],
+  "diversity": {
+    "categories": {
+      "career": 1,
+      "open_source": 2,
+      "competition": 2
+    },
+    "layers": {
+      "exploit": 5
+    },
+    "checks": {
+      "categories_ge_3": true,
+      "has_adjacent": false,
+      "has_explore": false,
+      "single_category_share_ok": true
+    },
+    "note": "这是覆盖面自检（参考值），不是硬性配额：Adjacent/Explore 只在达到质量与验证门槛时纳入，绝不为凑配额塞入弱机会。见 references/ranking.md §3。"
+  },
+  "zones": {
+    "recommended_now": 4,
+    "worth_verifying": 1,
+    "excluded": 1
+  }
+}

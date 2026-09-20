@@ -356,7 +356,7 @@
       "provenance": "source_family_query",
       "source_family": "contributor_guide",
       "included": true,
-      "zone": "worth_verifying",
+      "zone": "recommended_now",
       "small_bet_type": "public_output",
       "weekly_commitment": "self-paced",
       "why_surprising": "应用安全专项基金会，good first issue 式入口，比泛用开源项目更贴安全兴趣",
@@ -364,7 +364,9 @@
         "zone": "recommended_now",
         "reason": "deadline_type=rolling（无固定/弹性截止）",
         "demotion": null
-      }
+      },
+      "zone_declared_by_agent": "worth_verifying",
+      "zone_note": "原标注 worth_verifying，真实 gate 判定 recommended_now"
     },
     {
       "title": "Bug bounty / VDP (HackerOne, DoD VDP)",
@@ -573,14 +575,7 @@
     "recommended_now": 2,
     "worth_verifying": 7,
     "excluded": 0,
-    "mismatches": [
-      {
-        "title": "OWASP contributor projects (Juice Shop / BLT / PyGoat)",
-        "declared": "worth_verifying",
-        "computed": "recommended_now",
-        "reason": "deadline_type=rolling（无固定/弹性截止）"
-      }
-    ],
+    "mismatches": [],
     "missing_application_status_evidence": []
   }
 }

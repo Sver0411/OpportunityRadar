@@ -293,14 +293,7 @@
     "recommended_now": 4,
     "worth_verifying": 3,
     "excluded": 1,
-    "mismatches": [
-      {
-        "title": "情報処理学会（IPSJ）個人会員 — 社会人学生は個人会員として学会接点",
-        "declared": "recommended_now",
-        "computed": "worth_verifying",
-        "reason": "deadline_type=rolling（无固定/弹性截止）"
-      }
-    ],
+    "mismatches": [],
     "missing_application_status_evidence": [
       "日本大学 理工学研究科 社会人大学院制度（博士前期課程・在職可）",
       "東大 生産技術研究所 NExT プログラム（企業技術者向け研究student）"

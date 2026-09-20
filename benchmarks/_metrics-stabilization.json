@@ -1,0 +1,46 @@
+{
+  "_note": "Stabilization-round measurements from real web reruns (record-si.json). tests/test_benchmark_consistency.py uses this to verify that a resolved failure really passes.",
+  "today": "2026-09-20",
+  "personas": {
+    "iot-embedded": {
+      "final_verification_pct": 100,
+      "expired_leakage": 0,
+      "unverified_actionable_leakage": 0,
+      "discovered": 6,
+      "qualified": 5,
+      "recommended": 4,
+      "verified": 4,
+      "downgraded": 1,
+      "excluded": 1,
+      "source": "benchmarks/runs/iot-embedded/record-si.json"
+    },
+    "case-b-professional": {
+      "final_verification_pct": 100,
+      "expired_leakage": 0,
+      "unverified_actionable_leakage": 0,
+      "recommended": 4,
+      "source": "usertests/case-b-professional/record.json"
+    },
+    "case-c-promotion": {
+      "final_verification_pct": null,
+      "expired_leakage": 0,
+      "unverified_actionable_leakage": 0,
+      "recommended": 4,
+      "source": "usertests/case-c-promotion/record-si.json"
+    },
+    "case-d-japan-masters": {
+      "final_verification_pct": null,
+      "expired_leakage": 0,
+      "unverified_actionable_leakage": 0,
+      "recommended": 4,
+      "source": "usertests/case-d-japan-masters/record-si.json"
+    },
+    "case-e-unknown": {
+      "final_verification_pct": null,
+      "expired_leakage": 0,
+      "unverified_actionable_leakage": 0,
+      "recommended": 1,
+      "source": "usertests/case-e-unknown/record-si.json"
+    }
+  }
+}
