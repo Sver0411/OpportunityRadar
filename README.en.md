@@ -60,6 +60,14 @@ OpportunityRadar separates **ready to consider now**, **promising but unconfirme
 
 This distinction matters in easy-to-miss cases. Next year's graduate intake may already be recruiting. A master's programme awards a master's degree; that does not mean applicants must already hold one. The skill keeps cohort, application timing, current qualifications, and target degree separate.
 
+## What you get for each lead
+
+A useful recommendation should tell you more than where to click. Expect the official name and organiser, why it matches your goal, whether you appear eligible, the latest confirmed application details, and the point that still needs your attention. If the official page does not confirm a requirement, the answer should say so rather than fill in the blank.
+
+That makes a short list more useful than a long one. A lead with an unclear deadline belongs in a “needs checking” group; an expired one should not be presented as something you can apply to today.
+
+You can help the agent narrow the search by mentioning a target region, whether remote options work for you, and any firm limits on time or cost. You do not need a polished profile to begin. If a missing fact would change the answer, the skill should identify it instead of guessing.
+
 ## Install
 
 Place this repository in the skills directory of an Agent Skills-compatible host. The installed folder must be named `opportunity-radar`. For a personal Codex installation, for example:
@@ -70,6 +78,8 @@ git clone https://github.com/Sver0411/OpportunityRadar.git ~/.codex/skills/oppor
 ```
 
 Then ask your agent a question like those above. Automatic activation depends on the host's Skill support. Discovery needs a host that can search the web and read pages; without those capabilities, the agent cannot verify live opportunities.
+
+The command above is for a first installation. If you already have an `opportunity-radar` folder, update that installation according to your host's setup rather than cloning over it.
 
 The helper scripts use only the Python standard library. Python 3.8+ enables repeatable date parsing, deduplication, scoring, and optional local state. Without Python, the agent can still follow the written protocol, but should say that those checks were done manually. The skill has no application-submission workflow and does not need its own account or service token.
 
