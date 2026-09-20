@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" role="img" aria-labelledby="title desc">
+  <title id="title">OpportunityRadar</title>
+  <desc id="desc">A radar beam discovers opportunities beyond the obvious path.</desc>
+  <defs>
+    <linearGradient id="bg" x2="1" y2="1">
+      <stop offset="0" stop-color="#071628"/>
+      <stop offset="1" stop-color="#10334b"/>
+    </linearGradient>
+    <linearGradient id="beam" x2="1" y2="0">
+      <stop offset="0" stop-color="#45e2c2" stop-opacity=".06"/>
+      <stop offset="1" stop-color="#45e2c2" stop-opacity=".28"/>
+    </linearGradient>
+    <linearGradient id="word" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#c6e6ea"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="360" rx="24" fill="url(#bg)"/>
+  <g fill="none" stroke="#79c8c8" opacity=".17">
+    <path d="M0 90h1200M0 180h1200M0 270h1200"/>
+    <path d="M100 0v360M200 0v360M300 0v360M400 0v360M500 0v360M600 0v360M700 0v360M800 0v360M900 0v360M1000 0v360M1100 0v360"/>
+  </g>
+  <g transform="translate(920 180)">
+    <circle r="146" fill="none" stroke="#77b8be" stroke-opacity=".24"/>
+    <circle r="108" fill="none" stroke="#77b8be" stroke-opacity=".34"/>
+    <circle r="70" fill="none" stroke="#77b8be" stroke-opacity=".48"/>
+    <circle r="31" fill="none" stroke="#77b8be" stroke-opacity=".7"/>
+    <path d="M0 0 133-61A146 146 0 0 1 142 35Z" fill="url(#beam)"/>
+    <path d="M0 0 133-61" stroke="#51ead0" stroke-width="2" opacity=".9"/>
+    <circle r="7" fill="#5af1d2"/>
+    <circle cx="86" cy="-70" r="7" fill="#ffcf6b"/>
+    <circle cx="-109" cy="38" r="5" fill="#73aaff"/>
+    <circle cx="57" cy="112" r="6" fill="#a986ff"/>
+    <circle cx="138" cy="28" r="5" fill="#5af1d2"/>
+    <path d="M86-70l-19-18M-109 38l-20 12M57 112l8 20" stroke="#b5d8da" stroke-opacity=".55"/>
+  </g>
+  <g font-family="Arial, Helvetica, sans-serif" fill="url(#word)">
+    <text x="68" y="167" font-size="57" font-weight="750" letter-spacing="-2">Opportunity</text>
+    <text x="68" y="225" font-size="57" font-weight="750" letter-spacing="-2">Radar<tspan fill="#5af1d2">.</tspan></text>
+  </g>
+  <path d="M70 260h245" stroke="#5af1d2" stroke-width="4" stroke-linecap="round"/>
+  <g fill="#8db6c0" opacity=".75">
+    <circle cx="70" cy="293" r="3"/>
+    <circle cx="89" cy="293" r="3"/>
+    <circle cx="108" cy="293" r="3"/>
+  </g>
+</svg>

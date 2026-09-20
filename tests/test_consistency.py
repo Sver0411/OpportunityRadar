@@ -17,7 +17,7 @@ import _helpers
 import common as C
 
 ROOT = _helpers.ROOT
-READMES = ("README.md", "README.zh-CN.md")
+READMES = ("README.md", "README.en.md")
 
 
 def read(rel):
@@ -250,7 +250,7 @@ class TestRepoHygiene(unittest.TestCase):
         """README 里提到的仓库内路径必须真实存在（脚本/目录/文件）。"""
         for rel in READMES:
             text = read(rel)
-            refs = set(re.findall(r"\]\(\.?/?((?:references|schemas|scripts|examples|tests|"
+            refs = set(re.findall(r"\]\(\.?/?((?:assets|references|schemas|scripts|examples|tests|"
                                   r"README[\w.-]*\.md|DEVELOPMENT\.md|SKILL\.md|LICENSE)[\w./-]*)\)",
                                   text))
             missing = [r for r in refs if not os.path.exists(os.path.join(ROOT, r))]
@@ -277,7 +277,8 @@ class TestDocsFunctional(unittest.TestCase):
     def test_both_readmes_exist_and_cross_link(self):
         for rel in READMES:
             self.assertTrue(os.path.exists(os.path.join(ROOT, rel)), f"{rel} 不存在")
-        self.assertIn("./README.zh-CN.md", read("README.md"))
+        self.assertIn("./README.en.md", read("README.md"))
+        self.assertIn("./README.md", read("README.en.md"))
         self.assertIn("./README.md", read("README.zh-CN.md"))
 
     def test_internal_anchors_resolve(self):

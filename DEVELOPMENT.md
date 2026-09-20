@@ -247,7 +247,9 @@ Plus the manual review questions:
 
 ### Bilingual documentation
 
-`README.md` (English) and `README.zh-CN.md` (简体中文) are kept consistent, but the test suite
+`README.md` (简体中文, GitHub default) and `README.en.md` (English) are written independently
+while describing the same behavior. `README.zh-CN.md` is a compatibility pointer for old links.
+The test suite
 only checks **functional** properties, not visual style:
 
 - both files exist and link to each other
