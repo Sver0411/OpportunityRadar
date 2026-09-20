@@ -1,0 +1,49 @@
+{
+  "budget_hours": null,
+  "planned_hours": 5.0,
+  "resource_conflict": null,
+  "budget_unknown": true,
+  "items": [
+    {
+      "opportunity_id": "cylab-security-academy-picogym-cmu",
+      "title": "CyLab Security Academy / picoGym (CMU)",
+      "category": "skill_development",
+      "zone": "recommended_now",
+      "utility": "unknown",
+      "match": 60,
+      "roles": [
+        "now"
+      ],
+      "primary_role": "now",
+      "weekly_hours": 5.0,
+      "hours_known": true,
+      "official_url": null
+    },
+    {
+      "opportunity_id": "owasp-contributor-projects-juice-shop-blt-pygoat",
+      "title": "OWASP contributor projects (Juice Shop / BLT / PyGoat)",
+      "category": "open_source",
+      "zone": "recommended_now",
+      "utility": "unknown",
+      "match": 60,
+      "roles": [
+        "now"
+      ],
+      "primary_role": "now",
+      "weekly_hours": null,
+      "hours_known": false,
+      "official_url": null
+    }
+  ],
+  "dropped": [],
+  "roles_present": [
+    "now"
+  ],
+  "diversity": {
+    "roles": 1,
+    "categories": 2
+  },
+  "unknown_hours_items": 1,
+  "alternatives": [],
+  "note": "每周可用时间未知 → 无法校验资源约束，请先确认 constraints.weekly_time；部分机会未写明每周投入，未计入总和（已在 unknown_hours_items 标注）"
+}

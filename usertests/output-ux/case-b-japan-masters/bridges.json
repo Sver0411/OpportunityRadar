@@ -1,0 +1,176 @@
+[
+  {
+    "opportunity_id": "utokyo-research-student-kenkyusei",
+    "title": "東京大学 研究生（Research Student）制度",
+    "category": "research",
+    "official_url": "https://ois.t.u-tokyo.ac.jp/admission/faq_self_rs",
+    "gap_coverage": "medium",
+    "time_to_evidence": {
+      "hours": null,
+      "produces": [
+        "实验室研究接触",
+        "教授关系",
+        "研究经历（非学位）"
+      ],
+      "public_evidence": [],
+      "strength": "weak",
+      "rationale": "未写明可展示产出"
+    },
+    "readiness": "minor_preparation",
+    "effort": {
+      "weekly_commitment": null
+    },
+    "cost": "unknown",
+    "future_optionality": "high",
+    "evidence_complete": true,
+    "factors": {
+      "gap_coverage": 0.6,
+      "time_to_evidence": 0.35,
+      "readiness": 0.8,
+      "future_optionality": 1.0,
+      "evidence_quality": 1.0,
+      "effort_fit": 1.0,
+      "trust": 1.0
+    },
+    "score": 72,
+    "gap": "教授 / 实验室联系人"
+  },
+  {
+    "opportunity_id": "oist-research-internship-spring-2027",
+    "title": "OIST Research Internship — Spring 2027 round",
+    "category": "research",
+    "official_url": "https://oist.jp/admissions/research-internship/apply-research-internship",
+    "gap_coverage": "medium",
+    "time_to_evidence": {
+      "hours": 40.0,
+      "produces": [
+        "真实实验室研究经历",
+        "教授推荐信潜力",
+        "研究实习结业记录"
+      ],
+      "public_evidence": [],
+      "strength": "weak",
+      "rationale": "未写明可展示产出"
+    },
+    "readiness": "major_preparation",
+    "effort": {
+      "weekly_commitment": "40 h"
+    },
+    "cost": "application fee required (amount to confirm on the official page)",
+    "future_optionality": "high",
+    "evidence_complete": true,
+    "factors": {
+      "gap_coverage": 0.6,
+      "time_to_evidence": 0.35,
+      "readiness": 0.35,
+      "future_optionality": 1.0,
+      "evidence_quality": 1.0,
+      "effort_fit": 1.0,
+      "trust": 1.0
+    },
+    "score": 65,
+    "gap": "教授 / 实验室联系人"
+  },
+  {
+    "opportunity_id": "utokyo-research-student-kenkyusei",
+    "title": "東京大学 研究生（Research Student）制度",
+    "category": "research",
+    "official_url": "https://ois.t.u-tokyo.ac.jp/admission/faq_self_rs",
+    "gap_coverage": "medium",
+    "time_to_evidence": {
+      "hours": null,
+      "produces": [
+        "实验室研究接触",
+        "教授关系",
+        "研究经历（非学位）"
+      ],
+      "public_evidence": [],
+      "strength": "weak",
+      "rationale": "未写明可展示产出"
+    },
+    "readiness": "minor_preparation",
+    "effort": {
+      "weekly_commitment": null
+    },
+    "cost": "unknown",
+    "future_optionality": "high",
+    "evidence_complete": true,
+    "factors": {
+      "gap_coverage": 0.6,
+      "time_to_evidence": 0.35,
+      "readiness": 0.8,
+      "future_optionality": 1.0,
+      "evidence_quality": 1.0,
+      "effort_fit": 1.0,
+      "trust": 1.0
+    },
+    "score": 72,
+    "gap": "研究经历 / 论文 / 实验室接触"
+  },
+  {
+    "opportunity_id": "oist-research-internship-spring-2027",
+    "title": "OIST Research Internship — Spring 2027 round",
+    "category": "research",
+    "official_url": "https://oist.jp/admissions/research-internship/apply-research-internship",
+    "gap_coverage": "medium",
+    "time_to_evidence": {
+      "hours": 40.0,
+      "produces": [
+        "真实实验室研究经历",
+        "教授推荐信潜力",
+        "研究实习结业记录"
+      ],
+      "public_evidence": [],
+      "strength": "weak",
+      "rationale": "未写明可展示产出"
+    },
+    "readiness": "major_preparation",
+    "effort": {
+      "weekly_commitment": "40 h"
+    },
+    "cost": "application fee required (amount to confirm on the official page)",
+    "future_optionality": "high",
+    "evidence_complete": true,
+    "factors": {
+      "gap_coverage": 0.6,
+      "time_to_evidence": 0.35,
+      "readiness": 0.35,
+      "future_optionality": 1.0,
+      "evidence_quality": 1.0,
+      "effort_fit": 1.0,
+      "trust": 1.0
+    },
+    "score": 65,
+    "gap": "研究经历 / 论文 / 实验室接触"
+  },
+  {
+    "opportunity_id": "jlpt-december-2026",
+    "title": "JLPT 日本語能力試験 2026 年 12 月场",
+    "category": "language",
+    "official_url": "https://jlpt.neea.cn/6DFB81A7F0DE4695A6CF0050A6A7CA39.htm",
+    "gap_coverage": "medium",
+    "time_to_evidence": {
+      "hours": null,
+      "produces": [],
+      "public_evidence": [],
+      "strength": "weak",
+      "rationale": "未写明可展示产出"
+    },
+    "readiness": "unknown",
+    "effort": null,
+    "cost": "报名费（官方页为准）",
+    "future_optionality": null,
+    "evidence_complete": false,
+    "factors": {
+      "gap_coverage": 0.6,
+      "time_to_evidence": 0.35,
+      "readiness": 0.5,
+      "future_optionality": 0.5,
+      "evidence_quality": 1.0,
+      "effort_fit": 1.0,
+      "trust": 1.0
+    },
+    "score": 61,
+    "gap": "目标国家需要的语言成绩"
+  }
+]

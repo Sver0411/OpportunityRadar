@@ -1,0 +1,518 @@
+{
+  "input_count": 6,
+  "cluster_count": 6,
+  "duplicates_removed": 0,
+  "clusters": [
+    {
+      "cluster_id": "c001",
+      "canonical_id": "embedded-socchip-fpga",
+      "size": 1,
+      "member_ids": [
+        "embedded-socchip-fpga"
+      ],
+      "merged": {
+        "id": "embedded-socchip-fpga",
+        "title": "全国大学生嵌入式芯片与系统设计竞赛 · FPGA 创新设计赛道（2026）",
+        "organization": "中国电子教育学会 / 东南大学 · 南京江北新区",
+        "primary_category": "competition",
+        "secondary_categories": [
+          "skill_development",
+          "project"
+        ],
+        "tags": [
+          "embedded",
+          "fpga",
+          "iot",
+          "esp32-friendly",
+          "china",
+          "currently-open"
+        ],
+        "official_url": "http://www.socchina.net/",
+        "discovery_url": "https://jwb.bit.edu.cn/xs/pyfa_2/tzgg__26/97dc9f2b043740d192dd7e5454b5288d.htm",
+        "last_updated": "2026-09-02",
+        "deadline": "2026-09-22",
+        "deadline_type": "fixed",
+        "freshness": "open",
+        "verification_status": "verified_official",
+        "application_status": "open",
+        "eligibility": {
+          "verdict": "Unknown"
+        },
+        "readiness": {
+          "status": "ready_now"
+        },
+        "effort": {
+          "weekly_commitment": "未写明（作品设计 2026-09~11-04，决赛 11-20~22）"
+        },
+        "cost": {
+          "fee": "free"
+        },
+        "compensation": "none",
+        "time_to_value": "months",
+        "future_optionality": {
+          "level": "high"
+        },
+        "outcomes": {
+          "career": "Medium",
+          "skill": "High",
+          "portfolio": "High",
+          "networking": "Medium",
+          "financial": "Low",
+          "interest": "High"
+        },
+        "produces": [
+          "嵌入式作品（基于指定 FPGA/开发平台）",
+          "可演示的硬件项目",
+          "竞赛奖项/证书"
+        ],
+        "unlocks": [
+          {
+            "type": "嵌入式/物联网岗位实习"
+          },
+          {
+            "type": "后续芯片应用赛道与项目"
+          }
+        ],
+        "goal_contribution": [
+          "competition",
+          "skill building"
+        ],
+        "small_bet_type": "public_output",
+        "evidence": {
+          "application_status": {
+            "status": "explicit",
+            "source_url": "https://jwb.bit.edu.cn/xs/pyfa_2/tzgg__26/97dc9f2b043740d192dd7e5454b5288d.htm",
+            "verified_at": "2026-09-21",
+            "evidence_summary": "北京理工大学教务部通知：报名时间 2026-07-06 至 2026-09-22 24:00，作品提交 2026-11-04，决赛 2026-11-20~22。"
+          }
+        },
+        "_notes": [
+          "开发平台厂商含乐鑫科技（ESP32 厂商），与用户 ESP32 技能直接相关。",
+          "2026-09-21 当日仍在报名期（截止 09-22）；用户地点未知 → 能否通过本校报名需确认。"
+        ]
+      },
+      "conflicts": [],
+      "alternate_sources": []
+    },
+    {
+      "cluster_id": "c002",
+      "canonical_id": "rt-thread-contributor",
+      "size": 1,
+      "member_ids": [
+        "rt-thread-contributor"
+      ],
+      "merged": {
+        "id": "rt-thread-contributor",
+        "title": "RT-Thread 开源实时操作系统贡献（GitHub 社区）",
+        "organization": "RT-Thread 开源社区（Apache-2.0）",
+        "primary_category": "open_source",
+        "secondary_categories": [
+          "skill_development"
+        ],
+        "tags": [
+          "embedded",
+          "rtos",
+          "iot",
+          "remote",
+          "contributor"
+        ],
+        "official_url": "https://github.com/RT-Thread/rt-thread",
+        "discovery_url": "https://github.com/RT-Thread/rt-thread",
+        "last_updated": "2026-09-21",
+        "deadline": null,
+        "deadline_type": "rolling",
+        "freshness": "evergreen",
+        "verification_status": "verified_official",
+        "application_status": "open",
+        "eligibility": {
+          "verdict": "Eligible"
+        },
+        "readiness": {
+          "status": "minor_preparation"
+        },
+        "effort": {
+          "weekly_commitment": "self-paced（从 good-first-issue / 文档起步）"
+        },
+        "cost": {
+          "fee": "free"
+        },
+        "compensation": "none",
+        "time_to_value": "immediate",
+        "future_optionality": {
+          "level": "high"
+        },
+        "outcomes": {
+          "career": "High",
+          "skill": "High",
+          "portfolio": "High",
+          "networking": "Medium",
+          "financial": "Low",
+          "interest": "High"
+        },
+        "produces": [
+          "merged PR / 文档贡献",
+          "公开的 GitHub 贡献记录",
+          "嵌入式 RTOS 实战经验"
+        ],
+        "unlocks": [
+          {
+            "type": "开源维护者 / 嵌入式岗位"
+          },
+          {
+            "type": "GSoC / LFX 等国际开源项目"
+          }
+        ],
+        "goal_contribution": [
+          "open_source",
+          "skill building"
+        ],
+        "small_bet_type": "public_output",
+        "evidence": {
+          "application_status": {
+            "status": "explicit",
+            "source_url": "https://github.com/RT-Thread/rt-thread",
+            "verified_at": "2026-09-21",
+            "evidence_summary": "官方仓库 README 写明 Code Contribution Guide；开源贡献无报名截止，长期开放。"
+          }
+        },
+        "_notes": [
+          "国产嵌入式 RTOS，与物联网/ESP32 方向高度契合；远程、不受地点限制。",
+          "贡献前置：认领 issue、CLA、PR 评审流程。"
+        ]
+      },
+      "conflicts": [],
+      "alternate_sources": []
+    },
+    {
+      "cluster_id": "c003",
+      "canonical_id": "iot-design-contest",
+      "size": 1,
+      "member_ids": [
+        "iot-design-contest"
+      ],
+      "merged": {
+        "id": "iot-design-contest",
+        "title": "全国大学生物联网设计竞赛（下一届，预计 2027 年 4 月开放报名）",
+        "organization": "全国高等学校计算机教育研究会 / 上海交通大学",
+        "primary_category": "competition",
+        "secondary_categories": [
+          "project",
+          "skill_development"
+        ],
+        "tags": [
+          "iot",
+          "embedded",
+          "china",
+          "huawei-track",
+          "next-edition"
+        ],
+        "official_url": "http://iot.sjtu.edu.cn/",
+        "discovery_url": "https://www.shiep.edu.cn/35/0e/c6424a275726/page.htm",
+        "last_updated": "2026-03-31",
+        "deadline": "2027-04",
+        "deadline_type": "recurring",
+        "freshness": "future",
+        "verification_status": "verified_official",
+        "application_status": "unknown",
+        "eligibility": {
+          "verdict": "Unknown"
+        },
+        "readiness": {
+          "status": "short_preparation"
+        },
+        "effort": {
+          "weekly_commitment": "未写明（2026 届：组队≤4人，需实物演示）"
+        },
+        "cost": {
+          "fee": "free"
+        },
+        "compensation": "none",
+        "time_to_value": "months",
+        "future_optionality": {
+          "level": "high"
+        },
+        "outcomes": {
+          "career": "Medium",
+          "skill": "High",
+          "portfolio": "High",
+          "networking": "Medium",
+          "financial": "Low",
+          "interest": "High"
+        },
+        "produces": [
+          "完整物联网系统作品（感知+通信+边缘/云+应用）",
+          "竞赛奖项/证书"
+        ],
+        "unlocks": [
+          {
+            "type": "物联网企业实习/校招"
+          },
+          {
+            "type": "后续科研/项目"
+          }
+        ],
+        "goal_contribution": [
+          "competition",
+          "skill building"
+        ],
+        "small_bet_type": "public_output",
+        "_notes": [
+          "2026（第十三届）已于 2026-08 总决赛结束；下一届预计 2027-04 开放报名（年度赛事）。",
+          "用户地点未知 → 是否可通过本校组队参赛需确认。"
+        ]
+      },
+      "conflicts": [],
+      "alternate_sources": []
+    },
+    {
+      "cluster_id": "c004",
+      "canonical_id": "nuec",
+      "size": 1,
+      "member_ids": [
+        "nuec"
+      ],
+      "merged": {
+        "id": "nuec",
+        "title": "全国大学生电子设计竞赛（下一届全国赛，预计 2027 年）",
+        "organization": "教育部高教司 / 工信部人事教育司",
+        "primary_category": "competition",
+        "secondary_categories": [
+          "project",
+          "skill_development"
+        ],
+        "tags": [
+          "electronics",
+          "embedded",
+          "mcu",
+          "china",
+          "biennial"
+        ],
+        "official_url": "http://nuedc.xjtu.edu.cn",
+        "discovery_url": "https://www.nuedc-training.com.cn/index/news/details/new_id/342",
+        "last_updated": "2026-01-15",
+        "deadline": "2027-07",
+        "deadline_type": "recurring",
+        "freshness": "future",
+        "verification_status": "partially_verified",
+        "application_status": "unknown",
+        "eligibility": {
+          "verdict": "Unknown"
+        },
+        "readiness": {
+          "status": "short_preparation"
+        },
+        "effort": {
+          "weekly_commitment": "未写明（全国赛一般为 4 天封闭式现场赛）"
+        },
+        "cost": {
+          "fee": "free"
+        },
+        "compensation": "none",
+        "time_to_value": "months",
+        "future_optionality": {
+          "level": "high"
+        },
+        "outcomes": {
+          "career": "Medium",
+          "skill": "High",
+          "portfolio": "High",
+          "networking": "Low",
+          "financial": "Low",
+          "interest": "High"
+        },
+        "produces": [
+          "电子设计实物作品 + 设计报告",
+          "竞赛奖项/证书"
+        ],
+        "unlocks": [
+          {
+            "type": "硬件/嵌入式岗位"
+          },
+          {
+            "type": "保研/综测加分（视学校）"
+          }
+        ],
+        "goal_contribution": [
+          "competition",
+          "skill building"
+        ],
+        "small_bet_type": "public_output",
+        "_notes": [
+          "奇数年办全国赛；2026 主要为『信息科技前沿专题赛』（已结束），下一届全国赛预计 2027。",
+          "用户地点未知 → 参赛需经本校报名，需确认。"
+        ]
+      },
+      "conflicts": [],
+      "alternate_sources": []
+    },
+    {
+      "cluster_id": "c005",
+      "canonical_id": "lfx-mentorship",
+      "size": 1,
+      "member_ids": [
+        "lfx-mentorship"
+      ],
+      "merged": {
+        "id": "lfx-mentorship",
+        "title": "LFX Mentorship（Linux Foundation 开源导师计划，远程）",
+        "organization": "The Linux Foundation",
+        "primary_category": "open_source",
+        "secondary_categories": [
+          "skill_development",
+          "networking"
+        ],
+        "tags": [
+          "open-source",
+          "remote",
+          "mentorship",
+          "international"
+        ],
+        "official_url": "https://mentorship.lfx.linuxfoundation.org/",
+        "discovery_url": "https://mentorship.lfx.linuxfoundation.org/",
+        "last_updated": "2026-09-21",
+        "deadline": null,
+        "deadline_type": "rolling",
+        "freshness": "rolling",
+        "verification_status": "partially_verified",
+        "application_status": "unknown",
+        "eligibility": {
+          "verdict": "Unknown"
+        },
+        "readiness": {
+          "status": "minor_preparation"
+        },
+        "effort": {
+          "weekly_commitment": "未写明（通常 12 周，部分带薪）"
+        },
+        "cost": {
+          "fee": "free"
+        },
+        "compensation": "部分岗位带薪（金额 TBD）",
+        "time_to_value": "months",
+        "future_optionality": {
+          "level": "high"
+        },
+        "outcomes": {
+          "career": "Medium",
+          "skill": "High",
+          "portfolio": "High",
+          "networking": "High",
+          "financial": "Medium",
+          "interest": "Medium"
+        },
+        "produces": [
+          "开源贡献记录",
+          "导师推荐/社区人脉"
+        ],
+        "unlocks": [
+          {
+            "type": "开源/嵌入式职业"
+          },
+          {
+            "type": "国际远程实习机会"
+          }
+        ],
+        "goal_contribution": [
+          "open_source",
+          "skill building"
+        ],
+        "small_bet_type": "public_output",
+        "_notes": [
+          "远程、国际化，不受用户地点限制；需先确认下一期 cohort 开放时间与资格。",
+          "页面含 Spring/Summer 2026 cohort，下一期时间需向官网确认。"
+        ]
+      },
+      "conflicts": [],
+      "alternate_sources": []
+    },
+    {
+      "cluster_id": "c006",
+      "canonical_id": "espressif-internship",
+      "size": 1,
+      "member_ids": [
+        "espressif-internship"
+      ],
+      "merged": {
+        "id": "espressif-internship",
+        "title": "乐鑫科技（Espressif）嵌入式软件开发实习生 · 上海/苏州",
+        "organization": "乐鑫信息科技（Espressif Systems）",
+        "primary_category": "career",
+        "secondary_categories": [
+          "skill_development"
+        ],
+        "tags": [
+          "embedded",
+          "esp32",
+          "internship",
+          "iot",
+          "esp-idf"
+        ],
+        "official_url": "https://www.espressif.com.cn/zh-hans/join-us/job-search",
+        "discovery_url": "https://www.espressif.com.cn/zh-hans/join-us/job-search?field_job_classification_tid%5B12%5D=2571&field_job_classification_tid%5B13%5D=2575",
+        "last_updated": "2026-01-28",
+        "deadline": null,
+        "deadline_type": "rolling",
+        "freshness": "likely_open",
+        "verification_status": "verified_official",
+        "application_status": "unknown",
+        "eligibility": {
+          "verdict": "Unknown"
+        },
+        "readiness": {
+          "status": "minor_preparation"
+        },
+        "effort": {
+          "weekly_commitment": "每周 3~4 天，实习 3 个月以上（优秀可转正）"
+        },
+        "cost": {
+          "fee": "free"
+        },
+        "compensation": "实习薪资（金额未公开）",
+        "time_to_value": "months",
+        "future_optionality": {
+          "level": "high"
+        },
+        "outcomes": {
+          "career": "High",
+          "skill": "High",
+          "portfolio": "Medium",
+          "networking": "Medium",
+          "financial": "Medium",
+          "interest": "High"
+        },
+        "produces": [
+          "真实嵌入式产品/SDK 开发经验",
+          "企业实习证明",
+          "可能的转正机会"
+        ],
+        "unlocks": [
+          {
+            "type": "物联网/嵌入式全职 offer"
+          },
+          {
+            "type": "ESP-IDF 生态深度参与（与开源联动）"
+          }
+        ],
+        "goal_contribution": [
+          "internship",
+          "skill building"
+        ],
+        "small_bet_type": "high_upside",
+        "_notes": [
+          "要求本科及以上、物联网/电子/计算机相关、精通 C/C++ 且熟悉 Python，有 ESP-IDF/FreeRTOS 经验优先——与用户技能高度匹配。",
+          "base 为上海/苏州，且要求在校实习 ≥3 个月：用户地点与毕业时间未知 → 是否可投/可到岗必须先确认。"
+        ]
+      },
+      "conflicts": [],
+      "alternate_sources": []
+    }
+  ],
+  "auto_merged_pairs": [],
+  "maybe_pairs": [],
+  "cycle_variants": [],
+  "ejected_by_coherence": [],
+  "params": {
+    "threshold": 0.72,
+    "maybe_threshold": 0.55
+  }
+}

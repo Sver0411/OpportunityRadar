@@ -1,0 +1,37 @@
+{
+  "_note": "Persona A 的画像。**只写用户原话里出现过的内容**。用户没有提到所在地、学校国别、每周时间、预算、具体目标方向 —— 这些一律留 Unknown，不猜。",
+  "_session": "A",
+  "user_input": "我是大三物联网专业，现在会 ESP32、Python，也做过几个小项目，最近不知道应该参加比赛、做开源还是找实习，想找点真正对以后有用的机会。",
+  "profile_version": 1,
+  "updated_at": "2026-09-21",
+  "life_stage": ["student"],
+  "career_stage": ["undergraduate"],
+  "education": {
+    "degree": "undergraduate",
+    "major": "物联网工程",
+    "major_family": "cs_software",
+    "current_year": 3,
+    "school": null,
+    "school_country": null,
+    "school_city": null
+  },
+  "skills": [{"name": "ESP32"}, {"name": "Python"}],
+  "interests": [
+    {"name": "embedded", "_provenance": "inferred_pending",
+     "_source": "由专业（物联网）推断，用户未直接说" }
+  ],
+  "experience": {
+    "projects": [{"name": "几个小项目（用户未说明具体内容）"}]
+  },
+  "constraints": {
+    "preferred_country": [],
+    "remote": null,
+    "budget": null,
+    "weekly_time": null,
+    "available_period": null
+  },
+  "goals": [],
+  "goals_note": "用户明确说『不知道应该参加比赛、做开源还是找实习』→ 这是**路线未定**，不是某个具体目标；因此不写 goals，交由相关性判定按 explore 处理。",
+  "_unknown_must_affect_output": ["所在地/学校国别", "毕业时间", "每周可用时间", "预算"],
+  "nationality": null
+}

@@ -57,6 +57,16 @@ Step 8 的执行规范。目标：把网页变成 `opportunity.schema.json` 记�
 缺顶层字段时报错会明确写 `top-level application_status`。**不要把** `saved` / `applied` 这类
 用户侧跟踪值（`scripts/state.py` 的那一套）填进机会侧字段。
 
+**推荐卡片需要三个字段，官方页写了就必须捕获**（否则卡片只能写"未写明"，用户看不到"要投入什么 / 能得到什么"）：
+
+| 字段 | 卡片位置 | 说明 |
+|---|---|---|
+| `produces` | 能留下什么 | 需要**可展示的产出物**（PR、作品、证书、报告、推荐信、演示） |
+| `effort` / `time_commitment` | 投入 | 每周小时数或缺省周期；不确定写 `null`，不要编 |
+| `skills_required` | 补什么缺口 + 为什么适合你 | 页面明示的门槛；**没写就不要推断** |
+
+没有这三个字段，`scripts/presentation.py` 会如实写"官方页未写明"，而不是猜一个值。
+
 **`required_materials` 不等于缺口**：报名材料分三类去处理 ——
 公开产出物（portfolio / demo / writeup / 作品集）才可能构成 portfolio 缺口；
 手续类（CV、护照、申请表、身份/学籍证明、报名、费用）进 `logistics_prerequisites`；

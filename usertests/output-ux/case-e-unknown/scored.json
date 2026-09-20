@@ -1,0 +1,821 @@
+{
+  "zones": {
+    "recommended_now": 2,
+    "worth_verifying": 7,
+    "excluded": 0
+  },
+  "results": [
+    {
+      "id": "cylab-security-academy-picogym-cmu",
+      "title": "CyLab Security Academy / picoGym (CMU)",
+      "organization": "Carnegie Mellon University",
+      "primary_category": "skill_development",
+      "layer": "exploit",
+      "components": {
+        "eligibility": 55,
+        "goal_fit": 60.0,
+        "skill_fit": 50.0,
+        "interest_fit": 55.0,
+        "location_fit": 60.0,
+        "value_fit": 55.0,
+        "trust": 100,
+        "novelty": 80.0
+      },
+      "eligibility_verdict": "Unknown",
+      "eligibility_source": "hard_constraint",
+      "eligibility_kind": "missing_source",
+      "eligibility_reasons": [
+        "页面未写明任何硬性资格条件，也没有可判定的冲突项 → 无法判断（没写要求不等于大概率符合）"
+      ],
+      "match_score": 60,
+      "match_band": "Medium",
+      "urgency": null,
+      "days_remaining": null,
+      "deadline_type": "evergreen",
+      "deadline_source": "field",
+      "freshness": "evergreen",
+      "freshness_reason": "长期开放型机会（无报名周期）→ 需要『当前可参与』证据才能进主推荐",
+      "effort": {
+        "weekly_commitment": "2-5 h"
+      },
+      "time_commitment": null,
+      "time_to_value": null,
+      "future_optionality": null,
+      "outcomes": {},
+      "produces": [],
+      "small_bet_type": null,
+      "evidence_complete": true,
+      "evidence_missing": [],
+      "source_freshness": "unknown",
+      "evidence_verified_at": "2026-09-20",
+      "participation_open": true,
+      "actionable": true,
+      "utility": "unknown",
+      "utility_reasons": [
+        "信息不足，无法判断投入价值"
+      ],
+      "readiness": "unknown",
+      "readiness_detail": {
+        "status": "unknown",
+        "ready_items": [],
+        "missing_items": [],
+        "blockers": [],
+        "estimated_preparation": "无法估计",
+        "notes": [
+          "页面未写明前置要求，且画像缺少可比对信息 → 准备度未知"
+        ]
+      },
+      "conflicts": [],
+      "zone": "recommended_now",
+      "demotion": null,
+      "priority_score": 60,
+      "priority_band": "Medium",
+      "flags": [
+        "readiness_unknown",
+        "language_unspecified"
+      ],
+      "warnings": [
+        "页面未写明语言要求"
+      ],
+      "reasons": {
+        "goal_fit": "画像未提供目标，按中性处理",
+        "skill_fit": "画像未提供技能，按中性处理",
+        "interest_fit": "画像未提供兴趣",
+        "location_fit": "画像未提供地区约束",
+        "value_fit": "尚未评估价值维度",
+        "trust": "来源 Tier A，3 项关键事实已官方确认",
+        "novelty": "无本地状态，按新机会处理"
+      }
+    },
+    {
+      "id": "openssf-mentorship-program-security-specific-pai",
+      "title": "OpenSSF Mentorship Program (security-specific, paid)",
+      "organization": "Open Source Security Foundation",
+      "primary_category": "open_source",
+      "layer": "exploit",
+      "components": {
+        "eligibility": 55,
+        "goal_fit": 60.0,
+        "skill_fit": 50.0,
+        "interest_fit": 55.0,
+        "location_fit": 60.0,
+        "value_fit": 55.0,
+        "trust": 100,
+        "novelty": 80.0
+      },
+      "eligibility_verdict": "Unknown",
+      "eligibility_source": "hard_constraint",
+      "eligibility_kind": "missing_source",
+      "eligibility_reasons": [
+        "页面未写明任何硬性资格条件，也没有可判定的冲突项 → 无法判断（没写要求不等于大概率符合）"
+      ],
+      "match_score": 60,
+      "match_band": "Medium",
+      "urgency": null,
+      "days_remaining": null,
+      "deadline_type": "recurring",
+      "deadline_source": "field",
+      "freshness": "recurring",
+      "freshness_reason": "周期性开放 → 当前周期是否开放需要页面证据",
+      "effort": {
+        "weekly_commitment": "~30 h (12 周)"
+      },
+      "time_commitment": null,
+      "time_to_value": null,
+      "future_optionality": null,
+      "outcomes": {},
+      "produces": [],
+      "small_bet_type": null,
+      "evidence_complete": false,
+      "evidence_missing": [
+        "evidence.application_status(status=explicit)"
+      ],
+      "source_freshness": "unknown",
+      "evidence_verified_at": "2026-09-20",
+      "participation_open": false,
+      "actionable": false,
+      "utility": "unknown",
+      "utility_reasons": [
+        "信息不足，无法判断投入价值"
+      ],
+      "readiness": "unknown",
+      "readiness_detail": {
+        "status": "unknown",
+        "ready_items": [],
+        "missing_items": [],
+        "blockers": [],
+        "estimated_preparation": "无法估计",
+        "notes": [
+          "页面未写明前置要求，且画像缺少可比对信息 → 准备度未知"
+        ]
+      },
+      "conflicts": [],
+      "zone": "worth_verifying",
+      "demotion": {
+        "code": "page_cannot_confirm",
+        "kind": "fact",
+        "detail": "页面无法确认当前是否可参与（freshness=recurring，无参与入口证据）"
+      },
+      "priority_score": 60,
+      "priority_band": "Medium",
+      "flags": [
+        "readiness_unknown",
+        "evidence_incomplete",
+        "language_unspecified"
+      ],
+      "warnings": [
+        "证据不完整：缺少 evidence.application_status(status=explicit)（不得进入 Recommended now）",
+        "页面未写明语言要求"
+      ],
+      "reasons": {
+        "goal_fit": "画像未提供目标，按中性处理",
+        "skill_fit": "画像未提供技能，按中性处理",
+        "interest_fit": "画像未提供兴趣",
+        "location_fit": "画像未提供地区约束",
+        "value_fit": "尚未评估价值维度",
+        "trust": "来源 Tier A，3 项关键事实已官方确认",
+        "novelty": "无本地状态，按新机会处理"
+      }
+    },
+    {
+      "id": "owasp-contributor-projects-juice-shop-blt-pygoat",
+      "title": "OWASP contributor projects (Juice Shop / BLT / PyGoat)",
+      "organization": "OWASP Foundation",
+      "primary_category": "open_source",
+      "layer": "exploit",
+      "components": {
+        "eligibility": 55,
+        "goal_fit": 60.0,
+        "skill_fit": 50.0,
+        "interest_fit": 55.0,
+        "location_fit": 60.0,
+        "value_fit": 55.0,
+        "trust": 100,
+        "novelty": 80.0
+      },
+      "eligibility_verdict": "Unknown",
+      "eligibility_source": "hard_constraint",
+      "eligibility_kind": "missing_source",
+      "eligibility_reasons": [
+        "滚动招募，无固定截止日",
+        "页面未写明任何硬性资格条件，也没有可判定的冲突项 → 无法判断（没写要求不等于大概率符合）"
+      ],
+      "match_score": 60,
+      "match_band": "Medium",
+      "urgency": null,
+      "days_remaining": null,
+      "deadline_type": "rolling",
+      "deadline_source": "field",
+      "freshness": "likely_open",
+      "freshness_reason": "deadline_type=rolling（无固定/弹性截止）",
+      "effort": {
+        "weekly_commitment": "self-paced"
+      },
+      "time_commitment": null,
+      "time_to_value": null,
+      "future_optionality": null,
+      "outcomes": {},
+      "produces": [],
+      "small_bet_type": null,
+      "evidence_complete": true,
+      "evidence_missing": [],
+      "source_freshness": "unknown",
+      "evidence_verified_at": "2026-09-20",
+      "participation_open": false,
+      "actionable": true,
+      "utility": "unknown",
+      "utility_reasons": [
+        "信息不足，无法判断投入价值"
+      ],
+      "readiness": "unknown",
+      "readiness_detail": {
+        "status": "unknown",
+        "ready_items": [],
+        "missing_items": [],
+        "blockers": [],
+        "estimated_preparation": "无法估计",
+        "notes": [
+          "页面未写明前置要求，且画像缺少可比对信息 → 准备度未知"
+        ]
+      },
+      "conflicts": [],
+      "zone": "recommended_now",
+      "demotion": null,
+      "priority_score": 60,
+      "priority_band": "Medium",
+      "flags": [
+        "rolling",
+        "readiness_unknown",
+        "language_unspecified"
+      ],
+      "warnings": [
+        "页面未写明语言要求"
+      ],
+      "reasons": {
+        "goal_fit": "画像未提供目标，按中性处理",
+        "skill_fit": "画像未提供技能，按中性处理",
+        "interest_fit": "画像未提供兴趣",
+        "location_fit": "画像未提供地区约束",
+        "value_fit": "尚未评估价值维度",
+        "trust": "来源 Tier A，3 项关键事实已官方确认",
+        "novelty": "无本地状态，按新机会处理"
+      }
+    },
+    {
+      "id": "lfx-mentorship-next-term-2027",
+      "title": "LFX Mentorship (next term 2027)",
+      "organization": "Linux Foundation / CNCF",
+      "primary_category": "open_source",
+      "layer": "exploit",
+      "components": {
+        "eligibility": 55,
+        "goal_fit": 60.0,
+        "skill_fit": 50.0,
+        "interest_fit": 55.0,
+        "location_fit": 60.0,
+        "value_fit": 55.0,
+        "trust": 60,
+        "novelty": 80.0
+      },
+      "eligibility_verdict": "Unknown",
+      "eligibility_source": "hard_constraint",
+      "eligibility_kind": "missing_source",
+      "eligibility_reasons": [
+        "页面未写明任何硬性资格条件，也没有可判定的冲突项 → 无法判断（没写要求不等于大概率符合）"
+      ],
+      "match_score": 57,
+      "match_band": "Low",
+      "urgency": null,
+      "days_remaining": null,
+      "deadline_type": "recurring",
+      "deadline_source": "field",
+      "freshness": "future",
+      "freshness_reason": "周期性项目，下一周期在 2027 年（尚未开放）",
+      "effort": {
+        "weekly_commitment": "~30 h (12 周)"
+      },
+      "time_commitment": null,
+      "time_to_value": null,
+      "future_optionality": null,
+      "outcomes": {},
+      "produces": [],
+      "small_bet_type": null,
+      "evidence_complete": false,
+      "evidence_missing": [
+        "verification_status:verified_official",
+        "evidence.application_status(status=explicit,source_url,verified_at,top-level application_status（机会侧 open/rolling/closed/not_open/unknown）)"
+      ],
+      "source_freshness": "current",
+      "evidence_verified_at": null,
+      "participation_open": false,
+      "actionable": false,
+      "utility": "unknown",
+      "utility_reasons": [
+        "信息不足，无法判断投入价值"
+      ],
+      "readiness": "unknown",
+      "readiness_detail": {
+        "status": "unknown",
+        "ready_items": [],
+        "missing_items": [],
+        "blockers": [],
+        "estimated_preparation": "无法估计",
+        "notes": [
+          "页面未写明前置要求，且画像缺少可比对信息 → 准备度未知"
+        ]
+      },
+      "conflicts": [],
+      "zone": "worth_verifying",
+      "demotion": {
+        "code": "verification_not_attempted",
+        "kind": "process",
+        "detail": "本轮没有去核实官方页面（预算/顺序问题，下一轮可补）"
+      },
+      "priority_score": 57,
+      "priority_band": "Low",
+      "flags": [
+        "readiness_unknown",
+        "evidence_incomplete",
+        "language_unspecified"
+      ],
+      "warnings": [
+        "证据不完整：缺少 verification_status:verified_official、evidence.application_status(status=explicit,source_url,verified_at,top-level application_status（机会侧 open/rolling/closed/not_open/unknown）)（不得进入 Recommended now）",
+        "页面未写明语言要求"
+      ],
+      "reasons": {
+        "goal_fit": "画像未提供目标，按中性处理",
+        "skill_fit": "画像未提供技能，按中性处理",
+        "interest_fit": "画像未提供兴趣",
+        "location_fit": "画像未提供地区约束",
+        "value_fit": "尚未评估价值维度",
+        "trust": "来源 Tier C",
+        "novelty": "无本地状态，按新机会处理"
+      }
+    },
+    {
+      "id": "picoctf-annual-competition-next-edition",
+      "title": "picoCTF annual competition (next edition)",
+      "organization": "Carnegie Mellon University",
+      "primary_category": "competition",
+      "layer": "exploit",
+      "components": {
+        "eligibility": 55,
+        "goal_fit": 60.0,
+        "skill_fit": 50.0,
+        "interest_fit": 55.0,
+        "location_fit": 60.0,
+        "value_fit": 55.0,
+        "trust": 60,
+        "novelty": 80.0
+      },
+      "eligibility_verdict": "Unknown",
+      "eligibility_source": "hard_constraint",
+      "eligibility_kind": "missing_source",
+      "eligibility_reasons": [
+        "页面未写明任何硬性资格条件，也没有可判定的冲突项 → 无法判断（没写要求不等于大概率符合）"
+      ],
+      "match_score": 57,
+      "match_band": "Low",
+      "urgency": null,
+      "days_remaining": null,
+      "deadline_type": "recurring",
+      "deadline_source": "field",
+      "freshness": "recurring",
+      "freshness_reason": "周期性开放 → 当前周期是否开放需要页面证据",
+      "effort": {
+        "weekly_commitment": "10-15 h (10 天赛期)"
+      },
+      "time_commitment": null,
+      "time_to_value": null,
+      "future_optionality": null,
+      "outcomes": {},
+      "produces": [],
+      "small_bet_type": null,
+      "evidence_complete": false,
+      "evidence_missing": [
+        "verification_status:verified_official",
+        "evidence.application_status(status=explicit,source_url,verified_at,top-level application_status（机会侧 open/rolling/closed/not_open/unknown）)"
+      ],
+      "source_freshness": "unknown",
+      "evidence_verified_at": null,
+      "participation_open": false,
+      "actionable": false,
+      "utility": "unknown",
+      "utility_reasons": [
+        "信息不足，无法判断投入价值"
+      ],
+      "readiness": "unknown",
+      "readiness_detail": {
+        "status": "unknown",
+        "ready_items": [],
+        "missing_items": [],
+        "blockers": [],
+        "estimated_preparation": "无法估计",
+        "notes": [
+          "页面未写明前置要求，且画像缺少可比对信息 → 准备度未知"
+        ]
+      },
+      "conflicts": [],
+      "zone": "worth_verifying",
+      "demotion": {
+        "code": "verification_not_attempted",
+        "kind": "process",
+        "detail": "本轮没有去核实官方页面（预算/顺序问题，下一轮可补）"
+      },
+      "priority_score": 57,
+      "priority_band": "Low",
+      "flags": [
+        "readiness_unknown",
+        "evidence_incomplete",
+        "language_unspecified"
+      ],
+      "warnings": [
+        "证据不完整：缺少 verification_status:verified_official、evidence.application_status(status=explicit,source_url,verified_at,top-level application_status（机会侧 open/rolling/closed/not_open/unknown）)（不得进入 Recommended now）",
+        "页面未写明语言要求"
+      ],
+      "reasons": {
+        "goal_fit": "画像未提供目标，按中性处理",
+        "skill_fit": "画像未提供技能，按中性处理",
+        "interest_fit": "画像未提供兴趣",
+        "location_fit": "画像未提供地区约束",
+        "value_fit": "尚未评估价值维度",
+        "trust": "来源 Tier C",
+        "novelty": "无本地状态，按新机会处理"
+      }
+    },
+    {
+      "id": "bug-bounty-vdp-hackerone-dod-vdp",
+      "title": "Bug bounty / VDP (HackerOne, DoD VDP)",
+      "organization": "HackerOne / U.S. Department of Defense",
+      "primary_category": "open_source",
+      "layer": "exploit",
+      "components": {
+        "eligibility": 55,
+        "goal_fit": 60.0,
+        "skill_fit": 50.0,
+        "interest_fit": 55.0,
+        "location_fit": 60.0,
+        "value_fit": 55.0,
+        "trust": 50,
+        "novelty": 80.0
+      },
+      "eligibility_verdict": "Unknown",
+      "eligibility_source": "hard_constraint",
+      "eligibility_kind": "missing_source",
+      "eligibility_reasons": [
+        "滚动招募，无固定截止日",
+        "页面未写明任何硬性资格条件，也没有可判定的冲突项 → 无法判断（没写要求不等于大概率符合）"
+      ],
+      "match_score": 57,
+      "match_band": "Low",
+      "urgency": null,
+      "days_remaining": null,
+      "deadline_type": "rolling",
+      "deadline_source": "field",
+      "freshness": "likely_open",
+      "freshness_reason": "deadline_type=rolling（无固定/弹性截止）",
+      "effort": {
+        "weekly_commitment": "self-paced"
+      },
+      "time_commitment": null,
+      "time_to_value": null,
+      "future_optionality": null,
+      "outcomes": {},
+      "produces": [],
+      "small_bet_type": null,
+      "evidence_complete": false,
+      "evidence_missing": [
+        "verification_status:verified_official",
+        "evidence.application_status(status=explicit,source_url,verified_at)"
+      ],
+      "source_freshness": "unknown",
+      "evidence_verified_at": null,
+      "participation_open": false,
+      "actionable": true,
+      "utility": "unknown",
+      "utility_reasons": [
+        "信息不足，无法判断投入价值"
+      ],
+      "readiness": "unknown",
+      "readiness_detail": {
+        "status": "unknown",
+        "ready_items": [],
+        "missing_items": [],
+        "blockers": [],
+        "estimated_preparation": "无法估计",
+        "notes": [
+          "页面未写明前置要求，且画像缺少可比对信息 → 准备度未知"
+        ]
+      },
+      "conflicts": [],
+      "zone": "worth_verifying",
+      "demotion": {
+        "code": "verification_not_attempted",
+        "kind": "process",
+        "detail": "本轮没有去核实官方页面（预算/顺序问题，下一轮可补）"
+      },
+      "priority_score": 49,
+      "priority_band": "Low",
+      "flags": [
+        "rolling",
+        "unverified",
+        "readiness_unknown",
+        "evidence_incomplete",
+        "language_unspecified"
+      ],
+      "warnings": [
+        "未找到官方确认来源",
+        "证据不完整：缺少 verification_status:verified_official、evidence.application_status(status=explicit,source_url,verified_at)（不得进入 Recommended now）",
+        "页面未写明语言要求"
+      ],
+      "reasons": {
+        "goal_fit": "画像未提供目标，按中性处理",
+        "skill_fit": "画像未提供技能，按中性处理",
+        "interest_fit": "画像未提供兴趣",
+        "location_fit": "画像未提供地区约束",
+        "value_fit": "尚未评估价值维度",
+        "trust": "来源 Tier C，未获官方确认",
+        "novelty": "无本地状态，按新机会处理"
+      }
+    },
+    {
+      "id": "google-summer-of-code-2027",
+      "title": "Google Summer of Code 2027",
+      "organization": "Google",
+      "primary_category": "open_source",
+      "layer": "exploit",
+      "components": {
+        "eligibility": 55,
+        "goal_fit": 60.0,
+        "skill_fit": 50.0,
+        "interest_fit": 55.0,
+        "location_fit": 60.0,
+        "value_fit": 55.0,
+        "trust": 50,
+        "novelty": 80.0
+      },
+      "eligibility_verdict": "Unknown",
+      "eligibility_source": "hard_constraint",
+      "eligibility_kind": "missing_source",
+      "eligibility_reasons": [
+        "页面未写明任何硬性资格条件，也没有可判定的冲突项 → 无法判断（没写要求不等于大概率符合）"
+      ],
+      "match_score": 57,
+      "match_band": "Low",
+      "urgency": null,
+      "days_remaining": null,
+      "deadline_type": "recurring",
+      "deadline_source": "field",
+      "freshness": "future",
+      "freshness_reason": "周期性项目，下一周期在 2027 年（尚未开放）",
+      "effort": {
+        "weekly_commitment": "full-time (12 周)"
+      },
+      "time_commitment": null,
+      "time_to_value": null,
+      "future_optionality": null,
+      "outcomes": {},
+      "produces": [],
+      "small_bet_type": null,
+      "evidence_complete": false,
+      "evidence_missing": [
+        "verification_status:verified_official",
+        "evidence.application_status(status=explicit,source_url,verified_at,top-level application_status（机会侧 open/rolling/closed/not_open/unknown）)"
+      ],
+      "source_freshness": "current",
+      "evidence_verified_at": null,
+      "participation_open": false,
+      "actionable": false,
+      "utility": "unknown",
+      "utility_reasons": [
+        "信息不足，无法判断投入价值"
+      ],
+      "readiness": "unknown",
+      "readiness_detail": {
+        "status": "unknown",
+        "ready_items": [],
+        "missing_items": [],
+        "blockers": [],
+        "estimated_preparation": "无法估计",
+        "notes": [
+          "页面未写明前置要求，且画像缺少可比对信息 → 准备度未知"
+        ]
+      },
+      "conflicts": [],
+      "zone": "worth_verifying",
+      "demotion": {
+        "code": "verification_not_attempted",
+        "kind": "process",
+        "detail": "本轮没有去核实官方页面（预算/顺序问题，下一轮可补）"
+      },
+      "priority_score": 49,
+      "priority_band": "Low",
+      "flags": [
+        "unverified",
+        "readiness_unknown",
+        "evidence_incomplete",
+        "language_unspecified"
+      ],
+      "warnings": [
+        "未找到官方确认来源",
+        "证据不完整：缺少 verification_status:verified_official、evidence.application_status(status=explicit,source_url,verified_at,top-level application_status（机会侧 open/rolling/closed/not_open/unknown）)（不得进入 Recommended now）",
+        "页面未写明语言要求"
+      ],
+      "reasons": {
+        "goal_fit": "画像未提供目标，按中性处理",
+        "skill_fit": "画像未提供技能，按中性处理",
+        "interest_fit": "画像未提供兴趣",
+        "location_fit": "画像未提供地区约束",
+        "value_fit": "尚未评估价值维度",
+        "trust": "来源 Tier C，未获官方确认",
+        "novelty": "无本地状态，按新机会处理"
+      }
+    },
+    {
+      "id": "outreachy-next-cohort",
+      "title": "Outreachy (next cohort)",
+      "organization": "Software Freedom Conservancy",
+      "primary_category": "open_source",
+      "layer": "exploit",
+      "components": {
+        "eligibility": 55,
+        "goal_fit": 60.0,
+        "skill_fit": 50.0,
+        "interest_fit": 55.0,
+        "location_fit": 60.0,
+        "value_fit": 55.0,
+        "trust": 50,
+        "novelty": 80.0
+      },
+      "eligibility_verdict": "Unknown",
+      "eligibility_source": "hard_constraint",
+      "eligibility_kind": "missing_source",
+      "eligibility_reasons": [
+        "页面未写明任何硬性资格条件，也没有可判定的冲突项 → 无法判断（没写要求不等于大概率符合）"
+      ],
+      "match_score": 57,
+      "match_band": "Low",
+      "urgency": null,
+      "days_remaining": null,
+      "deadline_type": "recurring",
+      "deadline_source": "field",
+      "freshness": "recurring",
+      "freshness_reason": "周期性开放 → 当前周期是否开放需要页面证据",
+      "effort": {
+        "weekly_commitment": "full-time (3 个月)"
+      },
+      "time_commitment": null,
+      "time_to_value": null,
+      "future_optionality": null,
+      "outcomes": {},
+      "produces": [],
+      "small_bet_type": null,
+      "evidence_complete": false,
+      "evidence_missing": [
+        "verification_status:verified_official",
+        "evidence.application_status(status=explicit,source_url,verified_at,top-level application_status（机会侧 open/rolling/closed/not_open/unknown）)"
+      ],
+      "source_freshness": "unknown",
+      "evidence_verified_at": null,
+      "participation_open": false,
+      "actionable": false,
+      "utility": "unknown",
+      "utility_reasons": [
+        "信息不足，无法判断投入价值"
+      ],
+      "readiness": "unknown",
+      "readiness_detail": {
+        "status": "unknown",
+        "ready_items": [],
+        "missing_items": [],
+        "blockers": [],
+        "estimated_preparation": "无法估计",
+        "notes": [
+          "页面未写明前置要求，且画像缺少可比对信息 → 准备度未知"
+        ]
+      },
+      "conflicts": [],
+      "zone": "worth_verifying",
+      "demotion": {
+        "code": "verification_not_attempted",
+        "kind": "process",
+        "detail": "本轮没有去核实官方页面（预算/顺序问题，下一轮可补）"
+      },
+      "priority_score": 49,
+      "priority_band": "Low",
+      "flags": [
+        "unverified",
+        "readiness_unknown",
+        "evidence_incomplete",
+        "language_unspecified"
+      ],
+      "warnings": [
+        "未找到官方确认来源",
+        "证据不完整：缺少 verification_status:verified_official、evidence.application_status(status=explicit,source_url,verified_at,top-level application_status（机会侧 open/rolling/closed/not_open/unknown）)（不得进入 Recommended now）",
+        "页面未写明语言要求"
+      ],
+      "reasons": {
+        "goal_fit": "画像未提供目标，按中性处理",
+        "skill_fit": "画像未提供技能，按中性处理",
+        "interest_fit": "画像未提供兴趣",
+        "location_fit": "画像未提供地区约束",
+        "value_fit": "尚未评估价值维度",
+        "trust": "来源 Tier C，未获官方确认",
+        "novelty": "无本地状态，按新机会处理"
+      }
+    },
+    {
+      "id": "recurse-center-self-directed-programming-retreat",
+      "title": "Recurse Center (self-directed programming retreat)",
+      "organization": "Recurse Center",
+      "primary_category": "skill_development",
+      "layer": "exploit",
+      "components": {
+        "eligibility": 55,
+        "goal_fit": 60.0,
+        "skill_fit": 50.0,
+        "interest_fit": 55.0,
+        "location_fit": 60.0,
+        "value_fit": 55.0,
+        "trust": 50,
+        "novelty": 80.0
+      },
+      "eligibility_verdict": "Unknown",
+      "eligibility_source": "hard_constraint",
+      "eligibility_kind": "missing_source",
+      "eligibility_reasons": [
+        "页面未写明任何硬性资格条件，也没有可判定的冲突项 → 无法判断（没写要求不等于大概率符合）"
+      ],
+      "match_score": 57,
+      "match_band": "Low",
+      "urgency": null,
+      "days_remaining": null,
+      "deadline_type": "evergreen",
+      "deadline_source": "field",
+      "freshness": "evergreen",
+      "freshness_reason": "长期开放型机会（无报名周期）→ 需要『当前可参与』证据才能进主推荐",
+      "effort": {
+        "weekly_commitment": "full-time (6/12 周)"
+      },
+      "time_commitment": null,
+      "time_to_value": null,
+      "future_optionality": null,
+      "outcomes": {},
+      "produces": [],
+      "small_bet_type": null,
+      "evidence_complete": false,
+      "evidence_missing": [
+        "verification_status:verified_official",
+        "evidence.application_status(status=explicit,source_url,verified_at,top-level application_status（机会侧 open/rolling/closed/not_open/unknown）)"
+      ],
+      "source_freshness": "unknown",
+      "evidence_verified_at": null,
+      "participation_open": false,
+      "actionable": false,
+      "utility": "unknown",
+      "utility_reasons": [
+        "信息不足，无法判断投入价值"
+      ],
+      "readiness": "unknown",
+      "readiness_detail": {
+        "status": "unknown",
+        "ready_items": [],
+        "missing_items": [],
+        "blockers": [],
+        "estimated_preparation": "无法估计",
+        "notes": [
+          "页面未写明前置要求，且画像缺少可比对信息 → 准备度未知"
+        ]
+      },
+      "conflicts": [],
+      "zone": "worth_verifying",
+      "demotion": {
+        "code": "verification_not_attempted",
+        "kind": "process",
+        "detail": "本轮没有去核实官方页面（预算/顺序问题，下一轮可补）"
+      },
+      "priority_score": 49,
+      "priority_band": "Low",
+      "flags": [
+        "unverified",
+        "readiness_unknown",
+        "evidence_incomplete",
+        "language_unspecified"
+      ],
+      "warnings": [
+        "未找到官方确认来源",
+        "证据不完整：缺少 verification_status:verified_official、evidence.application_status(status=explicit,source_url,verified_at,top-level application_status（机会侧 open/rolling/closed/not_open/unknown）)（不得进入 Recommended now）",
+        "页面未写明语言要求"
+      ],
+      "reasons": {
+        "goal_fit": "画像未提供目标，按中性处理",
+        "skill_fit": "画像未提供技能，按中性处理",
+        "interest_fit": "画像未提供兴趣",
+        "location_fit": "画像未提供地区约束",
+        "value_fit": "尚未评估价值维度",
+        "trust": "来源 Tier C，未获官方确认",
+        "novelty": "无本地状态，按新机会处理"
+      }
+    }
+  ]
+}

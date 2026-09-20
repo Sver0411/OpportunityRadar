@@ -1,0 +1,194 @@
+{
+  "confidence": {
+    "level": "medium",
+    "note": "方向明确但仍有关键 Unknown → 用「从目前信息看…更值得先验证」的口气",
+    "unknown": [
+      "eligibility_known",
+      "financial_budget_known",
+      "profile_completeness",
+      "time_budget_known"
+    ],
+    "reasons": [
+      "画像完整度：1/5 个基础字段有内容",
+      "资格可判定的候选仅 0/4"
+    ]
+  },
+  "main": [
+    {
+      "opportunity_id": "oist-research-internship-spring-2027",
+      "title": "OIST Research Internship — Spring 2027 round",
+      "organization": "Okinawa Institute of Science and Technology (OIST)",
+      "category": "research",
+      "official_url": null,
+      "participation": {
+        "family": "standard",
+        "label": "Unknown",
+        "verdict": "Unknown",
+        "note": ""
+      },
+      "action": {
+        "label": "值得进一步核实",
+        "reason": "可参与且证据完整，但你的时间预算还没给出"
+      },
+      "why_fit": "地点/远程方式与你的偏好相符；与你的目标直接相关",
+      "gap_filled": {
+        "gap": "教授 / 实验室联系人",
+        "type": "network",
+        "relevance": "supporting_gap",
+        "bridge_score": 65
+      },
+      "effort": "每周约 40 h",
+      "leaves_behind": "真实实验室研究经历、教授推荐信潜力、研究实习结业记录",
+      "next_value": "官方定位就是为后续申请研究型学位积累研究经历",
+      "needs_confirmation": [
+        "页面限定学历 undergraduate, master, graduate，你的资料未提供学历，无法判断",
+        "页面有学校限制（currently enrolled students must have ap），你的资料未提供学校信息",
+        "页面要求 documents must be in English; no IELTS/TOEFL required，你的资料中未记录该语言，无法判断（缺失不等于不会）",
+        "资格条件未写明"
+      ],
+      "needs_confirmation_details": {
+        "uncertain_reasons_raw": [
+          "页面限定学历 ['undergraduate', 'master', 'graduate']，画像未提供学历 → 无法判断",
+          "页面有学校限制（currently enrolled students must have ap），画像未提供学校信息",
+          "页面要求 documents must be in English; no IELTS/TOEFL required，画像中未记录该语言 → 无法判断（缺失不等于不会）"
+        ],
+        "note": "结构化原文仅供程序使用；展示用 needs_confirmation 的人话版本"
+      },
+      "present_fields": [
+        "why_fit",
+        "gap_filled",
+        "effort",
+        "leaves_behind",
+        "next_value"
+      ]
+    },
+    {
+      "opportunity_id": "utokyo-research-student-kenkyusei",
+      "title": "東京大学 研究生（Research Student）制度",
+      "organization": "The University of Tokyo（各研究科）",
+      "category": "research",
+      "official_url": null,
+      "participation": {
+        "family": "standard",
+        "label": "Unknown",
+        "verdict": "Unknown",
+        "note": ""
+      },
+      "action": {
+        "label": "值得进一步核实",
+        "reason": "可参与且证据完整，但你的时间预算还没给出"
+      },
+      "why_fit": "地点/远程方式与你的偏好相符；与你的目标直接相关",
+      "gap_filled": {
+        "gap": "教授 / 实验室联系人",
+        "type": "network",
+        "relevance": "supporting_gap",
+        "bridge_score": 72
+      },
+      "effort": "官方页未写明投入强度",
+      "leaves_behind": "实验室研究接触、教授关系、研究经历（非学位）",
+      "next_value": "直接指向修士申请与教授推荐",
+      "needs_confirmation": [
+        "页面限定学历 undergraduate, master, graduate，你的资料未提供学历，无法判断",
+        "页面语言要求 需要与教授直接沟通（日语或英语，视研究室而定） 无法换算成可比较的等级，交语义判断，不做硬性判定",
+        "资格条件未写明",
+        "每周投入未写明"
+      ],
+      "needs_confirmation_details": {
+        "uncertain_reasons_raw": [
+          "页面限定学历 ['undergraduate', 'master', 'graduate']，画像未提供学历 → 无法判断",
+          "页面语言要求 需要与教授直接沟通（日语或英语，视研究室而定） 无法量化为可比较的等级 → 交语义判断，不做硬性判定"
+        ],
+        "note": "结构化原文仅供程序使用；展示用 needs_confirmation 的人话版本"
+      },
+      "present_fields": [
+        "why_fit",
+        "gap_filled",
+        "effort",
+        "leaves_behind",
+        "next_value"
+      ]
+    }
+  ],
+  "worth_verifying": [
+    {
+      "opportunity_id": "jasso-mext-scholarship",
+      "title": "JASSO / MEXT 奨学金（研究留学生・私費外国人学習奨励費）",
+      "organization": "JASSO / 文部科学省（MEXT）",
+      "category": "funding",
+      "official_url": null,
+      "participation": {
+        "family": "standard",
+        "label": "Unknown",
+        "verdict": "Unknown",
+        "note": ""
+      },
+      "action": {
+        "label": "值得进一步核实",
+        "reason": "关键信息（官方来源/报名状态）还没核实完整"
+      },
+      "why_fit": "地点/远程方式与你的偏好相符；与你的目标直接相关",
+      "gap_filled": {},
+      "effort": "官方页未写明投入强度",
+      "leaves_behind": "官方页未写明可留下的产出",
+      "next_value": "",
+      "needs_confirmation": [
+        "evidence.application_status(status=explicit,source_url,verified_at,top-level application_status（机会侧 open/rolling/closed/not_open/unknown）)",
+        "页面限定学历 undergraduate, master, doctor，你的资料未提供学历，无法判断",
+        "资格条件未写明",
+        "每周投入未写明"
+      ],
+      "needs_confirmation_details": {
+        "uncertain_reasons_raw": [
+          "页面限定学历 ['undergraduate', 'master', 'doctor']，画像未提供学历 → 无法判断"
+        ],
+        "note": "结构化原文仅供程序使用；展示用 needs_confirmation 的人话版本"
+      },
+      "present_fields": [
+        "why_fit",
+        "effort",
+        "leaves_behind"
+      ]
+    }
+  ],
+  "excluded": [
+    {
+      "title": "JLPT 日本語能力試験 2026 年 12 月场",
+      "reason": null
+    }
+  ],
+  "self_directed": [],
+  "allocation": {
+    "mode": "qualitative",
+    "items": [
+      {
+        "level": "主线",
+        "opportunity_id": "oist-research-internship-spring-2027",
+        "title": "OIST Research Internship — Spring 2027 round"
+      },
+      {
+        "level": "辅线",
+        "opportunity_id": "utokyo-research-student-kenkyusei",
+        "title": "東京大学 研究生（Research Student）制度"
+      }
+    ],
+    "note": "你的可用时间还未知，所以暂不做具体比例分配。",
+    "total_note": "未按时间做比例分配"
+  },
+  "unknown": [
+    "eligibility_known",
+    "financial_budget_known",
+    "profile_completeness",
+    "time_budget_known"
+  ],
+  "length_budget": {
+    "main": 2,
+    "worth_verifying": 1,
+    "limit": 5,
+    "note": "3–5 个主要机会 + 1 个简短 Portfolio/下一步 + 必要的 Unknown；不要写成人生规划论文"
+  },
+  "violations": [],
+  "ok": true,
+  "case": "B",
+  "leakage": []
+}

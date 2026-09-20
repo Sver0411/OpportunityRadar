@@ -1,0 +1,372 @@
+{
+  "confidence": {
+    "level": "low",
+    "note": "目标/资源/背景高度未知 → 只给几种可试方向与对照，不下结论",
+    "unknown": [
+      "eligibility_known",
+      "evidence_completeness",
+      "financial_budget_known",
+      "goal_clarity",
+      "profile_completeness",
+      "time_budget_known"
+    ],
+    "reasons": [
+      "目标清晰度：没有声明任何目标",
+      "画像完整度：0/5 个基础字段有内容",
+      "资格可判定的候选仅 0/9",
+      "证据完整的候选仅 2/9"
+    ]
+  },
+  "main": [
+    {
+      "opportunity_id": "cylab-security-academy-picogym-cmu",
+      "title": "CyLab Security Academy / picoGym (CMU)",
+      "organization": "Carnegie Mellon University",
+      "category": "skill_development",
+      "official_url": null,
+      "participation": {
+        "family": "standard",
+        "label": "Unknown",
+        "verdict": "Unknown",
+        "note": ""
+      },
+      "action": {
+        "label": "值得拿来试方向",
+        "reason": "目标或资源还不明确，先当作方向实验"
+      },
+      "why_fit": "与你已说明的情况有交集",
+      "gap_filled": {},
+      "effort": "每周约 2-5 h",
+      "leaves_behind": "官方页未写明可留下的产出",
+      "next_value": "",
+      "needs_confirmation": [
+        "页面未写明任何硬性资格条件，也没有可判定的冲突项，无法判断（没写要求不等于大概率符合）",
+        "资格条件未写明"
+      ],
+      "needs_confirmation_details": {
+        "uncertain_reasons_raw": [
+          "页面未写明任何硬性资格条件，也没有可判定的冲突项 → 无法判断（没写要求不等于大概率符合）"
+        ],
+        "note": "结构化原文仅供程序使用；展示用 needs_confirmation 的人话版本"
+      },
+      "present_fields": [
+        "why_fit",
+        "effort",
+        "leaves_behind"
+      ]
+    },
+    {
+      "opportunity_id": "owasp-contributor-projects-juice-shop-blt-pygoat",
+      "title": "OWASP contributor projects (Juice Shop / BLT / PyGoat)",
+      "organization": "OWASP Foundation",
+      "category": "open_source",
+      "official_url": null,
+      "participation": {
+        "family": "open_source",
+        "label": "Contribution prerequisites",
+        "verdict": "Unknown",
+        "note": "官方页没有写参与门槛；开源贡献通常要求账号 / CLA / issue 认领等前置"
+      },
+      "action": {
+        "label": "值得拿来试方向",
+        "reason": "目标或资源还不明确，先当作方向实验"
+      },
+      "why_fit": "滚动招募，无固定截止日",
+      "gap_filled": {},
+      "effort": "self-paced（官方未给出小时数）",
+      "leaves_behind": "官方页未写明可留下的产出",
+      "next_value": "",
+      "needs_confirmation": [
+        "页面未写明任何硬性资格条件，也没有可判定的冲突项，无法判断（没写要求不等于大概率符合）",
+        "资格条件未写明"
+      ],
+      "needs_confirmation_details": {
+        "uncertain_reasons_raw": [
+          "页面未写明任何硬性资格条件，也没有可判定的冲突项 → 无法判断（没写要求不等于大概率符合）"
+        ],
+        "note": "结构化原文仅供程序使用；展示用 needs_confirmation 的人话版本"
+      },
+      "present_fields": [
+        "why_fit",
+        "effort",
+        "leaves_behind"
+      ]
+    }
+  ],
+  "worth_verifying": [
+    {
+      "opportunity_id": "openssf-mentorship-program-security-specific-pai",
+      "title": "OpenSSF Mentorship Program (security-specific, paid)",
+      "organization": "Open Source Security Foundation",
+      "category": "open_source",
+      "official_url": null,
+      "participation": {
+        "family": "open_source",
+        "label": "Contribution prerequisites",
+        "verdict": "Unknown",
+        "note": "官方页没有写参与门槛；开源贡献通常要求账号 / CLA / issue 认领等前置"
+      },
+      "action": {
+        "label": "值得拿来试方向",
+        "reason": "目标或资源还不明确，先当作方向实验"
+      },
+      "why_fit": "与你已说明的情况有交集",
+      "gap_filled": {},
+      "effort": "每周约 ~30 h (12 周)",
+      "leaves_behind": "官方页未写明可留下的产出",
+      "next_value": "",
+      "needs_confirmation": [
+        "evidence.application_status(status=explicit)",
+        "页面未写明任何硬性资格条件，也没有可判定的冲突项，无法判断（没写要求不等于大概率符合）",
+        "资格条件未写明"
+      ],
+      "needs_confirmation_details": {
+        "uncertain_reasons_raw": [
+          "页面未写明任何硬性资格条件，也没有可判定的冲突项 → 无法判断（没写要求不等于大概率符合）"
+        ],
+        "note": "结构化原文仅供程序使用；展示用 needs_confirmation 的人话版本"
+      },
+      "present_fields": [
+        "why_fit",
+        "effort",
+        "leaves_behind"
+      ]
+    },
+    {
+      "opportunity_id": "lfx-mentorship-next-term-2027",
+      "title": "LFX Mentorship (next term 2027)",
+      "organization": "Linux Foundation / CNCF",
+      "category": "open_source",
+      "official_url": null,
+      "participation": {
+        "family": "open_source",
+        "label": "Contribution prerequisites",
+        "verdict": "Unknown",
+        "note": "官方页没有写参与门槛；开源贡献通常要求账号 / CLA / issue 认领等前置"
+      },
+      "action": {
+        "label": "值得拿来试方向",
+        "reason": "目标或资源还不明确，先当作方向实验"
+      },
+      "why_fit": "与你已说明的情况有交集",
+      "gap_filled": {},
+      "effort": "每周约 ~30 h (12 周)",
+      "leaves_behind": "官方页未写明可留下的产出",
+      "next_value": "",
+      "needs_confirmation": [
+        "verification_status:verified_official",
+        "evidence.application_status(status=explicit,source_url,verified_at,top-level application_status（机会侧 open/rolling/closed/not_open/unknown）)",
+        "页面未写明任何硬性资格条件，也没有可判定的冲突项，无法判断（没写要求不等于大概率符合）",
+        "资格条件未写明"
+      ],
+      "needs_confirmation_details": {
+        "uncertain_reasons_raw": [
+          "页面未写明任何硬性资格条件，也没有可判定的冲突项 → 无法判断（没写要求不等于大概率符合）"
+        ],
+        "note": "结构化原文仅供程序使用；展示用 needs_confirmation 的人话版本"
+      },
+      "present_fields": [
+        "why_fit",
+        "effort",
+        "leaves_behind"
+      ]
+    },
+    {
+      "opportunity_id": "picoctf-annual-competition-next-edition",
+      "title": "picoCTF annual competition (next edition)",
+      "organization": "Carnegie Mellon University",
+      "category": "competition",
+      "official_url": null,
+      "participation": {
+        "family": "event",
+        "label": "Eligibility needs confirmation",
+        "verdict": "Unknown",
+        "note": "官网未给出明确的报名开放声明，需要先向主办方确认"
+      },
+      "action": {
+        "label": "值得拿来试方向",
+        "reason": "目标或资源还不明确，先当作方向实验"
+      },
+      "why_fit": "与你已说明的情况有交集",
+      "gap_filled": {},
+      "effort": "每周约 10-15 h (10 天赛期)",
+      "leaves_behind": "官方页未写明可留下的产出",
+      "next_value": "",
+      "needs_confirmation": [
+        "verification_status:verified_official",
+        "evidence.application_status(status=explicit,source_url,verified_at,top-level application_status（机会侧 open/rolling/closed/not_open/unknown）)",
+        "页面未写明任何硬性资格条件，也没有可判定的冲突项，无法判断（没写要求不等于大概率符合）",
+        "资格条件未写明"
+      ],
+      "needs_confirmation_details": {
+        "uncertain_reasons_raw": [
+          "页面未写明任何硬性资格条件，也没有可判定的冲突项 → 无法判断（没写要求不等于大概率符合）"
+        ],
+        "note": "结构化原文仅供程序使用；展示用 needs_confirmation 的人话版本"
+      },
+      "present_fields": [
+        "why_fit",
+        "effort",
+        "leaves_behind"
+      ]
+    },
+    {
+      "opportunity_id": "bug-bounty-vdp-hackerone-dod-vdp",
+      "title": "Bug bounty / VDP (HackerOne, DoD VDP)",
+      "organization": "HackerOne / U.S. Department of Defense",
+      "category": "open_source",
+      "official_url": null,
+      "participation": {
+        "family": "open_source",
+        "label": "Contribution prerequisites",
+        "verdict": "Unknown",
+        "note": "官方页没有写参与门槛；开源贡献通常要求账号 / CLA / issue 认领等前置"
+      },
+      "action": {
+        "label": "值得拿来试方向",
+        "reason": "目标或资源还不明确，先当作方向实验"
+      },
+      "why_fit": "滚动招募，无固定截止日",
+      "gap_filled": {},
+      "effort": "self-paced（官方未给出小时数）",
+      "leaves_behind": "官方页未写明可留下的产出",
+      "next_value": "",
+      "needs_confirmation": [
+        "verification_status:verified_official",
+        "evidence.application_status(status=explicit,source_url,verified_at)",
+        "页面未写明任何硬性资格条件，也没有可判定的冲突项，无法判断（没写要求不等于大概率符合）",
+        "资格条件未写明"
+      ],
+      "needs_confirmation_details": {
+        "uncertain_reasons_raw": [
+          "页面未写明任何硬性资格条件，也没有可判定的冲突项 → 无法判断（没写要求不等于大概率符合）"
+        ],
+        "note": "结构化原文仅供程序使用；展示用 needs_confirmation 的人话版本"
+      },
+      "present_fields": [
+        "why_fit",
+        "effort",
+        "leaves_behind"
+      ]
+    },
+    {
+      "opportunity_id": "google-summer-of-code-2027",
+      "title": "Google Summer of Code 2027",
+      "organization": "Google",
+      "category": "open_source",
+      "official_url": null,
+      "participation": {
+        "family": "open_source",
+        "label": "Contribution prerequisites",
+        "verdict": "Unknown",
+        "note": "官方页没有写参与门槛；开源贡献通常要求账号 / CLA / issue 认领等前置"
+      },
+      "action": {
+        "label": "值得拿来试方向",
+        "reason": "目标或资源还不明确，先当作方向实验"
+      },
+      "why_fit": "与你已说明的情况有交集",
+      "gap_filled": {},
+      "effort": "每周约 full-time (12 周)",
+      "leaves_behind": "官方页未写明可留下的产出",
+      "next_value": "",
+      "needs_confirmation": [
+        "verification_status:verified_official",
+        "evidence.application_status(status=explicit,source_url,verified_at,top-level application_status（机会侧 open/rolling/closed/not_open/unknown）)",
+        "页面未写明任何硬性资格条件，也没有可判定的冲突项，无法判断（没写要求不等于大概率符合）",
+        "资格条件未写明"
+      ],
+      "needs_confirmation_details": {
+        "uncertain_reasons_raw": [
+          "页面未写明任何硬性资格条件，也没有可判定的冲突项 → 无法判断（没写要求不等于大概率符合）"
+        ],
+        "note": "结构化原文仅供程序使用；展示用 needs_confirmation 的人话版本"
+      },
+      "present_fields": [
+        "why_fit",
+        "effort",
+        "leaves_behind"
+      ]
+    }
+  ],
+  "excluded": [],
+  "self_directed": [],
+  "allocation": {
+    "mode": "qualitative",
+    "items": [
+      {
+        "level": "主线",
+        "opportunity_id": "cylab-security-academy-picogym-cmu",
+        "title": "CyLab Security Academy / picoGym (CMU)"
+      },
+      {
+        "level": "辅线",
+        "opportunity_id": "owasp-contributor-projects-juice-shop-blt-pygoat",
+        "title": "OWASP contributor projects (Juice Shop / BLT / PyGoat)"
+      }
+    ],
+    "note": "你的可用时间还未知，所以暂不做具体比例分配。",
+    "total_note": "未按时间做比例分配"
+  },
+  "unknown": [
+    "eligibility_known",
+    "evidence_completeness",
+    "financial_budget_known",
+    "goal_clarity",
+    "profile_completeness",
+    "time_budget_known"
+  ],
+  "explore": {
+    "axes": [
+      "build",
+      "community",
+      "contribute",
+      "research"
+    ],
+    "axis_count": 4,
+    "by_axis": {
+      "build": [
+        "cylab-security-academy-picogym-cmu",
+        "owasp-contributor-projects-juice-shop-blt-pygoat",
+        "picoctf-annual-competition-next-edition"
+      ],
+      "community": [
+        "openssf-mentorship-program-security-specific-pai",
+        "lfx-mentorship-next-term-2027"
+      ],
+      "contribute": [
+        "owasp-contributor-projects-juice-shop-blt-pygoat",
+        "openssf-mentorship-program-security-specific-pai",
+        "lfx-mentorship-next-term-2027",
+        "bug-bounty-vdp-hackerone-dod-vdp",
+        "google-summer-of-code-2027"
+      ],
+      "research": [
+        "cylab-security-academy-picogym-cmu"
+      ]
+    },
+    "missing_axes": [
+      "volunteer",
+      "creative",
+      "entrepreneurship",
+      "cross_domain"
+    ],
+    "note": "只列出真的达标了的维度；缺的维度就是本轮没找到，不用弱结果补"
+  },
+  "technical_share": {
+    "tech": 7,
+    "total": 7,
+    "share": 1.0,
+    "note": "技术类不应占满全部主推荐（无目标用户尤其）"
+  },
+  "length_budget": {
+    "main": 2,
+    "worth_verifying": 5,
+    "limit": 5,
+    "note": "3–5 个主要机会 + 1 个简短 Portfolio/下一步 + 必要的 Unknown；不要写成人生规划论文"
+  },
+  "violations": [],
+  "ok": true,
+  "case": "E",
+  "leakage": []
+}

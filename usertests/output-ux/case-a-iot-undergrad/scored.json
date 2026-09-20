@@ -1,0 +1,532 @@
+{
+  "zones": {
+    "recommended_now": 1,
+    "worth_verifying": 4,
+    "excluded": 1
+  },
+  "results": [
+    {
+      "id": "lfx-mentorship-program",
+      "title": "LFX Mentorship Program（Linux Foundation 导师制）",
+      "organization": "The Linux Foundation",
+      "primary_category": "open_source",
+      "layer": "adjacent",
+      "components": {
+        "eligibility": 82,
+        "goal_fit": 60.0,
+        "skill_fit": 35.0,
+        "interest_fit": 20.0,
+        "location_fit": 60.0,
+        "value_fit": 55.0,
+        "trust": 100,
+        "novelty": 80.0
+      },
+      "eligibility_verdict": "Probably Eligible",
+      "eligibility_source": "hard_constraint",
+      "eligibility_kind": "hard_ok",
+      "eligibility_reasons": [
+        "学历相符（undergraduate 在 ['undergraduate', 'master', 'doctor', 'graduate'] 内）"
+      ],
+      "match_score": 61,
+      "match_band": "Medium",
+      "urgency": null,
+      "days_remaining": null,
+      "deadline_type": "recurring",
+      "deadline_source": "field",
+      "freshness": "recurring",
+      "freshness_reason": "周期性开放 → 当前周期是否开放需要页面证据",
+      "effort": {
+        "weekly_commitment": null
+      },
+      "time_commitment": "12 周（全时）或 24 周（兼职）",
+      "time_to_value": "months",
+      "future_optionality": {
+        "level": "high",
+        "reason": "官方写明是通往实习与岗位的跳板，并可在 showcase 直接接触招聘方"
+      },
+      "outcomes": {
+        "skill": "high",
+        "portfolio": "high",
+        "network": "high",
+        "financial": "medium"
+      },
+      "produces": [
+        "合入上游的 PR/补丁",
+        "导师评审记录",
+        "结业 showcase 展示机会"
+      ],
+      "small_bet_type": null,
+      "evidence_complete": true,
+      "evidence_missing": [],
+      "source_freshness": "current",
+      "evidence_verified_at": "2026-09-21",
+      "participation_open": false,
+      "actionable": false,
+      "utility": "high",
+      "utility_reasons": [
+        "资格与准备度都支撑现在开始，且产出/未来通道明确",
+        "需补：mentee 申请"
+      ],
+      "readiness": "minor_preparation",
+      "readiness_detail": {
+        "status": "minor_preparation",
+        "ready_items": [],
+        "missing_items": [
+          "需准备材料：mentee 申请"
+        ],
+        "blockers": [],
+        "estimated_preparation": "几小时到 1–2 天",
+        "notes": []
+      },
+      "conflicts": [],
+      "zone": "worth_verifying",
+      "demotion": {
+        "code": "page_cannot_confirm",
+        "kind": "fact",
+        "detail": "页面无法确认当前是否可参与（freshness=recurring，无参与入口证据）"
+      },
+      "priority_score": 61,
+      "priority_band": "Medium",
+      "flags": [
+        "language_unspecified"
+      ],
+      "warnings": [
+        "存在 inferred/unknown 证据：乐观结论封顶在 Probably Eligible，不能给出 Eligible",
+        "页面未写明语言要求"
+      ],
+      "reasons": {
+        "goal_fit": "画像未提供目标，按中性处理",
+        "skill_fit": "页面只写了偏好技能，覆盖 0%",
+        "interest_fit": "未发现与画像兴趣的重合信号",
+        "location_fit": "画像未提供地区约束",
+        "value_fit": "尚未评估价值维度",
+        "trust": "来源 Tier A，3 项关键事实已官方确认",
+        "novelty": "无本地状态，按新机会处理"
+      }
+    },
+    {
+      "id": "igideation-2027",
+      "title": "IGIIDeation 2027（国际创新发明与设计展）",
+      "organization": "International Islamic University Malaysia (IIUM)",
+      "primary_category": "competition",
+      "layer": "explore",
+      "components": {
+        "eligibility": 82,
+        "goal_fit": 60.0,
+        "skill_fit": 50.0,
+        "interest_fit": 20.0,
+        "location_fit": 60.0,
+        "value_fit": 55.0,
+        "trust": 95,
+        "novelty": 80.0
+      },
+      "eligibility_verdict": "Probably Eligible",
+      "eligibility_source": "hard_constraint",
+      "eligibility_kind": "hard_ok",
+      "eligibility_reasons": [
+        "学历相符（undergraduate 在 ['undergraduate', 'master', 'doctor'] 内）"
+      ],
+      "match_score": 63,
+      "match_band": "Medium",
+      "urgency": 35.0,
+      "days_remaining": 95,
+      "deadline_type": "range",
+      "deadline_source": "field+parse",
+      "freshness": "open",
+      "freshness_reason": "截止日 2026-12-25（还有 95 天）",
+      "effort": {
+        "weekly_commitment": "3 h"
+      },
+      "time_commitment": null,
+      "time_to_value": "months",
+      "future_optionality": {
+        "level": "medium"
+      },
+      "outcomes": {
+        "portfolio": "high",
+        "reputation": "medium"
+      },
+      "produces": [
+        "数字海报",
+        "演示视频",
+        "获奖电子证书（Gold/Silver/Bronze）"
+      ],
+      "small_bet_type": null,
+      "evidence_complete": false,
+      "evidence_missing": [
+        "verification_status:verified_official"
+      ],
+      "source_freshness": "current",
+      "evidence_verified_at": "2026-09-21",
+      "participation_open": false,
+      "actionable": true,
+      "utility": "medium",
+      "utility_reasons": [
+        "值得考虑，但有一项成本或不确定性需要先确认",
+        "需补：摘要、扩展摘要、数字海报"
+      ],
+      "readiness": "short_preparation",
+      "readiness_detail": {
+        "status": "short_preparation",
+        "ready_items": [],
+        "missing_items": [
+          "需准备材料：摘要",
+          "需准备材料：扩展摘要",
+          "需准备材料：数字海报",
+          "需准备材料：演示视频"
+        ],
+        "blockers": [],
+        "estimated_preparation": "几天到两周",
+        "notes": []
+      },
+      "conflicts": [],
+      "zone": "worth_verifying",
+      "demotion": {
+        "code": "verification_not_attempted",
+        "kind": "process",
+        "detail": "本轮没有去核实官方页面（预算/顺序问题，下一轮可补）"
+      },
+      "priority_score": 59,
+      "priority_band": "Low",
+      "flags": [
+        "evidence_incomplete",
+        "language_unspecified"
+      ],
+      "warnings": [
+        "存在 inferred/unknown 证据：乐观结论封顶在 Probably Eligible，不能给出 Eligible",
+        "证据不完整：缺少 verification_status:verified_official（不得进入 Recommended now）",
+        "页面未写明语言要求"
+      ],
+      "reasons": {
+        "goal_fit": "画像未提供目标，按中性处理",
+        "skill_fit": "页面未写明技能要求",
+        "interest_fit": "未发现与画像兴趣的重合信号",
+        "location_fit": "画像未提供地区约束",
+        "value_fit": "尚未评估价值维度",
+        "trust": "来源 Tier A，官方与第三方信息冲突（已以官方为准）",
+        "novelty": "无本地状态，按新机会处理"
+      }
+    },
+    {
+      "id": "ospp-open-source-promotion-plan-2026",
+      "title": "开源之夏 2026（OSPP / 点亮计划 2.0）",
+      "organization": "中国科学院软件研究所",
+      "primary_category": "open_source",
+      "layer": "exploit",
+      "components": {
+        "eligibility": 82,
+        "goal_fit": 60.0,
+        "skill_fit": 0.0,
+        "interest_fit": 20.0,
+        "location_fit": 60.0,
+        "value_fit": 55.0,
+        "trust": 100,
+        "novelty": 80.0
+      },
+      "eligibility_verdict": "Probably Eligible",
+      "eligibility_source": "hard_constraint",
+      "eligibility_kind": "hard_ok",
+      "eligibility_reasons": [
+        "滚动招募，无固定截止日",
+        "学历相符（undergraduate 在 ['undergraduate', 'master', 'doctor'] 内）"
+      ],
+      "match_score": 55,
+      "match_band": "Low",
+      "urgency": null,
+      "days_remaining": null,
+      "deadline_type": "rolling",
+      "deadline_source": "field",
+      "freshness": "likely_open",
+      "freshness_reason": "deadline_type=rolling（无固定/弹性截止）",
+      "effort": {
+        "weekly_commitment": "5 h"
+      },
+      "time_commitment": "开发周期 2-4 个月，建议每周与导师沟通 1-2 次",
+      "time_to_value": "months",
+      "future_optionality": {
+        "level": "high",
+        "reason": "可继续参与经典/领航模式，并能延伸到社区角色"
+      },
+      "outcomes": {
+        "skill": "high",
+        "portfolio": "high",
+        "network": "medium",
+        "credential": "medium"
+      },
+      "produces": [
+        "合入上游的 GitHub PR",
+        "结项报告",
+        "结项证书",
+        "公开可查的开源贡献记录"
+      ],
+      "small_bet_type": null,
+      "evidence_complete": true,
+      "evidence_missing": [],
+      "source_freshness": "likely_current",
+      "evidence_verified_at": "2026-09-21",
+      "participation_open": true,
+      "actionable": true,
+      "utility": "medium",
+      "utility_reasons": [
+        "值得考虑，但有一项成本或不确定性需要先确认",
+        "需补：Git、个人资料、项目申请书"
+      ],
+      "readiness": "short_preparation",
+      "readiness_detail": {
+        "status": "short_preparation",
+        "ready_items": [],
+        "missing_items": [
+          "需要补：Git",
+          "需准备材料：个人资料",
+          "需准备材料：项目申请书",
+          "需准备材料：身份证/学籍在线验证报告"
+        ],
+        "blockers": [],
+        "estimated_preparation": "几天到两周",
+        "notes": []
+      },
+      "conflicts": [],
+      "zone": "recommended_now",
+      "demotion": null,
+      "priority_score": 55,
+      "priority_band": "Low",
+      "flags": [
+        "rolling",
+        "language_unspecified"
+      ],
+      "warnings": [
+        "存在 inferred/unknown 证据：乐观结论封顶在 Probably Eligible，不能给出 Eligible",
+        "页面未写明语言要求"
+      ],
+      "reasons": {
+        "goal_fit": "画像未提供目标，按中性处理",
+        "skill_fit": "硬性技能覆盖 0/1",
+        "interest_fit": "未发现与画像兴趣的重合信号",
+        "location_fit": "画像未提供地区约束",
+        "value_fit": "尚未评估价值维度",
+        "trust": "来源 Tier A，3 项关键事实已官方确认",
+        "novelty": "无本地状态，按新机会处理"
+      }
+    },
+    {
+      "id": "kpit-sparkle-2027",
+      "title": "KPIT Sparkle 2027（学生创新竞赛，无人机集群）",
+      "organization": "KPIT Technologies",
+      "primary_category": "competition",
+      "layer": "explore",
+      "components": {
+        "eligibility": 82,
+        "goal_fit": 60.0,
+        "skill_fit": 50.0,
+        "interest_fit": 20.0,
+        "location_fit": 60.0,
+        "value_fit": 55.0,
+        "trust": 50,
+        "novelty": 80.0
+      },
+      "eligibility_verdict": "Probably Eligible",
+      "eligibility_source": "hard_constraint",
+      "eligibility_kind": "hard_ok",
+      "eligibility_reasons": [
+        "学历相符（undergraduate 在 ['undergraduate'] 内）"
+      ],
+      "match_score": 60,
+      "match_band": "Medium",
+      "urgency": 35.0,
+      "days_remaining": 101,
+      "deadline_type": "range",
+      "deadline_source": "field+parse",
+      "freshness": "open",
+      "freshness_reason": "截止日 2026-12-31（还有 101 天）",
+      "effort": {
+        "weekly_commitment": "4 h"
+      },
+      "time_commitment": null,
+      "time_to_value": "months",
+      "future_optionality": {
+        "level": "medium"
+      },
+      "outcomes": {
+        "portfolio": "high",
+        "reputation": "medium",
+        "network": "medium"
+      },
+      "produces": [
+        "可运行的软件/硬件原型",
+        "演示视频",
+        "竞赛成绩"
+      ],
+      "small_bet_type": null,
+      "evidence_complete": false,
+      "evidence_missing": [
+        "verification_status:verified_official",
+        "evidence.application_status(status=explicit,source_url,verified_at,top-level application_status（机会侧 open/rolling/closed/not_open/unknown）)"
+      ],
+      "source_freshness": "current",
+      "evidence_verified_at": null,
+      "participation_open": false,
+      "actionable": true,
+      "utility": "medium",
+      "utility_reasons": [
+        "值得考虑，但有一项成本或不确定性需要先确认"
+      ],
+      "readiness": "unknown",
+      "readiness_detail": {
+        "status": "unknown",
+        "ready_items": [],
+        "missing_items": [],
+        "blockers": [],
+        "estimated_preparation": "无法估计",
+        "notes": [
+          "页面未写明前置要求，且画像缺少可比对信息 → 准备度未知"
+        ]
+      },
+      "conflicts": [],
+      "zone": "worth_verifying",
+      "demotion": {
+        "code": "verification_not_attempted",
+        "kind": "process",
+        "detail": "本轮没有去核实官方页面（预算/顺序问题，下一轮可补）"
+      },
+      "priority_score": 48,
+      "priority_band": "Low",
+      "flags": [
+        "unverified",
+        "readiness_unknown",
+        "evidence_incomplete",
+        "language_unspecified",
+        "provenance_unavailable"
+      ],
+      "warnings": [
+        "该记录没有 evidence 结构（旧格式）：硬性判断未标注来源，结论封顶在 Probably Eligible",
+        "未找到官方确认来源",
+        "证据不完整：缺少 verification_status:verified_official、evidence.application_status(status=explicit,source_url,verified_at,top-level application_status（机会侧 open/rolling/closed/not_open/unknown）)（不得进入 Recommended now）",
+        "页面未写明语言要求"
+      ],
+      "reasons": {
+        "goal_fit": "画像未提供目标，按中性处理",
+        "skill_fit": "页面未写明技能要求",
+        "interest_fit": "未发现与画像兴趣的重合信号",
+        "location_fit": "画像未提供地区约束",
+        "value_fit": "尚未评估价值维度",
+        "trust": "来源 Tier C，未获官方确认",
+        "novelty": "无本地状态，按新机会处理"
+      }
+    },
+    {
+      "id": "zeiss-embedded-zephyr-internship",
+      "title": "Embedded Systems Internship: Zephyr RTOS & Microcontroller Platforms",
+      "organization": "Carl Zeiss",
+      "primary_category": "career",
+      "layer": "adjacent",
+      "components": {
+        "eligibility": 82,
+        "goal_fit": 60.0,
+        "skill_fit": 8.333333333333332,
+        "interest_fit": 20.0,
+        "location_fit": 60.0,
+        "value_fit": 55.0,
+        "trust": 50,
+        "novelty": 80.0
+      },
+      "eligibility_verdict": "Probably Eligible",
+      "eligibility_source": "hard_constraint",
+      "eligibility_kind": "hard_ok",
+      "eligibility_reasons": [
+        "学历相符（undergraduate 在 ['undergraduate', 'master'] 内）"
+      ],
+      "match_score": 54,
+      "match_band": "Low",
+      "urgency": null,
+      "days_remaining": null,
+      "deadline_type": "unknown",
+      "deadline_source": "field",
+      "freshness": "unknown",
+      "freshness_reason": "无可确认的申请周期；毕业届别不能推断开放状态",
+      "effort": {
+        "weekly_commitment": null
+      },
+      "time_commitment": null,
+      "time_to_value": "months",
+      "future_optionality": {
+        "level": "medium"
+      },
+      "outcomes": {
+        "career": "high",
+        "skill": "high",
+        "network": "medium"
+      },
+      "produces": [
+        "嵌入式平台移植经验",
+        "上游 FOSS 贡献机会",
+        "实习证明"
+      ],
+      "small_bet_type": null,
+      "evidence_complete": false,
+      "evidence_missing": [
+        "verification_status:verified_official",
+        "evidence.application_status(status=explicit,source_url,verified_at,top-level application_status（机会侧 open/rolling/closed/not_open/unknown）)"
+      ],
+      "source_freshness": "unknown",
+      "evidence_verified_at": null,
+      "participation_open": false,
+      "actionable": false,
+      "utility": "medium",
+      "utility_reasons": [
+        "值得考虑，但有一项成本或不确定性需要先确认",
+        "需补：C 或 C++、Git、CV"
+      ],
+      "readiness": "short_preparation",
+      "readiness_detail": {
+        "status": "short_preparation",
+        "ready_items": [],
+        "missing_items": [
+          "需要补：C 或 C++",
+          "需要补：Git",
+          "需准备材料：CV",
+          "需准备材料：成绩单"
+        ],
+        "blockers": [],
+        "estimated_preparation": "几天到两周",
+        "notes": []
+      },
+      "conflicts": [],
+      "zone": "worth_verifying",
+      "demotion": {
+        "code": "verification_not_attempted",
+        "kind": "process",
+        "detail": "本轮没有去核实官方页面（预算/顺序问题，下一轮可补）"
+      },
+      "priority_score": 46,
+      "priority_band": "Low",
+      "flags": [
+        "no_deadline",
+        "unverified",
+        "evidence_incomplete",
+        "language_unspecified",
+        "provenance_unavailable"
+      ],
+      "warnings": [
+        "该记录没有 evidence 结构（旧格式）：硬性判断未标注来源，结论封顶在 Probably Eligible",
+        "未找到官方确认来源",
+        "证据不完整：缺少 verification_status:verified_official、evidence.application_status(status=explicit,source_url,verified_at,top-level application_status（机会侧 open/rolling/closed/not_open/unknown）)（不得进入 Recommended now）",
+        "页面未写明语言要求"
+      ],
+      "reasons": {
+        "goal_fit": "画像未提供目标，按中性处理",
+        "skill_fit": "硬性技能覆盖 0/2",
+        "interest_fit": "未发现与画像兴趣的重合信号",
+        "location_fit": "画像未提供地区约束",
+        "value_fit": "尚未评估价值维度",
+        "trust": "来源 Tier C，未获官方确认",
+        "novelty": "无本地状态，按新机会处理"
+      }
+    },
+    {
+      "id": "socchina-embedded-chip-design-2026",
+      "title": "第九届（2026）全国大学生嵌入式芯片与系统设计竞赛",
+      "reason": "expired: 截止日 2026-04-20 已过",
+      "zone": "excluded"
+    }
+  ]
+}

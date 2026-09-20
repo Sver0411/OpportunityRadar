@@ -1,0 +1,28 @@
+{
+  "education": {
+    "degree": "undergraduate",
+    "major": "Computer Science",
+    "current_year": 3,
+    "school_country": "United States"
+  },
+  "skills": [
+    {
+      "name": "Python"
+    },
+    {
+      "name": "Linux"
+    },
+    {
+      "name": "Git"
+    }
+  ],
+  "interests": [
+    "security",
+    "open_source"
+  ],
+  "goals": [],
+  "constraints": {
+    "preferred_country": [],
+    "remote": true
+  }
+}

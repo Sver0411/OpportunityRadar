@@ -1,0 +1,266 @@
+{
+  "confidence": {
+    "level": "medium",
+    "note": "方向明确但仍有关键 Unknown → 用「从目前信息看…更值得先验证」的口气",
+    "unknown": [
+      "eligibility_known",
+      "financial_budget_known",
+      "time_budget_known"
+    ],
+    "reasons": [
+      "资格可判定的候选仅 0/8"
+    ]
+  },
+  "main": [
+    {
+      "opportunity_id": "cncf-technical-advisory-group-tag-参与-公开贡献与领导力路径",
+      "title": "CNCF Technical Advisory Group (TAG) 参与 — 公开贡献与领导力路径",
+      "organization": "Cloud Native Computing Foundation",
+      "category": "open_source",
+      "official_url": null,
+      "participation": {
+        "family": "open_source",
+        "label": "Contribution prerequisites",
+        "verdict": "Unknown",
+        "note": "官方页没有写参与门槛；开源贡献通常要求账号 / CLA / issue 认领等前置"
+      },
+      "action": {
+        "label": "值得进一步核实",
+        "reason": "可参与且证据完整，但你的时间预算还没给出"
+      },
+      "why_fit": "与你的目标直接相关；滚动招募，无固定截止日",
+      "gap_filled": {},
+      "effort": "官方页未写明投入强度",
+      "leaves_behind": "官方页未写明可留下的产出",
+      "next_value": "",
+      "needs_confirmation": [
+        "页面未写明任何硬性资格条件，也没有可判定的冲突项，无法判断（没写要求不等于大概率符合）",
+        "资格条件未写明",
+        "每周投入未写明"
+      ],
+      "needs_confirmation_details": {
+        "uncertain_reasons_raw": [
+          "页面未写明任何硬性资格条件，也没有可判定的冲突项 → 无法判断（没写要求不等于大概率符合）"
+        ],
+        "note": "结构化原文仅供程序使用；展示用 needs_confirmation 的人话版本"
+      },
+      "present_fields": [
+        "why_fit",
+        "effort",
+        "leaves_behind"
+      ]
+    },
+    {
+      "opportunity_id": "cncf-项目-maintainer-路径-contributor-ladder-owners-",
+      "title": "CNCF 项目 Maintainer 路径（contributor ladder -> OWNERS 提名）",
+      "organization": "CNCF",
+      "category": "open_source",
+      "official_url": null,
+      "participation": {
+        "family": "open_source",
+        "label": "Contribution prerequisites",
+        "verdict": "Unknown",
+        "note": "官方页没有写参与门槛；开源贡献通常要求账号 / CLA / issue 认领等前置"
+      },
+      "action": {
+        "label": "值得进一步核实",
+        "reason": "可参与且证据完整，但你的时间预算还没给出"
+      },
+      "why_fit": "与你的目标直接相关；滚动招募，无固定截止日",
+      "gap_filled": {},
+      "effort": "官方页未写明投入强度",
+      "leaves_behind": "官方页未写明可留下的产出",
+      "next_value": "",
+      "needs_confirmation": [
+        "页面未写明任何硬性资格条件，也没有可判定的冲突项，无法判断（没写要求不等于大概率符合）",
+        "资格条件未写明",
+        "每周投入未写明"
+      ],
+      "needs_confirmation_details": {
+        "uncertain_reasons_raw": [
+          "页面未写明任何硬性资格条件，也没有可判定的冲突项 → 无法判断（没写要求不等于大概率符合）"
+        ],
+        "note": "结构化原文仅供程序使用；展示用 needs_confirmation 的人话版本"
+      },
+      "present_fields": [
+        "why_fit",
+        "effort",
+        "leaves_behind"
+      ]
+    },
+    {
+      "opportunity_id": "kubecon-cloudnativecon-europe-2027-cfp-演讲征集",
+      "title": "KubeCon + CloudNativeCon Europe 2027 CFP（演讲征集）",
+      "organization": "CNCF / Linux Foundation",
+      "category": "event",
+      "official_url": null,
+      "participation": {
+        "family": "event",
+        "label": "Eligibility needs confirmation",
+        "verdict": "Unknown",
+        "note": "官网未给出明确的报名开放声明，需要先向主办方确认"
+      },
+      "action": {
+        "label": "值得进一步核实",
+        "reason": "可参与且证据完整，但你的时间预算还没给出"
+      },
+      "why_fit": "与你的目标直接相关",
+      "gap_filled": {},
+      "effort": "官方页未写明投入强度",
+      "leaves_behind": "官方页未写明可留下的产出",
+      "next_value": "",
+      "needs_confirmation": [
+        "页面未写明任何硬性资格条件，也没有可判定的冲突项，无法判断（没写要求不等于大概率符合）",
+        "资格条件未写明",
+        "每周投入未写明"
+      ],
+      "needs_confirmation_details": {
+        "uncertain_reasons_raw": [
+          "页面未写明任何硬性资格条件，也没有可判定的冲突项 → 无法判断（没写要求不等于大概率符合）"
+        ],
+        "note": "结构化原文仅供程序使用；展示用 needs_confirmation 的人话版本"
+      },
+      "present_fields": [
+        "why_fit",
+        "effort",
+        "leaves_behind"
+      ]
+    },
+    {
+      "opportunity_id": "kubernetes-sig-贡献者路径-good-first-issue-contributo",
+      "title": "Kubernetes SIG 贡献者路径（good first issue -> contributor ladder）",
+      "organization": "Kubernetes / CNCF",
+      "category": "open_source",
+      "official_url": null,
+      "participation": {
+        "family": "open_source",
+        "label": "Contribution prerequisites",
+        "verdict": "Unknown",
+        "note": "官方页没有写参与门槛；开源贡献通常要求账号 / CLA / issue 认领等前置"
+      },
+      "action": {
+        "label": "值得进一步核实",
+        "reason": "可参与且证据完整，但你的时间预算还没给出"
+      },
+      "why_fit": "与你的目标直接相关；滚动招募，无固定截止日",
+      "gap_filled": {},
+      "effort": "官方页未写明投入强度",
+      "leaves_behind": "官方页未写明可留下的产出",
+      "next_value": "",
+      "needs_confirmation": [
+        "页面未写明任何硬性资格条件，也没有可判定的冲突项，无法判断（没写要求不等于大概率符合）",
+        "资格条件未写明",
+        "每周投入未写明"
+      ],
+      "needs_confirmation_details": {
+        "uncertain_reasons_raw": [
+          "页面未写明任何硬性资格条件，也没有可判定的冲突项 → 无法判断（没写要求不等于大概率符合）"
+        ],
+        "note": "结构化原文仅供程序使用；展示用 needs_confirmation 的人话版本"
+      },
+      "present_fields": [
+        "why_fit",
+        "effort",
+        "leaves_behind"
+      ]
+    }
+  ],
+  "worth_verifying": [
+    {
+      "opportunity_id": "cloud-native-community-group-cncg-singapore-组织者-",
+      "title": "Cloud Native Community Group (CNCG) Singapore — 组织者 / Chapter Lead",
+      "organization": "CNCF",
+      "category": "networking",
+      "official_url": null,
+      "participation": {
+        "family": "community",
+        "label": "Unknown",
+        "verdict": "Unknown",
+        "note": ""
+      },
+      "action": {
+        "label": "值得进一步核实",
+        "reason": "关键信息（官方来源/报名状态）还没核实完整"
+      },
+      "why_fit": "与你的目标直接相关；滚动招募，无固定截止日",
+      "gap_filled": {},
+      "effort": "官方页未写明投入强度",
+      "leaves_behind": "官方页未写明可留下的产出",
+      "next_value": "",
+      "needs_confirmation": [
+        "verification_status:verified_official",
+        "evidence.application_status(status=explicit,source_url,verified_at,top-level application_status（机会侧 open/rolling/closed/not_open/unknown）)",
+        "页面未写明任何硬性资格条件，也没有可判定的冲突项，无法判断（没写要求不等于大概率符合）",
+        "资格条件未写明"
+      ],
+      "needs_confirmation_details": {
+        "uncertain_reasons_raw": [
+          "页面未写明任何硬性资格条件，也没有可判定的冲突项 → 无法判断（没写要求不等于大概率符合）"
+        ],
+        "note": "结构化原文仅供程序使用；展示用 needs_confirmation 的人话版本"
+      },
+      "present_fields": [
+        "why_fit",
+        "effort",
+        "leaves_behind"
+      ]
+    }
+  ],
+  "excluded": [
+    {
+      "title": "CNCF Ambassador 计划（年度申请）",
+      "reason": null
+    },
+    {
+      "title": "LFX Mentorship（CNCF）— 以 Mentor 身份参与（需项目 maintainer 资格）",
+      "reason": null
+    },
+    {
+      "title": "KubeCon + CloudNativeCon North America 2025 CFP（历史归档页）",
+      "reason": null
+    }
+  ],
+  "self_directed": [],
+  "allocation": {
+    "mode": "qualitative",
+    "items": [
+      {
+        "level": "主线",
+        "opportunity_id": "cncf-technical-advisory-group-tag-参与-公开贡献与领导力路径",
+        "title": "CNCF Technical Advisory Group (TAG) 参与 — 公开贡献与领导力路径"
+      },
+      {
+        "level": "辅线",
+        "opportunity_id": "cncf-项目-maintainer-路径-contributor-ladder-owners-",
+        "title": "CNCF 项目 Maintainer 路径（contributor ladder -> OWNERS 提名）"
+      },
+      {
+        "level": "低成本试错",
+        "opportunity_id": "kubecon-cloudnativecon-europe-2027-cfp-演讲征集",
+        "title": "KubeCon + CloudNativeCon Europe 2027 CFP（演讲征集）"
+      },
+      {
+        "level": "低成本试错",
+        "opportunity_id": "kubernetes-sig-贡献者路径-good-first-issue-contributo",
+        "title": "Kubernetes SIG 贡献者路径（good first issue -> contributor ladder）"
+      }
+    ],
+    "note": "你的可用时间还未知，所以暂不做具体比例分配。",
+    "total_note": "未按时间做比例分配"
+  },
+  "unknown": [
+    "eligibility_known",
+    "financial_budget_known",
+    "time_budget_known"
+  ],
+  "length_budget": {
+    "main": 4,
+    "worth_verifying": 1,
+    "limit": 5,
+    "note": "3–5 个主要机会 + 1 个简短 Portfolio/下一步 + 必要的 Unknown；不要写成人生规划论文"
+  },
+  "violations": [],
+  "ok": true,
+  "case": "C",
+  "leakage": []
+}

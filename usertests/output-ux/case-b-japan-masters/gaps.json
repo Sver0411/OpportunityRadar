@@ -1,0 +1,116 @@
+[
+  {
+    "id": "gap-network--",
+    "type": "network",
+    "name": "教授 / 实验室联系人",
+    "source": "semantic",
+    "sample": "升学或研究型目标通常需要教授接触，画像中没有该网络",
+    "opportunity_ids": [],
+    "priority": "high",
+    "logistics_prerequisites": [
+      "1-3 封推荐信",
+      "CV",
+      "入学申请表格",
+      "成绩单与学位证明",
+      "护照",
+      "申请表与申请费"
+    ],
+    "preparation_items": [
+      "Statement of Purpose",
+      "教授内諾",
+      "证件照"
+    ],
+    "eligibility_constraints": [],
+    "relevance": {
+      "relevance": "supporting_gap",
+      "direction": "education",
+      "reason": "与方向「education」相关，但不是硬门槛（增强项）"
+    }
+  },
+  {
+    "id": "gap-research--",
+    "type": "research",
+    "name": "研究经历 / 论文 / 实验室接触",
+    "source": "semantic",
+    "sample": "目标包含研究或升学，画像中没有研究经历",
+    "opportunity_ids": [],
+    "priority": "high",
+    "logistics_prerequisites": [
+      "1-3 封推荐信",
+      "CV",
+      "入学申请表格",
+      "成绩单与学位证明",
+      "护照",
+      "申请表与申请费"
+    ],
+    "preparation_items": [
+      "Statement of Purpose",
+      "教授内諾",
+      "证件照"
+    ],
+    "eligibility_constraints": [],
+    "relevance": {
+      "relevance": "supporting_gap",
+      "direction": "education",
+      "reason": "与方向「education」相关，但不是硬门槛（增强项）"
+    }
+  },
+  {
+    "id": "gap-language--",
+    "type": "language",
+    "name": "目标国家需要的语言成绩",
+    "source": "semantic",
+    "sample": "升学目标通常有语言门槛，画像未提供成绩",
+    "opportunity_ids": [],
+    "priority": "medium",
+    "logistics_prerequisites": [
+      "1-3 封推荐信",
+      "CV",
+      "入学申请表格",
+      "成绩单与学位证明",
+      "护照",
+      "申请表与申请费"
+    ],
+    "preparation_items": [
+      "Statement of Purpose",
+      "教授内諾",
+      "证件照"
+    ],
+    "eligibility_constraints": [],
+    "relevance": {
+      "relevance": "supporting_gap",
+      "direction": "education",
+      "reason": "与方向「education」相关，但不是硬门槛（增强项）"
+    }
+  },
+  {
+    "id": "gap-credential-currently-enrolled-stude",
+    "type": "credential",
+    "name": "currently enrolled students must have approval from their home institution",
+    "source": "requirements",
+    "sample": "本轮 4 个目标机会中 1 个要求「currently enrolled students must have approval from their home institution」",
+    "opportunity_ids": [
+      "oist-research-internship-spring-2027"
+    ],
+    "priority": "medium",
+    "logistics_prerequisites": [
+      "1-3 封推荐信",
+      "CV",
+      "入学申请表格",
+      "成绩单与学位证明",
+      "护照",
+      "申请表与申请费"
+    ],
+    "preparation_items": [
+      "Statement of Purpose",
+      "教授内諾",
+      "证件照"
+    ],
+    "eligibility_constraints": [],
+    "relevance": {
+      "relevance": "contextual_gap",
+      "direction": "education",
+      "reason": "缺口类型 credential 不在方向「education」的关联网内"
+    }
+  }
+]

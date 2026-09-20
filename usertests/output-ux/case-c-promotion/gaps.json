@@ -1,0 +1,62 @@
+[
+  {
+    "id": "gap-network--",
+    "type": "network",
+    "name": "教授 / 实验室联系人",
+    "source": "semantic",
+    "sample": "升学或研究型目标通常需要教授接触，画像中没有该网络",
+    "opportunity_ids": [],
+    "priority": "high",
+    "logistics_prerequisites": [
+      "CNCF Slack 账号（免费，参与沟通频道）",
+      "GitHub 账号（提交 PR）"
+    ],
+    "preparation_items": [
+      "CNCF SIG/TAG 成员 或 项目贡献",
+      "CNCF 项目 maintainer 资格（才能以 mentor 身份提案项目）",
+      "Go / Kubernetes 基础",
+      "云原生相关实践经验（作为演讲主题）",
+      "公开演讲 / 内容创作 / 社区组织（至少两项）",
+      "对某一云原生领域的兴趣（TAG 参与）",
+      "成为 CNCF 项目 contributor（先合并 PR）",
+      "新加坡本地或远程组织意愿",
+      "英语演讲能力"
+    ],
+    "eligibility_constraints": [],
+    "relevance": {
+      "relevance": "contextual_gap",
+      "direction": "skill_upgrade",
+      "reason": "学术向缺口，与当前方向「skill_upgrade」关系弱（只在部分机会中出现）"
+    }
+  },
+  {
+    "id": "gap-research--",
+    "type": "research",
+    "name": "研究经历 / 论文 / 实验室接触",
+    "source": "semantic",
+    "sample": "目标包含研究或升学，画像中没有研究经历",
+    "opportunity_ids": [],
+    "priority": "high",
+    "logistics_prerequisites": [
+      "CNCF Slack 账号（免费，参与沟通频道）",
+      "GitHub 账号（提交 PR）"
+    ],
+    "preparation_items": [
+      "CNCF SIG/TAG 成员 或 项目贡献",
+      "CNCF 项目 maintainer 资格（才能以 mentor 身份提案项目）",
+      "Go / Kubernetes 基础",
+      "云原生相关实践经验（作为演讲主题）",
+      "公开演讲 / 内容创作 / 社区组织（至少两项）",
+      "对某一云原生领域的兴趣（TAG 参与）",
+      "成为 CNCF 项目 contributor（先合并 PR）",
+      "新加坡本地或远程组织意愿",
+      "英语演讲能力"
+    ],
+    "eligibility_constraints": [],
+    "relevance": {
+      "relevance": "contextual_gap",
+      "direction": "skill_upgrade",
+      "reason": "学术向缺口，与当前方向「skill_upgrade」关系弱（只在部分机会中出现）"
+    }
+  }
+]

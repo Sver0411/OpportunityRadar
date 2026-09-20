@@ -1,0 +1,93 @@
+[
+  {
+    "id": "gap-skill-c-c-",
+    "type": "skill",
+    "name": "C 或 C++",
+    "source": "requirements",
+    "sample": "本轮 6 个目标机会中 1 个要求「C 或 C++」",
+    "opportunity_ids": [
+      "zeiss-embedded-zephyr-internship"
+    ],
+    "priority": "medium",
+    "logistics_prerequisites": [
+      "CV",
+      "个人资料",
+      "成绩单",
+      "身份证/学籍在线验证报告",
+      "项目申请书"
+    ],
+    "preparation_items": [
+      "mentee 申请",
+      "扩展摘要",
+      "摘要",
+      "数字海报"
+    ],
+    "eligibility_constraints": [],
+    "relevance": {
+      "relevance": "contextual_gap",
+      "direction": "explore",
+      "reason": "用户没有明确方向，缺口只能作为探索参考（不产生 core_gap）"
+    }
+  },
+  {
+    "id": "gap-skill-git",
+    "type": "skill",
+    "name": "Git",
+    "source": "requirements",
+    "sample": "本轮 6 个目标机会中 2 个要求「Git」",
+    "opportunity_ids": [
+      "ospp-open-source-promotion-plan-2026",
+      "zeiss-embedded-zephyr-internship"
+    ],
+    "priority": "medium",
+    "logistics_prerequisites": [
+      "CV",
+      "个人资料",
+      "成绩单",
+      "身份证/学籍在线验证报告",
+      "项目申请书"
+    ],
+    "preparation_items": [
+      "mentee 申请",
+      "扩展摘要",
+      "摘要",
+      "数字海报"
+    ],
+    "eligibility_constraints": [],
+    "relevance": {
+      "relevance": "contextual_gap",
+      "direction": "explore",
+      "reason": "用户没有明确方向，缺口只能作为探索参考（不产生 core_gap）"
+    }
+  },
+  {
+    "id": "gap-portfolio--",
+    "type": "portfolio",
+    "name": "演示视频",
+    "source": "requirements",
+    "sample": "本轮 6 个目标机会中 1 个要求「演示视频」",
+    "opportunity_ids": [
+      "igideation-2027"
+    ],
+    "priority": "medium",
+    "logistics_prerequisites": [
+      "CV",
+      "个人资料",
+      "成绩单",
+      "身份证/学籍在线验证报告",
+      "项目申请书"
+    ],
+    "preparation_items": [
+      "mentee 申请",
+      "扩展摘要",
+      "摘要",
+      "数字海报"
+    ],
+    "eligibility_constraints": [],
+    "relevance": {
+      "relevance": "contextual_gap",
+      "direction": "explore",
+      "reason": "用户没有明确方向，缺口只能作为探索参考（不产生 core_gap）"
+    }
+  }
+]

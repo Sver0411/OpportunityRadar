@@ -1,0 +1,230 @@
+{
+  "confidence": {
+    "level": "medium",
+    "note": "方向明确但仍有关键 Unknown → 用「从目前信息看…更值得先验证」的口气",
+    "unknown": [
+      "financial_budget_known",
+      "profile_completeness"
+    ],
+    "reasons": [
+      "画像完整度：2/5 个基础字段有内容"
+    ]
+  },
+  "main": [
+    {
+      "opportunity_id": "stm32-edge-ai-suite-stm32cube-ai-nanoedge-ai-stu",
+      "title": "STM32 Edge AI Suite (STM32Cube.AI / NanoEdge AI Studio / ST Edge AI Developer Cloud)",
+      "organization": "STMicroelectronics",
+      "category": "skill_development",
+      "official_url": "https://stm32ai.st.com/resources/",
+      "participation": {
+        "family": "standard",
+        "label": "Eligible",
+        "verdict": "Eligible",
+        "note": ""
+      },
+      "action": {
+        "label": "现在可以行动",
+        "reason": "可参与、证据完整、资源约束已知"
+      },
+      "why_fit": "与你已说明的情况有交集",
+      "gap_filled": {},
+      "effort": "每周约 3-5 h/week self-paced, free",
+      "leaves_behind": "官方页未写明可留下的产出",
+      "next_value": "",
+      "needs_confirmation": [],
+      "needs_confirmation_details": {
+        "uncertain_reasons_raw": [],
+        "note": "结构化原文仅供程序使用；展示用 needs_confirmation 的人话版本"
+      },
+      "present_fields": [
+        "why_fit",
+        "effort",
+        "leaves_behind"
+      ]
+    },
+    {
+      "opportunity_id": "harvardx-tinyml-professional-certificate-edx",
+      "title": "HarvardX TinyML Professional Certificate (edX)",
+      "organization": "Harvard University / Google TensorFlow",
+      "category": "education",
+      "official_url": "https://www.edx.org/certificates/professional-certificate/harvardx-tiny-machine-learning",
+      "participation": {
+        "family": "standard",
+        "label": "Eligible",
+        "verdict": "Eligible",
+        "note": ""
+      },
+      "action": {
+        "label": "现在可以行动",
+        "reason": "可参与、证据完整、资源约束已知"
+      },
+      "why_fit": "与你已说明的情况有交集",
+      "gap_filled": {},
+      "effort": "每周约 2-4 h/week, ~$807.30, 16 weeks self-paced",
+      "leaves_behind": "官方页未写明可留下的产出",
+      "next_value": "",
+      "needs_confirmation": [],
+      "needs_confirmation_details": {
+        "uncertain_reasons_raw": [],
+        "note": "结构化原文仅供程序使用；展示用 needs_confirmation 的人话版本"
+      },
+      "present_fields": [
+        "why_fit",
+        "effort",
+        "leaves_behind"
+      ]
+    },
+    {
+      "opportunity_id": "tinymldelta-open-source-contribution",
+      "title": "TinyMLDelta open source contribution",
+      "organization": "TinyMLDelta (GitHub OSS)",
+      "category": "open_source",
+      "official_url": "https://github.com/felixgalindo/TinyMLDelta/blob/main/CONTRIBUTING.md",
+      "participation": {
+        "family": "open_source",
+        "label": "Open participation",
+        "verdict": "Probably Eligible",
+        "note": "仍需满足贡献前置条件，例如 CLA、issue 认领"
+      },
+      "action": {
+        "label": "现在可以行动",
+        "reason": "可参与、证据完整、资源约束已知"
+      },
+      "why_fit": "与你已说明的情况有交集",
+      "gap_filled": {},
+      "effort": "每周约 flexible 2-4 h/week, remote",
+      "leaves_behind": "官方页未写明可留下的产出",
+      "next_value": "",
+      "needs_confirmation": [],
+      "needs_confirmation_details": {
+        "uncertain_reasons_raw": [],
+        "note": "结构化原文仅供程序使用；展示用 needs_confirmation 的人话版本"
+      },
+      "present_fields": [
+        "why_fit",
+        "effort",
+        "leaves_behind"
+      ]
+    },
+    {
+      "opportunity_id": "one-summit-japan-2026-open-networking-edge-summi",
+      "title": "ONE Summit Japan 2026 (Open Networking & Edge Summit)",
+      "organization": "Linux Foundation / LF Edge",
+      "category": "event",
+      "official_url": "https://events.linuxfoundation.org/open-networking-edge-summit-japan/",
+      "participation": {
+        "family": "event",
+        "label": "Registration open",
+        "verdict": "Eligible",
+        "note": ""
+      },
+      "action": {
+        "label": "现在可以行动",
+        "reason": "可参与、证据完整、资源约束已知"
+      },
+      "why_fit": "与你已说明的情况有交集",
+      "gap_filled": {},
+      "effort": "每周约 2 days attendance, Tokyo, Dec 10-11 2026",
+      "leaves_behind": "官方页未写明可留下的产出",
+      "next_value": "",
+      "needs_confirmation": [],
+      "needs_confirmation_details": {
+        "uncertain_reasons_raw": [],
+        "note": "结构化原文仅供程序使用；展示用 needs_confirmation 的人话版本"
+      },
+      "present_fields": [
+        "why_fit",
+        "effort",
+        "leaves_behind"
+      ]
+    }
+  ],
+  "worth_verifying": [
+    {
+      "opportunity_id": "japan-edge-ai-engineer-roles-daijob-idein-robotj",
+      "title": "Japan Edge AI Engineer roles (Daijob / Idein / RobotJobJapan)",
+      "organization": "Multiple Japan employers",
+      "category": "career",
+      "official_url": "https://www.daijob.com/en/jobs/detail/1546523",
+      "participation": {
+        "family": "standard",
+        "label": "Probably Ineligible",
+        "verdict": "Probably Ineligible",
+        "note": ""
+      },
+      "action": {
+        "label": "值得进一步核实",
+        "reason": "关键信息（官方来源/报名状态）还没核实完整"
+      },
+      "why_fit": "与你已说明的情况有交集",
+      "gap_filled": {},
+      "effort": "每周约 full-time (future main track, not within 6h/week)",
+      "leaves_behind": "官方页未写明可留下的产出",
+      "next_value": "",
+      "needs_confirmation": [],
+      "needs_confirmation_details": {
+        "uncertain_reasons_raw": [],
+        "note": "结构化原文仅供程序使用；展示用 needs_confirmation 的人话版本"
+      },
+      "present_fields": [
+        "why_fit",
+        "effort",
+        "leaves_behind"
+      ]
+    }
+  ],
+  "excluded": [
+    {
+      "title": "EDGE AI CHALLENGE 2026 (Kaggle)",
+      "reason": "Page labels it as a playground 'for students' (Vietnamese: dành cho sinh viên). Excluded as a primary pick to avoid the student-only regression; not a fit for a working engineer."
+    }
+  ],
+  "self_directed": [],
+  "allocation": {
+    "mode": "quantitative",
+    "items": [
+      {
+        "level": "主线",
+        "opportunity_id": "stm32-edge-ai-suite-stm32cube-ai-nanoedge-ai-stu",
+        "title": "STM32 Edge AI Suite (STM32Cube.AI / NanoEdge AI Studio / ST Edge AI Developer Cloud)",
+        "hours": null
+      },
+      {
+        "level": "辅线",
+        "opportunity_id": "harvardx-tinyml-professional-certificate-edx",
+        "title": "HarvardX TinyML Professional Certificate (edX)",
+        "hours": null
+      },
+      {
+        "level": "辅线",
+        "opportunity_id": "tinymldelta-open-source-contribution",
+        "title": "TinyMLDelta open source contribution",
+        "hours": null
+      },
+      {
+        "level": "辅线",
+        "opportunity_id": "one-summit-japan-2026-open-networking-edge-summi",
+        "title": "ONE Summit Japan 2026 (Open Networking & Edge Summit)",
+        "hours": null
+      }
+    ],
+    "total_hours": 0.0,
+    "note": "合计约 0.0h/周，与你给出的每周可用时间对齐"
+  },
+  "unknown": [
+    "financial_budget_known",
+    "profile_completeness"
+  ],
+  "length_budget": {
+    "main": 4,
+    "worth_verifying": 1,
+    "limit": 5,
+    "note": "3–5 个主要机会 + 1 个简短 Portfolio/下一步 + 必要的 Unknown；不要写成人生规划论文"
+  },
+  "violations": [],
+  "ok": true,
+  "case": "D",
+  "leakage": [],
+  "expression_only": true
+}

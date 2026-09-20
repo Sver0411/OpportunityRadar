@@ -1,0 +1,120 @@
+{
+  "budget_hours": null,
+  "planned_hours": 36.0,
+  "resource_conflict": null,
+  "budget_unknown": true,
+  "items": [
+    {
+      "opportunity_id": "ospp-open-source-promotion-plan-2026",
+      "title": "开源之夏 2026（OSPP / 点亮计划 2.0）",
+      "category": "open_source",
+      "zone": "recommended_now",
+      "utility": "medium",
+      "match": 55,
+      "roles": [
+        "now",
+        "high_upside",
+        "long_term"
+      ],
+      "primary_role": "now",
+      "weekly_hours": 5.0,
+      "hours_known": true,
+      "official_url": null
+    },
+    {
+      "opportunity_id": "lfx-mentorship-program",
+      "title": "LFX Mentorship Program（Linux Foundation 导师制）",
+      "category": "open_source",
+      "zone": "worth_verifying",
+      "utility": "high",
+      "match": 61,
+      "roles": [
+        "high_upside",
+        "long_term"
+      ],
+      "primary_role": "high_upside",
+      "weekly_hours": 24.0,
+      "hours_known": true,
+      "official_url": null
+    },
+    {
+      "opportunity_id": "igideation-2027",
+      "title": "IGIIDeation 2027（国际创新发明与设计展）",
+      "category": "competition",
+      "zone": "worth_verifying",
+      "utility": "medium",
+      "match": 63,
+      "roles": [
+        "high_upside",
+        "long_term",
+        "explore"
+      ],
+      "primary_role": "high_upside",
+      "weekly_hours": 3.0,
+      "hours_known": true,
+      "official_url": null
+    },
+    {
+      "opportunity_id": "kpit-sparkle-2027",
+      "title": "KPIT Sparkle 2027（学生创新竞赛，无人机集群）",
+      "category": "competition",
+      "zone": "worth_verifying",
+      "utility": "medium",
+      "match": 60,
+      "roles": [
+        "high_upside",
+        "long_term",
+        "explore"
+      ],
+      "primary_role": "high_upside",
+      "weekly_hours": 4.0,
+      "hours_known": true,
+      "official_url": null
+    },
+    {
+      "opportunity_id": "zeiss-embedded-zephyr-internship",
+      "title": "Embedded Systems Internship: Zephyr RTOS & Microcontroller Platforms",
+      "category": "career",
+      "zone": "worth_verifying",
+      "utility": "medium",
+      "match": 54,
+      "roles": [
+        "high_upside",
+        "long_term"
+      ],
+      "primary_role": "high_upside",
+      "weekly_hours": null,
+      "hours_known": false,
+      "official_url": null
+    }
+  ],
+  "dropped": [],
+  "roles_present": [
+    "now",
+    "high_upside",
+    "long_term",
+    "explore"
+  ],
+  "diversity": {
+    "roles": 4,
+    "categories": 3
+  },
+  "unknown_hours_items": 1,
+  "alternatives": [
+    {
+      "if_priority": "升职 / 职业资本",
+      "combo": [
+        "ospp-open-source-promotion-plan-2026",
+        "lfx-mentorship-program"
+      ]
+    },
+    {
+      "if_priority": "转方向 / 学习",
+      "combo": [
+        "igideation-2027",
+        "kpit-sparkle-2027"
+      ]
+    }
+  ],
+  "note": "每周可用时间未知 → 无法校验资源约束，请先确认 constraints.weekly_time；部分机会未写明每周投入，未计入总和（已在 unknown_hours_items 标注）"
+}

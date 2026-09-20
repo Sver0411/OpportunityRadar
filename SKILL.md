@@ -122,6 +122,7 @@ Deterministic helpers (Full Mode; never re-implement inline):
 | `scripts/utility.py` | Personal Utility: High/Medium/Low + reasons (worth investing resources now?) |
 | `scripts/evidence.py` | Pre-gate evidence check: canonical source + official verification + dated application-status evidence; distinguishes "we forgot to record" from "the page cannot confirm" |
 | `scripts/portfolio.py` | Resource-constrained portfolio (now / bridge / low_cost / high_upside / long_term / explore), never exceeds the user's weekly budget |
+| `scripts/presentation.py` | Output adapter (no judgement): decision confidence, category-aware participation wording, recommendation cards, explore axes, self-directed fallback separation, unsupported-precision guard |
 
 Single source of truth: enums, weights, tracked fields and ID/URL rules live in
 `scripts/common.py`; `schemas/*.json` and the references must match it.
@@ -232,6 +233,18 @@ Single source of truth: enums, weights, tracked fields and ID/URL rules live in
     If the budget only allows 4 verified items, return 4. Each item still carries what it is,
     why it fits, eligibility verdict, deadline, cautions, official source, value.
     Optionally write the JSON artifact to `.opportunity-radar/last-run.json`.
+
+**Output contract (presentation layer).** The final answer is produced through
+`scripts/presentation.py`, which decides **how strongly** things may be said
+(`decision_confidence` from goal clarity + profile completeness + known budgets + eligibility/
+evidence coverage), phrases participation per opportunity type (open source / event / community /
+job), and refuses unsupported precision: **if the user never gave a time or money budget, never
+print percentages or "X hours per day"** — use 主线 / 辅线 / 低成本试错 and say that no
+proportional split is being made. Cards expose at most five user-readable fields (why it fits /
+gap it fills / effort / what it leaves behind / next value) plus "还需要确认", and any
+self-directed fallback is a **separate** section, never inside the recommended list.
+This requires `produces`, `effort` and `skills_required` to have been captured (see
+`references/extraction-policy.md`).
 
 **Decision model (three separate questions).**
   * *Match* — is it a fit?  *Priority* — is it urgent?  *Utility* — does it deserve resources now?

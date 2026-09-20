@@ -1,0 +1,264 @@
+{
+  "confidence": {
+    "level": "low",
+    "note": "目标/资源/背景高度未知 → 只给几种可试方向与对照，不下结论",
+    "unknown": [
+      "evidence_completeness",
+      "financial_budget_known",
+      "goal_clarity",
+      "time_budget_known"
+    ],
+    "reasons": [
+      "目标清晰度：没有声明任何目标",
+      "证据完整的候选仅 2/6"
+    ]
+  },
+  "main": [
+    {
+      "opportunity_id": "ospp-open-source-promotion-plan-2026",
+      "title": "开源之夏 2026（OSPP / 点亮计划 2.0）",
+      "organization": "中国科学院软件研究所",
+      "category": "open_source",
+      "official_url": null,
+      "participation": {
+        "family": "open_source",
+        "label": "Open participation",
+        "verdict": "Probably Eligible",
+        "note": "仍需满足贡献前置条件，例如 CLA、issue 认领"
+      },
+      "action": {
+        "label": "值得拿来试方向",
+        "reason": "目标或资源还不明确，先当作方向实验"
+      },
+      "why_fit": "滚动招募，无固定截止日；学历相符（undergraduate 在 ['undergraduate', 'master', 'doctor'] 内）",
+      "gap_filled": {},
+      "effort": "每周约 5 h",
+      "leaves_behind": "合入上游的 GitHub PR、结项报告、结项证书",
+      "next_value": "可继续参与经典/领航模式，并能延伸到社区角色",
+      "needs_confirmation": [],
+      "needs_confirmation_details": {
+        "uncertain_reasons_raw": [],
+        "note": "结构化原文仅供程序使用；展示用 needs_confirmation 的人话版本"
+      },
+      "present_fields": [
+        "why_fit",
+        "effort",
+        "leaves_behind",
+        "next_value"
+      ]
+    }
+  ],
+  "worth_verifying": [
+    {
+      "opportunity_id": "lfx-mentorship-program",
+      "title": "LFX Mentorship Program（Linux Foundation 导师制）",
+      "organization": "The Linux Foundation",
+      "category": "open_source",
+      "official_url": null,
+      "participation": {
+        "family": "open_source",
+        "label": "Open participation",
+        "verdict": "Probably Eligible",
+        "note": "仍需满足贡献前置条件，例如 CLA、issue 认领"
+      },
+      "action": {
+        "label": "值得拿来试方向",
+        "reason": "目标或资源还不明确，先当作方向实验"
+      },
+      "why_fit": "学历相符（undergraduate 在 ['undergraduate', 'master', 'doctor', 'graduate'] 内）",
+      "gap_filled": {},
+      "effort": "12 周（全时）或 24 周（兼职）",
+      "leaves_behind": "合入上游的 PR/补丁、导师评审记录、结业 showcase 展示机会",
+      "next_value": "官方写明是通往实习与岗位的跳板，并可在 showcase 直接接触招聘方",
+      "needs_confirmation": [],
+      "needs_confirmation_details": {
+        "uncertain_reasons_raw": [],
+        "note": "结构化原文仅供程序使用；展示用 needs_confirmation 的人话版本"
+      },
+      "present_fields": [
+        "why_fit",
+        "effort",
+        "leaves_behind",
+        "next_value"
+      ]
+    },
+    {
+      "opportunity_id": "igideation-2027",
+      "title": "IGIIDeation 2027（国际创新发明与设计展）",
+      "organization": "International Islamic University Malaysia (IIUM)",
+      "category": "competition",
+      "official_url": null,
+      "participation": {
+        "family": "event",
+        "label": "Registration open",
+        "verdict": "Probably Eligible",
+        "note": ""
+      },
+      "action": {
+        "label": "值得拿来试方向",
+        "reason": "目标或资源还不明确，先当作方向实验"
+      },
+      "why_fit": "学历相符（undergraduate 在 ['undergraduate', 'master', 'doctor'] 内）",
+      "gap_filled": {},
+      "effort": "每周约 3 h",
+      "leaves_behind": "数字海报、演示视频、获奖电子证书（Gold/Silver/Bronze）",
+      "next_value": "",
+      "needs_confirmation": [
+        "verification_status:verified_official"
+      ],
+      "needs_confirmation_details": {
+        "uncertain_reasons_raw": [],
+        "note": "结构化原文仅供程序使用；展示用 needs_confirmation 的人话版本"
+      },
+      "present_fields": [
+        "why_fit",
+        "effort",
+        "leaves_behind"
+      ]
+    },
+    {
+      "opportunity_id": "kpit-sparkle-2027",
+      "title": "KPIT Sparkle 2027（学生创新竞赛，无人机集群）",
+      "organization": "KPIT Technologies",
+      "category": "competition",
+      "official_url": null,
+      "participation": {
+        "family": "event",
+        "label": "Registration open",
+        "verdict": "Probably Eligible",
+        "note": ""
+      },
+      "action": {
+        "label": "值得拿来试方向",
+        "reason": "目标或资源还不明确，先当作方向实验"
+      },
+      "why_fit": "学历相符（undergraduate 在 ['undergraduate'] 内）",
+      "gap_filled": {},
+      "effort": "每周约 4 h",
+      "leaves_behind": "可运行的软件/硬件原型、演示视频、竞赛成绩",
+      "next_value": "",
+      "needs_confirmation": [
+        "verification_status:verified_official",
+        "evidence.application_status(status=explicit,source_url,verified_at,top-level application_status（机会侧 open/rolling/closed/not_open/unknown）)"
+      ],
+      "needs_confirmation_details": {
+        "uncertain_reasons_raw": [],
+        "note": "结构化原文仅供程序使用；展示用 needs_confirmation 的人话版本"
+      },
+      "present_fields": [
+        "why_fit",
+        "effort",
+        "leaves_behind"
+      ]
+    },
+    {
+      "opportunity_id": "zeiss-embedded-zephyr-internship",
+      "title": "Embedded Systems Internship: Zephyr RTOS & Microcontroller Platforms",
+      "organization": "Carl Zeiss",
+      "category": "career",
+      "official_url": null,
+      "participation": {
+        "family": "standard",
+        "label": "Probably Eligible",
+        "verdict": "Probably Eligible",
+        "note": ""
+      },
+      "action": {
+        "label": "值得拿来试方向",
+        "reason": "目标或资源还不明确，先当作方向实验"
+      },
+      "why_fit": "学历相符（undergraduate 在 ['undergraduate', 'master'] 内）",
+      "gap_filled": {},
+      "effort": "官方页未写明投入强度",
+      "leaves_behind": "嵌入式平台移植经验、上游 FOSS 贡献机会、实习证明",
+      "next_value": "",
+      "needs_confirmation": [
+        "verification_status:verified_official",
+        "evidence.application_status(status=explicit,source_url,verified_at,top-level application_status（机会侧 open/rolling/closed/not_open/unknown）)",
+        "每周投入未写明"
+      ],
+      "needs_confirmation_details": {
+        "uncertain_reasons_raw": [],
+        "note": "结构化原文仅供程序使用；展示用 needs_confirmation 的人话版本"
+      },
+      "present_fields": [
+        "why_fit",
+        "effort",
+        "leaves_behind"
+      ]
+    }
+  ],
+  "excluded": [
+    {
+      "title": "第九届（2026）全国大学生嵌入式芯片与系统设计竞赛",
+      "reason": null
+    }
+  ],
+  "self_directed": [],
+  "allocation": {
+    "mode": "qualitative",
+    "items": [
+      {
+        "level": "主线",
+        "opportunity_id": "ospp-open-source-promotion-plan-2026",
+        "title": "开源之夏 2026（OSPP / 点亮计划 2.0）"
+      }
+    ],
+    "note": "你的可用时间还未知，所以暂不做具体比例分配。",
+    "total_note": "未按时间做比例分配"
+  },
+  "unknown": [
+    "evidence_completeness",
+    "financial_budget_known",
+    "goal_clarity",
+    "time_budget_known"
+  ],
+  "explore": {
+    "axes": [
+      "build",
+      "community",
+      "contribute",
+      "creative"
+    ],
+    "axis_count": 4,
+    "by_axis": {
+      "build": [
+        "igideation-2027",
+        "kpit-sparkle-2027"
+      ],
+      "community": [
+        "lfx-mentorship-program"
+      ],
+      "contribute": [
+        "ospp-open-source-promotion-plan-2026",
+        "lfx-mentorship-program"
+      ],
+      "creative": [
+        "igideation-2027"
+      ]
+    },
+    "missing_axes": [
+      "research",
+      "volunteer",
+      "entrepreneurship",
+      "cross_domain"
+    ],
+    "note": "只列出真的达标了的维度；缺的维度就是本轮没找到，不用弱结果补"
+  },
+  "technical_share": {
+    "tech": 4,
+    "total": 5,
+    "share": 0.8,
+    "note": "技术类不应占满全部主推荐（无目标用户尤其）"
+  },
+  "length_budget": {
+    "main": 1,
+    "worth_verifying": 4,
+    "limit": 5,
+    "note": "3–5 个主要机会 + 1 个简短 Portfolio/下一步 + 必要的 Unknown；不要写成人生规划论文"
+  },
+  "violations": [],
+  "ok": true,
+  "case": "A",
+  "leakage": []
+}

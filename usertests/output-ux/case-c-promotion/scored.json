@@ -1,0 +1,449 @@
+{
+  "zones": {
+    "recommended_now": 4,
+    "worth_verifying": 1,
+    "excluded": 3
+  },
+  "results": [
+    {
+      "id": "cncf-technical-advisory-group-tag-参与-公开贡献与领导力路径",
+      "title": "CNCF Technical Advisory Group (TAG) 参与 — 公开贡献与领导力路径",
+      "organization": "Cloud Native Computing Foundation",
+      "primary_category": "open_source",
+      "layer": "exploit",
+      "components": {
+        "eligibility": 55,
+        "goal_fit": 100.0,
+        "skill_fit": 50.0,
+        "interest_fit": 55.0,
+        "location_fit": 45.0,
+        "value_fit": 55.0,
+        "trust": 100,
+        "novelty": 80.0
+      },
+      "eligibility_verdict": "Unknown",
+      "eligibility_source": "hard_constraint",
+      "eligibility_kind": "missing_source",
+      "eligibility_reasons": [
+        "滚动招募，无固定截止日",
+        "页面未写明任何硬性资格条件，也没有可判定的冲突项 → 无法判断（没写要求不等于大概率符合）"
+      ],
+      "match_score": 66,
+      "match_band": "Medium",
+      "urgency": null,
+      "days_remaining": null,
+      "deadline_type": "rolling",
+      "deadline_source": "field",
+      "freshness": "likely_open",
+      "freshness_reason": "deadline_type=rolling（无固定/弹性截止）",
+      "effort": null,
+      "time_commitment": null,
+      "time_to_value": null,
+      "future_optionality": null,
+      "outcomes": {},
+      "produces": [],
+      "small_bet_type": null,
+      "evidence_complete": true,
+      "evidence_missing": [],
+      "source_freshness": "unknown",
+      "evidence_verified_at": "2026-09-20",
+      "participation_open": true,
+      "actionable": true,
+      "utility": "unknown",
+      "utility_reasons": [
+        "信息不足，无法判断投入价值",
+        "需补：对某一云原生领域的兴趣（TAG 参与）、CNCF Slack 账号（免费，参与沟通频道）"
+      ],
+      "readiness": "minor_preparation",
+      "readiness_detail": {
+        "status": "minor_preparation",
+        "ready_items": [],
+        "missing_items": [
+          "需准备材料：对某一云原生领域的兴趣（TAG 参与）",
+          "需准备材料：CNCF Slack 账号（免费，参与沟通频道）"
+        ],
+        "blockers": [],
+        "estimated_preparation": "几小时到 1–2 天",
+        "notes": []
+      },
+      "conflicts": [],
+      "zone": "recommended_now",
+      "demotion": null,
+      "priority_score": 66,
+      "priority_band": "Medium",
+      "flags": [
+        "rolling",
+        "language_unspecified"
+      ],
+      "warnings": [
+        "页面未写明语言要求"
+      ],
+      "reasons": {
+        "goal_fit": "命中目标 open_source（priority=high）",
+        "skill_fit": "页面未写明技能要求",
+        "interest_fit": "画像未提供兴趣",
+        "location_fit": "页面未写明地点，无法确认地区匹配",
+        "value_fit": "尚未评估价值维度",
+        "trust": "来源 Tier A，3 项关键事实已官方确认",
+        "novelty": "无本地状态，按新机会处理"
+      }
+    },
+    {
+      "id": "cncf-项目-maintainer-路径-contributor-ladder-owners-",
+      "title": "CNCF 项目 Maintainer 路径（contributor ladder -> OWNERS 提名）",
+      "organization": "CNCF",
+      "primary_category": "open_source",
+      "layer": "exploit",
+      "components": {
+        "eligibility": 55,
+        "goal_fit": 100.0,
+        "skill_fit": 50.0,
+        "interest_fit": 55.0,
+        "location_fit": 45.0,
+        "value_fit": 55.0,
+        "trust": 100,
+        "novelty": 80.0
+      },
+      "eligibility_verdict": "Unknown",
+      "eligibility_source": "hard_constraint",
+      "eligibility_kind": "missing_source",
+      "eligibility_reasons": [
+        "滚动招募，无固定截止日",
+        "页面未写明任何硬性资格条件，也没有可判定的冲突项 → 无法判断（没写要求不等于大概率符合）"
+      ],
+      "match_score": 66,
+      "match_band": "Medium",
+      "urgency": null,
+      "days_remaining": null,
+      "deadline_type": "rolling",
+      "deadline_source": "field",
+      "freshness": "likely_open",
+      "freshness_reason": "deadline_type=rolling（无固定/弹性截止）",
+      "effort": null,
+      "time_commitment": null,
+      "time_to_value": null,
+      "future_optionality": null,
+      "outcomes": {},
+      "produces": [],
+      "small_bet_type": null,
+      "evidence_complete": true,
+      "evidence_missing": [],
+      "source_freshness": "likely_current",
+      "evidence_verified_at": "2026-09-20",
+      "participation_open": true,
+      "actionable": true,
+      "utility": "unknown",
+      "utility_reasons": [
+        "信息不足，无法判断投入价值",
+        "需补：成为 CNCF 项目 contributor（先合并 PR）"
+      ],
+      "readiness": "minor_preparation",
+      "readiness_detail": {
+        "status": "minor_preparation",
+        "ready_items": [],
+        "missing_items": [
+          "需准备材料：成为 CNCF 项目 contributor（先合并 PR）"
+        ],
+        "blockers": [],
+        "estimated_preparation": "几小时到 1–2 天",
+        "notes": []
+      },
+      "conflicts": [],
+      "zone": "recommended_now",
+      "demotion": null,
+      "priority_score": 66,
+      "priority_band": "Medium",
+      "flags": [
+        "rolling",
+        "language_unspecified"
+      ],
+      "warnings": [
+        "页面未写明语言要求"
+      ],
+      "reasons": {
+        "goal_fit": "命中目标 open_source（priority=high）",
+        "skill_fit": "页面未写明技能要求",
+        "interest_fit": "画像未提供兴趣",
+        "location_fit": "页面未写明地点，无法确认地区匹配",
+        "value_fit": "尚未评估价值维度",
+        "trust": "来源 Tier A，3 项关键事实已官方确认",
+        "novelty": "无本地状态，按新机会处理"
+      }
+    },
+    {
+      "id": "kubecon-cloudnativecon-europe-2027-cfp-演讲征集",
+      "title": "KubeCon + CloudNativeCon Europe 2027 CFP（演讲征集）",
+      "organization": "CNCF / Linux Foundation",
+      "primary_category": "event",
+      "layer": "exploit",
+      "components": {
+        "eligibility": 55,
+        "goal_fit": 100.0,
+        "skill_fit": 50.0,
+        "interest_fit": 55.0,
+        "location_fit": 45.0,
+        "value_fit": 55.0,
+        "trust": 100,
+        "novelty": 80.0
+      },
+      "eligibility_verdict": "Unknown",
+      "eligibility_source": "hard_constraint",
+      "eligibility_kind": "missing_source",
+      "eligibility_reasons": [
+        "页面未写明任何硬性资格条件，也没有可判定的冲突项 → 无法判断（没写要求不等于大概率符合）"
+      ],
+      "match_score": 66,
+      "match_band": "Medium",
+      "urgency": null,
+      "days_remaining": null,
+      "deadline_type": "fixed",
+      "deadline_source": "field",
+      "freshness": "likely_open",
+      "freshness_reason": "官方页面明确标示申请开放；无固定截止日，需复核",
+      "effort": null,
+      "time_commitment": null,
+      "time_to_value": null,
+      "future_optionality": null,
+      "outcomes": {},
+      "produces": [],
+      "small_bet_type": null,
+      "evidence_complete": true,
+      "evidence_missing": [],
+      "source_freshness": "current",
+      "evidence_verified_at": "2026-09-20",
+      "participation_open": true,
+      "actionable": true,
+      "utility": "unknown",
+      "utility_reasons": [
+        "信息不足，无法判断投入价值",
+        "需补：云原生相关实践经验（作为演讲主题）、英语演讲能力"
+      ],
+      "readiness": "minor_preparation",
+      "readiness_detail": {
+        "status": "minor_preparation",
+        "ready_items": [],
+        "missing_items": [
+          "需准备材料：云原生相关实践经验（作为演讲主题）",
+          "需准备材料：英语演讲能力"
+        ],
+        "blockers": [],
+        "estimated_preparation": "几小时到 1–2 天",
+        "notes": []
+      },
+      "conflicts": [],
+      "zone": "recommended_now",
+      "demotion": null,
+      "priority_score": 66,
+      "priority_band": "Medium",
+      "flags": [
+        "language_unspecified"
+      ],
+      "warnings": [
+        "页面未写明语言要求"
+      ],
+      "reasons": {
+        "goal_fit": "命中目标 event（priority=high）",
+        "skill_fit": "页面未写明技能要求",
+        "interest_fit": "画像未提供兴趣",
+        "location_fit": "页面未写明地点，无法确认地区匹配",
+        "value_fit": "尚未评估价值维度",
+        "trust": "来源 Tier A，3 项关键事实已官方确认",
+        "novelty": "无本地状态，按新机会处理"
+      }
+    },
+    {
+      "id": "kubernetes-sig-贡献者路径-good-first-issue-contributo",
+      "title": "Kubernetes SIG 贡献者路径（good first issue -> contributor ladder）",
+      "organization": "Kubernetes / CNCF",
+      "primary_category": "open_source",
+      "layer": "exploit",
+      "components": {
+        "eligibility": 55,
+        "goal_fit": 100.0,
+        "skill_fit": 50.0,
+        "interest_fit": 55.0,
+        "location_fit": 45.0,
+        "value_fit": 55.0,
+        "trust": 100,
+        "novelty": 80.0
+      },
+      "eligibility_verdict": "Unknown",
+      "eligibility_source": "hard_constraint",
+      "eligibility_kind": "missing_source",
+      "eligibility_reasons": [
+        "滚动招募，无固定截止日",
+        "页面未写明任何硬性资格条件，也没有可判定的冲突项 → 无法判断（没写要求不等于大概率符合）"
+      ],
+      "match_score": 66,
+      "match_band": "Medium",
+      "urgency": null,
+      "days_remaining": null,
+      "deadline_type": "rolling",
+      "deadline_source": "field",
+      "freshness": "likely_open",
+      "freshness_reason": "deadline_type=rolling（无固定/弹性截止）",
+      "effort": null,
+      "time_commitment": null,
+      "time_to_value": null,
+      "future_optionality": null,
+      "outcomes": {},
+      "produces": [],
+      "small_bet_type": null,
+      "evidence_complete": true,
+      "evidence_missing": [],
+      "source_freshness": "unknown",
+      "evidence_verified_at": "2026-09-20",
+      "participation_open": true,
+      "actionable": true,
+      "utility": "unknown",
+      "utility_reasons": [
+        "信息不足，无法判断投入价值",
+        "需补：GitHub 账号（提交 PR）、Go / Kubernetes 基础"
+      ],
+      "readiness": "minor_preparation",
+      "readiness_detail": {
+        "status": "minor_preparation",
+        "ready_items": [],
+        "missing_items": [
+          "需准备材料：GitHub 账号（提交 PR）",
+          "需准备材料：Go / Kubernetes 基础"
+        ],
+        "blockers": [],
+        "estimated_preparation": "几小时到 1–2 天",
+        "notes": []
+      },
+      "conflicts": [],
+      "zone": "recommended_now",
+      "demotion": null,
+      "priority_score": 66,
+      "priority_band": "Medium",
+      "flags": [
+        "rolling",
+        "language_unspecified"
+      ],
+      "warnings": [
+        "页面未写明语言要求"
+      ],
+      "reasons": {
+        "goal_fit": "命中目标 open_source（priority=high）",
+        "skill_fit": "页面未写明技能要求",
+        "interest_fit": "画像未提供兴趣",
+        "location_fit": "页面未写明地点，无法确认地区匹配",
+        "value_fit": "尚未评估价值维度",
+        "trust": "来源 Tier A，3 项关键事实已官方确认",
+        "novelty": "无本地状态，按新机会处理"
+      }
+    },
+    {
+      "id": "cloud-native-community-group-cncg-singapore-组织者-",
+      "title": "Cloud Native Community Group (CNCG) Singapore — 组织者 / Chapter Lead",
+      "organization": "CNCF",
+      "primary_category": "networking",
+      "layer": "exploit",
+      "components": {
+        "eligibility": 55,
+        "goal_fit": 100.0,
+        "skill_fit": 50.0,
+        "interest_fit": 55.0,
+        "location_fit": 45.0,
+        "value_fit": 55.0,
+        "trust": 50,
+        "novelty": 80.0
+      },
+      "eligibility_verdict": "Unknown",
+      "eligibility_source": "hard_constraint",
+      "eligibility_kind": "missing_source",
+      "eligibility_reasons": [
+        "滚动招募，无固定截止日",
+        "页面未写明任何硬性资格条件，也没有可判定的冲突项 → 无法判断（没写要求不等于大概率符合）"
+      ],
+      "match_score": 63,
+      "match_band": "Medium",
+      "urgency": null,
+      "days_remaining": null,
+      "deadline_type": "rolling",
+      "deadline_source": "field",
+      "freshness": "likely_open",
+      "freshness_reason": "deadline_type=rolling（无固定/弹性截止）",
+      "effort": null,
+      "time_commitment": null,
+      "time_to_value": null,
+      "future_optionality": null,
+      "outcomes": {},
+      "produces": [],
+      "small_bet_type": null,
+      "evidence_complete": false,
+      "evidence_missing": [
+        "verification_status:verified_official",
+        "evidence.application_status(status=explicit,source_url,verified_at,top-level application_status（机会侧 open/rolling/closed/not_open/unknown）)"
+      ],
+      "source_freshness": "unknown",
+      "evidence_verified_at": null,
+      "participation_open": false,
+      "actionable": true,
+      "utility": "unknown",
+      "utility_reasons": [
+        "信息不足，无法判断投入价值",
+        "需补：新加坡本地或远程组织意愿"
+      ],
+      "readiness": "minor_preparation",
+      "readiness_detail": {
+        "status": "minor_preparation",
+        "ready_items": [],
+        "missing_items": [
+          "需准备材料：新加坡本地或远程组织意愿"
+        ],
+        "blockers": [],
+        "estimated_preparation": "几小时到 1–2 天",
+        "notes": []
+      },
+      "conflicts": [],
+      "zone": "worth_verifying",
+      "demotion": {
+        "code": "verification_not_attempted",
+        "kind": "process",
+        "detail": "本轮没有去核实官方页面（预算/顺序问题，下一轮可补）"
+      },
+      "priority_score": 55,
+      "priority_band": "Low",
+      "flags": [
+        "rolling",
+        "unverified",
+        "evidence_incomplete",
+        "language_unspecified"
+      ],
+      "warnings": [
+        "未找到官方确认来源",
+        "证据不完整：缺少 verification_status:verified_official、evidence.application_status(status=explicit,source_url,verified_at,top-level application_status（机会侧 open/rolling/closed/not_open/unknown）)（不得进入 Recommended now）",
+        "页面未写明语言要求"
+      ],
+      "reasons": {
+        "goal_fit": "命中目标 networking（priority=high）",
+        "skill_fit": "页面未写明技能要求",
+        "interest_fit": "画像未提供兴趣",
+        "location_fit": "页面未写明地点，无法确认地区匹配",
+        "value_fit": "尚未评估价值维度",
+        "trust": "来源 Tier C，未获官方确认",
+        "novelty": "无本地状态，按新机会处理"
+      }
+    },
+    {
+      "id": "cncf-ambassador-计划-年度申请",
+      "title": "CNCF Ambassador 计划（年度申请）",
+      "reason": "closed: 官方页面明确标示申请状态为 closed",
+      "zone": "excluded"
+    },
+    {
+      "id": "lfx-mentorship-cncf-以-mentor-身份参与-需项目-maintainer",
+      "title": "LFX Mentorship（CNCF）— 以 Mentor 身份参与（需项目 maintainer 资格）",
+      "reason": "closed: 官方页面明确标示申请状态为 closed",
+      "zone": "excluded"
+    },
+    {
+      "id": "kubecon-cloudnativecon-north-america-2025-cfp-历史",
+      "title": "KubeCon + CloudNativeCon North America 2025 CFP（历史归档页）",
+      "reason": "closed: 周期年份 2025 早于今年 2026",
+      "zone": "excluded"
+    }
+  ]
+}

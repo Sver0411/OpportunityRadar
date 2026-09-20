@@ -1,0 +1,100 @@
+{
+  "_note": "Case C — 真实用户输入，仅写入用户明确说过的内容，未发明雇主/GPA/毕业年份/具体技术栈/语言成绩/国籍。",
+  "profile_version": 3,
+  "updated_at": "2026-09-20",
+  "life_stage": "working",
+  "career_stage": [
+    "mid_career"
+  ],
+  "years_experience": 5,
+  "education": {
+    "school": null,
+    "school_country": null,
+    "degree": null,
+    "major": "backend / cloud-native (not a degree major; field of work)",
+    "major_family": "cs_software",
+    "current_year": null,
+    "expected_graduation": null,
+    "GPA": null
+  },
+  "skills": [
+    {
+      "name": "backend",
+      "level": "unknown"
+    },
+    {
+      "name": "cloud-native",
+      "level": "unknown"
+    }
+  ],
+  "languages": [],
+  "experience": {
+    "years_experience": 5,
+    "projects": null,
+    "github": null,
+    "research": null,
+    "internships": null,
+    "competitions": null,
+    "open_source": null,
+    "certificates": null,
+    "portfolio": null
+  },
+  "interests": [],
+  "goals": [
+    {
+      "type": "open_source",
+      "priority": "high",
+      "note": "maintainer/committer 与 mentorship 是升 Senior 的可见证据（由'升 Senior'目标推导出，非用户原话）"
+    },
+    {
+      "type": "networking",
+      "priority": "high",
+      "note": "专业协会/社区组织者/专家网络（推导出）"
+    },
+    {
+      "type": "event",
+      "priority": "high",
+      "note": "CFP / 演讲 / program committee，建立团队外的可见度（推导出）"
+    },
+    {
+      "type": "research",
+      "priority": "medium",
+      "note": "技术委员会 / 标准组织 / 工作组参与（推导出）"
+    },
+    {
+      "type": "skill",
+      "priority": "medium",
+      "note": "行业认证（云原生方向）（推导出）"
+    },
+    {
+      "type": "funding",
+      "priority": "low",
+      "note": "奖项 / 专家网络（reputation 资本）（推导出）"
+    }
+  ],
+  "constraints": {
+    "preferred_country": [
+      "Singapore"
+    ],
+    "preferred_city": null,
+    "remote": true,
+    "relocation": false,
+    "unpaid": true,
+    "budget": null,
+    "weekly_time": null,
+    "available_period": null,
+    "visa": null,
+    "language_constraint": null
+  },
+  "nationality": null,
+  "_source": "user_stated",
+  "_user_input": "我现在不想跳槽，就是想让自己未来更容易升 Senior。我是做后端/云原生的，五年经验，base 在新加坡，远程也行。",
+  "_notes": [
+    "不要推荐新工作/跳槽岗位（career 类招聘）；重点是能增强升 Senior 资本的机会。",
+    "五年经验 = 接近 Senior 门槛，应侧重可见度、技术领导力、跨团队影响力。",
+    "base 新加坡，远程也接受；地区=新加坡+全球远程，主语言英文（en-SG/en）。",
+    "未提供的字段（学历/雇主/技术栈/GitHub/国籍/语言成绩）一律 Unknown，不影响目标推导。"
+  ],
+  "_session": "C",
+  "user_input": "我现在不想跳槽，就是想让自己未来更容易升 Senior。我是做后端/云原生的，五年经验，base 在新加坡，远程也行。"
+}

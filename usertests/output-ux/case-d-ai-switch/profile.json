@@ -1,0 +1,23 @@
+{
+  "_session": "D",
+  "user_input": "（本轮 D 的 prompt 无存档会话；此处使用最接近的真实 baseline：3 年嵌入式工程师想转 Edge AI，每周 6h）",
+  "life_stage": [
+    "working"
+  ],
+  "career_stage": [
+    "early_career"
+  ],
+  "constraints": {
+    "weekly_time": "6",
+    "preferred_country": [
+      "Japan"
+    ]
+  },
+  "goals": [
+    {
+      "type": "skill",
+      "priority": "high"
+    }
+  ],
+  "_note": "表达层对照用画像；仅用于渲染，不用于重新判定资格。"
+}

@@ -1,0 +1,58 @@
+{
+  "budget_hours": null,
+  "planned_hours": 40.0,
+  "resource_conflict": null,
+  "budget_unknown": true,
+  "items": [
+    {
+      "opportunity_id": "oist-research-internship-spring-2027",
+      "title": "OIST Research Internship — Spring 2027 round",
+      "category": "research",
+      "zone": "recommended_now",
+      "utility": "medium",
+      "match": 67,
+      "roles": [
+        "bridge",
+        "now",
+        "high_upside",
+        "long_term"
+      ],
+      "primary_role": "bridge",
+      "weekly_hours": 40.0,
+      "hours_known": true,
+      "official_url": null
+    },
+    {
+      "opportunity_id": "utokyo-research-student-kenkyusei",
+      "title": "東京大学 研究生（Research Student）制度",
+      "category": "research",
+      "zone": "recommended_now",
+      "utility": "medium",
+      "match": 67,
+      "roles": [
+        "bridge",
+        "now",
+        "high_upside",
+        "long_term"
+      ],
+      "primary_role": "bridge",
+      "weekly_hours": null,
+      "hours_known": false,
+      "official_url": null
+    }
+  ],
+  "dropped": [],
+  "roles_present": [
+    "bridge",
+    "now",
+    "high_upside",
+    "long_term"
+  ],
+  "diversity": {
+    "roles": 4,
+    "categories": 1
+  },
+  "unknown_hours_items": 1,
+  "alternatives": [],
+  "note": "每周可用时间未知 → 无法校验资源约束，请先确认 constraints.weekly_time；部分机会未写明每周投入，未计入总和（已在 unknown_hours_items 标注）"
+}

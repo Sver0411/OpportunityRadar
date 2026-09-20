@@ -1,0 +1,79 @@
+{
+  "budget_hours": null,
+  "planned_hours": 0.0,
+  "resource_conflict": null,
+  "budget_unknown": true,
+  "items": [
+    {
+      "opportunity_id": "cncf-technical-advisory-group-tag-参与-公开贡献与领导力路径",
+      "title": "CNCF Technical Advisory Group (TAG) 参与 — 公开贡献与领导力路径",
+      "category": "open_source",
+      "zone": "recommended_now",
+      "utility": "unknown",
+      "match": 66,
+      "roles": [
+        "now"
+      ],
+      "primary_role": "now",
+      "weekly_hours": null,
+      "hours_known": false,
+      "official_url": null
+    },
+    {
+      "opportunity_id": "cncf-项目-maintainer-路径-contributor-ladder-owners-",
+      "title": "CNCF 项目 Maintainer 路径（contributor ladder -> OWNERS 提名）",
+      "category": "open_source",
+      "zone": "recommended_now",
+      "utility": "unknown",
+      "match": 66,
+      "roles": [
+        "now"
+      ],
+      "primary_role": "now",
+      "weekly_hours": null,
+      "hours_known": false,
+      "official_url": null
+    },
+    {
+      "opportunity_id": "kubecon-cloudnativecon-europe-2027-cfp-演讲征集",
+      "title": "KubeCon + CloudNativeCon Europe 2027 CFP（演讲征集）",
+      "category": "event",
+      "zone": "recommended_now",
+      "utility": "unknown",
+      "match": 66,
+      "roles": [
+        "now"
+      ],
+      "primary_role": "now",
+      "weekly_hours": null,
+      "hours_known": false,
+      "official_url": null
+    },
+    {
+      "opportunity_id": "kubernetes-sig-贡献者路径-good-first-issue-contributo",
+      "title": "Kubernetes SIG 贡献者路径（good first issue -> contributor ladder）",
+      "category": "open_source",
+      "zone": "recommended_now",
+      "utility": "unknown",
+      "match": 66,
+      "roles": [
+        "now"
+      ],
+      "primary_role": "now",
+      "weekly_hours": null,
+      "hours_known": false,
+      "official_url": null
+    }
+  ],
+  "dropped": [],
+  "roles_present": [
+    "now"
+  ],
+  "diversity": {
+    "roles": 1,
+    "categories": 2
+  },
+  "unknown_hours_items": 4,
+  "alternatives": [],
+  "note": "每周可用时间未知 → 无法校验资源约束，请先确认 constraints.weekly_time；部分机会未写明每周投入，未计入总和（已在 unknown_hours_items 标注）"
+}

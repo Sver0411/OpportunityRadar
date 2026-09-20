@@ -1,0 +1,242 @@
+{
+  "_note": "来自 usertests/case-c-promotion/record-si.json 的已核验候选，归一化为 opportunity 形状后重新过真实 gate。",
+  "opportunities": [
+    {
+      "id": "cncf-technical-advisory-group-tag-参与-公开贡献与领导力路径",
+      "title": "CNCF Technical Advisory Group (TAG) 参与 — 公开贡献与领导力路径",
+      "organization": "Cloud Native Computing Foundation",
+      "primary_category": "open_source",
+      "official_url": "https://contribute.cncf.io/community/tags",
+      "application_status": "rolling",
+      "deadline": null,
+      "deadline_type": "rolling",
+      "verification_status": "verified_official",
+      "evidence": {
+        "application_status": {
+          "status": "explicit",
+          "source_url": "https://contribute.cncf.io/community/tags",
+          "verified_at": "2026-09-20",
+          "evidence_summary": "All TAG meetings are open to the public. No registration or membership required. Path to Leadership: Chairs nominate Tech Leads; community elects Chairs."
+        }
+      },
+      "trust_tier": "A",
+      "effort": null,
+      "produces": [],
+      "required_materials": [
+        "对某一云原生领域的兴趣（TAG 参与）",
+        "CNCF Slack 账号（免费，参与沟通频道）"
+      ],
+      "skills_required": [],
+      "last_verified": "2026-09-20",
+      "layer": "exploit",
+      "notes": [],
+      "_source_family": "working_group"
+    },
+    {
+      "id": "kubecon-cloudnativecon-europe-2027-cfp-演讲征集",
+      "title": "KubeCon + CloudNativeCon Europe 2027 CFP（演讲征集）",
+      "organization": "CNCF / Linux Foundation",
+      "primary_category": "event",
+      "official_url": "https://events.linuxfoundation.org/kubecon-cloudnativecon-europe/program/cfp",
+      "application_status": "open",
+      "deadline": null,
+      "deadline_type": "fixed",
+      "verification_status": "verified_official",
+      "evidence": {
+        "application_status": {
+          "status": "explicit",
+          "source_url": "https://events.linuxfoundation.org/kubecon-cloudnativecon-europe/program/cfp",
+          "verified_at": "2026-09-20",
+          "evidence_summary": "Submissions are due by 11 October at 11:59 PM CEST. CFP Closes 11 October 2026; Event Dates 15-18 March 2027, Barcelona."
+        }
+      },
+      "trust_tier": "A",
+      "effort": null,
+      "produces": [],
+      "required_materials": [
+        "云原生相关实践经验（作为演讲主题）",
+        "英语演讲能力"
+      ],
+      "skills_required": [],
+      "last_verified": "2026-09-20",
+      "layer": "exploit",
+      "notes": [],
+      "_source_family": "community_event"
+    },
+    {
+      "id": "kubernetes-sig-贡献者路径-good-first-issue-contributo",
+      "title": "Kubernetes SIG 贡献者路径（good first issue -> contributor ladder）",
+      "organization": "Kubernetes / CNCF",
+      "primary_category": "open_source",
+      "official_url": "https://www.kubernetes.dev/docs/guide/first-contribution/",
+      "application_status": "rolling",
+      "deadline": null,
+      "deadline_type": "rolling",
+      "verification_status": "verified_official",
+      "evidence": {
+        "application_status": {
+          "status": "explicit",
+          "source_url": "https://www.kubernetes.dev/docs/guide/first-contribution/",
+          "verified_at": "2026-09-20",
+          "evidence_summary": "A SIG is an open, community effort. Anybody is welcome to jump into a SIG... browse the issues labeled as a good first issue. No application required."
+        }
+      },
+      "trust_tier": "A",
+      "effort": null,
+      "produces": [],
+      "required_materials": [
+        "GitHub 账号（提交 PR）",
+        "Go / Kubernetes 基础"
+      ],
+      "skills_required": [],
+      "last_verified": "2026-09-20",
+      "layer": "exploit",
+      "notes": [],
+      "_source_family": "contributor_guide"
+    },
+    {
+      "id": "cncf-项目-maintainer-路径-contributor-ladder-owners-",
+      "title": "CNCF 项目 Maintainer 路径（contributor ladder -> OWNERS 提名）",
+      "organization": "CNCF",
+      "primary_category": "open_source",
+      "official_url": "https://www.cncf.io/blog/2026/08/26/governance-guidance-for-cncf-projects-choosing-the-right-structure-for-your-projects-size-and-stage/",
+      "application_status": "rolling",
+      "deadline": null,
+      "deadline_type": "rolling",
+      "verification_status": "verified_official",
+      "evidence": {
+        "application_status": {
+          "status": "explicit",
+          "source_url": "https://www.cncf.io/blog/2026/08/26/governance-guidance-for-cncf-projects-choosing-the-right-structure-for-your-projects-size-and-stage/",
+          "verified_at": "2026-09-20",
+          "evidence_summary": "Adopt the CNCF contributor ladder - contributor, reviewer, maintainer. Maintainer process: nominated via PR to OWNERS file, approved by 2/3 current Maintainers. Ongoing (rolling) via contribution."
+        }
+      },
+      "trust_tier": "A",
+      "effort": null,
+      "produces": [],
+      "required_materials": [
+        "成为 CNCF 项目 contributor（先合并 PR）"
+      ],
+      "skills_required": [],
+      "last_verified": "2026-09-20",
+      "layer": "exploit",
+      "notes": [],
+      "_source_family": "foundation"
+    },
+    {
+      "id": "cncf-ambassador-计划-年度申请",
+      "title": "CNCF Ambassador 计划（年度申请）",
+      "organization": "CNCF",
+      "primary_category": "networking",
+      "official_url": "https://www.cncf.io/people/ambassadors/",
+      "application_status": "closed",
+      "deadline": null,
+      "deadline_type": "recurring",
+      "verification_status": "verified_official",
+      "evidence": {
+        "application_status": {
+          "status": "explicit",
+          "source_url": "https://www.cncf.io/people/ambassadors/FAQ/",
+          "verified_at": "2026-09-20",
+          "evidence_summary": "The program will accept applications for Ambassadors once a year. Application notifications sent the September after applications have closed. 2026 cycle closed; next application window 2027."
+        }
+      },
+      "trust_tier": "A",
+      "effort": null,
+      "produces": [],
+      "required_materials": [
+        "CNCF SIG/TAG 成员 或 项目贡献",
+        "公开演讲 / 内容创作 / 社区组织（至少两项）"
+      ],
+      "skills_required": [],
+      "last_verified": "2026-09-20",
+      "layer": "exploit",
+      "notes": [],
+      "_source_family": "maintainer_program"
+    },
+    {
+      "id": "lfx-mentorship-cncf-以-mentor-身份参与-需项目-maintainer",
+      "title": "LFX Mentorship（CNCF）— 以 Mentor 身份参与（需项目 maintainer 资格）",
+      "organization": "Linux Foundation / CNCF",
+      "primary_category": "networking",
+      "official_url": "https://github.com/cncf/mentoring",
+      "application_status": "closed",
+      "deadline": null,
+      "deadline_type": "recurring",
+      "verification_status": "verified_official",
+      "evidence": {
+        "application_status": {
+          "status": "explicit",
+          "source_url": "https://github.com/cncf/mentoring/blob/main/programs/lfx-mentorship/2026/03-Sep-Nov/README.md",
+          "verified_at": "2026-09-20",
+          "evidence_summary": "Term 03 - 2026 Sep-Nov Status: Planning. Mentee Applications Open Aug 3 - Aug 18; Mentor project proposals Jul 1-28 (both closed). Next window Term 1 2027."
+        }
+      },
+      "trust_tier": "A",
+      "effort": null,
+      "produces": [],
+      "required_materials": [
+        "CNCF 项目 maintainer 资格（才能以 mentor 身份提案项目）"
+      ],
+      "skills_required": [],
+      "last_verified": "2026-09-20",
+      "layer": "exploit",
+      "notes": [],
+      "_source_family": "mentorship_program"
+    },
+    {
+      "id": "cloud-native-community-group-cncg-singapore-组织者-",
+      "title": "Cloud Native Community Group (CNCG) Singapore — 组织者 / Chapter Lead",
+      "organization": "CNCF",
+      "primary_category": "networking",
+      "official_url": "https://community.cncf.io/",
+      "application_status": null,
+      "deadline": null,
+      "deadline_type": "rolling",
+      "verification_status": "unverified",
+      "evidence": {
+        "application_status": null,
+        "source_url": null,
+        "verified_at": null,
+        "evidence_summary": null
+      },
+      "trust_tier": "C",
+      "effort": null,
+      "produces": [],
+      "required_materials": [
+        "新加坡本地或远程组织意愿"
+      ],
+      "skills_required": [],
+      "last_verified": "2026-09-20",
+      "layer": "exploit",
+      "notes": []
+    },
+    {
+      "id": "kubecon-cloudnativecon-north-america-2025-cfp-历史",
+      "title": "KubeCon + CloudNativeCon North America 2025 CFP（历史归档页）",
+      "organization": "CNCF / Linux Foundation",
+      "primary_category": "event",
+      "official_url": "https://events.linuxfoundation.org/archive/2025/kubecon-cloudnativecon-north-america/program/cfp",
+      "application_status": null,
+      "deadline": null,
+      "deadline_type": "fixed",
+      "verification_status": "verified_official",
+      "evidence": {
+        "application_status": null,
+        "source_url": "https://events.linuxfoundation.org/archive/2025/kubecon-cloudnativecon-north-america/program/cfp",
+        "verified_at": "2026-09-20",
+        "evidence_summary": "Archive page (URL path /archive/2025/); event already passed — cannot satisfy current-evidence gate."
+      },
+      "trust_tier": "A",
+      "effort": null,
+      "produces": [],
+      "required_materials": [],
+      "skills_required": [],
+      "last_verified": "2026-09-20",
+      "layer": "exploit",
+      "notes": [],
+      "_source_family": "community_event"
+    }
+  ]
+}

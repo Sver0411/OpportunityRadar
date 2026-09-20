@@ -1,0 +1,42 @@
+{
+  "_note": "Persona B 画像。用户**没有**说自己是在校生还是职场人 —— 因此 life_stage / career_stage / 学历层级一律留 Unknown，不假设「大三」，也不继承任何技术栈。",
+  "_session": "B",
+  "user_input": "我想明年申请日本计算机相关修士，现在还在准备日语，科研经历比较少，也不知道现在应该先补什么，有没有值得做的机会？",
+  "profile_version": 1,
+  "updated_at": "2026-09-21",
+  "life_stage": [],
+  "career_stage": null,
+  "education": {
+    "degree": null,
+    "major": null,
+    "school": null,
+    "school_country": null,
+    "target_degree": "master",
+    "target_field": "computer science"
+  },
+  "skills": [],
+  "interests": [],
+  "languages": [
+    {"language": "Japanese", "level": null, "_source": "user_stated",
+     "note": "用户说『现在还在准备日语』—— 未给出当前等级或目标等级，因此 level 保持 Unknown"}
+  ],
+  "experience": {
+    "research": null,
+    "_source": "user_stated",
+    "note": "用户明确说『科研经历比较少』—— 记录为自述，不写成 research=[]（那等于断言为零）"
+  },
+  "constraints": {
+    "preferred_country": ["Japan"],
+    "remote": null,
+    "budget": null,
+    "weekly_time": null,
+    "available_period": null
+  },
+  "goals": [
+    {"type": "education", "priority": "high",
+     "note": "明年申请日本计算机相关修士（用户原话）"}
+  ],
+  "nationality": null,
+  "_unknown_must_affect_output": ["是否在校/已毕业", "在读年级", "所在地", "日语当前等级",
+                                  "每周可用时间", "预算", "技术背景"]
+}

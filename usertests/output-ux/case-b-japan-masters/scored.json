@@ -1,0 +1,295 @@
+{
+  "zones": {
+    "recommended_now": 2,
+    "worth_verifying": 1,
+    "excluded": 1
+  },
+  "results": [
+    {
+      "id": "jasso-mext-scholarship",
+      "title": "JASSO / MEXT 奨学金（研究留学生・私費外国人学習奨励費）",
+      "organization": "JASSO / 文部科学省（MEXT）",
+      "primary_category": "funding",
+      "layer": "adjacent",
+      "components": {
+        "eligibility": 55,
+        "goal_fit": 80.0,
+        "skill_fit": 50.0,
+        "interest_fit": 55.0,
+        "location_fit": 95.0,
+        "value_fit": 55.0,
+        "trust": 100,
+        "novelty": 80.0
+      },
+      "eligibility_verdict": "Unknown",
+      "eligibility_source": "hard_constraint",
+      "eligibility_kind": "missing_profile",
+      "eligibility_reasons": [
+        "页面限定学历 ['undergraduate', 'master', 'doctor']，画像未提供学历 → 无法判断"
+      ],
+      "match_score": 67,
+      "match_band": "Medium",
+      "urgency": null,
+      "days_remaining": null,
+      "deadline_type": "unknown",
+      "deadline_source": "field",
+      "freshness": "recurring",
+      "freshness_reason": "页面提示周期性开放 → 当前周期需证据确认",
+      "effort": null,
+      "time_commitment": null,
+      "time_to_value": null,
+      "future_optionality": null,
+      "outcomes": {},
+      "produces": [],
+      "small_bet_type": null,
+      "evidence_complete": false,
+      "evidence_missing": [
+        "evidence.application_status(status=explicit,source_url,verified_at,top-level application_status（机会侧 open/rolling/closed/not_open/unknown）)"
+      ],
+      "source_freshness": "unknown",
+      "evidence_verified_at": null,
+      "participation_open": false,
+      "actionable": false,
+      "utility": "unknown",
+      "utility_reasons": [
+        "信息不足，无法判断投入价值"
+      ],
+      "readiness": "unknown",
+      "readiness_detail": {
+        "status": "unknown",
+        "ready_items": [],
+        "missing_items": [],
+        "blockers": [],
+        "estimated_preparation": "无法估计",
+        "notes": [
+          "页面未写明前置要求，且画像缺少可比对信息 → 准备度未知"
+        ]
+      },
+      "conflicts": [],
+      "zone": "worth_verifying",
+      "demotion": {
+        "code": "page_cannot_confirm",
+        "kind": "fact",
+        "detail": "页面无法确认当前是否可参与（freshness=recurring，无参与入口证据）"
+      },
+      "priority_score": 67,
+      "priority_band": "Medium",
+      "flags": [
+        "no_deadline",
+        "readiness_unknown",
+        "evidence_incomplete",
+        "language_unspecified",
+        "provenance_unavailable"
+      ],
+      "warnings": [
+        "证据不完整：缺少 evidence.application_status(status=explicit,source_url,verified_at,top-level application_status（机会侧 open/rolling/closed/not_open/unknown）)（不得进入 Recommended now）",
+        "页面未写明语言要求"
+      ],
+      "reasons": {
+        "goal_fit": "作为次要类别命中目标 education",
+        "skill_fit": "画像未提供技能，按中性处理",
+        "interest_fit": "画像未提供兴趣",
+        "location_fit": "国家/地区匹配：Japan",
+        "value_fit": "尚未评估价值维度",
+        "trust": "来源 Tier A，3 项关键事实已官方确认",
+        "novelty": "无本地状态，按新机会处理"
+      }
+    },
+    {
+      "id": "oist-research-internship-spring-2027",
+      "title": "OIST Research Internship — Spring 2027 round",
+      "organization": "Okinawa Institute of Science and Technology (OIST)",
+      "primary_category": "research",
+      "layer": "exploit",
+      "components": {
+        "eligibility": 55,
+        "goal_fit": 80.0,
+        "skill_fit": 50.0,
+        "interest_fit": 55.0,
+        "location_fit": 95.0,
+        "value_fit": 55.0,
+        "trust": 100,
+        "novelty": 80.0
+      },
+      "eligibility_verdict": "Unknown",
+      "eligibility_source": "hard_constraint",
+      "eligibility_kind": "missing_profile",
+      "eligibility_reasons": [
+        "页面限定学历 ['undergraduate', 'master', 'graduate']，画像未提供学历 → 无法判断",
+        "页面有学校限制（currently enrolled students must have ap），画像未提供学校信息",
+        "页面要求 documents must be in English; no IELTS/TOEFL required，画像中未记录该语言 → 无法判断（缺失不等于不会）",
+        "页面有专业要求，但画像未提供专业 → 无法判断"
+      ],
+      "match_score": 67,
+      "match_band": "Medium",
+      "urgency": 68.0,
+      "days_remaining": 24,
+      "deadline_type": "fixed",
+      "deadline_source": "field+parse",
+      "freshness": "open",
+      "freshness_reason": "截止日 2026-10-15（还有 24 天）",
+      "effort": {
+        "weekly_commitment": "40 h"
+      },
+      "time_commitment": "3-6 months, full-time, on site in Okinawa",
+      "time_to_value": "months",
+      "future_optionality": {
+        "level": "high",
+        "reason": "官方定位就是为后续申请研究型学位积累研究经历"
+      },
+      "outcomes": {
+        "research": "high",
+        "network": "high",
+        "credential": "medium",
+        "admission": "high"
+      },
+      "produces": [
+        "真实实验室研究经历",
+        "教授推荐信潜力",
+        "研究实习结业记录"
+      ],
+      "small_bet_type": null,
+      "evidence_complete": true,
+      "evidence_missing": [],
+      "source_freshness": "current",
+      "evidence_verified_at": "2026-09-21",
+      "participation_open": true,
+      "actionable": true,
+      "utility": "medium",
+      "utility_reasons": [
+        "值得考虑，但有一项成本或不确定性需要先确认",
+        "需补：成绩单与学位证明、Statement of Purpose、CV"
+      ],
+      "readiness": "major_preparation",
+      "readiness_detail": {
+        "status": "major_preparation",
+        "ready_items": [],
+        "missing_items": [
+          "需准备材料：成绩单与学位证明",
+          "需准备材料：Statement of Purpose",
+          "需准备材料：CV",
+          "需准备材料：1-3 封推荐信",
+          "需准备材料：护照",
+          "需准备材料：证件照",
+          "需准备材料：申请表与申请费"
+        ],
+        "blockers": [],
+        "estimated_preparation": "两周以上",
+        "notes": []
+      },
+      "conflicts": [],
+      "zone": "recommended_now",
+      "demotion": null,
+      "priority_score": 67,
+      "priority_band": "Medium",
+      "flags": [],
+      "warnings": [],
+      "reasons": {
+        "goal_fit": "作为次要类别命中目标 education",
+        "skill_fit": "画像未提供技能，按中性处理",
+        "interest_fit": "画像未提供兴趣",
+        "location_fit": "国家/地区匹配：Japan",
+        "value_fit": "尚未评估价值维度",
+        "trust": "来源 Tier A，3 项关键事实已官方确认",
+        "novelty": "无本地状态，按新机会处理"
+      }
+    },
+    {
+      "id": "utokyo-research-student-kenkyusei",
+      "title": "東京大学 研究生（Research Student）制度",
+      "organization": "The University of Tokyo（各研究科）",
+      "primary_category": "research",
+      "layer": "adjacent",
+      "components": {
+        "eligibility": 55,
+        "goal_fit": 80.0,
+        "skill_fit": 50.0,
+        "interest_fit": 55.0,
+        "location_fit": 95.0,
+        "value_fit": 55.0,
+        "trust": 100,
+        "novelty": 80.0
+      },
+      "eligibility_verdict": "Unknown",
+      "eligibility_source": "hard_constraint",
+      "eligibility_kind": "missing_profile",
+      "eligibility_reasons": [
+        "页面限定学历 ['undergraduate', 'master', 'graduate']，画像未提供学历 → 无法判断",
+        "页面语言要求 需要与教授直接沟通（日语或英语，视研究室而定） 无法量化为可比较的等级 → 交语义判断，不做硬性判定"
+      ],
+      "match_score": 67,
+      "match_band": "Medium",
+      "urgency": null,
+      "days_remaining": null,
+      "deadline_type": "recurring",
+      "deadline_source": "field",
+      "freshness": "recurring",
+      "freshness_reason": "周期性开放 → 当前周期是否开放需要页面证据",
+      "effort": {
+        "weekly_commitment": null
+      },
+      "time_commitment": null,
+      "time_to_value": "months",
+      "future_optionality": {
+        "level": "high",
+        "reason": "直接指向修士申请与教授推荐"
+      },
+      "outcomes": {
+        "research": "high",
+        "network": "high",
+        "admission": "high"
+      },
+      "produces": [
+        "实验室研究接触",
+        "教授关系",
+        "研究经历（非学位）"
+      ],
+      "small_bet_type": null,
+      "evidence_complete": true,
+      "evidence_missing": [],
+      "source_freshness": "unknown",
+      "evidence_verified_at": "2026-09-20",
+      "participation_open": true,
+      "actionable": true,
+      "utility": "medium",
+      "utility_reasons": [
+        "值得考虑，但有一项成本或不确定性需要先确认",
+        "需补：教授内諾、入学申请表格"
+      ],
+      "readiness": "minor_preparation",
+      "readiness_detail": {
+        "status": "minor_preparation",
+        "ready_items": [],
+        "missing_items": [
+          "需准备材料：教授内諾",
+          "需准备材料：入学申请表格"
+        ],
+        "blockers": [],
+        "estimated_preparation": "几小时到 1–2 天",
+        "notes": []
+      },
+      "conflicts": [],
+      "zone": "recommended_now",
+      "demotion": null,
+      "priority_score": 67,
+      "priority_band": "Medium",
+      "flags": [],
+      "warnings": [],
+      "reasons": {
+        "goal_fit": "作为次要类别命中目标 education",
+        "skill_fit": "画像未提供技能，按中性处理",
+        "interest_fit": "画像未提供兴趣",
+        "location_fit": "国家/地区匹配：Japan",
+        "value_fit": "尚未评估价值维度",
+        "trust": "来源 Tier A，3 项关键事实已官方确认",
+        "novelty": "无本地状态，按新机会处理"
+      }
+    },
+    {
+      "id": "jlpt-december-2026",
+      "title": "JLPT 日本語能力試験 2026 年 12 月场",
+      "reason": "expired: 截止日 2026-09-08 已过",
+      "zone": "excluded"
+    }
+  ]
+}
