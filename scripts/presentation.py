@@ -329,6 +329,7 @@ def format_allocation(profile, items=None, mainline_id=None) -> dict:
         return {"mode": "qualitative", "items": [{"level": r["level"],
                                                   "opportunity_id": r["opportunity_id"],
                                                   "title": r["title"]} for r in rows],
+                "mainline": mainline_id,
                 "note": "这些机会都没写明小时数，因此不做时间加总（只能给主线/辅线/低成本的排序）"}
     total = sum(known)
     note = f"其中 {len(known)} 条有明确小时数，合计约 {round(total, 1)}h/周"
@@ -814,6 +815,9 @@ _HOURS_UNIT_RE = re.compile(
     r"(\d+(?:\.\d+)?)\s*(?:h\b|hr\b|hrs\b|hour|hours|小時|小时|時間)")
 #: 周期/时长单位：出现在文本里且**没有**小时单位时，这个数字不是"每周小时"
 _DURATION_UNIT_RE = re.compile(r"月|ヶ月|か月|month|year|年|週間|weeks?\b|days?\b|日")
+#: 明确"这不是每周投入"的措辞（D 独立会话里出现过 "Build time 24 hours（未标注周投入量）"）
+_NOT_WEEKLY_MARKERS = ("未标注", "未写明", "未提供", "不确定", "not stated", "not specified",
+                       "unknown", "per event", "during the event", "集中", "期间", "比赛周末")
 
 
 def _parse_hours(text):
@@ -825,6 +829,8 @@ def _parse_hours(text):
     if text is None:
         return None
     t = str(text)
+    if any(m in t for m in _NOT_WEEKLY_MARKERS):
+        return None                     # 文本自己说了"这不是每周投入量"
     hits = _HOURS_UNIT_RE.findall(t)
     if hits:
         return max(float(x) for x in hits)
@@ -846,10 +852,17 @@ def _weekly_commitment(row):
 def _effort(row) -> str:
     weekly = _weekly_commitment(row)
     if weekly:
-        txt = str(weekly)
-        if re.search(r"\d", txt):
+        txt = str(weekly).strip()
+        hours = _parse_hours(txt)
+        # 只有"这句话就是在说每周几小时"时才写成"每周约 X"；
+        # 否则原样呈现 —— 例如 "比赛周末集中构架，官方标注 Build time 24 hours（未标注周投入量）"
+        # 不能被渲染成"每周约 24 小时"。
+        if hours is not None and len(txt) <= 12:
             return f"每周约 {txt}"
-        return f"{txt}（官方未给出小时数）"
+        return f"{txt}（官方未给出每周小时数）"
+    if row.get("time_commitment"):
+        return str(row["time_commitment"])
+    return "官方页未写明投入强度"
     if row.get("time_commitment"):
         return str(row["time_commitment"])
     return "官方页未写明投入强度"

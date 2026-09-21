@@ -76,11 +76,13 @@ class TestNoRegressionAcrossPersonas(unittest.TestCase):
                 continue
             self.assertIn("主线", set(levels.values()), f"{case} 应有且只有一个主线")
             self.assertEqual(list(levels.values()).count("主线"), 1)
-            if case == "D":
-                # D 的具体主线正确性在下面单独断言；这里只保证不是"第一个就是主线"
-                self.assertNotEqual(ans.get("allocation", {}).get("mainline"),
-                                    (alloc.get("items") or [{}])[0].get("opportunity_id")
-                                    if len(alloc.get("items") or []) > 1 else None)
+            # 主线必须是 _mainline_key 意义上的最优项（可能恰好与列表首项重合 —— 那是合法的）
+            _, _, _, rows, _ = render(case)
+            items = [r for r in rows if r.get("id") in levels]
+            if items:
+                best = min(items, key=P._mainline_key)["id"]
+                self.assertEqual(alloc.get("mainline"), best,
+                                 f"{case} 的主线必须是目标相关性最高的那条")
 
 
 class TestCaseDFixtures(unittest.TestCase):
@@ -172,3 +174,29 @@ class TestExploreLenses(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestLastMilePolish(unittest.TestCase):
+    """D2 独立会话暴露的两处展示缺陷。"""
+
+    def test_qualitative_allocation_still_reports_the_mainline(self):
+        prof = {"constraints": {}}
+        items = [{"id": "a", "title": "A"}, {"id": "b", "title": "B"}]
+        out = P.format_allocation(prof, items, mainline_id="b")
+        self.assertEqual(out["mainline"], "b")
+        self.assertEqual(out["mode"], "qualitative")
+
+    def test_non_weekly_hours_text_is_not_called_weekly(self):
+        """`Build time 24 hours（未标注周投入量）` 不能被渲染成"每周约 24 小时"。"""
+        self.assertIsNone(P._parse_hours("比赛周末集中构架，官方标注 Build time 24 hours（未标注周投入量）"))
+        card = P.recommendation_card(
+            {"id": "x", "title": "Hackathon",
+             "effort": {"weekly_commitment": "比赛周末集中构架，官方标注 Build time 24 hours（未标注周投入量）"}},
+            {"life_stage": ["working"]})
+        self.assertNotIn("每周约", card["effort"])
+        self.assertIn("未给出每周小时数", card["effort"])
+
+    def test_short_hour_text_still_reads_weekly(self):
+        card = P.recommendation_card({"id": "y", "title": "Z",
+                                      "effort": {"weekly_commitment": "5 h"}}, {})
+        self.assertEqual(card["effort"], "每周约 5 h")

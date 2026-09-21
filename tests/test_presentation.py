@@ -409,7 +409,8 @@ class TestWhyFitIsUserFacing(unittest.TestCase):
 
     def test_non_numeric_effort_is_phrased_honestly(self):
         card = P.recommendation_card({**REAL_ROW, "effort": "self-paced"}, FULL)
-        self.assertIn("未给出小时数", card["effort"])
+        self.assertIn("未给出", card["effort"])
+        self.assertIn("小时数", card["effort"])
 
     def test_card_render_has_no_internal_brackets(self):
         row = {**REAL_ROW, "eligibility_reasons": ["页面限定学历 ['master']，画像未提供学历 → 无法判断"]}
