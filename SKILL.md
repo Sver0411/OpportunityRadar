@@ -123,6 +123,8 @@ Deterministic helpers (Full Mode; never re-implement inline):
 | `scripts/evidence.py` | Pre-gate evidence check: canonical source + official verification + dated application-status evidence; distinguishes "we forgot to record" from "the page cannot confirm" |
 | `scripts/portfolio.py` | Resource-constrained portfolio (now / bridge / low_cost / high_upside / long_term / explore), never exceeds the user's weekly budget |
 | `scripts/presentation.py` | Output adapter (no judgement): decision confidence, category-aware participation wording, recommendation cards, explore axes, self-directed fallback separation, unsupported-precision guard |
+| `scripts/preflight.py` | Developer preflight: compile → run all unit tests → validate the skill package. Run it before committing (`python3 scripts/preflight.py`); non-zero exit means do not commit. |
+| `scripts/preflight.py` | Developer preflight: compile → run all unit tests → validate the skill package. Run it before committing (`python3 scripts/preflight.py`); non-zero exit means do not commit. |
 
 Single source of truth: enums, weights, tracked fields and ID/URL rules live in
 `scripts/common.py`; `schemas/*.json` and the references must match it.

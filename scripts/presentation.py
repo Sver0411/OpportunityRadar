@@ -352,15 +352,22 @@ def action_label(row, confidence=None, goal_known=True) -> dict:
 EXPLORE_AXES = ("build", "contribute", "research", "volunteer", "community",
                 "creative", "entrepreneurship", "cross_domain")
 
+#: 只保留"该类别必然意味着这个轴"的**无歧义**映射。
+#: 有歧义的类别（competition / hobby / event / career / skill_development / funding /
+#: language）**不直接授予轴** —— 一场诗歌比赛和一场创业比赛都是 competition，
+#: 把它们都算作 build 正是上一轮把 Weimar 诗歌电影节标成 build 的原因。
 AXIS_BY_CATEGORY = {
-    "project": "build", "skill_development": "build", "hobby": "build",
     "open_source": "contribute",
-    "research": "research", "education": "research", "language": "research",
-    "funding": "research",
-    "event": "community", "networking": "community",
-    "competition": "build",
+    "project": "build",
+    "research": "research",
+    "education": "research",
     "entrepreneurship": "entrepreneurship",
+    "networking": "community",
 }
+
+#: 明确不授予轴的类别（必须由关键词证据支撑，否则这条机会就没有轴）
+AXIS_NEUTRAL_CATEGORIES = ("competition", "hobby", "event", "career", "skill_development",
+                           "funding", "language")
 
 AXIS_LABELS = {"build": "Build 做一个东西", "contribute": "Contribute 贡献到真实项目",
                "research": "Research 接触研究/学术", "volunteer": "Volunteer 公益/国际志愿",
@@ -368,49 +375,122 @@ AXIS_LABELS = {"build": "Build 做一个东西", "contribute": "Contribute 贡�
                "entrepreneurship": "Entrepreneurship 创业/challenge/accelerator",
                "cross_domain": "Cross-domain 跨学科/社会议题"}
 
-#: 关键词信号（用于把候选归到探索维度；volunteer / creative / cross_domain 无对应 category）
-AXIS_KEYWORDS = {
-    "volunteer": ("volunteer", "志愿者", "公益", "志愿", "nonprofit", "ngo", "国际志愿"),
-    "creative": ("content", "design", "writing", "podcast", "video", "创作", "设计",
-                 "写作", "内容", "播客"),
-    "cross_domain": ("interdisciplinary", "cross-domain", "社会议题", "跨学科", "公共",
-                     "policy", "sustainability", "climate", "health"),
-    "community": ("mentor", "community", "meetup", "社群", "导师", "社区"),
-    "research": ("research", "lab", "研究"),
-    "contribute": ("contributor", "maintainer", "open source", "pr", "开源", "贡献"),
-    "entrepreneurship": ("startup", "accelerator", "entrepreneur", "创业", "孵化"),
-    "build": ("build", "hackathon", "project", "contest", "作品", "项目", "比赛"),
+#: 轴信号：**精确 token 或规范化短语**（不是子串）。
+#: 英文按 token 边界匹配（"art" 不会命中 "startup"）；中文按 ≥2 字的整段包含
+#: （中文没有词边界，单字一律不匹配）。
+AXIS_SIGNALS = {
+    "build": ("hackathon", "build challenge", "maker", "makerspace", "prototype",
+              "capstone", "open innovation challenge", "game jam", "demo day", "build",
+              "robotics", "作品", "搭建"),
+    "contribute": ("contributor", "contributing", "contribution", "maintainer", "committer",
+                   "pull request", "good first issue", "open source", "upstream",
+                   "贡献", "开源"),
+    "research": ("research", "researcher", "laboratory", "lab", "paper", "publication",
+                 "seminar", "symposium", "thesis", "academic", "poster",
+                 "研究", "论文", "实验室"),
+    "volunteer": ("volunteer", "volunteering", "nonprofit", "non-profit", "ngo", "charity",
+                  "志愿者", "志愿", "公益"),
+    "community": ("mentor", "mentorship", "mentoring", "community", "meetup", "chapter",
+                  "alumni", "society", "association", "club", "network",
+                  "导师", "社群", "社区", "学会"),
+    "creative": ("art", "artist", "artistic", "film", "filmmaker", "poetry", "poem", "poet",
+                 "design", "designer", "writing", "writer", "content", "podcast", "music",
+                 "animation", "illustration", "photography", "photographer", "creative",
+                 "storytelling", "创作", "设计", "写作", "内容", "影视", "摄影", "诗歌", "艺术"),
+    "entrepreneurship": ("startup", "start-up", "accelerator", "incubator", "entrepreneur",
+                         "entrepreneurship", "venture", "co-founder", "pitch",
+                         "创业", "孵化"),
+    "cross_domain": ("interdisciplinary", "cross-domain", "cross domain", "social impact",
+                     "public policy", "sustainability", "climate", "public health", "civic",
+                     "sdg", "social innovation", "跨学科", "社会议题", "公共政策", "社会创新"),
 }
+
+_CJK_RE = re.compile(r"[\u3400-\u9fff]")
+_TOKEN_SPLIT_RE = re.compile(r"[^0-9a-z\u3400-\u9fff]+")
+
+
+def _normalized(text) -> tuple:
+    """→ (token 集合, token 序列串, 原文)。英文复数同时收单数（明确规则，不是词干化猜测）。"""
+    raw = str(text or "").lower()
+    toks = [t for t in _TOKEN_SPLIT_RE.split(raw) if t]
+    extra = {t[:-1] for t in toks if len(t) > 4 and re.fullmatch(r"[a-z]+s", t)}
+    tok_set = set(toks) | extra
+    joined = " " + " ".join(toks) + " "
+    return tok_set, joined, raw
+
+
+def _match_signal(signal, tok_set, joined, raw) -> bool:
+    # 规范化短语信号（例如 "open source"）也按**短语**处理，不逐 token 拆
+    sig = str(signal or "").lower().strip()
+    if not sig:
+        return False
+    if _CJK_RE.search(sig):
+        compact = sig.replace(" ", "")
+        return len(compact) >= 2 and compact in raw.replace(" ", "")   # 中文：≥2 字整段
+    parts = sig.split()
+    sig_tokens = [p for p in _TOKEN_SPLIT_RE.split(sig) if p]
+    if not sig_tokens:
+        return False
+    if len(sig_tokens) == 1:
+        return sig_tokens[0] in tok_set          # 英文：精确 token（含复数归一）
+    return f" {' '.join(sig_tokens)} " in joined  # 英文短语：token 边界对齐，非子串
+
+
+def _axis_text(row) -> str:
+    """只看"这条机会**是什么**、以及**会产出什么**"。
+
+    **不把 summary 算进来**：摘要常常顺带罗列一堆领域（例如"覆盖研究、写作、设计…"），
+    那会让一条机会同时命中 4 个轴 —— 上一轮 UNV 一条命中 5 轴就是这么来的。
+    """
+    row = row or {}
+    return " ".join([str(row.get("title") or ""),
+                     " ".join(str(t) for t in (row.get("tags") or [])),
+                     " ".join(str(x) for x in (row.get("produces") or [])),
+                     " ".join(str(x) for x in (row.get("skills_preferred") or []))])
+
+
+def explore_axes_explained(row) -> list:
+    """每条轴都带**理由**：来自类别映射还是哪个信号词。"""
+    row = row or {}
+    tok_set, joined, raw = _normalized(_axis_text(row))
+    out = []
+    cat = str(row.get("primary_category") or "").lower()
+    if cat in AXIS_BY_CATEGORY:
+        out.append({"axis": AXIS_BY_CATEGORY[cat], "via": "category", "signal": cat})
+    for axis, signals in AXIS_SIGNALS.items():
+        hits = [sig for sig in signals if _match_signal(sig, tok_set, joined, raw)]
+        if hits:
+            out.append({"axis": axis, "via": "signal", "signal": hits[0],
+                        "all_signals": hits[:4]})
+    seen, dedup = set(), []
+    for item in out:
+        if item["axis"] in seen:
+            continue
+        seen.add(item["axis"])
+        dedup.append(item)
+    return sorted(dedup, key=lambda x: x["axis"])
 
 
 def explore_axes_of(row) -> list:
-    """一个候选属于哪些探索维度（可多个）。"""
-    row = row or {}
-    axes = set()
-    cat = str(row.get("primary_category") or "").lower()
-    if cat in AXIS_BY_CATEGORY:
-        axes.add(AXIS_BY_CATEGORY[cat])
-    blob = " ".join([str(row.get("title") or ""), str(row.get("summary") or ""),
-                     " ".join(str(t) for t in (row.get("tags") or []))]).lower()
-    for axis, kws in AXIS_KEYWORDS.items():
-        if any(k in blob for k in kws):
-            axes.add(axis)
-    return sorted(axes)
+    """一个候选属于哪些探索维度（可多个）。只返回轴名，理由见 explore_axes_explained。"""
+    return [x["axis"] for x in explore_axes_explained(row)]
 
 
 def explore_coverage(rows) -> dict:
-    """探索覆盖了哪些维度。**达标才出现**，不为多样性塞弱结果。"""
-    by_axis = {}
+    """探索覆盖了哪些维度。**达标才出现**，不为多样性塞弱结果；每条轴附来源理由。"""
+    by_axis, reasons = {}, []
     for r in rows or []:
         if not isinstance(r, dict):
             continue
-        for axis in explore_axes_of(r):
-            by_axis.setdefault(axis, []).append(r.get("id"))
+        for item in explore_axes_explained(r):
+            by_axis.setdefault(item["axis"], []).append(r.get("id"))
+            reasons.append({"opportunity_id": r.get("id"), **item})
     return {"axes": sorted(by_axis),
             "axis_count": len(by_axis),
             "by_axis": {k: v for k, v in sorted(by_axis.items())},
+            "axis_reasons": reasons,
             "missing_axes": [a for a in EXPLORE_AXES if a not in by_axis],
-            "note": "只列出真的达标了的维度；缺的维度就是本轮没找到，不用弱结果补"}
+            "note": "只列出真的达标了的维度；每条轴都能追溯到类别映射或具体信号词"}
 
 
 def explore_focus(profile) -> dict:

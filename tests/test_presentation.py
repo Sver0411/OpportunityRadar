@@ -441,3 +441,78 @@ class TestCommunityFamilyHasOnlyThreeLabels(unittest.TestCase):
         labels = set(P.PARTICIPATION_WORDING["event"].values())
         self.assertEqual(labels, {"Registration open", "Eligibility needs confirmation",
                                   "Not currently open"})
+
+
+class TestExploreAxisMeasurementIsExact(unittest.TestCase):
+    """§1 工具修正：轴测量必须精确可解释，禁止子串粗暴命中。"""
+
+    def test_film_poetry_art_design_writing_are_creative(self):
+        for token in ("film", "poetry", "art", "design", "writing"):
+            with self.subTest(token=token):
+                row = {"primary_category": "hobby", "title": f"International {token} award"}
+                self.assertIn("creative", P.explore_axes_of(row))
+
+    def test_substring_traps_do_not_match(self):
+        """旧实现的子串匹配会让 'startup' 命中 'art'、'chart' 命中 'art'。"""
+        for token in ("startup", "chart", "party", "smart", "cart"):
+            with self.subTest(token=token):
+                row = {"primary_category": "career", "title": f"the {token} thing"}
+                self.assertNotIn("creative", P.explore_axes_of(row),
+                                 f"{token} 不应命中 creative")
+
+    def test_plural_forms_are_normalized(self):
+        for token in ("volunteers", "mentors", "films", "startups"):
+            with self.subTest(token=token):
+                row = {"primary_category": "event", "title": f"open call for {token}"}
+                self.assertTrue(P.explore_axes_of(row), f"{token} 应命中某个轴")
+
+    def test_cjk_needs_two_or_more_characters(self):
+        """中文没有词边界 → 规则是"至少 2 字整段"：2 字词（志愿/公益）匹配，单字不匹配。"""
+        self.assertIn("volunteer", P.explore_axes_of({"primary_category": "event",
+                                                      "title": "国际志愿者项目"}))
+        self.assertIn("volunteer", P.explore_axes_of({"primary_category": "event",
+                                                      "title": "志愿"}), "2 字词按规则应匹配")
+        self.assertEqual(P.explore_axes_of({"primary_category": "event", "title": "志"}), [],
+                         "单字不得匹配")
+        self.assertEqual(P.explore_axes_of({"primary_category": "event", "title": "公"}), [])
+
+    def test_ambiguous_categories_grant_no_axis_by_themselves(self):
+        """competition / hobby / event 有歧义：诗歌比赛与创业比赛都是 competition。"""
+        for cat in P.AXIS_NEUTRAL_CATEGORIES:
+            with self.subTest(category=cat):
+                self.assertEqual(P.explore_axes_of({"primary_category": cat,
+                                                     "title": "Campus movie night"}), [])
+
+    def test_unambiguous_categories_still_map(self):
+        for cat, axis in P.AXIS_BY_CATEGORY.items():
+            with self.subTest(category=cat):
+                self.assertEqual(P.explore_axes_of({"primary_category": cat}), [axis])
+
+    def test_every_axis_carries_a_reason(self):
+        row = {"primary_category": "networking", "title": "UN Online Volunteering",
+               "tags": ["volunteer"]}
+        explained = P.explore_axes_explained(row)
+        self.assertTrue(explained)
+        for item in explained:
+            with self.subTest(axis=item["axis"]):
+                self.assertIn(item["via"], ("category", "signal"))
+                self.assertTrue(item.get("signal"))
+
+    def test_summary_alone_does_not_grant_axes(self):
+        """摘要里顺带罗列领域不该产生轴（上一轮 UNV 一条命中 5 轴的原因）。"""
+        row = {"primary_category": "event", "title": "Annual gathering",
+               "summary": "覆盖研究、写作、设计、创业、志愿服务等众多领域"}
+        self.assertEqual(P.explore_axes_of(row), [])
+
+    def test_coverage_reports_reasons_and_missing_honestly(self):
+        cov = P.explore_coverage([{"id": "x", "primary_category": "open_source"}])
+        self.assertEqual(cov["axis_count"], len(cov["axes"]))
+        self.assertTrue(cov["axis_reasons"])
+        self.assertIn("creative", cov["missing_axes"])
+
+    def test_axes_still_not_a_taxonomy(self):
+        import common as C
+        self.assertEqual(set(P.AXIS_BY_CATEGORY) - set(C.CATEGORIES), set())
+        self.assertEqual(set(P.AXIS_BY_CATEGORY.values()) - set(P.EXPLORE_AXES), set())
+        self.assertEqual(set(P.AXIS_SIGNALS) - set(P.EXPLORE_AXES), set())
+        self.assertFalse(hasattr(P, "CATEGORIES"))
