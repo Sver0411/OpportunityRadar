@@ -1,0 +1,262 @@
+{
+  "_note": "Persona B 独立会话（2026-09-21）的结构化输入：画像 + 真实候选。作为 RC2 回归基线：presentation / planner 改动后不得使这些产物明显回归。",
+  "opportunities": [
+    {
+      "id": "oist-research-internship-2027",
+      "title": "OIST Research Internship (Spring 2027 round)",
+      "organization": "Okinawa Institute of Science and Technology (OIST)",
+      "primary_category": "research",
+      "secondary_categories": [
+        "education",
+        "networking"
+      ],
+      "summary": "OIST 提供 4–6 个月全薪研究实习，在 OIST 教授指导下于实验室做研究；面向需要更多研究经历、未来想读博/修士的学生。含 Mathematical and Computational Sciences 等方向。",
+      "country": "japan",
+      "city": "Okinawa",
+      "remote": false,
+      "education_level": [
+        "undergraduate",
+        "master"
+      ],
+      "program_degree": null,
+      "graduation_window": null,
+      "major_requirement": "STEM / 与目标研究单元（如 Mathematical and Computational Sciences）相关的学术背景",
+      "skills_required": [],
+      "skills_preferred": [
+        "Computer Science",
+        "Mathematical and Computational Sciences",
+        "research interest"
+      ],
+      "language_requirement": null,
+      "nationality_requirement": null,
+      "school_requirement": null,
+      "GPA_requirement": null,
+      "application_open": null,
+      "deadline": "2026-10-15",
+      "deadline_type": "fixed",
+      "application_status": "open",
+      "cost": "Application fee 5,000 JPY (non-refundable)",
+      "compensation": "Fully funded: 2,400 JPY/day allowance + round-trip airfare + on/off-campus housing + visa support",
+      "time_commitment": "4–6 months full-time research internship",
+      "effort": {
+        "weekly_commitment": null
+      },
+      "produces": [
+        "OIST 实验室研究经历",
+        "OIST 教授推荐信（1–3 封）",
+        "可写入研究陈述的成果（可能的论文/海报）",
+        "日本研究网络联系人（导师关系）"
+      ],
+      "outcomes": {
+        "research": "high",
+        "admission": "high",
+        "network": "high",
+        "credential": "medium",
+        "skill": "high"
+      },
+      "future_optionality": {
+        "level": "high",
+        "reason": "实验室研究经历 + 教授推荐信直接强化日本 CS 修士申请（研究经历与内诺/推荐信文化）。"
+      },
+      "unlocks": [
+        {
+          "type": "education",
+          "label": "日本 CS 修士（修士课程）申请",
+          "opportunity_id": null
+        }
+      ],
+      "tags": [
+        "research",
+        "japan",
+        "computer-science",
+        "fully-funded",
+        "recommendation-letter",
+        "undergraduate-ok",
+        "master-ok"
+      ],
+      "trust_tier": "A",
+      "verification_status": "verified_official",
+      "official_url": "https://oist.jp/admissions/research-internship/apply-research-internship",
+      "discovery_url": "https://oist.jp/admissions/research-internship/apply-research-internship",
+      "last_verified": "2026-09-21",
+      "evidence": {
+        "application_status": {
+          "status": "explicit",
+          "source_url": "https://oist.jp/admissions/research-internship/apply-research-internship",
+          "verified_at": "2026-09-21",
+          "quote": "Spring 2027 Internship October 15th, 2026, 23:59 (JST UTC+9)"
+        },
+        "deadline": {
+          "status": "explicit",
+          "source_url": "https://oist.jp/admissions/research-internship/apply-research-internship",
+          "verified_at": "2026-09-21",
+          "quote": "Spring 2027 Internship October 15th, 2026, 23:59 (JST UTC+9)"
+        },
+        "education_level": {
+          "status": "explicit",
+          "source_url": "https://oist.jp/admissions/research-internship/apply-research-internship",
+          "verified_at": "2026-09-21",
+          "quote": "currently enrolled in their last two years of a bachelor's degree, enrolled in any year of a master's degree ... or those who have graduated with a bachelor's or master's degree"
+        },
+        "language_requirement": {
+          "status": "unknown",
+          "source_url": "https://oist.jp/admissions/research-internship/apply-research-internship",
+          "note": "页面未写明日语要求；英语能力非硬性考试要求（不要求 TOEFL/IELTS）"
+        },
+        "nationality_requirement": {
+          "status": "unknown",
+          "source_url": "https://oist.jp/admissions/research-internship/apply-research-internship",
+          "note": "页面未限定国籍（面向全球学生），未明写限制"
+        }
+      },
+      "eligibility": {
+        "verdict": "Unknown"
+      },
+      "provenance": "source_family_query",
+      "source_family": "research_internship",
+      "why_discovered": "目标日本 CS 修士 + 自述科研经历少 → 需要真实研究经历型机会；OIST 是日本全薪研究实习，产出可验证研究证据（实验室经历 + 教授推荐信），直接支持日本修士申请。"
+    },
+    {
+      "id": "jlpt-japanese-proficiency",
+      "title": "JLPT 日本语能力测试（下一期 2027年7月；2026年12月已截止报名）",
+      "organization": "Japan Educational Exchanges and Services (JEES) / 日本国际交流基金会",
+      "primary_category": "language",
+      "secondary_categories": [
+        "education"
+      ],
+      "summary": "JLPT 五级（N1–N5）日语能力考试，多数日语授课日本修士项目的语言门槛参考。2026年12月考试日为 2026-12-06，中国报名 9/1–9/8 已截止；下一期通常为 2027年7月，报名约 2027年春（未公布）。",
+      "country": null,
+      "city": null,
+      "remote": false,
+      "education_level": null,
+      "major_requirement": null,
+      "skills_required": [],
+      "language_requirement": null,
+      "deadline": null,
+      "deadline_type": "tbd",
+      "application_status": "unknown",
+      "cost": "Exam fee varies by level (e.g. N1/N2 ~5,000–7,500 JPY equiv)",
+      "compensation": null,
+      "time_commitment": null,
+      "effort": {
+        "weekly_commitment": null
+      },
+      "produces": [
+        "JLPT 等级证书（可验证的日语能力证据）"
+      ],
+      "outcomes": {
+        "language": "high",
+        "admission": "medium",
+        "credential": "high"
+      },
+      "future_optionality": {
+        "level": "high",
+        "reason": "JLPT N2/N1 是多数日语授课日本修士项目的语言门槛，证书可直接支持申请。"
+      },
+      "unlocks": [
+        {
+          "type": "education",
+          "label": "日语授课日本修士申请的语言门槛",
+          "opportunity_id": null
+        }
+      ],
+      "tags": [
+        "language",
+        "japanese",
+        "certificate"
+      ],
+      "trust_tier": "A",
+      "verification_status": "partially_verified",
+      "official_url": "https://www.jlpt.jp/e/index.html",
+      "discovery_url": "https://jlpt.neea.cn/6DFB81A7F0DE4695A6CF0050A6A7CA39.htm",
+      "last_verified": "2026-09-21",
+      "evidence": {
+        "deadline": {
+          "status": "explicit",
+          "source_url": "https://jlpt.neea.cn/6DFB81A7F0DE4695A6CF0050A6A7CA39.htm",
+          "verified_at": "2026-09-21",
+          "quote": "2026年12月日本语能力测试(JLPT) ... 报名起止时间: 9月1日7:00至8日14:00（已截止）"
+        },
+        "application_status": {
+          "status": "unknown",
+          "source_url": "https://www.jlpt.jp/e/index.html",
+          "note": "下一期（2027年7月）报名尚未公布，页面未直接读取到"
+        }
+      },
+      "eligibility": {
+        "verdict": "Probably Eligible"
+      },
+      "provenance": "source_family_query",
+      "source_family": "language_exam",
+      "why_discovered": "用户自述在准备日语、目标日本修士 → 语言门槛缺口；JLPT 是日语能力可验证证据，支持日语授课修士申请。"
+    },
+    {
+      "id": "keio-research-internship-st",
+      "title": "Research Internship@Keio-ST (Keio University)",
+      "organization": "Keio University",
+      "primary_category": "research",
+      "secondary_categories": [
+        "networking"
+      ],
+      "summary": "庆应义塾大学理工学研究科面向日本以外大学在籍的本科/硕士生，提供 1–4 个月在教授指导下的研究实习；需先获得指导教师同意。无薪，项目费约 253,000 日元/期。",
+      "country": "japan",
+      "city": "Yokohama",
+      "remote": false,
+      "education_level": [
+        "undergraduate",
+        "master"
+      ],
+      "major_requirement": "Science, Engineering or related fields",
+      "skills_required": [],
+      "language_requirement": null,
+      "deadline": null,
+      "deadline_type": "rolling",
+      "application_status": "unknown",
+      "cost": "Program fee ~253,000 JPY per term (up to 4 months); no stipend",
+      "compensation": null,
+      "time_commitment": "1–4 months",
+      "effort": {
+        "weekly_commitment": null
+      },
+      "produces": [
+        "庆应实验室研究经历",
+        "指导教师（日本教授）关系",
+        "研究计划书写作经验"
+      ],
+      "outcomes": {
+        "research": "high",
+        "network": "high",
+        "admission": "medium"
+      },
+      "future_optionality": {
+        "level": "high",
+        "reason": "日本教授指导关系与研究室接触，利于日本修士申请的内诺。"
+      },
+      "unlocks": [
+        {
+          "type": "education",
+          "label": "日本修士申请（导师内诺）",
+          "opportunity_id": null
+        }
+      ],
+      "tags": [
+        "research",
+        "japan",
+        "keio",
+        "advisor-connection"
+      ],
+      "trust_tier": "C",
+      "verification_status": "unverified",
+      "official_url": null,
+      "discovery_url": "https://studyroam.com/detail/245",
+      "last_verified": "2026-09-21",
+      "evidence": {},
+      "eligibility": {
+        "verdict": "Unknown"
+      },
+      "provenance": "general_search",
+      "source_family": "research_internship",
+      "why_discovered": "目标日本 CS 修士 + 科研经历少 → 第二个研究型桥梁；庆应研究实习提供日本教授关系，但本轮仅发现第三方来源，未确认官方页。"
+    }
+  ]
+}

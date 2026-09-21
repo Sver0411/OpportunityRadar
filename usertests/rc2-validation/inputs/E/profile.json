@@ -1,0 +1,11 @@
+{
+  "_unknown": [
+    "location",
+    "time_budget",
+    "money_budget",
+    "life_stage",
+    "education",
+    "goals"
+  ],
+  "_location_unknown": true
+}

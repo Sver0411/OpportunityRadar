@@ -124,7 +124,6 @@ Deterministic helpers (Full Mode; never re-implement inline):
 | `scripts/portfolio.py` | Resource-constrained portfolio (now / bridge / low_cost / high_upside / long_term / explore), never exceeds the user's weekly budget |
 | `scripts/presentation.py` | Output adapter (no judgement): decision confidence, category-aware participation wording, recommendation cards, explore axes, self-directed fallback separation, unsupported-precision guard |
 | `scripts/preflight.py` | Developer preflight: compile → run all unit tests → validate the skill package. Run it before committing (`python3 scripts/preflight.py`); non-zero exit means do not commit. |
-| `scripts/preflight.py` | Developer preflight: compile → run all unit tests → validate the skill package. Run it before committing (`python3 scripts/preflight.py`); non-zero exit means do not commit. |
 
 Single source of truth: enums, weights, tracked fields and ID/URL rules live in
 `scripts/common.py`; `schemas/*.json` and the references must match it.
@@ -225,10 +224,14 @@ Single source of truth: enums, weights, tracked fields and ID/URL rules live in
 
     | Zone | Gate | Size |
     |---|---|---|
-    | **Recommended now** | freshness ∈ {open, likely_open} **AND** canonical source and recent explicit application/deadline evidence **AND** verified_official **AND** not Ineligible **AND** match ≥ 55 | 3–6 (fewer is fine) |
+    | **Recommended now** | `actionable = true` **AND** canonical source and recent explicit application/deadline evidence **AND** verified_official **AND** not Ineligible **AND** (match ≥ 55 **or** Utility = high) | 3–6 (fewer is fine) |
     | **Worth verifying** | freshness unknown / no canonical source / eligibility unknown | 3–8, labelled "需确认" |
     | **Closed / Excluded** | closed / expired / Ineligible | with reason |
 
+    `actionable` is the real switch: **open / likely_open**, **or** evergreen / recurring
+    **with current participation evidence** (`evidence.application_status` explicit, recent,
+    with an official source) — see `scripts/evidence.py`. A rolling or evergreen programme that
+    documents "持续开放" is therefore actionable; a page that merely lacks a deadline is not.
     `scripts/score.py` computes this (`--zone recommended_now` filters it). Quality gates:
     **expired leakage = 0**, **unverified actionable leakage = 0**,
     final-recommendation verification **≥ 80% (ideal 100%)**.

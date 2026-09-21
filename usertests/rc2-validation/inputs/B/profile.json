@@ -1,0 +1,59 @@
+{
+  "goals": [
+    {
+      "type": "education",
+      "priority": "high",
+      "detail": "申请日本计算机相关修士（明年入学）"
+    }
+  ],
+  "education": {
+    "degree": null,
+    "current_year": null,
+    "expected_graduation": null,
+    "school": null,
+    "major": null,
+    "major_family": null,
+    "GPA": null,
+    "school_country": null
+  },
+  "nationality": null,
+  "languages": [
+    {
+      "language": "Japanese",
+      "level": null,
+      "note": "在准备日语，当前等级未知（未假设任何等级）"
+    }
+  ],
+  "skills": [],
+  "interests": [],
+  "experience": {
+    "research": [],
+    "projects": [],
+    "internships": [],
+    "competitions": [],
+    "open_source": [],
+    "portfolio": []
+  },
+  "constraints": {
+    "preferred_country": [
+      "japan"
+    ],
+    "weekly_time": null,
+    "budget": null,
+    "remote": null
+  },
+  "life_stage": null,
+  "career_stage": [],
+  "_unknown": [
+    "degree",
+    "current_year",
+    "expected_graduation",
+    "school",
+    "major",
+    "japanese_level",
+    "weekly_time",
+    "budget",
+    "tech_stack",
+    "location"
+  ]
+}

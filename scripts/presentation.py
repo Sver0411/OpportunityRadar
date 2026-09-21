@@ -228,18 +228,90 @@ def allocation_style(profile) -> dict:
             "note": BUDGET_UNKNOWN_NOTE, "forbid": ("percent", "hours_per_day")}
 
 
-def format_allocation(profile, items=None) -> dict:
-    """把一组机会翻译成"可执行的配置"，并遵守资源未知时的禁止项。"""
+#: 距截止 ≤ 这个天数 → 标为"近期窗口"（该现在决定，但不抢主线）
+URGENCY_WINDOW_DAYS = 30
+
+_FO_RANK = {"high": 2, "medium": 1, "low": 0}
+_UTILITY_RANK = {"high": 2, "medium": 1, "low": 0, "unknown": 0}
+
+
+def _mainline_key(row):
+    """主线排序键：只看**长期投入价值**；urgency 只用于最后的 tie-break。
+
+    刻意**不用** priority（= 0.85·match + 0.15·urgency）—— 那个回答"哪个更急"。
+    这里回答"未来几周/几个月该持续投入哪个"，所以先看 goal_fit 等目标相关信号。
+    """
+    c = row.get("components") or {}
+    fo = row.get("future_optionality")
+    fo = fo if isinstance(fo, dict) else {}
+    return (
+        -float(c.get("goal_fit") or 0),
+        -_FO_RANK.get(str(fo.get("level") or "unknown"), 0),
+        -_UTILITY_RANK.get(str(row.get("utility") or "unknown"), 0),
+        -float(c.get("value_fit") or 0),
+        -float(row.get("match_score") or 0),
+        int(row.get("urgency") or 0),          # tie-break：更不紧急的更适合当长期主线
+        str(row.get("id") or ""),
+    )
+
+
+def choose_mainline(items, profile=None) -> dict:
+    """主线 = 最值得**持续投入**的方向（≠ Priority 第一名）。纯表达层。"""
+    items = [i for i in (items or []) if isinstance(i, dict)]
+    if not items:
+        return {}
+    ranked = sorted(items, key=_mainline_key)
+    top = ranked[0]
+    c = top.get("components") or {}
+    why = []
+    if c.get("goal_fit"):
+        why.append(f"与目标相关度最高（goal_fit {round(float(c['goal_fit']))}）")
+    fo = top.get("future_optionality")
+    if isinstance(fo, dict) and fo.get("level"):
+        why.append(f"后续通道 {fo['level']}")
+    if top.get("utility"):
+        why.append(f"Utility {top['utility']}")
+    return {"opportunity_id": top.get("id"), "title": top.get("title"),
+            "why": "；".join(why) or "在可选机会中目标相关度最高",
+            "ranked_ids": [r.get("id") for r in ranked],
+            "runner_up": ranked[1].get("id") if len(ranked) > 1 else None,
+            "note": "主线由目标相关性决定；urgency 只在其它信号相同时才参与"}
+
+
+def is_near_window(row) -> bool:
+    """是否属于"近期窗口"：有明确截止且就在眼前。"""
+    days = (row or {}).get("days_remaining")
+    try:
+        return days is not None and 0 <= int(days) <= URGENCY_WINDOW_DAYS
+    except (TypeError, ValueError):
+        return False
+
+
+def format_allocation(profile, items=None, mainline_id=None) -> dict:
+    """把一组机会翻译成"可执行的配置"，并遵守资源未知时的禁止项。
+
+    档位：主线（目标相关性最高）/ 近期窗口（截止就在眼前，但不是长期主线）/ 辅线。
+    """
     style = allocation_style(profile)
     items = [i for i in (items or []) if isinstance(i, dict)]
+    if mainline_id is None:
+        mainline_id = (choose_mainline(items, profile) or {}).get("opportunity_id")
+
+    def level_of(it):
+        if it.get("id") == mainline_id:
+            return "主线"
+        if is_near_window(it):
+            return "近期窗口"
+        return "辅线"
+
     if style["mode"] == "qualitative":
         out = []
-        for idx, it in enumerate(items):
-            level = QUALITATIVE_ALLOCATION[min(idx, len(QUALITATIVE_ALLOCATION) - 1)]
-            out.append({"level": level, "opportunity_id": it.get("id"),
+        for it in items:
+            out.append({"level": level_of(it), "opportunity_id": it.get("id"),
                         "title": it.get("title")})
         return {"mode": "qualitative", "items": out, "note": BUDGET_UNKNOWN_NOTE,
-                "total_note": "未按时间做比例分配"}
+                "total_note": "未按时间做比例分配",
+                "mainline": mainline_id}
     # 小时数要么来自显式 weekly_hours，要么从 effort 里解析；解析不出来就算未知。
     # **未知时绝不能给出总计** —— 曾经渲染成"合计约 0.0h/周，与你给出的每周可用时间对齐"，
     # 那是拿 0 冒充"已对齐"，属于伪精确。
@@ -248,7 +320,7 @@ def format_allocation(profile, items=None) -> dict:
         hours = it.get("weekly_hours")
         if hours is None:
             hours = _parse_hours(_weekly_commitment(it))
-        rows.append({"level": "主线" if idx == 0 else "辅线",
+        rows.append({"level": level_of(it),
                      "opportunity_id": it.get("id"), "title": it.get("title"),
                      "hours": hours})
     known = [r["hours"] for r in rows if isinstance(r["hours"], (int, float))]
@@ -263,8 +335,81 @@ def format_allocation(profile, items=None) -> dict:
     if unknown_n:
         note += f"；另有 {unknown_n} 条未写明小时数，未计入"
     return {"mode": "quantitative", "items": rows, "total_hours": round(total, 2),
-            "items_with_unknown_hours": unknown_n,
+            "items_with_unknown_hours": unknown_n, "mainline": mainline_id,
             "note": note + "，与你给出的每周可用时间对齐"}
+
+
+
+# ---------------------------------------------------------------- 2c. 已有职业资本（起点）
+#: 只读用户**明确提供**的结构化字段；没有就不写，绝不推断
+CAPITAL_FIELDS = ("employment", "years_experience", "role", "current_role", "function",
+                  "industry", "seniority")
+
+
+def starting_point(profile, mainline=None, gaps=None) -> dict:
+    """用户已经有什么（**只读显式字段**），以及这份资本可以往哪迁移。
+
+    `skill_fit = 0`（硬技能零覆盖）很容易让输出读起来像"这个人从零开始" ——
+    但"硬技能不重合" ≠ "没有可迁移的职业资本"。这里把用户自己说过的经历写一次，
+    并且**只在有 gap / produces 支持时**才写"应该往哪迁移"。
+    """
+    prof = profile or {}
+    emp = prof.get("employment") if isinstance(prof.get("employment"), dict) else {}
+    capital = []
+
+    years = emp.get("years_of_experience") or prof.get("years_experience")
+    role = emp.get("role") or prof.get("role") or prof.get("current_role")
+    seniority = emp.get("seniority")
+    function = emp.get("function")
+    industry = emp.get("industry")
+    status = emp.get("status")
+
+    if years and role:
+        capital.append(f"{int(years)} 年{role}经验")
+    elif role:
+        capital.append(f"{role}经验")
+    elif years:
+        capital.append(f"{int(years)} 年工作经验")
+    if seniority and seniority not in ("unknown", None) and not role:
+        capital.append(f"职级 {seniority}")
+    if function and function not in ("unknown", None) and not role:
+        capital.append(f"{function} 方向")
+    if industry and industry not in ("unknown", None):
+        capital.append(f"{industry} 行业背景")
+    if status == "full_time":
+        capital.append("目前在职（可以边工作边投入）")
+
+    # 迁移方向：只有结构化支持时才写
+    transfer_hint = None
+    target = None
+    cs = prof.get("career_state") if isinstance(prof.get("career_state"), dict) else {}
+    target = cs.get("target_role")
+    hint_parts = []
+    if mainline:
+        g = (mainline.get("gap_filled") or {})
+        if g.get("gap"):
+            hint_parts.append(f"补 **{g['gap']}**")
+    if not hint_parts and gaps:
+        for g in gaps:
+            if (g.get("relevance") or {}).get("relevance") in ("core_gap", "supporting_gap"):
+                hint_parts.append(f"补 **{g.get('name')}**")
+                break
+    produces = [str(x) for x in ((mainline or {}).get("leaves_behind"), ) if x]
+    if hint_parts and target:
+        transfer_hint = (f"而这套工程经验可以往上叠：本轮优先找能{hint_parts[0]}"
+                         f"、指向 **{target}** 的机会")
+    elif hint_parts:
+        transfer_hint = f"本轮优先找能{hint_parts[0]}的机会"
+
+    text = ""
+    if capital:
+        text = "**你的起点**：" + "、".join(dict.fromkeys(capital)) + "。"
+        if transfer_hint:
+            text += transfer_hint + "。"
+        else:
+            text += "（这一条只用你自己说过的信息，没有补充推断。）"
+    return {"capital": list(dict.fromkeys(capital)), "transfer_hint": transfer_hint,
+            "text": text, "has_capital": bool(capital)}
 
 
 # ---------------------------------------------------------------- 3. Category-aware participation
@@ -783,7 +928,13 @@ def render_answer(profile, rows, gaps=None, bridges=None, portfolio=None,
     worth = [r for r in split["recommended_real"] if r.get("zone") == "worth_verifying"][:max_main]
     excluded = [r for r in split["recommended_real"] if r.get("zone") == "excluded"]
 
+    mainline = choose_mainline(main, profile)
+    mainline_card = next((c for c in
+                          [recommendation_card(r, profile, gaps, bridges, conf) for r in main]
+                          if c.get("opportunity_id") == mainline.get("opportunity_id")), None)
     blocks = {
+        "starting_point": starting_point(profile, mainline_card, gaps),
+        "mainline": mainline,
         "confidence": {"level": conf["level"], "note": conf["note"],
                        "unknown": conf["unknown"], "reasons": conf["reasons"]},
         "main": [recommendation_card(r, profile, gaps, bridges, conf) for r in main],
@@ -791,7 +942,8 @@ def render_answer(profile, rows, gaps=None, bridges=None, portfolio=None,
         "excluded": [{"title": r.get("title"), "reason": r.get("exclusion_reason")
                       or r.get("freshness_reason")} for r in excluded],
         "self_directed": split["self_directed"],
-        "allocation": format_allocation(profile, main or worth),
+        "allocation": format_allocation(profile, main or worth,
+                                        mainline_id=mainline.get("opportunity_id")),
         "unknown": conf["unknown"],
     }
     presented = main + worth

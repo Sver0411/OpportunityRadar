@@ -1,0 +1,64 @@
+{
+  "profile_version": 1,
+  "education": {
+    "degree": "undergraduate",
+    "major": "物联网",
+    "major_family": "iot_embedded",
+    "current_year": 3,
+    "school_country": null,
+    "school_city": null,
+    "expected_graduation": null
+  },
+  "skills": [
+    {
+      "name": "ESP32",
+      "level": "intermediate",
+      "_source": "user_stated"
+    },
+    {
+      "name": "Python",
+      "level": "unknown",
+      "_source": "user_stated"
+    }
+  ],
+  "experience": {
+    "projects": [
+      "几个小项目"
+    ],
+    "open_source": null,
+    "research": null,
+    "internships": null,
+    "competitions": null
+  },
+  "interests": [],
+  "goals": [
+    {
+      "type": "competition",
+      "priority": "unknown"
+    },
+    {
+      "type": "open_source",
+      "priority": "unknown"
+    },
+    {
+      "type": "internship",
+      "priority": "unknown"
+    }
+  ],
+  "constraints": {
+    "preferred_country": null,
+    "preferred_city": null,
+    "remote": null,
+    "weekly_time": null,
+    "budget": null
+  },
+  "_unknown": [
+    "location",
+    "school_country",
+    "graduation_time",
+    "weekly_time",
+    "budget",
+    "long_term_goal"
+  ],
+  "_source": "user_stated"
+}

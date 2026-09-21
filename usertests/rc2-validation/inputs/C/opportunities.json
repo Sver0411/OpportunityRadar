@@ -1,0 +1,542 @@
+{
+  "_note": "Persona C 独立会话（2026-09-21）的结构化输入：画像 + 真实候选。作为 RC2 回归基线：presentation / planner 改动后不得使这些产物明显回归。",
+  "opportunities": [
+    {
+      "id": "gdg-organizer-program-google",
+      "title": "Google Developer Groups (GDG) — Become an organizer",
+      "organization": "Google (Google Developer Groups program)",
+      "primary_category": "networking",
+      "secondary_categories": [
+        "skill_development",
+        "career",
+        "event"
+      ],
+      "tags": [
+        "organizer",
+        "leadership",
+        "community",
+        "meetup",
+        "volunteer",
+        "local-community"
+      ],
+      "summary": "官方页面说明成为 GDG organizer 的门槛与职责：组织并公布当地开发者 meetup，频率为理想每月一次、至少每 3 个月一次；不提供薪酬。",
+      "country": null,
+      "city": null,
+      "region": null,
+      "remote": null,
+      "education_level": null,
+      "student_year": null,
+      "graduation_window": null,
+      "major_requirement": null,
+      "skills_required": null,
+      "skills_preferred": [
+        "Have a technical background",
+        "Have experience with event planning"
+      ],
+      "language_requirement": null,
+      "nationality_requirement": null,
+      "school_requirement": null,
+      "GPA_requirement": null,
+      "application_open": null,
+      "deadline": null,
+      "deadline_type": "rolling",
+      "event_start": null,
+      "event_end": null,
+      "cost": null,
+      "compensation": "unpaid（页面：Google 与 organizer 之间不存在雇佣关系，organizer 无报酬）",
+      "prize": null,
+      "funding": null,
+      "team_requirement": null,
+      "time_commitment": null,
+      "required_materials": null,
+      "official_url": "https://developers.google.cn/community/gdg/organizers?amp%3Bhl=he&hl=he",
+      "discovery_url": null,
+      "provenance": "general_search",
+      "source_family": "community_event",
+      "why_discovered": "Mode D 能力反推：目标『更容易升 Senior』→ 需要 leadership / ownership / 公开角色证据；GDG organizer 是『带团队级职责 + 对外可见角色』的真实入口，属于非传统晋升路径。",
+      "produces": [
+        "hosted meetup events（组织并公布在 GDG Event Platform 的 meetup）",
+        "community leadership 记录（organizer 身份）"
+      ],
+      "effort": {
+        "estimated_hours": 2.0,
+        "weekly_commitment": null,
+        "duration": null,
+        "preparation_complexity": "medium",
+        "note": "estimated_hours 是模型为本轮 5h/周预算做的规划估计，不是页面事实；页面只给了频率（理想每月一次、至少每 3 个月一次），没有给小时数。"
+      },
+      "outcomes": {
+        "network": "high",
+        "reputation": "high",
+        "management": "high",
+        "skill": "medium",
+        "career": "high"
+      },
+      "value": {
+        "career": "high",
+        "networking": "high",
+        "skill": "medium"
+      },
+      "future_optionality": {
+        "level": "high",
+        "reason": "organizer 身份可外化为可验证的领导/社区角色证据，且能联系到 Google 区域团队与全球开发者网络"
+      },
+      "time_to_value": "months",
+      "unlocks": [
+        {
+          "type": "speaker/community_role",
+          "label": "由 organizer 身份延伸到 speaker / DevFest 等更大舞台",
+          "opportunity_id": null
+        }
+      ],
+      "goal_contribution": [
+        "career",
+        "network",
+        "reputation"
+      ],
+      "trust_tier": "A",
+      "verification_status": "partially_verified",
+      "last_verified": "2026-09-21",
+      "layer": "adjacent",
+      "application_status": "rolling",
+      "evidence": {
+        "application_status": {
+          "status": "inferred",
+          "source_url": "https://developers.google.cn/community/gdg/organizers?amp%3Bhl=he&hl=he",
+          "verified_at": "2026-09-21",
+          "note": "页面没有固定截止日，但【我本人 fetch 该 URL 时返回的是本地化(希伯来语)的社区首页，不是 organizer 要求段落】；organizer 资格/频率/无报酬等文字来自搜索服务对同一官方 URL 的抽取，未由我逐句读到。因此只能标 inferred，不能标 explicit。"
+        }
+      },
+      "notes": [
+        "Explicit（搜索服务抽取的官方原文）：Must be over 18 years old；Have a genuine interest in Google's technologies；Have a technical background；Have experience with event planning；Have some connection to the local developer community；Host a meetup event ideally once a month, and at least every 3 months to remain an active GDG chapter。",
+        "Inferred：produces（页面未把『产出物』单列，由 organizer 需持续举办并公布 meetup 推得）。",
+        "Unknown：是否收取费用（页面未写）；所在地（用户未提供，GDG 需要『与本地开发者社区的联系』，因此地点是实质前置条件）；每周小时数（页面未写）。",
+        "⚠ 本轮 fetch 该官方页面返回本地化社区首页而非 organizer 内容段 → verification_status = partially_verified（不是页面本身不存在，而是本轮没读到）。"
+      ]
+    },
+    {
+      "id": "toastmasters-international-membership",
+      "title": "Toastmasters International — How to Join (club membership)",
+      "organization": "Toastmasters International",
+      "primary_category": "skill_development",
+      "secondary_categories": [
+        "networking",
+        "career"
+      ],
+      "tags": [
+        "public-speaking",
+        "leadership",
+        "mentorship",
+        "communication",
+        "online-club",
+        "paid"
+      ],
+      "summary": "官方 How to Join 页面说明入会四步：找到 club、联系 club 负责人、提交 72 美元半年国际会费 + 25 美元一次性新会员费、开始 Pathways 学习。可在线上参加。",
+      "country": null,
+      "city": null,
+      "region": null,
+      "remote": true,
+      "education_level": null,
+      "student_year": null,
+      "graduation_window": null,
+      "major_requirement": null,
+      "skills_required": null,
+      "skills_preferred": null,
+      "language_requirement": null,
+      "nationality_requirement": null,
+      "school_requirement": null,
+      "GPA_requirement": null,
+      "application_open": null,
+      "deadline": null,
+      "deadline_type": "evergreen",
+      "event_start": null,
+      "event_end": null,
+      "cost": "72 USD semiannual international dues + 25 USD one-time new member fee",
+      "compensation": null,
+      "prize": null,
+      "funding": null,
+      "team_requirement": null,
+      "time_commitment": null,
+      "required_materials": [
+        "Membership Application（由 club leader 提供）"
+      ],
+      "official_url": "https://www.toastmasters.org/membership/how-to-join",
+      "discovery_url": "https://www.toastmasters.org",
+      "provenance": "general_search",
+      "source_family": null,
+      "why_discovered": "Mode D 能力反推：Senior 评审常看『能否把事讲清楚、能否带会议/带人』。Toastmasters 是低门槛、长期开放、每周投入可控的领导力/表达训练入口，且不需要换工作。",
+      "produces": [
+        "Pathways 学习路径的演讲与评估记录",
+        "club 会议角色（含主持/评估）经历"
+      ],
+      "effort": {
+        "estimated_hours": 2.0,
+        "weekly_commitment": null,
+        "duration": null,
+        "preparation_complexity": "low",
+        "note": "estimated_hours 是模型规划估计，不是页面事实；页面未写每周小时数。"
+      },
+      "outcomes": {
+        "skill": "high",
+        "network": "medium",
+        "reputation": "medium",
+        "career": "medium"
+      },
+      "value": {
+        "career": "high",
+        "skill": "high",
+        "networking": "medium"
+      },
+      "future_optionality": {
+        "level": "medium",
+        "reason": "表达与主持能力可迁移到内部晋升答辩、跨团队汇报，但外部平台效应有限"
+      },
+      "time_to_value": "months",
+      "unlocks": [
+        {
+          "type": "public_speaking",
+          "label": "由 club 内演讲延伸到对外分享/会议演讲",
+          "opportunity_id": null
+        }
+      ],
+      "goal_contribution": [
+        "career",
+        "skill",
+        "network"
+      ],
+      "trust_tier": "A",
+      "verification_status": "verified_official",
+      "last_verified": "2026-09-21",
+      "layer": "adjacent",
+      "application_status": "open",
+      "evidence": {
+        "application_status": {
+          "status": "explicit",
+          "source_url": "https://www.toastmasters.org/membership/how-to-join",
+          "quote": "STEP 3 Make it Official — Complete your membership by submitting: Your $72 USD semiannual international dues payment / A one-time $25 USD new member fee",
+          "verified_at": "2026-09-21"
+        },
+        "deadline": {
+          "status": "unknown",
+          "source_url": "https://www.toastmasters.org/membership/how-to-join",
+          "note": "页面没有报名截止日，属于长期开放的会员制项目"
+        },
+        "language_requirement": {
+          "status": "unknown",
+          "source_url": "https://www.toastmasters.org/membership/how-to-join",
+          "note": "页面未写明语言等级要求（提供 6 种语言的 Pathways），不据此推断"
+        },
+        "organization_size": {
+          "status": "unknown",
+          "note": "未核实，仅知为国际非营利组织"
+        }
+      },
+      "notes": [
+        "Explicit：$72 USD semiannual international dues；one-time $25 USD new member fee；14,000+ clubs worldwide；Visiting is completely free；可线上参加（Visit clubs near you or online）。",
+        "Inferred：produces（页面写 'With each speech, evaluation, and meeting role' 与 'Pathways learning experience'，据此推得可留存的训练记录）。",
+        "Unknown：每周小时数（页面未写）；最低年龄在本轮读取的 How to Join 页面上未写明（另一份官方 Fact Sheet 写过 18 岁，但本轮未打开该页，故不写入）；费用为美元，用户所在地未知，是否适用同等价格未确认。"
+      ]
+    },
+    {
+      "id": "ietf-127-san-francisco-2026",
+      "title": "IETF 127 San Francisco",
+      "organization": "IETF (Internet Engineering Task Force) / IETF LLC",
+      "primary_category": "event",
+      "secondary_categories": [
+        "research",
+        "networking"
+      ],
+      "tags": [
+        "standards",
+        "conference",
+        "remote-participation",
+        "working-group",
+        "committee",
+        "engineering-network"
+      ],
+      "summary": "官方首页写明 IETF 127 于 2026-11-14 至 2026-11-20 在旧金山举行并含 hackathon，页面提供注册入口。",
+      "country": "United States",
+      "city": "San Francisco",
+      "region": "California",
+      "remote": null,
+      "education_level": null,
+      "student_year": null,
+      "graduation_window": null,
+      "major_requirement": null,
+      "skills_required": null,
+      "skills_preferred": null,
+      "language_requirement": null,
+      "nationality_requirement": null,
+      "school_requirement": null,
+      "GPA_requirement": null,
+      "application_open": null,
+      "deadline": null,
+      "deadline_type": null,
+      "event_start": "2026-11-14",
+      "event_end": "2026-11-20",
+      "cost": null,
+      "compensation": null,
+      "prize": null,
+      "funding": null,
+      "team_requirement": null,
+      "time_commitment": null,
+      "required_materials": null,
+      "official_url": "https://www.ietf.org/",
+      "discovery_url": null,
+      "provenance": "source_family_query",
+      "source_family": "working_group",
+      "why_discovered": "Mode D 能力反推：Senior 需要技术判断力与跨组织影响力。标准工作组参与能在不换工作的前提下积累『技术委员会/标准贡献』这类被外部认可的证据。",
+      "produces": null,
+      "effort": {
+        "estimated_hours": 1.0,
+        "weekly_commitment": null,
+        "duration": null,
+        "preparation_complexity": "high",
+        "note": "estimated_hours 是模型规划估计（每周 1h 跟一个工作组的邮件列表），不是页面事实；页面未写投入。"
+      },
+      "outcomes": {
+        "network": "high",
+        "reputation": "high",
+        "exposure": "high",
+        "research": "medium"
+      },
+      "value": {
+        "career": "high",
+        "networking": "high",
+        "research": "medium"
+      },
+      "future_optionality": {
+        "level": "high",
+        "reason": "可延伸为草案作者/工作组活跃贡献者，属于难以替代的行业身份"
+      },
+      "time_to_value": "long_term",
+      "unlocks": [
+        {
+          "type": "standards_contribution",
+          "label": "由参会延伸到工作组邮件列表贡献与 Internet-Draft 署名",
+          "opportunity_id": null
+        }
+      ],
+      "goal_contribution": [
+        "career",
+        "network",
+        "reputation",
+        "research"
+      ],
+      "trust_tier": "A",
+      "verification_status": "verified_official",
+      "last_verified": "2026-09-21",
+      "layer": "explore",
+      "application_status": "open",
+      "evidence": {
+        "application_status": {
+          "status": "explicit",
+          "source_url": "https://www.ietf.org/",
+          "quote": "Register for IETF 127 San Francisco — Plan today to join 1000+ leading Internet technologists from around the world during the upcoming IETF meeting and hackathon 14-20 November 2026.",
+          "verified_at": "2026-09-21"
+        },
+        "deadline": {
+          "status": "unknown",
+          "source_url": "https://www.ietf.org/",
+          "note": "首页显示了注册入口与会议日期，但注册/早鸟截止日未在本轮读取的页面内容中出现，未去开会议子页（fetch 预算已用完）"
+        },
+        "language_requirement": {
+          "status": "unknown",
+          "source_url": "https://www.ietf.org/",
+          "note": "页面未写明语言要求"
+        },
+        "nationality_requirement": {
+          "status": "unknown",
+          "source_url": "https://www.ietf.org/",
+          "note": "本轮读取的页面内容未提到国籍/签证要求；不等于无限制"
+        }
+      },
+      "notes": [
+        "Explicit：IETF 127 starts Saturday 14 November and runs through Friday afternoon, 20 November. San Francisco, California；IETF 128 于 2027-03-06 至 2027-03-12 在吉隆坡。",
+        "Unknown：参会费（首页未写，会议子页未读）；是否提供线上参会（本轮读取到的首页内容未写 remote，故 remote 保持 null）；产出物（首页未写）。",
+        "⚠ 该机会对『不跳槽』的用户意味着：旧金山线下参会有差旅成本，用户所在地/预算未知；若要低成本，应走邮件列表 + 线上方式，但那部分本轮未取证。"
+      ]
+    },
+    {
+      "id": "aws-community-day-shenzhen-cfp-2026",
+      "title": "2026 深圳 Community Day CFP（Bridge with Signal）",
+      "organization": "AWS Community Day（社区主办）",
+      "primary_category": "event",
+      "secondary_categories": [
+        "networking",
+        "open_source"
+      ],
+      "tags": [
+        "cfp",
+        "speaker",
+        "conference",
+        "shenzhen"
+      ],
+      "summary": "第三方公告显示活动 2026-10-17 于深圳举办，CFP 于 2026-07-23 开启、2026-08-31 23:59 (UTC+8) 截止。",
+      "country": "China",
+      "city": "深圳",
+      "region": null,
+      "remote": null,
+      "education_level": null,
+      "student_year": null,
+      "graduation_window": null,
+      "major_requirement": null,
+      "skills_required": null,
+      "skills_preferred": null,
+      "language_requirement": null,
+      "nationality_requirement": null,
+      "school_requirement": null,
+      "GPA_requirement": null,
+      "application_open": "2026-07-23",
+      "deadline": "2026-08-31",
+      "deadline_type": "fixed",
+      "event_start": "2026-10-17",
+      "event_end": "2026-10-17",
+      "cost": null,
+      "compensation": null,
+      "prize": null,
+      "funding": null,
+      "team_requirement": null,
+      "time_commitment": null,
+      "required_materials": [
+        "30 字内标题",
+        "200-500 字摘要",
+        "目标听众",
+        "三大核心收获",
+        "讲者简介及联系方式"
+      ],
+      "official_url": null,
+      "discovery_url": null,
+      "provenance": "general_search",
+      "source_family": "community_event",
+      "why_discovered": "Mode C 未知机会：CFP 投稿是『公开演讲/技术声誉』这一 gap 的典型桥接入口，因此一并扫描并核对时效。",
+      "produces": [
+        "会议演讲记录"
+      ],
+      "effort": {
+        "estimated_hours": null,
+        "weekly_commitment": null,
+        "duration": null,
+        "preparation_complexity": "medium"
+      },
+      "outcomes": {
+        "reputation": "medium",
+        "network": "medium"
+      },
+      "value": {
+        "career": "medium",
+        "networking": "medium"
+      },
+      "future_optionality": {
+        "level": "medium",
+        "reason": null
+      },
+      "time_to_value": "immediate",
+      "trust_tier": "C",
+      "verification_status": "unverified",
+      "last_verified": "2026-09-21",
+      "layer": "adjacent",
+      "application_status": "closed",
+      "evidence": {
+        "application_status": {
+          "status": "inferred",
+          "source_url": null,
+          "verified_at": "2026-09-21",
+          "note": "仅见第三方公告（未找到官方确认来源），且 CFP 截止日 2026-08-31 已过（今天 2026-09-21）"
+        }
+      },
+      "notes": [
+        "deadline 来自第三方公告原文（07.23 CFP 开启 / 08.31 23:59 UTC+8 截止 / 10.17 举办）。",
+        "未找到官方确认来源（未打开官方 CFP 页面，fetch 预算已用完）→ official_url = null。",
+        "Excluded 原因：CFP 已截止，不可再投稿。"
+      ]
+    },
+    {
+      "id": "community-over-code-asia-2026",
+      "title": "Community Over Code Asia 2026",
+      "organization": "Apache Software Foundation (ASF) community",
+      "primary_category": "event",
+      "secondary_categories": [
+        "open_source",
+        "networking"
+      ],
+      "tags": [
+        "cfp",
+        "speaker",
+        "apache",
+        "open-source",
+        "beijing"
+      ],
+      "summary": "第三方公告显示会议 2026-08-07 至 2026-08-09 在北京举行，投稿截止 2026-04-21 23:59 (UTC+8)、提交语言为英文。",
+      "country": "China",
+      "city": "Beijing",
+      "region": null,
+      "remote": null,
+      "education_level": null,
+      "student_year": null,
+      "graduation_window": null,
+      "major_requirement": null,
+      "skills_required": null,
+      "skills_preferred": null,
+      "language_requirement": "Submissions in English（页面原文，适用于投稿）",
+      "nationality_requirement": null,
+      "school_requirement": null,
+      "GPA_requirement": null,
+      "application_open": null,
+      "deadline": "2026-04-21",
+      "deadline_type": "fixed",
+      "event_start": "2026-08-07",
+      "event_end": "2026-08-09",
+      "cost": null,
+      "compensation": null,
+      "prize": null,
+      "funding": null,
+      "team_requirement": null,
+      "time_commitment": null,
+      "required_materials": null,
+      "official_url": null,
+      "discovery_url": null,
+      "provenance": "general_search",
+      "source_family": "community_event",
+      "why_discovered": "Mode C 未知机会：开源会议演讲同样服务『公开影响力』gap，用于对照今年可用的 CFP 窗口。",
+      "produces": null,
+      "effort": {
+        "estimated_hours": null,
+        "weekly_commitment": null,
+        "duration": null,
+        "preparation_complexity": "high"
+      },
+      "outcomes": {
+        "reputation": "medium",
+        "network": "medium"
+      },
+      "value": {
+        "career": "medium",
+        "networking": "medium"
+      },
+      "future_optionality": {
+        "level": "medium",
+        "reason": null
+      },
+      "time_to_value": "months",
+      "trust_tier": "C",
+      "verification_status": "unverified",
+      "last_verified": "2026-09-21",
+      "layer": "explore",
+      "application_status": "closed",
+      "evidence": {
+        "application_status": {
+          "status": "inferred",
+          "source_url": null,
+          "verified_at": "2026-09-21",
+          "note": "仅第三方公告；投稿截止 2026-04-21 与会议日期 2026-08-07~09 均已过（今天 2026-09-21）"
+        }
+      },
+      "notes": [
+        "deadline/event 日期来自第三方公告原文。",
+        "未找到官方确认来源（本轮未打开 asia.communityovercode.org，fetch 预算已用完）。",
+        "Excluded 原因：CFP 已截止且会议已结束；下一届是否同期开放未取证（不得推断）。"
+      ]
+    }
+  ]
+}

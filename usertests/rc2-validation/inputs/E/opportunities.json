@@ -1,0 +1,1701 @@
+{
+  "_note": "Persona E 独立会话（2026-09-21）的结构化输入：画像 + 真实候选。作为 RC2 回归基线：presentation / planner 改动后不得使这些产物明显回归。",
+  "opportunities": [
+    {
+      "secondary_categories": [
+        "career",
+        "skill_development",
+        "funding"
+      ],
+      "tags": [
+        "mentorship",
+        "stipend",
+        "remote",
+        "global",
+        "18+"
+      ],
+      "country": null,
+      "city": null,
+      "region": null,
+      "remote": true,
+      "education_level": null,
+      "cohort_year": null,
+      "student_year": null,
+      "graduation_window": null,
+      "major_requirement": null,
+      "skills_required": null,
+      "language_requirement": null,
+      "nationality_requirement": null,
+      "school_requirement": null,
+      "GPA_requirement": null,
+      "cost": "free",
+      "compensation": null,
+      "prize": null,
+      "funding": null,
+      "team_requirement": null,
+      "time_commitment": null,
+      "required_materials": null,
+      "alternate_sources": [],
+      "last_verified": "2026-09-21",
+      "eligibility": {
+        "verdict": "Probably Eligible",
+        "reasons": [
+          "官方页写明 18+、面向学生与开源新手"
+        ],
+        "unknowns": [
+          "本轮未回官方页确认 2027 周期"
+        ]
+      },
+      "value": {
+        "skill": "High",
+        "portfolio": "High",
+        "networking": "High",
+        "financial": "Medium",
+        "career": "High"
+      },
+      "evidence": {
+        "deadline": {
+          "status": "explicit",
+          "source_url": "https://opensource.googleblog.com/2026/03/open-source-open-doors-apply-now-for-google-summer-of-code.html",
+          "quote": "Applications for GSoC are open from now - March 31, 2026 at 18:00 UTC.",
+          "verified_at": "2026-09-21",
+          "note": ""
+        }
+      },
+      "notes": "本轮已过期（2026-03-31 截止）；仅作方向参考。",
+      "outcomes": null,
+      "readiness": null,
+      "effort": {
+        "weekly_commitment": "full-time 12 weeks",
+        "preparation_complexity": "high"
+      },
+      "time_to_value": null,
+      "schedule_flexibility": null,
+      "career_capital": null,
+      "future_optionality": null,
+      "career_leverage": null,
+      "prerequisites": null,
+      "produces": [
+        "已合并的开源 PR",
+        "mentor 推荐关系",
+        "stipend"
+      ],
+      "unlocks": [
+        {
+          "type": "open_source_maintainer",
+          "label": "后续可获得 maintainer 角色",
+          "opportunity_id": null
+        }
+      ],
+      "related_opportunities": null,
+      "goal_contribution": null,
+      "provenance": {
+        "query": "open source mentorship program applications open students 2026",
+        "origin": "general_search",
+        "source_family": null,
+        "technical": true,
+        "technical_reason": "项目本体就是软件/代码贡献（coding projects）"
+      },
+      "id": "gsoc-2026",
+      "title": "Google Summer of Code (GSoC) 2026",
+      "organization": "Google Open Source",
+      "primary_category": "open_source",
+      "summary": "12+ 周的开源 mentorship 项目，带 stipend，全球 18+ 可申请。",
+      "deadline": "2026-03-31",
+      "deadline_type": "fixed",
+      "event_start": "2026-05-25",
+      "event_end": "2026-08-31",
+      "application_status": "closed",
+      "official_url": "https://summerofcode.withgoogle.com/",
+      "discovery_url": "https://opensource.googleblog.com/2026/03/open-source-open-doors-apply-now-for-google-summer-of-code.html",
+      "trust_tier": "A",
+      "verification_status": "unverified",
+      "layer": "exploit"
+    },
+    {
+      "secondary_categories": [
+        "career",
+        "skill_development",
+        "funding"
+      ],
+      "tags": [
+        "mentorship",
+        "stipend",
+        "remote",
+        "cloud-native"
+      ],
+      "country": null,
+      "city": null,
+      "region": null,
+      "remote": true,
+      "education_level": null,
+      "cohort_year": null,
+      "student_year": null,
+      "graduation_window": null,
+      "major_requirement": null,
+      "skills_required": null,
+      "language_requirement": null,
+      "nationality_requirement": null,
+      "school_requirement": null,
+      "GPA_requirement": null,
+      "cost": null,
+      "compensation": null,
+      "prize": null,
+      "funding": null,
+      "team_requirement": null,
+      "time_commitment": null,
+      "required_materials": null,
+      "alternate_sources": [],
+      "last_verified": "2026-09-21",
+      "eligibility": {
+        "verdict": "Unknown",
+        "reasons": [
+          "未回官方页核对 2026 Term 3 / 2027 Term 1 窗口"
+        ],
+        "unknowns": [
+          "当前是否有开放 term"
+        ]
+      },
+      "value": {
+        "skill": "High",
+        "portfolio": "High",
+        "financial": "Medium"
+      },
+      "evidence": {},
+      "notes": "窗口来自第三方汇总文（Tier C），官方页未确认。",
+      "outcomes": null,
+      "readiness": null,
+      "effort": {
+        "weekly_commitment": "full-time 12 weeks",
+        "preparation_complexity": "high"
+      },
+      "time_to_value": null,
+      "schedule_flexibility": null,
+      "career_capital": null,
+      "future_optionality": null,
+      "career_leverage": null,
+      "prerequisites": null,
+      "produces": [
+        "已合并 PR",
+        "mentor 关系"
+      ],
+      "unlocks": null,
+      "related_opportunities": null,
+      "goal_contribution": null,
+      "provenance": {
+        "query": "open source mentorship program applications open students 2026",
+        "origin": "general_search",
+        "source_family": null,
+        "technical": true,
+        "technical_reason": "Kubernetes/内核等代码贡献型项目"
+      },
+      "id": "lfx-mentorship-2026",
+      "title": "LFX Mentorship (Linux Foundation) — 2026 Term 2",
+      "organization": "Linux Foundation",
+      "primary_category": "open_source",
+      "summary": "Linux Foundation 的 paid 远程 mentorship，带 PPP 调整 stipend。",
+      "deadline": "2026-04-30",
+      "deadline_type": "range",
+      "event_start": "2026-06-01",
+      "event_end": "2026-08-31",
+      "application_status": "closed",
+      "official_url": "https://lfx.linuxfoundation.org/tools/mentorship/",
+      "discovery_url": "https://thenewviews.com/paid-internships-in-march-2026/",
+      "trust_tier": "C",
+      "verification_status": "unverified",
+      "layer": "exploit"
+    },
+    {
+      "secondary_categories": [
+        "skill_development",
+        "competition"
+      ],
+      "tags": [
+        "mentorship",
+        "korea",
+        "prize"
+      ],
+      "country": null,
+      "city": null,
+      "region": null,
+      "remote": null,
+      "education_level": null,
+      "cohort_year": null,
+      "student_year": null,
+      "graduation_window": null,
+      "major_requirement": null,
+      "skills_required": null,
+      "language_requirement": null,
+      "nationality_requirement": "韩国（由韩国政府部门主办，未写明对非韩国人开放）",
+      "school_requirement": null,
+      "GPA_requirement": null,
+      "cost": null,
+      "compensation": null,
+      "prize": null,
+      "funding": null,
+      "team_requirement": null,
+      "time_commitment": null,
+      "required_materials": null,
+      "alternate_sources": [],
+      "last_verified": "2026-09-21",
+      "eligibility": {
+        "verdict": "Probably Ineligible",
+        "reasons": [
+          "由韩国政府部门面向本国招募，未写国际开放"
+        ],
+        "unknowns": [
+          "是否接受国际参与者"
+        ]
+      },
+      "value": {
+        "skill": "High",
+        "portfolio": "Medium",
+        "financial": "Medium"
+      },
+      "evidence": {},
+      "notes": "本轮已截止（2026-06-14）。",
+      "outcomes": null,
+      "readiness": null,
+      "effort": null,
+      "time_to_value": null,
+      "schedule_flexibility": null,
+      "career_capital": null,
+      "future_optionality": null,
+      "career_leverage": null,
+      "prerequisites": null,
+      "produces": null,
+      "unlocks": null,
+      "related_opportunities": null,
+      "goal_contribution": null,
+      "provenance": {
+        "query": "open source mentorship program applications open students 2026",
+        "origin": "general_search",
+        "source_family": null,
+        "technical": true,
+        "technical_reason": "Apache Zeppelin / Node.js / LLVM 等代码项目"
+      },
+      "id": "msit-osca-2026",
+      "title": "2026 Open Source Contribution Academy（MSIT/NIPA）",
+      "organization": "Ministry of Science and ICT (South Korea)",
+      "primary_category": "open_source",
+      "summary": "韩国政府出资的开源贡献 mentorship，11 个项目、13 周、有奖金。",
+      "deadline": "2026-06-14",
+      "deadline_type": "fixed",
+      "application_status": "closed",
+      "official_url": null,
+      "discovery_url": "https://www.digitaltoday.co.kr/en/view/54665/msit-to-recruit-300-mentees-for-open-source-contribution-academy",
+      "trust_tier": "C",
+      "verification_status": "unverified",
+      "layer": "exploit"
+    },
+    {
+      "secondary_categories": [
+        "career",
+        "skill_development"
+      ],
+      "tags": [
+        "ambassador",
+        "stipend",
+        "global",
+        "ai",
+        "campus"
+      ],
+      "country": null,
+      "city": null,
+      "region": null,
+      "remote": null,
+      "education_level": null,
+      "cohort_year": null,
+      "student_year": null,
+      "graduation_window": null,
+      "major_requirement": null,
+      "skills_required": null,
+      "language_requirement": null,
+      "nationality_requirement": "需在就读国有工作授权（work authorization）",
+      "school_requirement": null,
+      "GPA_requirement": null,
+      "cost": "free",
+      "compensation": "USD 3,600 stipend",
+      "prize": null,
+      "funding": null,
+      "team_requirement": null,
+      "time_commitment": null,
+      "required_materials": null,
+      "alternate_sources": [],
+      "last_verified": "2026-09-21",
+      "eligibility": {
+        "verdict": "Unknown",
+        "reasons": [
+          "第三方页写明 18+、全球学生、需在读"
+        ],
+        "unknowns": [
+          "官方页未回访确认 2027 周期是否重开"
+        ]
+      },
+      "value": {
+        "networking": "High",
+        "portfolio": "Medium",
+        "financial": "High",
+        "career": "High"
+      },
+      "evidence": {
+        "deadline": {
+          "status": "explicit",
+          "source_url": "https://www.leadersoftoday.com/opportunities/claude-campus-ambassador",
+          "quote": "Applications close September 12, 2026 at 11:59pm PT",
+          "verified_at": "2026-09-21",
+          "note": ""
+        }
+      },
+      "notes": "9 天前刚截止（2026-09-12）。已记入下一轮候选。",
+      "outcomes": null,
+      "readiness": null,
+      "effort": {
+        "weekly_commitment": "未知",
+        "preparation_complexity": "low"
+      },
+      "time_to_value": null,
+      "schedule_flexibility": null,
+      "career_capital": null,
+      "future_optionality": null,
+      "career_leverage": null,
+      "prerequisites": null,
+      "produces": [
+        "校园 AI 社群",
+        "Anthropic 渠道关系",
+        "stipend"
+      ],
+      "unlocks": [
+        {
+          "type": "fellowship",
+          "label": "Anthropic 后续 fellowship",
+          "opportunity_id": null
+        }
+      ],
+      "related_opportunities": null,
+      "goal_contribution": null,
+      "provenance": {
+        "query": "campus ambassador program applications open 2026 students worldwide",
+        "origin": "general_search",
+        "source_family": null,
+        "technical": true,
+        "technical_reason": "track 围绕 AI 社群/Claude 工具，属技术主题"
+      },
+      "id": "claude-campus-ambassador-2026",
+      "title": "Claude Campus Ambassador Programme 2026",
+      "organization": "Anthropic",
+      "primary_category": "networking",
+      "summary": "Anthropic 的校园大使计划，三条 track（本科/硕士/博士），$3,600 stipend。",
+      "deadline": "2026-09-12",
+      "deadline_type": "fixed",
+      "event_start": "2026-09-01",
+      "event_end": "2027-06-30",
+      "application_status": "closed",
+      "official_url": null,
+      "discovery_url": "https://www.leadersoftoday.com/opportunities/claude-campus-ambassador",
+      "trust_tier": "C",
+      "verification_status": "unverified",
+      "layer": "exploit"
+    },
+    {
+      "secondary_categories": [
+        "skill_development",
+        "career"
+      ],
+      "tags": [
+        "ambassador",
+        "rolling",
+        "global",
+        "any-major",
+        "16+"
+      ],
+      "country": null,
+      "city": null,
+      "region": null,
+      "remote": null,
+      "education_level": null,
+      "cohort_year": null,
+      "student_year": null,
+      "graduation_window": null,
+      "major_requirement": null,
+      "skills_required": null,
+      "language_requirement": null,
+      "nationality_requirement": null,
+      "school_requirement": null,
+      "GPA_requirement": null,
+      "cost": "free",
+      "compensation": null,
+      "prize": null,
+      "funding": null,
+      "team_requirement": null,
+      "time_commitment": null,
+      "required_materials": null,
+      "alternate_sources": [],
+      "last_verified": "2026-09-21",
+      "eligibility": {
+        "verdict": "Unknown",
+        "reasons": [
+          "第三方页称 any major / 16+ / 全球"
+        ],
+        "unknowns": [
+          "官方页本轮返回 404，未能确认当前门槛与是否开放"
+        ]
+      },
+      "value": {
+        "networking": "High",
+        "skill": "Medium",
+        "career": "Medium"
+      },
+      "evidence": {},
+      "notes": "官方 learn.microsoft.com/en-us/studentambassadors/ 本轮返回 404 —— 未能核实。",
+      "outcomes": null,
+      "readiness": null,
+      "effort": {
+        "preparation_complexity": "low"
+      },
+      "time_to_value": null,
+      "schedule_flexibility": null,
+      "career_capital": null,
+      "future_optionality": null,
+      "career_leverage": null,
+      "prerequisites": null,
+      "produces": [
+        "社区活动记录",
+        "微软生态关系"
+      ],
+      "unlocks": null,
+      "related_opportunities": null,
+      "goal_contribution": null,
+      "provenance": {
+        "query": "campus ambassador program applications open 2026 students worldwide",
+        "origin": "general_search",
+        "source_family": null,
+        "technical": true,
+        "technical_reason": "微软技术生态的开发者社区型计划"
+      },
+      "id": "mlsa",
+      "title": "Microsoft Learn Student Ambassadors",
+      "organization": "Microsoft",
+      "primary_category": "networking",
+      "summary": "微软学生大使，任何专业、16+、全球滚动招募。",
+      "application_status": "rolling",
+      "official_url": "https://mvp.microsoft.com/en-us/studentambassadors",
+      "discovery_url": "https://github.com/Jose-Gael-Cruz-Lopez/underclassmen-opportunities/blob/main/README.md",
+      "trust_tier": "C",
+      "verification_status": "unverified",
+      "layer": "exploit"
+    },
+    {
+      "secondary_categories": [
+        "skill_development"
+      ],
+      "tags": [
+        "ambassador",
+        "campus",
+        "global",
+        "annual-window"
+      ],
+      "country": null,
+      "city": null,
+      "region": null,
+      "remote": null,
+      "education_level": null,
+      "cohort_year": null,
+      "student_year": null,
+      "graduation_window": null,
+      "major_requirement": null,
+      "skills_required": null,
+      "language_requirement": null,
+      "nationality_requirement": null,
+      "school_requirement": null,
+      "GPA_requirement": null,
+      "cost": "free",
+      "compensation": null,
+      "prize": null,
+      "funding": null,
+      "team_requirement": null,
+      "time_commitment": null,
+      "required_materials": null,
+      "alternate_sources": [],
+      "last_verified": "2026-09-21",
+      "eligibility": {
+        "verdict": "Unknown",
+        "reasons": [],
+        "unknowns": [
+          "下一个窗口为 2027 年 7 月，本轮无法参与"
+        ]
+      },
+      "value": {
+        "networking": "High",
+        "skill": "Medium"
+      },
+      "evidence": {},
+      "notes": "年度窗口（每年 7 月），本轮不在窗口内。",
+      "outcomes": null,
+      "readiness": null,
+      "effort": null,
+      "time_to_value": null,
+      "schedule_flexibility": null,
+      "career_capital": null,
+      "future_optionality": null,
+      "career_leverage": null,
+      "prerequisites": null,
+      "produces": null,
+      "unlocks": null,
+      "related_opportunities": null,
+      "goal_contribution": null,
+      "provenance": {
+        "query": "campus ambassador program applications open 2026 students worldwide",
+        "origin": "source_family_query",
+        "source_family": "campus_leadership_registry",
+        "technical": true,
+        "technical_reason": "GitHub 开发者社区计划"
+      },
+      "id": "github-campus-expert",
+      "title": "GitHub Campus Expert",
+      "organization": "GitHub Education",
+      "primary_category": "networking",
+      "summary": "GitHub 的校园技术社群负责人计划，年度窗口。",
+      "application_status": "not_open",
+      "official_url": "https://education.github.com/experts",
+      "discovery_url": "https://github.com/Jose-Gael-Cruz-Lopez/underclassmen-opportunities/blob/main/README.md",
+      "trust_tier": "C",
+      "verification_status": "unverified",
+      "layer": "adjacent"
+    },
+    {
+      "secondary_categories": [
+        "funding",
+        "career"
+      ],
+      "tags": [
+        "rolling",
+        "global",
+        "student-verification",
+        "resources"
+      ],
+      "country": null,
+      "city": null,
+      "region": null,
+      "remote": null,
+      "education_level": null,
+      "cohort_year": null,
+      "student_year": null,
+      "graduation_window": null,
+      "major_requirement": null,
+      "skills_required": null,
+      "language_requirement": null,
+      "nationality_requirement": null,
+      "school_requirement": null,
+      "GPA_requirement": null,
+      "cost": "free",
+      "compensation": null,
+      "prize": null,
+      "funding": null,
+      "team_requirement": null,
+      "time_commitment": null,
+      "required_materials": null,
+      "alternate_sources": [],
+      "last_verified": "2026-09-21",
+      "eligibility": {
+        "verdict": "Unknown",
+        "reasons": [
+          "官方页本轮抓取到的正文只有 Experiences 列表，未包含资格条款"
+        ],
+        "unknowns": [
+          "年龄/在读证明的确切措辞未在抓取内容中确认"
+        ]
+      },
+      "value": {
+        "skill": "High",
+        "financial": "Medium",
+        "portfolio": "Low"
+      },
+      "evidence": {},
+      "notes": "官方页可打开，但抓取正文不含 eligibility 段落 → 只能算 partially_verified。",
+      "outcomes": null,
+      "readiness": null,
+      "effort": {
+        "preparation_complexity": "low"
+      },
+      "time_to_value": "数天（认证审核）",
+      "schedule_flexibility": null,
+      "career_capital": null,
+      "future_optionality": null,
+      "career_leverage": null,
+      "prerequisites": null,
+      "produces": [
+        "JetBrains/云 credit",
+        "GitHub Pro"
+      ],
+      "unlocks": [
+        {
+          "type": "cloud_credits",
+          "label": "DigitalOcean / Azure 学生 credit",
+          "opportunity_id": "azure-for-students"
+        }
+      ],
+      "related_opportunities": null,
+      "goal_contribution": null,
+      "provenance": {
+        "query": "student developer program free cloud credits rolling application 2026",
+        "origin": "general_search",
+        "source_family": null,
+        "technical": true,
+        "technical_reason": "开发者工具包（IDE/云/CI）"
+      },
+      "id": "github-student-pack",
+      "title": "GitHub Student Developer Pack",
+      "organization": "GitHub Education",
+      "primary_category": "skill_development",
+      "summary": "一次学生认证解锁 200+ 开发者工具与 credit。",
+      "application_status": "rolling",
+      "official_url": "https://education.github.com/pack",
+      "discovery_url": "https://education.github.com/pack",
+      "trust_tier": "A",
+      "verification_status": "partially_verified",
+      "layer": "exploit"
+    },
+    {
+      "secondary_categories": [
+        "funding"
+      ],
+      "tags": [
+        "rolling",
+        "cloud-credit",
+        "global"
+      ],
+      "country": null,
+      "city": null,
+      "region": null,
+      "remote": null,
+      "education_level": "在读（full-time university student）",
+      "cohort_year": null,
+      "student_year": null,
+      "graduation_window": null,
+      "major_requirement": null,
+      "skills_required": null,
+      "language_requirement": null,
+      "nationality_requirement": null,
+      "school_requirement": null,
+      "GPA_requirement": null,
+      "cost": "free",
+      "compensation": null,
+      "prize": null,
+      "funding": "USD 100 credit, 12 months",
+      "team_requirement": null,
+      "time_commitment": null,
+      "required_materials": null,
+      "alternate_sources": [],
+      "last_verified": "2026-09-21",
+      "eligibility": {
+        "verdict": "Unknown",
+        "reasons": [
+          "第三方页写 full-time university student / 18+ / 学校邮箱"
+        ],
+        "unknowns": [
+          "用户是否在读未知（画像为空）"
+        ]
+      },
+      "value": {
+        "skill": "Medium",
+        "financial": "Medium"
+      },
+      "evidence": {},
+      "notes": "资格来自第三方汇总（Tier C），官方页未回访。",
+      "outcomes": null,
+      "readiness": null,
+      "effort": {
+        "preparation_complexity": "low"
+      },
+      "time_to_value": "约 10 分钟",
+      "schedule_flexibility": null,
+      "career_capital": null,
+      "future_optionality": null,
+      "career_leverage": null,
+      "prerequisites": null,
+      "produces": [
+        "可运行云环境",
+        "部署作品集"
+      ],
+      "unlocks": null,
+      "related_opportunities": null,
+      "goal_contribution": null,
+      "provenance": {
+        "query": "student developer program free cloud credits rolling application 2026",
+        "origin": "general_search",
+        "source_family": null,
+        "technical": true,
+        "technical_reason": "云开发资源"
+      },
+      "id": "azure-for-students",
+      "title": "Azure for Students",
+      "organization": "Microsoft",
+      "primary_category": "skill_development",
+      "summary": "学生 $100 Azure credit / 12 个月，无需信用卡。",
+      "application_status": "rolling",
+      "official_url": "https://azure.microsoft.com/en-us/free/students/",
+      "discovery_url": "https://creditforstartups.com/students/azure-for-students",
+      "trust_tier": "C",
+      "verification_status": "unverified",
+      "layer": "adjacent"
+    },
+    {
+      "secondary_categories": [
+        "funding"
+      ],
+      "tags": [
+        "rolling",
+        "cloud-credit",
+        "requires-card"
+      ],
+      "country": null,
+      "city": null,
+      "region": null,
+      "remote": null,
+      "education_level": null,
+      "cohort_year": null,
+      "student_year": null,
+      "graduation_window": null,
+      "major_requirement": null,
+      "skills_required": null,
+      "language_requirement": null,
+      "nationality_requirement": null,
+      "school_requirement": null,
+      "GPA_requirement": null,
+      "cost": "需绑卡（超额计费）",
+      "compensation": null,
+      "prize": null,
+      "funding": "USD 312 platform credit over 24 months",
+      "team_requirement": null,
+      "time_commitment": null,
+      "required_materials": null,
+      "alternate_sources": [],
+      "last_verified": "2026-09-21",
+      "eligibility": {
+        "verdict": "Unknown",
+        "reasons": [
+          "官方问答写明需符合 GitHub 学生包且 18+"
+        ],
+        "unknowns": [
+          "需先取得 GitHub 学生包"
+        ]
+      },
+      "value": {
+        "skill": "Medium",
+        "financial": "Low"
+      },
+      "evidence": {},
+      "notes": "需先有 GitHub 学生包 + 信用卡，超额会真实扣费。",
+      "outcomes": null,
+      "readiness": null,
+      "effort": {
+        "preparation_complexity": "low"
+      },
+      "time_to_value": null,
+      "schedule_flexibility": null,
+      "career_capital": null,
+      "future_optionality": null,
+      "career_leverage": null,
+      "prerequisites": null,
+      "produces": [
+        "可长期运行的部署环境"
+      ],
+      "unlocks": null,
+      "related_opportunities": null,
+      "goal_contribution": null,
+      "provenance": {
+        "query": "student developer program free cloud credits rolling application 2026",
+        "origin": "general_search",
+        "source_family": null,
+        "technical": true,
+        "technical_reason": "应用托管平台"
+      },
+      "id": "heroku-github-students",
+      "title": "Heroku for GitHub Students",
+      "organization": "Salesforce (Heroku)",
+      "primary_category": "skill_development",
+      "summary": "GitHub 学生包内 $13/月 × 24 个月的 platform credit。",
+      "application_status": "rolling",
+      "official_url": "https://www.heroku.com/github-students",
+      "discovery_url": "https://www2.assets.heroku.com/github-students/",
+      "trust_tier": "B",
+      "verification_status": "unverified",
+      "layer": "adjacent"
+    },
+    {
+      "secondary_categories": [
+        "entrepreneurship",
+        "funding"
+      ],
+      "tags": [
+        "open-call",
+        "national-security",
+        "b2g",
+        "singapore"
+      ],
+      "country": "Singapore",
+      "city": null,
+      "region": null,
+      "remote": true,
+      "education_level": null,
+      "cohort_year": null,
+      "student_year": null,
+      "graduation_window": null,
+      "major_requirement": null,
+      "skills_required": null,
+      "language_requirement": null,
+      "nationality_requirement": null,
+      "school_requirement": null,
+      "GPA_requirement": null,
+      "cost": "free",
+      "compensation": null,
+      "prize": null,
+      "funding": null,
+      "team_requirement": null,
+      "time_commitment": null,
+      "required_materials": null,
+      "alternate_sources": [],
+      "last_verified": "2026-09-21",
+      "eligibility": {
+        "verdict": "Ineligible",
+        "reasons": [
+          "官方页明写面向 global companies, startups and academia 提交提案，不是面向个人的机会"
+        ],
+        "unknowns": []
+      },
+      "value": {
+        "portfolio": "Medium",
+        "financial": "High",
+        "career": "Low"
+      },
+      "evidence": {
+        "application_status": {
+          "status": "explicit",
+          "source_url": "https://www.openinnovationnetwork.gov.sg/innovation-challenges/solicitation-6.0",
+          "quote": "we publish challenge statements and invite global companies, startups and academia to submit proposals",
+          "verified_at": "2026-09-21",
+          "note": ""
+        },
+        "deadline": {
+          "status": "explicit",
+          "source_url": "https://www.openinnovationnetwork.gov.sg/innovation-challenges/solicitation-6.0",
+          "quote": "Application Start Date 8 September 2026 / Application End Date 22 October 2026",
+          "verified_at": "2026-09-21",
+          "note": ""
+        }
+      },
+      "notes": "时间窗确实开放（至 2026-10-22），但主体是机构而非个人 → Ineligible。",
+      "outcomes": null,
+      "readiness": null,
+      "effort": null,
+      "time_to_value": null,
+      "schedule_flexibility": null,
+      "career_capital": null,
+      "future_optionality": null,
+      "career_leverage": null,
+      "prerequisites": null,
+      "produces": null,
+      "unlocks": null,
+      "related_opportunities": null,
+      "goal_contribution": null,
+      "provenance": {
+        "query": "open innovation challenge open call 2026 anyone can apply",
+        "origin": "general_search",
+        "source_family": null,
+        "technical": true,
+        "technical_reason": "national security 技术方案（POC/试验）"
+      },
+      "id": "sg-oin-solicitation-6",
+      "title": "Open Innovation Network — Solicitation 6.0",
+      "organization": "Cap Vista (Singapore)",
+      "primary_category": "project",
+      "summary": "新加坡国家级安全挑战，公开征集方案，入选者获全额资助 trial。",
+      "application_open": "2026-09-08",
+      "deadline": "2026-10-22",
+      "deadline_type": "range",
+      "application_status": "open",
+      "official_url": "https://www.openinnovationnetwork.gov.sg/innovation-challenges/solicitation-6.0",
+      "discovery_url": "https://www.openinnovationnetwork.gov.sg/innovation-challenges/solicitation-6.0",
+      "trust_tier": "A",
+      "verification_status": "verified_official",
+      "layer": "exploit"
+    },
+    {
+      "secondary_categories": [
+        "hobby",
+        "research"
+      ],
+      "tags": [
+        "citizen-science",
+        "gardening",
+        "eu",
+        "free",
+        "no-experience-needed"
+      ],
+      "country": null,
+      "city": null,
+      "region": null,
+      "remote": null,
+      "education_level": null,
+      "cohort_year": null,
+      "student_year": null,
+      "graduation_window": null,
+      "major_requirement": null,
+      "skills_required": null,
+      "language_requirement": null,
+      "nationality_requirement": null,
+      "school_requirement": null,
+      "GPA_requirement": null,
+      "cost": "free",
+      "compensation": null,
+      "prize": null,
+      "funding": null,
+      "team_requirement": null,
+      "time_commitment": null,
+      "required_materials": null,
+      "alternate_sources": [],
+      "last_verified": "2026-09-21",
+      "eligibility": {
+        "verdict": "Unknown",
+        "reasons": [
+          "官方页写 'open to all'，只需智能手机 + 一小块种植空间"
+        ],
+        "unknowns": [
+          "2026 季已截止；2027 季未公布"
+        ]
+      },
+      "value": {
+        "research": "Low",
+        "networking": "Medium",
+        "portfolio": "Low"
+      },
+      "evidence": {},
+      "notes": "本轮已截止（2026-03-31）。门槛极低（阳台即可），是本轮最典型的 explore 项。",
+      "outcomes": null,
+      "readiness": null,
+      "effort": {
+        "preparation_complexity": "low"
+      },
+      "time_to_value": null,
+      "schedule_flexibility": null,
+      "career_capital": null,
+      "future_optionality": null,
+      "career_leverage": null,
+      "prerequisites": null,
+      "produces": [
+        "参与式科研数据贡献"
+      ],
+      "unlocks": null,
+      "related_opportunities": null,
+      "goal_contribution": null,
+      "provenance": {
+        "query": "citizen science project open for anyone to join 2026",
+        "origin": "adjacent_discovery",
+        "source_family": null,
+        "technical": false,
+        "technical_reason": "植物种植与观察，无技术门槛"
+      },
+      "id": "increase-csa-2026",
+      "title": "INCREASE Citizen Science Experiment 2026",
+      "organization": "INCREASE Project (EU)",
+      "primary_category": "project",
+      "summary": "欧盟项目：免费寄 6 种豆类种子给你种，用 App 记录数据参与农业研究。",
+      "deadline": "2026-03-31",
+      "deadline_type": "fixed",
+      "application_status": "closed",
+      "official_url": "https://www.pulsesincrease.eu/en/experiment",
+      "discovery_url": "https://www.pulsesincrease.eu/news/register-now-cse-6",
+      "trust_tier": "B",
+      "verification_status": "unverified",
+      "layer": "explore"
+    },
+    {
+      "secondary_categories": [
+        "project"
+      ],
+      "tags": [
+        "citizen-science",
+        "uk",
+        "free",
+        "15-minutes",
+        "no-experience-needed"
+      ],
+      "country": "United Kingdom",
+      "city": null,
+      "region": null,
+      "remote": null,
+      "education_level": null,
+      "cohort_year": null,
+      "student_year": null,
+      "graduation_window": null,
+      "major_requirement": null,
+      "skills_required": null,
+      "language_requirement": null,
+      "nationality_requirement": null,
+      "school_requirement": null,
+      "GPA_requirement": null,
+      "cost": "free",
+      "compensation": null,
+      "prize": null,
+      "funding": null,
+      "team_requirement": null,
+      "time_commitment": null,
+      "required_materials": null,
+      "alternate_sources": [],
+      "last_verified": "2026-09-21",
+      "eligibility": {
+        "verdict": "Unknown",
+        "reasons": [
+          "面向公众，无需经验，地理位置限英国"
+        ],
+        "unknowns": [
+          "2027 期日期未公布"
+        ]
+      },
+      "value": {
+        "networking": "Low",
+        "portfolio": "Low",
+        "interest": "High"
+      },
+      "evidence": {},
+      "notes": "2026 期已结束（7/17–8/9）；每年夏季固定重开。",
+      "outcomes": null,
+      "readiness": null,
+      "effort": null,
+      "time_to_value": null,
+      "schedule_flexibility": null,
+      "career_capital": null,
+      "future_optionality": null,
+      "career_leverage": null,
+      "prerequisites": null,
+      "produces": [
+        "公民科学数据贡献"
+      ],
+      "unlocks": null,
+      "related_opportunities": null,
+      "goal_contribution": null,
+      "provenance": {
+        "query": "citizen science project open for anyone to join 2026",
+        "origin": "general_search",
+        "source_family": null,
+        "technical": false,
+        "technical_reason": "自然观察，无技术门槛"
+      },
+      "id": "big-butterfly-count-2026",
+      "title": "Big Butterfly Count 2026",
+      "organization": "Butterfly Conservation",
+      "primary_category": "hobby",
+      "summary": "全英最大规模的蝴蝶统计，15 分钟、零门槛、任何人都能参加。",
+      "application_status": "closed",
+      "event_start": "2026-07-17",
+      "event_end": "2026-08-09",
+      "deadline_type": "fixed",
+      "official_url": "https://butterfly-conservation.org/our-work/big-butterfly-count",
+      "discovery_url": "https://butterfly-conservation.org/news-and-blog/take-part-in-these-citizen-science-projects-in-2026",
+      "trust_tier": "B",
+      "verification_status": "unverified",
+      "layer": "explore"
+    },
+    {
+      "secondary_categories": [
+        "project",
+        "research"
+      ],
+      "tags": [
+        "citizen-science",
+        "uk",
+        "year-round",
+        "free",
+        "training-provided"
+      ],
+      "country": "United Kingdom",
+      "city": null,
+      "region": null,
+      "remote": null,
+      "education_level": null,
+      "cohort_year": null,
+      "student_year": null,
+      "graduation_window": null,
+      "major_requirement": null,
+      "skills_required": null,
+      "language_requirement": null,
+      "nationality_requirement": null,
+      "school_requirement": null,
+      "GPA_requirement": null,
+      "cost": "free",
+      "compensation": null,
+      "prize": null,
+      "funding": null,
+      "team_requirement": null,
+      "time_commitment": null,
+      "required_materials": null,
+      "alternate_sources": [],
+      "last_verified": "2026-09-21",
+      "eligibility": {
+        "verdict": "Unknown",
+        "reasons": [
+          "官方页称有免费指南与录制培训，无需经验"
+        ],
+        "unknowns": [
+          "本轮抓取到的是同一机构的 survey 表单页而非 BeeWalk 说明页，未能确认当前是否开放注册"
+        ]
+      },
+      "value": {
+        "interest": "High",
+        "networking": "Low",
+        "portfolio": "Low"
+      },
+      "evidence": {},
+      "notes": "抓取页面为 'Bumblebee survey form'（学校版），含 'This event has not started / fully booked / ended' 模板文本 —— 状态无法判定。",
+      "outcomes": null,
+      "readiness": null,
+      "effort": {
+        "weekly_commitment": "每月一次固定路线",
+        "preparation_complexity": "low"
+      },
+      "time_to_value": null,
+      "schedule_flexibility": null,
+      "career_capital": null,
+      "future_optionality": null,
+      "career_leverage": null,
+      "prerequisites": null,
+      "produces": null,
+      "unlocks": null,
+      "related_opportunities": null,
+      "goal_contribution": null,
+      "provenance": {
+        "query": "citizen science project open for anyone to join 2026",
+        "origin": "general_search",
+        "source_family": null,
+        "technical": false,
+        "technical_reason": "野外物种计数，无技术门槛"
+      },
+      "id": "beewalk",
+      "title": "BeeWalk（Bumblebee Conservation Trust）",
+      "organization": "Bumblebee Conservation Trust",
+      "primary_category": "hobby",
+      "summary": "全年可加入的熊蜂监测：每月走一条固定路线记录熊蜂，官方提供免费培训。",
+      "application_status": "rolling",
+      "official_url": "https://www.bumblebeeconservation.org/bumblebee-survey/",
+      "discovery_url": "https://butterfly-conservation.org/news-and-blog/take-part-in-these-citizen-science-projects-in-2026",
+      "trust_tier": "B",
+      "verification_status": "unverified",
+      "layer": "explore"
+    },
+    {
+      "secondary_categories": [
+        "project"
+      ],
+      "tags": [
+        "citizen-science",
+        "uk",
+        "year-round",
+        "free",
+        "one-off"
+      ],
+      "country": "United Kingdom",
+      "city": null,
+      "region": null,
+      "remote": null,
+      "education_level": null,
+      "cohort_year": null,
+      "student_year": null,
+      "graduation_window": null,
+      "major_requirement": null,
+      "skills_required": null,
+      "language_requirement": null,
+      "nationality_requirement": null,
+      "school_requirement": null,
+      "GPA_requirement": null,
+      "cost": "free",
+      "compensation": null,
+      "prize": null,
+      "funding": null,
+      "team_requirement": null,
+      "time_commitment": null,
+      "required_materials": null,
+      "alternate_sources": [],
+      "last_verified": "2026-09-21",
+      "eligibility": {
+        "verdict": "Unknown",
+        "reasons": [
+          "第三方页称全年开放、任何人可上报"
+        ],
+        "unknowns": [
+          "官方站未回访"
+        ]
+      },
+      "value": {
+        "interest": "Medium",
+        "portfolio": "Low"
+      },
+      "evidence": {},
+      "notes": "单次上报型，投入极低但产出也低。",
+      "outcomes": null,
+      "readiness": null,
+      "effort": {
+        "preparation_complexity": "low"
+      },
+      "time_to_value": null,
+      "schedule_flexibility": null,
+      "career_capital": null,
+      "future_optionality": null,
+      "career_leverage": null,
+      "prerequisites": null,
+      "produces": [
+        "物种分布数据"
+      ],
+      "unlocks": null,
+      "related_opportunities": null,
+      "goal_contribution": null,
+      "provenance": {
+        "query": "citizen science project open for anyone to join 2026",
+        "origin": "general_search",
+        "source_family": null,
+        "technical": false,
+        "technical_reason": "目击上报，无技术门槛"
+      },
+      "id": "big-hedgehog-map",
+      "title": "The Big Hedgehog Map",
+      "organization": "PTES / British Hedgehog Preservation Society",
+      "primary_category": "hobby",
+      "summary": "全年开放的刺猬目击记录，只需上报一次目击即可贡献分布图。",
+      "application_status": "rolling",
+      "official_url": "https://bighedgehogmap.org/",
+      "discovery_url": "https://butterfly-conservation.org/news-and-blog/take-part-in-these-citizen-science-projects-in-2026",
+      "trust_tier": "C",
+      "verification_status": "unverified",
+      "layer": "explore"
+    },
+    {
+      "secondary_categories": [
+        "project",
+        "competition"
+      ],
+      "tags": [
+        "citizen-science",
+        "global",
+        "free",
+        "inaturalist"
+      ],
+      "country": null,
+      "city": null,
+      "region": null,
+      "remote": null,
+      "education_level": null,
+      "cohort_year": null,
+      "student_year": null,
+      "graduation_window": null,
+      "major_requirement": null,
+      "skills_required": null,
+      "language_requirement": null,
+      "nationality_requirement": null,
+      "school_requirement": null,
+      "GPA_requirement": null,
+      "cost": "free",
+      "compensation": null,
+      "prize": null,
+      "funding": null,
+      "team_requirement": null,
+      "time_commitment": null,
+      "required_materials": null,
+      "alternate_sources": [],
+      "last_verified": "2026-09-21",
+      "eligibility": {
+        "verdict": "Unknown",
+        "reasons": [
+          "全球开放、任何经验水平、免费"
+        ],
+        "unknowns": [
+          "2027 期日期未公布"
+        ]
+      },
+      "value": {
+        "interest": "High",
+        "networking": "Low"
+      },
+      "evidence": {},
+      "notes": "2026 期已结束；每年 4 月固定举办。",
+      "outcomes": null,
+      "readiness": null,
+      "effort": null,
+      "time_to_value": null,
+      "schedule_flexibility": null,
+      "career_capital": null,
+      "future_optionality": null,
+      "career_leverage": null,
+      "prerequisites": null,
+      "produces": null,
+      "unlocks": null,
+      "related_opportunities": null,
+      "goal_contribution": null,
+      "provenance": {
+        "query": "citizen science project open for anyone to join 2026",
+        "origin": "general_search",
+        "source_family": null,
+        "technical": false,
+        "technical_reason": "手机拍照记录，无技术门槛"
+      },
+      "id": "city-nature-challenge-2026",
+      "title": "City Nature Challenge 2026",
+      "organization": "California Academy of Sciences / Natural History Museum LA",
+      "primary_category": "hobby",
+      "summary": "全球城市自然观察竞赛，4 天，用 iNaturalist 拍照记录城市野生动植物。",
+      "application_status": "closed",
+      "event_start": "2026-04-24",
+      "event_end": "2026-04-27",
+      "deadline_type": "fixed",
+      "official_url": "https://www.citynaturechallenge.org/",
+      "discovery_url": "https://www.sdnat.org/calendar/citizen-science/tel:6192323821",
+      "trust_tier": "B",
+      "verification_status": "unverified",
+      "layer": "explore"
+    },
+    {
+      "secondary_categories": [
+        "networking",
+        "skill_development"
+      ],
+      "tags": [
+        "ambassador",
+        "rolling",
+        "global",
+        "paid",
+        "university-email"
+      ],
+      "country": null,
+      "city": null,
+      "region": null,
+      "remote": null,
+      "education_level": null,
+      "cohort_year": null,
+      "student_year": null,
+      "graduation_window": null,
+      "major_requirement": null,
+      "skills_required": null,
+      "language_requirement": null,
+      "nationality_requirement": null,
+      "school_requirement": null,
+      "GPA_requirement": null,
+      "cost": "free",
+      "compensation": null,
+      "prize": null,
+      "funding": null,
+      "team_requirement": null,
+      "time_commitment": null,
+      "required_materials": null,
+      "alternate_sources": [],
+      "last_verified": "2026-09-21",
+      "eligibility": {
+        "verdict": "Unknown",
+        "reasons": [
+          "第三方汇总页称无年级门槛、需大学邮箱"
+        ],
+        "unknowns": [
+          "官方页未定位，未核实是否仍在招"
+        ]
+      },
+      "value": {
+        "networking": "High",
+        "financial": "Medium",
+        "career": "Medium"
+      },
+      "evidence": {},
+      "notes": "仅有 Tier C 来源（GitHub 汇总 README），未找到官方页。",
+      "outcomes": null,
+      "readiness": null,
+      "effort": null,
+      "time_to_value": null,
+      "schedule_flexibility": null,
+      "career_capital": null,
+      "future_optionality": null,
+      "career_leverage": null,
+      "prerequisites": null,
+      "produces": null,
+      "unlocks": null,
+      "related_opportunities": null,
+      "goal_contribution": null,
+      "provenance": {
+        "query": "campus ambassador program applications open 2026 students worldwide",
+        "origin": "source_family_query",
+        "source_family": "campus_leadership_registry",
+        "technical": true,
+        "technical_reason": "Base44 为 AI 开发平台，大使内容围绕其产品"
+      },
+      "id": "base44-campus-impact-leaders",
+      "title": "Base44 Campus Impact Leaders (Founding Class)",
+      "organization": "Base44",
+      "primary_category": "career",
+      "summary": "付费校园大使（founding class），要求大学邮箱，无年级限制。",
+      "application_status": "rolling",
+      "official_url": null,
+      "discovery_url": "https://github.com/Jose-Gael-Cruz-Lopez/underclassmen-opportunities/blob/main/README.md",
+      "trust_tier": "C",
+      "verification_status": "unverified",
+      "layer": "adjacent"
+    },
+    {
+      "secondary_categories": [
+        "hobby",
+        "networking"
+      ],
+      "tags": [
+        "ambassador",
+        "rolling",
+        "us-only",
+        "unpaid"
+      ],
+      "country": "United States",
+      "city": null,
+      "region": null,
+      "remote": null,
+      "education_level": null,
+      "cohort_year": null,
+      "student_year": null,
+      "graduation_window": null,
+      "major_requirement": null,
+      "skills_required": null,
+      "language_requirement": null,
+      "nationality_requirement": null,
+      "school_requirement": "US 校区，剩余在校≥1 年",
+      "GPA_requirement": null,
+      "cost": "free",
+      "compensation": "无薪（佣金制）",
+      "prize": null,
+      "funding": null,
+      "team_requirement": null,
+      "time_commitment": null,
+      "required_materials": null,
+      "alternate_sources": [],
+      "last_verified": "2026-09-21",
+      "eligibility": {
+        "verdict": "Unknown",
+        "reasons": [
+          "第三方页称限美国校园、每人 1–2 名"
+        ],
+        "unknowns": [
+          "是否有官方页、是否仍在招"
+        ]
+      },
+      "value": {
+        "portfolio": "Medium",
+        "networking": "Medium",
+        "financial": "Low"
+      },
+      "evidence": {},
+      "notes": "非技术类校园大使，但仅 Tier C 来源。",
+      "outcomes": null,
+      "readiness": null,
+      "effort": {
+        "weekly_commitment": "约 2 小时/周",
+        "preparation_complexity": "low"
+      },
+      "time_to_value": null,
+      "schedule_flexibility": null,
+      "career_capital": null,
+      "future_optionality": null,
+      "career_leverage": null,
+      "prerequisites": null,
+      "produces": [
+        "设计社群活动记录"
+      ],
+      "unlocks": null,
+      "related_opportunities": null,
+      "goal_contribution": null,
+      "provenance": {
+        "query": "campus ambassador program applications open 2026 students worldwide",
+        "origin": "source_family_query",
+        "source_family": "campus_leadership_registry",
+        "technical": false,
+        "technical_reason": "设计工具品牌营销，非技术内容"
+      },
+      "id": "canva-campus-canvassadors",
+      "title": "Canva Campus Canvassadors (Founding Cohort)",
+      "organization": "Canva",
+      "primary_category": "career",
+      "summary": "Canva 校园大使，美国学生限定，无薪（佣金 + 会员 + 社群基金）。",
+      "application_status": "rolling",
+      "official_url": null,
+      "discovery_url": "https://github.com/Jose-Gael-Cruz-Lopez/underclassmen-opportunities/blob/main/README.md",
+      "trust_tier": "C",
+      "verification_status": "unverified",
+      "layer": "adjacent"
+    },
+    {
+      "secondary_categories": [
+        "competition",
+        "funding"
+      ],
+      "tags": [
+        "startup",
+        "pitch",
+        "ip",
+        "18+",
+        "london"
+      ],
+      "country": null,
+      "city": null,
+      "region": null,
+      "remote": null,
+      "education_level": null,
+      "cohort_year": null,
+      "student_year": null,
+      "graduation_window": null,
+      "major_requirement": null,
+      "skills_required": null,
+      "language_requirement": null,
+      "nationality_requirement": null,
+      "school_requirement": null,
+      "GPA_requirement": null,
+      "cost": "free",
+      "compensation": null,
+      "prize": null,
+      "funding": null,
+      "team_requirement": null,
+      "time_commitment": null,
+      "required_materials": null,
+      "alternate_sources": [],
+      "last_verified": "2026-09-21",
+      "eligibility": {
+        "verdict": "Probably Ineligible",
+        "reasons": [
+          "要求是已注册实体或已获融资的 startup/scale-up，并有融资额或雇员数门槛 —— 不是个人机会"
+        ],
+        "unknowns": []
+      },
+      "value": {
+        "networking": "High",
+        "financial": "Medium",
+        "portfolio": "Medium"
+      },
+      "evidence": {
+        "deadline": {
+          "status": "explicit",
+          "source_url": "https://www.inta.org/inta-events/open-innovation-challenge",
+          "quote": "Application Period: October 6, 2025 – February 27, 2026",
+          "verified_at": "2026-09-21",
+          "note": ""
+        }
+      },
+      "notes": "已截止 + 门槛为已成立实体 → 排除。",
+      "outcomes": null,
+      "readiness": null,
+      "effort": null,
+      "time_to_value": null,
+      "schedule_flexibility": null,
+      "career_capital": null,
+      "future_optionality": null,
+      "career_leverage": null,
+      "prerequisites": null,
+      "produces": null,
+      "unlocks": null,
+      "related_opportunities": null,
+      "goal_contribution": null,
+      "provenance": {
+        "query": "open innovation challenge open call 2026 anyone can apply",
+        "origin": "general_search",
+        "source_family": null,
+        "technical": false,
+        "technical_reason": "品牌/IP/商业创新，非技术内容"
+      },
+      "id": "inta-oic-2026",
+      "title": "INTA Open Innovation Challenge 2026（第五届）",
+      "organization": "International Trademark Association (INTA)",
+      "primary_category": "entrepreneurship",
+      "summary": "面向早期初创/scale-up 的路演赛，评委会含品牌、估值、IP、ESG 专家。",
+      "deadline": "2026-02-27",
+      "deadline_type": "fixed",
+      "application_status": "closed",
+      "event_start": "2026-05-01",
+      "event_end": "2026-05-06",
+      "official_url": "https://www.inta.org/inta-events/open-innovation-challenge",
+      "discovery_url": "https://www.inta.org/inta-events/open-innovation-challenge",
+      "trust_tier": "A",
+      "verification_status": "unverified",
+      "layer": "explore"
+    },
+    {
+      "secondary_categories": [
+        "project",
+        "education"
+      ],
+      "tags": [
+        "data",
+        "ai",
+        "school-restricted",
+        "prize",
+        "lisbon"
+      ],
+      "country": "Portugal",
+      "city": null,
+      "region": null,
+      "remote": null,
+      "education_level": null,
+      "cohort_year": null,
+      "student_year": null,
+      "graduation_window": null,
+      "major_requirement": null,
+      "skills_required": null,
+      "language_requirement": null,
+      "nationality_requirement": null,
+      "school_requirement": "限 NOVA IMS 及 AD NOVA IMS 的学生/教职/校友/合作方",
+      "GPA_requirement": null,
+      "cost": "free",
+      "compensation": null,
+      "prize": null,
+      "funding": null,
+      "team_requirement": "团队 3–7 人",
+      "time_commitment": null,
+      "required_materials": null,
+      "alternate_sources": [],
+      "last_verified": "2026-09-21",
+      "eligibility": {
+        "verdict": "Ineligible",
+        "reasons": [
+          "官方页明写仅面向该校社群；且 2026 期已结束"
+        ],
+        "unknowns": []
+      },
+      "value": {
+        "portfolio": "Medium",
+        "financial": "Medium"
+      },
+      "evidence": {},
+      "notes": "已截止 + 学校限定 → 排除；本会话不留用。",
+      "outcomes": null,
+      "readiness": null,
+      "effort": null,
+      "time_to_value": null,
+      "schedule_flexibility": null,
+      "career_capital": null,
+      "future_optionality": null,
+      "career_leverage": null,
+      "prerequisites": null,
+      "produces": null,
+      "unlocks": null,
+      "related_opportunities": null,
+      "goal_contribution": null,
+      "provenance": {
+        "query": "open innovation challenge open call 2026 anyone can apply",
+        "origin": "general_search",
+        "source_family": null,
+        "technical": true,
+        "technical_reason": "数据/AI 命题（Data Visionaries）"
+      },
+      "id": "nova-ims-dean-oic-2026",
+      "title": "Dean's Open Innovation Challenge 2026 (NOVA IMS)",
+      "organization": "NOVA IMS",
+      "primary_category": "competition",
+      "summary": "校内数据/AI 命题挑战赛，团队 3–7 人，奖金 €500–1000/人。",
+      "deadline": "2026-02-24",
+      "deadline_type": "fixed",
+      "application_status": "closed",
+      "official_url": "https://www.novaims.unl.pt/en/innovation/entrepreneurship/dean-s-open-innovation-challenge",
+      "discovery_url": "https://www.novaims.unl.pt/en/innovation/entrepreneurship/dean-s-open-innovation-challenge",
+      "trust_tier": "A",
+      "verification_status": "unverified",
+      "layer": "explore"
+    }
+  ]
+}

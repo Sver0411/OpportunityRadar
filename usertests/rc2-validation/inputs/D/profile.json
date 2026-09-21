@@ -1,0 +1,119 @@
+{
+  "profile_version": 1,
+  "updated_at": "2026-09-21",
+  "life_stage": [
+    "working"
+  ],
+  "career_stage": [
+    "mid_career",
+    "career_switcher"
+  ],
+  "employment": {
+    "status": "full_time",
+    "role": "后端开发",
+    "function": "engineering",
+    "years_of_experience": 5,
+    "seniority": "mid",
+    "company_size": "unknown",
+    "industry": null,
+    "company_type": "unknown",
+    "management_level": "unknown",
+    "employment_type": null
+  },
+  "education": {
+    "degree": null,
+    "major": null,
+    "major_family": null,
+    "school": null,
+    "school_country": null,
+    "school_level": null,
+    "current_year": null,
+    "expected_graduation": null,
+    "GPA": null
+  },
+  "skills": [
+    {
+      "name": "后端开发",
+      "level": "unknown",
+      "evidence": "用户自述：工作五年，现在做后端开发（具体语言/框架未说明）"
+    }
+  ],
+  "nationality": null,
+  "languages": null,
+  "interests": [
+    "AI 工程"
+  ],
+  "goals": [
+    {
+      "type": "career",
+      "priority": "high",
+      "note": "从后端开发转向 AI 工程方向（用户原话：“想往 AI 工程方向转”）"
+    },
+    {
+      "type": "skill",
+      "priority": "medium",
+      "note": "用户要的是“比较现实的路径”，即能力补齐路径；具体目标岗位未说明"
+    }
+  ],
+  "constraints": {
+    "preferred_country": null,
+    "preferred_city": null,
+    "preferred_region": null,
+    "remote": null,
+    "relocation": null,
+    "unpaid": false,
+    "budget": null,
+    "weekly_time": 6,
+    "available_period": null,
+    "visa": null,
+    "organization_size": null
+  },
+  "career_state": {
+    "current_direction": "后端开发",
+    "target_role": "AI 工程",
+    "target_industry": null,
+    "target_country": null,
+    "switch_intent": "high",
+    "management_intent": "unknown",
+    "specialist_intent": "unknown",
+    "compensation_growth_intent": "unknown",
+    "work_life_balance_intent": "unknown",
+    "timeline": null,
+    "growth_bottlenecks": [
+      "缺少 AI 工程方向的实践经历（用户未说明具体缺什么技术）"
+    ]
+  },
+  "decision_preferences": {
+    "risk_tolerance": "low",
+    "competition_tolerance": "unknown",
+    "time_horizon": "medium",
+    "prefer_public_output": "unknown",
+    "prefer_low_commitment": "high",
+    "prefer_high_upside": "unknown",
+    "prefer_structured_program": "unknown",
+    "prefer_independent_work": "unknown",
+    "prefer_networking": "unknown",
+    "prefer_remote": "unknown",
+    "prefer_paid": "high"
+  },
+  "dealbreakers": [
+    "辞掉现有工作全职投入（用户原话：“我不能辞职”）",
+    "从零开始拿实习/入门级薪资（用户原话：“也不想从零开始拿实习工资”）",
+    "每周投入超过 6 小时（用户原话：“每周最多 6 小时”）"
+  ],
+  "green_lights": [
+    "在职、业余时间可完成（能保留现有的 5 年后端经验价值）",
+    "AI 工程方向（用户原话：“想往 AI 工程方向转”）"
+  ],
+  "_source": "user_stated",
+  "_provenance": {
+    "employment.seniority": "inferred_pending"
+  },
+  "_notes": [
+    "本画像仅由用户原话构建：5 年经验 / 后端开发 / 想转 AI 工程 / 不能辞职 / 不接受入门级实习薪资 / 每周最多 6 小时。",
+    "未说明且保持 null：所在地（preferred_country/city）→ 地区按 Global/Remote 兜底，不猜；具体技术栈（skills 仅记“后端开发”，不填 Java/Go/Python）；学历（education 全 null）；预算（budget null）。",
+    "interests 只写用户说过的 “AI 工程”。MLOps / 推理服务 / 数据管道等属搜索扩词用的语义跳跃（≤2 跳），不写入兴趣字段。",
+    "constraints.unpaid=false 依据：“不想从零开始拿实习工资”（明确不接受无薪/入门级实习薪资）。",
+    "decision_preferences.risk_tolerance=low、prefer_low_commitment=high 由“不能辞职 + 每周最多 6 小时”推导，属推断，不用于硬性资格判断。"
+  ]
+}

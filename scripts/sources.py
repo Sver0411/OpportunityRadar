@@ -645,6 +645,133 @@ def _finalize(out, limit, selected, downweighted, skipped, stage) -> list:
     return out[:limit]
 
 
+# ---------------------------------------------------------------- Explore 查询镜头（Mode C）
+#: Explore 镜头：与 13 类 taxonomy **正交**的表达维度（不是新类别）。
+#: 每个镜头给几条**field-neutral** 的 query 模板 —— 空画像时不该从 CS 世界出发。
+#: 技术机会仍然可以出现（contribute / build / research 都是镜头之一）；这里只是保证
+#: 搜索预算不天然全落在同一类上 —— 不是"反技术偏置"。
+EXPLORE_QUERY_LENSES = {
+    "build": ("open innovation challenge build something open call anyone worldwide",
+              "build challenge make a prototype open call participants"),
+    "volunteer": ("remote volunteer program open call anyone can join nonprofit",
+                  "online volunteering opportunities open worldwide no experience needed"),
+    "creative": ("open call creative writing film art design competition anyone can enter",
+                 "open call poetry photography music exhibition prize anyone"),
+    "community": ("online mentorship program applications open community for beginners",
+                  "community programme open application join members mentor"),
+    "research": ("citizen science project join open research volunteers",
+                 "open research programme public participation call"),
+    "contribute": ("open source contribution beginner friendly project community welcome",
+                   "public contribution programme open call anyone"),
+    "entrepreneurship": ("student startup competition accelerator applications open worldwide",
+                         "innovation challenge open call early stage idea"),
+    "cross_domain": ("social impact programme open call sustainability education health",
+                     "sustainability climate education programme volunteers open"),
+}
+
+#: 默认覆盖几个镜头（§9 要求 ≥3；默认 4，不是"结果必须有 8 类"）
+EXPLORE_LENS_LIMIT = 4
+
+
+def explore_lens_enabled(profile, mode="C") -> dict:
+    """严格限定触发：Mode C + 没有明确 goal + career_direction == explore。
+
+    有明确目标的用户（A/B/C/D）**完全不受影响** —— 他们走原来的 category planner。
+    """
+    prof = profile or {}
+    mode = str(mode or "A").upper()
+    goals = [g for g in (prof.get("goals") or []) if g]
+    if mode != "C":
+        return {"enabled": False, "reason": f"模式 {mode} 不启用 explore 镜头"}
+    if goals:
+        return {"enabled": False, "reason": "用户声明了目标 → 用原来的类别规划"}
+    try:
+        import gaps as GP
+        direction = GP.career_direction(prof)
+    except Exception:
+        direction = "explore"
+    if direction != "explore":
+        return {"enabled": False, "reason": f"career_direction={direction} ≠ explore"}
+    return {"enabled": True, "reason": "空画像 + 无目标 + explore 方向 → 跨镜头铺开搜索预算",
+            "lens_limit": EXPLORE_LENS_LIMIT}
+
+
+def plan_explore_queries(profile=None, mode="C", lens_limit=None) -> list:
+    """跨镜头的 query 批次（至少 3 个镜头）。返回 [{query, lens, origin, source_family}]。
+
+    这是**查询覆盖**，不是结果配额：拿到真实结果后由 explore_coverage 决定最终呈现几个轴，
+    不够就不凑。技术类镜头（contribute/build/research）照样在列表里。
+    """
+    gate = explore_lens_enabled(profile, mode)
+    if not gate.get("enabled"):
+        return []
+    limit = int(lens_limit or gate.get("lens_limit") or EXPLORE_LENS_LIMIT)
+    limit = max(3, limit)
+    out = []
+    for lens, templates in EXPLORE_QUERY_LENSES.items():
+        if len(out) >= limit:
+            break
+        out.append({"query": templates[0], "lens": lens, "origin": "explore_lens",
+                    "source_family": None, "stage": None})
+    return out
+
+
+def select_verification_targets(candidates, budget, axis_fn=None, mode="C") -> list:
+    """决定**先核实谁**：Explore 模式下优先覆盖不同镜头，而不是按中性 match 取前 N。
+
+    这不改验证门槛（canonical source / freshness / application_status / verified_official
+    全部不变），只改"预算花在谁身上"。每条都带 `verification_selected_because`：
+    `top_in_axis` / `global_top` / `urgency` / `fallback`。
+    """
+    cands = [c for c in (candidates or []) if isinstance(c, dict)]
+    if not cands or int(budget) <= 0:
+        return []
+
+    def key(c):
+        return (-float(c.get("match_score") or 0), str(c.get("id") or ""))
+
+    def rec(c, why, axis=None):
+        return {"opportunity_id": c.get("id"), "title": c.get("title"),
+                "match_score": c.get("match_score"), "axis": axis,
+                "days_remaining": c.get("days_remaining"),
+                "verification_selected_because": why}
+
+    budget = int(budget)
+    out, picked = [], set()
+
+    if str(mode).upper() == "C" and axis_fn is not None:
+        groups = {}
+        for c in cands:
+            for a in (axis_fn(c) or ["(no_axis)"]):
+                groups.setdefault(a, []).append(c)
+        # 每个镜头的 Top1 先占位；镜头之间按"该镜头最好候选的 match"排序。
+        # `(no_axis)` 不占镜头名额 —— 没有轴说明它不属于任何探索维度，交给全局补位。
+        groups.pop("(no_axis)", None)
+        ordered = sorted(groups, key=lambda a: key(min(groups[a], key=key)))
+        for axis in ordered:
+            if len(out) >= budget:
+                break
+            top = min(groups[axis], key=key)
+            if id(top) in picked:
+                continue
+            picked.add(id(top))
+            out.append(rec(top, "top_in_axis", axis))
+
+    for c in sorted(cands, key=key):
+        if len(out) >= budget:
+            break
+        if id(c) in picked:
+            continue
+        picked.add(id(c))
+        why = "urgency" if float(c.get("urgency") or 0) > 0 else "global_top"
+        if not (str(mode).upper() == "C"):
+            why = "global_top"
+        out.append(rec(c, why, (axis_fn(c) or [None])[0] if axis_fn else None))
+    if not out:
+        out.append(rec(min(cands, key=key), "fallback"))
+    return out
+
+
 def registry_coverage(profile=None) -> dict:
     """registry 只是种子：报告它与通用搜索的关系，不制造白名单。"""
     return {"families": len(SOURCE_FAMILIES), "gap_types_covered": sorted(GAP_TO_BRIDGE_INTENT),

@@ -1,0 +1,877 @@
+{
+  "_note": "Persona D 独立会话（2026-09-21）的结构化输入：画像 + 真实候选。作为 RC2 回归基线：presentation / planner 改动后不得使这些产物明显回归。",
+  "opportunities": [
+    {
+      "id": "vllm-contributing",
+      "title": "Contributing to vLLM（vLLM 项目贡献指南 / Job Board）",
+      "organization": "vLLM Project（vLLM 开源社区）",
+      "primary_category": "open_source",
+      "secondary_categories": [
+        "skill_development",
+        "project"
+      ],
+      "tags": [
+        "open-source",
+        "ai-inference",
+        "serving",
+        "python",
+        "evergreen",
+        "no-entry-fee",
+        "remote",
+        "portfolio-output"
+      ],
+      "summary": "vLLM 是生产级 LLM 推理/服务引擎。官方贡献指南写明社区对所有人开放，并提供 Job Board（good first issues / selected onboarding tasks）。",
+      "country": null,
+      "city": null,
+      "region": null,
+      "remote": true,
+      "education_level": null,
+      "organization_size": "unknown",
+      "skills_required": [
+        "Python（页面标注兼容 3.10–3.13）",
+        "Git / GitHub Pull Request 流程",
+        "pre-commit、pytest（页面规定的本地检查与测试工具）"
+      ],
+      "skills_preferred": [
+        "CUDA / C++（仅当贡献内核相关代码）",
+        "MkDocs（文档贡献）"
+      ],
+      "language_requirement": {
+        "language": "en",
+        "exam": null,
+        "min_level": null,
+        "note": "页面全英文；未明写语言等级要求"
+      },
+      "nationality_requirement": null,
+      "school_requirement": null,
+      "GPA_requirement": null,
+      "application_open": null,
+      "application_status": "open",
+      "deadline": null,
+      "deadline_type": "evergreen",
+      "event_start": null,
+      "event_end": null,
+      "cost": "free",
+      "compensation": null,
+      "time_commitment": null,
+      "required_materials": null,
+      "official_url": "https://docs.vllm.ai/en/latest/contributing/",
+      "discovery_url": "https://docs.vllm.ai/en/latest/contributing/",
+      "trust_tier": "A",
+      "verification_status": "verified_official",
+      "last_verified": "2026-09-21",
+      "layer": "exploit",
+      "eligibility": {
+        "verdict": "Eligible",
+        "reasons": [
+          "官方页原文：\"Our community is open to everyone and welcomes all kinds of contributions, no matter how small or large.\"（explicit，无学生/学历/国籍限制）",
+          "无报名周期（deadline_type=evergreen），不需要辞职、无最低时长门槛，可在职按周投入"
+        ],
+        "unknowns": [
+          "个人实测投入（每周能稳定产出多少）页面未写，取决于所选 issue 难度",
+          "是否需要本地 GPU 跑单测：页面写 \"If you don't have access to a GPU platform to run unit tests locally, rely on the continuous integration system\"（用户在本地可能受限，但页面已给出绕过方式）"
+        ]
+      },
+      "value": {
+        "career": "High",
+        "skill": "High",
+        "portfolio": "High",
+        "networking": "High",
+        "reputation": "Medium",
+        "financial": "Low",
+        "interest": "High"
+      },
+      "evidence": {
+        "application_status": {
+          "status": "explicit",
+          "source_url": "https://docs.vllm.ai/en/latest/contributing/",
+          "quote": "Our community is open to everyone and welcomes all kinds of contributions, no matter how small or large.",
+          "verified_at": "2026-09-21"
+        },
+        "deadline": {
+          "status": "unknown",
+          "source_url": "https://docs.vllm.ai/en/latest/contributing/",
+          "note": "该机会为长期开放的开源贡献路径，没有申请截止日；页面未给出周期",
+          "verified_at": "2026-09-21"
+        },
+        "education_level": {
+          "status": "unknown",
+          "source_url": "https://docs.vllm.ai/en/latest/contributing/",
+          "note": "页面未写学历要求；也未限定学生身份",
+          "verified_at": "2026-09-21"
+        }
+      },
+      "seen_status": "new",
+      "outcomes": {
+        "skill": "high",
+        "portfolio": "high",
+        "career": "high",
+        "network": "high",
+        "reputation": "medium",
+        "financial": "low",
+        "interest": "high",
+        "credential": "low"
+      },
+      "readiness": {
+        "status": "minor_preparation",
+        "estimated_preparation": "1–2 周（克隆仓库、装好环境、跑通一次 pre-commit + 单条测试）",
+        "ready_items": [
+          "后端工程经验（Python 生态、CI、代码评审流程）",
+          "已有全职工作，可异步投入"
+        ],
+        "missing_items": [
+          "对 vLLM 代码库结构（scheduler / KV cache / serving 路径）的熟悉度",
+          "本地开发环境（uv / pre-commit / pytest）"
+        ],
+        "blockers": []
+      },
+      "effort": {
+        "estimated_hours": null,
+        "weekly_commitment": null,
+        "duration": null,
+        "preparation_complexity": "medium"
+      },
+      "time_to_value": "months",
+      "schedule_flexibility": "high",
+      "career_capital": {
+        "skill_capital": "high",
+        "portfolio_capital": "high",
+        "network_capital": "high",
+        "reputation_capital": "medium",
+        "domain_capital": "high",
+        "credential_capital": "low"
+      },
+      "future_optionality": {
+        "level": "high",
+        "reason": "推理服务/平台层的公开贡献记录可直接支撑 AI 工程岗位的面试材料"
+      },
+      "career_leverage": {
+        "level": "high",
+        "reason": "有可验证的 merged PR 与 reviewer 评价，比课程证书更能证明“会做 AI 生产系统”"
+      },
+      "prerequisites": [
+        "GitHub 账号",
+        "本地 Python 环境",
+        "英文读写（issue/PR 沟通）"
+      ],
+      "produces": [
+        "合并进 vLLM 主线的 Pull Request（推理 / 调度 / 服务 / 性能方向）",
+        "公开的 issue 讨论与 code review 记录",
+        "对生产级推理引擎的内部熟悉度（可直接写进简历的项目经历）"
+      ],
+      "unlocks": [
+        {
+          "type": "maintainer_path",
+          "label": "vLLM 社区的持续贡献者 / reviewer 身份",
+          "opportunity_id": null
+        },
+        {
+          "type": "job",
+          "label": "AI 推理/平台类岗位的面试素材",
+          "opportunity_id": null
+        },
+        {
+          "type": "public_reputation",
+          "label": "在 KubeCon 等会议投稿该方向议题的经历基础",
+          "opportunity_id": "kubecon-cloudnativecon-europe-2027-cfp"
+        }
+      ],
+      "related_opportunities": [
+        "apache-airflow-contributing"
+      ],
+      "goal_contribution": [
+        "career",
+        "skill"
+      ],
+      "provenance": "general_search",
+      "source_family": "contributor_guide",
+      "why_discovered": "D 模式能力反推：目标岗位是 AI 工程，用户已有 5 年后端经验，最短的“生产级 AI 基础设施”入口是推理服务引擎的贡献路径，而不是课程或玩具项目。用 'vllm contributing good first issue' 检索到官方指南（docs.vllm.ai）。",
+      "notes": [
+        "Explicit：开放给所有人、Job Board 存在（good first issues / onboarding tasks）来自官方页原文。",
+        "Anti-hallucination：页面未写最低/建议每周投入 → effort 字段保持 null，不编造“每周 X 小时”。",
+        "不是无薪实习：这是开源贡献路径，不涉及降薪或身份变更（用户明确不接受从零开始拿实习工资）。",
+        "官方页脚日期 September 17, 2026，确认页面为当前版本。"
+      ]
+    },
+    {
+      "id": "apache-airflow-contributing",
+      "title": "Contributing to Apache Airflow（CONTRIBUTING / Contributors' Guide）",
+      "organization": "Apache Software Foundation（Apache Airflow PMC）",
+      "primary_category": "open_source",
+      "secondary_categories": [
+        "skill_development",
+        "project"
+      ],
+      "tags": [
+        "open-source",
+        "data-pipeline",
+        "orchestration",
+        "python",
+        "committer-ladder",
+        "evergreen",
+        "remote"
+      ],
+      "summary": "Apache Airflow 是数据管道编排的事实标准之一。官方贡献页面写明欢迎贡献，并有公开的 contributor → committer 成长阶梯。",
+      "country": null,
+      "city": null,
+      "region": null,
+      "remote": true,
+      "education_level": null,
+      "organization_size": "unknown",
+      "skills_required": [
+        "Python",
+        "Docker-based Breeze 开发环境",
+        "pre-commit / pytest"
+      ],
+      "skills_preferred": [
+        "SQL / 数据管道工程经验"
+      ],
+      "language_requirement": {
+        "language": "en",
+        "exam": null,
+        "min_level": null,
+        "note": "页面与邮件列表均使用英文；未明写语言等级要求"
+      },
+      "nationality_requirement": null,
+      "school_requirement": null,
+      "GPA_requirement": null,
+      "application_open": null,
+      "application_status": "open",
+      "deadline": null,
+      "deadline_type": "evergreen",
+      "event_start": null,
+      "event_end": null,
+      "cost": "free",
+      "compensation": null,
+      "time_commitment": null,
+      "required_materials": null,
+      "official_url": "https://github.com/apache/airflow/blob/main/CONTRIBUTING.rst",
+      "discovery_url": "https://github.com/apache/airflow/blob/main/CONTRIBUTING.rst",
+      "alternate_sources": [
+        {
+          "url": "https://github.com/apache/airflow/blob/730a966295bcb763478395fe4d8d47967c0f6078/CONTRIBUTING.rst",
+          "tier": "A",
+          "note": "comitter 门槛原文所在的历史版本（main 分支该文件已迁到 contributing-docs/README.rst，我未能打开新文件确认）"
+        }
+      ],
+      "trust_tier": "A",
+      "verification_status": "verified_official",
+      "last_verified": "2026-09-21",
+      "layer": "adjacent",
+      "eligibility": {
+        "verdict": "Eligible",
+        "reasons": [
+          "官方页原文：\"Contributions are welcome and are greatly appreciated! Every little bit helps, and credit will always be given.\"（explicit，无学生/学历/国籍限制）",
+          "无固定申请周期，可在职异步投入"
+        ],
+        "unknowns": [
+          "committer 门槛中的 \"Consistent contributions over the past 6 months\" 来自同一文件的历史版本，未能确认 main 分支现行表述"
+        ]
+      },
+      "value": {
+        "career": "High",
+        "skill": "High",
+        "portfolio": "High",
+        "networking": "Medium",
+        "reputation": "Medium",
+        "financial": "Low",
+        "interest": "Medium"
+      },
+      "evidence": {
+        "application_status": {
+          "status": "explicit",
+          "source_url": "https://github.com/apache/airflow/blob/main/CONTRIBUTING.rst",
+          "quote": "Contributions are welcome and are greatly appreciated! Every little bit helps, and credit will always be given.",
+          "verified_at": "2026-09-21"
+        },
+        "deadline": {
+          "status": "unknown",
+          "source_url": "https://github.com/apache/airflow/blob/main/CONTRIBUTING.rst",
+          "note": "长期开放的贡献路径，无申请截止日",
+          "verified_at": "2026-09-21"
+        }
+      },
+      "seen_status": "new",
+      "outcomes": {
+        "skill": "high",
+        "portfolio": "high",
+        "career": "high",
+        "network": "medium",
+        "reputation": "medium",
+        "financial": "low",
+        "credential": "low"
+      },
+      "readiness": {
+        "status": "minor_preparation",
+        "estimated_preparation": "1–2 周（装 Breeze/Docker、跑通一次测试、找一个 issue）",
+        "ready_items": [
+          "后端开发经验（Python、CI、依赖与并发问题）",
+          "已有纪律性工程习惯"
+        ],
+        "missing_items": [
+          "Airflow 内部结构（scheduler / DAG 解析 / provider 机制）",
+          "Breeze 环境"
+        ],
+        "blockers": []
+      },
+      "effort": {
+        "estimated_hours": null,
+        "weekly_commitment": null,
+        "duration": null,
+        "preparation_complexity": "medium"
+      },
+      "time_to_value": "months",
+      "schedule_flexibility": "high",
+      "career_capital": {
+        "skill_capital": "high",
+        "portfolio_capital": "high",
+        "network_capital": "medium",
+        "reputation_capital": "medium",
+        "domain_capital": "high",
+        "credential_capital": "low"
+      },
+      "future_optionality": {
+        "level": "medium",
+        "reason": "数据管道/编排能力是 AI 工程中数据侧的基础，但与“推理服务”相比离模型侧更远"
+      },
+      "career_leverage": {
+        "level": "medium",
+        "reason": "有公开 PR 与 committer 阶梯，但方向偏数据平台而非推理"
+      },
+      "prerequisites": [
+        "GitHub 账号",
+        "Docker",
+        "英文邮件列表沟通"
+      ],
+      "produces": [
+        "合并进 Airflow 的 PR",
+        "Apache 项目的公开贡献与（长期）committer 身份",
+        "数据管道编排的生产经验"
+      ],
+      "unlocks": [
+        {
+          "type": "maintainer_path",
+          "label": "Apache committer / PMC 阶梯（需持续数月贡献）",
+          "opportunity_id": null
+        },
+        {
+          "type": "public_reputation",
+          "label": "Airflow Summit 等社区分享入口",
+          "opportunity_id": null
+        }
+      ],
+      "related_opportunities": [
+        "vllm-contributing"
+      ],
+      "goal_contribution": [
+        "career",
+        "skill"
+      ],
+      "provenance": "general_search",
+      "source_family": "maintainer_program",
+      "why_discovered": "D 模式反推：AI 工程 = 模型服务 + 数据管道两侧。用 'apache airflow contributing good first issue committer' 检索，找到与用户现有后端/Python 经验最直接衔接的数据编排项目。",
+      "notes": [
+        "Explicit：欢迎贡献来自官方 CONTRIBUTING.rst 原文；committer 标准（6 个月持续贡献）来自同文件历史版本。",
+        "官方 main 分支文件已精简并指向 contributing-docs/README.rst（本次未打开，未做确认）。",
+        "页面未写每周投入 → effort 保持 null。"
+      ]
+    },
+    {
+      "id": "kubecon-cloudnativecon-europe-2027-cfp",
+      "title": "KubeCon + CloudNativeCon Europe 2027 — Call For Proposals (CFP)",
+      "organization": "Cloud Native Computing Foundation（CNCF）/ The Linux Foundation",
+      "primary_category": "event",
+      "secondary_categories": [
+        "networking",
+        "career"
+      ],
+      "tags": [
+        "cfp",
+        "talk",
+        "cloud-native",
+        "ai-inference",
+        "barcelona",
+        "fixed-deadline",
+        "high-upside"
+      ],
+      "summary": "CNCF 旗舰会议 2027 欧洲场征稿中，设有 \"AI Inference and Infrastructure\" 与 \"Agentic AI\" 两个与 AI 工程直接相关的议题轨道。投稿类型含 5 分钟 Lightning Talk。",
+      "country": "Spain",
+      "city": "Barcelona",
+      "region": null,
+      "remote": false,
+      "education_level": null,
+      "organization_size": "large",
+      "skills_required": null,
+      "skills_preferred": null,
+      "language_requirement": {
+        "language": "en",
+        "exam": null,
+        "min_level": null,
+        "note": "投稿与演讲使用英文；页面未写具体等级要求"
+      },
+      "nationality_requirement": null,
+      "school_requirement": null,
+      "GPA_requirement": null,
+      "application_open": null,
+      "application_status": "open",
+      "deadline": "2026-10-11",
+      "deadline_type": "fixed",
+      "event_start": "2027-03-15",
+      "event_end": "2027-03-18",
+      "cost": null,
+      "compensation": null,
+      "time_commitment": null,
+      "required_materials": null,
+      "official_url": "https://events.linuxfoundation.org/kubecon-cloudnativecon-europe/program/cfp",
+      "discovery_url": "https://events.linuxfoundation.org/kubecon-cloudnativecon-europe/program/cfp",
+      "trust_tier": "A",
+      "verification_status": "verified_official",
+      "last_verified": "2026-09-21",
+      "layer": "explore",
+      "eligibility": {
+        "verdict": "Probably Eligible",
+        "reasons": [
+          "页面原文：\"Submissions are due by 11 October at 11:59 PM CEST (UTC+2)\" 与 \"CFP Closes: Sunday, 11 October at 11:59 PM CEST (UTC+2)\"（explicit）",
+          "投稿未限制学生/学历/公司身份；页面只要求遵守 Code of Conduct"
+        ],
+        "unknowns": [
+          "未写参会注册费与差旅成本（用户预算未知）",
+          "录取取决于选题竞争力，页面不给任何通过率信息"
+        ]
+      },
+      "value": {
+        "career": "Medium",
+        "skill": "Medium",
+        "portfolio": "Medium",
+        "networking": "High",
+        "reputation": "High",
+        "financial": "Low",
+        "interest": "Medium"
+      },
+      "evidence": {
+        "application_status": {
+          "status": "explicit",
+          "source_url": "https://events.linuxfoundation.org/kubecon-cloudnativecon-europe/program/cfp",
+          "quote": "Submissions are due by 11 October at 11:59 PM CEST (UTC+2)",
+          "verified_at": "2026-09-21"
+        },
+        "deadline": {
+          "status": "explicit",
+          "source_url": "https://events.linuxfoundation.org/kubecon-cloudnativecon-europe/program/cfp",
+          "quote": "CFP Closes: Sunday, 11 October at 11:59 PM CEST (UTC+2)",
+          "verified_at": "2026-09-21"
+        }
+      },
+      "seen_status": "new",
+      "outcomes": {
+        "reputation": "high",
+        "network": "high",
+        "portfolio": "medium",
+        "career": "medium",
+        "skill": "medium",
+        "exposure": "high",
+        "financial": "low"
+      },
+      "readiness": {
+        "status": "major_preparation",
+        "estimated_preparation": "需要先有可讲的实践（例如 vLLM 贡献或公司内推理服务经验），再成稿",
+        "ready_items": [
+          "5 年后端/生产系统经验（可作为“生产经验”素材）"
+        ],
+        "missing_items": [
+          "AI 推理/服务方向的可展示实践案例",
+          "投稿/演讲履历"
+        ],
+        "blockers": [
+          "暂无该方向实践 → 本轮投稿竞争力弱；参会还涉及差旅与费用"
+        ]
+      },
+      "effort": {
+        "estimated_hours": null,
+        "weekly_commitment": null,
+        "duration": "投稿本身是短周期工作（页面未规定工时）；参会为 4 天（2027-03-15 ~ 18）",
+        "preparation_complexity": "high"
+      },
+      "time_to_value": "long_term",
+      "schedule_flexibility": "medium",
+      "career_capital": {
+        "skill_capital": "low",
+        "portfolio_capital": "medium",
+        "network_capital": "high",
+        "reputation_capital": "high",
+        "domain_capital": "medium",
+        "credential_capital": "medium"
+      },
+      "future_optionality": {
+        "level": "high",
+        "reason": "一次公开演讲可换成行业可见度与后续投稿/合作机会"
+      },
+      "career_leverage": {
+        "level": "medium",
+        "reason": "在当前阶段属于高上限但前置条件未满足的动作，更适合作为半年后的目标"
+      },
+      "prerequisites": [
+        "英文议题摘要",
+        "可公开的实践案例",
+        "参会预算（页面未写，未知）"
+      ],
+      "produces": [
+        "被收录的会议议题 / Lightning Talk",
+        "公开演讲记录（可写进简历与个人主页）",
+        "与 CNCF/AI 推理方向维护者的直接接触"
+      ],
+      "unlocks": [
+        {
+          "type": "public_reputation",
+          "label": "后续会议投稿与社区可见度",
+          "opportunity_id": null
+        },
+        {
+          "type": "network",
+          "label": "AI 推理基础设施方向的人脉",
+          "opportunity_id": null
+        }
+      ],
+      "related_opportunities": [
+        "vllm-contributing"
+      ],
+      "goal_contribution": [
+        "career"
+      ],
+      "provenance": "source_family_query",
+      "source_family": "community_event",
+      "why_discovered": "从“缺公开影响力/缺 AI 生产实践”这一缺口反推：oss 来源家族的 community_event（CFP）是低工时、高上限的路径；用 'KubeCon CloudNativeCon CFP deadline' 检索官方 CFP 页，发现其 AI Inference and Infrastructure 轨道与用户目标直接对应。",
+      "notes": [
+        "Explicit：截止时间与轨道描述均来自官方 CFP 页原文。",
+        "同页还列出 co-located events（含 Cloud Native AI + Inference Day）投稿窗口；另一页显示其 CFP 截止为 2026-10-18，但该页本次未打开确认，仅作线索。",
+        "页面未写投稿工时 → effort 保持 null，不编造小时数。",
+        "与用户硬约束的关系：投稿不要求离职；但参会为线下 4 天且费用未知。"
+      ]
+    },
+    {
+      "id": "lfx-mentorship-cncf",
+      "title": "LFX Mentorship（Linux Foundation / CNCF 导师制带薪项目）",
+      "organization": "The Linux Foundation（LFX Mentorship）",
+      "primary_category": "career",
+      "secondary_categories": [
+        "skill_development",
+        "funding",
+        "open_source"
+      ],
+      "tags": [
+        "mentorship",
+        "stipend",
+        "cncf",
+        "remote",
+        "cohort",
+        "unverified-hours"
+      ],
+      "summary": "Linux Foundation 的导师制项目，每年多个批次，参与者在中选项目维护者指导下做 12 周左右的开源开发并获 stipend。",
+      "country": null,
+      "city": null,
+      "region": null,
+      "remote": true,
+      "education_level": null,
+      "organization_size": "large",
+      "skills_required": null,
+      "skills_preferred": null,
+      "language_requirement": null,
+      "nationality_requirement": null,
+      "school_requirement": null,
+      "GPA_requirement": null,
+      "application_open": null,
+      "application_status": "unknown",
+      "deadline": null,
+      "deadline_type": "recurring",
+      "event_start": null,
+      "event_end": null,
+      "cost": "free",
+      "compensation": "stipend（二手来源：按 PPP 计算，二手来源给出 $1,000–$6,600 区间，未在官方页确认）",
+      "time_commitment": "二手来源称约 20–30 小时/周（12 周）；未在官方页确认",
+      "required_materials": null,
+      "official_url": null,
+      "discovery_url": "https://mentorship.lfx.linuxfoundation.org/",
+      "alternate_sources": [
+        {
+          "url": "https://resources.devweekends.com/resources/open-source-programs/lfx-mentorship",
+          "tier": "C",
+          "note": "第三方指南：Time commitment ~20–30 hours/week；12 周/批，一年三批"
+        },
+        {
+          "url": "https://techbeatly.com/lfx-mentorship-how-to-apply/",
+          "tier": "C",
+          "note": "第三方经验贴：不要求学生身份，欢迎职业转型者；申请需先有项目贡献"
+        }
+      ],
+      "trust_tier": "C",
+      "verification_status": "partially_verified",
+      "last_verified": "2026-09-21",
+      "layer": "adjacent",
+      "eligibility": {
+        "verdict": "Unknown",
+        "reasons": [
+          "官方 LFX 站为 JS 应用，打开后无正文 → 未找到官方确认来源，资格与时长均无法用 Tier A/B 证据判定",
+          "二手来源称不要求学生身份（对在职者友好），但同源称需 20–30 小时/周，与用户每周 6 小时的硬约束冲突"
+        ],
+        "unknowns": [
+          "当前批次是否开放、具体项目的时长要求",
+          "是否允许有全职工作（二手来源提到不得有妨碍全程参与的冲突义务）"
+        ]
+      },
+      "value": {
+        "career": "High",
+        "skill": "High",
+        "portfolio": "High",
+        "networking": "High",
+        "reputation": "Medium",
+        "financial": "Medium",
+        "interest": "Medium"
+      },
+      "evidence": {
+        "application_status": {
+          "status": "unknown",
+          "source_url": "https://mentorship.lfx.linuxfoundation.org/",
+          "note": "官方站为前端渲染，本次未读到任何项目或报名状态正文，也未找到官方确认来源",
+          "verified_at": "2026-09-21"
+        }
+      },
+      "seen_status": "new",
+      "outcomes": {
+        "skill": "high",
+        "portfolio": "high",
+        "career": "high",
+        "network": "high",
+        "financial": "medium",
+        "reputation": "medium"
+      },
+      "readiness": {
+        "status": "blocked",
+        "estimated_preparation": "不确定",
+        "ready_items": [
+          "后端工程经验",
+          "英文读写"
+        ],
+        "missing_items": [
+          "目标项目的既有贡献记录（二手来源称几乎必需）"
+        ],
+        "blockers": [
+          "时间投入（二手来源 20–30 小时/周）与用户每周 6 小时上限直接冲突；且不能辞职"
+        ]
+      },
+      "effort": {
+        "estimated_hours": null,
+        "weekly_commitment": "约 20–30 小时/周（第三方来源，未官方确认）",
+        "duration": "12 周/期（第三方来源）",
+        "preparation_complexity": "high"
+      },
+      "time_to_value": "months",
+      "schedule_flexibility": "low",
+      "career_capital": {
+        "skill_capital": "high",
+        "portfolio_capital": "high",
+        "network_capital": "high",
+        "credential_capital": "medium"
+      },
+      "future_optionality": {
+        "level": "medium",
+        "reason": "若时间允许，是带薪开源经历；但本轮的硬约束使其不可执行"
+      },
+      "career_leverage": {
+        "level": "medium",
+        "reason": "产出强，但按用户每周 6 小时无法承担项目承诺"
+      },
+      "prerequisites": [
+        "LFX 账号",
+        "简历 / cover letter",
+        "先行贡献记录"
+      ],
+      "produces": [
+        "中选项目的合并贡献",
+        "stipend（金额未官方确认）",
+        "维护者指导关系"
+      ],
+      "unlocks": [
+        {
+          "type": "mentorship",
+          "label": "CNCF 生态项目维护者人脉",
+          "opportunity_id": null
+        }
+      ],
+      "related_opportunities": [
+        "vllm-contributing"
+      ],
+      "goal_contribution": [
+        "career",
+        "skill"
+      ],
+      "provenance": "source_family_query",
+      "source_family": "mentorship_program",
+      "why_discovered": "先按“在职转型 AI 工程”检索 mentorship 类来源家族（mentorship_program），再核对时间投入；结果因每周 20–30 小时的投入与用户硬约束冲突而落选，属于“找过但主动排除”的记录。",
+      "notes": [
+        "verification_status=partially_verified：官方页打不开正文，资格与工时只有 Tier C 来源。",
+        "因此本项目不能进主推荐区；进入”需确认“并在组合里因超出 6 小时预算被删去。",
+        "不得把它当作“实习降价”路径推荐：它是带薪项目，但仍要求接近兼职/全职的时间投入。"
+      ]
+    },
+    {
+      "id": "ospp-2026",
+      "title": "开源之夏 2026（OSPP，中国科学院软件研究所“点亮计划”）",
+      "organization": "中国科学院软件研究所（开源之夏组委会）",
+      "primary_category": "open_source",
+      "secondary_categories": [
+        "competition",
+        "skill_development"
+      ],
+      "tags": [
+        "open-source",
+        "student-only",
+        "stipend",
+        "risc-v",
+        "cn"
+      ],
+      "summary": "面向高校在校学生的开源项目实践活动，中选学生在导师指导下完成项目任务，结项获劳务报酬与证书。",
+      "country": "China",
+      "city": null,
+      "region": null,
+      "remote": true,
+      "education_level": "undergraduate",
+      "organization_size": "large",
+      "skills_required": null,
+      "skills_preferred": null,
+      "language_requirement": {
+        "language": "zh",
+        "exam": null,
+        "min_level": null,
+        "note": "中文活动；页面未写语言等级要求"
+      },
+      "nationality_requirement": "年满 18 周岁的高校在校学生（中国籍需提供学籍在线验证报告或在读证明）",
+      "school_requirement": null,
+      "GPA_requirement": null,
+      "application_open": null,
+      "application_status": "open",
+      "deadline": null,
+      "deadline_type": "rolling",
+      "event_start": null,
+      "event_end": null,
+      "cost": "free",
+      "compensation": "结项劳务报酬（参与社区公告：经典模式 税前 3,500 / 5,000 元；领航模式 6,000 / 8,000 / 10,000 元）",
+      "time_commitment": "项目开发周期 2–6 个月（参与社区公告；各项目不同）",
+      "required_materials": null,
+      "official_url": null,
+      "discovery_url": "https://summer.ospp.ac.cn/",
+      "alternate_sources": [
+        {
+          "url": "http://community.kde.org/OSPP",
+          "tier": "B",
+          "note": "参与社区官方 wiki：\"OSPP is open to enrolled university students worldwide who are at least 18 years old. Students must remain enrolled throughout their project's development period.\""
+        },
+        {
+          "url": "https://www.deepin.org/zh/summer-ospp-2026-1/",
+          "tier": "B",
+          "note": "参与社区官方发布：\"活动面向年满 18 周岁的高校在校学生（国内、海外均可）\""
+        }
+      ],
+      "trust_tier": "B",
+      "verification_status": "partially_verified",
+      "last_verified": "2026-09-21",
+      "layer": "exploit",
+      "eligibility": {
+        "verdict": "Probably Ineligible",
+        "reasons": [
+          "参与社区官方页明确要求在校学生身份（explicit）：\"Students must remain enrolled throughout their project's development period.\"",
+          "用户自述“工作五年、现在做后端开发”，画像中没有在读学生身份"
+        ],
+        "unknowns": [
+          "用户学历与在读状态未说明（education=null）→ 未按硬性 Ineligible 处理，只判 Probably Ineligible",
+          "官方主站未打开确认，资格表述来自参与社区官方页"
+        ]
+      },
+      "value": {
+        "career": "Medium",
+        "skill": "Medium",
+        "portfolio": "Medium",
+        "financial": "Low",
+        "network": "Medium",
+        "reputation": "Low"
+      },
+      "evidence": {
+        "application_status": {
+          "status": "explicit",
+          "source_url": "http://community.kde.org/OSPP",
+          "quote": "Both models operate on a rolling basis. There is no single program-wide application or development period; each accepted project has its own development dates.",
+          "verified_at": "2026-09-21",
+          "note": "开放状态来自参与社区官方页；官方主站 summer.ospp.ac.cn 本次未读到正文"
+        },
+        "deadline": {
+          "status": "unknown",
+          "source_url": null,
+          "note": "官方称不设固定起止（滚动）；参与社区公告提到某批 2026-08-31 截止，未在官方页确认",
+          "verified_at": "2026-09-21"
+        }
+      },
+      "seen_status": "new",
+      "outcomes": {
+        "skill": "medium",
+        "portfolio": "medium",
+        "career": "low",
+        "financial": "low",
+        "credential": "medium",
+        "network": "medium"
+      },
+      "readiness": {
+        "status": "blocked",
+        "estimated_preparation": "不适用",
+        "ready_items": [
+          "后端开发经验",
+          "中文沟通"
+        ],
+        "missing_items": [
+          "在校学生身份（硬性）"
+        ],
+        "blockers": [
+          "报名对象限定高校在校学生，且在项目周期内须保持在读状态"
+        ]
+      },
+      "effort": {
+        "estimated_hours": null,
+        "weekly_commitment": null,
+        "duration": "2–6 个月（参与社区公告）",
+        "preparation_complexity": "medium"
+      },
+      "time_to_value": "months",
+      "schedule_flexibility": "medium",
+      "career_capital": {
+        "skill_capital": "medium",
+        "portfolio_capital": "medium",
+        "credential_capital": "medium"
+      },
+      "future_optionality": {
+        "level": "low",
+        "reason": "对在职者不可参与"
+      },
+      "career_leverage": {
+        "level": "low",
+        "reason": "学生向项目，且报酬为按学生标准的结项劳务费"
+      },
+      "prerequisites": [
+        "在校学籍证明"
+      ],
+      "produces": [
+        "结项证书",
+        "项目合并的 PR/MR",
+        "学生标准结项劳务费"
+      ],
+      "unlocks": [],
+      "related_opportunities": [],
+      "goal_contribution": [],
+      "provenance": "known_source",
+      "source_family": "mentorship_program",
+      "why_discovered": "为验证“是否有适合在职者的国内开源带薪路径”而检索国内主流开源项目活动；结论是不适合——报名对象限定在校学生，属于典型的“学生向/入门向”路径，与用户“不接受从零开始拿实习工资”的立场一致地被排除。",
+      "notes": [
+        "official_url 置 null：官方主站本次未打开成功，未在官方页读到资格原文 → 按“未找到官方确认来源”处理。",
+        "尽管资格来源是参与社区官方页（Tier B），仍不把它放进主推荐区。",
+        "记录它的价值：证明本轮确实检验了“学生向/入门级”路线并主动拒绝，而不是没找。"
+      ]
+    }
+  ]
+}

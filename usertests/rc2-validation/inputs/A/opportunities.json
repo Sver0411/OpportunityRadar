@@ -1,0 +1,652 @@
+{
+  "_note": "Persona A 独立会话（2026-09-21）的结构化输入：画像 + 真实候选。作为 RC2 回归基线：presentation / planner 改动后不得使这些产物明显回归。",
+  "opportunities": [
+    {
+      "id": "embedded-fpga-2026",
+      "title": "第九届全国大学生嵌入式芯片与系统设计竞赛 — FPGA创新设计赛道",
+      "organization": "全国大学生嵌入式芯片与系统设计竞赛组织委员会",
+      "primary_category": "competition",
+      "secondary_categories": [
+        "skill_development",
+        "project"
+      ],
+      "tags": [
+        "FPGA",
+        "嵌入式",
+        "数字逻辑",
+        "ESP32友好",
+        "本科生可参加"
+      ],
+      "summary": "FPGA创新设计赛道，报名 2026-7-6 至 2026-9-22，作品设计 9–11 月，决赛 11 月 20–22 日于南京。面向国内高校电子电气类相关专业在校本科/研究生。",
+      "country": "China",
+      "city": null,
+      "region": null,
+      "remote": false,
+      "education_level": [
+        "undergraduate",
+        "master"
+      ],
+      "student_year": null,
+      "graduation_window": null,
+      "major_requirement": "电子、信息、计算机、自动化、电气、仪器等相关专业",
+      "skills_required": [
+        "FPGA",
+        "Verilog",
+        "数字逻辑设计",
+        "嵌入式系统"
+      ],
+      "skills_preferred": [
+        "ESP32",
+        "C",
+        "Python"
+      ],
+      "language_requirement": null,
+      "nationality_requirement": null,
+      "school_requirement": null,
+      "application_status": "open",
+      "deadline": "2026-09-22",
+      "deadline_type": "fixed",
+      "event_start": "2026-11-20",
+      "cost": "free",
+      "compensation": null,
+      "prize": "分赛区及全国总决赛奖项（证书）",
+      "team_requirement": "每队不超过 3 人，每队不超过 2 名指导教师",
+      "time_commitment": "备赛期约 10 小时/周（9–11 月）",
+      "official_url": "http://www.socchina.net/",
+      "discovery_url": "https://jwb.bit.edu.cn/xs/pyfa_2/tzgg__26/97dc9f2b043740d192dd7e5454b5288d.htm",
+      "trust_tier": "A",
+      "verification_status": "verified_official",
+      "last_verified": "2026-09-21",
+      "layer": "exploit",
+      "eligibility": {
+        "verdict": "Eligible",
+        "reasons": [
+          "学历为本科且在允许学历列表内",
+          "在校全日制学生，无年级硬性限制"
+        ],
+        "unknowns": [
+          "具体赛题与组队要求以官网为准"
+        ]
+      },
+      "value": {
+        "skill": "High",
+        "portfolio": "High",
+        "career": "Medium",
+        "networking": "Low"
+      },
+      "outcomes": {
+        "skill": "high",
+        "portfolio": "high",
+        "career": "medium"
+      },
+      "produces": [
+        "可演示的FPGA作品",
+        "竞赛参赛/获奖证书",
+        "团队协作项目经历"
+      ],
+      "unlocks": [
+        {
+          "type": "career",
+          "label": "嵌入式/FPGA相关实习或研发岗位",
+          "opportunity_id": null
+        }
+      ],
+      "goal_contribution": [
+        "competition",
+        "internship",
+        "skill"
+      ],
+      "future_optionality": {
+        "level": "medium",
+        "reason": "竞赛经历对嵌入式方向实习与求职有加分，但具体通道取决于后续行动"
+      },
+      "effort": {
+        "estimated_hours": 40,
+        "weekly_commitment": "约 10 小时/周（备赛期）",
+        "duration": "2026-09 至 2026-11",
+        "preparation_complexity": "medium"
+      },
+      "time_to_value": "months",
+      "readiness": {
+        "status": "minor_preparation",
+        "estimated_preparation": "组队并选定赛题/平台",
+        "ready_items": [
+          "具备ESP32与Python基础"
+        ],
+        "missing_items": [
+          "FPGA/Verilog基础（需补）"
+        ],
+        "blockers": []
+      },
+      "evidence": {
+        "application_status": {
+          "status": "explicit",
+          "source_url": "http://www.socchina.net/",
+          "quote": "FPGA创新设计赛道（6月-12月）；报名 2026-7-6 至 2026-9-22 24点",
+          "verified_at": "2026-09-21"
+        },
+        "deadline": {
+          "status": "explicit",
+          "source_url": "https://jwb.bit.edu.cn/xs/pyfa_2/tzgg__26/97dc9f2b043740d192dd7e5454b5288d.htm",
+          "quote": "竞赛报名时间：2026年7月6日-9月22日24点",
+          "verified_at": "2026-09-21"
+        }
+      },
+      "notes": [
+        "报名截止为 2026-09-22（本轮运行日 2026-09-21 的前一天），紧迫度高"
+      ],
+      "provenance": "source_family_query",
+      "source_family": "competition_china_collegiate",
+      "why_discovered": "搜索『大学生 嵌入式系统设计竞赛 2026 报名 官网』命中官方站点与高校转发通知"
+    },
+    {
+      "id": "embedded-fpga-2026-bit",
+      "title": "2026年全国大学生嵌入式芯片与系统设计竞赛——FPGA创新设计赛道",
+      "organization": "全国大学生嵌入式芯片与系统设计竞赛组织委员会",
+      "primary_category": "competition",
+      "secondary_categories": [
+        "skill_development",
+        "project"
+      ],
+      "tags": [
+        "FPGA",
+        "嵌入式",
+        "数字逻辑",
+        "本科生可参加"
+      ],
+      "summary": "FPGA创新设计赛道，报名 2026-7-6 至 2026-9-22，决赛 11 月于南京。高校转发通知，与官方站点为同一赛事。",
+      "country": "China",
+      "education_level": [
+        "undergraduate",
+        "master"
+      ],
+      "skills_required": [
+        "FPGA",
+        "Verilog",
+        "数字逻辑设计",
+        "嵌入式系统"
+      ],
+      "skills_preferred": [
+        "ESP32",
+        "C",
+        "Python"
+      ],
+      "application_status": "open",
+      "deadline": "2026-09-22",
+      "deadline_type": "fixed",
+      "official_url": "https://jwb.bit.edu.cn/xs/pyfa_2/tzgg__26/97dc9f2b043740d192dd7e5454b5288d.htm",
+      "discovery_url": "https://jwb.bit.edu.cn/xs/pyfa_2/tzgg__26/97dc9f2b043740d192dd7e5454b5288d.htm",
+      "trust_tier": "A",
+      "verification_status": "verified_official",
+      "last_verified": "2026-09-21",
+      "layer": "exploit",
+      "eligibility": {
+        "verdict": "Eligible",
+        "reasons": [
+          "学历为本科且在允许学历列表内"
+        ],
+        "unknowns": []
+      },
+      "value": {
+        "skill": "High",
+        "portfolio": "High",
+        "career": "Medium"
+      },
+      "outcomes": {
+        "skill": "high",
+        "portfolio": "high",
+        "career": "medium"
+      },
+      "produces": [
+        "可演示的FPGA作品",
+        "竞赛证书"
+      ],
+      "goal_contribution": [
+        "competition",
+        "skill"
+      ],
+      "future_optionality": {
+        "level": "medium",
+        "reason": "竞赛经历对嵌入式方向求职有加分"
+      },
+      "effort": {
+        "weekly_commitment": "约 10 小时/周（备赛期）",
+        "preparation_complexity": "medium"
+      },
+      "time_to_value": "months",
+      "readiness": {
+        "status": "minor_preparation",
+        "estimated_preparation": "组队并选定赛题",
+        "ready_items": [
+          "ESP32与Python基础"
+        ],
+        "missing_items": [
+          "FPGA/Verilog基础"
+        ],
+        "blockers": []
+      },
+      "evidence": {
+        "application_status": {
+          "status": "explicit",
+          "source_url": "https://jwb.bit.edu.cn/xs/pyfa_2/tzgg__26/97dc9f2b043740d192dd7e5454b5288d.htm",
+          "quote": "竞赛报名时间：2026年7月6日-9月22日24点",
+          "verified_at": "2026-09-21"
+        },
+        "deadline": {
+          "status": "explicit",
+          "source_url": "https://jwb.bit.edu.cn/xs/pyfa_2/tzgg__26/97dc9f2b043740d192dd7e5454b5288d.htm",
+          "quote": "报名截止时间：...9月22日",
+          "verified_at": "2026-09-21"
+        }
+      },
+      "notes": [
+        "与 embedded-fpga-2026 为同一赛事不同来源（官方站点 + 高校转发），用于去重演示"
+      ],
+      "provenance": "source_family_query",
+      "source_family": "competition_china_collegiate",
+      "why_discovered": "高校转发通知，作为官方站点的旁证来源"
+    },
+    {
+      "id": "micropython-esp32-contrib",
+      "title": "MicroPython ESP32 端口贡献（good first issue）",
+      "organization": "MicroPython (open-source project)",
+      "primary_category": "open_source",
+      "secondary_categories": [
+        "skill_development"
+      ],
+      "tags": [
+        "open source",
+        "ESP32",
+        "Python",
+        "C",
+        "嵌入式",
+        "contributor"
+      ],
+      "summary": "为 MicroPython 的 ESP32 端口提交 bug 修复、文档或驱动改进；仓库公开，贡献流程含 Contributor Guidelines 与 Code Conventions，需 DCO 签名。",
+      "country": null,
+      "remote": true,
+      "education_level": null,
+      "skills_required": [
+        "ESP32",
+        "Python",
+        "C"
+      ],
+      "skills_preferred": [
+        "RTOS",
+        "FreeRTOS",
+        "Git"
+      ],
+      "application_status": "rolling",
+      "deadline": null,
+      "deadline_type": "rolling",
+      "official_url": "https://github.com/micropython/micropython",
+      "discovery_url": "https://github.com/micropython/micropython/blob/master/CONTRIBUTING.md",
+      "trust_tier": "A",
+      "verification_status": "verified_official",
+      "last_verified": "2026-09-21",
+      "eligibility": {
+        "verdict": "Unknown",
+        "reasons": [
+          "开源贡献无硬性学历/年级限制",
+          "页面未写明参与门槛"
+        ],
+        "unknowns": [
+          "需满足CLA/签名等贡献前置"
+        ]
+      },
+      "value": {
+        "skill": "High",
+        "portfolio": "High",
+        "networking": "Medium",
+        "career": "Medium"
+      },
+      "outcomes": {
+        "skill": "high",
+        "portfolio": "high",
+        "networking": "medium",
+        "career": "medium"
+      },
+      "produces": [
+        "公开可验证的 GitHub PR/commit",
+        "ESP32 相关开源贡献记录",
+        "开源协作经验"
+      ],
+      "unlocks": [
+        {
+          "type": "career",
+          "label": "嵌入式/物联网方向实习或全职的公开作品证据",
+          "opportunity_id": null
+        }
+      ],
+      "goal_contribution": [
+        "open_source",
+        "internship",
+        "skill"
+      ],
+      "future_optionality": {
+        "level": "high",
+        "reason": "公开贡献记录是可迁移、长期有效的职业资本，且不依赖地域"
+      },
+      "effort": {
+        "estimated_hours": 20,
+        "weekly_commitment": "约 4 小时/周（可弹性）",
+        "duration": "持续型",
+        "preparation_complexity": "low"
+      },
+      "time_to_value": "weeks",
+      "readiness": {
+        "status": "ready_now",
+        "estimated_preparation": "认领一个 good first issue 并阅读贡献指南",
+        "ready_items": [
+          "ESP32 与 Python 基础",
+          "GitHub 使用"
+        ],
+        "missing_items": [],
+        "blockers": []
+      },
+      "evidence": {
+        "application_status": {
+          "status": "explicit",
+          "source_url": "https://github.com/micropython/micropython/blob/master/CONTRIBUTING.md",
+          "quote": "please make sure you are acquainted with Contributor Guidelines ... Code Conventions",
+          "verified_at": "2026-09-21"
+        }
+      },
+      "notes": [
+        "滚动贡献，无固定截止；属于低成本、可长期积累的公开作品"
+      ],
+      "provenance": "general_search",
+      "source_family": "open_source_oss",
+      "why_discovered": "搜索『MicroPython ESP-IDF 开源贡献 入门 good first issue 嵌入式』命中官方仓库与贡献指南"
+    },
+    {
+      "id": "embedded-iot-intern",
+      "title": "嵌入式/物联网方向 2027届暑期实习（如锐明技术「星火计划」等）",
+      "organization": "多家企业（以锐明技术等为示例）",
+      "primary_category": "career",
+      "secondary_categories": [],
+      "tags": [
+        "实习",
+        "嵌入式",
+        "物联网",
+        "AIoT"
+      ],
+      "summary": "面向2027届的嵌入式/物联网暑期实习，岗位含嵌入式开发、MCU、模块通信等；示例锐明技术「星火计划」网申至2026-6月底（已过期），另有卧安机器人等持续招聘。整体节奏随秋招/春招波动。",
+      "country": null,
+      "city": null,
+      "remote": null,
+      "education_level": [
+        "undergraduate"
+      ],
+      "skills_required": [
+        "嵌入式开发",
+        "C/C++",
+        "ESP32",
+        "Python"
+      ],
+      "skills_preferred": [
+        "RTOS",
+        "通信协议"
+      ],
+      "application_status": "unknown",
+      "deadline": null,
+      "deadline_type": "tbd",
+      "official_url": null,
+      "discovery_url": "https://campus.niuqizp.com/schedule-7Ylk5azta.html",
+      "trust_tier": "C",
+      "verification_status": "unverified",
+      "eligibility": {
+        "verdict": "Unknown",
+        "reasons": [
+          "未找到官方确认来源，无法判定当前是否开放",
+          "画像未提供所在地与毕业时间，无法判定地域与届别匹配"
+        ],
+        "unknowns": [
+          "所在地/目标城市",
+          "毕业年份（2027或2028届）",
+          "具体企业是否仍在招"
+        ]
+      },
+      "value": {
+        "career": "High",
+        "portfolio": "Medium",
+        "skill": "Medium"
+      },
+      "outcomes": {
+        "career": "high",
+        "skill": "medium",
+        "portfolio": "medium"
+      },
+      "produces": [
+        "实习经历",
+        "可能的转正/校招绿卡"
+      ],
+      "unlocks": [
+        {
+          "type": "career",
+          "label": "2027届校招正式Offer",
+          "opportunity_id": null
+        }
+      ],
+      "goal_contribution": [
+        "internship",
+        "career"
+      ],
+      "future_optionality": {
+        "level": "high",
+        "reason": "实习对求职直接相关，但依赖地域与届别"
+      },
+      "effort": {
+        "weekly_commitment": "未写明（通常全职实习）",
+        "preparation_complexity": "low"
+      },
+      "time_to_value": "months",
+      "readiness": {
+        "status": "unknown",
+        "estimated_preparation": "需先确认目标企业与城市、准备简历与项目",
+        "ready_items": [],
+        "missing_items": [
+          "所在地",
+          "毕业时间",
+          "目标企业"
+        ],
+        "blockers": [
+          "所在地未知",
+          "毕业时间未知"
+        ]
+      },
+      "evidence": {},
+      "notes": [
+        "所在地与毕业时间未知 → 实习结论必须弱化处理；示例中锐明「星火计划」网申已于2026-6月底截止，需确认新一轮",
+        "未找到官方确认来源，仅第三方聚合页"
+      ],
+      "provenance": "general_search",
+      "source_family": "internship_china",
+      "why_discovered": "搜索『2027届 暑期实习 嵌入式 物联网 秋招 2026 大三』命中第三方招聘聚合页"
+    },
+    {
+      "id": "iot-design-comp-2027",
+      "title": "全国大学生物联网设计竞赛（2027 周期，需确认）",
+      "organization": "全国大学生物联网设计竞赛组委会（上海交通大学）",
+      "primary_category": "competition",
+      "secondary_categories": [
+        "project",
+        "skill_development"
+      ],
+      "tags": [
+        "物联网",
+        "ESP32",
+        "华为/乐鑫合作",
+        "本科生可参加"
+      ],
+      "summary": "年度赛事，2026 周期报名 6-15 截止、总决赛已结束（已关闭）；2027 周期约 2027 年 3–4 月启动报名。乐鑫(ESP32厂商)为金牌合作伙伴，技术方向与ESP32高度相关。",
+      "country": "China",
+      "education_level": [
+        "undergraduate",
+        "master"
+      ],
+      "skills_required": [
+        "物联网系统",
+        "ESP32",
+        "嵌入式开发",
+        "软硬件集成"
+      ],
+      "skills_preferred": [
+        "通信协议",
+        "边缘计算"
+      ],
+      "application_status": "unknown",
+      "deadline": null,
+      "deadline_type": "tbd",
+      "official_url": "https://iot.sjtu.edu.cn/",
+      "discovery_url": "https://iot.sjtu.edu.cn/show.aspx?flag=2&info_id=6061&info_lb=36",
+      "trust_tier": "A",
+      "verification_status": "partially_verified",
+      "eligibility": {
+        "verdict": "Probably Eligible",
+        "reasons": [
+          "2026周期面向全日制本科/研究生，用户本科在读符合",
+          "2027具体章程未发布，按往年推断"
+        ],
+        "unknowns": [
+          "2027报名时间",
+          "是否仍限本校组队"
+        ]
+      },
+      "value": {
+        "skill": "High",
+        "portfolio": "High",
+        "career": "Medium"
+      },
+      "outcomes": {
+        "skill": "high",
+        "portfolio": "high",
+        "career": "medium"
+      },
+      "produces": [
+        "物联网系统作品",
+        "竞赛证书"
+      ],
+      "unlocks": [
+        {
+          "type": "career",
+          "label": "物联网方向实习/项目经历",
+          "opportunity_id": null
+        }
+      ],
+      "goal_contribution": [
+        "competition",
+        "internship"
+      ],
+      "future_optionality": {
+        "level": "medium",
+        "reason": "年度赛事，参与价值稳定但需等下一年周期"
+      },
+      "effort": {
+        "weekly_commitment": "约 8 小时/周（备赛期）",
+        "preparation_complexity": "medium"
+      },
+      "time_to_value": "long_term",
+      "readiness": {
+        "status": "short_preparation",
+        "estimated_preparation": "等2027章程、组队",
+        "ready_items": [
+          "ESP32基础"
+        ],
+        "missing_items": [
+          "2027赛题未知"
+        ],
+        "blockers": []
+      },
+      "evidence": {
+        "application_status": {
+          "status": "inferred",
+          "source_url": "https://iot.sjtu.edu.cn/",
+          "quote": "2026年全国大学生物联网设计竞赛通知/章程（2027未发布）",
+          "verified_at": "2026-09-21"
+        }
+      },
+      "notes": [
+        "2026周期已结束（报名6-15截止、总决赛已办）；作为年度赛事，2027周期值得届时确认",
+        "evidence.application_status 为 inferred（2027未开放），不得进入主推荐"
+      ],
+      "provenance": "source_family_query",
+      "source_family": "competition_china_collegiate",
+      "why_discovered": "搜索『全国大学生物联网设计竞赛 2026 报名 截止时间』确认其为年度官方赛事，ESP32厂商乐鑫为合作伙伴"
+    },
+    {
+      "id": "embedded-application-track-2026",
+      "title": "第九届全国大学生嵌入式芯片与系统设计竞赛 — 应用赛道（2026）",
+      "organization": "全国大学生嵌入式芯片与系统设计竞赛组织委员会",
+      "primary_category": "competition",
+      "tags": [
+        "嵌入式",
+        "应用赛道",
+        "2026已截止"
+      ],
+      "summary": "应用赛道2026报名截止2026-4-20、总决赛8月初已结束；本周期已关闭。",
+      "country": "China",
+      "education_level": [
+        "undergraduate",
+        "master"
+      ],
+      "skills_required": [
+        "嵌入式系统",
+        "C",
+        "电子类相关"
+      ],
+      "application_status": "closed",
+      "deadline": "2026-04-20",
+      "deadline_type": "fixed",
+      "official_url": "https://dzxxxy.zua.edu.cn/info/1078/4594.htm",
+      "discovery_url": "https://dzxxxy.zua.edu.cn/info/1078/4594.htm",
+      "trust_tier": "A",
+      "verification_status": "verified_official",
+      "eligibility": {
+        "verdict": "Unknown",
+        "reasons": [
+          "周期已关闭"
+        ],
+        "unknowns": []
+      },
+      "value": {
+        "skill": "High",
+        "portfolio": "High"
+      },
+      "outcomes": {
+        "skill": "high",
+        "portfolio": "high"
+      },
+      "produces": [
+        "（已过期）参赛经历"
+      ],
+      "goal_contribution": [
+        "competition"
+      ],
+      "effort": {
+        "weekly_commitment": "约 10 小时/周（当时）"
+      },
+      "time_to_value": "long_term",
+      "evidence": {
+        "application_status": {
+          "status": "explicit",
+          "source_url": "https://dzxxxy.zua.edu.cn/info/1078/4594.htm",
+          "quote": "应用赛道（2月-8月）；报名截止2026-4-20",
+          "verified_at": "2026-09-21"
+        },
+        "deadline": {
+          "status": "explicit",
+          "source_url": "https://dzxxxy.zua.edu.cn/info/1078/4594.htm",
+          "quote": "报名截止时间：2026年4月20日",
+          "verified_at": "2026-09-21"
+        }
+      },
+      "notes": [
+        "2026应用赛道已截止，列入 Closed/Excluded；FPGA赛道（同赛事）仍开放至2026-9-22"
+      ],
+      "provenance": "source_family_query",
+      "source_family": "competition_china_collegiate",
+      "why_discovered": "搜索『大学生 嵌入式系统设计竞赛 2026 报名 官网』发现同赛事不同赛道周期不同"
+    }
+  ]
+}

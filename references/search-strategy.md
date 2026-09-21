@@ -280,3 +280,22 @@ canonical source；预算不够就少推荐几条。
 - ❌ 为了"全面"刷几十页，最后给 40 条链接。
 - ❌ 把 Explore 层写进计划却在结果里删掉。
 - ❌ 用"应该存在"的项目凑数（未经验证的想象条目）。
+
+## Explore 查询镜头（Mode C + 空画像 + career_direction=explore）
+
+只在**没有明确目标**的探索场景启用（有目标的用户走原来的 category planner）：
+
+```text
+Mode C + 无 goals + career_direction == explore
+→ scripts/sources.py plan_explore_queries() 铺开 ≥3 个镜头（默认 4）
+→ 拿到真实结果后再由 explore_coverage 决定呈现几个轴（不够就不凑）
+```
+
+镜头（build / volunteer / creative / community / research / contribute /
+entrepreneurship / cross_domain）是**查询覆盖**，不是结果配额，也**不是反技术偏置** ——
+contribute / build / research 本身就是镜头，技术机会照常出现；要避免的只是
+"所有 query 都从同一个世界出发"。
+
+**核实也要跟着镜头走**：`select_verification_targets()` 在 Explore 模式下优先核实
+"每个镜头里最有希望的那一条"（`verification_selected_because = top_in_axis`），
+而不是按中性 match 取前 N。**验证门槛一个都不降** —— 只是决定预算花在谁身上。
