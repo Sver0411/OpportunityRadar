@@ -89,6 +89,21 @@ def _goal_clarity(profile) -> tuple:
     return True, ""
 
 
+def _location_preference_known(profile) -> bool:
+    """Whether the user explicitly stated a location/remote preference.
+
+    School location describes the user's current context, not where they want an
+    opportunity to be, so it must not be promoted into a preference signal.
+    """
+    profile = profile or {}
+    cons = _constraints(profile)
+    if profile.get("_location_unknown") or "location" in (profile.get("_unknown") or []):
+        return False
+    return (any(_has(cons.get(key)) for key in
+                ("preferred_country", "preferred_city", "preferred_region"))
+            or cons.get("remote") is not None or cons.get("relocation") is not None)
+
+
 def decision_confidence(profile, rows=None, gaps=None) -> dict:
     """把"信息够不够"变成一个档位，用来控制**最终表达强度**（不是新的排名分）。"""
     profile = profile or {}
@@ -115,8 +130,7 @@ def decision_confidence(profile, rows=None, gaps=None) -> dict:
         signals[name] = ok
         if not ok:
             unknown.append(name)
-    signals["location_known"] = not (profile.get("_location_unknown") or
-                                     ("location" in (profile.get("_unknown") or [])))
+    signals["location_known"] = _location_preference_known(profile)
     if not signals["location_known"]:
         unknown.append("location_known")
 
@@ -332,13 +346,34 @@ def format_allocation(profile, items=None, mainline_id=None) -> dict:
                 "mainline": mainline_id,
                 "note": "这些机会都没写明小时数，因此不做时间加总（只能给主线/辅线/低成本的排序）"}
     total = sum(known)
+    budget = _weekly_budget_hours(profile)
     note = f"其中 {len(known)} 条有明确小时数，合计约 {round(total, 1)}h/周"
     if unknown_n:
         note += f"；另有 {unknown_n} 条未写明小时数，未计入"
+    conflict = None
+    if budget is not None:
+        if total > budget + 1e-9:
+            conflict = True
+            note += f"；已知投入已超过你的每周预算 {budget:g}h"
+        elif unknown_n:
+            note += f"；已知投入不超过每周预算 {budget:g}h，但完整组合仍无法确认"
+        else:
+            conflict = False
+            note += f"；不超过你的每周预算 {budget:g}h"
     return {"mode": "quantitative", "items": rows, "total_hours": round(total, 2),
             "items_with_unknown_hours": unknown_n, "mainline": mainline_id,
-            "note": note + "，与你给出的每周可用时间对齐"}
+            "budget_hours": budget, "resource_conflict": conflict, "note": note}
 
+
+def _weekly_budget_hours(profile):
+    """Parse constraints.weekly_time, whose schema permits numbers and bare numeric strings."""
+    value = _constraints(profile).get("weekly_time")
+    if isinstance(value, (int, float)) and not isinstance(value, bool):
+        return float(value) if value >= 0 else None
+    text = str(value or "").strip()
+    if re.fullmatch(r"\d+(?:\.\d+)?", text):
+        return float(text)
+    return _parse_hours(text)
 
 
 # ---------------------------------------------------------------- 2c. 已有职业资本（起点）
@@ -465,7 +500,8 @@ UNVERIFIED_LABEL = {"standard": "Unknown", "open_source": "Contribution prerequi
 UNCONFIRMED_VERIFICATION = ("unverified", "conflicting", "expired")
 
 
-def participation_wording(category, verdict, freshness=None, verification_status=None) -> dict:
+def participation_wording(category, verdict, freshness=None, verification_status=None,
+                          participation_open=None, application_status=None) -> dict:
     """把资格判定翻译成该机会类型的人类可读语义（底层模型不变，只换说法）。
 
     两点纪律：
@@ -475,13 +511,19 @@ def participation_wording(category, verdict, freshness=None, verification_status
     """
     family = participation_family(category)
     verdict = verdict if verdict in ELIGIBILITY_VERDICTS else "Unknown"
-    if str(freshness or "") in ("closed", "expired"):
+    if str(freshness or "") in ("closed", "expired") or application_status in ("closed", "not_open"):
         return {"family": family, "label": "Not currently open", "verdict": verdict,
                 "note": "本轮周期已结束"}
     if str(verification_status or "") in UNCONFIRMED_VERIFICATION:
         return {"family": family, "label": UNVERIFIED_LABEL[family], "verdict": verdict,
                 "note": f"页面本身未核实清楚（verification_status={verification_status}），"
                         "所以只能给待确认说法"}
+    if verdict in ("Probably Ineligible", "Ineligible"):
+        return {"family": family, "label": PARTICIPATION_WORDING[family][verdict],
+                "verdict": verdict, "note": "现有资格信息不支持直接参与"}
+    if family != "standard" and participation_open is not True:
+        return {"family": family, "label": UNVERIFIED_LABEL[family], "verdict": verdict,
+                "note": "资格结论不等于当前开放；缺少明确的开放参与证据"}
     label = PARTICIPATION_WORDING[family].get(verdict, verdict)
     return {"family": family, "label": label, "verdict": verdict,
             "note": (PARTICIPATION_NOTES.get(family) or {}).get(verdict, "")}
@@ -719,7 +761,9 @@ def recommendation_card(row, profile=None, gaps=None, bridges=None, confidence=N
         "participation": participation_wording(row.get("primary_category"),
                                                row.get("eligibility_verdict"),
                                                row.get("freshness"),
-                                               row.get("verification_status")),
+                                               row.get("verification_status"),
+                                               row.get("participation_open"),
+                                               row.get("application_status")),
         "action": action or action_label(row, confidence),
     }
     card["why_fit"] = _why_fit(row, profile)
@@ -746,15 +790,11 @@ def recommendation_card(row, profile=None, gaps=None, bridges=None, confidence=N
 #: 判定"用户是否真的表达过这个偏好"——没说过就不能拿来当推荐理由
 def _profile_signals(profile) -> dict:
     prof = profile or {}
-    cons = prof.get("constraints") or {}
-    edu = prof.get("education") or {}
     return {
         "interest_fit": bool(prof.get("interests")),
         "skill_fit": bool(prof.get("skills")),
         "goal_fit": bool(prof.get("goals")),
-        "location_fit": bool(cons.get("preferred_country") or cons.get("preferred_city")
-                             or edu.get("school_country") or edu.get("school_city")
-                             or cons.get("remote") is not None),
+        "location_fit": _location_preference_known(prof),
     }
 
 
@@ -941,10 +981,24 @@ def render_answer(profile, rows, gaps=None, bridges=None, portfolio=None,
     worth = [r for r in split["recommended_real"] if r.get("zone") == "worth_verifying"][:max_main]
     excluded = [r for r in split["recommended_real"] if r.get("zone") == "excluded"]
 
-    mainline = choose_mainline(main, profile)
-    mainline_card = next((c for c in
-                          [recommendation_card(r, profile, gaps, bridges, conf) for r in main]
-                          if c.get("opportunity_id") == mainline.get("opportunity_id")), None)
+    allocation_items = main or worth
+    if isinstance(portfolio, dict) and isinstance(portfolio.get("items"), list):
+        by_id = {r.get("id"): r for r in rows if r.get("id")}
+        selected = []
+        for item in portfolio["items"]:
+            if not isinstance(item, dict):
+                continue
+            oid = item.get("opportunity_id") or item.get("id")
+            if oid not in by_id:
+                continue
+            selected.append({**by_id[oid], **item, "id": oid})
+        allocation_items = selected
+
+    mainline = choose_mainline(allocation_items, profile)
+    mainline_row = next((r for r in allocation_items
+                         if r.get("id") == mainline.get("opportunity_id")), None)
+    mainline_card = (recommendation_card(mainline_row, profile, gaps, bridges, conf)
+                     if mainline_row else None)
     blocks = {
         "starting_point": starting_point(profile, mainline_card, gaps),
         "mainline": mainline,
@@ -955,7 +1009,7 @@ def render_answer(profile, rows, gaps=None, bridges=None, portfolio=None,
         "excluded": [{"title": r.get("title"), "reason": r.get("exclusion_reason")
                       or r.get("freshness_reason")} for r in excluded],
         "self_directed": split["self_directed"],
-        "allocation": format_allocation(profile, main or worth,
+        "allocation": format_allocation(profile, allocation_items,
                                         mainline_id=mainline.get("opportunity_id")),
         "unknown": conf["unknown"],
     }

@@ -315,12 +315,14 @@ class TestNoHardcodedLocaleDefaults(unittest.TestCase):
     """文档与代码里不应再出现固定的语言清单或单一地区世界观。"""
 
     def test_language_table_is_runtime_driven(self):
-        t = open(os.path.join(ROOT, "references", "search-strategy.md"), encoding="utf-8").read()
+        with open(os.path.join(ROOT, "references", "search-strategy.md"), encoding="utf-8") as fh:
+            t = fh.read()
         self.assertNotRegex(t, r"EN\s*/\s*CN\s*/\s*JA", "不应有固定语言组合")
         self.assertIn("locales/generic.md", t, "语言选择应指向 locale 框架")
 
     def test_taxonomy_has_no_language_specific_query_blocks(self):
-        t = open(os.path.join(ROOT, "references", "opportunity-taxonomy.md"), encoding="utf-8").read()
+        with open(os.path.join(ROOT, "references", "opportunity-taxonomy.md"), encoding="utf-8") as fh:
+            t = fh.read()
         self.assertEqual(re.findall(r"^(EN|CN|JA):", t, re.M), [],
                          "taxonomy 不应内嵌某几种语言的 query")
         self.assertIn("Intent templates", t)

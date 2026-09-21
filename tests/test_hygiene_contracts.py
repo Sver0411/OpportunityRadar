@@ -46,7 +46,8 @@ class TestLocalStateContract(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d:
             SI.record_yield(d, "https://lab.example", category="research", region="Japan",
                             outcome="actionable")
-            data = json.load(open(os.path.join(d, "sources.json"), encoding="utf-8"))
+            with open(os.path.join(d, "sources.json"), encoding="utf-8") as fh:
+                data = json.load(fh)
             entry = next(iter(data["entries"].values()))
             self.assertEqual(set(entry), set(C.SOURCE_STATE_FIELDS))
 
@@ -60,9 +61,12 @@ class TestBenchmarkStatusSemantics(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        cls.known = json.load(open(os.path.join(BM, "known_failures.json"), encoding="utf-8"))
-        cls.gates = json.load(open(os.path.join(BM, "gates.json"), encoding="utf-8"))
-        cls.stab = json.load(open(os.path.join(BM, "_metrics-stabilization.json"), encoding="utf-8"))
+        with open(os.path.join(BM, "known_failures.json"), encoding="utf-8") as fh:
+            cls.known = json.load(fh)
+        with open(os.path.join(BM, "gates.json"), encoding="utf-8") as fh:
+            cls.gates = json.load(fh)
+        with open(os.path.join(BM, "_metrics-stabilization.json"), encoding="utf-8") as fh:
+            cls.stab = json.load(fh)
 
     def test_active_failures_zero_means_current_all_pass(self):
         active = self.known.get("known_failures", [])

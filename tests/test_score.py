@@ -543,10 +543,12 @@ class TestScoringPipeline(unittest.TestCase):
 
     def test_example_files_run(self):
         import json
-        prof = json.load(open(_helpers.path("examples", "profiles", "cs-student.example.json"),
-                              encoding="utf-8"))
-        opps = json.load(open(_helpers.path("examples", "opportunity.batch.example.json"),
-                              encoding="utf-8"))["opportunities"]
+        with open(_helpers.path("examples", "profiles", "cs-student.example.json"),
+                  encoding="utf-8") as fh:
+            prof = json.load(fh)
+        with open(_helpers.path("examples", "opportunity.batch.example.json"),
+                  encoding="utf-8") as fh:
+            opps = json.load(fh)["opportunities"]
         res = S.score_all(prof, opps, today=TODAY)
         self.assertGreater(res["scored"], 0)
         self.assertEqual(res["contract_issues"], [])

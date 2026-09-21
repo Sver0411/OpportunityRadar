@@ -145,8 +145,10 @@ def main(argv=None) -> int:
     ap.add_argument("--profile", required=True)
     ap.add_argument("--opportunity", required=True, help="单条 opportunity JSON 文件")
     args = ap.parse_args(argv)
-    profile = json.load(open(args.profile, encoding="utf-8"))
-    opp = json.load(open(args.opportunity, encoding="utf-8"))
+    with open(args.profile, encoding="utf-8") as fh:
+        profile = json.load(fh)
+    with open(args.opportunity, encoding="utf-8") as fh:
+        opp = json.load(fh)
     res = readiness(opp, profile)
     print(json.dumps(res, ensure_ascii=False, indent=2))
     return 0

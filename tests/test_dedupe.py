@@ -109,15 +109,17 @@ class TestConflicts(unittest.TestCase):
 
 class TestExampleBatch(unittest.TestCase):
     def test_batch_runs_and_removes_duplicates(self):
-        recs = json.load(open(_helpers.path("examples", "opportunity.batch.example.json"),
-                              encoding="utf-8"))["opportunities"]
+        with open(_helpers.path("examples", "opportunity.batch.example.json"),
+                  encoding="utf-8") as fh:
+            recs = json.load(fh)["opportunities"]
         res = D.dedupe(recs)
         self.assertLess(res["cluster_count"], res["input_count"])
         self.assertTrue(any(c["size"] >= 2 for c in res["clusters"]))
 
     def test_cluster_ids_are_stable(self):
-        recs = json.load(open(_helpers.path("examples", "opportunity.batch.example.json"),
-                              encoding="utf-8"))["opportunities"]
+        with open(_helpers.path("examples", "opportunity.batch.example.json"),
+                  encoding="utf-8") as fh:
+            recs = json.load(fh)["opportunities"]
         self.assertEqual(D.dedupe(recs)["cluster_count"], D.dedupe(recs)["cluster_count"])
 
 

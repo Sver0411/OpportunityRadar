@@ -121,7 +121,8 @@ class TestSkillFrontmatter(unittest.TestCase):
     ALLOWED = {"name", "description", "license", "compatibility", "metadata", "allowed-tools"}
 
     def setUp(self):
-        text = open(_helpers.path("SKILL.md"), encoding="utf-8").read()
+        with open(_helpers.path("SKILL.md"), encoding="utf-8") as fh:
+            text = fh.read()
         self.assertTrue(text.startswith("---"), "SKILL.md 必须以 frontmatter 开头")
         block = text.split("---", 2)[1]
         self.keys = set()

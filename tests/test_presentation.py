@@ -24,7 +24,7 @@ TIME_ONLY = {"life_stage": ["working"], "career_stage": ["early_career"],
              "goals": [{"type": "skill", "priority": "high"}]}
 FULL = {**TIME_ONLY,
         "constraints": {"weekly_time": "6", "available_period": "2026-10 ~ 2027-03",
-                        "budget": "low"}}
+                        "budget": "low", "preferred_country": ["China"]}}
 
 REAL_ROW = {"id": "r1", "title": "开源之夏", "organization": "中科院软件所",
             "primary_category": "open_source", "zone": "recommended_now",
@@ -64,6 +64,11 @@ class TestDecisionConfidence(unittest.TestCase):
     def test_full_basis_can_reach_high(self):
         d = P.decision_confidence(FULL, [REAL_ROW], [])
         self.assertEqual(d["level"], "high")
+
+    def test_school_country_is_not_a_location_preference(self):
+        d = P.decision_confidence(TIME_ONLY, [REAL_ROW], [])
+        self.assertFalse(d["signals"]["location_known"])
+        self.assertIn("location_known", d["unknown"])
 
     def test_critical_unknown_never_yields_high(self):
         p = {**FULL}
@@ -117,10 +122,25 @@ class TestPrecisionGuard(unittest.TestCase):
         self.assertEqual(out["note"], P.BUDGET_UNKNOWN_NOTE)
         self.assertEqual([i["level"] for i in out["items"]], ["主线"])
 
+    def test_allocation_reports_when_known_hours_exceed_budget(self):
+        rows = [REAL_ROW, {**REAL_ROW, "id": "r2", "title": "第二条", "weekly_hours": 5}]
+        out = P.format_allocation(TIME_ONLY, rows)
+        self.assertEqual(out["total_hours"], 10)
+        self.assertEqual(out["budget_hours"], 6)
+        self.assertTrue(out["resource_conflict"])
+        self.assertIn("超过", out["note"])
+        self.assertNotIn("对齐", out["note"])
+
+    def test_allocation_reports_when_known_hours_fit_budget(self):
+        out = P.format_allocation(TIME_ONLY, [{**REAL_ROW, "weekly_hours": 5}])
+        self.assertFalse(out["resource_conflict"])
+        self.assertIn("不超过", out["note"])
+
 
 class TestParticipationWording(unittest.TestCase):
     def test_oss_speaks_in_contribution_terms(self):
-        self.assertEqual(P.participation_wording("open_source", "Eligible")["label"],
+        self.assertEqual(P.participation_wording("open_source", "Eligible",
+                                                 participation_open=True)["label"],
                          "Open participation")
         self.assertEqual(P.participation_wording("open_source", "Unknown")["label"],
                          "Contribution prerequisites")
@@ -128,15 +148,18 @@ class TestParticipationWording(unittest.TestCase):
                          "Restricted")
 
     def test_event_speaks_in_registration_terms(self):
-        self.assertEqual(P.participation_wording("competition", "Eligible")["label"],
+        self.assertEqual(P.participation_wording("competition", "Eligible",
+                                                 participation_open=True)["label"],
                          "Registration open")
         self.assertEqual(P.participation_wording("event", "Unknown")["label"],
                          "Eligibility needs confirmation")
 
     def test_community_speaks_in_membership_terms(self):
-        self.assertEqual(P.participation_wording("networking", "Eligible")["label"],
+        self.assertEqual(P.participation_wording("networking", "Eligible",
+                                                 participation_open=True)["label"],
                          "Open to join")
-        self.assertEqual(P.participation_wording("networking", "Probably Eligible")["label"],
+        self.assertEqual(P.participation_wording("networking", "Probably Eligible",
+                                                 participation_open=True)["label"],
                          "Prerequisites apply")
         self.assertEqual(P.participation_wording("networking", "Ineligible")["label"],
                          "Invitation / selection required")
@@ -155,6 +178,12 @@ class TestParticipationWording(unittest.TestCase):
         """只做措辞适配，不改底层判定。"""
         self.assertEqual(P.participation_wording("open_source", "Unknown")["verdict"],
                          "Unknown")
+
+    def test_eligibility_does_not_claim_registration_is_open(self):
+        w = P.participation_wording("competition", "Eligible", freshness="open",
+                                    participation_open=False)
+        self.assertEqual(w["label"], "Eligibility needs confirmation")
+        self.assertIn("资格结论不等于当前开放", w["note"])
 
 
 class TestActionLabel(unittest.TestCase):
@@ -288,6 +317,18 @@ class TestAnswerSkeleton(unittest.TestCase):
         self.assertEqual(ans["violations"], [])
         self.assertTrue(ans["ok"])
 
+    def test_portfolio_selection_drives_allocation(self):
+        rows = [REAL_ROW, {**REAL_ROW, "id": "r2", "title": "第二条"}]
+        portfolio = {"items": [{"opportunity_id": "r2", "weekly_hours": 2}]}
+        ans = P.render_answer(FULL, rows, portfolio=portfolio)
+        self.assertEqual([i["opportunity_id"] for i in ans["allocation"]["items"]], ["r2"])
+        self.assertEqual(ans["allocation"]["total_hours"], 2)
+
+    def test_empty_portfolio_does_not_fall_back_to_all_candidates(self):
+        ans = P.render_answer(FULL, [REAL_ROW], portfolio={"items": []})
+        self.assertEqual(ans["allocation"]["items"], [])
+        self.assertIsNone(ans["allocation"]["mainline"])
+
 
 class TestOutputMetrics(unittest.TestCase):
     def test_compliant_answers_score_zero_on_the_hard_requirements(self):
@@ -365,7 +406,8 @@ class TestUnverifiedNeverSoundsAffirmative(unittest.TestCase):
         self.assertEqual(w["label"], "Contribution prerequisites")
 
     def test_verified_official_still_affirmative(self):
-        w = P.participation_wording("competition", "Eligible", "open", "verified_official")
+        w = P.participation_wording("competition", "Eligible", "open", "verified_official",
+                                    participation_open=True)
         self.assertEqual(w["label"], "Registration open")
 
     def test_closed_overrides_verification(self):
@@ -395,6 +437,13 @@ class TestWhyFitIsUserFacing(unittest.TestCase):
         p = {"life_stage": ["working"], "interests": [{"name": "ai"}], "goals": []}
         card = P.recommendation_card(row, p)
         self.assertIn("兴趣", card["why_fit"])
+        self.assertNotIn("偏好相符", card["why_fit"])
+
+    def test_school_location_alone_does_not_become_a_preference(self):
+        row = {**REAL_ROW, "components": {"location_fit": 95}}
+        p = {"life_stage": ["student"], "education": {"school_country": "China"},
+             "goals": []}
+        card = P.recommendation_card(row, p)
         self.assertNotIn("偏好相符", card["why_fit"])
 
     def test_internal_uncertainty_text_goes_to_needs_confirmation(self):

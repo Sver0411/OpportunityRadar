@@ -397,9 +397,11 @@ def main(argv=None) -> int:
     ap.add_argument("--profile", required=True)
     ap.add_argument("--target", default=None, help="用户明确说出的目标方向")
     args = ap.parse_args(argv)
-    data = json.load(open(args.opportunities, encoding="utf-8"))
+    with open(args.opportunities, encoding="utf-8") as fh:
+        data = json.load(fh)
     opps = data.get("opportunities", [data]) if isinstance(data, dict) else data
-    profile = json.load(open(args.profile, encoding="utf-8"))
+    with open(args.profile, encoding="utf-8") as fh:
+        profile = json.load(fh)
     gaps = collect_gaps(opps, profile, stated_target=args.target)
     print(json.dumps({"gaps": gaps, "summary": gap_summary(gaps)},
                      ensure_ascii=False, indent=2))

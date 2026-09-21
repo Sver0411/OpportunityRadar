@@ -86,6 +86,10 @@ class TestGraph(unittest.TestCase):
         self.assertEqual(node["produces"], ["GitHub PR"])
         self.assertEqual(node["unlocks"][0]["type"], "edge_ai_role")
 
+    def test_string_effort_shape_is_supported(self):
+        g = G.build_graph([opp(effort="6-8 h/week")])
+        self.assertEqual(g["nodes"][0]["effort_hours"], 8)
+
     def test_no_fabricated_opportunity_id(self):
         """未发现的后续机会：opportunity_id 必须为 null，不得编造。"""
         o = opp(unlocks=[{"type": "unknown_future_thing"}])
@@ -161,6 +165,20 @@ class TestUtility(unittest.TestCase):
         o = opp(effort={"weekly_commitment": "20 h/week"})
         u = U.personal_utility(o, PRO_WORKER)
         self.assertEqual(u["band"], "low")
+
+    def test_bare_numeric_weekly_budget_is_enforced(self):
+        score, note = U._effort_fit(opp(effort={"weekly_commitment": "20 h/week"}),
+                                    PRO_WORKER)
+        self.assertEqual(score, 0.15)
+        self.assertIn("20h vs 6h", note)
+
+    def test_zero_and_decimal_numeric_budgets_are_enforced(self):
+        zero_score, _ = U._effort_fit(opp(effort={"weekly_commitment": "1 h/week"}),
+                                      {"constraints": {"weekly_time": 0}})
+        decimal_score, _ = U._effort_fit(opp(effort={"weekly_commitment": "8 h/week"}),
+                                         {"constraints": {"weekly_time": 6.25}})
+        self.assertEqual(zero_score, 0.15)
+        self.assertEqual(decimal_score, 0.5)
 
     def test_unknown_when_no_outcomes_and_no_verdict(self):
         u = U.personal_utility(opp(), {})

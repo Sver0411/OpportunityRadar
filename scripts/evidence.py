@@ -150,7 +150,8 @@ def main(argv=None) -> int:
     ap.add_argument("--today", default=None)
     args = ap.parse_args(argv)
     today = dt.date.fromisoformat(args.today) if args.today else dt.date.today()
-    opp = json.load(open(args.opportunity, encoding="utf-8"))
+    with open(args.opportunity, encoding="utf-8") as fh:
+        opp = json.load(fh)
     print(json.dumps(check(opp, today), ensure_ascii=False, indent=2))
     return 0
 

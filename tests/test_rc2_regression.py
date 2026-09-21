@@ -26,8 +26,10 @@ INPUTS = os.path.join(ROOT, "usertests", "rc2-validation", "inputs")
 
 def load(case):
     d = os.path.join(INPUTS, case)
-    prof = json.load(open(os.path.join(d, "profile.json"), encoding="utf-8"))
-    batch = json.load(open(os.path.join(d, "opportunities.json"), encoding="utf-8"))
+    with open(os.path.join(d, "profile.json"), encoding="utf-8") as fh:
+        prof = json.load(fh)
+    with open(os.path.join(d, "opportunities.json"), encoding="utf-8") as fh:
+        batch = json.load(fh)
     return prof, batch["opportunities"]
 
 

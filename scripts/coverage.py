@@ -97,7 +97,8 @@ def main(argv=None) -> int:
 
     cov = Coverage()
     if args.ledger and os.path.exists(args.ledger):
-        data = json.load(open(args.ledger, encoding="utf-8"))
+        with open(args.ledger, encoding="utf-8") as fh:
+            data = json.load(fh)
         for r in data.get("rows", []):
             cov.record(**{k: r.get(k) for k in ("region", "locale", "category", "source_family",
                                                 "query_count", "candidate_count", "verified_count")})

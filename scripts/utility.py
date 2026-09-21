@@ -80,15 +80,20 @@ def _effort_fit(opp, profile) -> tuple:
     cons = profile.get("constraints") or {}
     eff = effort_of(opp)
     weekly = str(eff.get("weekly_commitment") or "")
-    limit = str(cons.get("weekly_time") or "")
+    raw_limit = cons.get("weekly_time")
+    limit = "" if raw_limit is None else str(raw_limit)
     import re
-    def hours(s):
-        n = [float(x) for x in re.findall(r"(\d{1,3}(?:\.\d)?)", s)]
-        if not n or not re.search(r"h|hour|hr|時間|小时", s.lower()):
+    def hours(s, allow_bare=False):
+        n = [float(x) for x in re.findall(r"(\d{1,3}(?:\.\d+)?)", s)]
+        if not n:
+            return None
+        if not re.search(r"h|hour|hr|時間|小时", s.lower()):
+            if allow_bare and re.fullmatch(r"\s*\d{1,3}(?:\.\d+)?\s*", s):
+                return max(n)
             return None
         return max(n)
-    need, cap = hours(weekly), hours(limit)
-    if need and cap:
+    need, cap = hours(weekly), hours(limit, allow_bare=True)
+    if need is not None and cap is not None:
         if need <= cap:
             return 1.0, None
         if need <= cap * 1.5:
@@ -185,11 +190,14 @@ def main(argv=None) -> int:
     ap.add_argument("--opportunity", required=True)
     ap.add_argument("--scored", help="score.py 的输出 JSON（可选，用于取 verdict/trust/urgency）")
     args = ap.parse_args(argv)
-    profile = json.load(open(args.profile, encoding="utf-8"))
-    opp = json.load(open(args.opportunity, encoding="utf-8"))
+    with open(args.profile, encoding="utf-8") as fh:
+        profile = json.load(fh)
+    with open(args.opportunity, encoding="utf-8") as fh:
+        opp = json.load(fh)
     row = {}
     if args.scored:
-        data = json.load(open(args.scored, encoding="utf-8"))
+        with open(args.scored, encoding="utf-8") as fh:
+            data = json.load(fh)
         for r in data.get("results", []):
             if r.get("id") == opp.get("id"):
                 row = r

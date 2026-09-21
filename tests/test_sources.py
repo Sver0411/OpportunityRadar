@@ -95,7 +95,8 @@ class TestYieldState(unittest.TestCase):
             self.assertEqual(e1["historical_yield"], 1)
             self.assertEqual(e2["historical_yield"], 0)
             self.assertEqual(e2["failure_type"], "source_found_no_opportunity")
-            data = json.load(open(os.path.join(d, "sources.json"), encoding="utf-8"))
+            with open(os.path.join(d, "sources.json"), encoding="utf-8") as fh:
+                data = json.load(fh)
             self.assertEqual(len(data["entries"]), 2)
             # 只存轻量元数据，不存内容
             self.assertNotIn("content", json.dumps(data))

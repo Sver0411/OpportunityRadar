@@ -790,7 +790,8 @@ def record_yield(state_dir, source, category=None, region=None, outcome=None,
     data = {"entries": {}}
     if os.path.exists(path):
         try:
-            data = json.load(open(path, encoding="utf-8"))
+            with open(path, encoding="utf-8") as fh:
+                data = json.load(fh)
         except (OSError, ValueError):
             data = {"entries": {}}
     from common import SOURCE_STATE_FIELDS as ALLOWED_FIELDS
@@ -810,7 +811,8 @@ def record_yield(state_dir, source, category=None, region=None, outcome=None,
     if failure_type:
         e["failure_type"] = failure_type
     os.makedirs(state_dir, exist_ok=True)
-    json.dump(data, open(path, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
+    with open(path, "w", encoding="utf-8") as fh:
+        json.dump(data, fh, ensure_ascii=False, indent=2)
     return e
 
 
@@ -822,7 +824,11 @@ def main(argv=None) -> int:
     ap.add_argument("--profile", default=None)
     ap.add_argument("--region", default=None)
     args = ap.parse_args(argv)
-    profile = json.load(open(args.profile, encoding="utf-8")) if args.profile else {}
+    if args.profile:
+        with open(args.profile, encoding="utf-8") as fh:
+            profile = json.load(fh)
+    else:
+        profile = {}
     gap = {"name": args.gap, "type": args.gap_type or ("research" if args.gap in
                                                        GAP_TO_BRIDGE_INTENT else "skill")}
     print(json.dumps({"gap": gap, "bridge_intent": bridge_intent_for(gap),

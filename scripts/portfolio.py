@@ -189,11 +189,14 @@ def main(argv=None) -> int:
     ap.add_argument("--bridges", help="gap→bridge 报告 JSON（可选）")
     ap.add_argument("--budget-hours", type=float, default=None)
     args = ap.parse_args(argv)
-    scored = json.load(open(args.scored, encoding="utf-8"))
-    profile = json.load(open(args.profile, encoding="utf-8"))
+    with open(args.scored, encoding="utf-8") as fh:
+        scored = json.load(fh)
+    with open(args.profile, encoding="utf-8") as fh:
+        profile = json.load(fh)
     bridges = []
     if args.bridges:
-        data = json.load(open(args.bridges, encoding="utf-8"))
+        with open(args.bridges, encoding="utf-8") as fh:
+            data = json.load(fh)
         for entry in (data if isinstance(data, list) else data.get("report", [])):
             bridges.extend(entry.get("bridges") or [])
     p = build_portfolio(scored.get("results", []), profile, bridges, args.budget_hours)

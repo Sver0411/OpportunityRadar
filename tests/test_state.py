@@ -121,8 +121,9 @@ class TestCorruption(StateTestCase):
 
 class TestExampleBatch(StateTestCase):
     def test_batch_then_repeat(self):
-        records = json.load(open(_helpers.path("examples", "opportunity.batch.example.json"),
-                                 encoding="utf-8"))["opportunities"]
+        with open(_helpers.path("examples", "opportunity.batch.example.json"),
+                  encoding="utf-8") as fh:
+            records = json.load(fh)["opportunities"]
         first = self.mark(records)
         self.assertEqual(len(first["new"]), len(records))
         second = self.mark(records)

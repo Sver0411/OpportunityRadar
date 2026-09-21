@@ -40,6 +40,16 @@ def _hours(expr):
     return max(nums)
 
 
+def _weekly_effort(opp):
+    """Return weekly effort from either supported effort representation."""
+    effort = opp.get("effort")
+    if isinstance(effort, dict):
+        return effort.get("weekly_commitment")
+    if isinstance(effort, str):
+        return effort
+    return None
+
+
 def build_graph(opps) -> dict:
     """把 opportunities 组装成 graph：节点 + 已发现的真实后续链接。"""
     nodes, edges = [], []
@@ -86,7 +96,7 @@ def build_graph(opps) -> dict:
             "unlocks": unlocks,
             "goal_contribution": [str(x) for x in as_list(o.get("goal_contribution"))],
             "outcomes": o.get("outcomes") or {},
-            "effort_hours": _hours((o.get("effort") or {}).get("weekly_commitment")),
+            "effort_hours": _hours(_weekly_effort(o)),
             "public_output": any(k in " ".join(produces).lower()
                                  for k in ("repo", "github", "public", "公开", "paper", "论文",
                                            "talk", "演讲", "post", "文章")),
@@ -283,7 +293,8 @@ def main(argv=None) -> int:
     ap.add_argument("--graph", action="store_true", help="输出 graph")
     ap.add_argument("--gaps", default="", help="逗号分隔的缺口，如 'FreeRTOS,TinyML'")
     args = ap.parse_args(argv)
-    data = json.load(open(args.opportunities, encoding="utf-8"))
+    with open(args.opportunities, encoding="utf-8") as fh:
+        data = json.load(fh)
     opps = data.get("opportunities", [data]) if isinstance(data, dict) else data
     if args.gaps:
         gaps = [g.strip() for g in args.gaps.split(",") if g.strip()]
