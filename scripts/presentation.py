@@ -240,14 +240,31 @@ def format_allocation(profile, items=None) -> dict:
                         "title": it.get("title")})
         return {"mode": "qualitative", "items": out, "note": BUDGET_UNKNOWN_NOTE,
                 "total_note": "未按时间做比例分配"}
-    total = sum(float(it.get("weekly_hours") or 0) for it in items)
-    return {"mode": "quantitative",
-            "items": [{"level": "主线" if idx == 0 else "辅线",
-                       "opportunity_id": it.get("id"), "title": it.get("title"),
-                       "hours": it.get("weekly_hours")}
-                      for idx, it in enumerate(items)],
-            "total_hours": round(total, 2),
-            "note": f"合计约 {round(total, 1)}h/周，与你给出的每周可用时间对齐"}
+    # 小时数要么来自显式 weekly_hours，要么从 effort 里解析；解析不出来就算未知。
+    # **未知时绝不能给出总计** —— 曾经渲染成"合计约 0.0h/周，与你给出的每周可用时间对齐"，
+    # 那是拿 0 冒充"已对齐"，属于伪精确。
+    rows = []
+    for idx, it in enumerate(items):
+        hours = it.get("weekly_hours")
+        if hours is None:
+            hours = _parse_hours(_weekly_commitment(it))
+        rows.append({"level": "主线" if idx == 0 else "辅线",
+                     "opportunity_id": it.get("id"), "title": it.get("title"),
+                     "hours": hours})
+    known = [r["hours"] for r in rows if isinstance(r["hours"], (int, float))]
+    unknown_n = len(rows) - len(known)
+    if not known:
+        return {"mode": "qualitative", "items": [{"level": r["level"],
+                                                  "opportunity_id": r["opportunity_id"],
+                                                  "title": r["title"]} for r in rows],
+                "note": "这些机会都没写明小时数，因此不做时间加总（只能给主线/辅线/低成本的排序）"}
+    total = sum(known)
+    note = f"其中 {len(known)} 条有明确小时数，合计约 {round(total, 1)}h/周"
+    if unknown_n:
+        note += f"；另有 {unknown_n} 条未写明小时数，未计入"
+    return {"mode": "quantitative", "items": rows, "total_hours": round(total, 2),
+            "items_with_unknown_hours": unknown_n,
+            "note": note + "，与你给出的每周可用时间对齐"}
 
 
 # ---------------------------------------------------------------- 3. Category-aware participation
@@ -645,6 +662,30 @@ def _uncertain_eligibility_notes(row) -> list:
     raws = [str(r) for r in (row.get("eligibility_reasons") or [])
             if any(m in str(r) for m in _UNCERTAIN_MARKERS)]
     return [(humanize_reason(r), r) for r in raws[:3]]
+
+
+#: 只有紧跟"小时"单位的数字才算每周投入
+_HOURS_UNIT_RE = re.compile(
+    r"(\d+(?:\.\d+)?)\s*(?:h\b|hr\b|hrs\b|hour|hours|小時|小时|時間)")
+#: 周期/时长单位：出现在文本里且**没有**小时单位时，这个数字不是"每周小时"
+_DURATION_UNIT_RE = re.compile(r"月|ヶ月|か月|month|year|年|週間|weeks?\b|days?\b|日")
+
+
+def _parse_hours(text):
+    """只认**小时**语义：`5 h` / `4-6 h` / `最多 20 h` → 取上界。
+
+    `2-6 个月`、`12 週間`、`3-6 months` 是**周期**而不是每周投入 —— 曾经把它们
+    解析成 6，导致"每周 6 小时"实为"6 个月"。返回 None 表示"无法作为每周小时数"。
+    """
+    if text is None:
+        return None
+    t = str(text)
+    hits = _HOURS_UNIT_RE.findall(t)
+    if hits:
+        return max(float(x) for x in hits)
+    if _DURATION_UNIT_RE.search(t):
+        return None
+    return None
 
 
 def _weekly_commitment(row):

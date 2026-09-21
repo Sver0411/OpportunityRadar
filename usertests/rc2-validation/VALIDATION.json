@@ -1,0 +1,166 @@
+{
+  "rows": [
+    {
+      "case": "A",
+      "candidates": 6,
+      "zones": {
+        "recommended_now": 3,
+        "worth_verifying": 2,
+        "excluded": 1
+      },
+      "decision_confidence": "medium",
+      "explore_axis_count": 3,
+      "explore_axes": [
+        "build",
+        "contribute",
+        "creative"
+      ],
+      "technical_share_by_topic": 0.167,
+      "visible_gap_bridge_rate": 0.4,
+      "visible_evidence_output_rate": 1.0,
+      "visible_effort_rate": 0.8,
+      "expired_leakage": 0,
+      "unverified_actionable_leakage": 0,
+      "source_stale_leakage": 0,
+      "leakage": [],
+      "verification_status_mix": {
+        "verified_official": 4,
+        "partially_verified": 1,
+        "unverified": 1,
+        "conflicting": 0
+      }
+    },
+    {
+      "case": "B",
+      "candidates": 3,
+      "zones": {
+        "recommended_now": 1,
+        "worth_verifying": 2,
+        "excluded": 0
+      },
+      "decision_confidence": "medium",
+      "explore_axis_count": 3,
+      "explore_axes": [
+        "community",
+        "creative",
+        "research"
+      ],
+      "technical_share_by_topic": 0.0,
+      "visible_gap_bridge_rate": 1.0,
+      "visible_evidence_output_rate": 1.0,
+      "visible_effort_rate": 0.667,
+      "expired_leakage": 0,
+      "unverified_actionable_leakage": 0,
+      "source_stale_leakage": 0,
+      "leakage": [],
+      "verification_status_mix": {
+        "verified_official": 1,
+        "partially_verified": 1,
+        "unverified": 1,
+        "conflicting": 0
+      }
+    },
+    {
+      "case": "C",
+      "candidates": 5,
+      "zones": {
+        "recommended_now": 2,
+        "worth_verifying": 1,
+        "excluded": 2
+      },
+      "decision_confidence": "medium",
+      "explore_axis_count": 3,
+      "explore_axes": [
+        "community",
+        "contribute",
+        "volunteer"
+      ],
+      "technical_share_by_topic": 0.0,
+      "visible_gap_bridge_rate": 0.667,
+      "visible_evidence_output_rate": 0.667,
+      "visible_effort_rate": 0.0,
+      "expired_leakage": 0,
+      "unverified_actionable_leakage": 0,
+      "source_stale_leakage": 0,
+      "leakage": [],
+      "verification_status_mix": {
+        "verified_official": 2,
+        "partially_verified": 1,
+        "unverified": 2,
+        "conflicting": 0
+      }
+    },
+    {
+      "case": "D",
+      "candidates": 5,
+      "zones": {
+        "recommended_now": 3,
+        "worth_verifying": 2,
+        "excluded": 0
+      },
+      "decision_confidence": "medium",
+      "explore_axis_count": 3,
+      "explore_axes": [
+        "community",
+        "contribute",
+        "research"
+      ],
+      "technical_share_by_topic": 0.6,
+      "visible_gap_bridge_rate": 0.8,
+      "visible_evidence_output_rate": 1.0,
+      "visible_effort_rate": 0.4,
+      "expired_leakage": 0,
+      "unverified_actionable_leakage": 0,
+      "source_stale_leakage": 0,
+      "leakage": [],
+      "verification_status_mix": {
+        "verified_official": 3,
+        "partially_verified": 2,
+        "unverified": 0,
+        "conflicting": 0
+      }
+    },
+    {
+      "case": "E",
+      "candidates": 19,
+      "zones": {
+        "recommended_now": 0,
+        "worth_verifying": 9,
+        "excluded": 10
+      },
+      "decision_confidence": "low",
+      "explore_axis_count": 5,
+      "explore_axes": [
+        "build",
+        "community",
+        "contribute",
+        "creative",
+        "entrepreneurship"
+      ],
+      "technical_share_by_topic": 0.421,
+      "visible_gap_bridge_rate": 0.0,
+      "visible_evidence_output_rate": 0.4,
+      "visible_effort_rate": 0.2,
+      "expired_leakage": 0,
+      "unverified_actionable_leakage": 0,
+      "source_stale_leakage": 0,
+      "leakage": [],
+      "verification_status_mix": {
+        "verified_official": 1,
+        "partially_verified": 1,
+        "unverified": 17,
+        "conflicting": 0
+      }
+    }
+  ],
+  "totals": {
+    "unsupported_precision_count": 0,
+    "strong_claim_with_low_confidence_count": 0,
+    "expired_leakage": 0,
+    "unverified_actionable_leakage": 0,
+    "source_stale_leakage": 0,
+    "persona_context_leakage_count": 0,
+    "self_directed_mixed_count": 0
+  },
+  "leaks": []
+}

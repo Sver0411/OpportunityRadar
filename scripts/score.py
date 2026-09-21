@@ -41,6 +41,7 @@ from common import (  # noqa: E402
     DEADLINE_TYPES, EVIDENCE_FIELDS, GOAL_TO_CATEGORY, INTEREST_ALIASES, WEIGHTS,
     canonical_country, is_explicit_none, load_records as load_records_common,
     validate_opportunity,
+    GOAL_OUTCOME_PROFILE,
 )
 from normalize_date import freshness, parse_date  # noqa: E402
 from readiness import readiness  # noqa: E402
@@ -962,38 +963,53 @@ LEVEL_SCORE = {"high": 1.0, "medium": 0.6, "low": 0.3, "unknown": 0.5, None: 0.5
 
 
 def goal_component(opp, profile):
-    """目标契合：先看类别，再看 **V3 outcome facets**（跨类别命中）。
+    """目标契合 = **类别腿** ∪ **outcome facet 腿**（取较大者，15 分为地板）。
 
-    为什么需要 outcome：一个 CFP（`event`）对 networking / skill 目标是强契合，
-    但按类别匹配会判成"不重合" —— 这正是 V3 要修的"字段只存在于 JSON 里"的问题。
+    为什么需要 outcome 腿：一个治理席位 / CFP（`open_source` / `event`）对"升 Senior"
+    是强契合，但按类别匹配会判成"不重合"。outcome 腿让"这条机会能带来什么"参与判断，
+    而**不是**靠给 `career` 加 category 别名（那会把任何开源机会都算成对晋升有价值）。
+
+    归一化分母用**目标声明想要的全部 facet 权重**，不是只除以机会声明了的那几个：
+    这样"只声明一个泛 facet"的机会拿不到高分（反例靠这条守住）。
     """
     goals = as_list(profile.get("goals"))
     if not goals:
         return 60.0, "画像未提供目标，按中性处理"
+    # 目标条目可能是字符串（真实运行里出现过）—— 归一化，别让它悄悄退化成"没有目标"
+    goals = [g if isinstance(g, dict) else {"type": str(g)} for g in goals]
     cats = {opp.get("primary_category")} | set(as_list(opp.get("secondary_categories")))
     outcomes = opp.get("outcomes") or {}
-    # 目标的"价值维度"名与 outcome facet 名不完全相同（networking ↔ network）
-    FACET_ALIAS = {"networking": "network", "financial": "financial"}
+
     best, note = 0.0, "与声明的目标不重合"
     for g in goals:
-        if not isinstance(g, dict):
-            continue
+        gtype = g.get("type")
         w = PRIORITY_WEIGHT.get(g.get("priority"), 0.5)
-        for c in GOAL_TO_CATEGORY.get(g.get("type"), []):
-            if opp.get("primary_category") == c:
-                if w > best:
-                    best, note = w, f"命中目标 {g.get('type')}（priority={g.get('priority')}）"
-            elif c in cats:
-                if w * 0.8 > best:
-                    best, note = w * 0.8, f"作为次要类别命中目标 {g.get('type')}"
-            else:
-                # 跨类别：用"这个机会能带来什么"（outcome facet）命中目标
-                facet = FACET_ALIAS.get(c, c)
-                level = LEVEL_SCORE.get(str(outcomes.get(facet)).lower(), 0.5)
-                if facet in outcomes and level >= 0.6:
-                    v = w * level
-                    if v > best:
-                        best, note = v, f"产出 outcomes.{facet}={outcomes[facet]} 命中目标 {g.get('type')}"
+
+        # --- 腿 1：类别对齐（原有行为，保持不动）---
+        for c in GOAL_TO_CATEGORY.get(gtype, []):
+            hit = 1.0 if opp.get("primary_category") == c else (
+                0.8 if c in cats else 0.0)
+            if hit and w * hit > best:
+                best, note = w * hit, f"命中目标 {gtype} 的类别（priority={g.get('priority')}）"
+
+        # --- 腿 2：outcome facet 对齐（跨类别）---
+        profile_of_goal = GOAL_OUTCOME_PROFILE.get(gtype)
+        if profile_of_goal and outcomes:
+            total_w = sum(profile_of_goal.values()) or 1.0
+            got = 0.0
+            hits = []
+            for facet, fw in profile_of_goal.items():
+                lvl = LEVEL_SCORE.get(str(outcomes.get(facet)).lower())
+                if lvl is None:
+                    continue                      # 机会没声明这个 facet → 计 0
+                got += fw * lvl
+                if lvl >= 0.6:
+                    hits.append(f"{facet}={outcomes[facet]}")
+            alignment = got / total_w              # 分母是"目标想要的全部"，不是"机会声明的"
+            if alignment > 0 and w * alignment > best:
+                best = w * alignment
+                note = (f"产出 {', '.join(hits[:3])} 对齐目标 {gtype}"
+                        if hits else f"outcome 部分对齐目标 {gtype}")
     return (100.0 * best if best else 15.0), note
 
 

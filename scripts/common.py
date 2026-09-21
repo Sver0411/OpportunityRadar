@@ -213,6 +213,36 @@ SKILL_EQUIVALENTS = {
     "模拟电路": "analog circuit", "数字电路": "digital circuit", "信号处理": "signal processing",
 }
 
+#: 目标类型 → 它真正想要的 **outcome facet** 及权重（≠ 类别别名）。
+#: 用途：修"目标 × 类别"失效 —— 升 Senior 想要的是 reputation/leadership/management/network，
+#: 这些可以由 open_source / event / networking 类别的机会提供，**但只有机会真的声明了**
+#: 对应 outcome 时才算命中（靠归一化分母守住，见 score.goal_component）。
+#: facet 名取自 OUTCOME_FACETS；未列出的目标类型走"无偏好"（只用类别腿）。
+GOAL_OUTCOME_PROFILE = {
+    # 晋升/职业进阶：要可见的影响力与担当，不是再学一门课
+    "career": {"reputation": 1.0, "career": 1.0, "management": 0.8, "network": 0.7,
+               "portfolio": 0.5, "skill": 0.5, "credential": 0.4},
+    "fulltime": {"career": 1.0, "financial": 0.8, "skill": 0.6, "network": 0.4},
+    "internship": {"career": 1.0, "skill": 0.8, "network": 0.6, "portfolio": 0.5,
+                   "exposure": 0.4},
+    "research": {"research": 1.0, "admission": 0.7, "network": 0.6, "portfolio": 0.5,
+                 "skill": 0.4, "credential": 0.4},
+    "education": {"admission": 1.0, "research": 0.6, "credential": 0.6, "network": 0.4,
+                  "skill": 0.5},
+    "language": {"skill": 0.8, "admission": 0.7, "credential": 0.7, "career": 0.4},
+    "open_source": {"portfolio": 1.0, "reputation": 0.8, "skill": 0.7, "network": 0.6,
+                    "career": 0.5},
+    "skill": {"skill": 1.0, "credential": 0.5, "portfolio": 0.5, "career": 0.5},
+    "competition": {"reputation": 0.8, "portfolio": 0.8, "skill": 0.6, "career": 0.4},
+    "project": {"portfolio": 1.0, "skill": 0.7, "career": 0.4},
+    "funding": {"financial": 1.0, "research": 0.4, "admission": 0.4},
+    "event": {"network": 0.8, "exposure": 0.7, "reputation": 0.5, "skill": 0.4},
+    "networking": {"network": 1.0, "reputation": 0.5, "career": 0.4, "exposure": 0.4},
+    "entrepreneurship": {"entrepreneurship": 1.0, "network": 0.7, "career": 0.5,
+                         "financial": 0.5, "reputation": 0.5},
+    "hobby": {"interest": 1.0, "skill": 0.4, "exposure": 0.3},
+}
+
 #: Personal Utility 档位（只给用户这三档，不输出裸分数）
 UTILITY_BANDS = ("high", "medium", "low", "unknown")
 
