@@ -16,7 +16,7 @@
 
   <g class="mono" fill="#1c211e" font-size="13" font-weight="700" letter-spacing="1.8">
     <text x="49" y="72">OPPORTUNITYRADAR®</text>
-    <text x="1162" y="72">个人机会智能 / 001</text>
+    <text x="1172" y="72">机会发现技能 / 001</text>
   </g>
 
   <g class="sans">
@@ -32,32 +32,32 @@
   <g class="sans">
     <rect x="926" y="151" width="204" height="142" rx="6" fill="#dcff66"/>
     <text x="946" y="181" fill="#182014" font-size="12" font-weight="800" letter-spacing="1.5">01 / 发现</text>
-    <text x="946" y="229" fill="#12160f" font-size="28" font-weight="720">发现未知</text>
-    <text x="946" y="262" fill="#4e5b38" font-size="14">13 类机会 · 相邻方向</text>
+    <text x="946" y="229" fill="#12160f" font-size="28" font-weight="720">发现更多</text>
+    <text x="946" y="262" fill="#4e5b38" font-size="14">不只搜索你说出的关键词</text>
 
     <rect x="1146" y="151" width="246" height="142" rx="6" fill="#c9edff"/>
     <text x="1166" y="181" fill="#15202a" font-size="12" font-weight="800" letter-spacing="1.5">02 / 核实</text>
-    <text x="1166" y="229" fill="#111820" font-size="28" font-weight="720">回到官方</text>
-    <text x="1166" y="262" fill="#496270" font-size="14">来源 · 时效 · 资格证据</text>
+    <text x="1166" y="229" fill="#111820" font-size="28" font-weight="720">查清真假</text>
+    <text x="1166" y="262" fill="#496270" font-size="14">回到官方网站核实信息</text>
 
     <rect x="926" y="309" width="246" height="170" rx="6" fill="#ffd9eb"/>
     <text x="946" y="339" fill="#26151f" font-size="12" font-weight="800" letter-spacing="1.5">03 / 决策</text>
-    <text x="946" y="389" fill="#1b1116" font-size="28" font-weight="720">做出取舍</text>
-    <text x="946" y="422" fill="#765064" font-size="14">匹配度 · 优先级 · 投入价值</text>
+    <text x="946" y="389" fill="#1b1116" font-size="28" font-weight="720">看懂是否适合</text>
+    <text x="946" y="422" fill="#765064" font-size="14">条件 · 时间 · 成本</text>
     <path d="M946 450h108" stroke="#ae728f" stroke-width="2"/>
 
     <rect x="1188" y="309" width="204" height="170" rx="6" fill="#e5dbff"/>
     <text x="1208" y="339" fill="#1e1730" font-size="12" font-weight="800" letter-spacing="1.5">04 / 发展</text>
-    <text x="1208" y="389" fill="#171020" font-size="28" font-weight="720">打开未来</text>
-    <text x="1208" y="422" fill="#65567e" font-size="14">缺口 → 桥接 → 证据</text>
+    <text x="1208" y="389" fill="#171020" font-size="28" font-weight="720">知道先做什么</text>
+    <text x="1208" y="422" fill="#65567e" font-size="14">给出清楚的下一步</text>
     <circle cx="1358" cy="447" r="13" fill="#7257bf"/>
     <path d="m1352 447 4 4 8-9" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
   </g>
 
   <g class="mono" fill="#626a63" font-size="12" font-weight="700" letter-spacing="1.4">
-    <text x="49" y="570">证据优先</text>
-    <text x="226" y="570">尊重资源约束</text>
-    <text x="421" y="570">可解释设计</text>
+    <text x="49" y="570">依据官方信息</text>
+    <text x="226" y="570">不确定就说明</text>
+    <text x="421" y="570">不浪费你的时间</text>
     <text x="1270" y="570">MIT / 2026</text>
   </g>
   <g>
