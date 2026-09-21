@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/opportunity-radar-hero.svg" alt="OpportunityRadar — Personal Opportunity Intelligence" width="100%">
+  <img src="assets/opportunity-radar-hero.svg" alt="OpportunityRadar — 个人机会智能" width="100%">
 </p>
 
 <p align="center">
@@ -8,16 +8,16 @@
 
 <p align="center">
   <a href="https://github.com/Sver0411/OpportunityRadar/actions/workflows/test.yml"><img src="https://github.com/Sver0411/OpportunityRadar/actions/workflows/test.yml/badge.svg" alt="Tests"></a>
-  <a href="SKILL.md"><img src="https://img.shields.io/badge/Agent-Skill-8B5CF6" alt="Agent Skill"></a>
+  <a href="SKILL.md"><img src="https://img.shields.io/badge/项目类型-Agent_Skill-8B5CF6" alt="Agent Skill"></a>
   <a href="scripts/"><img src="https://img.shields.io/badge/Python-3.8%2B-3776AB?logo=python&logoColor=white" alt="Python 3.8+"></a>
-  <a href="scripts/"><img src="https://img.shields.io/badge/runtime-stdlib_only-10B981" alt="Standard library only"></a>
-  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-111827" alt="MIT License"></a>
+  <a href="scripts/"><img src="https://img.shields.io/badge/运行依赖-仅标准库-10B981" alt="仅依赖标准库"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/许可证-MIT-111827" alt="MIT 许可证"></a>
 </p>
 
 <p align="center">
-  <b>Discover unknowns.</b>&nbsp;&nbsp;·&nbsp;&nbsp;
-  <b>Verify reality.</b>&nbsp;&nbsp;·&nbsp;&nbsp;
-  <b>Decide with evidence.</b>
+  <b>发现未知选项</b>&nbsp;&nbsp;·&nbsp;&nbsp;
+  <b>核实真实状态</b>&nbsp;&nbsp;·&nbsp;&nbsp;
+  <b>依据证据决策</b>
 </p>
 
 ---
@@ -26,7 +26,7 @@
 >
 > OpportunityRadar 把一句模糊的「我接下来能做什么？」变成一组经过官方核实、符合真实约束、值得投入时间的机会决策。
 
-它不是静态清单，也不是换了包装的关键词搜索。它是一套面向 Agent 的 **Personal Opportunity Intelligence**：理解人，展开搜索空间，发现未知选项，核实关键事实，判断资格与准备度，最后构建一组能执行、能解释、还能打开后续通道的 Opportunity Portfolio。
+它不是静态清单，也不是换了包装的关键词搜索。它是一套面向智能体的 **个人机会智能系统**：理解人，展开搜索空间，发现未知选项，核实关键事实，判断资格与准备度，最后构建一组能执行、能解释、还能打开后续通道的机会组合。
 
 <br>
 
@@ -35,19 +35,19 @@
 <table>
   <tr>
     <td width="33%" valign="top">
-      <h3>◈ DISCOVER</h3>
+      <h3>◈ 发现</h3>
       <b>搜索用户没有说出口的可能性</b><br><br>
-      从目标、阶段、兴趣、地区和约束出发，覆盖 13 类机会；除了主流路径，也主动寻找 Adjacent / Explore 方向。
+      从目标、阶段、兴趣、地区和约束出发，覆盖 13 类机会；除了主流路径，也主动寻找相邻方向与探索性选择。
     </td>
     <td width="33%" valign="top">
-      <h3>◇ VERIFY</h3>
+      <h3>◇ 核实</h3>
       <b>让每个重要结论都能追溯</b><br><br>
       聚合站负责发现，官方页面负责确认。开放状态、截止时间、资格要求和申请入口都经过证据门槛。
     </td>
     <td width="33%" valign="top">
-      <h3>◆ DECIDE</h3>
+      <h3>◆ 决策</h3>
       <b>把“适合”翻译成“现在怎么选”</b><br><br>
-      分离 Match、Priority 与 Utility，在时间和预算约束下组织主线、桥接机会、低成本试错与长期选项。
+      分离匹配度、优先级与投入价值，在时间和预算约束下组织主线、桥接机会、低成本试错与长期选项。
     </td>
   </tr>
 </table>
@@ -55,24 +55,24 @@
 ```text
 你是谁        搜索空间        真实候选        官方证据        决策        机会组合        后续通道
   │              │               │               │            │             │               │
-  └── profile ───┴── discover ───┴── verify ─────┴── judge ───┴── portfolio ┴── graph ───────┘
+  └── 画像 ──────┴── 发现 ───────┴── 核实 ───────┴── 判断 ────┴── 组合 ─────┴── 关系图 ──────┘
 ```
 
 职业、科研、竞赛、教育、语言、技能发展、开源、兴趣、资助、活动、项目、创业与社群网络——系统可以跨 **13 类机会**建立搜索空间，也可以在用户明确限定后保持极窄的搜索边界。
 
 <br>
 
-## 02 / Evidence before confidence
+## 02 / 证据先于自信
 
 一条机会不会因为“看起来不错”就进入主推荐。它必须穿过一组明确的门：
 
 <table>
   <tr>
-    <td><b>01<br>FRESHNESS</b></td>
-    <td><b>02<br>CANONICAL</b></td>
-    <td><b>03<br>EVIDENCE</b></td>
-    <td><b>04<br>ELIGIBILITY</b></td>
-    <td><b>05<br>RESOURCE</b></td>
+    <td><b>01<br>时效</b></td>
+    <td><b>02<br>官方来源</b></td>
+    <td><b>03<br>事实证据</b></td>
+    <td><b>04<br>参与资格</b></td>
+    <td><b>05<br>资源约束</b></td>
   </tr>
   <tr>
     <td>当前周期仍然有效</td>
@@ -87,11 +87,11 @@
 
 | | 状态 | 意义 |
 |---:|---|---|
-| `01` | **RECOMMENDED NOW** | 官方来源、近期状态与关键证据已核实，没有已知硬冲突。 |
-| `02` | **WORTH VERIFYING** | 有价值，但开放状态、来源或资格仍有关键未知项。 |
-| `03` | **CLOSED / EXCLUDED** | 已结束、已过期或存在明确冲突，并保留排除原因。 |
+| `01` | **现在值得行动** | 官方来源、近期状态与关键证据已核实，没有已知硬冲突。 |
+| `02` | **值得继续核实** | 有价值，但开放状态、来源或资格仍有关键未知项。 |
+| `03` | **已关闭或排除** | 已结束、已过期或存在明确冲突，并保留排除原因。 |
 
-**Unknown stays Unknown.** 用户没说，不等于没有；页面没写，不等于满足。系统宁可保留不确定性，也不把缺失信息润色成一个自信的答案。
+**未知就保持未知。** 用户没说，不等于没有；页面没写，不等于满足。系统宁可保留不确定性，也不把缺失信息润色成一个自信的答案。
 
 <br>
 
@@ -100,17 +100,17 @@
 <table>
   <tr>
     <td width="33%" valign="top">
-      <code>MATCH</code><br><br>
+      <code>匹配度</code><br><br>
       <b>适不适合？</b><br>
       背景、兴趣、目标和机会要求之间的重合度。
     </td>
     <td width="33%" valign="top">
-      <code>PRIORITY</code><br><br>
+      <code>优先级</code><br><br>
       <b>急不急？</b><br>
       开放状态、截止窗口与行动时机。
     </td>
     <td width="33%" valign="top">
-      <code>UTILITY</code><br><br>
+      <code>投入价值</code><br><br>
       <b>值不值得现在投入？</b><br>
       资格、准备度、产出、成本、时间与未来可选性。
     </td>
@@ -119,7 +119,7 @@
 
 一个机会可以高度匹配，却因为每周需要 20 小时而不适合现在投入；也可以临近截止，却因为证据不足而只能进入待核实区。
 
-OpportunityRadar 不向用户展示“83.7214 分”式的伪精确结论，也不预测录取概率。它给出 **High / Medium / Low / Unknown + 理由**。
+OpportunityRadar 不向用户展示“83.7214 分”式的伪精确结论，也不预测录取概率。它给出 **高 / 中 / 低 / 未知，并附上理由**。
 
 <br>
 
@@ -128,14 +128,14 @@ OpportunityRadar 不向用户展示“83.7214 分”式的伪精确结论，也�
 OpportunityRadar 不只问“这个机会是什么”，还会继续问：**完成它以后，你手里多了什么证据，又打开了什么？**
 
 ```text
- GAP                  BRIDGE                  EVIDENCE                 UNLOCK
+ 缺口                  桥接机会                  可验证证据                后续通道
 ┌──────────┐        ┌──────────────┐        ┌──────────────┐        ┌──────────────┐
-│ 真实协作  │  ───▶  │ 开源贡献计划  │  ───▶  │ Public PR    │  ───▶  │ Maintainer   │
-│ 经历不足  │        │ 5h / week    │        │ Review history│        │ Internship   │
+│ 真实协作  │  ───▶  │ 开源贡献计划  │  ───▶  │ 公开 PR      │  ───▶  │ 项目维护者    │
+│ 经历不足  │        │ 每周 5 小时   │        │ 代码审查记录  │        │ 实习或科研合作 │
 └──────────┘        └──────────────┘        └──────────────┘        └──────────────┘
 ```
 
-Gap 必须来自真实机会要求或用户明确目标；Bridge 必须是实际发现的机会；Evidence 必须是可展示的产出；尚未找到的后续机会只记录类型，绝不伪造 ID。
+缺口必须来自真实机会要求或用户明确目标；桥接必须是实际发现的机会；证据必须是可展示的产出；尚未找到的后续机会只记录类型，绝不伪造编号。
 
 这让推荐从“现在能参加什么”进化为：
 
@@ -143,53 +143,53 @@ Gap 必须来自真实机会要求或用户明确目标；Bridge 必须是实际
 
 <br>
 
-## 05 / 输出是一组 Portfolio
+## 05 / 输出是一组机会组合
 
-OpportunityRadar 不机械返回 Top N，而是在用户有限的时间、预算和风险偏好下组合机会。
+OpportunityRadar 不机械返回前若干名，而是在用户有限的时间、预算和风险偏好下组合机会。
 
-`NOW`　`BRIDGE`　`LOW-COST`　`HIGH-UPSIDE`　`LONG-TERM`　`EXPLORE`
+`现在行动`　`桥接缺口`　`低成本试错`　`高上限选择`　`长期铺路`　`探索方向`
 
 角色达标才出现，不凑栏目。当已知投入超过每周预算时，系统直接报告资源冲突，而不是声称“已经对齐”。
 
 一条完整推荐会回答：
 
 ```text
-WHY          为什么它与你有关
-ELIGIBILITY  哪些条件满足，哪些仍是 Unknown
-OPEN NOW     当前周期是否有官方开放证据
-READINESS    离真正开始还差什么
-EFFORT       每周投入、准备复杂度与成本
-PRODUCES     会留下什么可验证产出
-UNLOCKS      这份产出可能打开什么
-NEXT         此刻最值得执行的一步
+推荐理由    为什么它与你有关
+参与资格    哪些条件满足，哪些仍然未知
+开放状态    当前周期是否有官方开放证据
+准备程度    离真正开始还差什么
+所需投入    每周时间、准备复杂度与成本
+可得产出    会留下什么可验证成果
+后续通道    这份产出可能打开什么
+下一步      此刻最值得执行的一步
 ```
 
 <details>
 <summary><b>展开查看一张推荐卡的示意</b></summary>
 <br>
 
-> ### Open Source Mentorship
-> `RECOMMENDED NOW`　`PROBABLY ELIGIBLE`　`5H / WEEK`
+> ### 开源导师计划
+> `现在值得行动`　`可能符合资格`　`每周 5 小时`
 >
-> **WHY**　目标高度相关，可补真实协作经历并留下公开 PR。  
-> **READINESS**　Minor preparation；需要一份英文项目简介。  
-> **EVIDENCE**　官方项目页与当前申请入口已核实；时区要求仍需确认。  
-> **UNLOCKS**　Public contribution → Maintainer / Internship / Research collaboration.  
-> **NEXT**　先确认 mentor 与 issue 的匹配度，再决定是否占用本周预算。
+> **推荐理由**　目标高度相关，可补真实协作经历并留下公开 PR。  
+> **准备程度**　需要少量准备；先补一份英文项目简介。  
+> **事实证据**　官方项目页与当前申请入口已核实；时区要求仍需确认。  
+> **后续通道**　公开贡献 → 项目维护者 / 实习 / 科研合作。  
+> **下一步**　先确认导师与任务的匹配度，再决定是否占用本周预算。
 
 <sub>格式示意，不代表当前存在或开放的真实机会。</sub>
 </details>
 
 <br>
 
-## 06 / Ask like a human
+## 06 / 像正常说话一样提问
 
 不需要先填满画像，也不需要知道正确术语。一句话就能启动：
 
 ```text
 我是视觉设计专业的学生，最近有什么能留下真实作品的项目？
 
-我在做嵌入式开发，想转向 Edge AI，现在最值得补什么、参加什么？
+我在做嵌入式开发，想转向边缘人工智能，现在最值得补什么、参加什么？
 
 我暂时不想找工作，想用每周 5 小时做点能打开新方向的事情。
 
@@ -200,9 +200,9 @@ NEXT         此刻最值得执行的一步
 
 <br>
 
-## 07 / Quick start
+## 07 / 快速开始
 
-将仓库放进支持 Agent Skills 的宿主的 skills 目录。最终目录名应为 `opportunity-radar`。
+将仓库放进支持智能体技能协议的宿主技能目录。最终目录名应为 `opportunity-radar`。
 
 ```bash
 mkdir -p ~/.codex/skills
@@ -210,7 +210,7 @@ git clone https://github.com/Sver0411/OpportunityRadar.git \
   ~/.codex/skills/opportunity-radar
 ```
 
-然后直接对 Agent 说：
+然后直接对智能体说：
 
 ```text
 最近有什么真正适合我的机会？也找一些我可能完全没想到的方向。
@@ -220,54 +220,54 @@ git clone https://github.com/Sver0411/OpportunityRadar.git \
 
 <br>
 
-## 08 / Under the hood
+## 08 / 项目内部
 
-项目刻意保持轻量：**Skill 负责推理协议，References 负责知识边界，Scripts 负责确定性，Schemas 负责契约，Tests 负责防漂移。**
+项目刻意保持轻量：**技能文件负责推理协议，参考资料负责知识边界，脚本负责确定性，数据结构负责契约，测试负责防止漂移。**
 
 ```text
 SKILL.md
-   ├── references/     搜索 · 来源 · 资格 · 排序 · Locale · 输出纪律
-   ├── scripts/        Date · Dedupe · Score · Evidence · Utility · Graph · Portfolio
-   ├── schemas/        Profile / Opportunity contracts
-   └── tests/          Unit · Regression · Consistency · CLI smoke
+   ├── references/     搜索 · 来源 · 资格 · 排序 · 地区语言 · 输出纪律
+   ├── scripts/        日期 · 去重 · 评分 · 证据 · 价值 · 关系图 · 机会组合
+   ├── schemas/        用户画像与机会的数据契约
+   └── tests/          单元 · 回归 · 一致性 · 命令行冒烟测试
 ```
 
 | 核心 | 职责 |
 |---|---|
-| [`score.py`](scripts/score.py) · [`evidence.py`](scripts/evidence.py) | 硬约束、证据门槛、Match / Priority 与推荐分区。 |
+| [`score.py`](scripts/score.py) · [`evidence.py`](scripts/evidence.py) | 硬约束、证据门槛、匹配度、优先级与推荐分区。 |
 | [`readiness.py`](scripts/readiness.py) · [`utility.py`](scripts/utility.py) | 判断离开始还有多远，以及现在值不值得投入。 |
-| [`graph.py`](scripts/graph.py) · [`portfolio.py`](scripts/portfolio.py) | 连接 Gap → Bridge → Evidence → Unlock，并服从资源预算。 |
+| [`graph.py`](scripts/graph.py) · [`portfolio.py`](scripts/portfolio.py) | 连接缺口 → 桥接 → 证据 → 后续通道，并服从资源预算。 |
 | [`presentation.py`](scripts/presentation.py) | 把结构化结论翻译成克制、清晰、不越界的用户表达。 |
 
-共享枚举和规则集中在 [`scripts/common.py`](scripts/common.py)，Schemas、References 与实现之间的一致性由测试自动检查。完整架构与设计取舍见 [`DEVELOPMENT.md`](DEVELOPMENT.md)。
+共享枚举和规则集中在 [`scripts/common.py`](scripts/common.py)，数据结构、参考资料与实现之间的一致性由测试自动检查。完整架构与设计取舍见 [`DEVELOPMENT.md`](DEVELOPMENT.md)。
 
 ```bash
 python3 scripts/preflight.py
 ```
 
-预检依次执行编译、完整测试与 Skill package 校验。CI 覆盖 Python 3.8 和 Python 3.12。
+预检依次执行编译、完整测试与技能包校验。持续集成覆盖 Python 3.8 和 Python 3.12。
 
 <br>
 
-## Design laws
+## 设计铁律
 
 ```text
-HARD CONSTRAINTS  >  MODEL VIBES
-OFFICIAL EVIDENCE >  AGGREGATOR CLAIMS
-UNKNOWN           =  UNKNOWN
-ELIGIBILITY       ≠  READINESS
-MATCH             ≠  PRIORITY  ≠  UTILITY
-QUALITY           >  QUANTITY
+硬性约束  >  模型直觉
+官方证据  >  聚合页面
+未知      =  未知
+参与资格  ≠  准备程度
+匹配度    ≠  优先级  ≠  投入价值
+结果质量  >  结果数量
 ```
 
-机会会变化。行动前应重新打开官方页面确认；OpportunityRadar 不保证扫描整个互联网，也不保证申请结果。可选画像和状态保存在本地 `.opportunity-radar/`，辅助脚本不会主动上传这些文件。提交申请、发送邮件、注册账号和上传个人资料不在本 Skill 的执行范围内。
+机会会变化。行动前应重新打开官方页面确认；OpportunityRadar 不保证扫描整个互联网，也不保证申请结果。可选画像和状态保存在本地 `.opportunity-radar/`，辅助脚本不会主动上传这些文件。提交申请、发送邮件、注册账号和上传个人资料不在本技能的执行范围内。
 
 <br>
 
 <div align="center">
 
-**The next opportunity should not depend on whether you guessed the right keyword.**
+**下一次机会，不应该取决于你是否猜对了关键词。**
 
-[Read the protocol](SKILL.md) · [Architecture notes](DEVELOPMENT.md) · [MIT License](LICENSE)
+[阅读完整协议](SKILL.md) · [查看架构说明](DEVELOPMENT.md) · [MIT 许可证](LICENSE)
 
 </div>
