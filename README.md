@@ -17,6 +17,10 @@
   <b>找到更多机会 · 查清真实信息 · 看懂是否适合 · 知道先做什么</b>
 </p>
 
+<p align="center">
+  <a href="https://sver0411.github.io/OpportunityRadar/"><b>在线文档</b></a> · <a href="#安装">快速安装</a> · <a href="#项目里有什么">项目结构</a>
+</p>
+
 ---
 
 ## OpportunityRadar 是什么？
