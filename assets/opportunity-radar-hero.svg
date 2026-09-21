@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 640" role="img" aria-labelledby="title desc">
+  <title id="title">OpportunityRadar — find what you did not know to search for</title>
+  <desc id="desc">A clean editorial cover showing the four stages: discover, verify, decide, and develop.</desc>
+  <style>
+    .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; }
+    .mono { font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace; }
+  </style>
+
+  <rect width="1440" height="640" rx="28" fill="#f7f8f3"/>
+  <rect x="1" y="1" width="1438" height="638" rx="27" fill="none" stroke="#d9ddd4" stroke-width="2"/>
+
+  <g stroke="#dde1d8" stroke-width="1">
+    <path d="M48 112h1344M48 518h1344"/>
+    <path d="M886 112v406"/>
+  </g>
+
+  <g class="mono" fill="#1c211e" font-size="13" font-weight="700" letter-spacing="1.8">
+    <text x="49" y="72">OPPORTUNITYRADAR®</text>
+    <text x="1132" y="72">PERSONAL INTELLIGENCE / 001</text>
+  </g>
+
+  <g class="sans">
+    <text x="48" y="188" fill="#1a1e1b" font-size="23" font-weight="650">Find what you didn't know</text>
+    <text x="48" y="224" fill="#1a1e1b" font-size="23" font-weight="650">to search for.</text>
+
+    <text x="43" y="333" fill="#111512" font-size="92" font-weight="780" letter-spacing="-4.2">机会，不该取决于</text>
+    <text x="43" y="429" fill="#111512" font-size="92" font-weight="780" letter-spacing="-4.2">你是否猜对关键词。</text>
+
+    <text x="49" y="481" fill="#626a63" font-size="17">发现未知选项，核实真实状态，判断投入价值，连接下一次跃迁。</text>
+  </g>
+
+  <g class="sans">
+    <rect x="926" y="151" width="204" height="142" rx="6" fill="#dcff66"/>
+    <text x="946" y="181" fill="#182014" font-size="12" font-weight="800" letter-spacing="1.5">01 / DISCOVER</text>
+    <text x="946" y="229" fill="#12160f" font-size="28" font-weight="720">发现未知</text>
+    <text x="946" y="262" fill="#4e5b38" font-size="14">13 类机会 · 相邻方向</text>
+
+    <rect x="1146" y="151" width="246" height="142" rx="6" fill="#c9edff"/>
+    <text x="1166" y="181" fill="#15202a" font-size="12" font-weight="800" letter-spacing="1.5">02 / VERIFY</text>
+    <text x="1166" y="229" fill="#111820" font-size="28" font-weight="720">回到官方</text>
+    <text x="1166" y="262" fill="#496270" font-size="14">来源 · 时效 · 资格证据</text>
+
+    <rect x="926" y="309" width="246" height="170" rx="6" fill="#ffd9eb"/>
+    <text x="946" y="339" fill="#26151f" font-size="12" font-weight="800" letter-spacing="1.5">03 / DECIDE</text>
+    <text x="946" y="389" fill="#1b1116" font-size="28" font-weight="720">做出取舍</text>
+    <text x="946" y="422" fill="#765064" font-size="14">Match · Priority · Utility</text>
+    <path d="M946 450h108" stroke="#ae728f" stroke-width="2"/>
+
+    <rect x="1188" y="309" width="204" height="170" rx="6" fill="#e5dbff"/>
+    <text x="1208" y="339" fill="#1e1730" font-size="12" font-weight="800" letter-spacing="1.5">04 / DEVELOP</text>
+    <text x="1208" y="389" fill="#171020" font-size="28" font-weight="720">打开未来</text>
+    <text x="1208" y="422" fill="#65567e" font-size="14">Gap → Bridge → Evidence</text>
+    <circle cx="1358" cy="447" r="13" fill="#7257bf"/>
+    <path d="m1352 447 4 4 8-9" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <g class="mono" fill="#626a63" font-size="12" font-weight="700" letter-spacing="1.4">
+    <text x="49" y="570">EVIDENCE-FIRST</text>
+    <text x="226" y="570">RESOURCE-AWARE</text>
+    <text x="421" y="570">EXPLAINABLE BY DESIGN</text>
+    <text x="1270" y="570">MIT / 2026</text>
+  </g>
+  <g>
+    <rect x="49" y="594" width="18" height="6" fill="#dcff66"/>
+    <rect x="67" y="594" width="18" height="6" fill="#c9edff"/>
+    <rect x="85" y="594" width="18" height="6" fill="#ffd9eb"/>
+    <rect x="103" y="594" width="18" height="6" fill="#e5dbff"/>
+  </g>
+</svg>
