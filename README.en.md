@@ -4,7 +4,7 @@
 
 [简体中文](./README.md) · **English**
 
-# OpportunityRadar
+# OpportunityRadar · 机会雷达
 
 **Find the opportunities you didn't know to search for.**
 
@@ -17,7 +17,7 @@ Ask what to do next. Get a shortlist that explains what fits, what is open, and 
 
 You cannot apply to an opportunity you never found. And you cannot trust a deadline just because a job board still shows it.
 
-OpportunityRadar helps a web-enabled agent search beyond your first keywords, check promising leads on official pages, and tell you which ones you can act on. It is built to answer the useful question: **“What should I look at next, and why?”**
+OpportunityRadar (机会雷达) helps a web-enabled agent search beyond your first keywords, check promising leads on official pages, and tell you which ones you can act on. It is built to answer the useful question: **“What should I look at next, and why?”**
 
 ## More than a list of links
 
@@ -45,7 +45,13 @@ I'm considering an exchange programme abroad. Which options are worth checking, 
 
 You can change direction mid-conversation. A preference for local jobs in one turn should not quietly rule out overseas graduate study in the next. The current request guides that search without rewriting your longer-term profile.
 
-The skill is intended for students, recent graduates, and early-career explorers in any field—not just software engineers. It can look across 13 opportunity categories, from internships and research to competitions, scholarships, exchange programmes, open source, events, and creative projects. A narrow request stays narrow; breadth is useful only when it uncovers something genuinely relevant.
+The skill is for students, working professionals, people seeking promotion or a career change, and anyone exploring a new direction. It can look across 13 opportunity categories, from jobs and research to competitions, scholarships, exchange programmes, open source, events, and creative projects. A narrow request stays narrow; breadth is useful only when it uncovers something genuinely relevant.
+
+## Find the route, then the opening
+
+[OpportunityHandbook (机会手册)](https://github.com/Sver0411/OpportunityHandbook/blob/main/README.en.md) is the companion project. It helps you understand possible paths, their costs, and what each path could leave you with. OpportunityRadar looks for specific openings that exist now and checks whether you can act on them.
+
+Say you are considering a move from product management into research. The handbook can help you decide what kind of work you actually want to test and what evidence would make the move credible. The radar can then look for current research projects, assistant roles, and adjacent open-source work that match the time and skills you have. The handbook is primarily in Chinese; its linked English README introduces the project.
 
 ## Every lead has to earn its place
 

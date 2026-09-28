@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/opportunity-radar-hero.svg" alt="OpportunityRadar：帮你发现并筛选真正值得关注的机会" width="100%">
+  <img src="assets/opportunity-radar-hero.svg" alt="机会雷达（OpportunityRadar）：帮你发现并筛选真正值得关注的机会" width="100%">
 </p>
 
 <div align="center">
@@ -12,7 +12,7 @@
 
 从工作、科研到竞赛、开源和资助：找到更多可能，回到官方核实，判断是否适合，再决定先做什么。
 
-[在线文档](https://sver0411.github.io/OpportunityRadar/) · [安装与使用](#安装与使用) · [看看它怎样工作](#它怎样工作) · [先读 OpportunityHandbook](https://sver0411.github.io/OpportunityHandbook/)
+[在线文档](https://sver0411.github.io/OpportunityRadar/) · [安装与使用](#安装与使用) · [看看它怎样工作](#它怎样工作) · [先读机会手册](https://sver0411.github.io/OpportunityHandbook/)
 
 [![测试状态](https://github.com/Sver0411/OpportunityRadar/actions/workflows/test.yml/badge.svg)](https://github.com/Sver0411/OpportunityRadar/actions/workflows/test.yml)
 [![项目类型](https://img.shields.io/badge/项目-Agent_Skill-7656A8)](SKILL.md)
@@ -35,7 +35,7 @@
 如果我还不够格，现在做什么能让我离目标更近？
 ```
 
-普通搜索往往把这些问题压缩成一页链接。OpportunityRadar 把它们重新拆开。
+普通搜索往往把这些问题压缩成一页链接。机会雷达（OpportunityRadar）把它们重新拆开。
 
 ## 一份长清单，通常不是一个好答案
 
@@ -47,7 +47,7 @@
 - 推荐了二十件“值得做”的事，却完全不考虑你一周只有五小时；
 - 告诉你“缺少经验”，却没有继续寻找能补上这段经验的真实入口。
 
-OpportunityRadar 的目标不是把结果做长，而是让你一眼看懂：**哪些值得现在点开，为什么是它，以及下一步先做什么。**
+它的目标不是把结果做长，而是让你一眼看懂：**哪些值得现在点开，为什么是它，以及下一步先做什么。**
 
 ## 它会多做哪几步
 
@@ -95,9 +95,9 @@ OpportunityRadar 的目标不是把结果做长，而是让你一眼看懂：**�
 
 ## OpportunityHandbook × OpportunityRadar
 
-OpportunityRadar 有一个天然的搭档：[**OpportunityHandbook**](https://github.com/Sver0411/OpportunityHandbook)。
+机会雷达有一个天然的搭档：[**机会手册（OpportunityHandbook）**](https://github.com/Sver0411/OpportunityHandbook)。
 
-| | [OpportunityHandbook](https://github.com/Sver0411/OpportunityHandbook) | [OpportunityRadar](https://github.com/Sver0411/OpportunityRadar) |
+| | [机会手册](https://github.com/Sver0411/OpportunityHandbook) | [机会雷达](https://github.com/Sver0411/OpportunityRadar) |
 | --- | --- | --- |
 | **它解决什么** | 看懂有哪些路、每条路的成本、门槛、退路和长期价值 | 找到当前真实存在的机会，并核实能否参与、何时行动 |
 | **最适合的时刻** | “我不知道该往哪里走”或“两个方向应该怎样选” | “方向大致清楚了，现在有什么值得申请或参加” |
@@ -106,11 +106,11 @@ OpportunityRadar 有一个天然的搭档：[**OpportunityHandbook**](https://gi
 最简单的搭配方式：
 
 ```text
-先用 Handbook 看清路
+先用机会手册看清路
         ↓
 把“我想变好”说成一个具体目标
         ↓
-用 Radar 找到当前仍开放的真实机会
+用机会雷达找到当前仍开放的真实机会
         ↓
 通过行动留下作品、经历、关系与新证据
         ↓
@@ -121,9 +121,9 @@ OpportunityRadar 有一个天然的搭档：[**OpportunityHandbook**](https://gi
 
 假设你做了五年产品经理，开始考虑人工智能方向。
 
-先用 Handbook 分清：你想换的是行业、岗位还是工作内容；哪些既有能力可以带走；你愿不愿意接受短期降薪；什么样的作品或经历能够证明这次转型不是一句愿望。
+先用机会手册分清：你想换的是行业、岗位还是工作内容；哪些既有能力可以带走；你愿不愿意接受短期降薪；什么样的作品或经历能够证明这次转型不是一句愿望。
 
-然后把更清楚的目标交给 Radar：
+然后把更清楚的目标交给机会雷达：
 
 ```text
 我做了五年产品经理，想转向人工智能产品。
@@ -132,7 +132,7 @@ OpportunityRadar 有一个天然的搭档：[**OpportunityHandbook**](https://gi
 并告诉我哪些适合现在做，哪些需要先补能力。
 ```
 
-Handbook 帮你避免在错误的问题上努力，Radar 帮你避免在过期或不适合的机会上浪费时间。
+机会手册帮你避免在错误的问题上努力，机会雷达帮你避免在过期或不适合的机会上浪费时间。
 
 ## 它适合谁
 
@@ -277,7 +277,7 @@ python3 -m unittest discover -s tests -t tests
 
 机会信息会变化。即使一次核实过，真正行动前也应重新打开官方网站确认最新要求。
 
-OpportunityRadar 不能保证搜遍所有机构，也不能保证申请结果。它能做的是扩大你能看见的范围、提高信息可信度，并减少把时间浪费在过期、不适合或价值很低的机会上的可能。
+机会雷达不能保证搜遍所有机构，也不能保证申请结果。它能做的是扩大你能看见的范围、提高信息可信度，并减少把时间浪费在过期、不适合或价值很低的机会上的可能。
 
 可选的用户资料和查看记录保存在本地 `.opportunity-radar/`，辅助脚本不会主动上传这些文件。
 
@@ -287,6 +287,6 @@ OpportunityRadar 不能保证搜遍所有机构，也不能保证申请结果。
 
 ### 看清方向，找到入口，留下能带走的东西。
 
-**[用 OpportunityHandbook 建立地图](https://sver0411.github.io/OpportunityHandbook/) · [用 OpportunityRadar 寻找下一步](https://sver0411.github.io/OpportunityRadar/)**
+**[用机会手册建立地图](https://sver0411.github.io/OpportunityHandbook/) · [用机会雷达寻找下一步](https://sver0411.github.io/OpportunityRadar/)**
 
 </div>
