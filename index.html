@@ -173,6 +173,7 @@
         border-right: 1px solid var(--line);
         background: #fbfcfa;
         scrollbar-width: thin;
+        overscroll-behavior: contain;
       }
 
       .search-wrap {
@@ -241,6 +242,7 @@
         color: #59625b;
         font-size: 13px;
         line-height: 1.5;
+        transition: color 180ms ease, background-color 180ms ease;
       }
 
       .side-nav a:hover { color: var(--text); background: var(--surface-soft); }
@@ -273,8 +275,17 @@
         position: fixed;
         z-index: 20;
         inset: var(--header) 0 0;
-        display: none;
         background: rgba(23, 34, 26, 0.3);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 220ms ease, visibility 220ms ease;
+      }
+
+      body.sidebar-open .backdrop {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
       }
 
       .main {
@@ -349,6 +360,17 @@
         background: var(--surface);
         font-size: 13px;
         font-weight: 650;
+        transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+      }
+
+      @media (hover: hover) {
+        .hero-link:hover {
+          transform: translateY(-2px);
+          border-color: #9eb7a4;
+          box-shadow: 0 7px 18px rgba(35, 52, 40, 0.09);
+        }
+
+        .hero-link.primary:hover { background: var(--green); }
       }
 
       .hero-link.primary {
@@ -604,9 +626,14 @@
         background: #29332c;
         font-size: 11px;
         cursor: pointer;
+        transition: background-color 180ms ease, transform 180ms ease;
       }
 
       .copy-button:hover { background: #354139; }
+
+      @media (hover: hover) {
+        .copy-button:hover { transform: translateY(-1px); }
+      }
 
       code.inline {
         padding: 2px 5px;
@@ -645,7 +672,20 @@
         outline-offset: 2px;
       }
 
+      @keyframes enter-softly {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      @media (prefers-reduced-motion: no-preference) {
+        .doc-label { animation: enter-softly 480ms ease-out both; }
+        .doc-hero h1 { animation: enter-softly 520ms 60ms ease-out both; }
+        .doc-lead { animation: enter-softly 520ms 120ms ease-out both; }
+        .hero-links { animation: enter-softly 520ms 180ms ease-out both; }
+      }
+
       @media (max-width: 840px) {
+        body.sidebar-open { overflow: hidden; }
         .menu-button { display: grid; }
         .topbar-inner { padding: 0 14px; }
         .top-link.docs-link { display: none; }
@@ -679,7 +719,7 @@
 
       @media (prefers-reduced-motion: reduce) {
         html { scroll-behavior: auto; }
-        *, *::before, *::after { transition: none !important; }
+        *, *::before, *::after { animation: none !important; transition: none !important; }
       }
     </style>
   </head>
@@ -943,7 +983,24 @@ git clone https://github.com/Sver0411/OpportunityRadar.git \
       });
 
       backdrop.addEventListener('click', closeSidebar);
-      navLinks.forEach((link) => link.addEventListener('click', closeSidebar));
+      navLinks.forEach((link) => link.addEventListener('click', () => {
+        if (search.value) {
+          search.value = '';
+          search.dispatchEvent(new Event('input'));
+        }
+        closeSidebar();
+      }));
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && body.classList.contains('sidebar-open')) {
+          closeSidebar();
+          menuButton.focus();
+        }
+      });
+
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 840 && body.classList.contains('sidebar-open')) closeSidebar();
+      });
 
       search.addEventListener('input', () => {
         const query = search.value.trim().toLocaleLowerCase('zh-CN');
