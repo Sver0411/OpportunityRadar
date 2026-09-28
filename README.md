@@ -6,7 +6,7 @@
 
 **简体中文** · [English](./README.en.md)
 
-# OpportunityRadar
+# 机会雷达 · OpportunityRadar
 
 **不是把链接堆给你，而是把真正能行动的机会筛出来。**
 
